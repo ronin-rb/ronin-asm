@@ -49,3 +49,32 @@ CommandKit::Completion::Task.new(
 )
 
 task :setup => %w[man command_kit:completion]
+
+directory 'vendor/cache'
+directory 'vendor/isa'
+
+file 'vendor/isa/x86.xml' => 'vendor/isa' do
+  sh 'wget', '-O', 'vendor/isa/x86.xml', 'https://raw.githubusercontent.com/Maratyszcza/Opcodes/refs/heads/master/opcodes/x86.xml'
+end
+
+file 'vendor/isa/x86_64.xml' => 'vendor/isa' do
+  sh 'wget', '-O', 'vendor/isa/x86_64.xml', 'https://raw.githubusercontent.com/Maratyszcza/Opcodes/refs/heads/master/opcodes/x86_64.xml'
+end
+
+file 'vendor/cache/ISA_A64_xml_v88A-2021-12.tar.gz' => 'vendor/cache' do
+  sh 'wget', '-O', 'vendor/cache/ISA_A64_xml_v88A-2021-12.tar.gz', 'https://developer.arm.com/-/media/developer/products/architecture/armv8-a-architecture/2021-12/ISA_A64_xml_v88A-2021-12.tar.gz'
+end
+
+file 'vendor/isa/arm64.xml' => %w[vendor/cache/ISA_A64_xml_v88A-2021-12.tar.gz vendor/isa] do
+  sh 'tar', '-C', 'vendor/cache', '--strip-components=1', '-xzf', 'vendor/cache/ISA_A64_xml_v88A-2021-12.tar.gz', 'ISA_A64_xml_v88A-2021-12/onebigfile.xml'
+  sh 'mv', 'vendor/cache/onebigfile.xml', 'vendor/isa/arm64.xml'
+end
+
+file 'vendor/cache/SysReg_xml_v86A-2020-06.tar.gz' => 'vendor/cache' do
+  sh 'wget', '-O', 'vendor/cache/SysReg_xml_v86A-2020-06.tar.gz', 'https://developer.arm.com/-/media/developer/products/architecture/armv8-a-architecture/2020-06/SysReg_xml_v86A-2020-06.tar.gz'
+end
+
+file 'vendor/isa/arm64-sysregs.xml' => %w[vendor/cache/SysReg_xml_v86A-2020-06.tar.gz vendor/isa] do
+  sh 'tar', '-C', 'vendor/cache', '--strip-components=1', '-xzf', 'vendor/cache/SysReg_xml_v86A-2020-06.tar.gz', 'SysReg_xml_v86A-2020-06/enc_index.xml'
+  sh 'mv', 'vendor/cache/enc_index.xml', 'vendor/isa/arm64-sysregs.xml'
+end
