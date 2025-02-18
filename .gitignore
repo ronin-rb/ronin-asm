@@ -3,7 +3,7 @@
 /doc
 /pkg
 /man/*.[1-9]
-/vendor/cache
+/vendor
 /Gemfile.lock
 /.bundle
 /.yardoc
