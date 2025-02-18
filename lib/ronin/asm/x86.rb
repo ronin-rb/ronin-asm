@@ -25,6 +25,8 @@ module Ronin
     #
     # Contains X86 Architecture information.
     #
+    # @api private
+    #
     module X86
       # Default word size
       WORD_SIZE = 4

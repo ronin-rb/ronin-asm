@@ -26,6 +26,8 @@ module Ronin
     #
     # Contains x86-64 Architecture information.
     #
+    # @api private
+    #
     module X86_64
       include X86
 
