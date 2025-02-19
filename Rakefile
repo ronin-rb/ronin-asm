@@ -78,3 +78,7 @@ file 'vendor/isa/arm64-sysregs.xml' => %w[vendor/cache/SysReg_xml_v86A-2020-06.t
   sh 'tar', '-C', 'vendor/cache', '--strip-components=1', '-xzf', 'vendor/cache/SysReg_xml_v86A-2020-06.tar.gz', 'SysReg_xml_v86A-2020-06/enc_index.xml'
   sh 'mv', 'vendor/cache/enc_index.xml', 'vendor/isa/arm64-sysregs.xml'
 end
+
+namespace :codegen do
+  task(:x86 => 'vendor/isa/x86.xml') { ruby 'codegen/x86.rb' }
+end
