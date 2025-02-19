@@ -30,4 +30,7 @@ group :development do
   gem 'stackprof',       require: false, platform: :mri
 
   gem 'command_kit-completion', '~> 0.2', require: false
+
+  # codegen dependencies:
+  gem 'nokogiri', '~> 1.4', require: false
 end
