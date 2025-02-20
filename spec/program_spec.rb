@@ -230,18 +230,18 @@ describe Ronin::ASM::Program do
       expect(subject.byte(1).width).to eq(1)
     end
 
-    context "when given a MemoryOperand" do
-      let(:register)       { Ronin::ASM::Register.new(:eax, 4)       }
-      let(:memory_operand) { Ronin::ASM::MemoryOperand.new(register) }
+    context "when given a Memory object" do
+      let(:register) { Ronin::ASM::Register.new(:eax, 4) }
+      let(:memory)   { Ronin::ASM::Memory.new(register) }
 
-      it "must return a MemoryOperand" do
-        expect(subject.byte(memory_operand)).to be_kind_of(
-          Ronin::ASM::MemoryOperand
+      it "must return a Memory" do
+        expect(subject.byte(memory)).to be_kind_of(
+          Ronin::ASM::Memory
         )
       end
 
       it "must have a width of 1" do
-        expect(subject.byte(memory_operand).width).to eq(1)
+        expect(subject.byte(memory).width).to eq(1)
       end
     end
   end
@@ -255,18 +255,18 @@ describe Ronin::ASM::Program do
       expect(subject.word(1).width).to eq(2)
     end
 
-    context "when given a MemoryOperand" do
-      let(:register)       { Ronin::ASM::Register.new(:eax, 4)       }
-      let(:memory_operand) { Ronin::ASM::MemoryOperand.new(register) }
+    context "when given a Memory object" do
+      let(:register) { Ronin::ASM::Register.new(:eax, 4) }
+      let(:memory)   { Ronin::ASM::Memory.new(register) }
 
-      it "must return a MemoryOperand" do
-        expect(subject.word(memory_operand)).to be_kind_of(
-          Ronin::ASM::MemoryOperand
+      it "must return a Memory" do
+        expect(subject.word(memory)).to be_kind_of(
+          Ronin::ASM::Memory
         )
       end
 
       it "must have a width of 2" do
-        expect(subject.word(memory_operand).width).to eq(2)
+        expect(subject.word(memory).width).to eq(2)
       end
     end
   end
@@ -280,18 +280,18 @@ describe Ronin::ASM::Program do
       expect(subject.dword(1).width).to eq(4)
     end
 
-    context "when given a MemoryOperand" do
-      let(:register)       { Ronin::ASM::Register.new(:eax, 4)       }
-      let(:memory_operand) { Ronin::ASM::MemoryOperand.new(register) }
+    context "when given a Memory object" do
+      let(:register) { Ronin::ASM::Register.new(:eax, 4) }
+      let(:memory)   { Ronin::ASM::Memory.new(register) }
 
-      it "must return a MemoryOperand" do
-        expect(subject.dword(memory_operand)).to be_kind_of(
-          Ronin::ASM::MemoryOperand
+      it "must return a Memory" do
+        expect(subject.dword(memory)).to be_kind_of(
+          Ronin::ASM::Memory
         )
       end
 
       it "must have a width of 4" do
-        expect(subject.dword(memory_operand).width).to eq(4)
+        expect(subject.dword(memory).width).to eq(4)
       end
     end
   end
@@ -305,18 +305,18 @@ describe Ronin::ASM::Program do
       expect(subject.qword(1).width).to eq(8)
     end
 
-    context "when given a MemoryOperand" do
-      let(:register)       { Ronin::ASM::Register.new(:eax, 4)       }
-      let(:memory_operand) { Ronin::ASM::MemoryOperand.new(register) }
+    context "when given a Memory object" do
+      let(:register) { Ronin::ASM::Register.new(:eax, 4) }
+      let(:memory)   { Ronin::ASM::Memory.new(register) }
 
-      it "must return a MemoryOperand" do
-        expect(subject.qword(memory_operand)).to be_kind_of(
-          Ronin::ASM::MemoryOperand
+      it "must return a Memory" do
+        expect(subject.qword(memory)).to be_kind_of(
+          Ronin::ASM::Memory
         )
       end
 
       it "must have a width of 8" do
-        expect(subject.qword(memory_operand).width).to eq(8)
+        expect(subject.qword(memory).width).to eq(8)
       end
     end
   end

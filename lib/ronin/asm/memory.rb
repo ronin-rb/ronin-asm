@@ -27,7 +27,9 @@ module Ronin
     #
     # @see http://asm.sourceforge.net/articles/linasm.html#Memory
     #
-    class MemoryOperand
+    # @since 1.0.0
+    #
+    class Memory
 
       # The base of the memory operand.
       #
@@ -107,11 +109,11 @@ module Ronin
       # @param [Integer] offset
       #   The offset to add to the Memory Operand.
       #
-      # @return [MemoryOperand]
+      # @return [Memory]
       #   The new Memory Operand.
       #
       def +(offset)
-        MemoryOperand.new(
+        Memory.new(
           @base,
           @offset + offset,
           @index,
@@ -126,11 +128,11 @@ module Ronin
       # @param [Integer] offset
       #   The offset to subject from the Memory Operand.
       #
-      # @return [MemoryOperand]
+      # @return [Memory]
       #   The new Memory Operand.
       #
       def -(offset)
-        MemoryOperand.new(
+        Memory.new(
           @base,
           @offset - offset,
           @index,
