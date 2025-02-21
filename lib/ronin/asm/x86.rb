@@ -27,6 +27,7 @@ require_relative 'x86/memory_offset'
 require_relative 'x86/broadcast'
 require_relative 'x86/opmask'
 require_relative 'x86/syntax'
+require_relative 'x86/encoder'
 
 require 'set'
 
