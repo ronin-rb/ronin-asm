@@ -274,7 +274,7 @@ module Ronin
       #   The newly created instruction.
       #
       def instruction(name,*operands, comment: nil)
-        insn = Instruction.new(name.to_sym,*operands, comment: comment)
+        insn = Instruction.new(name,*operands, comment: comment)
 
         @instructions << insn
         return insn
