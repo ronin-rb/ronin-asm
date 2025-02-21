@@ -72,7 +72,7 @@ describe Ronin::ASM::Syntax::ATT do
 
   describe ".emit_instruction" do
     context "with no operands" do
-      let(:instruction) { Ronin::ASM::Instruction.new(:ret, []) }
+      let(:instruction) { Ronin::ASM::Instruction.new(:ret) }
 
       it "must emit the instruction name" do
         expect(subject.emit_instruction(instruction)).to eq('ret')
@@ -82,7 +82,7 @@ describe Ronin::ASM::Syntax::ATT do
     context "with one operand" do
       context "with width of 1" do
         let(:immediate)   { Ronin::ASM::Immediate.new(0x80, 1) }
-        let(:instruction) { Ronin::ASM::Instruction.new(:int, [immediate]) }
+        let(:instruction) { Ronin::ASM::Instruction.new(:int, immediate) }
 
         it "must not append a size specifier to the instruction name" do
           expect(subject.emit_instruction(instruction)).to eq("int\t$0x80")
@@ -93,7 +93,7 @@ describe Ronin::ASM::Syntax::ATT do
     context "with multiple operands" do
       let(:register)    { Ronin::ASM::Register.new(:eax, width: 4) }
       let(:immediate)   { Ronin::ASM::Immediate.new(0xff, 1)  }
-      let(:instruction) { Ronin::ASM::Instruction.new(:mov, [register, immediate]) }
+      let(:instruction) { Ronin::ASM::Instruction.new(:mov, register, immediate) }
 
       it "must add a size specifier to the instruction name" do
         expect(subject.emit_instruction(instruction)).to match(/^movl/)
