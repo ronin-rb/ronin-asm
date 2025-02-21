@@ -15,25 +15,25 @@ describe Ronin::ASM::Memory do
     it "must only accept nil and a Register for base" do
       expect {
         described_class.new(Object.new)
-      }.to raise_error(TypeError)
+      }.to raise_error(ArgumentError)
     end
 
     it "must only accept Integers for displacement" do
       expect {
         described_class.new(register,2.0)
-      }.to raise_error(TypeError)
+      }.to raise_error(ArgumentError)
     end
 
     it "must only accept nil and a Register for index" do
       expect {
         described_class.new(register,0,Object.new)
-      }.to raise_error(TypeError)
+      }.to raise_error(ArgumentError)
     end
 
     it "must only accept Integers for displacement" do
       expect {
         described_class.new(register,0,nil,2.0)
-      }.to raise_error(TypeError)
+      }.to raise_error(ArgumentError)
     end
 
   end
