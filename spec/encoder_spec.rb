@@ -8,6 +8,32 @@ describe Ronin::ASM::Encoder do
 
   subject { described_class.new(output) }
 
+  describe "#initialize" do
+    it "must set #output" do
+      expect(subject.output).to be(output)
+    end
+  end
+
+  describe "#write_instructions" do
+    let(:instructions) do
+      [double('Instruction'), double('Instruction'), double('Instruction')]
+    end
+    let(:bytes_written1) { 2 }
+    let(:bytes_written2) { 4 }
+    let(:bytes_written3) { 3 }
+
+    it "must pass each instruction to #write_instruction, then call #finalize, and return the total number of bytes written" do
+      expect(subject).to receive(:write_instruction).with(instructions[0]).and_return(bytes_written1)
+      expect(subject).to receive(:write_instruction).with(instructions[1]).and_return(bytes_written2)
+      expect(subject).to receive(:write_instruction).with(instructions[2]).and_return(bytes_written3)
+      expect(subject).to receive(:finalize)
+
+      expect(subject.write_instructions(instructions)).to eq(
+        bytes_written1 + bytes_written2 + bytes_written3
+      )
+    end
+  end
+
   describe "#write_instruction" do
     let(:instruction) { double('Instruction') }
     let(:bytes_written) { 4 }
@@ -126,6 +152,12 @@ describe Ronin::ASM::Encoder do
 
     it "must return 1" do
       expect(subject.write_byte(byte)).to eq(1)
+    end
+  end
+
+  describe "#finalize" do
+    it "must define an empty #finalize method" do
+      expect(subject.finalize).to be(nil)
     end
   end
 end
