@@ -26,6 +26,18 @@ module Ronin
     # @abstract
     #
     class Operand
+
+      #
+      # The Assembly class type (ex: `reg32`).
+      #
+      # @return [Symbol]
+      #
+      # @abstract
+      #
+      def type
+        raise(NotImplementedError,"#{self.class}#type was not defined")
+      end
+
     end
   end
 end
