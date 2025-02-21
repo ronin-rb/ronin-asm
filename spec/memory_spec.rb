@@ -76,5 +76,15 @@ describe Ronin::ASM::Memory do
     it "must return the width of base" do
       expect(subject.width).to eq(register.width)
     end
+
+    context "when the #width has been explicitly set with the `width:` keyword argument" do
+      let(:explicit_width) { 2 }
+
+      subject { described_class.new(register,10,nil,1,explicit_width) }
+
+      it "must return the explicitly set width" do
+        expect(subject.width).to eq(explicit_width)
+      end
+    end
   end
 end
