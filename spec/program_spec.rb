@@ -189,6 +189,14 @@ describe Ronin::ASM::Program do
     end
   end
 
+  describe "#allocate_register" do
+    it "must add the register name to #allocated_registers" do
+      subject.allocate_register(:ebx)
+
+      expect(subject.allocated_registers).to include(:ebx)
+    end
+  end
+
   describe "#register" do
     it "must return a Register" do
       expect(subject.register(:eax)).to be_kind_of(Ronin::ASM::Register)

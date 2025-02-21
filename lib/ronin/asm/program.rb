@@ -205,6 +205,21 @@ module Ronin
       end
 
       #
+      # Mark the register as allocated.
+      #
+      # @param [Symbol] name
+      #   The register name.
+      #
+      # @return [Set<Symbol>]
+      #   The set of allocated registers.
+      #
+      # @since 1.0.0
+      #
+      def allocate_register(name)
+        @allocated_registers << name
+      end
+
+      #
       # Accesses a register.
       #
       # @param [String, Symbol] name
@@ -223,11 +238,8 @@ module Ronin
           raise(ArgumentError,"unknown register: #{name}")
         end
 
-        unless @allocated_registers.include?(name)
-          # mark the register as being used, when it was first accessed
-          @allocated_registers << name
-        end
-
+        # mark the register as being used
+        allocate_register(name)
         return @registers[name]
       end
 
