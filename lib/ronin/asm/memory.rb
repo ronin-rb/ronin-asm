@@ -37,10 +37,10 @@ module Ronin
       # @return [Register, nil]
       attr_reader :base
 
-      # The offset of the memory operand.
+      # The displacement of the memory operand.
       #
       # @return [Integer]
-      attr_reader :offset
+      attr_reader :displacement
 
       # the index of the memory operand.
       #
@@ -63,8 +63,8 @@ module Ronin
       # @param [Register, nil] base
       #   The base of the value.
       #
-      # @param [Integer] offset
-      #   The fixed offset to add to the `base`.
+      # @param [Integer] displacement
+      #   The fixed displacement to add to the `base`.
       #
       # @param [Register, nil] index
       #   The variable index to multiple by `scale`, then add to `base`.
@@ -78,13 +78,13 @@ module Ronin
       # @raise [TypeError]
       #   `base` or `index` was not a {Register} or `nil`.
       #
-      def initialize(base=nil,offset=0,index=nil,scale=1,width=nil)
+      def initialize(base=nil,displacement=0,index=nil,scale=1,width=nil)
         unless (base.nil? || base.kind_of?(Register))
           raise(TypeError,"base must be a Register or nil")
         end
 
-        unless offset.kind_of?(Integer)
-          raise(TypeError,"offset must be an Integer")
+        unless displacement.kind_of?(Integer)
+          raise(TypeError,"displacement must be an Integer")
         end
 
         unless (index.nil? || index.kind_of?(Register))
@@ -95,28 +95,28 @@ module Ronin
           raise(TypeError,"scale must be an Integer")
         end
 
-        @base   = base
-        @offset = offset
-        @index  = index
-        @scale  = scale
-        @width  = width || if base
-                             base.width
-                           end
+        @base         = base
+        @displacement = displacement
+        @index        = index
+        @scale        = scale
+        @width        = width || if base
+                                   base.width
+                                 end
       end
 
       #
-      # Adds to the offset of the Memory Operand.
+      # Adds to the displacement of the Memory Operand.
       #
-      # @param [Integer] offset
-      #   The offset to add to the Memory Operand.
+      # @param [Integer] displacement
+      #   The displacement to add to the Memory Operand.
       #
       # @return [Memory]
       #   The new Memory Operand.
       #
-      def +(offset)
+      def +(displacement)
         Memory.new(
           @base,
-          @offset + offset,
+          @displacement + displacement,
           @index,
           @scale,
           @width
@@ -124,18 +124,18 @@ module Ronin
       end
 
       #
-      # Subtracts from the offset of the Memory Operand.
+      # Subtracts from the displacement of the Memory Operand.
       #
-      # @param [Integer] offset
-      #   The offset to subject from the Memory Operand.
+      # @param [Integer] displacement
+      #   The displacement to subject from the Memory Operand.
       #
       # @return [Memory]
       #   The new Memory Operand.
       #
-      def -(offset)
+      def -(displacement)
         Memory.new(
           @base,
-          @offset - offset,
+          @displacement - displacement,
           @index,
           @scale,
           @width

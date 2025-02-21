@@ -262,7 +262,7 @@ module Ronin
       def byte(op)
         case op
         when Memory
-          Memory.new(op.base,op.offset,op.index,op.scale,1)
+          Memory.new(op.base,op.displacement,op.index,op.scale,1)
         else
           Immediate.new(op,1)
         end
@@ -280,7 +280,7 @@ module Ronin
       def word(op)
         case op
         when Memory
-          Memory.new(op.base,op.offset,op.index,op.scale,2)
+          Memory.new(op.base,op.displacement,op.index,op.scale,2)
         else
           Immediate.new(op,2)
         end
@@ -298,7 +298,7 @@ module Ronin
       def dword(op)
         case op
         when Memory
-          Memory.new(op.base,op.offset,op.index,op.scale,4)
+          Memory.new(op.base,op.displacement,op.index,op.scale,4)
         else
           Immediate.new(op,4)
         end
@@ -316,7 +316,7 @@ module Ronin
       def qword(op)
         case op
         when Memory
-          Memory.new(op.base,op.offset,op.index,op.scale,8)
+          Memory.new(op.base,op.displacement,op.index,op.scale,8)
         else
           Immediate.new(op,8)
         end
