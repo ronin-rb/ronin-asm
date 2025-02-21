@@ -18,7 +18,8 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'arch'
+require_relative 'x86'
+require_relative 'x86_64'
 require_relative 'os'
 require_relative 'register'
 require_relative 'instruction'
@@ -44,9 +45,9 @@ module Ronin
 
       # Mapping of architecture IDs to modules.
       ARCHES = {
-        x86:    Arch::X86,
-        x86_64: Arch::X86_64,
-        amd64:  Arch::X86_64
+        x86:    X86,
+        x86_64: X86_64,
+        amd64:  X86_64
       }
 
       # Mapping of Operating System names and modules.
