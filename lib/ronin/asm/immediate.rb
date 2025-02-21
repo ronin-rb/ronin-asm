@@ -36,6 +36,11 @@ module Ronin
       # @return [Integer]
       attr_reader :value
 
+      # The width of the immediate operand.
+      #
+      # @return [1, 2, 4, 8]
+      attr_reader :width
+
       #
       # Initializes a new Immediate Operand.
       #
@@ -47,21 +52,11 @@ module Ronin
       #
       def initialize(value,width=nil)
         @value = value.to_i
-        @width = width
-      end
-
-      #
-      # The width of the immediate operand.
-      #
-      # @return [1, 2, 4, 8]
-      #   The width.
-      #
-      def width
-        @width || if @value == 0
-                    1
-                  else
-                    (@value.bit_length / 8.0).ceil
-                  end
+        @width = width || if @value == 0
+                            1
+                          else
+                            (@value.bit_length / 8.0).ceil
+                          end
       end
 
       #
