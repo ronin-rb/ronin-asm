@@ -139,7 +139,7 @@ module Ronin
       #   The value to set.
       #
       def register_set(name,value)
-        instruction(:mov,value,register(name))
+        instruction(:mov,register(name),value)
       end
 
       #

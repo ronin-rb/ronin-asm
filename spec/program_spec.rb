@@ -82,8 +82,8 @@ describe Ronin::ASM::Program do
 
         it "must add a 'xor' instruction with a registers" do
           expect(subject.instructions[-1].name).to eq(:mov)
-          expect(subject.instructions[-1].operands[0].value).to eq(value)
-          expect(subject.instructions[-1].operands[1].name).to eq(name)
+          expect(subject.instructions[-1].operands[0].name).to eq(name)
+          expect(subject.instructions[-1].operands[1].value).to eq(value)
         end
       end
 
