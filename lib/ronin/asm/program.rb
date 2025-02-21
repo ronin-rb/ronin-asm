@@ -220,6 +220,21 @@ module Ronin
       end
 
       #
+      # Mark the register as de-allocated.
+      #
+      # @param [Symbol] name
+      #   The register name.
+      #
+      # @return [Set<Symbol>]
+      #   The set of allocated registers.
+      #
+      # @since 1.0.0
+      #
+      def free_register(name)
+        @allocated_registers.delete(name)
+      end
+
+      #
       # Accesses a register.
       #
       # @param [String, Symbol] name
