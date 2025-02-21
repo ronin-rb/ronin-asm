@@ -18,6 +18,7 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'operand'
 require_relative 'register'
 
 module Ronin
@@ -29,7 +30,7 @@ module Ronin
     #
     # @since 1.0.0
     #
-    class Memory
+    class Memory < Operand
 
       # The base of the memory operand.
       #

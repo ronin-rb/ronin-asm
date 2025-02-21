@@ -18,6 +18,7 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'operand'
 require_relative 'memory'
 
 module Ronin
@@ -25,7 +26,7 @@ module Ronin
     #
     # Represents a Register.
     #
-    class Register
+    class Register < Operand
 
       # The register name.
       #
