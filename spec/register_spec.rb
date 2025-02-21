@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'ronin/asm/register'
 
 describe Ronin::ASM::Register do
-  let(:register) { described_class.new(:eax, 4) }
+  let(:register) { described_class.new(:eax, width: 4) }
 
   subject { register }
 
