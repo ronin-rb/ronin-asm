@@ -4,7 +4,7 @@
 * Require `ruby` >= 3.0.0.
 * Require `ruby-yasm` ~> 3.0.
 * Removed the `data_paths` gem dependency.
-* Added {Ronin::ASM::OS.[]}.
+* Added `Ronin::ASM::OS.[]`.
 * Use `require_relative` to improve load times.
 * Documentation improvements.
 

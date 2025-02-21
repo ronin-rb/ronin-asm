@@ -22,9 +22,9 @@ require_relative '../config'
 
 module Ronin
   module ASM
-    module OS
+    module Syscalls
       #
-      # Contains Linux specific helper methods.
+      # Contains Linux syscall numbers.
       #
       module Linux
         # System call numbers for Linux.
