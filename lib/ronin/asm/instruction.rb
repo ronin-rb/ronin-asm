@@ -55,7 +55,7 @@ module Ronin
       #   Optional comment for the instruction.
       #
       def initialize(name,*operands, comment: nil)
-        @name     = name
+        @name     = name.to_sym
         @operands = operands.map do |value|
           case value
           when Integer, nil then Immediate.new(value)
