@@ -18,6 +18,12 @@ describe Ronin::ASM::Immediate do
 
   describe "#width" do
     context "when #width is not explicitly set by #initialize" do
+      context "and it is 0" do
+        subject { described_class.new(0).width }
+
+        it { expect(subject).to be == 1 }
+      end
+
       context "and when between 0x00 .. 0xff" do
         subject { described_class.new(0xff).width }
 
