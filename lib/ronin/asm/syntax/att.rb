@@ -81,7 +81,7 @@ module Ronin
           end
 
           asm = "(#{asm})"
-          asm = emit_integer(op.offset) + asm if op.offset != 0
+          asm = emit_integer(op.displacement) + asm if op.displacement != 0
 
           return asm
         end

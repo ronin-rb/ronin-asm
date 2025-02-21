@@ -69,28 +69,28 @@ module Ronin
       end
 
       #
-      # Adds an offset to the value within the register and dereferences the
-      # address.
+      # Adds a displacement to the value within the register and dereferences
+      # the address.
       #
-      # @param [Memory, Register, Integer] offset
-      #   The offset to add to the value of the register.
+      # @param [Memory, Register, Integer] value
+      #   The value to add to the value of the register.
       #
       # @return [Memory]
       #   The new Memory Operand.
       #
       # @raise [TypeError]
-      #   the `offset` was not an {Memory}, {Register} or Integer.
+      #   the value was not an {Memory}, {Register} or Integer.
       #
-      def +(offset)
-        case offset
+      def +(value)
+        case value
         when Memory
-          Memory.new(self,offset.offset,offset.index,offset.scale)
+          Memory.new(self,value.displacement,value.index,value.scale)
         when Register
-          Memory.new(self,0,offset)
+          Memory.new(self,0,value)
         when Integer
-          Memory.new(self,offset)
+          Memory.new(self,value)
         else
-          raise(TypeError,"offset was not an Memory, Register or Integer")
+          raise(TypeError,"value was not an Memory, Register or Integer")
         end
       end
 
@@ -98,14 +98,14 @@ module Ronin
       # Subtracts from the value within the register and dereferences the
       # address.
       #
-      # @param [Integer] offset
+      # @param [Integer] displacement
       #   The value to subtract from the value of the register.
       #
       # @return [Memory]
       #   The new Memory Operand.
       #
-      def -(offset)
-        Memory.new(self,-offset)
+      def -(displacement)
+        Memory.new(self,-displacement)
       end
 
       #
