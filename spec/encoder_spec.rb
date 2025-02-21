@@ -8,6 +8,12 @@ describe Ronin::ASM::Encoder do
 
   subject { described_class.new(output) }
 
+  describe "#initialize" do
+    it "must set #output" do
+      expect(subject.output).to be(output)
+    end
+  end
+
   describe "#write_instruction" do
     let(:instruction) { double('Instruction') }
     let(:bytes_written) { 4 }
