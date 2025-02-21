@@ -197,6 +197,19 @@ describe Ronin::ASM::Program do
     end
   end
 
+  describe "#free_register" do
+    let(:name) { :ebx }
+
+    before do
+      subject.allocate_register(name)
+      subject.free_register(name)
+    end
+
+    it "must remove the register name to #allocated_registers" do
+      expect(subject.allocated_registers).to_not include(name)
+    end
+  end
+
   describe "#register" do
     it "must return a Register" do
       expect(subject.register(:eax)).to be_kind_of(Ronin::ASM::Register)
