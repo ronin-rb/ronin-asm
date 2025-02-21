@@ -12,30 +12,59 @@ describe Ronin::ASM::Memory do
     it { expect(subject.index).to        be_nil }
     it { expect(subject.scale).to        eq(1)  }
 
-    it "must only accept nil and a Register for base" do
-      expect {
-        described_class.new(Object.new)
-      }.to raise_error(ArgumentError)
+    context "when a base value is given" do
+      subject { described_class.new(register) }
+
+      it "must set #base" do
+        expect(subject.base).to eq(register)
+      end
+
+      it "must set #width to the base's #width" do
+        expect(subject.width).to eq(subject.base.width)
+      end
     end
 
-    it "must only accept Integers for displacement" do
-      expect {
-        described_class.new(register,2.0)
-      }.to raise_error(ArgumentError)
+    context "when a width value is given" do
+      let(:width) { 2 }
+
+      subject { described_class.new(register,0,nil,1,width) }
+
+      it "must set #width to the given width value" do
+        expect(subject.width).to eq(width)
+      end
     end
 
-    it "must only accept nil and a Register for index" do
-      expect {
-        described_class.new(register,0,Object.new)
-      }.to raise_error(ArgumentError)
+    context "when a non-nil and non-Register value is given for the base" do
+      it "must only accept nil and a Register for base" do
+        expect {
+          described_class.new(Object.new)
+        }.to raise_error(ArgumentError,"base must be a Register or nil")
+      end
     end
 
-    it "must only accept Integers for displacement" do
-      expect {
-        described_class.new(register,0,nil,2.0)
-      }.to raise_error(ArgumentError)
+    context "when a non-Integer value is given for the displacement" do
+      it "must only accept Integers for displacement" do
+        expect {
+          described_class.new(register,2.0)
+        }.to raise_error(ArgumentError,"displacement must be an Integer")
+      end
     end
 
+    context "when a non-nil and non-Register value is given for the index" do
+      it "must only accept nil and a Register for index" do
+        expect {
+          described_class.new(register,0,Object.new)
+        }.to raise_error(ArgumentError,"index must be a Register or nil")
+      end
+    end
+
+    context "when a non-Integer value is given for the scale" do
+      it "must only accept Integers for scale" do
+        expect {
+          described_class.new(register,0,nil,2.0)
+        }.to raise_error(ArgumentError,"scale must be an Integer")
+      end
+    end
   end
 
   describe "#+" do
