@@ -83,7 +83,7 @@ describe Ronin::ASM::Syntax::Intel do
 
   describe ".emit_instruction" do
     context "with no operands" do
-      let(:instruction) { Ronin::ASM::Instruction.new(:ret, []) }
+      let(:instruction) { Ronin::ASM::Instruction.new(:ret) }
 
       it "must emit the instruction name" do
         expect(subject.emit_instruction(instruction)).to eq('ret')
@@ -93,7 +93,7 @@ describe Ronin::ASM::Syntax::Intel do
     context "with multiple operands" do
       let(:register)    { Ronin::ASM::Register.new(:eax, width: 4) }
       let(:immediate)   { Ronin::ASM::Immediate.new(0xff, 1)  }
-      let(:instruction) { Ronin::ASM::Instruction.new(:mov, [register, immediate]) }
+      let(:instruction) { Ronin::ASM::Instruction.new(:mov, register, immediate) }
 
       it "must emit the operands" do
         expect(subject.emit_instruction(instruction)).to eq("mov\teax,\tBYTE 0xff")

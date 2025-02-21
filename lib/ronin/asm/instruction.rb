@@ -54,7 +54,7 @@ module Ronin
       # @param [String, nil] comment
       #   Optional comment for the instruction.
       #
-      def initialize(name,operands, comment: nil)
+      def initialize(name,*operands, comment: nil)
         @name     = name
         @operands = operands.map do |value|
           case value
