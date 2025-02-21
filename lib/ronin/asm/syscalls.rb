@@ -18,14 +18,14 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'os/freebsd'
-require_relative 'os/linux'
+require_relative 'syscalls/freebsd'
+require_relative 'syscalls/linux'
 
 module Ronin
   module ASM
-    module OS
+    module Syscalls
       # The mapping of OS names to modules.
-      NAMES = {
+      OSES = {
         linux:   Linux,
         freebsd: FreeBSD
       }
@@ -45,7 +45,7 @@ module Ronin
       # @since 1.0.0
       #
       def self.[](name)
-        NAMES.fetch(name) do
+        OSES.fetch(name) do
           raise(ArgumentError,"unknown OS name: #{name.inspect}")
         end
       end

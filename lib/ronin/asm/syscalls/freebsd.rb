@@ -22,9 +22,9 @@ require_relative '../config'
 
 module Ronin
   module ASM
-    module OS
+    module Syscalls
       #
-      # Contains FreeBSD specific helper methods.
+      # Contains FreeBSD syscall numbers.
       #
       module FreeBSD
         # System call numbers for FreeBSD.
