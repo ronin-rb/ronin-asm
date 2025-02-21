@@ -231,7 +231,7 @@ describe Ronin::ASM::Program do
     end
 
     context "when given a Memory object" do
-      let(:register) { Ronin::ASM::Register.new(:eax, 4) }
+      let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
       let(:memory)   { Ronin::ASM::Memory.new(register) }
 
       it "must return a Memory" do
@@ -256,7 +256,7 @@ describe Ronin::ASM::Program do
     end
 
     context "when given a Memory object" do
-      let(:register) { Ronin::ASM::Register.new(:eax, 4) }
+      let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
       let(:memory)   { Ronin::ASM::Memory.new(register) }
 
       it "must return a Memory" do
@@ -281,7 +281,7 @@ describe Ronin::ASM::Program do
     end
 
     context "when given a Memory object" do
-      let(:register) { Ronin::ASM::Register.new(:eax, 4) }
+      let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
       let(:memory)   { Ronin::ASM::Memory.new(register) }
 
       it "must return a Memory" do
@@ -306,7 +306,7 @@ describe Ronin::ASM::Program do
     end
 
     context "when given a Memory object" do
-      let(:register) { Ronin::ASM::Register.new(:eax, 4) }
+      let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
       let(:memory)   { Ronin::ASM::Memory.new(register) }
 
       it "must return a Memory" do

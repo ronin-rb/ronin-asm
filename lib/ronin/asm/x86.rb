@@ -31,49 +31,49 @@ module Ronin
 
       # X86 registers
       REGISTERS = {
-        al:  Register.new(:al, 1),
-        ah:  Register.new(:ah, 1),
-        ax:  Register.new(:ax, 2),
-        eax: Register.new(:eax, 4, true),
+        al:  Register.new(:al, width: 1),
+        ah:  Register.new(:ah, width: 1),
+        ax:  Register.new(:ax, width: 2),
+        eax: Register.new(:eax, width: 4, general: true),
 
-        bl:  Register.new(:bl, 1),
-        bh:  Register.new(:bh, 1),
-        bx:  Register.new(:bx, 2),
-        ebx: Register.new(:ebx, 4, true),
+        bl:  Register.new(:bl, width: 1),
+        bh:  Register.new(:bh, width: 1),
+        bx:  Register.new(:bx, width: 2),
+        ebx: Register.new(:ebx, width: 4, general: true),
 
-        cl:  Register.new(:cl, 1),
-        ch:  Register.new(:ch, 1),
-        cx:  Register.new(:cx, 2),
-        ecx: Register.new(:ecx, 4, true),
+        cl:  Register.new(:cl, width: 1),
+        ch:  Register.new(:ch, width: 1),
+        cx:  Register.new(:cx, width: 2),
+        ecx: Register.new(:ecx, width: 4, general: true),
 
-        dl:  Register.new(:dl, 1),
-        dh:  Register.new(:dh, 1),
-        dx:  Register.new(:dx, 2),
-        edx: Register.new(:edx, 4, true),
+        dl:  Register.new(:dl, width: 1),
+        dh:  Register.new(:dh, width: 1),
+        dx:  Register.new(:dx, width: 2),
+        edx: Register.new(:edx, width: 4, general: true),
 
-        bp:  Register.new(:bp, 2),
-        ebp: Register.new(:ebp, 4),
+        bp:  Register.new(:bp, width: 2),
+        ebp: Register.new(:ebp, width: 4),
 
-        sp:  Register.new(:sp, 2),
-        esp: Register.new(:esp, 4),
+        sp:  Register.new(:sp, width: 2),
+        esp: Register.new(:esp, width: 4),
 
-        ip:  Register.new(:ip, 2),
-        eip: Register.new(:eip, 4),
+        ip:  Register.new(:ip, width: 2),
+        eip: Register.new(:eip, width: 4),
 
-        sil: Register.new(:sil, 1),
-        si:  Register.new(:si, 2),
-        esi: Register.new(:esi, 4, true),
+        sil: Register.new(:sil, width: 1),
+        si:  Register.new(:si, width: 2),
+        esi: Register.new(:esi, width: 4, general: true),
 
-        dil: Register.new(:dil, 1),
-        di:  Register.new(:di, 2),
-        edi: Register.new(:edi, 4, true),
+        dil: Register.new(:dil, width: 1),
+        di:  Register.new(:di, width: 2),
+        edi: Register.new(:edi, width: 4, general: true),
 
-        cs: Register.new(:cs, 2),
-        ds: Register.new(:ds, 2),
-        es: Register.new(:es, 2),
-        fs: Register.new(:fs, 2),
-        gs: Register.new(:gs, 2),
-        ss: Register.new(:ss, 2)
+        cs: Register.new(:cs, width: 2),
+        ds: Register.new(:ds, width: 2),
+        es: Register.new(:es, width: 2),
+        fs: Register.new(:fs, width: 2),
+        gs: Register.new(:gs, width: 2),
+        ss: Register.new(:ss, width: 2)
       }
 
       #

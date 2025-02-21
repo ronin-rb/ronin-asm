@@ -4,7 +4,7 @@ require 'ronin/asm/memory'
 require 'ronin/asm/register'
 
 describe Ronin::ASM::Memory do
-  let(:register) { Ronin::ASM::Register.new(:eax, 4) }
+  let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
 
   describe "#initialize" do
     it { expect(subject.base).to   be_nil }
