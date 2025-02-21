@@ -20,7 +20,7 @@
 
 require_relative 'x86'
 require_relative 'x86_64'
-require_relative 'os'
+require_relative 'syscalls'
 require_relative 'register'
 require_relative 'instruction'
 require_relative 'immediate'
@@ -51,9 +51,9 @@ module Ronin
       }
 
       # Mapping of Operating System names and modules.
-      OSES = {
-        linux:   OS::Linux,
-        freebsd: OS::FreeBSD
+      SYSCALLS = {
+        linux:   Syscalls::Linux,
+        freebsd: Syscalls::FreeBSD
       }
 
       # The Assembly Parsers
@@ -179,13 +179,13 @@ module Ronin
       def initialize_os(os)
         @os = os
 
-        os_module = OSES.fetch(os) do
+        syscall_module = SYSCALLS.fetch(os) do
           raise(ArgumentError,"unknown OS: #{os.inspect}")
         end
 
-        @syscalls = os_module::SYSCALLS
+        @syscalls = syscall_module::SYSCALLS
 
-        extend os_module
+        extend syscall_module
       end
 
       public

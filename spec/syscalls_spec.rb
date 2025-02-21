@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'ronin/asm/os'
+require 'ronin/asm/syscalls'
 
-describe Ronin::ASM::OS do
+describe Ronin::ASM::Syscalls do
   describe ".[]" do
     context "when given :linux" do
       it "must return #{described_class}::Linux" do
