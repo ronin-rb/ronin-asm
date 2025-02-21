@@ -21,6 +21,7 @@
 require_relative 'x86/registers'
 require_relative 'x86/relative_offset'
 require_relative 'x86/memory_offset'
+require_relative 'x86/encoder'
 
 module Ronin
   module ASM
