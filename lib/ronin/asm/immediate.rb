@@ -18,6 +18,8 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'operand'
+
 module Ronin
   module ASM
     #
@@ -27,7 +29,7 @@ module Ronin
     #
     # @since 1.0.0
     #
-    class Immediate
+    class Immediate < Operand
 
       # The immediate operand's value.
       #
