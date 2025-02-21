@@ -75,24 +75,24 @@ module Ronin
       # @param [Integer, nil] width
       #   The optional width of the memory operand.
       #
-      # @raise [TypeError]
+      # @raise [ArgumentError]
       #   `base` or `index` was not a {Register} or `nil`.
       #
       def initialize(base=nil,displacement=0,index=nil,scale=1,width=nil)
         unless (base.nil? || base.kind_of?(Register))
-          raise(TypeError,"base must be a Register or nil")
+          raise(ArgumentError,"base must be a Register or nil")
         end
 
         unless displacement.kind_of?(Integer)
-          raise(TypeError,"displacement must be an Integer")
+          raise(ArgumentError,"displacement must be an Integer")
         end
 
         unless (index.nil? || index.kind_of?(Register))
-          raise(TypeError,"index must be a Register or nil")
+          raise(ArgumentError,"index must be a Register or nil")
         end
 
         unless scale.kind_of?(Integer)
-          raise(TypeError,"scale must be an Integer")
+          raise(ArgumentError,"scale must be an Integer")
         end
 
         @base         = base
