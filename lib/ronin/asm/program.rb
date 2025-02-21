@@ -27,6 +27,7 @@ require_relative 'immediate'
 require_relative 'label'
 require_relative 'syntax'
 
+require 'set'
 require 'tempfile'
 require 'yasm/program'
 
@@ -91,7 +92,7 @@ module Ronin
 
       # The registers used by the program
       #
-      # @return [Array<Symbol>]
+      # @return [Set<Symbol>]
       attr_reader :allocated_registers
 
       # The instructions of the program
@@ -139,7 +140,7 @@ module Ronin
           instance_variable_set("@#{name}",value)
         end
 
-        @allocated_registers = []
+        @allocated_registers = Set.new
         @instructions = []
 
         instance_eval(&block) if block
