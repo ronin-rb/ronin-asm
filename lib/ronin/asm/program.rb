@@ -262,8 +262,10 @@ module Ronin
       # Adds a new instruction to the program.
       #
       # @param [String, Symbol] name
+      #   The instruction name.
       #
       # @param [Array] operands
+      #   The operands for the instruction.
       #
       # @param [String, nil] comment
       #   Optional comment for the instruction.
