@@ -50,10 +50,10 @@ module Ronin
       # @param [Boolean] general
       #   Specifies whether the register is a General Purpose Register (GPR).
       #
-      def initialize(name,width,general=false)
+      def initialize(name, width: , general: false)
         @name  = name
-        @width = width
 
+        @width   = width
         @general = general
       end
 
