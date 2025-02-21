@@ -487,7 +487,8 @@ describe Ronin::ASM::Program do
     end
 
     context "when syntax: :intel is given" do
-      let(:output) { Tempfile.new(['ronin-asm', '.o']).path }
+      let(:tempfile) { Tempfile.new(['ronin-asm', '.o']) }
+      let(:output)   { tempfile.path }
 
       before { subject.assemble(output, syntax: :intel) }
 
