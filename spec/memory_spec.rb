@@ -7,10 +7,10 @@ describe Ronin::ASM::Memory do
   let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
 
   describe "#initialize" do
-    it { expect(subject.base).to   be_nil }
-    it { expect(subject.offset).to eq(0)  }
-    it { expect(subject.index).to  be_nil }
-    it { expect(subject.scale).to  eq(1)  }
+    it { expect(subject.base).to         be_nil }
+    it { expect(subject.displacement).to eq(0)  }
+    it { expect(subject.index).to        be_nil }
+    it { expect(subject.scale).to        eq(1)  }
 
     it "must only accept nil and a Register for base" do
       expect {
@@ -18,7 +18,7 @@ describe Ronin::ASM::Memory do
       }.to raise_error(TypeError)
     end
 
-    it "must only accept Integers for offset" do
+    it "must only accept Integers for displacement" do
       expect {
         described_class.new(register,2.0)
       }.to raise_error(TypeError)
@@ -30,7 +30,7 @@ describe Ronin::ASM::Memory do
       }.to raise_error(TypeError)
     end
 
-    it "must only accept Integers for offset" do
+    it "must only accept Integers for displacement" do
       expect {
         described_class.new(register,0,nil,2.0)
       }.to raise_error(TypeError)
@@ -43,8 +43,8 @@ describe Ronin::ASM::Memory do
 
     subject { operand + 4 }
 
-    it "must add to offset" do
-      expect(subject.offset).to eq(8)
+    it "must add to displacement" do
+      expect(subject.displacement).to eq(8)
     end
 
     it "must not change base, index or scale" do
@@ -59,8 +59,8 @@ describe Ronin::ASM::Memory do
 
     subject { operand - 2 }
 
-    it "must subtract from offset" do
-      expect(subject.offset).to eq(2)
+    it "must subtract from displacement" do
+      expect(subject.displacement).to eq(2)
     end
 
     it "must not change base, index or scale" do

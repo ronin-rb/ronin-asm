@@ -45,18 +45,18 @@ describe Ronin::ASM::Syntax::Intel do
       end
     end
 
-    context "with an offset" do
-      let(:offset)  { 255 }
-      let(:operand) { Ronin::ASM::Memory.new(register,offset) }
+    context "with an displacement" do
+      let(:displacement) { 255 }
+      let(:operand)      { Ronin::ASM::Memory.new(register,displacement) }
 
-      it "must add the offset to the base" do
+      it "must add the displacement to the base" do
         expect(subject.emit_memory(operand)).to eq("[eax+0xff]")
       end
 
       context "when 0" do
         let(:operand) { Ronin::ASM::Memory.new(register,0) }
 
-        it "must omit the offset" do
+        it "must omit the displacement" do
           expect(subject.emit_memory(operand)).to eq("[eax]")
         end
       end

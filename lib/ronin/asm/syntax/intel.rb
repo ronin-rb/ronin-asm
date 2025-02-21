@@ -76,12 +76,12 @@ module Ronin
             asm << '*' << emit_integer(op.scale) if op.scale > 1
           end
 
-          if op.offset != 0
-            sign = if op.offset >= 0 then '+'
-                   else                   '-'
+          if op.displacement != 0
+            sign = if op.displacement >= 0 then '+'
+                   else                         '-'
                    end
 
-            asm << sign << emit_integer(op.offset)
+            asm << sign << emit_integer(op.displacement)
           end
 
           asm = "[#{asm}]"

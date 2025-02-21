@@ -20,10 +20,10 @@ describe Ronin::ASM::Register do
         expect(subject.base).to eq(register)
       end
 
-      it "must preserve the offset, index and scale" do
-        expect(subject.offset).to eq(operand.offset)
-        expect(subject.index).to  eq(operand.index)
-        expect(subject.scale).to  eq(operand.scale)
+      it "must preserve the displacement, index and scale" do
+        expect(subject.displacement).to eq(operand.displacement)
+        expect(subject.index).to        eq(operand.index)
+        expect(subject.scale).to        eq(operand.scale)
       end
     end
 
@@ -36,7 +36,7 @@ describe Ronin::ASM::Register do
         expect(subject.base).to eq(register)
       end
 
-      it { expect(subject.offset).to eq(0) }
+      it { expect(subject.displacement).to eq(0) }
 
       it "must set the index" do
         expect(subject.index).to eq(register)
@@ -44,9 +44,9 @@ describe Ronin::ASM::Register do
     end
 
     context "when given an Integer" do
-      let(:offset) { 10 }
+      let(:displacement) { 10 }
 
-      subject { register + offset }
+      subject { register + displacement }
 
       it { expect(subject).to be_kind_of(Ronin::ASM::Memory) }
 
@@ -54,8 +54,8 @@ describe Ronin::ASM::Register do
         expect(subject.base).to eq(register)
       end
 
-      it "must set the offset" do
-        expect(subject.offset).to eq(offset)
+      it "must set the displacement" do
+        expect(subject.displacement).to eq(displacement)
       end
     end
 
@@ -69,9 +69,9 @@ describe Ronin::ASM::Register do
   end
 
   describe "#-" do
-    let(:offset) { 10 }
+    let(:displacement) { 10 }
 
-    subject { register - offset }
+    subject { register - displacement }
 
     it { expect(subject).to be_kind_of(Ronin::ASM::Memory) }
 
@@ -79,8 +79,8 @@ describe Ronin::ASM::Register do
       expect(subject.base).to eq(register)
     end
 
-    it "must set a negative offset" do
-      expect(subject.offset).to eq(-offset)
+    it "must set a negative displacement" do
+      expect(subject.displacement).to eq(-displacement)
     end
   end
 
@@ -92,7 +92,7 @@ describe Ronin::ASM::Register do
     it { expect(subject).to be_kind_of(Ronin::ASM::Memory) }
 
     it { expect(subject.base).to be_nil }
-    it { expect(subject.offset).to eq(0) }
+    it { expect(subject.displacement).to eq(0) }
 
     it "must set the index" do
       expect(subject.index).to eq(register)
