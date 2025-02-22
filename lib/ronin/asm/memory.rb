@@ -32,6 +32,11 @@ module Ronin
     #
     class Memory < Operand
 
+      # The assembly class type.
+      #
+      # @return [nil, :mem8, :mem16, :mem32, :mem64]
+      attr_reader :type
+
       # The base of the memory operand.
       #
       # @return [Register, nil]
@@ -102,6 +107,10 @@ module Ronin
         @width        = width || if base
                                    base.width
                                  end
+
+        if @width
+          @type = :"mem#{@width * 8}"
+        end
       end
 
       #
