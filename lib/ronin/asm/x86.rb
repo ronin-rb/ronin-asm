@@ -193,14 +193,14 @@ module Ronin
       #
       # The Stack Base Pointer register.
       #
-      # @see ebp
+      # @see #ebp
       #
       def stack_base; Registers::EBP; end
 
       #
       # The Stack Pointer register.
       #
-      # @see esp
+      # @see #esp
       #
       def stack_pointer; Registers::ESP; end
 

@@ -161,14 +161,14 @@ module Ronin
       #
       # The Stack Base Pointer register.
       #
-      # @see rbp
+      # @see #rbp
       #
       def stack_base = Registers::RBP
 
       #
       # The Stack Pointer register.
       #
-      # @see rsp
+      # @see #rsp
       #
       def stack_pointer = Registers::RSP
 
