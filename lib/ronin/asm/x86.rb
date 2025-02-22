@@ -31,24 +31,24 @@ module Ronin
 
       # X86 registers
       REGISTERS = {
-        al:  Register.new(:al, width: 1),
-        ah:  Register.new(:ah, width: 1),
-        ax:  Register.new(:ax, width: 2),
+        al:  Register.new(:al, width: 1, general: true),
+        ah:  Register.new(:ah, width: 1, general: true),
+        ax:  Register.new(:ax, width: 2, general: true),
         eax: Register.new(:eax, width: 4, general: true),
 
-        bl:  Register.new(:bl, width: 1),
-        bh:  Register.new(:bh, width: 1),
-        bx:  Register.new(:bx, width: 2),
+        bl:  Register.new(:bl, width: 1, general: true),
+        bh:  Register.new(:bh, width: 1, general: true),
+        bx:  Register.new(:bx, width: 2, general: true),
         ebx: Register.new(:ebx, width: 4, general: true),
 
-        cl:  Register.new(:cl, width: 1),
-        ch:  Register.new(:ch, width: 1),
-        cx:  Register.new(:cx, width: 2),
+        cl:  Register.new(:cl, width: 1, general: true),
+        ch:  Register.new(:ch, width: 1, general: true),
+        cx:  Register.new(:cx, width: 2, general: true),
         ecx: Register.new(:ecx, width: 4, general: true),
 
-        dl:  Register.new(:dl, width: 1),
-        dh:  Register.new(:dh, width: 1),
-        dx:  Register.new(:dx, width: 2),
+        dl:  Register.new(:dl, width: 1, general: true),
+        dh:  Register.new(:dh, width: 1, general: true),
+        dx:  Register.new(:dx, width: 2, general: true),
         edx: Register.new(:edx, width: 4, general: true),
 
         bp:  Register.new(:bp, width: 2),
