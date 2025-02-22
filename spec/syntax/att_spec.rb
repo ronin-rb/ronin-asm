@@ -19,7 +19,7 @@ describe Ronin::ASM::Syntax::ATT do
   end
 
   describe ".emit_immediate" do
-    let(:operand) { Ronin::ASM::Immediate.new(255, 1) }
+    let(:operand) { Ronin::ASM::Immediate.new(255, width: 1) }
 
     it "must prepend a '$' to the immediate" do
       expect(subject.emit_immediate(operand)).to eq("$0xff")
@@ -87,7 +87,7 @@ describe Ronin::ASM::Syntax::ATT do
 
     context "with one operand" do
       context "with width of 1" do
-        let(:immediate)   { Ronin::ASM::Immediate.new(0x80, 1) }
+        let(:immediate)   { Ronin::ASM::Immediate.new(0x80, width: 1) }
         let(:instruction) { Ronin::ASM::Instruction.new(:int, immediate) }
 
         it "must not append a size specifier to the instruction name" do
@@ -98,7 +98,7 @@ describe Ronin::ASM::Syntax::ATT do
 
     context "with multiple operands" do
       let(:register)    { Ronin::ASM::Register.new(:eax, width: 4) }
-      let(:immediate)   { Ronin::ASM::Immediate.new(0xff, 1)  }
+      let(:immediate)   { Ronin::ASM::Immediate.new(0xff, width: 1)  }
       let(:instruction) { Ronin::ASM::Instruction.new(:mov, register, immediate) }
 
       it "must add a size specifier to the instruction name" do

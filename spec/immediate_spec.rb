@@ -8,7 +8,7 @@ describe Ronin::ASM::Immediate do
     context "with a width" do
       let(:width) { 2 }
 
-      subject { described_class.new(value,width) }
+      subject { described_class.new(value, width: width) }
 
       it "must set the width" do
         expect(subject.width).to eq(width)
@@ -20,7 +20,7 @@ describe Ronin::ASM::Immediate do
     context "when #width is 1" do
       let(:width) { 1 }
 
-      subject { described_class.new(value,width) }
+      subject { described_class.new(value, width: width) }
 
       it "must return :imm8" do
         expect(subject.type).to eq(:imm8)
@@ -30,7 +30,7 @@ describe Ronin::ASM::Immediate do
     context "when #width is 2" do
       let(:width) { 2 }
 
-      subject { described_class.new(value,width) }
+      subject { described_class.new(value, width: width) }
 
       it "must return :imm16" do
         expect(subject.type).to eq(:imm16)
@@ -40,7 +40,7 @@ describe Ronin::ASM::Immediate do
     context "when #width is 4" do
       let(:width) { 4 }
 
-      subject { described_class.new(value,width) }
+      subject { described_class.new(value, width: width) }
 
       it "must return :imm32" do
         expect(subject.type).to eq(:imm32)
@@ -50,7 +50,7 @@ describe Ronin::ASM::Immediate do
     context "when #width is 8" do
       let(:width) { 8 }
 
-      subject { described_class.new(value,width) }
+      subject { described_class.new(value, width: width) }
 
       it "must return :imm64" do
         expect(subject.type).to eq(:imm64)
