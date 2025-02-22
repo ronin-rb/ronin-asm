@@ -37,72 +37,72 @@ module Ronin
         #
 
         # The `rax` 64bit "accumulator" register.
-        RAX =  Register.new(:rax, width: 8, general: true)
+        RAX =  Register.new(:rax, width: 8, number: 0, general: true)
 
         # The `rbx` 64bit "accumulator" register.
-        RBX =  Register.new(:rbx, width: 8, general: true)
+        RBX =  Register.new(:rbx, width: 8, number: 3, general: true)
 
         # The `rcx` 64bit "accumulator" register.
-        RCX =  Register.new(:rcx, width: 8, general: true)
+        RCX =  Register.new(:rcx, width: 8, number: 1, general: true)
 
         # The `rdx` 64bit "accumulator" register.
-        RDX =  Register.new(:rdx, width: 8, general: true)
+        RDX =  Register.new(:rdx, width: 8, number: 2, general: true)
 
         # The `rsi` 64bit "source" register.
-        RSI =  Register.new(:rsi, width: 8, general: true)
+        RSI =  Register.new(:rsi, width: 8, number: 6, general: true)
 
         # The `rdi` 64bit "destination" register.
-        RDI =  Register.new(:rdi, width: 8, general: true)
+        RDI =  Register.new(:rdi, width: 8, number: 7, general: true)
 
-        R8B =  Register.new(:r8b, width: 1, general: true)
-        R8W =  Register.new(:r8w, width: 2, general: true)
-        R8D =  Register.new(:r8d, width: 4, general: true)
-        R8  =  Register.new(:r8, width: 8, general: true)
+        R8B =  Register.new(:r8b, width: 1, number: 8, general: true)
+        R8W =  Register.new(:r8w, width: 2, number: 8, general: true)
+        R8D =  Register.new(:r8d, width: 4, number: 8, general: true)
+        R8  =  Register.new(:r8, width: 8, number: 8, general: true)
 
-        R9B =  Register.new(:r9b, width: 1, general: true)
-        R9W =  Register.new(:r9w, width: 2, general: true)
-        R9D =  Register.new(:r9d, width: 4, general: true)
-        R9  =  Register.new(:r9, width: 8, general: true)
+        R9B =  Register.new(:r9b, width: 1, number: 9, general: true)
+        R9W =  Register.new(:r9w, width: 2, number: 9, general: true)
+        R9D =  Register.new(:r9d, width: 4, number: 9, general: true)
+        R9  =  Register.new(:r9, width: 8, number: 9, general: true)
 
-        R10B =  Register.new(:r10b, width: 1, general: true)
-        R10W =  Register.new(:r10w, width: 2, general: true)
-        R10D =  Register.new(:r10d, width: 4, general: true)
-        R10  =  Register.new(:r10, width: 8, general: true)
+        R10B =  Register.new(:r10b, width: 1, number: 10, general: true)
+        R10W =  Register.new(:r10w, width: 2, number: 10, general: true)
+        R10D =  Register.new(:r10d, width: 4, number: 10, general: true)
+        R10  =  Register.new(:r10, width: 8, number: 10, general: true)
 
-        R11B =  Register.new(:r11b, width: 1, general: true)
-        R11W =  Register.new(:r11w, width: 2, general: true)
-        R11D =  Register.new(:r11d, width: 4, general: true)
-        R11  =  Register.new(:r11, width: 8, general: true)
+        R11B =  Register.new(:r11b, width: 1, number: 11, general: true)
+        R11W =  Register.new(:r11w, width: 2, number: 11, general: true)
+        R11D =  Register.new(:r11d, width: 4, number: 11, general: true)
+        R11  =  Register.new(:r11, width: 8, number: 11, general: true)
 
-        R12B =  Register.new(:r12b, width: 1, general: true)
-        R12W =  Register.new(:r12w, width: 2, general: true)
-        R12D =  Register.new(:r12d, width: 4, general: true)
-        R12  =  Register.new(:r12, width: 8, general: true)
+        R12B =  Register.new(:r12b, width: 1, number: 12, general: true)
+        R12W =  Register.new(:r12w, width: 2, number: 12, general: true)
+        R12D =  Register.new(:r12d, width: 4, number: 12, general: true)
+        R12  =  Register.new(:r12, width: 8, number: 12, general: true)
 
-        R13B =  Register.new(:r13b, width: 1, general: true)
-        R13W =  Register.new(:r13w, width: 2, general: true)
-        R13D =  Register.new(:r13d, width: 4, general: true)
-        R13  =  Register.new(:r13, width: 8, general: true)
+        R13B =  Register.new(:r13b, width: 1, number: 13, general: true)
+        R13W =  Register.new(:r13w, width: 2, number: 13, general: true)
+        R13D =  Register.new(:r13d, width: 4, number: 13, general: true)
+        R13  =  Register.new(:r13, width: 8, number: 13, general: true)
 
-        R14B =  Register.new(:r14b, width: 1, general: true)
-        R14W =  Register.new(:r14w, width: 2, general: true)
-        R14D =  Register.new(:r14d, width: 4, general: true)
-        R14  =  Register.new(:r14, width: 8, general: true)
+        R14B =  Register.new(:r14b, width: 1, number: 14, general: true)
+        R14W =  Register.new(:r14w, width: 2, number: 14, general: true)
+        R14D =  Register.new(:r14d, width: 4, number: 14, general: true)
+        R14  =  Register.new(:r14, width: 8, number: 14, general: true)
 
-        R15B =  Register.new(:r15b, width: 1, general: true)
-        R15W =  Register.new(:r15w, width: 2, general: true)
-        R15D =  Register.new(:r15d, width: 4, general: true)
-        R15  =  Register.new(:r15, width: 8, general: true)
+        R15B =  Register.new(:r15b, width: 1, number: 15, general: true)
+        R15W =  Register.new(:r15w, width: 2, number: 15, general: true)
+        R15D =  Register.new(:r15d, width: 4, number: 15, general: true)
+        R15  =  Register.new(:r15, width: 8, number: 15, general: true)
 
         #
         # @group Stack Registers.
         #
 
         # The `rsp` 64bit stack pointer register.
-        RSP =  Register.new(:rsp, width: 8)
+        RSP =  Register.new(:rsp, width: 8, number: 4)
 
         # The `rbp` 64bit stack base pointer register.
-        RBP =  Register.new(:rbp, width: 8)
+        RBP =  Register.new(:rbp, width: 8, number: 5)
       end
     end
   end
