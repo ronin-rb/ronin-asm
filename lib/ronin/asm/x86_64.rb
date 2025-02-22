@@ -87,6 +87,10 @@ module Ronin
       )
 
       #
+      # @group Internal Methods
+      #
+
+      #
       # Generates the instruction to invoke a syscall.
       #
       def syscall; instruction(:syscall); end
