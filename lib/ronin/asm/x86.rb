@@ -51,12 +51,6 @@ module Ronin
         dx:  Register.new(:dx, width: 2, general: true),
         edx: Register.new(:edx, width: 4, general: true),
 
-        bp:  Register.new(:bp, width: 2),
-        ebp: Register.new(:ebp, width: 4),
-
-        sp:  Register.new(:sp, width: 2),
-        esp: Register.new(:esp, width: 4),
-
         sil: Register.new(:sil, width: 1, general: true),
         si:  Register.new(:si, width: 2, general: true),
         esi: Register.new(:esi, width: 4, general: true),
@@ -64,6 +58,12 @@ module Ronin
         dil: Register.new(:dil, width: 1, general: true),
         di:  Register.new(:di, width: 2, general: true),
         edi: Register.new(:edi, width: 4, general: true),
+
+        bp:  Register.new(:bp, width: 2),
+        ebp: Register.new(:ebp, width: 4),
+
+        sp:  Register.new(:sp, width: 2),
+        esp: Register.new(:esp, width: 4),
 
         cs: Register.new(:cs, width: 2),
         ds: Register.new(:ds, width: 2),
