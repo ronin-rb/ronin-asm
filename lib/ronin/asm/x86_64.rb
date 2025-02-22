@@ -87,6 +87,74 @@ module Ronin
       )
 
       #
+      # @group Register Methods
+      #
+
+      # The `rax` 64bit "accumulator" register.
+      def rax = Registers::RAX
+
+      # The `rbx` 64bit "accumulator" register.
+      def rbx = Registers::RBX
+
+      # The `rcx` 64bit "accumulator" register.
+      def rcx = Registers::RCX
+
+      # The `rdx` 64bit "accumulator" register.
+      def rdx = Registers::RDX
+
+      # The `rsi` 64bit "source" register.
+      def rsi = Registers::RSI
+
+      # The `rdi` 64bit "destination" register.
+      def rdi = Registers::RDI
+
+      def r8b = Registers::R8B
+      def r8w = Registers::R8W
+      def r8d = Registers::R8D
+      def r8 = Registers::R8
+
+      def r9b = Registers::R9B
+      def r9w = Registers::R9W
+      def r9d = Registers::R9D
+      def r9 = Registers::R9
+
+      def r10b = Registers::R10B
+      def r10w = Registers::R10W
+      def r10d = Registers::R10D
+      def r10 = Registers::R10
+
+      def r11b = Registers::R11B
+      def r11w = Registers::R11W
+      def r11d = Registers::R11D
+      def r11 = Registers::R11
+
+      def r12b = Registers::R12B
+      def r12w = Registers::R12W
+      def r12d = Registers::R12D
+      def r12 = Registers::R12
+
+      def r13b = Registers::R13B
+      def r13w = Registers::R13W
+      def r13d = Registers::R13D
+      def r13 = Registers::R13
+
+      def r14b = Registers::R14B
+      def r14w = Registers::R14W
+      def r14d = Registers::R14D
+      def r14 = Registers::R14
+
+      def r15b = Registers::R15B
+      def r15w = Registers::R15W
+      def r15d = Registers::R15D
+      def r15 = Registers::R15
+
+      # The `rsp` 64bit stack pointer register.
+      def rsp = Registers::RSP
+
+      # The `rbp` 64bit stack base pointer register.
+      def rbp = Registers::RBP
+
+      #
       # @group Internal Methods
       #
 

@@ -605,11 +605,7 @@ module Ronin
         if (block && arguments.empty? && kwargs.empty?)
           label(name,&block)
         elsif block.nil?
-          if (arguments.empty? && register?(name))
-            register(name)
-          else
-            instruction(name,*arguments,**kwargs)
-          end
+          instruction(name,*arguments,**kwargs)
         else
           super(name,*arguments,&block)
         end
