@@ -21,6 +21,7 @@
 require_relative 'x86/registers'
 require_relative 'x86/relative_offset'
 require_relative 'x86/memory_offset'
+require_relative 'x86/instructions'
 require_relative 'x86/encoder'
 
 module Ronin
@@ -31,6 +32,8 @@ module Ronin
     # @api private
     #
     module X86
+      include Instructions
+
       # Default word size
       WORD_SIZE = 4
 
