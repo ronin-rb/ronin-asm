@@ -195,14 +195,14 @@ module Ronin
       #
       # @see ebp
       #
-      def stack_base; ebp; end
+      def stack_base; Registers::EBP; end
 
       #
       # The Stack Pointer register.
       #
       # @see esp
       #
-      def stack_pointer; esp; end
+      def stack_pointer; Registers::ESP; end
 
       #
       # Generates the instruction to push a value onto the Stack.
