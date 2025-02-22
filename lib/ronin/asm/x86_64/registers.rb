@@ -99,10 +99,10 @@ module Ronin
         #
 
         # The `rsp` 64bit stack pointer register.
-        RSP =  Register.new(:rsp, width: 8, general: true)
+        RSP =  Register.new(:rsp, width: 8)
 
         # The `rbp` 64bit stack base pointer register.
-        RBP =  Register.new(:rbp, width: 8, general: true)
+        RBP =  Register.new(:rbp, width: 8)
       end
     end
   end
