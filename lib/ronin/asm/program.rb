@@ -267,14 +267,17 @@ module Ronin
       # @param [Array] operands
       #   The operands for the instruction.
       #
-      # @param [String, nil] comment
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Additional keyword arguments for {Instruction#initialize}.
+      #
+      # @option kwargs [String, nil] :comment
       #   Optional comment for the instruction.
       #
       # @return [Instruction]
       #   The newly created instruction.
       #
-      def instruction(name,*operands, comment: nil)
-        insn = Instruction.new(name,*operands, comment: comment)
+      def instruction(name,*operands,**kwargs)
+        insn = Instruction.new(name,*operands,**kwargs)
 
         @instructions << insn
         return insn
