@@ -74,6 +74,10 @@ module Ronin
       }
 
       #
+      # @group Internal Methods
+      #
+
+      #
       # Generates the instruction to trigger an interrupt.
       #
       # @param [Integer] number
