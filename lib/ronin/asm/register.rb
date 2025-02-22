@@ -43,6 +43,11 @@ module Ronin
       # @return [Integer]
       attr_reader :width
 
+      # The register number.
+      #
+      # @return [Integer]
+      attr_reader :number
+
       #
       # Initializes a register.
       #
@@ -52,13 +57,17 @@ module Ronin
       # @param [Integer] width
       #   The width of the register.
       #
+      # @param [Integer] number
+      #   The register's number used in encoding.
+      #
       # @param [Boolean] general
       #   Specifies whether the register is a General Purpose Register (GPR).
       #
-      def initialize(name, width: , general: false)
+      def initialize(name, width: , number: 0, general: false)
         @name = name
 
         @width   = width
+        @number  = number
         @general = general
 
         @type = :"reg#{width * 8}"

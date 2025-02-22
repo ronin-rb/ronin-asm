@@ -6,6 +6,22 @@ describe Ronin::ASM::Register do
 
   subject { register }
 
+  describe "#initialize" do
+    it "must default #number to 0" do
+      expect(subject.number).to eq(0)
+    end
+
+    context "when the number: keyword argument is given" do
+      let(:number) { 3 }
+
+      subject { described_class.new(:rbx, width: 8, number: number) }
+
+      it "must set #number" do
+        expect(subject.number).to eq(3)
+      end
+    end
+  end
+
   describe "#type" do
     context "when #width is 1" do
       let(:width) { 1 }
