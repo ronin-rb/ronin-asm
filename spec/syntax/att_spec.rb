@@ -28,7 +28,7 @@ describe Ronin::ASM::Syntax::ATT do
 
   describe ".emit_memory" do
     let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
-    let(:operand)  { Ronin::ASM::Memory.new(register) }
+    let(:operand)  { Ronin::ASM::Memory.new(base: register) }
 
     it "must enclose the memory in parenthesis" do
       expect(subject.emit_memory(operand)).to eq("(%eax)")
@@ -36,14 +36,18 @@ describe Ronin::ASM::Syntax::ATT do
 
     context "with an displacement" do
       let(:displacement) { 255 }
-      let(:operand)      { Ronin::ASM::Memory.new(register,displacement) }
+      let(:operand) do
+        Ronin::ASM::Memory.new(base: register, displacement: displacement)
+      end
 
       it "must prepend the displacement as an integer" do
         expect(subject.emit_memory(operand)).to eq("0xff(%eax)")
       end
 
       context "when 0" do
-        let(:operand) { Ronin::ASM::Memory.new(register,0) }
+        let(:operand) do
+          Ronin::ASM::Memory.new(base: register, displacement: 0)
+        end
 
         it "must omit the displacement" do
           expect(subject.emit_memory(operand)).to eq("(%eax)")
@@ -53,7 +57,7 @@ describe Ronin::ASM::Syntax::ATT do
 
     context "with an index" do
       let(:index)   { Ronin::ASM::Register.new(:esi, width: 4) }
-      let(:operand) { Ronin::ASM::Memory.new(register,0,index) }
+      let(:operand) { Ronin::ASM::Memory.new(base: register, index: index) }
 
       it "must include the index argument" do
         expect(subject.emit_memory(operand)).to eq("(%eax,%esi)")
@@ -61,7 +65,9 @@ describe Ronin::ASM::Syntax::ATT do
 
       context "with a scale" do
         let(:scale)   { 4 }
-        let(:operand) { Ronin::ASM::Memory.new(register,0,index,scale) }
+        let(:operand) do
+          Ronin::ASM::Memory.new(base: register, index: index, scale: scale)
+        end
 
         it "must prepend the scale argument as a decimal" do
           expect(subject.emit_memory(operand)).to eq("(%eax,%esi,#{scale})")

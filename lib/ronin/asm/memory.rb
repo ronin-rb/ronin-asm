@@ -83,7 +83,7 @@ module Ronin
       # @raise [ArgumentError]
       #   `base` or `index` was not a {Register} or `nil`.
       #
-      def initialize(base=nil,displacement=0,index=nil,scale=1,width=nil)
+      def initialize(base: nil, displacement: 0, index: nil, scale: 1, width: nil)
         unless (base.nil? || base.kind_of?(Register))
           raise(ArgumentError,"base must be a Register or nil")
         end
@@ -124,11 +124,11 @@ module Ronin
       #
       def +(displacement)
         self.class.new(
-          @base,
-          @displacement + displacement,
-          @index,
-          @scale,
-          @width
+          base: @base,
+          displacement: @displacement + displacement,
+          index: @index,
+          scale: @scale,
+          width: @width
         )
       end
 
@@ -143,11 +143,11 @@ module Ronin
       #
       def -(displacement)
         self.class.new(
-          @base,
-          @displacement - displacement,
-          @index,
-          @scale,
-          @width
+          base: @base,
+          displacement: @displacement - displacement,
+          index: @index,
+          scale: @scale,
+          width: @width
         )
       end
 

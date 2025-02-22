@@ -51,7 +51,7 @@ describe Ronin::ASM::Register do
   describe "#+" do
     context "when given an Ronin::ASM::Memory" do
       let(:operand) do
-        Ronin::ASM::Memory.new(nil,10,register,2)
+        Ronin::ASM::Memory.new(displacement: 10, index: register, scale: 2)
       end
 
       subject { register + operand }
