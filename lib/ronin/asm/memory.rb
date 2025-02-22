@@ -123,7 +123,7 @@ module Ronin
       #   The new Memory Operand.
       #
       def +(displacement)
-        Memory.new(
+        self.class.new(
           @base,
           @displacement + displacement,
           @index,
@@ -142,7 +142,7 @@ module Ronin
       #   The new Memory Operand.
       #
       def -(displacement)
-        Memory.new(
+        self.class.new(
           @base,
           @displacement - displacement,
           @index,
