@@ -163,19 +163,19 @@ module Ronin
       #
       # @see rbp
       #
-      def stack_base; Registers::RBP; end
+      def stack_base = Registers::RBP
 
       #
       # The Stack Pointer register.
       #
       # @see rsp
       #
-      def stack_pointer; Registers::RSP; end
+      def stack_pointer = Registers::RSP
 
       #
       # Generates the instruction to invoke a syscall.
       #
-      def syscall; instruction(:syscall); end
+      def syscall = instruction(:syscall)
     end
   end
 end
