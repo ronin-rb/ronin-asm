@@ -74,6 +74,106 @@ module Ronin
       }
 
       #
+      # @group Register Methods
+      #
+
+      # The `al` 8bit "accumulator" register.
+      def al = Registers::AL
+
+      # The `ah` 8bit "accumulator" register.
+      def ah = Registers::AH
+
+      # The `ax` 16bit "accumulator" register.
+      def ax = Registers::AX
+
+      # The `eax` 32bit "accumulator" register.
+      def eax = Registers::EAX
+
+      # The `bl` 8bit "base" register.
+      def bl = Registers::BL
+
+      # The `bh` 8bit "base" register.
+      def bh = Registers::BH
+
+      # The `bx` 16bit "base" register.
+      def bx = Registers::BX
+
+      # The `ebx` 32bit "base" register.
+      def ebx = Registers::EBX
+
+      # The `cl` 8bit "counter" register.
+      def cl = Registers::CL
+
+      # The `ch` 8bit "counter" register.
+      def ch = Registers::CH
+
+      # The `cx` 16bit "counter" register.
+      def cx = Registers::CX
+
+      # The `ecx` 32bit "counter" register.
+      def ecx = Registers::ECX
+
+      # The `dl` 8bit "data" register.
+      def dl = Registers::DL
+
+      # The `dh` 8bit "data" register.
+      def dh = Registers::DH
+
+      # The `dx` 16bit "data" register.
+      def dx = Registers::DX
+
+      # The `edx` 32bit "data" register.
+      def edx = Registers::EDX
+
+      # The `sil` 8bit "source" register.
+      def sil = Registers::SIL
+
+      # The `si` 16bit "source" register.
+      def si = Registers::SI
+
+      # The `esi` 32bit "source" register.
+      def esi = Registers::ESI
+
+      # The `dil` 8bit "destination" register.
+      def dil = Registers::DIL
+
+      # The `di` 16bit "destination" register.
+      def di = Registers::DI
+
+      # The `edi` 32bit "destination" register.
+      def edi = Registers::EDI
+
+      # The `bp` 16bit stack base pointer register.
+      def bp = Registers::BP
+
+      # The `ebp` 32bit stack base pointer register.
+      def ebp = Registers::EBP
+
+      # The `sp` 16bit stack pointer register.
+      def sp = Registers::SP
+
+      # The `esp` 32bit stack pointer register.
+      def esp = Registers::ESP
+
+      # The `cs` 16bit Code Segment register.
+      def cs = Registers::CS
+
+      # The `ds` 16bit Data Segment register.
+      def ds = Registers::DS
+
+      # The `es` 16bit Extra Segment register.
+      def es = Registers::ES
+
+      # The `fs` 16bit F Segment register.
+      def fs = Registers::FS
+
+      # The `gs` 16bit G Segment register.
+      def gs = Registers::GS
+
+      # The `ss` 16bit Stack Segment register.
+      def ss = Registers::SS
+
+      #
       # @group Internal Methods
       #
 
