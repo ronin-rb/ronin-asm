@@ -19,6 +19,7 @@
 #
 
 require_relative 'x86'
+require_relative 'x86_64/registers'
 
 module Ronin
   module ASM
@@ -33,56 +34,56 @@ module Ronin
 
       # AMD64 registers
       REGISTERS = X86::REGISTERS.merge(
-        rax: Register.new(:rax, width: 8, general: true),
-        rbx: Register.new(:rbx, width: 8, general: true),
-        rcx: Register.new(:rcx, width: 8, general: true),
-        rdx: Register.new(:rdx, width: 8, general: true),
+        rax: Registers::RAX,
+        rbx: Registers::RBX,
+        rcx: Registers::RCX,
+        rdx: Registers::RDX,
 
-        rsi: Register.new(:rsi, width: 8, general: true),
-        rdi: Register.new(:rdi, width: 8, general: true),
+        rsi: Registers::RSI,
+        rdi: Registers::RDI,
 
-        rsp: Register.new(:rsp, width: 8, general: true),
-        rbp: Register.new(:rbp, width: 8, general: true),
+        r8b: Registers::R8B,
+        r8w: Registers::R8W,
+        r8d: Registers::R8D,
+        r8:  Registers::R8,
 
-        r8b: Register.new(:r8b, width: 1, general: true),
-        r8w: Register.new(:r8w, width: 2, general: true),
-        r8d: Register.new(:r8d, width: 4, general: true),
-        r8:  Register.new(:r8, width: 8, general: true),
+        r9b: Registers::R9B,
+        r9w: Registers::R9W,
+        r9d: Registers::R9D,
+        r9:  Registers::R9,
 
-        r9b: Register.new(:r9b, width: 1, general: true),
-        r9w: Register.new(:r9w, width: 2, general: true),
-        r9d: Register.new(:r9d, width: 4, general: true),
-        r9:  Register.new(:r9, width: 8, general: true),
+        r10b: Registers::R10B,
+        r10w: Registers::R10W,
+        r10d: Registers::R10D,
+        r10:  Registers::R10,
 
-        r10b: Register.new(:r10b, width: 1, general: true),
-        r10w: Register.new(:r10w, width: 2, general: true),
-        r10d: Register.new(:r10d, width: 4, general: true),
-        r10:  Register.new(:r10, width: 8, general: true),
+        r11b: Registers::R11B,
+        r11w: Registers::R11W,
+        r11d: Registers::R11D,
+        r11:  Registers::R11,
 
-        r11b: Register.new(:r11b, width: 1, general: true),
-        r11w: Register.new(:r11w, width: 2, general: true),
-        r11d: Register.new(:r11d, width: 4, general: true),
-        r11:  Register.new(:r11, width: 8, general: true),
+        r12b: Registers::R12B,
+        r12w: Registers::R12W,
+        r12d: Registers::R12D,
+        r12:  Registers::R12,
 
-        r12b: Register.new(:r12b, width: 1, general: true),
-        r12w: Register.new(:r12w, width: 2, general: true),
-        r12d: Register.new(:r12d, width: 4, general: true),
-        r12:  Register.new(:r12, width: 8, general: true),
+        r13b: Registers::R13B,
+        r13w: Registers::R13W,
+        r13d: Registers::R13D,
+        r13:  Registers::R13,
 
-        r13b: Register.new(:r13b, width: 1, general: true),
-        r13w: Register.new(:r13w, width: 2, general: true),
-        r13d: Register.new(:r13d, width: 4, general: true),
-        r13:  Register.new(:r13, width: 8, general: true),
+        r14b: Registers::R14B,
+        r14w: Registers::R14W,
+        r14d: Registers::R14D,
+        r14:  Registers::R14,
 
-        r14b: Register.new(:r14b, width: 1, general: true),
-        r14w: Register.new(:r14w, width: 2, general: true),
-        r14d: Register.new(:r14d, width: 4, general: true),
-        r14:  Register.new(:r14, width: 8, general: true),
+        r15b: Registers::R15B,
+        r15w: Registers::R15W,
+        r15d: Registers::R15D,
+        r15:  Registers::R15,
 
-        r15b: Register.new(:r15b, width: 1, general: true),
-        r15w: Register.new(:r15w, width: 2, general: true),
-        r15d: Register.new(:r15d, width: 4, general: true),
-        r15:  Register.new(:r15, width: 8, general: true),
+        rsp: Registers::RSP,
+        rbp: Registers::RBP
       )
 
       #
