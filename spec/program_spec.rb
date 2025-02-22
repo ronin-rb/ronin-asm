@@ -263,7 +263,7 @@ describe Ronin::ASM::Program do
 
     context "when given a Memory" do
       let(:register)       { Ronin::ASM::Register.new(:eax, width: 4) }
-      let(:memory_operand) { Ronin::ASM::Memory.new(register) }
+      let(:memory_operand) { Ronin::ASM::Memory.new(base: register) }
 
       it "must return a Memory" do
         expect(subject.byte(memory_operand)).to be_kind_of(
@@ -288,7 +288,7 @@ describe Ronin::ASM::Program do
 
     context "when given a Memory" do
       let(:register)       { Ronin::ASM::Register.new(:eax, width: 4) }
-      let(:memory_operand) { Ronin::ASM::Memory.new(register) }
+      let(:memory_operand) { Ronin::ASM::Memory.new(base: register) }
 
       it "must return a Memory" do
         expect(subject.word(memory_operand)).to be_kind_of(
@@ -313,7 +313,7 @@ describe Ronin::ASM::Program do
 
     context "when given a Memory" do
       let(:register)       { Ronin::ASM::Register.new(:eax, width: 4) }
-      let(:memory_operand) { Ronin::ASM::Memory.new(register) }
+      let(:memory_operand) { Ronin::ASM::Memory.new(base: register) }
 
       it "must return a Memory" do
         expect(subject.dword(memory_operand)).to be_kind_of(
@@ -338,7 +338,7 @@ describe Ronin::ASM::Program do
 
     context "when given a Memory" do
       let(:register)       { Ronin::ASM::Register.new(:eax, width: 4) }
-      let(:memory_operand) { Ronin::ASM::Memory.new(register) }
+      let(:memory_operand) { Ronin::ASM::Memory.new(base: register) }
 
       it "must return a Memory" do
         expect(subject.qword(memory_operand)).to be_kind_of(

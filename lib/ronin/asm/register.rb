@@ -91,11 +91,16 @@ module Ronin
       def +(value)
         case value
         when Memory
-          Memory.new(self,value.displacement,value.index,value.scale)
+          Memory.new(
+            base: self,
+            displacement: value.displacement,
+            index: value.index,
+            scale: value.scale
+          )
         when Register
-          Memory.new(self,0,value)
+          Memory.new(base: self, index: value)
         when Integer
-          Memory.new(self,value)
+          Memory.new(base: self, displacement: value)
         else
           raise(TypeError,"value was not an Memory, Register or Integer")
         end
@@ -112,7 +117,7 @@ module Ronin
       #   The new Memory Operand.
       #
       def -(displacement)
-        Memory.new(self,-displacement)
+        Memory.new(base: self, displacement: -displacement)
       end
 
       #
@@ -125,7 +130,7 @@ module Ronin
       #   The new Memory Operand.
       #
       def *(scale)
-        Memory.new(nil,0,self,scale)
+        Memory.new(index: self, scale: scale)
       end
 
       #
