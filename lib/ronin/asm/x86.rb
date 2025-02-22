@@ -57,9 +57,6 @@ module Ronin
         sp:  Register.new(:sp, width: 2),
         esp: Register.new(:esp, width: 4),
 
-        ip:  Register.new(:ip, width: 2),
-        eip: Register.new(:eip, width: 4),
-
         sil: Register.new(:sil, width: 1),
         si:  Register.new(:si, width: 2),
         esi: Register.new(:esi, width: 4, general: true),

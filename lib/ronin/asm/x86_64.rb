@@ -83,8 +83,6 @@ module Ronin
         r15w: Register.new(:r15w, width: 2, general: true),
         r15d: Register.new(:r15d, width: 4, general: true),
         r15:  Register.new(:r15, width: 8, general: true),
-
-        rip: Register.new(:rip, width: 8, general: true)
       )
 
       #
