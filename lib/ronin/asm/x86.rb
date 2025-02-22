@@ -57,12 +57,12 @@ module Ronin
         sp:  Register.new(:sp, width: 2),
         esp: Register.new(:esp, width: 4),
 
-        sil: Register.new(:sil, width: 1),
-        si:  Register.new(:si, width: 2),
+        sil: Register.new(:sil, width: 1, general: true),
+        si:  Register.new(:si, width: 2, general: true),
         esi: Register.new(:esi, width: 4, general: true),
 
-        dil: Register.new(:dil, width: 1),
-        di:  Register.new(:di, width: 2),
+        dil: Register.new(:dil, width: 1, general: true),
+        di:  Register.new(:di, width: 2, general: true),
         edi: Register.new(:edi, width: 4, general: true),
 
         cs: Register.new(:cs, width: 2),
