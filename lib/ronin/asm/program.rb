@@ -283,72 +283,72 @@ module Ronin
       #
       # Creates an operand of size 1 (byte).
       #
-      # @param [Memory, Integer] op
+      # @param [Memory, Integer] operand
       #   The value of the operand.
       #
       # @return [Memory, Immediate]
       #   The new operand value.
       #
-      def byte(op)
-        case op
+      def byte(operand)
+        case operand
         when Memory
-          Memory.new(op.base,op.displacement,op.index,op.scale,1)
+          Memory.new(operand.base,operand.displacement,operand.index,operand.scale,1)
         else
-          Immediate.new(op,1)
+          Immediate.new(operand,1)
         end
       end
 
       #
       # Creates a operand of size 2 (bytes).
       #
-      # @param [Memory, Integer] op
+      # @param [Memory, Integer] operand
       #   The value of the operand.
       #
       # @return [Memory, Immediate]
       #   The new operand value.
       #
-      def word(op)
-        case op
+      def word(operand)
+        case operand
         when Memory
-          Memory.new(op.base,op.displacement,op.index,op.scale,2)
+          Memory.new(operand.base,operand.displacement,operand.index,operand.scale,2)
         else
-          Immediate.new(op,2)
+          Immediate.new(operand,2)
         end
       end
 
       #
       # Creates a operand of size 4 (bytes).
       #
-      # @param [Memory, Integer] op
+      # @param [Memory, Integer] operand
       #   The value of the operand.
       #
       # @return [Immediate]
       #   The new operand value.
       #
-      def dword(op)
-        case op
+      def dword(operand)
+        case operand
         when Memory
-          Memory.new(op.base,op.displacement,op.index,op.scale,4)
+          Memory.new(operand.base,operand.displacement,operand.index,operand.scale,4)
         else
-          Immediate.new(op,4)
+          Immediate.new(operand,4)
         end
       end
 
       #
       # Creates a operand of size 8 (bytes).
       #
-      # @param [Memory, Integer] op
+      # @param [Memory, Integer] operand
       #   The value of the operand.
       #
       # @return [Memory, Immediate]
       #   The new operand.
       #
-      def qword(op)
-        case op
+      def qword(operand)
+        case operand
         when Memory
-          Memory.new(op.base,op.displacement,op.index,op.scale,8)
+          Memory.new(operand.base,operand.displacement,operand.index,operand.scale,8)
         else
-          Immediate.new(op,8)
+          Immediate.new(operand,8)
         end
       end
 
