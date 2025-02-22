@@ -150,6 +150,8 @@ module Ronin
         @name.to_s
       end
 
+      alias to_i number
+
     end
   end
 end
