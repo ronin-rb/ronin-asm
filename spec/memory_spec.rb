@@ -13,7 +13,7 @@ describe Ronin::ASM::Memory do
     it { expect(subject.scale).to        eq(1)  }
 
     context "when a base value is given" do
-      subject { described_class.new(register) }
+      subject { described_class.new(base: register) }
 
       it "must set #base" do
         expect(subject.base).to eq(register)
@@ -27,7 +27,7 @@ describe Ronin::ASM::Memory do
     context "when a width value is given" do
       let(:width) { 2 }
 
-      subject { described_class.new(register,0,nil,1,width) }
+      subject { described_class.new(base: register, width: width) }
 
       it "must set #width to the given width value" do
         expect(subject.width).to eq(width)
@@ -37,7 +37,7 @@ describe Ronin::ASM::Memory do
     context "when a non-nil and non-Register value is given for the base" do
       it "must only accept nil and a Register for base" do
         expect {
-          described_class.new(Object.new)
+          described_class.new(base: Object.new)
         }.to raise_error(ArgumentError,"base must be a Register or nil")
       end
     end
@@ -45,7 +45,7 @@ describe Ronin::ASM::Memory do
     context "when a non-Integer value is given for the displacement" do
       it "must only accept Integers for displacement" do
         expect {
-          described_class.new(register,2.0)
+          described_class.new(base: register, displacement: 2.0)
         }.to raise_error(ArgumentError,"displacement must be an Integer")
       end
     end
@@ -53,7 +53,7 @@ describe Ronin::ASM::Memory do
     context "when a non-nil and non-Register value is given for the index" do
       it "must only accept nil and a Register for index" do
         expect {
-          described_class.new(register,0,Object.new)
+          described_class.new(base: register, index: Object.new)
         }.to raise_error(ArgumentError,"index must be a Register or nil")
       end
     end
@@ -61,7 +61,7 @@ describe Ronin::ASM::Memory do
     context "when a non-Integer value is given for the scale" do
       it "must only accept Integers for scale" do
         expect {
-          described_class.new(register,0,nil,2.0)
+          described_class.new(base: register, scale: 2.0)
         }.to raise_error(ArgumentError,"scale must be an Integer")
       end
     end
@@ -71,7 +71,7 @@ describe Ronin::ASM::Memory do
     context "when the #width is 1" do
       let(:width) { 1 }
 
-      subject { described_class.new(register,0,nil,1,width) }
+      subject { described_class.new(base: register, width: width) }
 
       it "must return :mem8" do
         expect(subject.type).to be(:mem8)
@@ -81,7 +81,7 @@ describe Ronin::ASM::Memory do
     context "when the #width is 2" do
       let(:width) { 2 }
 
-      subject { described_class.new(register,0,nil,1,width) }
+      subject { described_class.new(base: register, width: width) }
 
       it "must return :mem16" do
         expect(subject.type).to be(:mem16)
@@ -91,7 +91,7 @@ describe Ronin::ASM::Memory do
     context "when the #width is 4" do
       let(:width) { 4 }
 
-      subject { described_class.new(register,0,nil,1,width) }
+      subject { described_class.new(base: register, width: width) }
 
       it "must return :mem32" do
         expect(subject.type).to be(:mem32)
@@ -101,7 +101,7 @@ describe Ronin::ASM::Memory do
     context "when the #width is 8" do
       let(:width) { 8 }
 
-      subject { described_class.new(register,0,nil,1,width) }
+      subject { described_class.new(base: register, width: width) }
 
       it "must return :mem64" do
         expect(subject.type).to be(:mem64)
@@ -110,7 +110,14 @@ describe Ronin::ASM::Memory do
   end
 
   describe "#+" do
-    let(:operand) { described_class.new(register,4,register,2) }
+    let(:operand) do
+      described_class.new(
+        base: register,
+        displacement: 4,
+        index: register,
+        scale: 2
+      )
+    end
 
     subject { operand + 4 }
 
@@ -126,7 +133,14 @@ describe Ronin::ASM::Memory do
   end
 
   describe "#-" do
-    let(:operand) { described_class.new(register,4,register,2) }
+    let(:operand) do
+      described_class.new(
+        base: register,
+        displacement: 4,
+        index: register,
+        scale: 2
+      )
+    end
 
     subject { operand - 2 }
 
@@ -142,7 +156,7 @@ describe Ronin::ASM::Memory do
   end
 
   describe "#width" do
-    subject { described_class.new(register,10) }
+    subject { described_class.new(base: register) }
 
     it "must return the width of base" do
       expect(subject.width).to eq(register.width)
@@ -151,7 +165,7 @@ describe Ronin::ASM::Memory do
     context "when the #width has been explicitly set with the `width:` keyword argument" do
       let(:explicit_width) { 2 }
 
-      subject { described_class.new(register,10,nil,1,explicit_width) }
+      subject { described_class.new(base: register, width: explicit_width) }
 
       it "must return the explicitly set width" do
         expect(subject.width).to eq(explicit_width)
