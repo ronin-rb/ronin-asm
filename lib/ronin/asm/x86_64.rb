@@ -32,7 +32,7 @@ module Ronin
       # Default word size
       WORD_SIZE = 8
 
-      # AMD64 registers
+      # x86-64 registers
       REGISTERS = X86::REGISTERS.merge(
         rax: Registers::RAX,
         rbx: Registers::RBX,
