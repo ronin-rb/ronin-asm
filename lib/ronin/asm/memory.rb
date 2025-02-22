@@ -151,6 +151,15 @@ module Ronin
         )
       end
 
+      #
+      # Converts the memory to an integer value.
+      #
+      # @return [Integer]
+      #
+      def to_i
+        @base.to_i
+      end
+
     end
   end
 end
