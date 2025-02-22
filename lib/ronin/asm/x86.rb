@@ -19,6 +19,7 @@
 #
 
 require_relative 'x86/registers'
+require_relative 'x86/instructions'
 
 module Ronin
   module ASM
@@ -28,6 +29,8 @@ module Ronin
     # @api private
     #
     module X86
+      include Instructions
+
       # Default word size
       WORD_SIZE = 4
 

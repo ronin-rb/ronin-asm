@@ -58,10 +58,15 @@ module Ronin
           #
           def encode(encoder)
             <%- @instruction.forms.each.with_index do |instruction_form,index| -%>
-            <%= if_elsif(index) %> <%= operands_match_expression(instruction_form.operands) %>
-            <%- instruction_form.encodings.first.each do |encoding| -%>
-              <%= encoder_method_call(encoding) %>
-            <%- end -%>
+            <%=   if_elsif(index) %> <%= operands_match_expression(instruction_form.operands) %>
+            <%-   instruction_encoding = instruction_form.encodings.first -%>
+            <%-   instruction_encoding.each.with_index do |encoding,encoding_index| -%>
+            <%-     if encoding_index < instruction_encoding.length-1 -%>
+              <%=     encoder_method_call(encoding) %> +
+            <%-     else -%>
+              <%=     encoder_method_call(encoding) %>
+            <%-     end -%>
+            <%-   end -%>
             <%- end -%>
             else
               raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
