@@ -300,7 +300,7 @@ module Ronin
             width: 1
           )
         else
-          Immediate.new(operand,1)
+          Immediate.new(operand, width: 1)
         end
       end
 
@@ -324,7 +324,7 @@ module Ronin
             width: 2
           )
         else
-          Immediate.new(operand,2)
+          Immediate.new(operand, width: 2)
         end
       end
 
@@ -348,7 +348,7 @@ module Ronin
             width: 4
           )
         else
-          Immediate.new(operand,4)
+          Immediate.new(operand, width: 4)
         end
       end
 
@@ -372,7 +372,7 @@ module Ronin
             width: 8
           )
         else
-          Immediate.new(operand,8)
+          Immediate.new(operand, width: 8)
         end
       end
 

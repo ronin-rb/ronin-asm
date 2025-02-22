@@ -55,7 +55,7 @@ module Ronin
       # @param [nil, 1, 2, 4, 8] width
       #   The size in bytes of the value.
       #
-      def initialize(value,width=nil)
+      def initialize(value, width: nil)
         @value = value.to_i
         @width = width || if @value == 0
                             1
