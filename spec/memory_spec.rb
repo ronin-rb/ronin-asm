@@ -67,6 +67,48 @@ describe Ronin::ASM::Memory do
     end
   end
 
+  describe "#type" do
+    context "when the #width is 1" do
+      let(:width) { 1 }
+
+      subject { described_class.new(register,0,nil,1,width) }
+
+      it "must return :mem8" do
+        expect(subject.type).to be(:mem8)
+      end
+    end
+
+    context "when the #width is 2" do
+      let(:width) { 2 }
+
+      subject { described_class.new(register,0,nil,1,width) }
+
+      it "must return :mem16" do
+        expect(subject.type).to be(:mem16)
+      end
+    end
+
+    context "when the #width is 4" do
+      let(:width) { 4 }
+
+      subject { described_class.new(register,0,nil,1,width) }
+
+      it "must return :mem32" do
+        expect(subject.type).to be(:mem32)
+      end
+    end
+
+    context "when the #width is 8" do
+      let(:width) { 8 }
+
+      subject { described_class.new(register,0,nil,1,width) }
+
+      it "must return :mem64" do
+        expect(subject.type).to be(:mem64)
+      end
+    end
+  end
+
   describe "#+" do
     let(:operand) { described_class.new(register,4,register,2) }
 

@@ -6,6 +6,48 @@ describe Ronin::ASM::Register do
 
   subject { register }
 
+  describe "#type" do
+    context "when #width is 1" do
+      let(:width) { 1 }
+
+      subject { described_class.new(:eax, width: width) }
+
+      it "must return :reg8" do
+        expect(subject.type).to eq(:reg8)
+      end
+    end
+
+    context "when #width is 2" do
+      let(:width) { 2 }
+
+      subject { described_class.new(:eax, width: width) }
+
+      it "must return :reg16" do
+        expect(subject.type).to eq(:reg16)
+      end
+    end
+
+    context "when #width is 4" do
+      let(:width) { 4 }
+
+      subject { described_class.new(:eax, width: width) }
+
+      it "must return :reg32" do
+        expect(subject.type).to eq(:reg32)
+      end
+    end
+
+    context "when #width is 8" do
+      let(:width) { 8 }
+
+      subject { described_class.new(:eax, width: width) }
+
+      it "must return :reg64" do
+        expect(subject.type).to eq(:reg64)
+      end
+    end
+  end
+
   describe "#+" do
     context "when given an Ronin::ASM::Memory" do
       let(:operand) do
