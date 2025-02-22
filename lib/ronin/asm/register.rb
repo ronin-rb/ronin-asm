@@ -28,6 +28,11 @@ module Ronin
     #
     class Register < Operand
 
+      # The assembly class type.
+      #
+      # @return [:reg8, :reg16, :reg32, :reg64]
+      attr_reader :type
+
       # The register name.
       #
       # @return [Symbol]
@@ -55,6 +60,8 @@ module Ronin
 
         @width   = width
         @general = general
+
+        @type = :"reg#{width * 8}"
       end
 
       #

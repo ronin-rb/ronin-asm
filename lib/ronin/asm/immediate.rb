@@ -31,6 +31,11 @@ module Ronin
     #
     class Immediate < Operand
 
+      # The assembly class type.
+      #
+      # @return [:imm8, :imm16, :imm32, :imm64]
+      attr_reader :type
+
       # The immediate operand's value.
       #
       # @return [Integer]
@@ -57,6 +62,7 @@ module Ronin
                           else
                             (@value.bit_length / 8.0).ceil
                           end
+        @type  = :"imm#{@width * 8}"
       end
 
       #

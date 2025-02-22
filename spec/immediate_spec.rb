@@ -16,6 +16,48 @@ describe Ronin::ASM::Immediate do
     end
   end
 
+  describe "#type" do
+    context "when #width is 1" do
+      let(:width) { 1 }
+
+      subject { described_class.new(value,width) }
+
+      it "must return :imm8" do
+        expect(subject.type).to eq(:imm8)
+      end
+    end
+
+    context "when #width is 2" do
+      let(:width) { 2 }
+
+      subject { described_class.new(value,width) }
+
+      it "must return :imm16" do
+        expect(subject.type).to eq(:imm16)
+      end
+    end
+
+    context "when #width is 4" do
+      let(:width) { 4 }
+
+      subject { described_class.new(value,width) }
+
+      it "must return :imm32" do
+        expect(subject.type).to eq(:imm32)
+      end
+    end
+
+    context "when #width is 8" do
+      let(:width) { 8 }
+
+      subject { described_class.new(value,width) }
+
+      it "must return :imm64" do
+        expect(subject.type).to eq(:imm64)
+      end
+    end
+  end
+
   describe "#width" do
     context "when #width is not explicitly set by #initialize" do
       context "and it is 0" do
