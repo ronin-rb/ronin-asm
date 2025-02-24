@@ -116,55 +116,136 @@ module CodeGen
       #
       def encoder_method_call(encoding)
         case encoding
-        when ISA::Encoding::CodeOffset
-          "encoder.write_code_offset(#{value_arg(encoding.value)},#{encoding.size.inspect})"
-        when ISA::Encoding::DataOffset
-          "encoder.write_data_offset(#{value_arg(encoding.value)},#{encoding.size.inspect})"
-        when ISA::Encoding::Immediate
-          "encoder.write_immediate(#{value_arg(encoding.value)},#{encoding.size.inspect})"
-        when ISA::Encoding::ModRM
-          "encoder.write_modrm(#{value_arg(encoding.mode)},#{value_arg(encoding.reg)},#{value_arg(encoding.rm)},@operands)"
-        when ISA::Encoding::Opcode
-          if encoding.addend
-            "encoder.write_opcode(#{hex_byte(encoding.byte)},#{value_arg(encoding.addend)})"
-          else
-            "encoder.write_opcode(#{hex_byte(encoding.byte)})"
-          end
-        when ISA::Encoding::Prefix
-          "encoder.write_prefix(#{hex_byte(encoding.byte)},#{encoding.mandatory.inspect})"
-        when ISA::Encoding::RegisterByte
-          "encoder.write_register_byte(#{value_arg(encoding.register)},#{value_arg(encoding.payload)})"
-        when ISA::Encoding::VEX
-          method_call = String.new
-          method_call << 'encoder.write_vex('
-          method_call << "type: #{encoding.type.inspect}"
-          method_call << ", w: #{encoding.w.inspect}" if encoding.w
-          method_call << ", l: #{encoding.l.inspect}" if encoding.l
-          method_call << ", m_mmmm: #{binary(encoding.m_mmmm,bits: 5)}"
-          method_call << ", pp: #{binary(encoding.pp,bits: 2)}"
-          method_call << ", r: #{encoding.r.inspect}" if encoding.r
-          method_call << ", x: #{encoding.x.inspect}" if encoding.x
-          method_call << ", b: #{encoding.b.inspect}" if encoding.b
-          method_call << ", vvvv: #{value_arg(encoding.vvvv)}" if encoding.vvvv
-          method_call << ')'
-        when ISA::Encoding::EVEX
-          method_call = String.new
-          method_call << 'encoder.write_evex('
-          method_call << "mmm: #{binary(encoding.mmm,bits: 3)}"
-          method_call << ", pp: #{binary(encoding.pp,bits: 2)}"
-          method_call << ", w: #{encoding.w.inspect}" if encoding.w
-          method_call << ", ll: #{value_arg(encoding.ll)}" if encoding.ll
-          method_call << ", vvvv: #{value_arg(encoding.vvvv)}" if encoding.vvvv
-          method_call << ", v: #{encoding.v.inspect}" if encoding.v
-          method_call << ", rr: #{binary(encoding.rr,bits: 2)}"   if encoding.rr
-          method_call << ", _B: #{encoding.B.inspect}" if encoding.B
-          method_call << ", x: #{encoding.x.inspect}" if encoding.x
-          method_call << ", b: #{value_arg(encoding.b)}" if encoding.b
-          method_call << ", aaa: #{value_arg(encoding.aaa)}"
-          method_call << ", z: #{value_arg(encoding.z)}"
-          method_call << ", disp8xN: #{encoding.disp8xN.inspect}" if encoding.disp8xN
-          method_call << ')'
+        when ISA::Encoding::CodeOffset   then encoder_write_code_offset_call(encoding)
+        when ISA::Encoding::DataOffset   then encoder_write_data_offset_call(encoding)
+        when ISA::Encoding::Immediate    then encoder_write_immediate_call(encoding)
+        when ISA::Encoding::ModRM        then encoder_write_modrm_call(encoding)
+        when ISA::Encoding::Opcode       then encoder_write_opcode_call(encoding)
+        when ISA::Encoding::Prefix       then encoder_write_prefix_call(encoding)
+        when ISA::Encoding::RegisterByte then encoder_write_register_byte_call(encoding)
+        when ISA::Encoding::VEX          then encoder_write_vex_call(encoding)
+        when ISA::Encoding::EVEX         then encoder_write_evex_call(encoding)
         end
+      end
+
+      #
+      # Builds a `encoder.write_code_offset(...)` method call.
+      #
+      # @param [ISA::Encoding::DataOffset] encoding
+      # @return [String]
+      #
+      def encoder_write_code_offset_call(encoding)
+        "encoder.write_code_offset(#{value_arg(encoding.value)},#{encoding.size.inspect})"
+      end
+
+      #
+      # Builds a `encoder.write_data_offset(...)` method call.
+      #
+      # @param [ISA::Encoding::DataOffset] encoding
+      # @return [String]
+      #
+      def encoder_write_data_offset_call(encoding)
+        "encoder.write_data_offset(#{value_arg(encoding.value)},#{encoding.size.inspect})"
+      end
+
+      #
+      # Builds a `encoder.write_immediate(...)` method call.
+      #
+      # @param [ISA::Encoding::Immediate] encoding
+      # @return [String]
+      #
+      def encoder_write_immediate_call(encoding)
+        "encoder.write_immediate(#{value_arg(encoding.value)},#{encoding.size.inspect})"
+      end
+
+      #
+      # Builds a `encoder.write_modrm(...)` method call.
+      #
+      # @param [ISA::Encoding::ModRM] encoding
+      # @return [String]
+      #
+      def encoder_write_modrm_call(encoding)
+        "encoder.write_modrm(#{value_arg(encoding.mode)},#{value_arg(encoding.reg)},#{value_arg(encoding.rm)},@operands)"
+      end
+
+      #
+      # Builds a `encoder.write_opcode(...)` method call.
+      #
+      # @param [ISA::Encoding::Opcode] encoding
+      # @return [String]
+      #
+      def encoder_write_opcode_call(encoding)
+        if encoding.addend
+          "encoder.write_opcode(#{hex_byte(encoding.byte)},#{value_arg(encoding.addend)})"
+        else
+          "encoder.write_opcode(#{hex_byte(encoding.byte)})"
+        end
+      end
+
+      #
+      # Builds a `encoder.write_prefix(...)` method call.
+      #
+      # @param [ISA::Encoding::Prefix] encoding
+      # @return [String]
+      #
+      def encoder_write_prefix_call(encoding)
+        "encoder.write_prefix(#{hex_byte(encoding.byte)},#{encoding.mandatory.inspect})"
+      end
+
+      #
+      # Builds a `encoder.write_register_byte(...)` method call.
+      #
+      # @param [ISA::Encoding::RegisterByte] encoding
+      # @return [String]
+      #
+      def encoder_write_register_byte_call(encoding)
+        "encoder.write_register_byte(#{value_arg(encoding.register)},#{value_arg(encoding.payload)})"
+      end
+
+      #
+      # Builds a `encoder.write_vex(...)` method call.
+      #
+      # @param [ISA::Encoding::VEX] encoding
+      # @return [String]
+      #
+      def encoder_write_vex_call(encoding)
+        method_call = String.new
+        method_call << 'encoder.write_vex('
+        method_call << "type: #{encoding.type.inspect}"
+        method_call << ", w: #{encoding.w.inspect}" if encoding.w
+        method_call << ", l: #{encoding.l.inspect}" if encoding.l
+        method_call << ", m_mmmm: #{binary(encoding.m_mmmm,bits: 5)}"
+        method_call << ", pp: #{binary(encoding.pp,bits: 2)}"
+        method_call << ", r: #{encoding.r.inspect}" if encoding.r
+        method_call << ", x: #{encoding.x.inspect}" if encoding.x
+        method_call << ", b: #{encoding.b.inspect}" if encoding.b
+        method_call << ", vvvv: #{value_arg(encoding.vvvv)}" if encoding.vvvv
+        method_call << ')'
+      end
+
+      #
+      # Builds a `encoder.write_evex(...)` method call.
+      #
+      # @param [ISA::Encoding::EVEX] encoding
+      # @return [String]
+      #
+      def encoder_write_evex_call(encoding)
+        method_call = String.new
+        method_call << 'encoder.write_evex('
+        method_call << "mmm: #{binary(encoding.mmm,bits: 3)}"
+        method_call << ", pp: #{binary(encoding.pp,bits: 2)}"
+        method_call << ", w: #{encoding.w.inspect}" if encoding.w
+        method_call << ", ll: #{value_arg(encoding.ll)}" if encoding.ll
+        method_call << ", vvvv: #{value_arg(encoding.vvvv)}" if encoding.vvvv
+        method_call << ", v: #{encoding.v.inspect}" if encoding.v
+        method_call << ", rr: #{binary(encoding.rr,bits: 2)}"   if encoding.rr
+        method_call << ", _B: #{encoding.B.inspect}" if encoding.B
+        method_call << ", x: #{encoding.x.inspect}" if encoding.x
+        method_call << ", b: #{value_arg(encoding.b)}" if encoding.b
+        method_call << ", aaa: #{value_arg(encoding.aaa)}"
+        method_call << ", z: #{value_arg(encoding.z)}"
+        method_call << ", disp8xN: #{encoding.disp8xN.inspect}" if encoding.disp8xN
+        method_call << ')'
       end
 
     end
