@@ -26,6 +26,7 @@ require_relative 'x86_64/memory_offset'
 require_relative 'x86_64/relative_offset'
 require_relative 'x86_64/broadcast'
 require_relative 'x86_64/opmask'
+require_relative 'x86_64/instructions'
 require_relative 'x86_64/syntax'
 require_relative 'x86_64/encoder'
 
@@ -37,6 +38,8 @@ module Ronin
     # Contains x86-64 Architecture information.
     #
     module X86_64
+      include Instructions
+
       # Default word size
       WORD_SIZE = 8
 
