@@ -24,7 +24,9 @@ require 'set'
 module CodeGen
   module X86
     #
-    # Handles parsing the Instruction Set Architecture XML metadata.
+    # Handles parsing the x86 Instruction Set Architecture XML file.
+    #
+    # @see vendor/isa/x86.xml
     #
     module ISA
       # Path to the x86 Instruction Set Architecture (ISA) XML file.
