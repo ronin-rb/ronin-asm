@@ -27,6 +27,7 @@ require_relative 'x86_64/relative_offset'
 require_relative 'x86_64/broadcast'
 require_relative 'x86_64/opmask'
 require_relative 'x86_64/syntax'
+require_relative 'x86_64/encoder'
 
 require 'set'
 
