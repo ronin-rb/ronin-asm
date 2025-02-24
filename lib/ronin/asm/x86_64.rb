@@ -19,6 +19,7 @@
 #
 
 require_relative 'x86_64/registers'
+require_relative 'x86_64/encoder'
 
 module Ronin
   module ASM
