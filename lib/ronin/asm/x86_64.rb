@@ -24,6 +24,7 @@ require_relative 'x86_64/memory'
 require_relative 'x86_64/memory_offset'
 require_relative 'x86_64/relative_offset'
 require_relative 'x86_64/syntax'
+require_relative 'x86_64/encoder'
 
 require 'set'
 
