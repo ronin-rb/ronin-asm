@@ -58,19 +58,19 @@ module Ronin
           #
           def encode(encoder)
             if @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :xmm
-              encoder.write_evex(0b101,0b01,nil,0,0,0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b101, pp: 0b01, ll: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x7e) +
               encoder.write_modrm(3,@operands[1],@operands[0],@operands)
             elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :reg32
-              encoder.write_evex(0b101,0b01,nil,0,0,0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b101, pp: 0b01, ll: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x6e) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem16
-              encoder.write_evex(0b101,0b01,nil,0,0,0,0b00,0,0,0,0,0,2) +
+              encoder.write_evex(mmm: 0b101, pp: 0b01, ll: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 2) +
               encoder.write_opcode(0x6e) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :mem16 && @operands[1].type == :xmm
-              encoder.write_evex(0b101,0b01,nil,0,0,0,0b00,0,0,0,0,0,2) +
+              encoder.write_evex(mmm: 0b101, pp: 0b01, ll: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 2) +
               encoder.write_opcode(0x7e) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0],@operands)
             else

@@ -58,15 +58,15 @@ module Ronin
           #
           def encode(encoder)
             if @operands.length == 2 && @operands[0].type == :"vm64x{k}" && @operands[1].type == :xmm
-              encoder.write_evex(0b010,0b01,1,0,0,0,0b00,0,0,0,@operands[0],0,8) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, w: 1, ll: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 8) +
               encoder.write_opcode(0xa3) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0],@operands)
             elsif @operands.length == 2 && @operands[0].type == :"vm64y{k}" && @operands[1].type == :ymm
-              encoder.write_evex(0b010,0b01,1,1,0,0,0b00,0,0,0,@operands[0],0,8) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, w: 1, ll: 1, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 8) +
               encoder.write_opcode(0xa3) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0],@operands)
             elsif @operands.length == 2 && @operands[0].type == :"vm64z{k}" && @operands[1].type == :zmm
-              encoder.write_evex(0b010,0b01,1,2,0,0,0b00,0,0,0,@operands[0],0,8) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, w: 1, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 8) +
               encoder.write_opcode(0xa3) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0],@operands)
             else

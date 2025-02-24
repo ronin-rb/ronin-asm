@@ -135,9 +135,35 @@ module CodeGen
         when ISA::Encoding::RegisterByte
           "encoder.write_register_byte(#{value_arg(encoding.register)},#{value_arg(encoding.payload)})"
         when ISA::Encoding::VEX
-          "encoder.write_vex(#{encoding.type.inspect},#{encoding.w.inspect},#{encoding.l.inspect},#{binary(encoding.m_mmmm,bits: 5)},#{binary(encoding.pp,bits: 2)},#{encoding.r.inspect},#{encoding.x.inspect},#{encoding.b.inspect},#{value_arg(encoding.vvvv)})"
+          method_call = String.new
+          method_call << 'encoder.write_vex('
+          method_call << "type: #{encoding.type.inspect}"
+          method_call << ", w: #{encoding.w.inspect}" if encoding.w
+          method_call << ", l: #{encoding.l.inspect}" if encoding.l
+          method_call << ", m_mmmm: #{binary(encoding.m_mmmm,bits: 5)}"
+          method_call << ", pp: #{binary(encoding.pp,bits: 2)}"
+          method_call << ", r: #{encoding.r.inspect}" if encoding.r
+          method_call << ", x: #{encoding.x.inspect}" if encoding.x
+          method_call << ", b: #{encoding.b.inspect}" if encoding.b
+          method_call << ", vvvv: #{value_arg(encoding.vvvv)}" if encoding.vvvv
+          method_call << ')'
         when ISA::Encoding::EVEX
-          "encoder.write_evex(#{binary(encoding.mmm,bits: 3)},#{binary(encoding.pp,bits: 2)},#{encoding.w.inspect},#{value_arg(encoding.ll)},#{value_arg(encoding.vvvv)},#{encoding.v.inspect},#{binary(encoding.rr,bits: 2)},#{encoding.B.inspect},#{encoding.x.inspect},#{value_arg(encoding.b)},#{value_arg(encoding.aaa)},#{value_arg(encoding.z)},#{encoding.disp8xN.inspect})"
+          method_call = String.new
+          method_call << 'encoder.write_evex('
+          method_call << "mmm: #{binary(encoding.mmm,bits: 3)}"
+          method_call << ", pp: #{binary(encoding.pp,bits: 2)}"
+          method_call << ", w: #{encoding.w.inspect}" if encoding.w
+          method_call << ", ll: #{value_arg(encoding.ll)}" if encoding.ll
+          method_call << ", vvvv: #{value_arg(encoding.vvvv)}" if encoding.vvvv
+          method_call << ", v: #{encoding.v.inspect}" if encoding.v
+          method_call << ", rr: #{binary(encoding.rr,bits: 2)}"   if encoding.rr
+          method_call << ", _B: #{encoding.B.inspect}" if encoding.B
+          method_call << ", x: #{encoding.x.inspect}" if encoding.x
+          method_call << ", b: #{value_arg(encoding.b)}" if encoding.b
+          method_call << ", aaa: #{value_arg(encoding.aaa)}"
+          method_call << ", z: #{value_arg(encoding.z)}"
+          method_call << ", disp8xN: #{encoding.disp8xN.inspect}" if encoding.disp8xN
+          method_call << ')'
         end
       end
 

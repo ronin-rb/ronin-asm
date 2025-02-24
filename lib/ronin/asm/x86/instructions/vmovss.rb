@@ -58,39 +58,39 @@ module Ronin
           #
           def encode(encoder)
             if @operands.length == 2 && @operands[0].type == :"m32{k}" && @operands[1].type == :xmm
-              encoder.write_evex(0b001,0b10,0,nil,0,0,0b00,0,0,0,@operands[0],0,4) +
+              encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 4) +
               encoder.write_opcode(0x11) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0],@operands)
             elsif @operands.length == 2 && @operands[0].type == :"xmm{k}{z}" && @operands[1].type == :mem32
-              encoder.write_evex(0b001,0b10,0,nil,0,0,0b00,0,0,0,@operands[0],@operands[0],4) +
+              encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0], disp8xN: 4) +
               encoder.write_opcode(0x10) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem32
-              encoder.write_vex(:vex,nil,nil,0b00001,0b10,0,0,0,0) +
+              encoder.write_vex(type: :vex, m_mmmm: 0b00001, pp: 0b10, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x10) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem32
-              encoder.write_evex(0b001,0b10,0,nil,0,0,0b00,0,0,0,0,0,4) +
+              encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 4) +
               encoder.write_opcode(0x10) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :mem32 && @operands[1].type == :xmm
-              encoder.write_vex(:vex,nil,nil,0b00001,0b10,0,0,0,0) +
+              encoder.write_vex(type: :vex, m_mmmm: 0b00001, pp: 0b10, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x11) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0],@operands)
             elsif @operands.length == 2 && @operands[0].type == :mem32 && @operands[1].type == :xmm
-              encoder.write_evex(0b001,0b10,0,nil,0,0,0b00,0,0,0,0,0,4) +
+              encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 4) +
               encoder.write_opcode(0x11) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0],@operands)
             elsif @operands.length == 3 && @operands[0].type == :"xmm{k}{z}" && @operands[1].type == :xmm && @operands[2].type == :xmm
-              encoder.write_evex(0b001,0b10,0,nil,@operands[1],0,0b00,0,0,0,@operands[0],@operands[0],nil) +
+              encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x10) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands)
             elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :xmm
-              encoder.write_vex(:vex,nil,nil,0b00001,0b10,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, m_mmmm: 0b00001, pp: 0b10, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0x10) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands)
             elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :xmm
-              encoder.write_evex(0b001,0b10,0,nil,@operands[1],0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x10) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands)
             else

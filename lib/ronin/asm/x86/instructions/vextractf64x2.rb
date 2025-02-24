@@ -58,42 +58,42 @@ module Ronin
           #
           def encode(encoder)
             if @operands.length == 3 && @operands[0].type == :"xmm{k}{z}" && @operands[1].type == :ymm && @operands[2].type == :imm8
-              encoder.write_evex(0b011,0b01,1,1,0,0,0b00,0,0,0,@operands[0],@operands[0],nil) +
+              encoder.write_evex(mmm: 0b011, pp: 0b01, w: 1, ll: 1, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x19) +
               encoder.write_modrm(3,@operands[1],@operands[0],@operands) +
               encoder.write_immediate(@operands[2],1)
             elsif @operands.length == 3 && @operands[0].type == :"m128{k}" && @operands[1].type == :ymm && @operands[2].type == :imm8
-              encoder.write_evex(0b011,0b01,1,1,0,0,0b00,0,0,0,@operands[0],0,16) +
+              encoder.write_evex(mmm: 0b011, pp: 0b01, w: 1, ll: 1, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 16) +
               encoder.write_opcode(0x19) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0],@operands) +
               encoder.write_immediate(@operands[2],1)
             elsif @operands.length == 3 && @operands[0].type == :"xmm{k}{z}" && @operands[1].type == :zmm && @operands[2].type == :imm8
-              encoder.write_evex(0b011,0b01,1,2,0,0,0b00,0,0,0,@operands[0],@operands[0],nil) +
+              encoder.write_evex(mmm: 0b011, pp: 0b01, w: 1, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x19) +
               encoder.write_modrm(3,@operands[1],@operands[0],@operands) +
               encoder.write_immediate(@operands[2],1)
             elsif @operands.length == 3 && @operands[0].type == :"m128{k}" && @operands[1].type == :zmm && @operands[2].type == :imm8
-              encoder.write_evex(0b011,0b01,1,2,0,0,0b00,0,0,0,@operands[0],0,16) +
+              encoder.write_evex(mmm: 0b011, pp: 0b01, w: 1, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 16) +
               encoder.write_opcode(0x19) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0],@operands) +
               encoder.write_immediate(@operands[2],1)
             elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :ymm && @operands[2].type == :imm8
-              encoder.write_evex(0b011,0b01,1,1,0,0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b011, pp: 0b01, w: 1, ll: 1, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x19) +
               encoder.write_modrm(3,@operands[1],@operands[0],@operands) +
               encoder.write_immediate(@operands[2],1)
             elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :zmm && @operands[2].type == :imm8
-              encoder.write_evex(0b011,0b01,1,2,0,0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b011, pp: 0b01, w: 1, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x19) +
               encoder.write_modrm(3,@operands[1],@operands[0],@operands) +
               encoder.write_immediate(@operands[2],1)
             elsif @operands.length == 3 && @operands[0].type == :m128 && @operands[1].type == :ymm && @operands[2].type == :imm8
-              encoder.write_evex(0b011,0b01,1,1,0,0,0b00,0,0,0,0,0,16) +
+              encoder.write_evex(mmm: 0b011, pp: 0b01, w: 1, ll: 1, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 16) +
               encoder.write_opcode(0x19) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0],@operands) +
               encoder.write_immediate(@operands[2],1)
             elsif @operands.length == 3 && @operands[0].type == :m128 && @operands[1].type == :zmm && @operands[2].type == :imm8
-              encoder.write_evex(0b011,0b01,1,2,0,0,0b00,0,0,0,0,0,16) +
+              encoder.write_evex(mmm: 0b011, pp: 0b01, w: 1, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 16) +
               encoder.write_opcode(0x19) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0],@operands) +
               encoder.write_immediate(@operands[2],1)

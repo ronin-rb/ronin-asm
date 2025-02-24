@@ -58,22 +58,22 @@ module Ronin
           #
           def encode(encoder)
             if @operands.length == 4 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :xmm && @operands[3].type == :xmm
-              encoder.write_vex(:vex,0,0,0b00011,0b01,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00011, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0x4a) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands) +
               encoder.write_register_byte(@operands[3],nil)
             elsif @operands.length == 4 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :m128 && @operands[3].type == :xmm
-              encoder.write_vex(:vex,0,0,0b00011,0b01,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00011, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0x4a) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2],@operands) +
               encoder.write_register_byte(@operands[3],nil)
             elsif @operands.length == 4 && @operands[0].type == :ymm && @operands[1].type == :ymm && @operands[2].type == :ymm && @operands[3].type == :ymm
-              encoder.write_vex(:vex,0,1,0b00011,0b01,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, w: 0, l: 1, m_mmmm: 0b00011, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0x4a) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands) +
               encoder.write_register_byte(@operands[3],nil)
             elsif @operands.length == 4 && @operands[0].type == :ymm && @operands[1].type == :ymm && @operands[2].type == :m256 && @operands[3].type == :ymm
-              encoder.write_vex(:vex,0,1,0b00011,0b01,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, w: 0, l: 1, m_mmmm: 0b00011, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0x4a) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2],@operands) +
               encoder.write_register_byte(@operands[3],nil)

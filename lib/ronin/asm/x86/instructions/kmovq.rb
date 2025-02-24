@@ -58,15 +58,15 @@ module Ronin
           #
           def encode(encoder)
             if @operands.length == 2 && @operands[0].type == :k && @operands[1].type == :k
-              encoder.write_vex(:vex,1,0,0b00001,0b00,0,0,0,0) +
+              encoder.write_vex(type: :vex, w: 1, l: 0, m_mmmm: 0b00001, pp: 0b00, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x90) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :k && @operands[1].type == :mem64
-              encoder.write_vex(:vex,1,0,0b00001,0b00,0,0,0,0) +
+              encoder.write_vex(type: :vex, w: 1, l: 0, m_mmmm: 0b00001, pp: 0b00, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x90) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :mem64 && @operands[1].type == :k
-              encoder.write_vex(:vex,1,0,0b00001,0b00,0,0,0,0) +
+              encoder.write_vex(type: :vex, w: 1, l: 0, m_mmmm: 0b00001, pp: 0b00, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x91) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0],@operands)
             else

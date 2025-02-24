@@ -58,92 +58,92 @@ module Ronin
           #
           def encode(encoder)
             if @operands.length == 4 && @operands[0].type == :"k{k}" && @operands[1].type == :xmm && @operands[2].type == :"m128/m64bcst" && @operands[3].type == :imm8
-              encoder.write_evex(0b001,0b01,1,0,@operands[1],0,0b00,0,0,@operands[2],@operands[0],0,16) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, ll: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[2], aaa: @operands[0], z: 0, disp8xN: 16) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :k && @operands[1].type == :xmm && @operands[2].type == :"m128/m64bcst" && @operands[3].type == :imm8
-              encoder.write_evex(0b001,0b01,1,0,@operands[1],0,0b00,0,0,@operands[2],0,0,16) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, ll: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[2], aaa: 0, z: 0, disp8xN: 16) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :"k{k}" && @operands[1].type == :xmm && @operands[2].type == :xmm && @operands[3].type == :imm8
-              encoder.write_evex(0b001,0b01,1,0,@operands[1],0,0b00,0,0,0,@operands[0],0,nil) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, ll: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :k && @operands[1].type == :xmm && @operands[2].type == :xmm && @operands[3].type == :imm8
-              encoder.write_evex(0b001,0b01,1,0,@operands[1],0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, ll: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :"k{k}" && @operands[1].type == :ymm && @operands[2].type == :"m256/m64bcst" && @operands[3].type == :imm8
-              encoder.write_evex(0b001,0b01,1,1,@operands[1],0,0b00,0,0,@operands[2],@operands[0],0,32) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, ll: 1, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[2], aaa: @operands[0], z: 0, disp8xN: 32) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :k && @operands[1].type == :ymm && @operands[2].type == :"m256/m64bcst" && @operands[3].type == :imm8
-              encoder.write_evex(0b001,0b01,1,1,@operands[1],0,0b00,0,0,@operands[2],0,0,32) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, ll: 1, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[2], aaa: 0, z: 0, disp8xN: 32) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :"k{k}" && @operands[1].type == :ymm && @operands[2].type == :ymm && @operands[3].type == :imm8
-              encoder.write_evex(0b001,0b01,1,1,@operands[1],0,0b00,0,0,0,@operands[0],0,nil) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, ll: 1, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :k && @operands[1].type == :ymm && @operands[2].type == :ymm && @operands[3].type == :imm8
-              encoder.write_evex(0b001,0b01,1,1,@operands[1],0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, ll: 1, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :"k{k}" && @operands[1].type == :zmm && @operands[2].type == :"m512/m64bcst" && @operands[3].type == :imm8
-              encoder.write_evex(0b001,0b01,1,2,@operands[1],0,0b00,0,0,@operands[2],@operands[0],0,64) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, ll: 2, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[2], aaa: @operands[0], z: 0, disp8xN: 64) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :k && @operands[1].type == :zmm && @operands[2].type == :"m512/m64bcst" && @operands[3].type == :imm8
-              encoder.write_evex(0b001,0b01,1,2,@operands[1],0,0b00,0,0,@operands[2],0,0,64) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, ll: 2, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[2], aaa: 0, z: 0, disp8xN: 64) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :"k{k}" && @operands[1].type == :zmm && @operands[2].type == :zmm && @operands[3].type == :imm8
-              encoder.write_evex(0b001,0b01,1,nil,@operands[1],0,0b00,0,0,0,@operands[0],0,nil) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :k && @operands[1].type == :zmm && @operands[2].type == :zmm && @operands[3].type == :imm8
-              encoder.write_evex(0b001,0b01,1,nil,@operands[1],0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :xmm && @operands[3].type == :imm8
-              encoder.write_vex(:vex,nil,0,0b00001,0b01,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :m128 && @operands[3].type == :imm8
-              encoder.write_vex(:vex,nil,0,0b00001,0b01,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :ymm && @operands[1].type == :ymm && @operands[2].type == :ymm && @operands[3].type == :imm8
-              encoder.write_vex(:vex,nil,1,0b00001,0b01,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00001, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 4 && @operands[0].type == :ymm && @operands[1].type == :ymm && @operands[2].type == :m256 && @operands[3].type == :imm8
-              encoder.write_vex(:vex,nil,1,0b00001,0b01,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00001, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[3],1)
             elsif @operands.length == 5 && @operands[0].type == :"k{k}" && @operands[1].type == :zmm && @operands[2].type == :zmm && @operands[3].type == :"{sae}" && @operands[4].type == :imm8
-              encoder.write_evex(0b001,0b01,1,2,@operands[1],0,0b00,0,0,1,@operands[0],0,nil) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, ll: 2, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 1, aaa: @operands[0], z: 0) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[4],1)
             elsif @operands.length == 5 && @operands[0].type == :k && @operands[1].type == :zmm && @operands[2].type == :zmm && @operands[3].type == :"{sae}" && @operands[4].type == :imm8
-              encoder.write_evex(0b001,0b01,1,2,@operands[1],0,0b00,0,0,1,0,0,nil) +
+              encoder.write_evex(mmm: 0b001, pp: 0b01, w: 1, ll: 2, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 1, aaa: 0, z: 0) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands) +
               encoder.write_immediate(@operands[4],1)

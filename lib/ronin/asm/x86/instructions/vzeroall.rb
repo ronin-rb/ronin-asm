@@ -58,7 +58,7 @@ module Ronin
           #
           def encode(encoder)
             if @operands.empty?
-              encoder.write_vex(:vex,nil,1,0b00001,0b00,0,0,0,0) +
+              encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00001, pp: 0b00, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x77)
             else
               raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")

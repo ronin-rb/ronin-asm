@@ -58,22 +58,22 @@ module Ronin
           #
           def encode(encoder)
             if @operands.length == 3 && @operands[0].type == :"k{k}" && @operands[1].type == :xmm && @operands[2].type == :imm8
-              encoder.write_evex(0b011,0b00,0,nil,0,0,0b00,0,0,0,@operands[0],0,nil) +
+              encoder.write_evex(mmm: 0b011, pp: 0b00, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0) +
               encoder.write_opcode(0x67) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands) +
               encoder.write_immediate(@operands[2],1)
             elsif @operands.length == 3 && @operands[0].type == :k && @operands[1].type == :xmm && @operands[2].type == :imm8
-              encoder.write_evex(0b011,0b00,0,nil,0,0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b011, pp: 0b00, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x67) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands) +
               encoder.write_immediate(@operands[2],1)
             elsif @operands.length == 3 && @operands[0].type == :"k{k}" && @operands[1].type == :mem16 && @operands[2].type == :imm8
-              encoder.write_evex(0b011,0b00,0,nil,0,0,0b00,0,0,0,@operands[0],0,4) +
+              encoder.write_evex(mmm: 0b011, pp: 0b00, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 4) +
               encoder.write_opcode(0x67) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands) +
               encoder.write_immediate(@operands[2],1)
             elsif @operands.length == 3 && @operands[0].type == :k && @operands[1].type == :mem16 && @operands[2].type == :imm8
-              encoder.write_evex(0b011,0b00,0,nil,0,0,0b00,0,0,0,0,0,4) +
+              encoder.write_evex(mmm: 0b011, pp: 0b00, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 4) +
               encoder.write_opcode(0x67) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands) +
               encoder.write_immediate(@operands[2],1)

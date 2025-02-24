@@ -58,19 +58,19 @@ module Ronin
           #
           def encode(encoder)
             if @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :xmm
-              encoder.write_vex(:vex,0,0,0b00010,0b10,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00010, pp: 0b10, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0xda) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands)
             elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :m128
-              encoder.write_vex(:vex,0,0,0b00010,0b10,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00010, pp: 0b10, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0xda) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2],@operands)
             elsif @operands.length == 3 && @operands[0].type == :ymm && @operands[1].type == :ymm && @operands[2].type == :ymm
-              encoder.write_vex(:vex,0,1,0b00010,0b10,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, w: 0, l: 1, m_mmmm: 0b00010, pp: 0b10, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0xda) +
               encoder.write_modrm(3,@operands[0],@operands[2],@operands)
             elsif @operands.length == 3 && @operands[0].type == :ymm && @operands[1].type == :ymm && @operands[2].type == :m256
-              encoder.write_vex(:vex,0,1,0b00010,0b10,0,0,0,@operands[1]) +
+              encoder.write_vex(type: :vex, w: 0, l: 1, m_mmmm: 0b00010, pp: 0b10, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0xda) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2],@operands)
             else

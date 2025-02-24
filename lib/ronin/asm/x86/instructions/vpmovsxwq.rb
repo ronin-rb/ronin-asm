@@ -58,67 +58,67 @@ module Ronin
           #
           def encode(encoder)
             if @operands.length == 2 && @operands[0].type == :"xmm{k}{z}" && @operands[1].type == :xmm
-              encoder.write_evex(0b010,0b01,nil,0,0,0,0b00,0,0,0,@operands[0],@operands[0],nil) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :"ymm{k}{z}" && @operands[1].type == :xmm
-              encoder.write_evex(0b010,0b01,nil,1,0,0,0b00,0,0,0,@operands[0],@operands[0],nil) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 1, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :xmm
-              encoder.write_evex(0b010,0b01,nil,2,0,0,0b00,0,0,0,@operands[0],@operands[0],nil) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :"xmm{k}{z}" && @operands[1].type == :mem32
-              encoder.write_evex(0b010,0b01,nil,0,0,0,0b00,0,0,0,@operands[0],@operands[0],4) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0], disp8xN: 4) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :"ymm{k}{z}" && @operands[1].type == :mem64
-              encoder.write_evex(0b010,0b01,nil,1,0,0,0b00,0,0,0,@operands[0],@operands[0],8) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 1, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0], disp8xN: 8) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :m128
-              encoder.write_evex(0b010,0b01,nil,2,0,0,0b00,0,0,0,@operands[0],@operands[0],16) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0], disp8xN: 16) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :xmm
-              encoder.write_vex(:vex,nil,0,0b00010,0b01,0,0,0,0) +
+              encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00010, pp: 0b01, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :xmm
-              encoder.write_evex(0b010,0b01,nil,0,0,0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem32
-              encoder.write_vex(:vex,nil,0,0b00010,0b01,0,0,0,0) +
+              encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00010, pp: 0b01, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem32
-              encoder.write_evex(0b010,0b01,nil,0,0,0,0b00,0,0,0,0,0,4) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 4) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :xmm
-              encoder.write_vex(:vex,nil,1,0b00010,0b01,0,0,0,0) +
+              encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00010, pp: 0b01, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :xmm
-              encoder.write_evex(0b010,0b01,nil,1,0,0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 1, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :mem64
-              encoder.write_vex(:vex,nil,1,0b00010,0b01,0,0,0,0) +
+              encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00010, pp: 0b01, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :mem64
-              encoder.write_evex(0b010,0b01,nil,1,0,0,0b00,0,0,0,0,0,8) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 1, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 8) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :zmm && @operands[1].type == :xmm
-              encoder.write_evex(0b010,0b01,nil,2,0,0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :zmm && @operands[1].type == :m128
-              encoder.write_evex(0b010,0b01,nil,2,0,0,0b00,0,0,0,0,0,16) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 16) +
               encoder.write_opcode(0x24) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             else

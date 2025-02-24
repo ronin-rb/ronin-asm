@@ -58,27 +58,27 @@ module Ronin
           #
           def encode(encoder)
             if @operands.length == 2 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :"m512/m32bcst"
-              encoder.write_evex(0b010,0b01,0,2,0,0,0b00,0,0,@operands[1],@operands[0],@operands[0],64) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[1], aaa: @operands[0], z: @operands[0], disp8xN: 64) +
               encoder.write_opcode(0xcc) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :zmm
-              encoder.write_evex(0b010,0b01,0,nil,0,0,0b00,0,0,0,@operands[0],@operands[0],nil) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0xcc) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :zmm && @operands[1].type == :"m512/m32bcst"
-              encoder.write_evex(0b010,0b01,0,2,0,0,0b00,0,0,@operands[1],0,0,64) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[1], aaa: 0, z: 0, disp8xN: 64) +
               encoder.write_opcode(0xcc) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1],@operands)
             elsif @operands.length == 2 && @operands[0].type == :zmm && @operands[1].type == :zmm
-              encoder.write_evex(0b010,0b01,0,nil,0,0,0b00,0,0,0,0,0,nil) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0xcc) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 3 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :zmm && @operands[2].type == :"{sae}"
-              encoder.write_evex(0b010,0b01,0,2,0,0,0b00,0,0,1,@operands[0],@operands[0],nil) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 1, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0xcc) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             elsif @operands.length == 3 && @operands[0].type == :zmm && @operands[1].type == :zmm && @operands[2].type == :"{sae}"
-              encoder.write_evex(0b010,0b01,0,2,0,0,0b00,0,0,1,0,0,nil) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 2, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 1, aaa: 0, z: 0) +
               encoder.write_opcode(0xcc) +
               encoder.write_modrm(3,@operands[0],@operands[1],@operands)
             else
