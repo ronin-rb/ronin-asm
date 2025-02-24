@@ -110,6 +110,9 @@ module CodeGen
       end
 
       #
+      # Builds an `encoding.write_<encoding>(...)` method call based on the
+      # given encoding object.
+      #
       # @param [Array<CodeOffset, DataOffset, Immediate, ModRM, Opcode,
       #               Prefix, RegisterByte, VEX, EVEX>] encoding
       # @return [String]
