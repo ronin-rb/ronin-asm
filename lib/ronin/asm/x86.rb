@@ -59,9 +59,11 @@ module Ronin
         di:  Registers::DI,
         edi: Registers::EDI,
 
+        bpl: Registers::BPL,
         bp:  Registers::BP,
         ebp: Registers::EBP,
 
+        spl: Registers::SPL,
         sp:  Registers::SP,
         esp: Registers::ESP,
 
@@ -143,11 +145,17 @@ module Ronin
       # The `edi` 32bit "destination" register.
       def edi = Registers::EDI
 
+      # The `bpl` 8bit stack base pointer register.
+      def bpl = Registers::BPL
+
       # The `bp` 16bit stack base pointer register.
       def bp = Registers::BP
 
       # The `ebp` 32bit stack base pointer register.
       def ebp = Registers::EBP
+
+      # The `spl` 8bit stack pointer register.
+      def spl = Registers::SPL
 
       # The `sp` 16bit stack pointer register.
       def sp = Registers::SP
