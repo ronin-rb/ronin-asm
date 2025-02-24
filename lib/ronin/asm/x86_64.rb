@@ -316,11 +316,6 @@ module Ronin
       # @see #rsp
       #
       def stack_pointer = Registers::RSP
-
-      #
-      # Generates the instruction to invoke a syscall.
-      #
-      def syscall = instruction(:syscall)
     end
   end
 end
