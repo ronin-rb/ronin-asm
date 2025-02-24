@@ -551,8 +551,6 @@ module Ronin
       def method_missing(name,*arguments,**kwargs,&block)
         if (block && arguments.empty? && kwargs.empty?)
           label(name,&block)
-        elsif block.nil?
-          instruction(name,*arguments,**kwargs)
         else
           super(name,*arguments,&block)
         end
