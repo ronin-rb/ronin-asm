@@ -343,7 +343,7 @@ module CodeGen
             when 'VEX'          then VEX.from_xml(child)
             when 'EVEX'         then EVEX.from_xml(child)
             else
-              raise(NotImplementedError,"cannot parse <Encoding> child element: #{node.to_xml}")
+              raise(NotImplementedError,"cannot parse <Encoding> child element: #{child.to_xml}")
             end
           end
         end
