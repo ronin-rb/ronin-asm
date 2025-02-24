@@ -19,6 +19,7 @@
 #
 
 require_relative 'x86_64/registers'
+require_relative 'x86_64/instructions'
 require_relative 'x86_64/encoder'
 
 module Ronin
@@ -29,6 +30,8 @@ module Ronin
     # @api private
     #
     module X86_64
+      include Instructions
+
       # Default word size
       WORD_SIZE = 8
 
