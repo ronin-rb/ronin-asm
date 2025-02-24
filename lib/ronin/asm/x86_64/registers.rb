@@ -54,6 +54,10 @@ module Ronin
         # The `rdi` 64bit "destination" register.
         RDI =  Register.new(:rdi, width: 8, number: 7, general: true)
 
+        #
+        # @group Extended Registers
+        #
+
         R8B =  Register.new(:r8b, width: 1, number: 8, general: true)
         R8W =  Register.new(:r8w, width: 2, number: 8, general: true)
         R8D =  Register.new(:r8d, width: 4, number: 8, general: true)
