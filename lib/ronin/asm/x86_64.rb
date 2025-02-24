@@ -18,7 +18,6 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'x86'
 require_relative 'x86_64/registers'
 
 module Ronin
@@ -27,19 +26,43 @@ module Ronin
     # Contains x86-64 architecture information.
     #
     module X86_64
-      include X86
-
       # Default word size
       WORD_SIZE = 8
 
       # x86-64 registers
-      REGISTERS = X86::REGISTERS.merge(
+      REGISTERS = {
+        al:  Registers::AL,
+        ah:  Registers::AH,
+        ax:  Registers::AX,
+        eax: Registers::EAX,
         rax: Registers::RAX,
+
+        bl:  Registers::BL,
+        bh:  Registers::BH,
+        bx:  Registers::BX,
+        ebx: Registers::EBX,
         rbx: Registers::RBX,
+
+        cl:  Registers::CL,
+        ch:  Registers::CH,
+        cx:  Registers::CX,
+        ecx: Registers::ECX,
         rcx: Registers::RCX,
+
+        dl:  Registers::DL,
+        dh:  Registers::DH,
+        dx:  Registers::DX,
+        edx: Registers::EDX,
         rdx: Registers::RDX,
 
+        sil: Registers::SIL,
+        si:  Registers::SI,
+        esi: Registers::ESI,
         rsi: Registers::RSI,
+
+        dil: Registers::DIL,
+        di:  Registers::DI,
+        edi: Registers::EDI,
         rdi: Registers::RDI,
 
         r8b: Registers::R8B,
@@ -82,28 +105,108 @@ module Ronin
         r15d: Registers::R15D,
         r15:  Registers::R15,
 
+        spl: Registers::SPL,
+        sp:  Registers::SP,
+        esp: Registers::ESP,
         rsp: Registers::RSP,
-        rbp: Registers::RBP
-      )
+
+        bpl: Registers::BPL,
+        bp:  Registers::BP,
+        ebp: Registers::EBP,
+        rbp: Registers::RBP,
+
+        cs: Registers::CS,
+        ds: Registers::DS,
+        es: Registers::ES,
+        fs: Registers::FS,
+        gs: Registers::GS,
+        ss: Registers::SS
+      }
 
       #
       # @group Register Methods
       #
 
+      # The `al` 8bit "accumulator" register.
+      def al = Registers::AL
+
+      # The `ah` 8bit "accumulator" register.
+      def ah = Registers::AH
+
+      # The `ax` 16bit "accumulator" register.
+      def ax = Registers::AX
+
+      # The `eax` 32bit "accumulator" register.
+      def eax = Registers::EAX
+
       # The `rax` 64bit "accumulator" register.
       def rax = Registers::RAX
+
+      # The `bl` 8bit "base" register.
+      def bl = Registers::BL
+
+      # The `bh` 8bit "base" register.
+      def bh = Registers::BH
+
+      # The `bx` 16bit "base" register.
+      def bx = Registers::BX
+
+      # The `ebx` 32bit "base" register.
+      def ebx = Registers::EBX
 
       # The `rbx` 64bit "accumulator" register.
       def rbx = Registers::RBX
 
+      # The `cl` 8bit "counter" register.
+      def cl = Registers::CL
+
+      # The `ch` 8bit "counter" register.
+      def ch = Registers::CH
+
+      # The `cx` 16bit "counter" register.
+      def cx = Registers::CX
+
+      # The `ecx` 32bit "counter" register.
+      def ecx = Registers::ECX
+
       # The `rcx` 64bit "accumulator" register.
       def rcx = Registers::RCX
+
+      # The `dl` 8bit "data" register.
+      def dl = Registers::DL
+
+      # The `dh` 8bit "data" register.
+      def dh = Registers::DH
+
+      # The `dx` 16bit "data" register.
+      def dx = Registers::DX
+
+      # The `edx` 32bit "data" register.
+      def edx = Registers::EDX
 
       # The `rdx` 64bit "accumulator" register.
       def rdx = Registers::RDX
 
+      # The `sil` 8bit "source" register.
+      def sil = Registers::SIL
+
+      # The `si` 16bit "source" register.
+      def si = Registers::SI
+
+      # The `esi` 32bit "source" register.
+      def esi = Registers::ESI
+
       # The `rsi` 64bit "source" register.
       def rsi = Registers::RSI
+
+      # The `dil` 8bit "destination" register.
+      def dil = Registers::DIL
+
+      # The `di` 16bit "destination" register.
+      def di = Registers::DI
+
+      # The `edi` 32bit "destination" register.
+      def edi = Registers::EDI
 
       # The `rdi` 64bit "destination" register.
       def rdi = Registers::RDI
@@ -151,8 +254,44 @@ module Ronin
       # The `rsp` 64bit stack pointer register.
       def rsp = Registers::RSP
 
+      # The `bpl` 8bit stack base pointer register.
+      def bpl = Registers::BPL
+
+      # The `bp` 16bit stack base pointer register.
+      def bp = Registers::BP
+
+      # The `ebp` 32bit stack base pointer register.
+      def ebp = Registers::EBP
+
+      # The `spl` 8bit stack pointer register.
+      def spl = Registers::SPL
+
+      # The `sp` 16bit stack pointer register.
+      def sp = Registers::SP
+
+      # The `esp` 32bit stack pointer register.
+      def esp = Registers::ESP
+
       # The `rbp` 64bit stack base pointer register.
       def rbp = Registers::RBP
+
+      # The `cs` 16bit Code Segment register.
+      def cs = Registers::CS
+
+      # The `ds` 16bit Data Segment register.
+      def ds = Registers::DS
+
+      # The `es` 16bit Extra Segment register.
+      def es = Registers::ES
+
+      # The `fs` 16bit F Segment register.
+      def fs = Registers::FS
+
+      # The `gs` 16bit G Segment register.
+      def gs = Registers::GS
+
+      # The `ss` 16bit Stack Segment register.
+      def ss = Registers::SS
 
       #
       # @group Internal Methods
