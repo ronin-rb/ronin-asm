@@ -165,7 +165,7 @@ module CodeGen
       # @return [String]
       #
       def encoder_write_modrm_call(encoding)
-        "encoder.write_modrm(#{value_arg(encoding.mode)},#{value_arg(encoding.reg)},#{value_arg(encoding.rm)},@operands)"
+        "encoder.write_modrm(#{value_arg(encoding.mode)},#{value_arg(encoding.reg)},#{operand_index(encoding.rm)},@operands)"
       end
 
       #
