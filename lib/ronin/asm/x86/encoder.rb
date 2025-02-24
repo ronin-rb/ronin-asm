@@ -45,7 +45,7 @@ module Ronin
           if (mem = operands.find { |op| op.kind_of?(Memory) })
             write_modrm_mem(mode,reg,rm,mem)
           else
-            write_moderm_byte(mode,reg,rm)
+            write_modrm_byte(mode,reg,rm)
           end
         end
 
@@ -85,13 +85,17 @@ module Ronin
         #
         # Writes the ModRM byte.
         #
-        # @param [Integer] mode
-        # @param [Integer] reg
-        # @param [Integer] rm
+        # @param [Operand, Integer] mode
+        # @param [Operand, Integer] reg
+        # @param [Operand] rm
         # @return [1]
         #   The number of bytes written.
         #
         def write_modrm_byte(mode,reg,rm)
+          mode = mode.to_i
+          reg  = reg.to_i
+          rm   = rm.to_i
+
           write_byte((mode << 6) | ((reg & 0b111) << 3) | (rm & 0b111))
         end
 
