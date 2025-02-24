@@ -172,6 +172,28 @@ module Ronin
           write_byte(byte)
         end
 
+        #
+        # Writes a VEX encoding to the output stream.
+        #
+        # @raise [NotImplementedError]
+        #
+        # @note This method is not implemented yet!
+        #
+        def write_vex(type: , w: nil, l: nil, m_mmmm: , pp: , r: nil, x: nil, b: nil, vvvv: nil)
+          raise(NotImplementedError,"x86/x86-64 VEX encoding is not yet implemented!")
+        end
+
+        #
+        # Writes a EVEX encoding to the output stream.
+        #
+        # @raise [NotImplementedError]
+        #
+        # @note This method is not implemented yet!
+        #
+        def write_evex(mmm: , pp: , w: nil, ll: nil, vvvv: nil, v: nil, rr: nil, _B: nil, x: nil, b: nil, aaa: , z: , disp8xN: nil)
+          raise(NotImplementedError,"x86/x86-64 EVEX encoding is not yet implemented!")
+        end
+
       end
     end
   end
