@@ -4,6 +4,8 @@ require 'ronin/asm/immediate'
 describe Ronin::ASM::Immediate do
   let(:value) { 0xff }
 
+  subject { described_class.new(value) }
+
   describe "#initialize" do
     context "with a width" do
       let(:width) { 2 }
@@ -116,9 +118,13 @@ describe Ronin::ASM::Immediate do
     end
   end
 
-  describe "#to_i" do
-    subject { described_class.new(value) }
+  describe "#imm?" do
+    it "must return true" do
+      expect(subject.imm?).to be(true)
+    end
+  end
 
+  describe "#to_i" do
     it "must return the value" do
       expect(subject.to_i).to eq(value)
     end
