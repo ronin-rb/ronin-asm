@@ -83,6 +83,17 @@ module Ronin
       def reg? = true
 
       #
+      # Specifies that the operand is a 8bit register operand.
+      #
+      # @return [Boolean]
+      #
+      # @since 1.0.0
+      #
+      def reg8?
+        @width == 1
+      end
+
+      #
       # Specifies whether the register is a general purpose register.
       #
       # @return [Boolean]
