@@ -78,7 +78,7 @@ module Ronin
       # @return [Boolean]
       #
       def imm8?
-        @type == :imm8
+        @width == 1
       end
 
       #
@@ -87,7 +87,7 @@ module Ronin
       # @return [Boolean]
       #
       def imm16?
-        @type == :imm16
+        @width == 2
       end
 
       #
@@ -96,7 +96,7 @@ module Ronin
       # @return [Boolean]
       #
       def imm32?
-        @type == :imm32
+        @width == 4
       end
 
       #
@@ -105,7 +105,7 @@ module Ronin
       # @return [Boolean]
       #
       def imm64?
-        @type == :imm64
+        @width == 8
       end
 
       #
