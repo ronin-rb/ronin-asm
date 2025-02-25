@@ -75,6 +75,13 @@ module Ronin
       #
       def imm64? = false
 
+      #
+      # Determines if the operand is a register operand.
+      #
+      # @return [Boolean]
+      #
+      def reg? = false
+
     end
   end
 end
