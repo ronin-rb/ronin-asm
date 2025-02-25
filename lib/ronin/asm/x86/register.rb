@@ -29,6 +29,15 @@ module Ronin
       # @since 1.0.0
       #
       class Register < ASM::Register
+
+        #
+        # Determines if the register is the stack pointer register
+        # (`esp`, `sp`, or `spl`).
+        #
+        # @return [Boolean]
+        #
+        def sp? = @number == 4
+
       end
     end
   end
