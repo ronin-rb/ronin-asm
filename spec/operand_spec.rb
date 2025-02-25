@@ -22,4 +22,12 @@ describe Ronin::ASM::Operand do
       expect(subject.imm?).to be(false)
     end
   end
+
+  describe "#imm8?" do
+    subject { TestOperand.new }
+
+    it "must return false by default" do
+      expect(subject.imm8?).to be(false)
+    end
+  end
 end
