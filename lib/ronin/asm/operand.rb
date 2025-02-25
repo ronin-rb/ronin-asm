@@ -89,6 +89,13 @@ module Ronin
       #
       def reg8? = false
 
+      #
+      # Determines if the operand is a 16bit register operand.
+      #
+      # @return [Boolean]
+      #
+      def reg16? = false
+
     end
   end
 end

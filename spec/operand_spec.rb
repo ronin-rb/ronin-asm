@@ -56,4 +56,10 @@ describe Ronin::ASM::Operand do
       expect(subject.reg8?).to be(false)
     end
   end
+
+  describe "#reg16?" do
+    it "must return false by default" do
+      expect(subject.reg16?).to be(false)
+    end
+  end
 end
