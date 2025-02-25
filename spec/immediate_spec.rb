@@ -146,6 +146,28 @@ describe Ronin::ASM::Immediate do
     end
   end
 
+  describe "#imm16?" do
+    context "when the #width is 2" do
+      let(:width) { 2 }
+
+      subject { described_class.new(value, width: width) }
+
+      it "must return true" do
+        expect(subject.imm16?).to be(true)
+      end
+    end
+
+    context "when the #type is not 2" do
+      let(:width) { 1 }
+
+      subject { described_class.new(value, width: width) }
+
+      it "must return false" do
+        expect(subject.imm16?).to be(false)
+      end
+    end
+  end
+
   describe "#to_s" do
     it "must return the String form of #value" do
       expect(subject.to_s).to eq(value.to_s)
