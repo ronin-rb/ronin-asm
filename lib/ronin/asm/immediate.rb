@@ -66,6 +66,13 @@ module Ronin
       end
 
       #
+      # Specifies that the operand is an immediate operand.
+      #
+      # @return [true]
+      #
+      def imm? = true
+
+      #
       # Converts the operand to an Integer.
       #
       # @return [Integer]
