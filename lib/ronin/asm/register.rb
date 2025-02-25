@@ -74,6 +74,15 @@ module Ronin
       end
 
       #
+      # Specifies that the operand is a register operand.
+      #
+      # @return [true]
+      #
+      # @since 1.0.0
+      #
+      def reg? = true
+
+      #
       # Specifies whether the register is a general purpose register.
       #
       # @return [Boolean]
