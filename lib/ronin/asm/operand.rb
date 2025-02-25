@@ -47,6 +47,13 @@ module Ronin
       #
       def imm? = false
 
+      #
+      # Determines if the operand is a 8bit immediate operand.
+      #
+      # @return [Boolean]
+      #
+      def imm8? = false
+
     end
   end
 end
