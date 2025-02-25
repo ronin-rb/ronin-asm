@@ -165,18 +165,6 @@ module Ronin
         # @group Stack Registers.
         #
 
-        # The `bpl` 8bit stack base pointer register.
-        BPL = Register.new(:sp, width: 1, number: 5)
-
-        # The `bp` 16bit stack base pointer register.
-        BP  = Register.new(:bp, width: 2, number: 5)
-
-        # The `ebp` 32bit stack base pointer register.
-        EBP = Register.new(:ebp, width: 4, number: 5)
-
-        # The `rbp` 64bit stack base pointer register.
-        RBP =  Register.new(:rbp, width: 8, number: 5)
-
         # The `spl` 8bit stack pointer register.
         SPL = Register.new(:sp, width: 1, number: 4)
 
@@ -188,6 +176,18 @@ module Ronin
 
         # The `rsp` 64bit stack pointer register.
         RSP =  Register.new(:rsp, width: 8, number: 4)
+
+        # The `bpl` 8bit stack base pointer register.
+        BPL = Register.new(:sp, width: 1, number: 5)
+
+        # The `bp` 16bit stack base pointer register.
+        BP  = Register.new(:bp, width: 2, number: 5)
+
+        # The `ebp` 32bit stack base pointer register.
+        EBP = Register.new(:ebp, width: 4, number: 5)
+
+        # The `rbp` 64bit stack base pointer register.
+        RBP =  Register.new(:rbp, width: 8, number: 5)
 
         #
         # @group Segment Registers
