@@ -25,6 +25,8 @@ module Ronin
     #
     # @abstract
     #
+    # @since 1.0.0
+    #
     class Operand
 
       #
@@ -35,7 +37,7 @@ module Ronin
       # @abstract
       #
       def type
-        raise(NotImplementedError,"#{self.class}#type was not defined")
+        raise(NotImplementedError,"#{self.class}##{__method__} was not defined")
       end
 
     end
