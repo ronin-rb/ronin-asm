@@ -16,10 +16,28 @@ describe Ronin::ASM::X86::Register do
     end
 
     context "when #number is not 4" do
-      subject { described_class.new(:ebp, width: 4, number: 5) }
+      subject { described_class.new(:eax, width: 4, number: 0) }
 
       it "must return false" do
         expect(subject.sp?).to be(false)
+      end
+    end
+  end
+
+  describe "#bp?" do
+    context "when #number is 4" do
+      subject { described_class.new(:ebp, width: 4, number: 5) }
+
+      it "must return true" do
+        expect(subject.bp?).to be(true)
+      end
+    end
+
+    context "when #number is not 4" do
+      subject { described_class.new(:eax, width: 4, number: 0) }
+
+      it "must return false" do
+        expect(subject.bp?).to be(false)
       end
     end
   end
