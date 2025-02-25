@@ -192,12 +192,169 @@ module Ronin
         #
         # Writes a VEX encoding to the output stream.
         #
-        # @raise [NotImplementedError]
+        # @param [:vex, :xop] type
+        #   The VEX type.
         #
-        # @note This method is not implemented yet!
+        # @param [1, 0, nil] w
+        #   When `1` indicates that 64bit operand size must be used, otherwise
+        #   the default operand sizes will be used.
+        #
+        # @param [1, 0, nil] l
+        #   When `1` indicates that 256bit vector size must be used, otherwise
+        #   128bit vector size must be used.
+        #
+        # @param [0b00001, 0b00010, 0b00011, 0b01000, 0b01001, 0b01010] m_mmmm
+        #   Specifies the opcode map to use.
+        #
+        # @param [0b00, 0b01, 0b10, 0b11] pp
+        #   Specifies the implied mandatory prefix for the opcode.
+        #
+        # @param [Register, nil] r
+        #   The register operand.
+        #
+        # @param [Memory, Register, nil] x
+        #   The memory operand with {Memory#index index} set.
+        #
+        # @param [Memory, Register, nil] b
+        #   The memory operand with {Memory#base base} set.
+        #
+        # @param [Register, Memory, nil] vvvv
+        #   The additional operand.
+        #
+        # @return [3, 2]
+        #   The number of bytes written.
+        #
+        # @raise [ArgumentError]
+        #   An invalid type value was given.
         #
         def write_vex(type: , w: nil, l: nil, m_mmmm: , pp: , r: nil, x: nil, b: nil, vvvv: nil)
-          raise(NotImplementedError,"x86/x86-64 VEX encoding is not yet implemented!")
+          if type == :vex && ((x.nil? || x == 0) && (b.nil? || b == 0) && (w.nil? || w == 0) || (m_mmmm == 0b00001))
+            write_vex_two_byte(r: r, vvvv: vvvv, l: l, pp: pp)
+          else
+            write_vex_three_byte(type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b, vvvv: vvvv)
+          end
+        end
+
+        #
+        # Writes a two byte encoded VEX escape prefix.
+        #
+        # @param [Register, nil] r
+        #   The register operand.
+        #
+        # @param [Register, Memory, nil] vvvv
+        #   The additional operand.
+        #
+        # @param [1, 0, nil] l
+        #   When `1` indicates that 256bit vector size must be used, otherwise
+        #   128bit vector size must be used.
+        #
+        # @param [0b00, 0b01, 0b10, 0b11] pp
+        #   Specifies the implied mandatory prefix for the opcode.
+        #
+        # @return [2]
+        #   The number of bytes written.
+        #
+        def write_vex_two_byte(r: nil, vvvv: nil, l: nil, pp: )
+          # set the initial byte
+          byte1 = 0b11000101
+          byte2 = 0
+
+          if r && r.kind_of?(Register) && r.number.bit_length < 4
+            # VEX.R is encoded as the inverted version of REX.R
+            byte2 |= 0b10000000
+          end
+
+          if vvvv
+            # VEX.vvvv is encoded as the inverted value of the extra operand
+            byte2 |= ((~vvvv.to_i & 0b1111) << 3)
+          end
+
+          byte2 |= (l << 1) if l
+          byte2 |= pp if pp
+
+          write_byte(byte1) + write_byte(byte2)
+        end
+
+        #
+        # Writes a VEX encoding to the output stream.
+        #
+        # @param [:vex, :xop] type
+        #   The VEX type.
+        #
+        # @param [1, 0, nil] w
+        #   When `1` indicates that 64bit operand size must be used, otherwise
+        #   the default operand sizes will be used.
+        #
+        # @param [1, 0, nil] l
+        #   When `1` indicates that 256bit vector size must be used, otherwise
+        #   128bit vector size must be used.
+        #
+        # @param [0b00001, 0b00010, 0b00011, 0b01000, 0b01001, 0b01010] m_mmmm
+        #   Specifies the opcode map to use.
+        #
+        # @param [0b00, 0b01, 0b10, 0b11] pp
+        #   Specifies the implied mandatory prefix for the opcode.
+        #
+        # @param [Register, nil] r
+        #   The register operand.
+        #
+        # @param [Memory, nil] x
+        #   The memory operand with {Memory#index index} set.
+        #
+        # @param [Memory, Register, nil] b
+        #   The memory operand with {Memory#base base} set.
+        #
+        # @param [Register, Memory, nil] vvvv
+        #   The additional operand.
+        #
+        # @return [3, 2]
+        #   The number of bytes written.
+        #
+        # @raise [ArgumentError]
+        #   An invalid type value was given.
+        #
+        def write_vex_three_byte(type: , w: nil, l: nil, m_mmmm: , pp: , r: nil, x: nil, b: nil, vvvv: nil)
+          # set the initial VEX/XOP byte
+          byte1 = case type
+                  when :vex then 0b11000100
+                  when :xop then 0b10001111
+                  else
+                    raise(ArgumentError,"invalid VEX type: #{type.inspect}")
+                  end
+          byte2 = 0
+          byte3 = 0
+
+          # second byte
+          if r.nil? || (r.kind_of?(Register) && r.number.bit_length < 4)
+            # VEX.R is encoded as the inverted version of REX.R
+            byte2 |= 0b10000000
+          end
+
+          if x.nil? || (x.kind_of?(Memory) && (x.index.nil? || x.index.number.bit_length < 4))
+            # VEX.X is encoded as the inverted version of REX.X
+            byte2 |= 0b01000000
+          end
+
+          if b.nil? || ((b.kind_of?(Register) && b.number.bit_length < 4) ||
+                        (b.kind_of?(Memory) && b.base.number.bit_length < 4))
+            # VEX.B is encoded as the inverted version of REX.B
+            byte2 |= 0b00100000
+          end
+
+          byte2 |= m_mmmm
+
+          # third byte
+          byte3 |= (w << 7) if w
+
+          if vvvv
+            # VEX.vvvv is encoded as the inverted value of the extra operand
+            byte3 |= ((~vvvv.to_i & 0b1111) << 3)
+          end
+
+          byte3 |= (l << 2) if l
+          byte3 |= pp if pp
+
+          write_byte(byte1) + write_byte(byte2) + write_byte(byte3)
         end
 
         #
