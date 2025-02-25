@@ -82,6 +82,15 @@ module Ronin
       end
 
       #
+      # Determines if the operand is an 16bit immediate operand.
+      #
+      # @return [Boolean]
+      #
+      def imm16?
+        @type == :imm16
+      end
+
+      #
       # Converts the operand to an Integer.
       #
       # @return [Integer]
