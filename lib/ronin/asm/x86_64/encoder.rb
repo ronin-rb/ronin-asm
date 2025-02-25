@@ -97,7 +97,8 @@ module Ronin
         # @see https://wiki.osdev.org/X86-64_Instruction_Encoding#REX_prefix
         #
         def write_rex(mandatory: , w: , r: nil, x: nil, b: nil)
-          rex = 0b0100_0000 | (w << 3)
+          rex = 0b0100_0000
+          rex |= (w << 3) if w
 
           if r.kind_of?(Register) && r.number.bit_length == 4
             # Enable the REX.R extension to extend ModRM.reg to four bits
@@ -117,6 +118,11 @@ module Ronin
             # Enable the REX.B extension for ModRM B.r/m
             # https://wiki.osdev.org/X86-64_Instruction_Encoding#ModR/M
             rex |= 0b001
+          end
+
+          # check if the REX prefix can be omitted
+          if mandatory == false && ((rex & 0b1111) == 0b0000) # no bits set
+            return 0
           end
 
           write_byte(rex)
