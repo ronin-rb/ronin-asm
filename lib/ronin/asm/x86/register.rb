@@ -31,12 +31,37 @@ module Ronin
       class Register < ASM::Register
 
         #
+        # Initializes the x86 register.
+        #
+        # @param [Symbol] name
+        #   The register name.
+        #
+        # @param [Hash{Symbol => Object}] kwargs
+        #   Additional keyword arguments for {ASM::Register#initialize}.
+        #
+        # @option kwargs [Integer] :width
+        #   The width of the register.
+        #
+        # @option kwargs [Integer] :number (0)
+        #   The register's number used in encoding.
+        #
+        # @option kwargs [Boolean] :general (false)
+        #   Specifies whether the register is a General Purpose Register (GPR).
+        #
+        def initialize(name, sp: false, bp: false, **kwargs)
+          super(name,**kwargs)
+
+          @sp = sp
+          @bp = bp
+        end
+
+        #
         # Determines if the register is the stack pointer register
         # (`esp`, `sp`, or `spl`).
         #
         # @return [Boolean]
         #
-        def sp? = @number == 4
+        def sp? = @sp
 
         #
         # Determines if the register is the stack pointer register
@@ -44,7 +69,7 @@ module Ronin
         #
         # @return [Boolean]
         #
-        def bp? = @number == 5
+        def bp? = @bp
 
       end
     end
