@@ -73,6 +73,28 @@ describe Ronin::ASM::Register do
     end
   end
 
+  describe "#reg8?" do
+    context "when the #width is 1" do
+      let(:width) { 1 }
+
+      subject { described_class.new(name, width: width) }
+
+      it "must return true" do
+        expect(subject.reg8?).to be(true)
+      end
+    end
+
+    context "when the #type is not 1" do
+      let(:width) { 8 }
+
+      subject { described_class.new(name, width: width) }
+
+      it "must return false" do
+        expect(subject.reg8?).to be(false)
+      end
+    end
+  end
+
   describe "#+" do
     context "when given an Ronin::ASM::Memory" do
       let(:operand) do
