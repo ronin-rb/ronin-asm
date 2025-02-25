@@ -118,6 +118,11 @@ module Ronin
             rex |= 0b001
           end
 
+          # check if the REX prefix can be omitted
+          if mandatory == false && ((rex & 0b1111) == 0b0000) # no bits set
+            return 0
+          end
+
           write_byte(rex)
         end
 
