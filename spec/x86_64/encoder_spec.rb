@@ -548,7 +548,7 @@ describe Ronin::ASM::X86_64::Encoder do
   end
 
   describe "#write_rex" do
-    let(:mandatory) { false }
+    let(:mandatory) { true }
     let(:w) { 0 }
     let(:r) { nil }
     let(:x) { nil }
@@ -717,6 +717,33 @@ describe Ronin::ASM::X86_64::Encoder do
           rex = output.string.getbyte(0)
 
           expect(rex & 0b1).to eq(0)
+        end
+      end
+    end
+
+    context "when the mandatory: keyword argument is false" do
+      let(:mandatory) { false }
+      context "and none of the REX bit flags have been set" do
+        it "must not write the REX byte to the output stream" do
+          subject.write_rex(mandatory: mandatory, w: 0)
+
+          expect(output.string).to be_empty
+        end
+
+        it "must return 0" do
+          expect(subject.write_rex(mandatory: mandatory, w: 0)).to eq(0)
+        end
+      end
+
+      context "but at least one of the REX bit flags has been set" do
+        it "must write the REX byte to the output stream" do
+          subject.write_rex(mandatory: mandatory, w: 1)
+
+          expect(output.string).to_not be_empty
+        end
+
+        it "must return 1" do
+          expect(subject.write_rex(mandatory: mandatory, w: 1)).to eq(1)
         end
       end
     end
