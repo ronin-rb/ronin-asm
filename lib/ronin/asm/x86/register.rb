@@ -38,6 +38,14 @@ module Ronin
         #
         def sp? = @number == 4
 
+        #
+        # Determines if the register is the stack pointer register
+        # (`ebp`, `bp`, or `bpl`).
+        #
+        # @return [Boolean]
+        #
+        def bp? = @number == 5
+
       end
     end
   end
