@@ -74,4 +74,10 @@ describe Ronin::ASM::Operand do
       expect(subject.reg64?).to be(false)
     end
   end
+
+  describe "#mem?" do
+    it "must return false by default" do
+      expect(subject.mem?).to be(false)
+    end
+  end
 end
