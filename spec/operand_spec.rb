@@ -44,4 +44,10 @@ describe Ronin::ASM::Operand do
       expect(subject.imm64?).to be(false)
     end
   end
+
+  describe "#reg?" do
+    it "must return false by default" do
+      expect(subject.reg?).to be(false)
+    end
+  end
 end
