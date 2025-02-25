@@ -94,6 +94,17 @@ module Ronin
       end
 
       #
+      # Specifies that the operand is a 16bit register operand.
+      #
+      # @return [Boolean]
+      #
+      # @since 1.0.0
+      #
+      def reg16?
+        @width == 2
+      end
+
+      #
       # Specifies whether the register is a general purpose register.
       #
       # @return [Boolean]
