@@ -91,6 +91,15 @@ module Ronin
       end
 
       #
+      # Determines if the operand is an 32bit immediate operand.
+      #
+      # @return [Boolean]
+      #
+      def imm32?
+        @type == :imm32
+      end
+
+      #
       # Converts the operand to an Integer.
       #
       # @return [Integer]
