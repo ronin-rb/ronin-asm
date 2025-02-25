@@ -7,16 +7,16 @@ describe Ronin::ASM::X86::Register do
   end
 
   describe "#sp?" do
-    context "when #number is 4" do
-      subject { described_class.new(:esp, width: 4, number: 4) }
+    context "when initialized with `sp: true`" do
+      subject { described_class.new(:esp, width: 4, sp: true) }
 
       it "must return true" do
         expect(subject.sp?).to be(true)
       end
     end
 
-    context "when #number is not 4" do
-      subject { described_class.new(:eax, width: 4, number: 0) }
+    context "when not initialized with `sp: true`" do
+      subject { described_class.new(:eax, width: 4) }
 
       it "must return false" do
         expect(subject.sp?).to be(false)
@@ -25,16 +25,16 @@ describe Ronin::ASM::X86::Register do
   end
 
   describe "#bp?" do
-    context "when #number is 4" do
-      subject { described_class.new(:ebp, width: 4, number: 5) }
+    context "when initialized with `bp: true`" do
+      subject { described_class.new(:ebp, width: 4, bp: true) }
 
       it "must return true" do
         expect(subject.bp?).to be(true)
       end
     end
 
-    context "when #number is not 4" do
-      subject { described_class.new(:eax, width: 4, number: 0) }
+    context "when not initialized with `bp: true`" do
+      subject { described_class.new(:eax, width: 4) }
 
       it "must return false" do
         expect(subject.bp?).to be(false)
