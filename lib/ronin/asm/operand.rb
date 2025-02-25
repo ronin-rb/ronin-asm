@@ -110,6 +110,13 @@ module Ronin
       #
       def reg64? = false
 
+      #
+      # Determines if the operand is a memory operand.
+      #
+      # @return [Boolean]
+      #
+      def mem? = false
+
     end
   end
 end
