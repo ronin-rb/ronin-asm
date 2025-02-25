@@ -95,6 +95,28 @@ describe Ronin::ASM::Register do
     end
   end
 
+  describe "#reg16?" do
+    context "when the #width is 2" do
+      let(:width) { 2 }
+
+      subject { described_class.new(name, width: width) }
+
+      it "must return true" do
+        expect(subject.reg16?).to be(true)
+      end
+    end
+
+    context "when the #type is not 2" do
+      let(:width) { 1 }
+
+      subject { described_class.new(name, width: width) }
+
+      it "must return false" do
+        expect(subject.reg16?).to be(false)
+      end
+    end
+  end
+
   describe "#+" do
     context "when given an Ronin::ASM::Memory" do
       let(:operand) do
