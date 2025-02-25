@@ -105,6 +105,17 @@ module Ronin
       end
 
       #
+      # Specifies that the operand is a 32bit register operand.
+      #
+      # @return [Boolean]
+      #
+      # @since 1.0.0
+      #
+      def reg32?
+        @width == 4
+      end
+
+      #
       # Specifies whether the register is a general purpose register.
       #
       # @return [Boolean]
