@@ -5,9 +5,9 @@ describe Ronin::ASM::Operand do
   class TestOperand < Ronin::ASM::Operand
   end
 
-  describe "#type" do
-    subject { TestOperand.new }
+  subject { TestOperand.new }
 
+  describe "#type" do
     it do
       expect {
         subject.type
@@ -16,40 +16,30 @@ describe Ronin::ASM::Operand do
   end
 
   describe "#imm?" do
-    subject { TestOperand.new }
-
     it "must return false by default" do
       expect(subject.imm?).to be(false)
     end
   end
 
   describe "#imm8?" do
-    subject { TestOperand.new }
-
     it "must return false by default" do
       expect(subject.imm8?).to be(false)
     end
   end
 
   describe "#imm16?" do
-    subject { TestOperand.new }
-
     it "must return false by default" do
       expect(subject.imm16?).to be(false)
     end
   end
 
   describe "#imm32?" do
-    subject { TestOperand.new }
-
     it "must return false by default" do
       expect(subject.imm32?).to be(false)
     end
   end
 
   describe "#imm64?" do
-    subject { TestOperand.new }
-
     it "must return false by default" do
       expect(subject.imm64?).to be(false)
     end
