@@ -124,6 +124,12 @@ describe Ronin::ASM::Immediate do
     end
   end
 
+  describe "#to_s" do
+    it "must return the String form of #value" do
+      expect(subject.to_s).to eq(value.to_s)
+    end
+  end
+
   describe "#to_i" do
     it "must return the value" do
       expect(subject.to_i).to eq(value)
