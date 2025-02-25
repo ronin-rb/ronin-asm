@@ -40,6 +40,13 @@ module Ronin
         raise(NotImplementedError,"#{self.class}##{__method__} was not defined")
       end
 
+      #
+      # Determines if the operand is an immediate operand.
+      #
+      # @return [Boolean]
+      #
+      def imm? = false
+
     end
   end
 end
