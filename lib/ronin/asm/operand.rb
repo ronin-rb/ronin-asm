@@ -96,6 +96,13 @@ module Ronin
       #
       def reg16? = false
 
+      #
+      # Determines if the operand is a 32bit register operand.
+      #
+      # @return [Boolean]
+      #
+      def reg32? = false
+
     end
   end
 end
