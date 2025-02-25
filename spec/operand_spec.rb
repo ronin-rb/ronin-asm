@@ -14,4 +14,12 @@ describe Ronin::ASM::Operand do
       }.to raise_error(NotImplementedError,"#{subject.class}#type was not defined")
     end
   end
+
+  describe "#imm?" do
+    subject { TestOperand.new }
+
+    it "must return false by default" do
+      expect(subject.imm?).to be(false)
+    end
+  end
 end
