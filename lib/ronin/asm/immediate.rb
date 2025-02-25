@@ -100,6 +100,15 @@ module Ronin
       end
 
       #
+      # Determines if the operand is an 64bit immediate operand.
+      #
+      # @return [Boolean]
+      #
+      def imm64?
+        @type == :imm64
+      end
+
+      #
       # Converts the operand to an Integer.
       #
       # @return [Integer]
