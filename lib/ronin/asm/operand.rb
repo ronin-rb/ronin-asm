@@ -103,6 +103,13 @@ module Ronin
       #
       def reg32? = false
 
+      #
+      # Determines if the operand is a 64bit register operand.
+      #
+      # @return [Boolean]
+      #
+      def reg64? = false
+
     end
   end
 end
