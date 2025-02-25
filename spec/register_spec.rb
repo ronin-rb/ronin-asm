@@ -64,6 +64,12 @@ describe Ronin::ASM::Register do
     end
   end
 
+  describe "#reg?" do
+    it "must return true" do
+      expect(subject.reg?).to be(true)
+    end
+  end
+
   describe "#+" do
     context "when given an Ronin::ASM::Memory" do
       let(:operand) do
