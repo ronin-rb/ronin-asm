@@ -6,15 +6,19 @@ require 'ronin/asm/register'
 describe Ronin::ASM::Memory do
   let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
 
+  subject { described_class.new(base: register) }
+
   describe "#initialize" do
-    it { expect(subject.base).to         be_nil }
-    it { expect(subject.displacement).to eq(0)  }
-    it { expect(subject.index).to        be_nil }
-    it { expect(subject.scale).to        eq(1)  }
+    context "when no keyword arguments" do
+      subject { described_class.new }
+
+      it { expect(subject.base).to         be_nil }
+      it { expect(subject.displacement).to eq(0)  }
+      it { expect(subject.index).to        be_nil }
+      it { expect(subject.scale).to        eq(1)  }
+    end
 
     context "when a base value is given" do
-      subject { described_class.new(base: register) }
-
       it "must set #base" do
         expect(subject.base).to eq(register)
       end
@@ -156,8 +160,6 @@ describe Ronin::ASM::Memory do
   end
 
   describe "#width" do
-    subject { described_class.new(base: register) }
-
     it "must return the width of base" do
       expect(subject.width).to eq(register.width)
     end
