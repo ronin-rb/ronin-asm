@@ -114,6 +114,15 @@ module Ronin
       end
 
       #
+      # Specifies that the operand is a memory operand.
+      #
+      # @return [true]
+      #
+      # @since 1.0.0
+      #
+      def mem? = false
+
+      #
       # Adds to the displacement of the Memory Operand.
       #
       # @param [Integer] displacement
