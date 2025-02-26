@@ -123,6 +123,17 @@ module Ronin
       def mem? = true
 
       #
+      # Determines if the operand is a 8bit memory operand.
+      #
+      # @return [Boolean]
+      #
+      # @since 1.0.0
+      #
+      def mem8?
+        @width == 1
+      end
+
+      #
       # Adds to the displacement of the Memory Operand.
       #
       # @param [Integer] displacement
