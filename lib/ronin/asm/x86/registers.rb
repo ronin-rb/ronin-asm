@@ -104,22 +104,22 @@ module Ronin
         #
 
         # The `spl` 8bit stack pointer register.
-        SPL = Register.new(:sp, width: 1, number: 4, sp: true)
+        SPL = Register.new(:sp, width: 1, number: 4, sp: true, general: true)
 
         # The `sp` 16bit stack pointer register.
-        SP  = Register.new(:sp, width: 2, number: 4, sp: true)
+        SP  = Register.new(:sp, width: 2, number: 4, sp: true, general: true)
 
         # The `esp` 32bit stack pointer register.
-        ESP = Register.new(:esp, width: 4, number: 4, sp: true)
+        ESP = Register.new(:esp, width: 4, number: 4, sp: true, general: true)
 
         # The `bpl` 8bit stack base pointer register.
-        BPL = Register.new(:sp, width: 1, number: 5, bp: true)
+        BPL = Register.new(:sp, width: 1, number: 5, bp: true, general: true)
 
         # The `bp` 16bit stack base pointer register.
-        BP  = Register.new(:bp, width: 2, number: 5, bp: true)
+        BP  = Register.new(:bp, width: 2, number: 5, bp: true, general: true)
 
         # The `ebp` 32bit stack base pointer register.
-        EBP = Register.new(:ebp, width: 4, number: 5, bp: true)
+        EBP = Register.new(:ebp, width: 4, number: 5, bp: true, general: true)
 
         #
         # @group Segment Registers
