@@ -156,6 +156,17 @@ module Ronin
       end
 
       #
+      # Determines if the operand is a 64bit memory operand.
+      #
+      # @return [Boolean]
+      #
+      # @since 1.0.0
+      #
+      def mem64?
+        @width == 8
+      end
+
+      #
       # Adds to the displacement of the Memory Operand.
       #
       # @param [Integer] displacement
