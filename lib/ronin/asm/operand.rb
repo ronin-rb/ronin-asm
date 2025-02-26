@@ -131,6 +131,13 @@ module Ronin
       #
       def mem16? = false
 
+      #
+      # Determines if the operand is a 32bit memory operand.
+      #
+      # @return [Boolean]
+      #
+      def mem32? = false
+
     end
   end
 end
