@@ -124,6 +124,13 @@ module Ronin
       #
       def mem8? = false
 
+      #
+      # Determines if the operand is a 16bit memory operand.
+      #
+      # @return [Boolean]
+      #
+      def mem16? = false
+
     end
   end
 end
