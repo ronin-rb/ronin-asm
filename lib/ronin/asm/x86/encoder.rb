@@ -19,6 +19,7 @@
 #
 
 require_relative '../encoder'
+require_relative 'operands/er'
 
 module Ronin
   module ASM
@@ -372,12 +373,103 @@ module Ronin
         #
         # Writes a EVEX encoding to the output stream.
         #
-        # @raise [NotImplementedError]
+        # @param [0b001, 0b010, 0b011, 0b101, 0b110, nil] mmm
+        #   Specifies the opcode map to use.
         #
-        # @note This method is not implemented yet!
+        # @param [0b00, 0b01, 0b10, 0b11] pp
+        #   Specifies the implied mandatory prefix for the opcode.
+        #
+        # @param [1, 0, nil] w
+        #   When `1` indicates that 64bit operand size must be used, otherwise
+        #   the default operand sizes will be used.
+        #
+        # @param [Operand, 0b00, 0b01, 0b10, nil] ll
+        #   Specifies whether a vector length of 512bit or 256bit, or rounding
+        #   control.
+        #
+        # @param [Operand, 0b0000, nil] vvvv
+        #   Specifies a second source operand.
+        #
+        # @param [0, nil] v
+        # @param [0, nil] rr
+        # @param [0, nil] _B
+        # @param [0, nil] x
+        #
+        # @param [Operand, 0, 1, nil] b
+        #   Specifies whether source broadcast, rounding control, or supress all
+        #   exceptions are enabled.
+        #
+        # @param [Operand, 0, nil] aaa
+        #   The `k0`-`k7` operand mask.
+        #
+        # @param [Operand, 0] z
+        #   Specifies the merging mode (merge or zero).
+        #
+        # @param [1, 2, 4, 8, 16, 32, 64, nil] disp8xN
+        #   The scaling factor for the displacement.
+        #
+        # @return [4, 5]
+        #   The number of bytes written.
+        #
+        # @see https://en.wikipedia.org/wiki/EVEX_prefix
         #
         def write_evex(mmm: , pp: , w: nil, ll: nil, vvvv: nil, v: nil, rr: nil, _B: nil, x: nil, b: nil, aaa: , z: , disp8xN: nil)
-          raise(NotImplementedError,"x86/x86-64 EVEX encoding is not yet implemented!")
+          byte1 = 0b01100010
+          byte2 = 0
+          byte3 = 0b00000100 # bit 3 is hardcoded
+          byte4 = 0
+
+          # EVEX.R is encoded as an inverted value
+          byte2 |= 0b10010000 if r == 0
+
+          # EVEX.X is encoded as an inverted value
+          byte2 |= 0b01000000 if x == 0
+
+          # EVEX.B is encoded as an inverted value
+          byte2 |= 0b00100000 if _B == 0
+
+          byte2 |= mmm if mmm > 0
+
+          byte3 |= (w << 7) if w == 1
+
+          if vvvv
+            # VEX.vvvv is encoded as the inverted value of the extra operand
+            byte3 |= ((~vvvv.to_i & 0b1111) << 3)
+          end
+
+          byte3 |= pp if pp > 0
+
+          # TODO: set to 1 if z is a {k}{z} operand.
+          # byte4 |= z << 7
+
+          case ll
+          when Integer
+            byte4 |= (ll << 4)
+          when Operand
+            if    ll == Operands::ER then byte4 |= 0b110000
+            elsif ll.size == 64      then byte4 |= 0b100000
+            elsif ll.size == 32      then byte4 |= 0b010000
+            end
+          end
+
+          # TODO: if b is an operand, check for "source broadcast" or
+          # "rounding "control".
+          byte4 |= 0b00010000 if b == 1
+
+          byte4 |= 0b00001000 if v == 0
+
+          # TODO: encode the k opmask register number into aaa
+          byte4 |= aaa if aaa != 0
+
+          # write out the four EVEX bytes
+          count = write_byte(byte1) +
+                  write_byte(byte2) +
+                  write_byte(byte3) +
+                  write_byte(byte4)
+
+          # add the optional disp8xN byte
+          count += write_byte(disp8xN) if disp8xN
+          return count
         end
 
       end

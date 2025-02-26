@@ -20,6 +20,7 @@
 
 require_relative '../x86/encoder'
 require_relative 'registers'
+require_relative 'operands/er'
 
 require 'set'
 
@@ -251,6 +252,123 @@ module Ronin
           byte3 |= pp if pp > 0
 
           write_byte(byte1) + write_byte(byte2) + write_byte(byte3)
+        end
+
+        #
+        # Writes a EVEX encoding to the output stream.
+        #
+        # @param [0b001, 0b010, 0b011, 0b101, 0b110, nil] mmm
+        #   Specifies the opcode map to use.
+        #
+        # @param [0b00, 0b01, 0b10, 0b11] pp
+        #   Specifies the implied mandatory prefix for the opcode.
+        #
+        # @param [1, 0, nil] w
+        #   When `1` indicates that 64bit operand size must be used, otherwise
+        #   the default operand sizes will be used.
+        #
+        # @param [Operand, 0b00, 0b01, 0b10, nil] ll
+        #   Specifies whether a vector length of 512bit or 256bit, or rounding
+        #   control.
+        #
+        # @param [Operand, 0b0000, nil] vvvv
+        #   Specifies a second source operand.
+        #
+        # @param [Operand, 0, nil] v
+        #   Specifies that the `vvvv` operand's value exceeds 4 bits.
+        #
+        # @param [Operand, nil] rr
+        #
+        # @param [Operand, nil] _B
+        #   The memory operand with {Memory#base base} set.
+        #
+        # @param [Operand, nil] x
+        #   The memory operand with {Memory#index index} set.
+        #
+        # @param [Operand, 0, 1, nil] b
+        #   Specifies whether source broadcast, rounding control, or supress all
+        #   exceptions are enabled.
+        #
+        # @param [Operand, 0, nil] aaa
+        #   The `k0`-`k7` operand mask.
+        #
+        # @param [Operand, 0] z
+        #   Specifies the merging mode (merge or zero).
+        #
+        # @param [1, 2, 4, 8, 16, 32, 64, nil] disp8xN
+        #   The scaling factor for the displacement.
+        #
+        # @return [4, 5]
+        #   The number of bytes written.
+        #
+        # @see https://en.wikipedia.org/wiki/EVEX_prefix
+        #
+        def write_evex(mmm: , pp: , w: nil, ll: nil, vvvv: nil, v: nil, rr: nil, _B: nil, x: nil, b: nil, aaa: , z: , disp8xN: nil)
+          byte1 = 0b01100010
+          byte2 = 0
+          byte3 = 0b00000100 # bit 3 is hardcoded
+          byte4 = 0
+
+          # EVEX.R is encoded as the inverted version of REX.R
+          unless (r.kind_of?(Register) && r.number.bit_length == 4)
+            byte2 |= 0b10010000
+          end
+
+          # EVEX.X is encoded as the inverted version of REX.X
+          unless (x.kind_of?(Memory) && x.index && x.index.number.bit_length == 4)
+            byte2 |= 0b01000000
+          end
+
+          # EVEX.B is encoded as the inverted version of REX.B
+          unless ((_B.kind_of?(Register) && _B.number.bit_length == 4) ||
+                  (_B.kind_of?(Memory) && _B.base.number.bit_length == 4))
+            byte2 |= 0b00100000
+          end
+
+          byte2 |= mmm if mmm > 0
+
+          byte3 |= (w << 7) if w == 1
+
+          if vvvv
+            # VEX.vvvv is encoded as the inverted value of the extra operand
+            byte3 |= ((~vvvv.to_i & 0b1111) << 3)
+          end
+
+          byte3 |= pp if pp > 0
+
+          # TODO: set to 1 if z is a {k} or {k}{z} operand.
+          # byte4 |= z << 7
+
+          case ll
+          when Integer
+            byte4 |= (ll << 4)
+          when Operand
+            if    ll == Operands::ER then byte4 |= 0b110000
+            elsif ll.size == 64      then byte4 |= 0b100000
+            elsif ll.size == 32      then byte4 |= 0b010000
+            end
+          end
+
+          # TODO: if b is an operand, check for "source broadcast" or
+          # "rounding "control".
+          byte4 |= 0b00010000 if b == 1
+
+          if (v.kind_of?(Register) && v.number.bit_length == 4)
+            byte4 |= 0b00001000
+          end
+
+          # TODO: encode the k opmask register number into aaa
+          byte4 |= aaa if aaa != 0
+
+          # write out the four EVEX bytes
+          count = write_byte(byte1) +
+                  write_byte(byte2) +
+                  write_byte(byte3) +
+                  write_byte(byte4)
+
+          # add the optional disp8xN byte
+          count += write_byte(disp8xN) if disp8xN
+          return count
         end
 
       end
