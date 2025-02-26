@@ -18,7 +18,7 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../register'
+require_relative '../x86/register'
 
 module Ronin
   module ASM
@@ -28,7 +28,7 @@ module Ronin
       #
       # @since 1.0.0
       #
-      class Register < ASM::Register
+      class Register < X86::Register
       end
     end
   end
