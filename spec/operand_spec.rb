@@ -86,4 +86,10 @@ describe Ronin::ASM::Operand do
       expect(subject.mem8?).to be(false)
     end
   end
+
+  describe "#mem16?" do
+    it "must return false by default" do
+      expect(subject.mem16?).to be(false)
+    end
+  end
 end
