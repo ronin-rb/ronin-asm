@@ -801,7 +801,367 @@ describe Ronin::ASM::X86::Encoder do
     end
   end
 
-  describe "#write_vex"
+  describe "#write_vex" do
+    context "when type: is :vex, x: is 0, b: is 0, w: is 0, and m_mmmm: is 0b00001" do
+      let(:r)    { 0 }
+      let(:vvvv) { Ronin::ASM::X86::Registers::EAX }
+      let(:l)    { 0 }
+      let(:pp)   { 0b00 }
+
+      it "must write a two byte VEX escape prefix" do
+        expect(subject).to receive(:write_vex_two_byte).with(
+          r: r, vvvv: vvvv, l: l, pp: pp
+        ).and_return(2)
+
+        expect(
+          subject.write_vex(
+            type: :vex, x: 0, b: 0, w: 0, m_mmmm: 0b00001, r: r, vvvv: vvvv,
+            l: l, pp: pp
+          )
+        ).to eq(2)
+      end
+    end
+
+    context "otherwise" do
+      let(:type) { :vex }
+      let(:w)    { 0 }
+      let(:l)    { 0 }
+      let(:m_mmmm) { 0b00010 }
+      let(:pp)     { 0b00 }
+      let(:r)      { 0 }
+      let(:x)      { 0 }
+      let(:b)      { 0 }
+      let(:vvvv)   { Ronin::ASM::X86::Registers::EAX }
+
+      it "must write a three byte VEX/XOP escape prefix" do
+        expect(subject).to receive(:write_vex_three_byte).with(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        ).and_return(3)
+
+        expect(
+          subject.write_vex(
+            type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+            vvvv: vvvv
+          )
+        ).to eq(3)
+      end
+    end
+  end
+
+  describe "#write_vex_two_byte" do
+    let(:r)    { 0 }
+    let(:vvvv) { Ronin::ASM::X86::Registers::EAX }
+    let(:l)    { 0 }
+    let(:pp)   { 0b00 }
+
+    it "must write the 0b11000101 prefix as the first byte" do
+      subject.write_vex_two_byte(r: r, vvvv: vvvv, l: l, pp: pp)
+
+      byte1 = output.string.getbyte(0)
+
+      expect(byte1).to eq(0b11000101)
+    end
+
+    context "when the r: value is 0" do
+      let(:r) { 0 }
+
+      it "must set bit 8 to 1 in the second byte" do
+        subject.write_vex_two_byte(r: r, vvvv: vvvv, l: l, pp: pp)
+
+        byte2 = output.string.getbyte(1)
+
+        expect((byte2 & 0b10000000) >> 7).to eq(1)
+      end
+    end
+
+    it "must encode the vvvv: value into bits 7, 6, 5, 4 in the second byte as an inverted value" do
+      subject.write_vex_two_byte(r: r, vvvv: vvvv, l: l, pp: pp)
+
+      byte2 = output.string.getbyte(1)
+
+      expect((byte2 & 0b01111000) >> 3).to eq(~vvvv.number & 0b1111)
+    end
+
+    context "when the l: value is 1" do
+      let(:l) { 1 }
+
+      it "must set bit 2 to 1 in the second byte" do
+        subject.write_vex_two_byte(r: r, vvvv: vvvv, l: l, pp: pp)
+
+        byte2 = output.string.getbyte(1)
+
+        expect((byte2 & 0b000000100) >> 2).to eq(1)
+      end
+    end
+
+    context "when the l: value is 0" do
+      let(:l) { 0 }
+
+      it "must not set bit 2 to 1 in the second byte" do
+        subject.write_vex_two_byte(r: r, vvvv: vvvv, l: l, pp: pp)
+
+        byte2 = output.string.getbyte(1)
+
+        expect((byte2 & 0b000000100) >> 2).to eq(0)
+      end
+    end
+
+    context "when the pp: value is non-zero" do
+      let(:pp) { 0b10 }
+
+      it "must encode the pp value into bits 2 and 1 of the second byte" do
+        subject.write_vex_two_byte(r: r, vvvv: vvvv, l: l, pp: pp)
+
+        byte2 = output.string.getbyte(1)
+
+        expect(byte2 & 0b00000011).to eq(pp)
+      end
+    end
+
+    context "when the pp: value is zero" do
+      let(:pp) { 0 }
+
+      it "must not set bits 2 and 1 of the second byte" do
+        subject.write_vex_two_byte(r: r, vvvv: vvvv, l: l, pp: pp)
+
+        byte2 = output.string.getbyte(1)
+
+        expect(byte2 & 0b00000011).to eq(0)
+      end
+    end
+
+    it "must return 2" do
+      expect(subject.write_vex_two_byte(r: r, vvvv: vvvv, l: l, pp: pp)).to eq(2)
+    end
+  end
+
+  describe "#write_vex_three_byte" do
+    let(:type) { :vex }
+    let(:w)    { 0 }
+    let(:l)    { 0 }
+    let(:m_mmmm) { 0b00010 }
+    let(:pp)     { 0b00 }
+    let(:r)      { 0 }
+    let(:x)      { 0 }
+    let(:b)      { 0 }
+    let(:vvvv)   { Ronin::ASM::X86::Registers::EAX }
+
+    context "when type: is :vex" do
+      let(:type) { :vex }
+
+      it "must write the 0b11000100 prefix as the first byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte1 = output.string.getbyte(0)
+
+        expect(byte1).to eq(0b11000100)
+      end
+    end
+
+    context "when type: is :xop" do
+      let(:type) { :xop }
+
+      it "must write the 0b10001111 prefix as the first byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte1 = output.string.getbyte(0)
+
+        expect(byte1).to eq(0b10001111)
+      end
+    end
+
+    context "when the r: value is 0" do
+      let(:r) { 0 }
+
+      it "must set bit 8 to 1 in the second byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte2 = output.string.getbyte(1)
+
+        expect((byte2 & 0b10000000) >> 7).to eq(1)
+      end
+    end
+
+    context "when the x: value is 0" do
+      let(:x) { 0 }
+
+      it "must set bit 7 to 1 in the second byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte2 = output.string.getbyte(1)
+
+        expect((byte2 & 0b01000000) >> 6).to eq(1)
+      end
+    end
+
+    context "when the b: value is 0" do
+      let(:b) { 0 }
+
+      it "must set bit 7 to 1 in the second byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte2 = output.string.getbyte(1)
+
+        expect((byte2 & 0b00100000) >> 5).to eq(1)
+      end
+    end
+
+    context "when the m_mmmm: value is non-zero" do
+      let(:m_mmmm) { 0b01010 }
+
+      it "must encode the m_mmmm value into bits 5 - 1 of the second byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte2 = output.string.getbyte(1)
+
+        expect(byte2 & 0b11111).to eq(m_mmmm)
+      end
+    end
+
+    context "when the m_mmmm: value is zero" do
+      let(:m_mmmm) { 0 }
+
+      it "must not set bits 5 - 1 of the second byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte2 = output.string.getbyte(1)
+
+        expect(byte2 & 0b11111).to eq(0)
+      end
+    end
+
+    context "when the w: value is 1" do
+      let(:w) { 1 }
+
+      it "must set bit 8 to 1 in the third byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte3 = output.string.getbyte(2)
+
+        expect((byte3 & 0b10000000) >> 7).to eq(1)
+      end
+    end
+
+    context "when the w: value is 0" do
+      let(:w) { 0 }
+
+      it "must set bit 8 to 1 in the third byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte3 = output.string.getbyte(2)
+
+        expect((byte3 & 0b10000000) >> 7).to eq(0)
+      end
+    end
+
+    it "must encode the vvvv: value into bits 7, 6, 5, 4 in the second byte as an inverted value" do
+      subject.write_vex_three_byte(
+        type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+        vvvv: vvvv
+      )
+
+      byte3 = output.string.getbyte(2)
+
+      expect((byte3 & 0b01111000) >> 3).to eq(~vvvv.number & 0b1111)
+    end
+
+    context "when the l: value is 1" do
+      let(:l) { 1 }
+
+      it "must set bit 3 to 1 of the third byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte3 = output.string.getbyte(2)
+
+        expect((byte3 & 0b100) >> 2).to eq(1)
+      end
+    end
+
+    context "when the l: value is 0" do
+      let(:l) { 0 }
+
+      it "must not set bit 3 of the third byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte3 = output.string.getbyte(2)
+
+        expect((byte3 & 0b100) >> 2).to eq(0)
+      end
+    end
+
+    context "when the pp: value is non-zero" do
+      let(:pp) { 0b10 }
+
+      it "must encode the pp value into bits 2 and 1 of the third byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte3 = output.string.getbyte(2)
+
+        expect(byte3 & 0b11).to eq(pp)
+      end
+    end
+
+    context "when the pp: value is 0" do
+      let(:pp) { 0 }
+
+      it "must not set bits 2 and 1 of the third byte" do
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+
+        byte3 = output.string.getbyte(2)
+
+        expect(byte3 & 0b11).to eq(0)
+      end
+    end
+
+    it "must return 3" do
+      expect(
+        subject.write_vex_three_byte(
+          type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b,
+          vvvv: vvvv
+        )
+      ).to eq(3)
+    end
+  end
 
   describe "#write_evex"
 end
