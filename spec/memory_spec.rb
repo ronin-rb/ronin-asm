@@ -113,6 +113,12 @@ describe Ronin::ASM::Memory do
     end
   end
 
+  describe "#mem?" do
+    it "must return true by default" do
+      expect(subject.mem?).to be(true)
+    end
+  end
+
   describe "#+" do
     let(:operand) do
       described_class.new(

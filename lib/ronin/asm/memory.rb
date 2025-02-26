@@ -120,7 +120,7 @@ module Ronin
       #
       # @since 1.0.0
       #
-      def mem? = false
+      def mem? = true
 
       #
       # Adds to the displacement of the Memory Operand.
