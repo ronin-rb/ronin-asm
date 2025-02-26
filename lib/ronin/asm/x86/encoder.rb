@@ -135,7 +135,7 @@ module Ronin
         #
         # Writes the ModRM byte.
         #
-        # @param [Operand, Integer] mode
+        # @param [Integer] mode
         # @param [Operand, Integer] reg
         # @param [Operand] rm
         # @return [1]
@@ -144,9 +144,8 @@ module Ronin
         # @see https://wiki.osdev.org/X86-64_Instruction_Encoding#ModR/M
         #
         def write_modrm_byte(mode,reg,rm)
-          mode = mode.to_i
-          reg  = reg.to_i
-          rm   = rm.to_i
+          reg = reg.to_i
+          rm  = rm.to_i
 
           write_byte((mode << 6) | ((reg & 0b111) << 3) | (rm & 0b111))
         end
