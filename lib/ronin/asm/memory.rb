@@ -134,6 +134,17 @@ module Ronin
       end
 
       #
+      # Determines if the operand is a 16bit memory operand.
+      #
+      # @return [Boolean]
+      #
+      # @since 1.0.0
+      #
+      def mem16?
+        @width == 2
+      end
+
+      #
       # Adds to the displacement of the Memory Operand.
       #
       # @param [Integer] displacement
