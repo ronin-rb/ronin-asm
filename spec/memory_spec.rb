@@ -163,6 +163,28 @@ describe Ronin::ASM::Memory do
     end
   end
 
+  describe "#mem32?" do
+    context "when the #width is 4" do
+      let(:width) { 4 }
+
+      subject { described_class.new(base: register, width: width) }
+
+      it "must return true" do
+        expect(subject.mem32?).to be(true)
+      end
+    end
+
+    context "when the #type is not 4" do
+      let(:width) { 8 }
+
+      subject { described_class.new(base: register, width: width) }
+
+      it "must return false" do
+        expect(subject.mem32?).to be(false)
+      end
+    end
+  end
+
   describe "#+" do
     let(:operand) do
       described_class.new(

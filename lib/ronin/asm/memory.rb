@@ -145,6 +145,17 @@ module Ronin
       end
 
       #
+      # Determines if the operand is a 32bit memory operand.
+      #
+      # @return [Boolean]
+      #
+      # @since 1.0.0
+      #
+      def mem32?
+        @width == 4
+      end
+
+      #
       # Adds to the displacement of the Memory Operand.
       #
       # @param [Integer] displacement
