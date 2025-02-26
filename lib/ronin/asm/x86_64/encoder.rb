@@ -253,6 +253,99 @@ module Ronin
           write_byte(byte1) + write_byte(byte2) + write_byte(byte3)
         end
 
+        #
+        # Writes a EVEX encoding to the output stream.
+        #
+        # @param [0b001, 0b010, 0b011, 0b101, 0b110, nil] mmm
+        #
+        # @param [0b00, 0b01, 0b10, 0b11] pp
+        #
+        # @param [1, 0, nil] w
+        #
+        # @param [Operand, 0b00, 0b01, 0b10, nil] ll
+        #
+        # @param [Operand, 0b0000, nil] vvvv
+        #
+        # @param [Operand, 0, nil] v
+        #
+        # @param [Operand, 0, nil] rr
+        #
+        # @param [Operand, 0, nil] _B
+        #
+        # @param [Operand, 0, nil] x
+        #
+        # @param [Operand, 0, 1, nil] b
+        #
+        # @param [Operand, 0, nil] aaa
+        #
+        # @param [Operand, 0] z
+        #
+        # @param [1, 2, 4, 8, 16, 32, 64, nil] disp8xN
+        #
+        # @return [4]
+        #   The number of bytes written.
+        #
+        # @see https://en.wikipedia.org/wiki/EVEX_prefix
+        #
+        def write_evex(mmm: , pp: , w: nil, ll: nil, vvvv: nil, v: nil, rr: nil, _B: nil, x: nil, b: nil, aaa: , z: , disp8xN: nil)
+          byte1 = 0b01100010
+          byte2 = 0
+          # bit 3 is hardcoded
+          byte3 = 0b00000100
+          byte4 = 0
+
+          # EVEX.R is encoded as the inverted version of REX.R
+          unless (r.kind_of?(Register) && r.number.bit_length == 4)
+            byte2 |= 0b10010000
+          end
+
+          # EVEX.X is encoded as the inverted version of REX.X
+          unless (x.kind_of?(Memory) && x.index && x.index.number.bit_length == 4)
+            byte2 |= 0b01000000
+          end
+
+          # EVEX.B is encoded as the inverted version of REX.B
+          unless ((_B.kind_of?(Register) && _B.number.bit_length == 4) ||
+                  (_B.kind_of?(Memory) && _B.base.number.bit_length == 4))
+            byte2 |= 0b00100000
+          end
+
+          byte2 |= mmm if mmm > 0
+
+          byte3 |= (w << 7) if w == 1
+
+          if vvvv
+            # VEX.vvvv is encoded as the inverted value of the extra operand
+            byte3 |= ((~vvvv.to_i & 0b1111) << 3)
+          end
+
+          byte3 |= pp if pp > 0
+
+          # TODO: set to 1 if z is a {k} or {k}{z} operand.
+          # byte4 |= z << 7
+          byte4 |= (ll << 4) if ll
+          # TODO: if b is an operand, check for "source broadcast" or
+          # "rounding "control".
+          byte4 |= 0b00010000 if b == 1
+
+          if (v.kind_of?(Register) && v.number.bit_length == 4)
+            byte4 |= 0b00001000
+          end
+
+          # TODO: encode the k opmask register number into aaa
+          byte4 |= aaa if aaa != 0
+
+          # write out the four EVEX bytes
+          count = write_byte(byte1) +
+                  write_byte(byte2) +
+                  write_byte(byte3) +
+                  write_byte(byte4)
+
+          # add the optional disp8xN byte
+          count += write_byte(disp8xN) if disp8xN
+          return count
+        end
+
       end
     end
   end
