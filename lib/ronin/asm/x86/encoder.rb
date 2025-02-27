@@ -150,6 +150,23 @@ module Ronin
           write_byte((mode << 6) | ((reg & 0b111) << 3) | (rm & 0b111))
         end
 
+        #
+        # Writes a register byte to the output stream.
+        #
+        # @param [Register] register
+        # @param [Immediate, nil] payload
+        # @return [1]
+        #
+        def write_register_byte(register,payload=nil)
+          byte = register.number & 0b1111
+
+          if payload
+            byte |= (payload.value & 0b1111) << 4
+          end
+
+          write_byte(byte)
+        end
+
         def write_immediate(value,size) = write_int(value.to_i,size)
         def write_code_offset(value,size) = write_int(value.to_i,size)
         def write_data_offset(value,size) = write_int(value.to_i,size)
