@@ -60,7 +60,7 @@ puts asm.to_asm
 # section .text
 # _start:
 #	push	ebx
-#	mov	eax,	WORD 0xc0ffee
+#	mov	eax,	0xc0ffee
 #	pop	ebx
 #	hlt
 
