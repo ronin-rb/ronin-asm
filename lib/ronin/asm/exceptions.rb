@@ -35,5 +35,13 @@ module Ronin
     #
     class SemanticError < Exception
     end
+
+    #
+    # Indicates that an unknown label was referenced.
+    #
+    # @since 1.0.0
+    #
+    class UndefinedLabelError < SemanticError
+    end
   end
 end
