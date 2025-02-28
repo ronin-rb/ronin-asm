@@ -21,6 +21,7 @@
 require_relative 'x86_64/immediate'
 require_relative 'x86_64/registers'
 require_relative 'x86_64/memory'
+require_relative 'x86_64/memory_offset'
 
 require 'set'
 
