@@ -37,6 +37,7 @@ module CodeGen
         :r32 => :reg32,
         :r64 => :reg64,
 
+        :m   => :mem,
         :m8  => :mem8,
         :m16 => :mem16,
         :m32 => :mem32,
@@ -88,6 +89,8 @@ module CodeGen
           "@operands[#{index}] == Registers::#{operand.type.upcase}"
         elsif operand.specific_immediate?
           "(@operands[#{index}].kind_of?(Immediate) && @operands[#{index}].value == #{operand.type})"
+        elsif operand.any_memory_type?
+          "@operands[#{index}].mem?"
         else
           # compare the operand's type
           "@operands[#{index}].type == #{translate_operand_type(operand.type).inspect}"
