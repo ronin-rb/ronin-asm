@@ -64,6 +64,15 @@ describe Ronin::ASM::Syntax::Common do
     end
   end
 
+  describe ".format_label_ref" do
+    let(:name)      { :_start  }
+    let(:label_ref) { Ronin::ASM::LabelRef.new(name) }
+
+    it "must return the LabelRef#name as a String" do
+      expect(subject.format_label_ref(label_ref)).to eq(name.to_s)
+    end
+  end
+
   describe ".format_label" do
     let(:name)  { :_start  }
     let(:label) { Ronin::ASM::Label.new(name) }
@@ -112,14 +121,11 @@ describe Ronin::ASM::Syntax::Common do
       end
     end
 
-    context "when given a Symbol value" do
-      let(:symbol) { :_label }
-      let(:string) { double('formatted assembly') }
+    context "when given a Ronin::ASM::LabelRef value" do
+      let(:label_ref) { Ronin::ASM::LabelRef.new('_label') }
 
       it "must call format_keyword" do
-        expect(subject).to receive(:format_keyword).with(symbol).and_return(string)
-
-        expect(subject.format_operand(symbol)).to be(string)
+        expect(subject.format_operand(label_ref)).to be(label_ref.name)
       end
     end
 

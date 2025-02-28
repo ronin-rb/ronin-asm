@@ -25,6 +25,7 @@ require_relative 'register'
 require_relative 'instruction'
 require_relative 'immediate'
 require_relative 'label'
+require_relative 'label_ref'
 
 require 'set'
 require 'tempfile'
@@ -317,8 +318,23 @@ module Ronin
         new_label = Label.new(name.to_s)
 
         @instructions << new_label
-        instance_eval(&block) if block
+        instance_eval(&block)
         return new_label
+      end
+
+      #
+      # Creates a new label reference.
+      #
+      # @param [Symbol, String] name
+      #   The name of the label being referenced.
+      #
+      # @return [LabelRef]
+      #   The new label reference.
+      #
+      # @since 1.0.0
+      #
+      def label_ref(name)
+        LabelRef.new(name.to_s)
       end
 
       #
@@ -524,6 +540,8 @@ module Ronin
       def method_missing(name,*arguments,**kwargs,&block)
         if (block && arguments.empty? && kwargs.empty?)
           label(name,&block)
+        elsif (block.nil? && arguments.empty? && kwargs.empty?)
+          label_ref(name)
         else
           super(name,*arguments,&block)
         end
