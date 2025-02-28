@@ -36,14 +36,50 @@ module Ronin
       # @return [String]
       attr_reader :name
 
+      # The label being referenced.
+      #
+      # @return [Label, nil]
+      attr_reader :label
+
       #
       # Initializes the label reference.
       #
       # @param [String] name
       #   The label's name.
       #
-      def initialize(name)
-        @name = name
+      # @param [Label, nil] label
+      #   The label that's being referenced.
+      #
+      def initialize(name, label: nil)
+        @name  = name
+        @label = label
+      end
+
+      #
+      # Determines if the label reference has been unresolved.
+      #
+      # @return [Boolean]
+      #
+      # @api private
+      #
+      def unresolved? = @label.nil?
+
+      #
+      # Determines if the label reference has been resolved.
+      #
+      # @return [Boolean]
+      #
+      # @api private
+      #
+      def resolved? = !unresolved?
+
+      #
+      # Sets the label.
+      #
+      # @api private
+      #
+      def resolve(label)
+        @label = label
       end
 
       #
