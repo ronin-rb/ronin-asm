@@ -419,6 +419,11 @@ module Ronin
 
         @labels[name] = new_label
         @instructions << new_label
+
+        if (label_ref = @label_refs[name])
+          label_ref.resolve(new_label)
+        end
+
         instance_eval(&block)
         return new_label
       end
@@ -437,7 +442,7 @@ module Ronin
       def label_ref(name)
         name = name.to_s
 
-        @label_refs[name] ||= LabelRef.new(name)
+        @label_refs[name] ||= LabelRef.new(name, label: @labels[name])
       end
 
       #
