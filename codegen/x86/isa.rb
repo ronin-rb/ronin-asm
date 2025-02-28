@@ -333,6 +333,7 @@ module CodeGen
           :m512, :"m512{k}"
         ] + MOFFSET_TYPES + BCST_TYPES
         def memory? = MEM_TYPES.include?(type)
+        def any_memory_type? = type == :m
 
         def input?  = input
         def output? = output
