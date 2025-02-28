@@ -23,6 +23,10 @@ describe Ronin::ASM::Program do
       expect(subject.allocated_registers).to eq(Set.new)
     end
 
+    it "must initialize #labels to an empty Hash" do
+      expect(subject.labels).to eq({})
+    end
+
     it "must initialize #instructions to an empty Array" do
       expect(subject.instructions).to eq([])
     end
@@ -702,7 +706,7 @@ describe Ronin::ASM::Program do
   describe "#label" do
     let(:name) { '_start' }
 
-    it "must return the new Label object" do
+    it "must return the new Label object with the given name" do
       new_label = subject.label(name) { }
 
       expect(new_label).to be_kind_of(Ronin::ASM::Label)
@@ -718,6 +722,12 @@ describe Ronin::ASM::Program do
       end
     end
 
+    it "must add the new Label to #labels" do
+      new_label = subject.label(name) { }
+
+      expect(subject.labels[new_label.name]).to be(new_label)
+    end
+
     it "must add the label to the instructions" do
       subject.label(name) { }
 
@@ -731,6 +741,16 @@ describe Ronin::ASM::Program do
       expect(subject.instructions[-2]).to      be_kind_of(Ronin::ASM::Label)
       expect(subject.instructions[-2].name).to eq(name)
       expect(subject.instructions[-1].name).to eq(:push)
+    end
+
+    context "when a label of the same name already exists" do
+      it do
+        subject.label(name) { }
+
+        expect {
+          subject.label(name) { }
+        }.to raise_error(ArgumentError,"label is already defined: #{name.inspect}")
+      end
     end
   end
 
