@@ -27,5 +27,13 @@ module Ronin
     #
     class Exception < RuntimeError
     end
+
+    #
+    # Base class for all semantic errors.
+    #
+    # @since 1.0.0
+    #
+    class SemanticError < Exception
+    end
   end
 end
