@@ -756,6 +756,15 @@ describe Ronin::ASM::Program do
         }.to raise_error(ArgumentError,"label is already defined: #{name.inspect}")
       end
     end
+
+    context "when there are pre-existing LabelRefs for the label name" do
+      it "must resolve the LabelRefs to the new Label object" do
+        label_ref = subject.label_ref(name)
+        label     = subject.label(name) { }
+
+        expect(label_ref.label).to be(label)
+      end
+    end
   end
 
   describe "#label_ref" do
