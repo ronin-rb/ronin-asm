@@ -4,6 +4,7 @@ require 'ronin/asm/instruction'
 require 'ronin/asm/register'
 require 'ronin/asm/immediate'
 require 'ronin/asm/memory'
+require 'ronin/asm/label_ref'
 
 describe Ronin::ASM::Instruction do
   let(:register)  { Ronin::ASM::Register.new(:eax, width: 4) }
@@ -66,7 +67,9 @@ describe Ronin::ASM::Instruction do
     end
 
     context "when one of the operands does not define #width" do
-      subject { described_class.new(:mov, register, :label) }
+      let(:label_ref) { Ronin::ASM::LabelRef.new('_label') }
+
+      subject { described_class.new(:mov, register, label_ref) }
 
       it "must ignore them" do
         expect(subject.width).to eq(register.width)
