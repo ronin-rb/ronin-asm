@@ -21,6 +21,7 @@
 require_relative '../register'
 require_relative '../immediate'
 require_relative '../memory'
+require_relative '../label_ref'
 
 module Ronin
   module ASM
@@ -114,7 +115,7 @@ module Ronin
         #
         # Emits an operand.
         #
-        # @param [Immediate, Memory, Register, Symbol] op
+        # @param [Immediate, Memory, Register, LabelRef] op
         #   The operand.
         #
         # @return [String]
@@ -125,14 +126,14 @@ module Ronin
           when Immediate then emit_immediate(op)
           when Memory    then emit_memory(op)
           when Register  then emit_register(op)
-          when Symbol    then emit_keyword(op)
+          when LabelRef  then emit_label_ref(op)
           end
         end
 
         #
         # Emits multiple operands.
         #
-        # @param [Array<Immediate, Memory, Register, Symbol>] ops
+        # @param [Array<Immediate, Memory, Register, LabelRef>] ops
         #   The Array of operands.
         #
         # @return [String]
@@ -141,6 +142,17 @@ module Ronin
         def self.emit_operands(ops)
           ops.map { |op| emit_operand(op) }.join(",\t")
         end
+
+        #
+        # Emits a reference to a label.
+        #
+        # @param [LabelRef] label_ref
+        #   The reference to a label.
+        #
+        # @return [String]
+        #   The formatted label name.
+        #
+        def self.emit_label_ref(label_ref) = label_ref.to_s
 
         #
         # Emits a label.

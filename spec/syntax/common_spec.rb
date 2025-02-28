@@ -30,6 +30,15 @@ describe Ronin::ASM::Syntax::Common do
     end
   end
 
+  describe ".emit_label_ref" do
+    let(:name)      { :_start  }
+    let(:label_ref) { Ronin::ASM::LabelRef.new(name) }
+
+    it "must return the LabelRef#name as a String" do
+      expect(subject.emit_label_ref(label_ref)).to eq(name.to_s)
+    end
+  end
+
   describe ".emit_label" do
     let(:name)  { :_start  }
     let(:label) { Ronin::ASM::Label.new(name) }
