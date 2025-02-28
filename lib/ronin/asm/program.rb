@@ -101,6 +101,11 @@ module Ronin
       # @return [Hash{String => Label}]
       attr_reader :labels
 
+      # The label references defined in the program.
+      #
+      # @return [Hash{String => Label}]
+      attr_reader :label_refs
+
       # The instructions of the program
       #
       # @return [Array<Instruction>]
@@ -148,6 +153,7 @@ module Ronin
 
         @allocated_registers = Set.new
         @labels = {}
+        @label_refs = {}
         @instructions = []
 
         instance_eval(&block) if block
@@ -411,7 +417,9 @@ module Ronin
       # @since 1.0.0
       #
       def label_ref(name)
-        LabelRef.new(name.to_s)
+        name = name.to_s
+
+        @label_refs[name] ||= LabelRef.new(name)
       end
 
       #
