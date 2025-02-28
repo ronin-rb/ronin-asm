@@ -19,6 +19,7 @@
 #
 
 require_relative 'x86/registers'
+require_relative 'x86/relative_offset'
 
 module Ronin
   module ASM
@@ -180,6 +181,28 @@ module Ronin
 
       # The `ss` 16bit Stack Segment register.
       def ss = Registers::SS
+
+      #
+      # @group Type Methods
+      #
+
+      #
+      # Explicitly creates an 8bit relative offset.
+      #
+      # @param [Integer] value
+      # @return [RelativeOffset]
+      # @since 1.0.0
+      #
+      def rel8(value) = RelativeOffset.new(value, width: 1)
+
+      #
+      # Explicitly creates an 32bit relative offset.
+      #
+      # @param [Integer] value
+      # @return [RelativeOffset]
+      # @since 1.0.0
+      #
+      def rel32(value) = RelativeOffset.new(value, width: 4)
 
       #
       # @group Internal Methods
