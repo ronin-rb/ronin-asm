@@ -20,6 +20,7 @@
 
 require_relative 'x86/registers'
 require_relative 'x86/relative_offset'
+require_relative 'x86/memory_offset'
 
 module Ronin
   module ASM
@@ -203,6 +204,24 @@ module Ronin
       # @since 1.0.0
       #
       def rel32(value) = RelativeOffset.new(value, width: 4)
+
+      #
+      # Explicitly creates an 32bit memory offset.
+      #
+      # @param [Integer] value
+      # @return [MemoryOffset]
+      # @since 1.0.0
+      #
+      def moffset32(value) = MemoryOffset.new(value, width: 4)
+
+      #
+      # Explicitly creates an 64bit memory offset.
+      #
+      # @param [Integer] value
+      # @return [MemoryOffset]
+      # @since 1.0.0
+      #
+      def moffset64(value) = MemoryOffset.new(value, width: 8)
 
       #
       # @group Internal Methods
