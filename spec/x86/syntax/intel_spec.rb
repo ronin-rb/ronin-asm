@@ -153,7 +153,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
           _loop do
             inc eax
             cmp eax, 10
-            jl  :_loop
+            jl  _loop
           end
 
           ret
