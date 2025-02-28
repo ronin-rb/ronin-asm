@@ -18,6 +18,7 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'exceptions'
 require_relative 'x86'
 require_relative 'x86_64'
 require_relative 'syscalls'
@@ -497,6 +498,29 @@ module Ronin
       def to_s = to_asm
 
       #
+      # Validates the program before assembly.
+      #
+      # @return [true]
+      #   Indicates no validation errors.
+      #
+      # @raise [UndefinedLabelError]
+      #   The program contains a reference to a label that does not exist.
+      #
+      # @api private
+      #
+      # @since 1.0.0
+      #
+      def validate
+        @label_refs.each_value do |label_ref|
+          unless label_ref.resolved?
+            raise(UndefinedLabelError,"undefined reference to label: #{label_ref.name.inspect}")
+          end
+        end
+
+        return true
+      end
+
+      #
       # Assembles the program.
       #
       # @param [String] output
@@ -529,10 +553,15 @@ module Ronin
       # @raise [ArgumentError]
       #   The given syntax was not `:intel` or `:att`.
       #
+      # @raise [UndefinedLabelError]
+      #   The program contains a reference to a label that does not exist.
+      #
       def assemble(output, syntax: :intel, format: :bin)
         parser = PARSERS.fetch(syntax) do
           raise(ArgumentError,"unknown ASM syntax: #{syntax.inspect}")
         end
+
+        validate
 
         source = Tempfile.new(['ronin-asm', '.s'])
         source.write(to_asm(syntax))

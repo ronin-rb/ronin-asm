@@ -872,6 +872,34 @@ describe Ronin::ASM::Program do
     end
   end
 
+  describe "#validate" do
+    context "when the program contains an unresolved label reference" do
+      let(:undefined_label) { '_label2' }
+
+      subject do
+        described_class.new(arch: :x86) do
+          _label1 do
+            mov eax, ebx
+          end
+
+          jmp _label2
+        end
+      end
+
+      it do
+        expect {
+          subject.validate
+        }.to raise_error(Ronin::ASM::UndefinedLabelError,"undefined reference to label: #{undefined_label.inspect}")
+      end
+    end
+
+    context "otherwise" do
+      it "must return true" do
+        expect(subject.validate).to be(true)
+      end
+    end
+  end
+
   describe "#assemble", integration: true do
     subject do
       described_class.new(arch: :x86) do
