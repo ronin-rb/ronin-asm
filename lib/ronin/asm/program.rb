@@ -89,6 +89,11 @@ module Ronin
       # @return [Set<Register>]
       attr_reader :allocated_registers
 
+      # The labels defined in the program.
+      #
+      # @return [Hash{String => Label}]
+      attr_reader :labels
+
       # The instructions of the program
       #
       # @return [Array<Instruction>]
@@ -135,6 +140,7 @@ module Ronin
         end
 
         @allocated_registers = Set.new
+        @labels = {}
         @instructions = []
 
         instance_eval(&block) if block
@@ -314,9 +320,19 @@ module Ronin
       # @return [Label]
       #   The new label.
       #
+      # @raise [ArgumentError]
+      #   A label with the same name has already been defined.
+      #
       def label(name,&block)
-        new_label = Label.new(name.to_s)
+        name = name.to_s
 
+        if @labels.has_key?(name)
+          raise(ArgumentError,"label is already defined: #{name.inspect}")
+        end
+
+        new_label = Label.new(name)
+
+        @labels[name] = new_label
         @instructions << new_label
         instance_eval(&block)
         return new_label
