@@ -27,6 +27,10 @@ describe Ronin::ASM::Program do
       expect(subject.labels).to eq({})
     end
 
+    it "must initialize #label_refs to an empty Hash" do
+      expect(subject.label_refs).to eq({})
+    end
+
     it "must initialize #instructions to an empty Array" do
       expect(subject.instructions).to eq([])
     end
@@ -762,6 +766,16 @@ describe Ronin::ASM::Program do
 
       expect(label_ref).to be_kind_of(Ronin::ASM::LabelRef)
       expect(label_ref.name).to eq(name)
+    end
+
+    it "must cache created LabelRef objects by name" do
+      expect(subject.label_ref(name)).to be(subject.label_ref(name))
+    end
+
+    it "must store the created LabelRef objects in #label_refs" do
+      label_ref = subject.label_ref(name)
+
+      expect(subject.label_refs[name]).to be(label_ref)
     end
   end
 
