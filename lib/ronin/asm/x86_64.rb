@@ -302,6 +302,42 @@ module Ronin
       def ss = Registers::SS
 
       #
+      # @group Type Methods
+      #
+
+      #
+      # Explicitly creates an 8bit relative offset.
+      #
+      # @param [Integer] value
+      # @return [RelativeOffset]
+      #
+      def rel8(value) = RelativeOffset.new(value,1)
+
+      #
+      # Explicitly creates an 32bit relative offset.
+      #
+      # @param [Integer] value
+      # @return [RelativeOffset]
+      #
+      def rel32(value) = RelativeOffset.new(value,4)
+
+      #
+      # Explicitly creates an 32bit memory offset.
+      #
+      # @param [Integer] value
+      # @return [MemoryOffset]
+      #
+      def moffset32(value) = MemoryOffset.new(value,4)
+
+      #
+      # Explicitly creates an 64bit memory offset.
+      #
+      # @param [Integer] value
+      # @return [MemoryOffset]
+      #
+      def moffset64(value) = MemoryOffset.new(value,8)
+
+      #
       # @group Internal Methods
       #
 
