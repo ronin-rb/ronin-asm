@@ -51,11 +51,14 @@ module Ronin
         # @param [Integer] value
         #   The memory offset value.
         #
-        def initialize(value)
+        # @param [Integer, nil] width
+        #   The optional width of the value.
+        #
+        def initialize(value, width: nil)
           @value = value
-          @width = if value.bit_length <= 32 then 4
-                   else                           8
-                   end
+          @width = width || if value.bit_length <= 32 then 4
+                            else                           8
+                            end
 
           @type = :"memoffs#{@width * 8}"
         end
