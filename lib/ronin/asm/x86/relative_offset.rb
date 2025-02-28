@@ -51,11 +51,14 @@ module Ronin
         # @param [Integer] value
         #   The relative offset value.
         #
-        def initialize(value)
+        # @param [1, 4, nil] width
+        #   The optional width for the relative offset.
+        #
+        def initialize(value, width: nil)
           @value = value
-          @width = if value.bit_length <= 8 then 1
-                   else                          4
-                   end
+          @width = width || if value.bit_length <= 8 then 1
+                            else                          4
+                            end
 
           @type = :"rel#{@width * 8}"
         end
