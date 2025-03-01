@@ -51,8 +51,12 @@ module Ronin
         # @option kwargs [Boolean] :general (false)
         #   Specifies whether the register is a General Purpose Register (GPR).
         #
-        def initialize(name, sp: false, bp: false, **kwargs)
-          super(name,**kwargs)
+        def initialize(name, width: ,
+                             type:  :"reg#{width * 8}",
+                             sp:    false,
+                             bp:    false,
+                             **kwargs)
+          super(name, width: width, type: type, **kwargs)
 
           @sp = sp
           @bp = bp

@@ -6,8 +6,12 @@ require 'ronin/asm/immediate'
 require 'ronin/asm/memory'
 
 describe Ronin::ASM::Instruction do
-  let(:register)  { Ronin::ASM::Register.new(:eax, width: 4) }
-  let(:immediate) { Ronin::ASM::Immediate.new(0xff, width: 1) }
+  let(:register) do
+    Ronin::ASM::Register.new(:eax, width: 4, type: :reg32)
+  end
+  let(:immediate) do
+    Ronin::ASM::Immediate.new(0xff, width: 1)
+  end
 
   describe "#initialize" do
     let(:name)     { :mov }
