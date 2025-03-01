@@ -403,8 +403,12 @@ describe Ronin::ASM::Program do
     end
 
     context "when given a Memory object" do
-      let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
-      let(:memory)   { Ronin::ASM::Memory.new(base: register) }
+      let(:register) do
+        Ronin::ASM::Register.new(:eax, width: 4, type: :reg32)
+      end
+      let(:memory) do
+        Ronin::ASM::Memory.new(base: register)
+      end
 
       it "must return a Memory" do
         expect(subject.byte(memory)).to be_kind_of(
@@ -446,8 +450,12 @@ describe Ronin::ASM::Program do
     end
 
     context "when given a Memory object" do
-      let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
-      let(:memory)   { Ronin::ASM::Memory.new(base: register) }
+      let(:register) do
+        Ronin::ASM::Register.new(:eax, width: 4, type: :reg32)
+      end
+      let(:memory) do
+        Ronin::ASM::Memory.new(base: register)
+      end
 
       it "must return a Memory" do
         expect(subject.word(memory)).to be_kind_of(
@@ -489,8 +497,12 @@ describe Ronin::ASM::Program do
     end
 
     context "when given a Memory object" do
-      let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
-      let(:memory)   { Ronin::ASM::Memory.new(base: register) }
+      let(:register) do
+        Ronin::ASM::Register.new(:eax, width: 4, type: :reg32)
+      end
+      let(:memory) do
+        Ronin::ASM::Memory.new(base: register)
+      end
 
       it "must return a Memory" do
         expect(subject.dword(memory)).to be_kind_of(
@@ -532,8 +544,12 @@ describe Ronin::ASM::Program do
     end
 
     context "when given a Memory object" do
-      let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
-      let(:memory)   { Ronin::ASM::Memory.new(base: register) }
+      let(:register) do
+        Ronin::ASM::Register.new(:eax, width: 4, type: :reg32)
+      end
+      let(:memory) do
+        Ronin::ASM::Memory.new(base: register)
+      end
 
       it "must return a Memory" do
         expect(subject.qword(memory)).to be_kind_of(
