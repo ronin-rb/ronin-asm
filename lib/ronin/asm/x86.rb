@@ -211,7 +211,6 @@ module Ronin
       def ymm6 = Registers::YMM6
       def ymm7 = Registers::YMM7
 
-
       #
       # @group Type Methods
       #
