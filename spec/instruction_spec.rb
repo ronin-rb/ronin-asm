@@ -7,8 +7,8 @@ require 'ronin/asm/memory'
 require 'ronin/asm/label_ref'
 
 describe Ronin::ASM::Instruction do
-  let(:register)  { Ronin::ASM::Register.new(:eax, width: 4) }
-  let(:immediate) { Ronin::ASM::Immediate.new(0xff, width: 1) }
+  let(:register)  { Ronin::ASM::Register.new(:eax, size: 4) }
+  let(:immediate) { Ronin::ASM::Immediate.new(0xff, size: 1) }
 
   describe "#initialize" do
     let(:name)     { :mov }
@@ -59,20 +59,20 @@ describe Ronin::ASM::Instruction do
     end
   end
 
-  describe "#operand_width" do
+  describe "#operand_size" do
     subject { described_class.new(:mov, immediate, register) }
 
-    it "must return the maximum width of the operands" do
-      expect(subject.operand_width).to eq(register.width)
+    it "must return the maximum size of the operands" do
+      expect(subject.operand_size).to eq(register.size)
     end
 
-    context "when one of the operands does not define #width" do
+    context "when one of the operands does not define #size" do
       let(:label_ref) { Ronin::ASM::LabelRef.new('_label') }
 
       subject { described_class.new(:mov, register, label_ref) }
 
       it "must ignore them" do
-        expect(subject.operand_width).to eq(register.width)
+        expect(subject.operand_size).to eq(register.size)
       end
     end
   end

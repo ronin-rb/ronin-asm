@@ -38,10 +38,10 @@ module Ronin
       # @return [Symbol]
       attr_reader :name
 
-      # The width of the register.
+      # The size of the register.
       #
       # @return [Integer]
-      attr_reader :width
+      attr_reader :size
 
       # The register number.
       #
@@ -54,8 +54,8 @@ module Ronin
       # @param [Symbol] name
       #   The register name.
       #
-      # @param [Integer] width
-      #   The width of the register.
+      # @param [Integer] size
+      #   The size of the register.
       #
       # @param [Integer] number
       #   The register's number used in encoding.
@@ -63,14 +63,14 @@ module Ronin
       # @param [Boolean] general
       #   Specifies whether the register is a General Purpose Register (GPR).
       #
-      def initialize(name, width: , number: 0, general: false)
+      def initialize(name, size: , number: 0, general: false)
         @name = name
 
-        @width   = width
+        @size    = size
         @number  = number
         @general = general
 
-        @type = :"reg#{width * 8}"
+        @type = :"reg#{size * 8}"
       end
 
       #
@@ -90,7 +90,7 @@ module Ronin
       # @since 1.0.0
       #
       def reg8?
-        @width == 1
+        @size == 1
       end
 
       #
@@ -101,7 +101,7 @@ module Ronin
       # @since 1.0.0
       #
       def reg16?
-        @width == 2
+        @size == 2
       end
 
       #
@@ -112,7 +112,7 @@ module Ronin
       # @since 1.0.0
       #
       def reg32?
-        @width == 4
+        @size == 4
       end
 
       #
@@ -123,7 +123,7 @@ module Ronin
       # @since 1.0.0
       #
       def reg64?
-        @width == 8
+        @size == 8
       end
 
       #

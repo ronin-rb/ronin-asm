@@ -41,10 +41,10 @@ module Ronin
       # @return [Integer]
       attr_reader :value
 
-      # The width of the immediate operand.
+      # The size of the immediate operand.
       #
       # @return [1, 2, 4, 8]
-      attr_reader :width
+      attr_reader :size
 
       #
       # Initializes a new Immediate Operand.
@@ -52,17 +52,17 @@ module Ronin
       # @param [Integer, nil] value
       #   The value.
       #
-      # @param [nil, 1, 2, 4, 8] width
+      # @param [nil, 1, 2, 4, 8] size
       #   The size in bytes of the value.
       #
-      def initialize(value, width: nil)
+      def initialize(value, size: nil)
         @value = value.to_i
-        @width = width || if @value == 0
-                            1
-                          else
-                            (@value.bit_length / 8.0).ceil
-                          end
-        @type  = :"imm#{@width * 8}"
+        @size = size || if @value == 0
+                          1
+                        else
+                          (@value.bit_length / 8.0).ceil
+                        end
+        @type  = :"imm#{@size * 8}"
       end
 
       #
@@ -78,7 +78,7 @@ module Ronin
       # @return [Boolean]
       #
       def imm8?
-        @width == 1
+        @size == 1
       end
 
       #
@@ -87,7 +87,7 @@ module Ronin
       # @return [Boolean]
       #
       def imm16?
-        @width == 2
+        @size == 2
       end
 
       #
@@ -96,7 +96,7 @@ module Ronin
       # @return [Boolean]
       #
       def imm32?
-        @width == 4
+        @size == 4
       end
 
       #
@@ -105,7 +105,7 @@ module Ronin
       # @return [Boolean]
       #
       def imm64?
-        @width == 8
+        @size == 8
       end
 
       #

@@ -38,7 +38,7 @@ module Ronin
         # The size of the memory offset operand.
         #
         # @return [4, 8]
-        attr_reader :width
+        attr_reader :size
 
         # The operand type.
         #
@@ -51,15 +51,15 @@ module Ronin
         # @param [Integer] value
         #   The memory offset value.
         #
-        # @param [Integer, nil] width
-        #   The optional width of the value.
+        # @param [Integer, nil] size
+        #   The optional size of the value.
         #
-        def initialize(value, width: nil)
+        def initialize(value, size: nil)
           @value = value
-          @width = width || if value.bit_length <= 32 then 4
-                            else                           8
-                            end
-          @type  = :"memoffs#{@width * 8}"
+          @size = size || if value.bit_length <= 32 then 4
+                          else                           8
+                          end
+          @type  = :"memoffs#{@size * 8}"
         end
 
       end

@@ -314,10 +314,10 @@ module Ronin
             displacement: operand.displacement,
             index: operand.index,
             scale: operand.scale,
-            width: 1
+            size:  1
           )
         else
-          Immediate.new(operand, width: 1)
+          Immediate.new(operand, size: 1)
         end
       end
 
@@ -338,10 +338,10 @@ module Ronin
             displacement: operand.displacement,
             index: operand.index,
             scale: operand.scale,
-            width: 2
+            size:  2
           )
         else
-          Immediate.new(operand, width: 2)
+          Immediate.new(operand, size: 2)
         end
       end
 
@@ -362,10 +362,10 @@ module Ronin
             displacement: operand.displacement,
             index: operand.index,
             scale: operand.scale,
-            width: 4
+            size:  4
           )
         else
-          Immediate.new(operand, width: 4)
+          Immediate.new(operand, size: 4)
         end
       end
 
@@ -386,10 +386,10 @@ module Ronin
             displacement: operand.displacement,
             index: operand.index,
             scale: operand.scale,
-            width: 8
+            size:  8
           )
         else
-          Immediate.new(operand, width: 8)
+          Immediate.new(operand, size: 8)
         end
       end
 

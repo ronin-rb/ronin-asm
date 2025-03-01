@@ -39,8 +39,8 @@ module Ronin
         # @param [Hash{Symbol => Object}] kwargs
         #   Additional keyword arguments for {ASM::Register#initialize}.
         #
-        # @option kwargs [Integer] :width
-        #   The width of the register.
+        # @option kwargs [Integer] :size
+        #   The size of the register.
         #
         # @option kwargs [Integer] :number (0)
         #   The register's number used in encoding.

@@ -8,7 +8,7 @@ describe Ronin::ASM::X86::Register do
 
   describe "#sp?" do
     context "when initialized with `sp: true`" do
-      subject { described_class.new(:esp, width: 4, sp: true) }
+      subject { described_class.new(:esp, size: 4, sp: true) }
 
       it "must return true" do
         expect(subject.sp?).to be(true)
@@ -16,7 +16,7 @@ describe Ronin::ASM::X86::Register do
     end
 
     context "when not initialized with `sp: true`" do
-      subject { described_class.new(:eax, width: 4) }
+      subject { described_class.new(:eax, size: 4) }
 
       it "must return false" do
         expect(subject.sp?).to be(false)
@@ -26,7 +26,7 @@ describe Ronin::ASM::X86::Register do
 
   describe "#bp?" do
     context "when initialized with `bp: true`" do
-      subject { described_class.new(:ebp, width: 4, bp: true) }
+      subject { described_class.new(:ebp, size: 4, bp: true) }
 
       it "must return true" do
         expect(subject.bp?).to be(true)
@@ -34,7 +34,7 @@ describe Ronin::ASM::X86::Register do
     end
 
     context "when not initialized with `bp: true`" do
-      subject { described_class.new(:eax, width: 4) }
+      subject { described_class.new(:eax, size: 4) }
 
       it "must return false" do
         expect(subject.bp?).to be(false)

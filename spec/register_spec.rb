@@ -4,8 +4,8 @@ require 'ronin/asm/register'
 describe Ronin::ASM::Register do
   let(:name)     { :eax }
   let(:number)   { 0 }
-  let(:width)    { 4 }
-  let(:register) { described_class.new(name, number: number, width: width) }
+  let(:size)    { 4 }
+  let(:register) { described_class.new(name, number: number, size: size) }
 
   subject { register }
 
@@ -17,7 +17,7 @@ describe Ronin::ASM::Register do
     context "when the number: keyword argument is given" do
       let(:number) { 3 }
 
-      subject { described_class.new(:rbx, width: 8, number: number) }
+      subject { described_class.new(:rbx, size: 8, number: number) }
 
       it "must set #number" do
         expect(subject.number).to eq(3)
@@ -26,40 +26,40 @@ describe Ronin::ASM::Register do
   end
 
   describe "#type" do
-    context "when #width is 1" do
-      let(:width) { 1 }
+    context "when #size is 1" do
+      let(:size) { 1 }
 
-      subject { described_class.new(:eax, width: width) }
+      subject { described_class.new(:eax, size: size) }
 
       it "must return :reg8" do
         expect(subject.type).to eq(:reg8)
       end
     end
 
-    context "when #width is 2" do
-      let(:width) { 2 }
+    context "when #size is 2" do
+      let(:size) { 2 }
 
-      subject { described_class.new(:eax, width: width) }
+      subject { described_class.new(:eax, size: size) }
 
       it "must return :reg16" do
         expect(subject.type).to eq(:reg16)
       end
     end
 
-    context "when #width is 4" do
-      let(:width) { 4 }
+    context "when #size is 4" do
+      let(:size) { 4 }
 
-      subject { described_class.new(:eax, width: width) }
+      subject { described_class.new(:eax, size: size) }
 
       it "must return :reg32" do
         expect(subject.type).to eq(:reg32)
       end
     end
 
-    context "when #width is 8" do
-      let(:width) { 8 }
+    context "when #size is 8" do
+      let(:size) { 8 }
 
-      subject { described_class.new(:eax, width: width) }
+      subject { described_class.new(:eax, size: size) }
 
       it "must return :reg64" do
         expect(subject.type).to eq(:reg64)
@@ -74,10 +74,10 @@ describe Ronin::ASM::Register do
   end
 
   describe "#reg8?" do
-    context "when the #width is 1" do
-      let(:width) { 1 }
+    context "when the #size is 1" do
+      let(:size) { 1 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, size: size) }
 
       it "must return true" do
         expect(subject.reg8?).to be(true)
@@ -85,9 +85,9 @@ describe Ronin::ASM::Register do
     end
 
     context "when the #type is not 1" do
-      let(:width) { 8 }
+      let(:size) { 8 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, size: size) }
 
       it "must return false" do
         expect(subject.reg8?).to be(false)
@@ -96,10 +96,10 @@ describe Ronin::ASM::Register do
   end
 
   describe "#reg16?" do
-    context "when the #width is 2" do
-      let(:width) { 2 }
+    context "when the #size is 2" do
+      let(:size) { 2 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, size: size) }
 
       it "must return true" do
         expect(subject.reg16?).to be(true)
@@ -107,9 +107,9 @@ describe Ronin::ASM::Register do
     end
 
     context "when the #type is not 2" do
-      let(:width) { 1 }
+      let(:size) { 1 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, size: size) }
 
       it "must return false" do
         expect(subject.reg16?).to be(false)
@@ -118,10 +118,10 @@ describe Ronin::ASM::Register do
   end
 
   describe "#reg32?" do
-    context "when the #width is 4" do
-      let(:width) { 4 }
+    context "when the #size is 4" do
+      let(:size) { 4 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, size: size) }
 
       it "must return true" do
         expect(subject.reg32?).to be(true)
@@ -129,9 +129,9 @@ describe Ronin::ASM::Register do
     end
 
     context "when the #type is not 4" do
-      let(:width) { 1 }
+      let(:size) { 1 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, size: size) }
 
       it "must return false" do
         expect(subject.reg32?).to be(false)
@@ -140,10 +140,10 @@ describe Ronin::ASM::Register do
   end
 
   describe "#reg64?" do
-    context "when the #width is 8" do
-      let(:width) { 8 }
+    context "when the #size is 8" do
+      let(:size) { 8 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, size: size) }
 
       it "must return true" do
         expect(subject.reg64?).to be(true)
@@ -151,9 +151,9 @@ describe Ronin::ASM::Register do
     end
 
     context "when the #type is not 8" do
-      let(:width) { 1 }
+      let(:size) { 1 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, size: size) }
 
       it "must return false" do
         expect(subject.reg64?).to be(false)
