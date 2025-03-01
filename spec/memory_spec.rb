@@ -4,7 +4,9 @@ require 'ronin/asm/memory'
 require 'ronin/asm/register'
 
 describe Ronin::ASM::Memory do
-  let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
+  let(:register) do
+    Ronin::ASM::Register.new(:eax, width: 4, type: :reg32)
+  end
 
   subject { described_class.new(base: register) }
 

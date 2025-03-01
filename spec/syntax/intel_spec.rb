@@ -11,7 +11,7 @@ describe Ronin::ASM::Syntax::Intel do
   subject { described_class }
 
   describe ".emit_register" do
-    let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
+    let(:register) { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
 
     it "must return the register name" do
       expect(subject.emit_register(register)).to eq("eax")
@@ -27,7 +27,7 @@ describe Ronin::ASM::Syntax::Intel do
   end
 
   describe ".emit_memory" do
-    let(:register) { Ronin::ASM::Register.new(:eax, width: 4) }
+    let(:register) { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
     let(:operand)  { Ronin::ASM::Memory.new(base: register) }
 
     it "must enclose the memory in brackets" do
@@ -65,7 +65,7 @@ describe Ronin::ASM::Syntax::Intel do
     end
 
     context "with an index" do
-      let(:index)   { Ronin::ASM::Register.new(:esi, width: 4) }
+      let(:index)   { Ronin::ASM::Register.new(:esi, width: 4, type: :reg32) }
       let(:operand) { Ronin::ASM::Memory.new(base: register, index: index) }
 
       it "must add the index to the base" do
@@ -95,8 +95,8 @@ describe Ronin::ASM::Syntax::Intel do
     end
 
     context "with multiple operands" do
-      let(:register)    { Ronin::ASM::Register.new(:eax, width: 4) }
-      let(:immediate)   { Ronin::ASM::Immediate.new(0xff, width: 1)  }
+      let(:register)    { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
+      let(:immediate)   { Ronin::ASM::Immediate.new(0xff, width: 1) }
       let(:instruction) { Ronin::ASM::Instruction.new(:mov, register, immediate) }
 
       it "must emit the operands" do
