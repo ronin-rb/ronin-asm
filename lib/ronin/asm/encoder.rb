@@ -47,6 +47,9 @@ module Ronin
       # @param [Instruction] instruction
       #   The instruction to write.
       #
+      # @return [Integer]
+      #   The number of bytes written.
+      #
       def write_instruction(instruction)
         instruction.encode(self)
       end
