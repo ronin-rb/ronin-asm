@@ -23,6 +23,10 @@ describe Ronin::ASM::Program do
       expect(subject.allocated_registers).to eq(Set.new)
     end
 
+    it "must initialize #instructions to an empty Array" do
+      expect(subject.instructions).to eq([])
+    end
+
     context "when the arch: keyword argument is :x86" do
       subject { described_class.new(arch: :x86) }
 
@@ -132,13 +136,17 @@ describe Ronin::ASM::Program do
       context "and when the os: keyword argument is :linux" do
         subject { described_class.new(arch: :x86, os: :linux) }
 
-        it { expect(subject.syscalls).to_not be_empty }
+        it "must set #syscalls to Ronin::ASM::Syscalls::Linux::SYSCALLS" do
+          expect(subject.syscalls).to eq(Ronin::ASM::Syscalls::Linux::SYSCALLS)
+        end
       end
 
       context "and when the os: keyword argument is :freebsd" do
         subject { described_class.new(arch: :x86, os: :freebsd) }
 
-        it { expect(subject.syscalls).to_not be_empty }
+        it "must set #syscalls to Ronin::ASM::Syscalls::FreeBSD::SYSCALLS" do
+          expect(subject.syscalls).to eq(Ronin::ASM::Syscalls::FreeBSD::SYSCALLS)
+        end
       end
     end
 
@@ -158,13 +166,17 @@ describe Ronin::ASM::Program do
       context "and when the os: keyword argument is :linux" do
         subject { described_class.new(arch: :amd64, os: :linux) }
 
-        it { expect(subject.syscalls).to_not be_empty }
+        it "must set #syscalls to Ronin::ASM::Syscalls::Linux::SYSCALLS" do
+          expect(subject.syscalls).to eq(Ronin::ASM::Syscalls::Linux::SYSCALLS)
+        end
       end
 
       context "and when the os: keyword argument is :freebsd" do
         subject { described_class.new(arch: :amd64, os: :freebsd) }
 
-        it { expect(subject.syscalls).to_not be_empty }
+        it "must set #syscalls to Ronin::ASM::Syscalls::FreeBSD::SYSCALLS" do
+          expect(subject.syscalls).to eq(Ronin::ASM::Syscalls::FreeBSD::SYSCALLS)
+        end
       end
     end
 
@@ -231,11 +243,11 @@ describe Ronin::ASM::Program do
   end
 
   describe "#instruction" do
-    it "must return an Instruction" do
+    it "must return a new Instruction object" do
       expect(subject.instruction(:hlt)).to be_kind_of(Ronin::ASM::Instruction)
     end
 
-    it "must append the new Instruction" do
+    it "must append the new Instruction to #instructions" do
       subject.instruction(:push, 1)
 
       expect(subject.instructions.last.name).to eq(:push)
