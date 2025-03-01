@@ -31,6 +31,11 @@ module Ronin
     #
     class Encoder
 
+      # The output stream to write encoded instructions to.
+      #
+      # @return [File, StringIO]
+      attr_reader :output
+
       #
       # Initializes the encoder.
       #
