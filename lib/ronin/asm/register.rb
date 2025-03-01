@@ -31,11 +31,6 @@ module Ronin
 
       include Operand
 
-      # The assembly class type.
-      #
-      # @return [:reg8, :reg16, :reg32, :reg64]
-      attr_reader :type
-
       # The register name.
       #
       # @return [Symbol]
@@ -50,6 +45,11 @@ module Ronin
       #
       # @return [Integer]
       attr_reader :number
+
+      # The assembly class type.
+      #
+      # @return [Symbol]
+      attr_reader :type
 
       #
       # Initializes a register.
@@ -66,14 +66,16 @@ module Ronin
       # @param [Boolean] general
       #   Specifies whether the register is a General Purpose Register (GPR).
       #
-      def initialize(name, width: , number: 0, general: false)
+      # @param [Symbol] type
+      #   The type of the register.
+      #
+      def initialize(name, width: , number: 0, general: false, type: )
         @name = name
 
         @width   = width
         @number  = number
         @general = general
-
-        @type = :"reg#{width * 8}"
+        @type    = type
       end
 
       #
