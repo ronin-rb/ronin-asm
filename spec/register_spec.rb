@@ -5,7 +5,10 @@ describe Ronin::ASM::Register do
   let(:name)     { :eax }
   let(:number)   { 0 }
   let(:width)    { 4 }
-  let(:register) { described_class.new(name, number: number, width: width) }
+  let(:type)     { :reg32 }
+  let(:register) do
+    described_class.new(name, number: number, width: width, type: type)
+  end
 
   subject { register }
 
@@ -14,55 +17,19 @@ describe Ronin::ASM::Register do
       expect(subject.number).to eq(0)
     end
 
+    it "must set #type" do
+      expect(subject.type).to eq(type)
+    end
+
     context "when the number: keyword argument is given" do
       let(:number) { 3 }
 
-      subject { described_class.new(:rbx, width: 8, number: number) }
+      subject do
+        described_class.new(:rbx, width: 8, number: number, type: :reg64)
+      end
 
       it "must set #number" do
         expect(subject.number).to eq(3)
-      end
-    end
-
-    context "when the type: keyword argument is not given" do
-      context "and when #width is 1" do
-        let(:width) { 1 }
-
-        subject { described_class.new(:eax, width: width) }
-
-        it "must return :reg8" do
-          expect(subject.type).to eq(:reg8)
-        end
-      end
-
-      context "and when #width is 2" do
-        let(:width) { 2 }
-
-        subject { described_class.new(:eax, width: width) }
-
-        it "must return :reg16" do
-          expect(subject.type).to eq(:reg16)
-        end
-      end
-
-      context "and when #width is 4" do
-        let(:width) { 4 }
-
-        subject { described_class.new(:eax, width: width) }
-
-        it "must return :reg32" do
-          expect(subject.type).to eq(:reg32)
-        end
-      end
-
-      context "and when #width is 8" do
-        let(:width) { 8 }
-
-        subject { described_class.new(:eax, width: width) }
-
-        it "must return :reg64" do
-          expect(subject.type).to eq(:reg64)
-        end
       end
     end
   end
@@ -77,7 +44,7 @@ describe Ronin::ASM::Register do
     context "when the #width is 1" do
       let(:width) { 1 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, width: width, type: type) }
 
       it "must return true" do
         expect(subject.reg8?).to be(true)
@@ -87,7 +54,7 @@ describe Ronin::ASM::Register do
     context "when the #type is not 1" do
       let(:width) { 8 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, width: width, type: type) }
 
       it "must return false" do
         expect(subject.reg8?).to be(false)
@@ -99,7 +66,7 @@ describe Ronin::ASM::Register do
     context "when the #width is 2" do
       let(:width) { 2 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, width: width, type: type) }
 
       it "must return true" do
         expect(subject.reg16?).to be(true)
@@ -109,7 +76,7 @@ describe Ronin::ASM::Register do
     context "when the #type is not 2" do
       let(:width) { 1 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, width: width, type: type) }
 
       it "must return false" do
         expect(subject.reg16?).to be(false)
@@ -121,7 +88,7 @@ describe Ronin::ASM::Register do
     context "when the #width is 4" do
       let(:width) { 4 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, width: width, type: type) }
 
       it "must return true" do
         expect(subject.reg32?).to be(true)
@@ -131,7 +98,7 @@ describe Ronin::ASM::Register do
     context "when the #type is not 4" do
       let(:width) { 1 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, width: width, type: type) }
 
       it "must return false" do
         expect(subject.reg32?).to be(false)
@@ -143,7 +110,7 @@ describe Ronin::ASM::Register do
     context "when the #width is 8" do
       let(:width) { 8 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, width: width, type: type) }
 
       it "must return true" do
         expect(subject.reg64?).to be(true)
@@ -153,7 +120,7 @@ describe Ronin::ASM::Register do
     context "when the #type is not 8" do
       let(:width) { 1 }
 
-      subject { described_class.new(name, width: width) }
+      subject { described_class.new(name, width: width, type: type) }
 
       it "must return false" do
         expect(subject.reg64?).to be(false)
