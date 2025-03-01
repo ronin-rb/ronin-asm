@@ -59,11 +59,11 @@ describe Ronin::ASM::Instruction do
     end
   end
 
-  describe "#width" do
+  describe "#operand_width" do
     subject { described_class.new(:mov, immediate, register) }
 
     it "must return the maximum width of the operands" do
-      expect(subject.width).to eq(register.width)
+      expect(subject.operand_width).to eq(register.width)
     end
 
     context "when one of the operands does not define #width" do
@@ -72,7 +72,7 @@ describe Ronin::ASM::Instruction do
       subject { described_class.new(:mov, register, label_ref) }
 
       it "must ignore them" do
-        expect(subject.width).to eq(register.width)
+        expect(subject.operand_width).to eq(register.width)
       end
     end
   end
