@@ -210,6 +210,18 @@ module Ronin
 
         # The `ss` 16bit Stack Segment register.
         SS = Register.new(:ss, width: 2, number: 2)
+
+        #
+        # @group 64bit MMX Registers
+        #
+        MM0 = Register.new(:mmx0, width: 8, number: 0, type: :mm)
+        MM1 = Register.new(:mmx1, width: 8, number: 1, type: :mm)
+        MM2 = Register.new(:mmx2, width: 8, number: 2, type: :mm)
+        MM3 = Register.new(:mmx3, width: 8, number: 3, type: :mm)
+        MM4 = Register.new(:mmx4, width: 8, number: 4, type: :mm)
+        MM5 = Register.new(:mmx5, width: 8, number: 5, type: :mm)
+        MM6 = Register.new(:mmx6, width: 8, number: 6, type: :mm)
+        MM7 = Register.new(:mmx7, width: 8, number: 7, type: :mm)
       end
     end
   end
