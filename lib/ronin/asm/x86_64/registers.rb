@@ -242,6 +242,42 @@ module Ronin
         XMM13 = Register.new(:xmm13, width: 16, number: 13, type: :xmm)
         XMM14 = Register.new(:xmm14, width: 16, number: 14, type: :xmm)
         XMM15 = Register.new(:xmm15, width: 16, number: 15, type: :xmm)
+
+        #
+        # @group 256bit YMM Registers
+        #
+        YMM0  = Register.new(:ymm0, width: 32, number: 0, type: :ymm)
+        YMM1  = Register.new(:ymm1, width: 32, number: 1, type: :ymm)
+        YMM2  = Register.new(:ymm2, width: 32, number: 2, type: :ymm)
+        YMM3  = Register.new(:ymm3, width: 32, number: 3, type: :ymm)
+        YMM4  = Register.new(:ymm4, width: 32, number: 4, type: :ymm)
+        YMM5  = Register.new(:ymm5, width: 32, number: 5, type: :ymm)
+        YMM6  = Register.new(:ymm6, width: 32, number: 6, type: :ymm)
+        YMM7  = Register.new(:ymm7, width: 32, number: 7, type: :ymm)
+        YMM8  = Register.new(:ymm8, width: 32, number: 8, type: :ymm)
+        YMM9  = Register.new(:ymm9, width: 32, number: 9, type: :ymm)
+        YMM10  = Register.new(:ymm10, width: 32, number: 10, type: :ymm)
+        YMM11  = Register.new(:ymm11, width: 32, number: 11, type: :ymm)
+        YMM12  = Register.new(:ymm12, width: 32, number: 12, type: :ymm)
+        YMM13  = Register.new(:ymm13, width: 32, number: 13, type: :ymm)
+        YMM14  = Register.new(:ymm14, width: 32, number: 14, type: :ymm)
+        YMM15  = Register.new(:ymm15, width: 32, number: 15, type: :ymm)
+        YMM16  = Register.new(:ymm16, width: 32, number: 16, type: :ymm)
+        YMM17  = Register.new(:ymm17, width: 32, number: 17, type: :ymm)
+        YMM18  = Register.new(:ymm18, width: 32, number: 18, type: :ymm)
+        YMM19  = Register.new(:ymm19, width: 32, number: 19, type: :ymm)
+        YMM20  = Register.new(:ymm20, width: 32, number: 20, type: :ymm)
+        YMM21  = Register.new(:ymm21, width: 32, number: 21, type: :ymm)
+        YMM22  = Register.new(:ymm22, width: 32, number: 22, type: :ymm)
+        YMM23  = Register.new(:ymm23, width: 32, number: 23, type: :ymm)
+        YMM24  = Register.new(:ymm24, width: 32, number: 24, type: :ymm)
+        YMM25  = Register.new(:ymm25, width: 32, number: 25, type: :ymm)
+        YMM26  = Register.new(:ymm26, width: 32, number: 26, type: :ymm)
+        YMM27  = Register.new(:ymm27, width: 32, number: 27, type: :ymm)
+        YMM28  = Register.new(:ymm28, width: 32, number: 28, type: :ymm)
+        YMM29  = Register.new(:ymm29, width: 32, number: 29, type: :ymm)
+        YMM30  = Register.new(:ymm30, width: 32, number: 30, type: :ymm)
+        YMM31  = Register.new(:ymm31, width: 32, number: 31, type: :ymm)
       end
     end
   end
