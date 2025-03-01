@@ -30,7 +30,7 @@ module Ronin
 
       # The assembly class type.
       #
-      # @return [:reg8, :reg16, :reg32, :reg64]
+      # @return [:reg8, :reg16, :reg32, :reg64, Symbol]
       attr_reader :type
 
       # The register name.
@@ -63,14 +63,18 @@ module Ronin
       # @param [Boolean] general
       #   Specifies whether the register is a General Purpose Register (GPR).
       #
-      def initialize(name, size: , number: 0, general: false)
+      # @param [Symbol, nil] type
+      #   Optional type to override the default `:reg8`, `:reg16`, `:reg32`, or
+      #   `:reg64` type.
+      #
+      def initialize(name, size: , number: 0, general: false, type: nil)
         @name = name
 
         @size    = size
         @number  = number
         @general = general
 
-        @type = :"reg#{size * 8}"
+        @type = type || :"reg#{size * 8}"
       end
 
       #

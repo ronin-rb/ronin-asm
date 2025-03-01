@@ -23,46 +23,58 @@ describe Ronin::ASM::Register do
         expect(subject.number).to eq(3)
       end
     end
-  end
 
-  describe "#type" do
-    context "when #size is 1" do
-      let(:size) { 1 }
+    context "when the type: keyword argument is not given" do
+      context "and when size: is 1" do
+        let(:size) { 1 }
 
-      subject { described_class.new(:eax, size: size) }
+        subject { described_class.new(:eax, size: size) }
 
-      it "must return :reg8" do
-        expect(subject.type).to eq(:reg8)
+        it "must return :reg8" do
+          expect(subject.type).to eq(:reg8)
+        end
+      end
+
+      context "and when size: is 2" do
+        let(:size) { 2 }
+
+        subject { described_class.new(:eax, size: size) }
+
+        it "must return :reg16" do
+          expect(subject.type).to eq(:reg16)
+        end
+      end
+
+      context "and when size: is 4" do
+        let(:size) { 4 }
+
+        subject { described_class.new(:eax, size: size) }
+
+        it "must return :reg32" do
+          expect(subject.type).to eq(:reg32)
+        end
+      end
+
+      context "and when size: is 8" do
+        let(:size) { 8 }
+
+        subject { described_class.new(:eax, size: size) }
+
+        it "must return :reg64" do
+          expect(subject.type).to eq(:reg64)
+        end
       end
     end
 
-    context "when #size is 2" do
-      let(:size) { 2 }
+    context "when the type: keyword argument is given" do
+      let(:type) { :foo }
 
-      subject { described_class.new(:eax, size: size) }
-
-      it "must return :reg16" do
-        expect(subject.type).to eq(:reg16)
+      subject do
+        described_class.new(name, number: number, size: size, type: type)
       end
-    end
 
-    context "when #size is 4" do
-      let(:size) { 4 }
-
-      subject { described_class.new(:eax, size: size) }
-
-      it "must return :reg32" do
-        expect(subject.type).to eq(:reg32)
-      end
-    end
-
-    context "when #size is 8" do
-      let(:size) { 8 }
-
-      subject { described_class.new(:eax, size: size) }
-
-      it "must return :reg64" do
-        expect(subject.type).to eq(:reg64)
+      it "must override the default `:reg` type" do
+        expect(subject.type).to eq(type)
       end
     end
   end
