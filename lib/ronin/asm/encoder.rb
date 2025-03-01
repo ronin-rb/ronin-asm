@@ -42,6 +42,30 @@ module Ronin
       end
 
       #
+      # Writes multiple instructions to the output stream and then calls
+      # {#finalize}.
+      #
+      # @param [Array<Instruction>, #each] instructions
+      #   The instructions to write.
+      #
+      # @return [Integer]
+      #   The number of bytes written.
+      #
+      # @see #write_instruction
+      # @see #finalize
+      #
+      def write_instructions(instructions)
+        count = 0
+
+        instructions.each do |instruction|
+          count += write_instruction(instruction)
+        end
+
+        finalize
+        return count
+      end
+
+      #
       # Encodes and writes the instruction to the output stream.
       #
       # @param [Instruction] instruction
@@ -102,6 +126,13 @@ module Ronin
       def write_byte(byte)
         @output.putc(byte)
         return 1
+      end
+
+      #
+      # Place holder method that is called after all instructions are written
+      # to the output stream.
+      #
+      def finalize
       end
 
     end
