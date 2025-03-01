@@ -174,6 +174,18 @@ module Ronin
         XMM13 = Register.new(:xmm13, size: 16, number: 13, type: :xmm)
         XMM14 = Register.new(:xmm14, size: 16, number: 14, type: :xmm)
         XMM15 = Register.new(:xmm15, size: 16, number: 15, type: :xmm)
+
+        #
+        # @group 256bit YMM Registers
+        #
+        YMM0  = Register.new(:ymm0, size: 32, number: 0, type: :ymm)
+        YMM1  = Register.new(:ymm1, size: 32, number: 1, type: :ymm)
+        YMM2  = Register.new(:ymm2, size: 32, number: 2, type: :ymm)
+        YMM3  = Register.new(:ymm3, size: 32, number: 3, type: :ymm)
+        YMM4  = Register.new(:ymm4, size: 32, number: 4, type: :ymm)
+        YMM5  = Register.new(:ymm5, size: 32, number: 5, type: :ymm)
+        YMM6  = Register.new(:ymm6, size: 32, number: 6, type: :ymm)
+        YMM7  = Register.new(:ymm7, size: 32, number: 7, type: :ymm)
       end
     end
   end
