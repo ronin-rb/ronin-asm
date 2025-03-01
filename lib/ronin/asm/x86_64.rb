@@ -320,6 +320,39 @@ module Ronin
       def xmm14 = Registers::XMM14
       def xmm15 = Registers::XMM15
 
+      def ymm0 = Registers::YMM0
+      def ymm1 = Registers::YMM1
+      def ymm2 = Registers::YMM2
+      def ymm3 = Registers::YMM3
+      def ymm4 = Registers::YMM4
+      def ymm5 = Registers::YMM5
+      def ymm6 = Registers::YMM6
+      def ymm7 = Registers::YMM7
+      def ymm8 = Registers::YMM8
+      def ymm9 = Registers::YMM9
+      def ymm10 = Registers::YMM10
+      def ymm11 = Registers::YMM11
+      def ymm12 = Registers::YMM12
+      def ymm13 = Registers::YMM13
+      def ymm14 = Registers::YMM14
+      def ymm15 = Registers::YMM15
+      def ymm16 = Registers::YMM16
+      def ymm17 = Registers::YMM17
+      def ymm18 = Registers::YMM18
+      def ymm19 = Registers::YMM19
+      def ymm20 = Registers::YMM20
+      def ymm21 = Registers::YMM21
+      def ymm22 = Registers::YMM22
+      def ymm23 = Registers::YMM23
+      def ymm24 = Registers::YMM24
+      def ymm25 = Registers::YMM25
+      def ymm26 = Registers::YMM26
+      def ymm27 = Registers::YMM27
+      def ymm28 = Registers::YMM28
+      def ymm29 = Registers::YMM29
+      def ymm30 = Registers::YMM30
+      def ymm31 = Registers::YMM31
+
       #
       # @group Internal Methods
       #
