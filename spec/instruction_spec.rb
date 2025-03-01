@@ -66,7 +66,7 @@ describe Ronin::ASM::Instruction do
     end
 
     context "when one of the operands does not define #width" do
-      subject { described_class.new(:mov, :label, register) }
+      subject { described_class.new(:mov, register, :label) }
 
       it "must ignore them" do
         expect(subject.width).to eq(register.width)
