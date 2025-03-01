@@ -47,6 +47,22 @@ module Ronin
       end
 
       #
+      # Creates a new encoder that will write to the end of the buffer.
+      #
+      # @param [String] buffer
+      #   The buffer to append to.
+      #
+      # @return [Encoder]
+      #   The new encoder object.
+      #
+      def self.buffer(buffer)
+        output = StringIO.new(buffer, encoding: Encoding::ASCII_8BIT)
+        output.seek(0, IO::SEEK_END)
+
+        return new(output)
+      end
+
+      #
       # Encodes and writes the instruction to the output stream.
       #
       # @param [Instruction] instruction
