@@ -14,6 +14,25 @@ describe Ronin::ASM::Encoder do
     end
   end
 
+  describe ".buffer" do
+    let(:buffer) { 'ABC'.b }
+
+    subject { described_class.buffer(buffer) }
+
+    it "must return a new Encoder" do
+      expect(subject).to be_kind_of(described_class)
+    end
+
+    it "must set #output to a StringIO pointing to the buffer" do
+      expect(subject.output).to be_kind_of(StringIO)
+      expect(subject.output.string).to be(buffer)
+    end
+
+    it "must also seek to the end of the buffer so that encoded instructions are appended to the end of the buffer" do
+      expect(subject.output.pos).to eq(buffer.size)
+    end
+  end
+
   describe "#write_instruction" do
     let(:instruction) { double('Instruction') }
     let(:bytes_written) { 4 }
