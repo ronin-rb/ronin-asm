@@ -28,7 +28,9 @@ module Ronin
       #
       # @since 1.0.0
       #
-      class MemoryOffset < Operand
+      class MemoryOffset
+
+        include Operand
 
         # The memory offset value.
         #
