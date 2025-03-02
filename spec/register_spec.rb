@@ -23,46 +23,46 @@ describe Ronin::ASM::Register do
         expect(subject.number).to eq(3)
       end
     end
-  end
 
-  describe "#type" do
-    context "when #width is 1" do
-      let(:width) { 1 }
+    context "when the type: keyword argument is not given" do
+      context "and when #width is 1" do
+        let(:width) { 1 }
 
-      subject { described_class.new(:eax, width: width) }
+        subject { described_class.new(:eax, width: width) }
 
-      it "must return :reg8" do
-        expect(subject.type).to eq(:reg8)
+        it "must return :reg8" do
+          expect(subject.type).to eq(:reg8)
+        end
       end
-    end
 
-    context "when #width is 2" do
-      let(:width) { 2 }
+      context "and when #width is 2" do
+        let(:width) { 2 }
 
-      subject { described_class.new(:eax, width: width) }
+        subject { described_class.new(:eax, width: width) }
 
-      it "must return :reg16" do
-        expect(subject.type).to eq(:reg16)
+        it "must return :reg16" do
+          expect(subject.type).to eq(:reg16)
+        end
       end
-    end
 
-    context "when #width is 4" do
-      let(:width) { 4 }
+      context "and when #width is 4" do
+        let(:width) { 4 }
 
-      subject { described_class.new(:eax, width: width) }
+        subject { described_class.new(:eax, width: width) }
 
-      it "must return :reg32" do
-        expect(subject.type).to eq(:reg32)
+        it "must return :reg32" do
+          expect(subject.type).to eq(:reg32)
+        end
       end
-    end
 
-    context "when #width is 8" do
-      let(:width) { 8 }
+      context "and when #width is 8" do
+        let(:width) { 8 }
 
-      subject { described_class.new(:eax, width: width) }
+        subject { described_class.new(:eax, width: width) }
 
-      it "must return :reg64" do
-        expect(subject.type).to eq(:reg64)
+        it "must return :reg64" do
+          expect(subject.type).to eq(:reg64)
+        end
       end
     end
   end
