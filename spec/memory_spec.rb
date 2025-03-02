@@ -71,6 +71,52 @@ describe Ronin::ASM::Memory do
     end
   end
 
+  describe ".[]" do
+    subject { described_class }
+
+    context "when given one argument" do
+      context "and it's already a #{described_class}" do
+        let(:memory) do
+          described_class.new(base: register, displacement: 42)
+        end
+        let(:arguments) { [memory] }
+
+        it "must return the #{described_class} object" do
+          expect(subject[*arguments]).to be(memory)
+        end
+      end
+
+      context "but it's a Register object" do
+        let(:arguments) { [register] }
+
+        it "must create a new #{described_class} object with the #base as the Register" do
+          new_memory = subject[*arguments]
+
+          expect(new_memory).to be_kind_of(described_class)
+          expect(new_memory.base).to eq(register)
+        end
+      end
+    end
+
+    context "when given more than one argument" do
+      let(:arguments) { [register, 42] }
+
+      it do
+        expect {
+          subject[*arguments]
+        }.to raise_error("memory operands must have one argument: #{arguments.inspect}")
+      end
+    end
+
+    context "when given no arguments" do
+      it do
+        expect {
+          subject[]
+        }.to raise_error("memory operands must have one argument: []")
+      end
+    end
+  end
+
   describe "#type" do
     context "when the #width is 1" do
       let(:width) { 1 }
