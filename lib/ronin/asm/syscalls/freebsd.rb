@@ -18,8 +18,6 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../config'
-
 module Ronin
   module ASM
     module Syscalls
