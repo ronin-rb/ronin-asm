@@ -56,14 +56,8 @@ module Ronin
       #
       def initialize(name,*operands, comment: nil)
         @name     = name.to_sym
-        @operands = operands.map do |value|
-          case value
-          when Integer, nil then Immediate.new(value)
-          else                   value
-          end
-        end
-
-        @comment = comment
+        @operands = operands
+        @comment  = comment
       end
 
       #

@@ -242,6 +242,38 @@ describe Ronin::ASM::Program do
     end
   end
 
+  describe "#coerce_operand" do
+    context "when given a Register operand" do
+      let(:value) { Ronin::ASM::X86::Registers::EAX }
+
+      it "must return the Register operand" do
+        expect(subject.coerce_operand(value)).to be(value)
+      end
+    end
+
+    context "when given an Integer operand" do
+      let(:value) { 0xff }
+
+      it "must wrap the operand to in a Ronin::ASM::Immediate" do
+        operand = subject.coerce_operand(value)
+
+        expect(operand).to be_kind_of(Ronin::ASM::Immediate)
+        expect(operand.value).to eq(value)
+      end
+    end
+
+    context "when given a nil operand" do
+      let(:value) { nil }
+
+      it "must wrap the operand to in a Ronin::ASM::Immediate" do
+        operand = subject.coerce_operand(value)
+
+        expect(operand).to be_kind_of(Ronin::ASM::Immediate)
+        expect(operand.value).to eq(0)
+      end
+    end
+  end
+
   describe "#instruction" do
     it "must return a new Instruction object" do
       expect(subject.instruction(:hlt)).to be_kind_of(Ronin::ASM::Instruction)
