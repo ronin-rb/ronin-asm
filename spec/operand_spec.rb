@@ -109,4 +109,12 @@ describe Ronin::ASM::Operand do
       expect(subject.mem64?).to be(false)
     end
   end
+
+  describe "#change_width" do
+    it do
+      expect {
+        subject.change_width(4)
+      }.to raise_error(NotImplementedError,"#{subject.class}#change_width was not defined")
+    end
+  end
 end
