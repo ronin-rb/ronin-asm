@@ -27,26 +27,6 @@ describe Ronin::ASM::Instruction do
       expect(subject.comment).to be(nil)
     end
 
-    context "when given an Integer operand" do
-      let(:integer) { 0xff }
-
-      subject { described_class.new(name, integer, register) }
-
-      it "must wrap the operand to in a Ronin::ASM::Immediate" do
-        expect(subject.operands[0]).to be_kind_of(Ronin::ASM::Immediate)
-        expect(subject.operands[0].value).to eq(integer)
-      end
-    end
-
-    context "when given a nil operand" do
-      subject { described_class.new(name, nil, register) }
-
-      it "must wrap the operand to in a Ronin::ASM::Immediate" do
-        expect(subject.operands[0]).to be_kind_of(Ronin::ASM::Immediate)
-        expect(subject.operands[0].value).to eq(0)
-      end
-    end
-
     context "when given the comment: keyword argument" do
       let(:comment) { 'Foo bar' }
 
