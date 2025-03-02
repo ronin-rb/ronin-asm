@@ -28,7 +28,9 @@ module Ronin
       #
       # @since 1.0.0
       #
-      class RelativeOffset < Operand
+      class RelativeOffset
+
+        include Operand
 
         # The relative offset value.
         #

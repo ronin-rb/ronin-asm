@@ -26,7 +26,9 @@ module Ronin
     #
     # Represents a Register.
     #
-    class Register < Operand
+    class Register
+
+      include Operand
 
       # The assembly class type.
       #
