@@ -144,6 +144,17 @@ module Ronin
       # @return [Boolean]
       #
       def mem64? = false
+
+      #
+      # Changes the width of the operand.
+      #
+      # @return [Operand]
+      #
+      # @abstract
+      #
+      def change_width(new_width)
+        raise(NotImplementedError,"#{self.class}##{__method__} was not defined")
+      end
     end
   end
 end
