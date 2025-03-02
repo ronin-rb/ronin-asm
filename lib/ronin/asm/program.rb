@@ -166,6 +166,8 @@ module Ronin
         @word_size = arch_module::WORD_SIZE
         @registers = arch_module::REGISTERS
 
+        @immediate_class = arch_module::Immediate
+
         extend arch_module
       end
 
@@ -273,7 +275,7 @@ module Ronin
       #
       def coerce_operand(value)
         case value
-        when Integer, nil then Immediate.new(value)
+        when Integer, nil then @immediate_class.new(value)
         else                   value
         end
       end
@@ -325,7 +327,7 @@ module Ronin
             width: 1
           )
         else
-          Immediate.new(operand, width: 1)
+          @immediate_class.new(operand, width: 1)
         end
       end
 
@@ -349,7 +351,7 @@ module Ronin
             width: 2
           )
         else
-          Immediate.new(operand, width: 2)
+          @immediate_class.new(operand, width: 2)
         end
       end
 
@@ -373,7 +375,7 @@ module Ronin
             width: 4
           )
         else
-          Immediate.new(operand, width: 4)
+          @immediate_class.new(operand, width: 4)
         end
       end
 
@@ -397,7 +399,7 @@ module Ronin
             width: 8
           )
         else
-          Immediate.new(operand, width: 8)
+          @immediate_class.new(operand, width: 8)
         end
       end
 
