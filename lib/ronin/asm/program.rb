@@ -259,6 +259,26 @@ module Ronin
       end
 
       #
+      # Coerces an operand value into an operand object.
+      #
+      # @param [Integer, Register, Memory, nil] value
+      #   The input operand value.
+      #
+      # @return [Immediate, Register, Memory]
+      #   The output operand object.
+      #
+      # @api private
+      #
+      # @since 1.0.0
+      #
+      def coerce_operand(value)
+        case value
+        when Integer, nil then Immediate.new(value)
+        else                   value
+        end
+      end
+
+      #
       # Adds a new instruction to the program.
       #
       # @param [String, Symbol] name
@@ -277,10 +297,12 @@ module Ronin
       #   The newly created instruction.
       #
       def instruction(name,*operands,**kwargs)
-        insn = Instruction.new(name,*operands,**kwargs)
+        operands.map!(&method(:coerce_operand))
 
-        @instructions << insn
-        return insn
+        instruction = Instruction.new(name,*operands,**kwargs)
+
+        @instructions << instruction
+        return instruction
       end
 
       #
