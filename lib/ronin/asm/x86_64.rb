@@ -294,6 +294,15 @@ module Ronin
       # The `ss` 16bit Stack Segment register.
       def ss = Registers::SS
 
+      def k0 = Registers::K0
+      def k1 = Registers::K1
+      def k2 = Registers::K2
+      def k3 = Registers::K3
+      def k4 = Registers::K4
+      def k5 = Registers::K5
+      def k6 = Registers::K6
+      def k7 = Registers::K7
+
       def mm0 = Registers::MM0
       def mm1 = Registers::MM1
       def mm2 = Registers::MM2
