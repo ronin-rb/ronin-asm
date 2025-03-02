@@ -211,6 +211,15 @@ module Ronin
       def ymm6 = Registers::YMM6
       def ymm7 = Registers::YMM7
 
+      def zmm0 = Registers::ZMM0
+      def zmm1 = Registers::ZMM1
+      def zmm2 = Registers::ZMM2
+      def zmm3 = Registers::ZMM3
+      def zmm4 = Registers::ZMM4
+      def zmm5 = Registers::ZMM5
+      def zmm6 = Registers::ZMM6
+      def zmm7 = Registers::ZMM7
+
       #
       # @group Type Methods
       #
