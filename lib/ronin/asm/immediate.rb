@@ -112,6 +112,19 @@ module Ronin
       end
 
       #
+      # Changes the width of the immediate operand.
+      #
+      # @param [Integer] new_width
+      #   The new width for the immediate operand.
+      #
+      # @return [Immediate]
+      #   A new immediate operand object with the new width.
+      #
+      def change_width(new_width)
+        self.class.new(@value, width: new_width)
+      end
+
+      #
       # Converts the operand to an Integer.
       #
       # @return [Integer]
