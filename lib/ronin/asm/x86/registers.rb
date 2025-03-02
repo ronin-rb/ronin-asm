@@ -186,6 +186,18 @@ module Ronin
         YMM5  = Register.new(:ymm5, width: 32, number: 5, type: :ymm)
         YMM6  = Register.new(:ymm6, width: 32, number: 6, type: :ymm)
         YMM7  = Register.new(:ymm7, width: 32, number: 7, type: :ymm)
+
+        #
+        # @group 512bit ZMM Registers
+        #
+        ZMM0  = Register.new(:zmm0, width: 64, number: 0, type: :zmm)
+        ZMM1  = Register.new(:zmm1, width: 64, number: 1, type: :zmm)
+        ZMM2  = Register.new(:zmm2, width: 64, number: 2, type: :zmm)
+        ZMM3  = Register.new(:zmm3, width: 64, number: 3, type: :zmm)
+        ZMM4  = Register.new(:zmm4, width: 64, number: 4, type: :zmm)
+        ZMM5  = Register.new(:zmm5, width: 64, number: 5, type: :zmm)
+        ZMM6  = Register.new(:zmm6, width: 64, number: 6, type: :zmm)
+        ZMM7  = Register.new(:zmm7, width: 64, number: 7, type: :zmm)
       end
     end
   end
