@@ -318,12 +318,7 @@ module Ronin
       #   The new operand value.
       #
       def byte(operand)
-        case operand
-        when Memory
-          operand.change_width(1)
-        else
-          @immediate_class.new(operand, width: 1)
-        end
+        coerce_operand(operand).change_width(1)
       end
 
       #
@@ -336,12 +331,7 @@ module Ronin
       #   The new operand value.
       #
       def word(operand)
-        case operand
-        when Memory
-          operand.change_width(2)
-        else
-          @immediate_class.new(operand, width: 2)
-        end
+        coerce_operand(operand).change_width(2)
       end
 
       #
@@ -354,12 +344,7 @@ module Ronin
       #   The new operand value.
       #
       def dword(operand)
-        case operand
-        when Memory
-          operand.change_width(4)
-        else
-          @immediate_class.new(operand, width: 4)
-        end
+        coerce_operand(operand).change_width(4)
       end
 
       #
@@ -372,12 +357,7 @@ module Ronin
       #   The new operand.
       #
       def qword(operand)
-        case operand
-        when Memory
-          operand.change_width(8)
-        else
-          @immediate_class.new(operand, width: 8)
-        end
+        coerce_operand(operand).change_width(8)
       end
 
       #
