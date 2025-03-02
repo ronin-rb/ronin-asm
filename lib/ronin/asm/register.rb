@@ -20,6 +20,7 @@
 
 require_relative 'operand'
 require_relative 'memory'
+require_relative 'exceptions'
 
 module Ronin
   module ASM
@@ -137,6 +138,16 @@ module Ronin
       #
       def general?
         @general
+      end
+
+      #
+      # Place holder method that attempts to change the width of the register.
+      #
+      # @raise [SemanticError]
+      #   Changing the width of a register is currently not supported.
+      #
+      def change_width(new_width)
+        raise(SemanticError,"cannot change the width of a register: #{self}")
       end
 
       #

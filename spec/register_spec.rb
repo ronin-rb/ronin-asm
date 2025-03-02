@@ -161,6 +161,14 @@ describe Ronin::ASM::Register do
     end
   end
 
+  describe "#change_width" do
+    it do
+      expect {
+        subject.change_width(2)
+      }.to raise_error(Ronin::ASM::SemanticError,"cannot change the width of a register: #{subject}")
+    end
+  end
+
   describe "#+" do
     context "when given an Ronin::ASM::Memory" do
       let(:operand) do
