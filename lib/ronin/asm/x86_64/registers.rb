@@ -212,6 +212,18 @@ module Ronin
         SS = Register.new(:ss, size: 2, number: 2)
 
         #
+        # @group 64bit K Opt Mask registers.
+        #
+        K0 = Register.new(:k0, size: 8, number: 0, type: :k)
+        K1 = Register.new(:k1, size: 8, number: 1, type: :k)
+        K2 = Register.new(:k2, size: 8, number: 2, type: :k)
+        K3 = Register.new(:k3, size: 8, number: 3, type: :k)
+        K4 = Register.new(:k4, size: 8, number: 4, type: :k)
+        K5 = Register.new(:k5, size: 8, number: 5, type: :k)
+        K6 = Register.new(:k6, size: 8, number: 6, type: :k)
+        K7 = Register.new(:k7, size: 8, number: 7, type: :k)
+
+        #
         # @group 64bit MMX Registers
         #
         MM0 = Register.new(:mmx0, size: 8, number: 0, type: :mm)
