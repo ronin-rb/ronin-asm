@@ -18,21 +18,18 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../x86/register'
-require_relative 'operand'
+require_relative '../operand'
 
 module Ronin
   module ASM
-    module X86_64
+    module X86
       #
-      # Base class for all x86-64 registers.
+      # Common x86 operand methods.
       #
       # @since 1.0.0
       #
-      class Register < X86::Register
-
-        include Operand
-
+      module Operand
+        include ASM::Operand
       end
     end
   end
