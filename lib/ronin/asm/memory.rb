@@ -169,6 +169,25 @@ module Ronin
       end
 
       #
+      # Changes the width of the memory operand.
+      #
+      # @param [1, 2, 4, 8] new_width
+      #   The new width for the memory operand.
+      #
+      # @return [Memory]
+      #   The new memory operand with the updated width.
+      #
+      def change_width(new_width)
+        self.class.new(
+          base: @base,
+          displacement: @displacement,
+          index: @index,
+          scale: @scale,
+          width: new_width
+        )
+      end
+
+      #
       # Adds to the displacement of the Memory Operand.
       #
       # @param [Integer] displacement

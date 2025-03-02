@@ -268,4 +268,20 @@ describe Ronin::ASM::Memory do
       end
     end
   end
+
+  describe "#change_width" do
+    let(:new_width) { 8 }
+
+    it "must return a new #{described_class} with the updated width" do
+      new_memory = subject.change_width(new_width)
+
+      expect(new_memory).to be_kind_of(described_class)
+      expect(new_memory).to_not be(subject)
+      expect(new_memory.base).to be(subject.base)
+      expect(new_memory.displacement).to be(subject.displacement)
+      expect(new_memory.index).to be(subject.index)
+      expect(new_memory.scale).to be(subject.scale)
+      expect(new_memory.width).to eq(new_width)
+    end
+  end
 end

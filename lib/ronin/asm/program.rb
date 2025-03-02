@@ -319,13 +319,7 @@ module Ronin
       def byte(operand)
         case operand
         when Memory
-          Memory.new(
-            base: operand.base,
-            displacement: operand.displacement,
-            index: operand.index,
-            scale: operand.scale,
-            width: 1
-          )
+          operand.change_width(1)
         else
           @immediate_class.new(operand, width: 1)
         end
@@ -343,13 +337,7 @@ module Ronin
       def word(operand)
         case operand
         when Memory
-          Memory.new(
-            base: operand.base,
-            displacement: operand.displacement,
-            index: operand.index,
-            scale: operand.scale,
-            width: 2
-          )
+          operand.change_width(2)
         else
           @immediate_class.new(operand, width: 2)
         end
@@ -367,13 +355,7 @@ module Ronin
       def dword(operand)
         case operand
         when Memory
-          Memory.new(
-            base: operand.base,
-            displacement: operand.displacement,
-            index: operand.index,
-            scale: operand.scale,
-            width: 4
-          )
+          operand.change_width(4)
         else
           @immediate_class.new(operand, width: 4)
         end
@@ -391,13 +373,7 @@ module Ronin
       def qword(operand)
         case operand
         when Memory
-          Memory.new(
-            base: operand.base,
-            displacement: operand.displacement,
-            index: operand.index,
-            scale: operand.scale,
-            width: 8
-          )
+          operand.change_width(8)
         else
           @immediate_class.new(operand, width: 8)
         end
