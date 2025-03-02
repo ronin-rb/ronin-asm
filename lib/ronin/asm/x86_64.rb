@@ -353,6 +353,39 @@ module Ronin
       def ymm30 = Registers::YMM30
       def ymm31 = Registers::YMM31
 
+      def zmm0 = Registers::ZMM0
+      def zmm1 = Registers::ZMM1
+      def zmm2 = Registers::ZMM2
+      def zmm3 = Registers::ZMM3
+      def zmm4 = Registers::ZMM4
+      def zmm5 = Registers::ZMM5
+      def zmm6 = Registers::ZMM6
+      def zmm7 = Registers::ZMM7
+      def zmm8 = Registers::ZMM8
+      def zmm9 = Registers::ZMM9
+      def zmm10 = Registers::ZMM10
+      def zmm11 = Registers::ZMM11
+      def zmm12 = Registers::ZMM12
+      def zmm13 = Registers::ZMM13
+      def zmm14 = Registers::ZMM14
+      def zmm15 = Registers::ZMM15
+      def zmm16 = Registers::ZMM16
+      def zmm17 = Registers::ZMM17
+      def zmm18 = Registers::ZMM18
+      def zmm19 = Registers::ZMM19
+      def zmm20 = Registers::ZMM20
+      def zmm21 = Registers::ZMM21
+      def zmm22 = Registers::ZMM22
+      def zmm23 = Registers::ZMM23
+      def zmm24 = Registers::ZMM24
+      def zmm25 = Registers::ZMM25
+      def zmm26 = Registers::ZMM26
+      def zmm27 = Registers::ZMM27
+      def zmm28 = Registers::ZMM28
+      def zmm29 = Registers::ZMM29
+      def zmm30 = Registers::ZMM30
+      def zmm31 = Registers::ZMM31
+
       #
       # @group Internal Methods
       #
