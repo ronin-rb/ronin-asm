@@ -2,10 +2,15 @@ require 'spec_helper'
 require 'ronin/asm/operand'
 
 describe Ronin::ASM::Operand do
-  class TestOperand < Ronin::ASM::Operand
+  class TestOperand
+    class Operand
+      include Ronin::ASM::Operand
+    end
   end
 
-  subject { TestOperand.new }
+  let(:test_class) { TestOperand::Operand }
+
+  subject { test_class.new }
 
   describe "#type" do
     it do

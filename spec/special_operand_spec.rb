@@ -2,9 +2,15 @@ require 'spec_helper'
 require 'ronin/asm/special_operand'
 
 describe Ronin::ASM::SpecialOperand do
-  let(:type) { :foo }
+  module SpecialOperandTests
+    class Operand < Ronin::ASM::SpecialOperand
+    end
+  end
 
-  subject { described_class.new(type) }
+  let(:test_class) { SpecialOperandTests::Operand }
+  let(:type)       { :foo }
+
+  subject { test_class.new(type) }
 
   describe "#initialize" do
     it "must set #type" do
