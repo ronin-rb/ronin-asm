@@ -27,7 +27,7 @@ module Ronin
     #
     # @since 1.0.0
     #
-    class Operand
+    module Operand
 
       #
       # The Assembly class type (ex: `reg32`).

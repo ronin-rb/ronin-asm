@@ -29,7 +29,9 @@ module Ronin
     #
     # @since 1.0.0
     #
-    class Immediate < Operand
+    class Immediate
+
+      include Operand
 
       # The assembly class type.
       #

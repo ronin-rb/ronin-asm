@@ -27,7 +27,9 @@ module Ronin
     #
     # @since 1.0.0
     #
-    class SpecialOperand < Operand
+    class SpecialOperand
+
+      include Operand
 
       # The type of the special operand.
       #

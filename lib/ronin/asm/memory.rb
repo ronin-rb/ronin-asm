@@ -30,7 +30,9 @@ module Ronin
     #
     # @since 1.0.0
     #
-    class Memory < Operand
+    class Memory
+
+      include Operand
 
       # The assembly class type.
       #
