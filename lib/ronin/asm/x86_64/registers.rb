@@ -278,6 +278,42 @@ module Ronin
         YMM29  = Register.new(:ymm29, width: 32, number: 29, type: :ymm)
         YMM30  = Register.new(:ymm30, width: 32, number: 30, type: :ymm)
         YMM31  = Register.new(:ymm31, width: 32, number: 31, type: :ymm)
+
+        #
+        # @group 512bit ZMM Registers
+        #
+        ZMM0  = Register.new(:zmm0, width: 64, number: 0, type: :zmm)
+        ZMM1  = Register.new(:zmm1, width: 64, number: 1, type: :zmm)
+        ZMM2  = Register.new(:zmm2, width: 64, number: 2, type: :zmm)
+        ZMM3  = Register.new(:zmm3, width: 64, number: 3, type: :zmm)
+        ZMM4  = Register.new(:zmm4, width: 64, number: 4, type: :zmm)
+        ZMM5  = Register.new(:zmm5, width: 64, number: 5, type: :zmm)
+        ZMM6  = Register.new(:zmm6, width: 64, number: 6, type: :zmm)
+        ZMM7  = Register.new(:zmm7, width: 64, number: 7, type: :zmm)
+        ZMM8  = Register.new(:zmm8, width: 64, number: 8, type: :zmm)
+        ZMM9  = Register.new(:zmm9, width: 64, number: 9, type: :zmm)
+        ZMM10  = Register.new(:zmm10, width: 64, number: 10, type: :zmm)
+        ZMM11  = Register.new(:zmm11, width: 64, number: 11, type: :zmm)
+        ZMM12  = Register.new(:zmm12, width: 64, number: 12, type: :zmm)
+        ZMM13  = Register.new(:zmm13, width: 64, number: 13, type: :zmm)
+        ZMM14  = Register.new(:zmm14, width: 64, number: 14, type: :zmm)
+        ZMM15  = Register.new(:zmm15, width: 64, number: 15, type: :zmm)
+        ZMM16  = Register.new(:zmm16, width: 64, number: 16, type: :zmm)
+        ZMM17  = Register.new(:zmm17, width: 64, number: 17, type: :zmm)
+        ZMM18  = Register.new(:zmm18, width: 64, number: 18, type: :zmm)
+        ZMM19  = Register.new(:zmm19, width: 64, number: 19, type: :zmm)
+        ZMM20  = Register.new(:zmm20, width: 64, number: 20, type: :zmm)
+        ZMM21  = Register.new(:zmm21, width: 64, number: 21, type: :zmm)
+        ZMM22  = Register.new(:zmm22, width: 64, number: 22, type: :zmm)
+        ZMM23  = Register.new(:zmm23, width: 64, number: 23, type: :zmm)
+        ZMM24  = Register.new(:zmm24, width: 64, number: 24, type: :zmm)
+        ZMM25  = Register.new(:zmm25, width: 64, number: 25, type: :zmm)
+        ZMM26  = Register.new(:zmm26, width: 64, number: 26, type: :zmm)
+        ZMM27  = Register.new(:zmm27, width: 64, number: 27, type: :zmm)
+        ZMM28  = Register.new(:zmm28, width: 64, number: 28, type: :zmm)
+        ZMM29  = Register.new(:zmm29, width: 64, number: 29, type: :zmm)
+        ZMM30  = Register.new(:zmm30, width: 64, number: 30, type: :zmm)
+        ZMM31  = Register.new(:zmm31, width: 64, number: 31, type: :zmm)
       end
     end
   end
