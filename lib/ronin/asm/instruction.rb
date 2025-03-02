@@ -34,7 +34,7 @@ module Ronin
 
       # The operands of the instruction.
       #
-      # @return [Array<Memory, Register, Symbol, Integer>]
+      # @return [Array<Memory, Register, Symbol, Immediate>]
       attr_reader :operands
 
       # Optional comment for the instruction.
@@ -48,7 +48,7 @@ module Ronin
       # @param [Symbol] name
       #   The instruction name.
       #
-      # @param [Array<Memory, Register, Symbol, Integer>] operands
+      # @param [Array<Memory, Register, Symbol, Immediate>] operands
       #   Operands for the instruction.
       #
       # @param [String, nil] comment
@@ -56,14 +56,8 @@ module Ronin
       #
       def initialize(name,*operands, comment: nil)
         @name     = name.to_sym
-        @operands = operands.map do |value|
-          case value
-          when Integer, nil then Immediate.new(value)
-          else                   value
-          end
-        end
-
-        @comment = comment
+        @operands = operands
+        @comment  = comment
       end
 
       #
