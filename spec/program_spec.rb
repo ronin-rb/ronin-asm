@@ -251,6 +251,55 @@ describe Ronin::ASM::Program do
       end
     end
 
+    context "when given an Array operand" do
+      context "and it has one argument" do
+        context "and it's already a Memory object" do
+          let(:register) { Ronin::ASM::X86::Registers::EAX }
+          let(:memory) do
+            Ronin::ASM::Memory.new(base: register, displacement: 42)
+          end
+          let(:array) { [memory] }
+
+          it "must return the #{described_class} object" do
+            expect(subject.coerce_operand(array)).to be(memory)
+          end
+        end
+
+        context "but it's a Register object" do
+          let(:register) { Ronin::ASM::X86::Registers::EAX }
+          let(:array)    { [register] }
+
+          it "must create a new Memory object with the #base as the Register" do
+            new_memory = subject.coerce_operand(array)
+
+            expect(new_memory).to be_kind_of(Ronin::ASM::Memory)
+            expect(new_memory.base).to eq(register)
+          end
+        end
+      end
+
+      context "when given more than one argument" do
+        let(:register) { Ronin::ASM::X86::Registers::EAX }
+        let(:array)    { [register, 42] }
+
+        it do
+          expect {
+            subject.coerce_operand(array)
+          }.to raise_error("memory operands must have one argument: #{array.inspect}")
+        end
+      end
+
+      context "when given no arguments" do
+        let(:array) { [] }
+
+        it do
+          expect {
+            subject.coerce_operand(array)
+          }.to raise_error("memory operands must have one argument: []")
+        end
+      end
+    end
+
     context "when given an Integer operand" do
       let(:value) { 0xff }
 
