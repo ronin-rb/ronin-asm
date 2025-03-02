@@ -144,7 +144,6 @@ module Ronin
       # @return [Boolean]
       #
       def mem64? = false
-
     end
   end
 end

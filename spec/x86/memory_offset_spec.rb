@@ -6,6 +6,10 @@ describe Ronin::ASM::X86::MemoryOffset do
 
   subject { described_class.new(value) }
 
+  it "must also include Ronin::ASM::X86::Operand" do
+    expect(described_class).to include(Ronin::ASM::X86::Operand)
+  end
+
   describe "#initialize" do
     it "must set #value" do
       expect(subject.value).to eq(value)

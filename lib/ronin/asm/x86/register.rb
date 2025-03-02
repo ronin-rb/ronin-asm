@@ -19,6 +19,7 @@
 #
 
 require_relative '../register'
+require_relative 'operand'
 
 module Ronin
   module ASM
@@ -29,6 +30,8 @@ module Ronin
       # @since 1.0.0
       #
       class Register < ASM::Register
+
+        include Operand
 
         #
         # Initializes the x86 register.
