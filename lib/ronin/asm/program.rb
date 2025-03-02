@@ -276,6 +276,7 @@ module Ronin
       def coerce_operand(value)
         case value
         when Integer, nil then @immediate_class.new(value)
+        when Array        then Memory[*value]
         else                   value
         end
       end
