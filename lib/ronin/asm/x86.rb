@@ -18,6 +18,7 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'x86/immediate'
 require_relative 'x86/registers'
 require_relative 'x86/relative_offset'
 require_relative 'x86/memory_offset'
