@@ -6,6 +6,10 @@ describe Ronin::ASM::X86::Register do
     expect(described_class).to be < Ronin::ASM::Register
   end
 
+  it "must also include Ronin::ASM::X86::Operand" do
+    expect(described_class).to include(Ronin::ASM::X86::Operand)
+  end
+
   describe "#sp?" do
     context "when initialized with `sp: true`" do
       subject { described_class.new(:esp, width: 4, sp: true) }
