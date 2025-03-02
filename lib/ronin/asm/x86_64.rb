@@ -18,6 +18,7 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'x86_64/immediate'
 require_relative 'x86_64/registers'
 
 module Ronin

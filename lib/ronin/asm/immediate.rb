@@ -33,11 +33,6 @@ module Ronin
 
       include Operand
 
-      # The assembly class type.
-      #
-      # @return [:imm8, :imm16, :imm32, :imm64]
-      attr_reader :type
-
       # The immediate operand's value.
       #
       # @return [Integer]
@@ -47,6 +42,11 @@ module Ronin
       #
       # @return [1, 2, 4, 8]
       attr_reader :width
+
+      # The x86 assembly class type.
+      #
+      # @return [:imm8, :imm16, :imm32, :imm64]
+      attr_reader :type
 
       #
       # Initializes a new Immediate Operand.
@@ -64,7 +64,8 @@ module Ronin
                           else
                             (@value.bit_length / 8.0).ceil
                           end
-        @type  = :"imm#{@width * 8}"
+
+        @type = :"imm#{@width * 8}"
       end
 
       #
