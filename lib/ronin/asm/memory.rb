@@ -116,6 +116,35 @@ module Ronin
       end
 
       #
+      # Coerces an Array of arguments into a Memory object.
+      #
+      # @param [Array] arguments
+      #   The Array arguments to convert.
+      #
+      # @return [Memory]
+      #   The converted memory object.
+      #
+      # @raise [ArgumentError]
+      #   Insufficient number of arguments given or wrong type of arguments.
+      #
+      def self.[](*arguments)
+        if arguments.length == 1
+          case arguments[0]
+          when self
+            # pass through the memory object
+            arguments[0]
+          when Register, Integer
+            # wrap the register or memory address object in a memory object
+            new(base: arguments[0])
+          else
+            raise(ArgumentError,"cannot convert object type to memory: #{arguments.inspect}")
+          end
+        else
+          raise(ArgumentError,"memory operands must have one argument: #{arguments.inspect}")
+        end
+      end
+
+      #
       # Specifies that the operand is a memory operand.
       #
       # @return [true]
