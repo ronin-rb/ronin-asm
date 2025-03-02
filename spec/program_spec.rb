@@ -254,22 +254,52 @@ describe Ronin::ASM::Program do
     context "when given an Integer operand" do
       let(:value) { 0xff }
 
-      it "must wrap the operand to in a Ronin::ASM::Immediate" do
-        operand = subject.coerce_operand(value)
+      context "and the program was initialized with `arch: :x86`" do
+        subject { described_class.new(arch: :x86) }
 
-        expect(operand).to be_kind_of(Ronin::ASM::Immediate)
-        expect(operand.value).to eq(value)
+        it "must wrap the operand to in a Ronin::ASM::X86::Immediate" do
+          operand = subject.coerce_operand(value)
+
+          expect(operand).to be_a(Ronin::ASM::X86::Immediate)
+          expect(operand.value).to eq(value)
+        end
+      end
+
+      context "and the program was initialized with `arch: :x86_64`" do
+        subject { described_class.new(arch: :x86_64) }
+
+        it "must wrap the operand to in a Ronin::ASM::X86_64::Immediate" do
+          operand = subject.coerce_operand(value)
+
+          expect(operand).to be_a(Ronin::ASM::X86_64::Immediate)
+          expect(operand.value).to eq(value)
+        end
       end
     end
 
     context "when given a nil operand" do
       let(:value) { nil }
 
-      it "must wrap the operand to in a Ronin::ASM::Immediate" do
-        operand = subject.coerce_operand(value)
+      context "and the program was initialized with `arch: :x86`" do
+        subject { described_class.new(arch: :x86) }
 
-        expect(operand).to be_kind_of(Ronin::ASM::Immediate)
-        expect(operand.value).to eq(0)
+        it "must wrap the operand to in a Ronin::ASM::X86::Immediate" do
+          operand = subject.coerce_operand(value)
+
+          expect(operand).to be_a(Ronin::ASM::X86::Immediate)
+          expect(operand.value).to eq(0)
+        end
+      end
+
+      context "and the program was initialized with `arch: :x86_64`" do
+        subject { described_class.new(arch: :x86_64) }
+
+        it "must wrap the operand to in a Ronin::ASM::X86_64::Immediate" do
+          operand = subject.coerce_operand(value)
+
+          expect(operand).to be_a(Ronin::ASM::X86_64::Immediate)
+          expect(operand.value).to eq(0)
+        end
       end
     end
   end
@@ -297,12 +327,30 @@ describe Ronin::ASM::Program do
   end
 
   describe "#byte" do
-    it "must return a ImmedateOperand" do
-      expect(subject.byte(1)).to be_kind_of(Ronin::ASM::Immediate)
-    end
+    context "when given an Integer" do
+      context "and the program was initialized with `arch: :x86`" do
+        subject { described_class.new(arch: :x86) }
 
-    it "must have width of 1" do
-      expect(subject.byte(1).width).to eq(1)
+        it "must return a Ronin::ASM::X86::Immediate" do
+          expect(subject.byte(1)).to be_a(Ronin::ASM::X86::Immediate)
+        end
+
+        it "must have width of 1" do
+          expect(subject.byte(1).width).to eq(1)
+        end
+      end
+
+      context "and the program was initialized with `arch: :x86_64`" do
+        subject { described_class.new(arch: :x86_64) }
+
+        it "must return a Ronin::ASM::X86::Immediate" do
+          expect(subject.byte(1)).to be_a(Ronin::ASM::X86_64::Immediate)
+        end
+
+        it "must have width of 1" do
+          expect(subject.byte(1).width).to eq(1)
+        end
+      end
     end
 
     context "when given a Memory object" do
@@ -322,12 +370,30 @@ describe Ronin::ASM::Program do
   end
 
   describe "#word" do
-    it "must return a Ronin::ASM::Immediate" do
-      expect(subject.word(1)).to be_kind_of(Ronin::ASM::Immediate)
-    end
+    context "when given an Integer" do
+      context "and the program was initialized with `arch: :x86`" do
+        subject { described_class.new(arch: :x86) }
 
-    it "must have width of 2" do
-      expect(subject.word(1).width).to eq(2)
+        it "must return a Ronin::ASM::X86::Immediate" do
+          expect(subject.word(1)).to be_a(Ronin::ASM::X86::Immediate)
+        end
+
+        it "must have width of 2" do
+          expect(subject.word(1).width).to eq(2)
+        end
+      end
+
+      context "and the program was initialized with `arch: :x86_64`" do
+        subject { described_class.new(arch: :x86_64) }
+
+        it "must return a Ronin::ASM::X86_64::Immediate" do
+          expect(subject.word(1)).to be_a(Ronin::ASM::X86_64::Immediate)
+        end
+
+        it "must have width of 2" do
+          expect(subject.word(1).width).to eq(2)
+        end
+      end
     end
 
     context "when given a Memory object" do
@@ -347,12 +413,30 @@ describe Ronin::ASM::Program do
   end
 
   describe "#dword" do
-    it "must return a Ronin::ASM::Immediate" do
-      expect(subject.dword(1)).to be_kind_of(Ronin::ASM::Immediate)
-    end
+    context "when given an Integer" do
+      context "and the program was initialized with `arch: :x86`" do
+        subject { described_class.new(arch: :x86) }
 
-    it "must have width of 4" do
-      expect(subject.dword(1).width).to eq(4)
+        it "must return a Ronin::ASM::X86::Immediate" do
+          expect(subject.dword(1)).to be_a(Ronin::ASM::X86::Immediate)
+        end
+
+        it "must have width of 4" do
+          expect(subject.dword(1).width).to eq(4)
+        end
+      end
+
+      context "and the program was initialized with `arch: :x86_64`" do
+        subject { described_class.new(arch: :x86_64) }
+
+        it "must return a Ronin::ASM::X86_64::Immediate" do
+          expect(subject.dword(1)).to be_a(Ronin::ASM::X86_64::Immediate)
+        end
+
+        it "must have width of 4" do
+          expect(subject.dword(1).width).to eq(4)
+        end
+      end
     end
 
     context "when given a Memory object" do
@@ -372,12 +456,30 @@ describe Ronin::ASM::Program do
   end
 
   describe "#qword" do
-    it "must return a Ronin::ASM::Immediate" do
-      expect(subject.qword(1)).to be_kind_of(Ronin::ASM::Immediate)
-    end
+    context "when given an Integer" do
+      context "and the program was initialized with `arch: :x86`" do
+        subject { described_class.new(arch: :x86) }
 
-    it "must have width of 8" do
-      expect(subject.qword(1).width).to eq(8)
+        it "must return a Ronin::ASM::X86::Immediate" do
+          expect(subject.qword(1)).to be_kind_of(Ronin::ASM::X86::Immediate)
+        end
+
+        it "must have width of 8" do
+          expect(subject.qword(1).width).to eq(8)
+        end
+      end
+
+      context "and the program was initialized with `arch: :x86_64`" do
+        subject { described_class.new(arch: :x86_64) }
+
+        it "must return a Ronin::ASM::X86_64::Immediate" do
+          expect(subject.word(1)).to be_a(Ronin::ASM::X86_64::Immediate)
+        end
+
+        it "must have width of 2" do
+          expect(subject.word(1).width).to eq(2)
+        end
+      end
     end
 
     context "when given a Memory object" do
