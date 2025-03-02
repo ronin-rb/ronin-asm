@@ -212,6 +212,19 @@ describe Ronin::ASM::Immediate do
     end
   end
 
+  describe "#change_width" do
+    let(:new_width) { 8 }
+
+    it "must return a new #{described_class} with the updated width" do
+      new_memory = subject.change_width(new_width)
+
+      expect(new_memory).to be_kind_of(described_class)
+      expect(new_memory).to_not be(subject)
+      expect(new_memory.value).to be(subject.value)
+      expect(new_memory.width).to eq(new_width)
+    end
+  end
+
   describe "#to_s" do
     it "must return the String form of #value" do
       expect(subject.to_s).to eq(value.to_s)
