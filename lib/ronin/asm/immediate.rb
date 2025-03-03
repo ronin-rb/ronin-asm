@@ -38,10 +38,10 @@ module Ronin
       # @return [Integer]
       attr_reader :value
 
-      # The width of the immediate operand.
+      # The size of the immediate operand.
       #
       # @return [1, 2, 4, 8]
-      attr_reader :width
+      attr_reader :size
 
       # The x86 assembly class type.
       #
@@ -54,18 +54,18 @@ module Ronin
       # @param [Integer, nil] value
       #   The value.
       #
-      # @param [nil, 1, 2, 4, 8] width
+      # @param [nil, 1, 2, 4, 8] size
       #   The size in bytes of the value.
       #
-      def initialize(value, width: nil)
+      def initialize(value, size: nil)
         @value = value.to_i
-        @width = width || if @value == 0
-                            1
-                          else
-                            (@value.bit_length / 8.0).ceil
-                          end
+        @size  = size || if @value == 0
+                           1
+                         else
+                           (@value.bit_length / 8.0).ceil
+                         end
 
-        @type = :"imm#{@width * 8}"
+        @type = :"imm#{@size * 8}"
       end
 
       #
@@ -81,7 +81,7 @@ module Ronin
       # @return [Boolean]
       #
       def imm8?
-        @width == 1
+        @size == 1
       end
 
       #
@@ -90,7 +90,7 @@ module Ronin
       # @return [Boolean]
       #
       def imm16?
-        @width == 2
+        @size == 2
       end
 
       #
@@ -99,7 +99,7 @@ module Ronin
       # @return [Boolean]
       #
       def imm32?
-        @width == 4
+        @size == 4
       end
 
       #
@@ -108,20 +108,20 @@ module Ronin
       # @return [Boolean]
       #
       def imm64?
-        @width == 8
+        @size == 8
       end
 
       #
-      # Changes the width of the immediate operand.
+      # Changes the size of the immediate operand.
       #
-      # @param [Integer] new_width
-      #   The new width for the immediate operand.
+      # @param [Integer] new_size
+      #   The new size for the immediate operand.
       #
       # @return [Immediate]
-      #   A new immediate operand object with the new width.
+      #   A new immediate operand object with the new size.
       #
-      def change_width(new_width)
-        self.class.new(@value, width: new_width)
+      def change_size(new_size)
+        self.class.new(@value, size: new_size)
       end
 
       #

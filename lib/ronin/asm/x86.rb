@@ -223,7 +223,7 @@ module Ronin
       # @return [RelativeOffset]
       # @since 1.0.0
       #
-      def rel8(value) = RelativeOffset.new(value, width: 1)
+      def rel8(value) = RelativeOffset.new(value, size: 1)
 
       #
       # Explicitly creates an 32bit relative offset.
@@ -232,7 +232,7 @@ module Ronin
       # @return [RelativeOffset]
       # @since 1.0.0
       #
-      def rel32(value) = RelativeOffset.new(value, width: 4)
+      def rel32(value) = RelativeOffset.new(value, size: 4)
 
       #
       # Explicitly creates an 32bit memory offset.
@@ -241,7 +241,7 @@ module Ronin
       # @return [MemoryOffset]
       # @since 1.0.0
       #
-      def moffset32(value) = MemoryOffset.new(value, width: 4)
+      def moffset32(value) = MemoryOffset.new(value, size: 4)
 
       #
       # Explicitly creates an 64bit memory offset.
@@ -250,7 +250,7 @@ module Ronin
       # @return [MemoryOffset]
       # @since 1.0.0
       #
-      def moffset64(value) = MemoryOffset.new(value, width: 8)
+      def moffset64(value) = MemoryOffset.new(value, size: 8)
 
       #
       # @group Operand Decorator Methods

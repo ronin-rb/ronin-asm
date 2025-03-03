@@ -11,10 +11,10 @@ describe Ronin::ASM::X86::Instruction do
   end
 
   let(:register) do
-    Ronin::ASM::X86::Register.new(:eax, width: 4)
+    Ronin::ASM::X86::Register.new(:eax, size: 4)
   end
   let(:immediate) do
-    Ronin::ASM::X86::Immediate.new(0xff, width: 1)
+    Ronin::ASM::X86::Immediate.new(0xff, size: 1)
   end
 
   let(:name)     { :mov }
