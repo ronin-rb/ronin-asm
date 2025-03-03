@@ -333,7 +333,7 @@ module Ronin
       #   The new operand value.
       #
       def byte(operand)
-        coerce_operand(operand).change_width(1)
+        coerce_operand(operand).change_size(1)
       end
 
       #
@@ -346,7 +346,7 @@ module Ronin
       #   The new operand value.
       #
       def word(operand)
-        coerce_operand(operand).change_width(2)
+        coerce_operand(operand).change_size(2)
       end
 
       #
@@ -359,7 +359,7 @@ module Ronin
       #   The new operand value.
       #
       def dword(operand)
-        coerce_operand(operand).change_width(4)
+        coerce_operand(operand).change_size(4)
       end
 
       #
@@ -372,7 +372,7 @@ module Ronin
       #   The new operand.
       #
       def qword(operand)
-        coerce_operand(operand).change_width(8)
+        coerce_operand(operand).change_size(8)
       end
 
       #

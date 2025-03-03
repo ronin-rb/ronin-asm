@@ -447,8 +447,8 @@ describe Ronin::ASM::Program do
           expect(subject.byte(1)).to be_a(Ronin::ASM::X86::Immediate)
         end
 
-        it "must have width of 1" do
-          expect(subject.byte(1).width).to eq(1)
+        it "must have size of 1" do
+          expect(subject.byte(1).size).to eq(1)
         end
       end
 
@@ -459,8 +459,8 @@ describe Ronin::ASM::Program do
           expect(subject.byte(1)).to be_a(Ronin::ASM::X86_64::Immediate)
         end
 
-        it "must have width of 1" do
-          expect(subject.byte(1).width).to eq(1)
+        it "must have size of 1" do
+          expect(subject.byte(1).size).to eq(1)
         end
       end
     end
@@ -470,7 +470,7 @@ describe Ronin::ASM::Program do
         subject { described_class.new(arch: :x86) }
 
         let(:register) do
-          Ronin::ASM::X86::Register.new(:eax, width: 4, type: :reg32)
+          Ronin::ASM::X86::Register.new(:eax, size: 4, type: :reg32)
         end
         let(:memory) do
           Ronin::ASM::X86::Memory.new(base: register)
@@ -483,8 +483,8 @@ describe Ronin::ASM::Program do
           expect(new_memory).to_not be(memory)
         end
 
-        it "must have a width of 1" do
-          expect(subject.byte(memory).width).to eq(1)
+        it "must have a size of 1" do
+          expect(subject.byte(memory).size).to eq(1)
         end
       end
 
@@ -492,7 +492,7 @@ describe Ronin::ASM::Program do
         subject { described_class.new(arch: :x86_64) }
 
         let(:register) do
-          Ronin::ASM::X86_64::Register.new(:eax, width: 4, type: :reg32)
+          Ronin::ASM::X86_64::Register.new(:eax, size: 4, type: :reg32)
         end
         let(:memory) do
           Ronin::ASM::X86_64::Memory.new(base: register)
@@ -505,8 +505,8 @@ describe Ronin::ASM::Program do
           expect(new_memory).to_not be(memory)
         end
 
-        it "must have a width of 1" do
-          expect(subject.byte(memory).width).to eq(1)
+        it "must have a size of 1" do
+          expect(subject.byte(memory).size).to eq(1)
         end
       end
     end
@@ -521,8 +521,8 @@ describe Ronin::ASM::Program do
           expect(subject.word(1)).to be_a(Ronin::ASM::X86::Immediate)
         end
 
-        it "must have width of 2" do
-          expect(subject.word(1).width).to eq(2)
+        it "must have size of 2" do
+          expect(subject.word(1).size).to eq(2)
         end
       end
 
@@ -533,8 +533,8 @@ describe Ronin::ASM::Program do
           expect(subject.word(1)).to be_a(Ronin::ASM::X86_64::Immediate)
         end
 
-        it "must have width of 2" do
-          expect(subject.word(1).width).to eq(2)
+        it "must have size of 2" do
+          expect(subject.word(1).size).to eq(2)
         end
       end
     end
@@ -544,7 +544,7 @@ describe Ronin::ASM::Program do
         subject { described_class.new(arch: :x86) }
 
         let(:register) do
-          Ronin::ASM::X86::Register.new(:eax, width: 4, type: :reg32)
+          Ronin::ASM::X86::Register.new(:eax, size: 4, type: :reg32)
         end
         let(:memory) do
           Ronin::ASM::X86::Memory.new(base: register)
@@ -557,8 +557,8 @@ describe Ronin::ASM::Program do
           expect(new_memory).to_not be(memory)
         end
 
-        it "must have a width of 2" do
-          expect(subject.word(memory).width).to eq(2)
+        it "must have a size of 2" do
+          expect(subject.word(memory).size).to eq(2)
         end
       end
 
@@ -566,7 +566,7 @@ describe Ronin::ASM::Program do
         subject { described_class.new(arch: :x86_64) }
 
         let(:register) do
-          Ronin::ASM::X86_64::Register.new(:eax, width: 4, type: :reg32)
+          Ronin::ASM::X86_64::Register.new(:eax, size: 4, type: :reg32)
         end
         let(:memory) do
           Ronin::ASM::X86_64::Memory.new(base: register)
@@ -579,8 +579,8 @@ describe Ronin::ASM::Program do
           expect(new_memory).to_not be(memory)
         end
 
-        it "must have a width of 2" do
-          expect(subject.word(memory).width).to eq(2)
+        it "must have a size of 2" do
+          expect(subject.word(memory).size).to eq(2)
         end
       end
     end
@@ -595,8 +595,8 @@ describe Ronin::ASM::Program do
           expect(subject.dword(1)).to be_a(Ronin::ASM::X86::Immediate)
         end
 
-        it "must have width of 4" do
-          expect(subject.dword(1).width).to eq(4)
+        it "must have size of 4" do
+          expect(subject.dword(1).size).to eq(4)
         end
       end
 
@@ -607,8 +607,8 @@ describe Ronin::ASM::Program do
           expect(subject.dword(1)).to be_a(Ronin::ASM::X86_64::Immediate)
         end
 
-        it "must have width of 4" do
-          expect(subject.dword(1).width).to eq(4)
+        it "must have size of 4" do
+          expect(subject.dword(1).size).to eq(4)
         end
       end
     end
@@ -618,7 +618,7 @@ describe Ronin::ASM::Program do
         subject { described_class.new(arch: :x86) }
 
         let(:register) do
-          Ronin::ASM::X86::Register.new(:eax, width: 4, type: :reg32)
+          Ronin::ASM::X86::Register.new(:eax, size: 4, type: :reg32)
         end
         let(:memory) do
           Ronin::ASM::X86::Memory.new(base: register)
@@ -631,8 +631,8 @@ describe Ronin::ASM::Program do
           expect(new_memory).to_not be(memory)
         end
 
-        it "must have a width of 4" do
-          expect(subject.dword(memory).width).to eq(4)
+        it "must have a size of 4" do
+          expect(subject.dword(memory).size).to eq(4)
         end
       end
 
@@ -640,7 +640,7 @@ describe Ronin::ASM::Program do
         subject { described_class.new(arch: :x86_64) }
 
         let(:register) do
-          Ronin::ASM::X86_64::Register.new(:eax, width: 4, type: :reg32)
+          Ronin::ASM::X86_64::Register.new(:eax, size: 4, type: :reg32)
         end
         let(:memory) do
           Ronin::ASM::X86_64::Memory.new(base: register)
@@ -653,8 +653,8 @@ describe Ronin::ASM::Program do
           expect(new_memory).to_not be(memory)
         end
 
-        it "must have a width of 4" do
-          expect(subject.dword(memory).width).to eq(4)
+        it "must have a size of 4" do
+          expect(subject.dword(memory).size).to eq(4)
         end
       end
     end
@@ -669,8 +669,8 @@ describe Ronin::ASM::Program do
           expect(subject.qword(1)).to be_kind_of(Ronin::ASM::X86::Immediate)
         end
 
-        it "must have width of 8" do
-          expect(subject.qword(1).width).to eq(8)
+        it "must have size of 8" do
+          expect(subject.qword(1).size).to eq(8)
         end
       end
 
@@ -681,8 +681,8 @@ describe Ronin::ASM::Program do
           expect(subject.word(1)).to be_a(Ronin::ASM::X86_64::Immediate)
         end
 
-        it "must have width of 2" do
-          expect(subject.word(1).width).to eq(2)
+        it "must have size of 2" do
+          expect(subject.word(1).size).to eq(2)
         end
       end
     end
@@ -692,7 +692,7 @@ describe Ronin::ASM::Program do
         subject { described_class.new(arch: :x86) }
 
         let(:register) do
-          Ronin::ASM::X86::Register.new(:eax, width: 4, type: :reg32)
+          Ronin::ASM::X86::Register.new(:eax, size: 4, type: :reg32)
         end
         let(:memory) do
           Ronin::ASM::X86::Memory.new(base: register)
@@ -705,8 +705,8 @@ describe Ronin::ASM::Program do
           expect(new_memory).to_not be(memory)
         end
 
-        it "must have a width of 8" do
-          expect(subject.qword(memory).width).to eq(8)
+        it "must have a size of 8" do
+          expect(subject.qword(memory).size).to eq(8)
         end
       end
 
@@ -714,7 +714,7 @@ describe Ronin::ASM::Program do
         subject { described_class.new(arch: :x86_64) }
 
         let(:register) do
-          Ronin::ASM::X86_64::Register.new(:eax, width: 4, type: :reg32)
+          Ronin::ASM::X86_64::Register.new(:eax, size: 4, type: :reg32)
         end
         let(:memory) do
           Ronin::ASM::X86_64::Memory.new(base: register)
@@ -727,8 +727,8 @@ describe Ronin::ASM::Program do
           expect(new_memory).to_not be(memory)
         end
 
-        it "must have a width of 8" do
-          expect(subject.qword(memory).width).to eq(8)
+        it "must have a size of 8" do
+          expect(subject.qword(memory).size).to eq(8)
         end
       end
     end

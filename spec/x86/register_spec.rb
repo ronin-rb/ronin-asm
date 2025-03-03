@@ -4,10 +4,10 @@ require 'ronin/asm/x86/register'
 describe Ronin::ASM::X86::Register do
   let(:name)     { :eax }
   let(:number)   { 0 }
-  let(:width)    { 4 }
+  let(:size)     { 4 }
   let(:type)     { :reg32 }
   let(:register) do
-    described_class.new(name, number: number, width: width, type: type)
+    described_class.new(name, number: number, size: size, type: type)
   end
 
   subject { register }
@@ -22,40 +22,40 @@ describe Ronin::ASM::X86::Register do
 
   describe "#initialize" do
     context "when the type: keyword argument is not given" do
-      context "and when #width is 1" do
-        let(:width) { 1 }
+      context "and when #size is 1" do
+        let(:size) { 1 }
 
-        subject { described_class.new(:eax, width: width) }
+        subject { described_class.new(:eax, size: size) }
 
         it "must return :reg8" do
           expect(subject.type).to eq(:reg8)
         end
       end
 
-      context "and when #width is 2" do
-        let(:width) { 2 }
+      context "and when #size is 2" do
+        let(:size) { 2 }
 
-        subject { described_class.new(:eax, width: width) }
+        subject { described_class.new(:eax, size: size) }
 
         it "must return :reg16" do
           expect(subject.type).to eq(:reg16)
         end
       end
 
-      context "and when #width is 4" do
-        let(:width) { 4 }
+      context "and when #size is 4" do
+        let(:size) { 4 }
 
-        subject { described_class.new(:eax, width: width) }
+        subject { described_class.new(:eax, size: size) }
 
         it "must return :reg32" do
           expect(subject.type).to eq(:reg32)
         end
       end
 
-      context "and when #width is 8" do
-        let(:width) { 8 }
+      context "and when #size is 8" do
+        let(:size) { 8 }
 
-        subject { described_class.new(:eax, width: width) }
+        subject { described_class.new(:eax, size: size) }
 
         it "must return :reg64" do
           expect(subject.type).to eq(:reg64)
@@ -67,7 +67,7 @@ describe Ronin::ASM::X86::Register do
       let(:type) { :xmm }
 
       subject do
-        described_class.new(:xmm0, number: 0, width: 16, type: type)
+        described_class.new(:xmm0, number: 0, size: 16, type: type)
       end
 
       it "must override the default `:reg` type" do
@@ -78,7 +78,7 @@ describe Ronin::ASM::X86::Register do
 
   describe "#sp?" do
     context "when initialized with `sp: true`" do
-      subject { described_class.new(:esp, width: 4, sp: true) }
+      subject { described_class.new(:esp, size: 4, sp: true) }
 
       it "must return true" do
         expect(subject.sp?).to be(true)
@@ -86,7 +86,7 @@ describe Ronin::ASM::X86::Register do
     end
 
     context "when not initialized with `sp: true`" do
-      subject { described_class.new(:eax, width: 4) }
+      subject { described_class.new(:eax, size: 4) }
 
       it "must return false" do
         expect(subject.sp?).to be(false)
@@ -96,7 +96,7 @@ describe Ronin::ASM::X86::Register do
 
   describe "#bp?" do
     context "when initialized with `bp: true`" do
-      subject { described_class.new(:ebp, width: 4, bp: true) }
+      subject { described_class.new(:ebp, size: 4, bp: true) }
 
       it "must return true" do
         expect(subject.bp?).to be(true)
@@ -104,7 +104,7 @@ describe Ronin::ASM::X86::Register do
     end
 
     context "when not initialized with `bp: true`" do
-      subject { described_class.new(:eax, width: 4) }
+      subject { described_class.new(:eax, size: 4) }
 
       it "must return false" do
         expect(subject.bp?).to be(false)
