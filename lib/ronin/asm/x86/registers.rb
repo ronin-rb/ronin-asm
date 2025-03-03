@@ -154,6 +154,26 @@ module Ronin
         MM5 = Register.new(:mm5, width: 8, number: 5, type: :mm)
         MM6 = Register.new(:mm6, width: 8, number: 6, type: :mm)
         MM7 = Register.new(:mm7, width: 8, number: 7, type: :mm)
+
+        #
+        # @group 128bit XMM Registers
+        #
+        XMM0  = Register.new(:xmm0, width: 16, number: 0, type: :xmm)
+        XMM1  = Register.new(:xmm1, width: 16, number: 1, type: :xmm)
+        XMM2  = Register.new(:xmm2, width: 16, number: 2, type: :xmm)
+        XMM3  = Register.new(:xmm3, width: 16, number: 3, type: :xmm)
+        XMM4  = Register.new(:xmm4, width: 16, number: 4, type: :xmm)
+        XMM5  = Register.new(:xmm5, width: 16, number: 5, type: :xmm)
+        XMM6  = Register.new(:xmm6, width: 16, number: 6, type: :xmm)
+        XMM7  = Register.new(:xmm7, width: 16, number: 7, type: :xmm)
+        XMM8  = Register.new(:xmm8, width: 16, number: 8, type: :xmm)
+        XMM9  = Register.new(:xmm9, width: 16, number: 9, type: :xmm)
+        XMM10 = Register.new(:xmm10, width: 16, number: 10, type: :xmm)
+        XMM11 = Register.new(:xmm11, width: 16, number: 11, type: :xmm)
+        XMM12 = Register.new(:xmm12, width: 16, number: 12, type: :xmm)
+        XMM13 = Register.new(:xmm13, width: 16, number: 13, type: :xmm)
+        XMM14 = Register.new(:xmm14, width: 16, number: 14, type: :xmm)
+        XMM15 = Register.new(:xmm15, width: 16, number: 15, type: :xmm)
       end
     end
   end
