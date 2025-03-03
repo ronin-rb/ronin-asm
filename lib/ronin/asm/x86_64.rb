@@ -303,6 +303,23 @@ module Ronin
       def mm6 = Registers::MM6
       def mm7 = Registers::MM7
 
+      def xmm0 = Registers::XMM0
+      def xmm1 = Registers::XMM1
+      def xmm2 = Registers::XMM2
+      def xmm3 = Registers::XMM3
+      def xmm4 = Registers::XMM4
+      def xmm5 = Registers::XMM5
+      def xmm6 = Registers::XMM6
+      def xmm7 = Registers::XMM7
+      def xmm8 = Registers::XMM8
+      def xmm9 = Registers::XMM9
+      def xmm10 = Registers::XMM10
+      def xmm11 = Registers::XMM11
+      def xmm12 = Registers::XMM12
+      def xmm13 = Registers::XMM13
+      def xmm14 = Registers::XMM14
+      def xmm15 = Registers::XMM15
+
       #
       # @group Internal Methods
       #
