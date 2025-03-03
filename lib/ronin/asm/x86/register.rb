@@ -19,6 +19,7 @@
 #
 
 require_relative '../register'
+require_relative '../memory'
 require_relative 'operand'
 
 module Ronin
@@ -33,17 +34,26 @@ module Ronin
 
         include Operand
 
+        # The assembly class type.
+        #
+        # @return [:reg8, :reg16, :reg32, :reg64, Symbol]
+        attr_reader :type
+
         #
         # Initializes the x86 register.
         #
         # @param [Symbol] name
         #   The register name.
         #
+        # @param [Integer] width
+        #   The width of the register.
+        #
+        # @param [Symbol] type
+        #   The optional assembly class type of the register.
+        #   Defaults to `:reg#{width * 8}` if not given.
+        #
         # @param [Hash{Symbol => Object}] kwargs
         #   Additional keyword arguments for {ASM::Register#initialize}.
-        #
-        # @option kwargs [Integer] :width
-        #   The width of the register.
         #
         # @option kwargs [Integer] :number (0)
         #   The register's number used in encoding.
@@ -77,6 +87,64 @@ module Ronin
         # @return [Boolean]
         #
         def bp? = @bp
+
+        #
+        # Adds a displacement to the value within the register and dereferences
+        # the address.
+        #
+        # @param [Memory, Register, Integer] value
+        #   The value to add to the value of the register.
+        #
+        # @return [Memory]
+        #   The new Memory Operand.
+        #
+        # @raise [TypeError]
+        #   the value was not an {Memory}, {Register} or Integer.
+        #
+        def +(value)
+          case value
+          when Memory
+            Memory.new(
+              base: self,
+              displacement: value.displacement,
+              index: value.index,
+              scale: value.scale
+            )
+          when Register
+            Memory.new(base: self, index: value)
+          when Integer
+            Memory.new(base: self, displacement: value)
+          else
+            raise(TypeError,"value was not an Memory, Register or Integer")
+          end
+        end
+
+        #
+        # Subtracts from the value within the register and dereferences the
+        # address.
+        #
+        # @param [Integer] displacement
+        #   The value to subtract from the value of the register.
+        #
+        # @return [Memory]
+        #   The new Memory Operand.
+        #
+        def -(displacement)
+          Memory.new(base: self, displacement: -displacement)
+        end
+
+        #
+        # Multiples the value within the register.
+        #
+        # @param [Integer] scale
+        #   The scale to multiply the value within register by.
+        #
+        # @return [Memory]
+        #   The new Memory Operand.
+        #
+        def *(scale)
+          Memory.new(index: self, scale: scale)
+        end
 
       end
     end

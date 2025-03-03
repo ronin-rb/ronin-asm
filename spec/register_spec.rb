@@ -2,34 +2,40 @@ require 'spec_helper'
 require 'ronin/asm/register'
 
 describe Ronin::ASM::Register do
-  let(:name)     { :eax }
-  let(:number)   { 0 }
-  let(:width)    { 4 }
-  let(:type)     { :reg32 }
-  let(:register) do
+  let(:name)   { :ebx }
+  let(:number) { 1 }
+  let(:width)  { 4 }
+  let(:type)   { :reg32 }
+
+  subject do
     described_class.new(name, number: number, width: width, type: type)
   end
 
-  subject { register }
-
   describe "#initialize" do
-    it "must default #number to 0" do
-      expect(subject.number).to eq(0)
-    end
-
     it "must set #type" do
       expect(subject.type).to eq(type)
     end
 
+    context "when the number: keyword argument is not given" do
+      subject do
+        described_class.new(name, width: width, type: type)
+      end
+
+      it "must default #number to 0" do
+        expect(subject.number).to eq(0)
+      end
+    end
+
     context "when the number: keyword argument is given" do
+      let(:name)   { :ecx }
       let(:number) { 3 }
 
       subject do
-        described_class.new(:rbx, width: 8, number: number, type: :reg64)
+        described_class.new(name, width: width, number: number, type: type)
       end
 
       it "must set #number" do
-        expect(subject.number).to eq(3)
+        expect(subject.number).to eq(number)
       end
     end
   end
@@ -133,103 +139,6 @@ describe Ronin::ASM::Register do
       expect {
         subject.change_width(2)
       }.to raise_error(Ronin::ASM::SemanticError,"cannot change the width of a register: #{subject}")
-    end
-  end
-
-  describe "#+" do
-    context "when given an Ronin::ASM::Memory" do
-      let(:operand) do
-        Ronin::ASM::Memory.new(displacement: 10, index: register, scale: 2)
-      end
-
-      subject { register + operand }
-
-      it { expect(subject).to be_kind_of(Ronin::ASM::Memory) }
-
-      it "must set the base" do
-        expect(subject.base).to eq(register)
-      end
-
-      it "must preserve the displacement, index and scale" do
-        expect(subject.displacement).to eq(operand.displacement)
-        expect(subject.index).to        eq(operand.index)
-        expect(subject.scale).to        eq(operand.scale)
-      end
-    end
-
-    context "when given a Register" do
-      subject { register + register }
-
-      it { expect(subject).to be_kind_of(Ronin::ASM::Memory) }
-
-      it "must set the base" do
-        expect(subject.base).to eq(register)
-      end
-
-      it { expect(subject.displacement).to eq(0) }
-
-      it "must set the index" do
-        expect(subject.index).to eq(register)
-      end
-    end
-
-    context "when given an Integer" do
-      let(:displacement) { 10 }
-
-      subject { register + displacement }
-
-      it { expect(subject).to be_kind_of(Ronin::ASM::Memory) }
-
-      it "must set the base" do
-        expect(subject.base).to eq(register)
-      end
-
-      it "must set the displacement" do
-        expect(subject.displacement).to eq(displacement)
-      end
-    end
-
-    context "otherwise" do
-      it "must raise a TypeError" do
-        expect {
-          register + Object.new
-        }.to raise_error(TypeError)
-      end
-    end
-  end
-
-  describe "#-" do
-    let(:displacement) { 10 }
-
-    subject { register - displacement }
-
-    it { expect(subject).to be_kind_of(Ronin::ASM::Memory) }
-
-    it "must set the base" do
-      expect(subject.base).to eq(register)
-    end
-
-    it "must set a negative displacement" do
-      expect(subject.displacement).to eq(-displacement)
-    end
-  end
-
-  describe "#*" do
-    let(:scale) { 2 }
-
-    subject { register * scale }
-
-    it { expect(subject).to be_kind_of(Ronin::ASM::Memory) }
-
-    it { expect(subject.base).to be_nil }
-    it { expect(subject.displacement).to eq(0) }
-
-    it "must set the index" do
-      expect(subject.index).to eq(register)
-    end
-
-    it "must set the scale" do
-      expect(subject.scale).to eq(scale)
     end
   end
 
