@@ -29,7 +29,7 @@ module Ronin
       class ATT < Common
 
         # Data sizes and their instruction mnemonics
-        OPERAND_WIDTHS = {
+        OPERAND_SIZES = {
           8 => 'q',
           4 => 'l',
           2 => 'w',
@@ -112,8 +112,8 @@ module Ronin
           line = emit_keyword(ins.name)
 
           unless ins.operands.empty?
-            unless (ins.operands.length == 1 && ins.operand_width == 1)
-              line << OPERAND_WIDTHS[ins.operand_width]
+            unless (ins.operands.length == 1 && ins.operand_size == 1)
+              line << OPERAND_SIZES[ins.operand_size]
             end
 
             line << "\t" << emit_operands(ins.operands)
