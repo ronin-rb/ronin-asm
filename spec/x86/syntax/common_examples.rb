@@ -7,8 +7,8 @@ shared_examples_for "Ronin::ASM::X86::Syntax::Common methods" do
   describe ".format_broadcast" do
     subject { described_class }
 
-    let(:base)   { Ronin::ASM::X86::Register.new(:eax, width: 4) }
-    let(:index)  { Ronin::ASM::X86::Register.new(:esi, width: 4) }
+    let(:base)   { Ronin::ASM::X86::Register.new(:eax, size: 4) }
+    let(:index)  { Ronin::ASM::X86::Register.new(:esi, size: 4) }
     let(:scale)  { 4 }
     let(:displacement) { 10 }
     let(:memory) do
@@ -77,10 +77,10 @@ shared_examples_for "Ronin::ASM::X86::Syntax::Common methods" do
     subject { described_class }
 
     let(:operand) do
-      Ronin::ASM::X86::Register.new(:xmm0, width: 16, number: 0, type: :xmm)
+      Ronin::ASM::X86::Register.new(:xmm0, size: 16, number: 0, type: :xmm)
     end
     let(:k) do
-      Ronin::ASM::X86::Register.new(:k1, width: 8, number: 1, type: :k)
+      Ronin::ASM::X86::Register.new(:k1, size: 8, number: 1, type: :k)
     end
     let(:opmask) { Ronin::ASM::X86::Opmask.new(operand,k) }
 
@@ -105,8 +105,8 @@ shared_examples_for "Ronin::ASM::X86::Syntax::Common methods" do
     subject { described_class }
 
     context "when the operand is a Ronin::ASM::X86::Broadcast object" do
-      let(:base)   { Ronin::ASM::X86::Register.new(:eax, width: 4) }
-      let(:index)  { Ronin::ASM::X86::Register.new(:esi, width: 4) }
+      let(:base)   { Ronin::ASM::X86::Register.new(:eax, size: 4) }
+      let(:index)  { Ronin::ASM::X86::Register.new(:esi, size: 4) }
       let(:scale)  { 4 }
       let(:displacement) { 10 }
       let(:memory) do
@@ -130,10 +130,10 @@ shared_examples_for "Ronin::ASM::X86::Syntax::Common methods" do
 
     context "when given a Ronin::ASM::X86::Opmask object" do
       let(:operand) do
-        Ronin::ASM::X86::Register.new(:xmm0, width: 16, number: 0, type: :xmm)
+        Ronin::ASM::X86::Register.new(:xmm0, size: 16, number: 0, type: :xmm)
       end
       let(:k) do
-        Ronin::ASM::X86::Register.new(:k1, width: 8, number: 1, type: :k)
+        Ronin::ASM::X86::Register.new(:k1, size: 8, number: 1, type: :k)
       end
       let(:opmask) { Ronin::ASM::X86::Opmask.new(operand,k) }
 

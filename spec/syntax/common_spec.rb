@@ -96,7 +96,7 @@ describe Ronin::ASM::Syntax::Common do
 
     context "when given a Register value" do
       let(:register) do
-        Ronin::ASM::Register.new(:eax, number: 0, width: 4, type: :reg32)
+        Ronin::ASM::Register.new(:eax, number: 0, size: 4, type: :reg32)
       end
       let(:string) { double('formatted assembly') }
 
@@ -109,7 +109,7 @@ describe Ronin::ASM::Syntax::Common do
 
     context "when given a Memory value" do
       let(:register) do
-        Ronin::ASM::Register.new(:eax, number: 0, width: 4, type: :reg32)
+        Ronin::ASM::Register.new(:eax, number: 0, size: 4, type: :reg32)
       end
       let(:memory) { Ronin::ASM::Memory.new(register) }
       let(:string) { double('formatted assembly') }
@@ -188,7 +188,7 @@ describe Ronin::ASM::Syntax::Common do
   describe ".format_program" do
     let(:immediate) { Ronin::ASM::Immediate.new(0x41) }
     let(:register) do
-      Ronin::ASM::Register.new(:eax, number: 0, width: 4, type: :reg32)
+      Ronin::ASM::Register.new(:eax, number: 0, size: 4, type: :reg32)
     end
     let(:instructions) do
       [
@@ -396,7 +396,7 @@ describe Ronin::ASM::Syntax::Common do
 
     let(:immediate) { Ronin::ASM::Immediate.new(0x41) }
     let(:register) do
-      Ronin::ASM::Register.new(:eax, number: 0, width: 4, type: :reg32)
+      Ronin::ASM::Register.new(:eax, number: 0, size: 4, type: :reg32)
     end
     let(:instruction) do
       Ronin::ASM::Instruction.new(:mov, register, immediate)
@@ -419,7 +419,7 @@ describe Ronin::ASM::Syntax::Common do
 
     let(:immediate) { Ronin::ASM::Immediate.new(0x41) }
     let(:register) do
-      Ronin::ASM::Register.new(:eax, number: 0, width: 4, type: :reg32)
+      Ronin::ASM::Register.new(:eax, number: 0, size: 4, type: :reg32)
     end
     let(:instructions) do
       [

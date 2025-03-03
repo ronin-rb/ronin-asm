@@ -36,10 +36,10 @@ module Ronin
       # @return [Symbol]
       attr_reader :name
 
-      # The width of the register.
+      # The size of the register.
       #
       # @return [Integer]
-      attr_reader :width
+      attr_reader :size
 
       # The register number.
       #
@@ -57,8 +57,8 @@ module Ronin
       # @param [Symbol] name
       #   The register name.
       #
-      # @param [Integer] width
-      #   The width of the register.
+      # @param [Integer] size
+      #   The size of the register.
       #
       # @param [Integer] number
       #   The register's number used in encoding.
@@ -69,10 +69,10 @@ module Ronin
       # @param [Symbol] type
       #   The type of the register.
       #
-      def initialize(name, width: , number: 0, general: false, type: )
+      def initialize(name, size: , number: 0, general: false, type: )
         @name = name
 
-        @width   = width
+        @size    = size
         @number  = number
         @general = general
         @type    = type
@@ -95,7 +95,7 @@ module Ronin
       # @since 1.0.0
       #
       def reg8?
-        @width == 1
+        @size == 1
       end
 
       #
@@ -106,7 +106,7 @@ module Ronin
       # @since 1.0.0
       #
       def reg16?
-        @width == 2
+        @size == 2
       end
 
       #
@@ -117,7 +117,7 @@ module Ronin
       # @since 1.0.0
       #
       def reg32?
-        @width == 4
+        @size == 4
       end
 
       #
@@ -128,7 +128,7 @@ module Ronin
       # @since 1.0.0
       #
       def reg64?
-        @width == 8
+        @size == 8
       end
 
       #
@@ -141,13 +141,13 @@ module Ronin
       def general? = @general
 
       #
-      # Place holder method that attempts to change the width of the register.
+      # Place holder method that attempts to change the size of the register.
       #
       # @raise [SemanticError]
-      #   Changing the width of a register is currently not supported.
+      #   Changing the size of a register is currently not supported.
       #
-      def change_width(new_width)
-        raise(SemanticError,"cannot change the width of a register: #{self}")
+      def change_size(new_size)
+        raise(SemanticError,"cannot change the size of a register: #{self}")
       end
 
       #

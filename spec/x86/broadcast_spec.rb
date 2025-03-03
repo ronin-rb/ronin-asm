@@ -9,8 +9,8 @@ describe Ronin::ASM::X86::Broadcast do
     expect(described_class).to include(Ronin::ASM::X86::Decorator)
   end
 
-  let(:base)   { Ronin::ASM::X86::Register.new(:eax, width: 4) }
-  let(:index)  { Ronin::ASM::X86::Register.new(:esi, width: 4) }
+  let(:base)   { Ronin::ASM::X86::Register.new(:eax, size: 4) }
+  let(:index)  { Ronin::ASM::X86::Register.new(:esi, size: 4) }
   let(:scale)  { 4 }
   let(:displacement) { 10 }
   let(:memory) do
@@ -49,13 +49,13 @@ describe Ronin::ASM::X86::Broadcast do
       end
     end
 
-    context "when the memory operand does not define a #width" do
+    context "when the memory operand does not define a #size" do
       let(:memory) { Ronin::ASM::X86::Memory.new(index: index, scale: scale) }
 
       it do
         expect {
           described_class.new(memory,ratio)
-        }.to raise_error(ArgumentError,"cannot infer the width of the memory operand: #{memory.inspect}")
+        }.to raise_error(ArgumentError,"cannot infer the size of the memory operand: #{memory.inspect}")
       end
     end
 
@@ -100,9 +100,9 @@ describe Ronin::ASM::X86::Broadcast do
     end
   end
 
-  describe "#width" do
-    it "must return the Memory's #width" do
-      expect(subject.width).to eq(memory.width)
+  describe "#size" do
+    it "must return the Memory's #size" do
+      expect(subject.size).to eq(memory.size)
     end
   end
 

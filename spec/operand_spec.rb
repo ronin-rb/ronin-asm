@@ -110,11 +110,11 @@ describe Ronin::ASM::Operand do
     end
   end
 
-  describe "#change_width" do
+  describe "#change_size" do
     it do
       expect {
-        subject.change_width(4)
-      }.to raise_error(NotImplementedError,"#{subject.class}#change_width was not defined")
+        subject.change_size(4)
+      }.to raise_error(NotImplementedError,"#{subject.class}#change_size was not defined")
     end
   end
 end
