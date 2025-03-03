@@ -56,7 +56,7 @@ module Ronin
         #   The formatted immediate operand.
         #
         def self.format_immediate(op)
-          "#{SIZE_SPECIFIERS[op.width]} #{format_integer(op.value)}"
+          "#{SIZE_SPECIFIERS[op.size]} #{format_integer(op.value)}"
         end
 
         #

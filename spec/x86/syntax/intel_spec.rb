@@ -13,20 +13,20 @@ describe Ronin::ASM::X86::Syntax::Intel do
   subject { described_class }
 
   describe ".format_memory" do
-    let(:register) { Ronin::ASM::X86::Register.new(:eax, width: 4) }
+    let(:register) { Ronin::ASM::X86::Register.new(:eax, size: 4) }
     let(:operand)  { Ronin::ASM::X86::Memory.new(base: register) }
 
     it "must enclose the memory in brackets" do
       expect(subject.format_memory(operand)).to eq("[eax]")
     end
 
-    context "when operand width does not match the base width" do
-      let(:width) { 2 }
+    context "when operand size does not match the base size" do
+      let(:size) { 2 }
       let(:operand) do
-        Ronin::ASM::X86::Memory.new(base: register, width: width)
+        Ronin::ASM::X86::Memory.new(base: register, size: size)
       end
 
-      it "must specify the width" do
+      it "must specify the size" do
         expect(subject.format_memory(operand)).to eq("WORD [eax]")
       end
     end
@@ -51,7 +51,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
     end
 
     context "with an index" do
-      let(:index)   { Ronin::ASM::X86::Register.new(:esi, width: 4) }
+      let(:index)   { Ronin::ASM::X86::Register.new(:esi, size: 4) }
       let(:operand) { Ronin::ASM::X86::Memory.new(base: register, index: index) }
 
       it "must add the index to the base" do

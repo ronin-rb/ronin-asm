@@ -58,8 +58,8 @@ module Ronin
 
             asm = "[#{asm}]"
 
-            unless op.width == op.base.width
-              asm = "#{SIZE_SPECIFIERS[op.width]} #{asm}"
+            unless op.size == op.base.size
+              asm = "#{SIZE_SPECIFIERS[op.size]} #{asm}"
             end
 
             return asm
