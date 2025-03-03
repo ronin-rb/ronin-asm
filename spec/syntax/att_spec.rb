@@ -11,7 +11,7 @@ describe Ronin::ASM::Syntax::ATT do
   subject { described_class }
 
   describe ".emit_register" do
-    let(:register) { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
+    let(:register) { Ronin::ASM::X86::Register.new(:eax, width: 4) }
 
     it "must prepend a '%' to the register name" do
       expect(subject.emit_register(register)).to eq("%eax")
@@ -19,7 +19,7 @@ describe Ronin::ASM::Syntax::ATT do
   end
 
   describe ".emit_immediate" do
-    let(:operand) { Ronin::ASM::Immediate.new(255, width: 1) }
+    let(:operand) { Ronin::ASM::X86::Immediate.new(255, width: 1) }
 
     it "must prepend a '$' to the immediate" do
       expect(subject.emit_immediate(operand)).to eq("$0xff")
@@ -27,8 +27,8 @@ describe Ronin::ASM::Syntax::ATT do
   end
 
   describe ".emit_memory" do
-    let(:register) { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
-    let(:operand)  { Ronin::ASM::Memory.new(base: register) }
+    let(:register) { Ronin::ASM::X86::Register.new(:eax, width: 4) }
+    let(:operand)  { Ronin::ASM::X86::Memory.new(base: register) }
 
     it "must enclose the memory in parenthesis" do
       expect(subject.emit_memory(operand)).to eq("(%eax)")
@@ -37,7 +37,7 @@ describe Ronin::ASM::Syntax::ATT do
     context "with an displacement" do
       let(:displacement) { 255 }
       let(:operand) do
-        Ronin::ASM::Memory.new(base: register, displacement: displacement)
+        Ronin::ASM::X86::Memory.new(base: register, displacement: displacement)
       end
 
       it "must prepend the displacement as an integer" do
@@ -46,7 +46,7 @@ describe Ronin::ASM::Syntax::ATT do
 
       context "when 0" do
         let(:operand) do
-          Ronin::ASM::Memory.new(base: register, displacement: 0)
+          Ronin::ASM::X86::Memory.new(base: register, displacement: 0)
         end
 
         it "must omit the displacement" do
@@ -56,8 +56,8 @@ describe Ronin::ASM::Syntax::ATT do
     end
 
     context "with an index" do
-      let(:index)   { Ronin::ASM::Register.new(:esi, width: 4, type: :reg32) }
-      let(:operand) { Ronin::ASM::Memory.new(base: register, index: index) }
+      let(:index)   { Ronin::ASM::X86::Register.new(:esi, width: 4) }
+      let(:operand) { Ronin::ASM::X86::Memory.new(base: register, index: index) }
 
       it "must include the index argument" do
         expect(subject.emit_memory(operand)).to eq("(%eax,%esi)")
@@ -66,7 +66,7 @@ describe Ronin::ASM::Syntax::ATT do
       context "with a scale" do
         let(:scale)   { 4 }
         let(:operand) do
-          Ronin::ASM::Memory.new(base: register, index: index, scale: scale)
+          Ronin::ASM::X86::Memory.new(base: register, index: index, scale: scale)
         end
 
         it "must prepend the scale argument as a decimal" do
@@ -87,7 +87,7 @@ describe Ronin::ASM::Syntax::ATT do
 
     context "with one operand" do
       context "with width of 1" do
-        let(:immediate)   { Ronin::ASM::Immediate.new(0x80, width: 1) }
+        let(:immediate)   { Ronin::ASM::X86::Immediate.new(0x80, width: 1) }
         let(:instruction) { Ronin::ASM::Instruction.new(:int, immediate) }
 
         it "must not append a size specifier to the instruction name" do
@@ -97,8 +97,8 @@ describe Ronin::ASM::Syntax::ATT do
     end
 
     context "with multiple operands" do
-      let(:register)    { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
-      let(:immediate)   { Ronin::ASM::Immediate.new(0xff, width: 1) }
+      let(:register)    { Ronin::ASM::X86::Register.new(:eax, width: 4) }
+      let(:immediate)   { Ronin::ASM::X86::Immediate.new(0xff, width: 1) }
       let(:instruction) { Ronin::ASM::Instruction.new(:mov, register, immediate) }
 
       it "must add a size specifier to the instruction name" do

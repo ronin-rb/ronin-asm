@@ -34,81 +34,35 @@ module Ronin
 
       include Operand
 
-      # The assembly class type.
-      #
-      # @return [nil, :mem8, :mem16, :mem32, :mem64]
-      attr_reader :type
-
       # The base of the memory operand.
       #
       # @return [Register, nil]
       attr_reader :base
 
-      # The displacement of the memory operand.
-      #
-      # @return [Integer]
-      attr_reader :displacement
-
-      # the index of the memory operand.
-      #
-      # @return [Register, nil]
-      attr_reader :index
-
-      # The scaling value of the memory operand.
-      #
-      # @return [Integer]
-      attr_reader :scale
-
       # The width of the memory operand.
       #
-      # @return [Integer]
+      # @return [Integer, nil]
       attr_reader :width
+
+      # The assembly type class.
+      #
+      # @return [:mem8, :mem16, :mem32, :mem64, nil]
+      attr_reader :type
 
       #
       # Creates a new Memory Operand.
       #
-      # @param [Register, nil] base
+      # @param [Register] base
       #   The base of the value.
-      #
-      # @param [Integer] displacement
-      #   The fixed displacement to add to the `base`.
-      #
-      # @param [Register, nil] index
-      #   The variable index to multiple by `scale`, then add to `base`.
-      #
-      # @param [Integer] scale
-      #   The scale to multiple `index` by.
       #
       # @param [Integer, nil] width
       #   The optional width of the memory operand.
       #
-      # @raise [ArgumentError]
-      #   `base` or `index` was not a {Register} or `nil`.
-      #
-      def initialize(base: nil, displacement: 0, index: nil, scale: 1, width: nil)
-        unless (base.nil? || base.kind_of?(Register))
-          raise(ArgumentError,"base must be a Register or nil")
-        end
-
-        unless displacement.kind_of?(Integer)
-          raise(ArgumentError,"displacement must be an Integer")
-        end
-
-        unless (index.nil? || index.kind_of?(Register))
-          raise(ArgumentError,"index must be a Register or nil")
-        end
-
-        unless scale.kind_of?(Integer)
-          raise(ArgumentError,"scale must be an Integer")
-        end
-
-        @base         = base
-        @displacement = displacement
-        @index        = index
-        @scale        = scale
-        @width        = width || if base
-                                   base.width
-                                 end
+      def initialize(base, width: nil)
+        @base  = base
+        @width = width || if base
+                            base.width
+                          end
 
         if @width
           @type = :"mem#{@width * 8}"
@@ -124,24 +78,10 @@ module Ronin
       # @return [Memory]
       #   The converted memory object.
       #
-      # @raise [ArgumentError]
-      #   Insufficient number of arguments given or wrong type of arguments.
+      # @abstract
       #
       def self.[](*arguments)
-        if arguments.length == 1
-          case arguments[0]
-          when self
-            # pass through the memory object
-            arguments[0]
-          when Register, Integer
-            # wrap the register or memory address object in a memory object
-            new(base: arguments[0])
-          else
-            raise(ArgumentError,"cannot convert object type to memory: #{arguments.inspect}")
-          end
-        else
-          raise(ArgumentError,"memory operands must have one argument: #{arguments.inspect}")
-        end
+        raise(NotImplementedError,"#{self}.[] was not implemented")
       end
 
       #
@@ -198,60 +138,13 @@ module Ronin
       end
 
       #
-      # Changes the width of the memory operand.
-      #
-      # @param [1, 2, 4, 8] new_width
-      #   The new width for the memory operand.
+      # Changes the width of the memory.
       #
       # @return [Memory]
-      #   The new memory operand with the updated width.
+      #   A new memory operand object with the new width.
       #
       def change_width(new_width)
-        self.class.new(
-          base: @base,
-          displacement: @displacement,
-          index: @index,
-          scale: @scale,
-          width: new_width
-        )
-      end
-
-      #
-      # Adds to the displacement of the Memory Operand.
-      #
-      # @param [Integer] displacement
-      #   The displacement to add to the Memory Operand.
-      #
-      # @return [Memory]
-      #   The new Memory Operand.
-      #
-      def +(displacement)
-        self.class.new(
-          base: @base,
-          displacement: @displacement + displacement,
-          index: @index,
-          scale: @scale,
-          width: @width
-        )
-      end
-
-      #
-      # Subtracts from the displacement of the Memory Operand.
-      #
-      # @param [Integer] displacement
-      #   The displacement to subject from the Memory Operand.
-      #
-      # @return [Memory]
-      #   The new Memory Operand.
-      #
-      def -(displacement)
-        self.class.new(
-          base: @base,
-          displacement: @displacement - displacement,
-          index: @index,
-          scale: @scale,
-          width: @width
-        )
+        self.class.new(@base, width: new_width)
       end
 
       #
