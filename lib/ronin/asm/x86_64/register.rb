@@ -33,6 +33,64 @@ module Ronin
 
         include Operand
 
+        #
+        # Adds a displacement to the value within the register and dereferences
+        # the address.
+        #
+        # @param [Memory, Register, Integer] value
+        #   The value to add to the value of the register.
+        #
+        # @return [Memory]
+        #   The new Memory Operand.
+        #
+        # @raise [TypeError]
+        #   the value was not an {Memory}, {Register} or Integer.
+        #
+        def +(value)
+          case value
+          when Memory
+            Memory.new(
+              base: self,
+              displacement: value.displacement,
+              index: value.index,
+              scale: value.scale
+            )
+          when Register
+            Memory.new(base: self, index: value)
+          when Integer
+            Memory.new(base: self, displacement: value)
+          else
+            raise(TypeError,"value was not an Memory, Register or Integer")
+          end
+        end
+
+        #
+        # Subtracts from the value within the register and dereferences the
+        # address.
+        #
+        # @param [Integer] displacement
+        #   The value to subtract from the value of the register.
+        #
+        # @return [Memory]
+        #   The new Memory Operand.
+        #
+        def -(displacement)
+          Memory.new(base: self, displacement: -displacement)
+        end
+
+        #
+        # Multiples the value within the register.
+        #
+        # @param [Integer] scale
+        #   The scale to multiply the value within register by.
+        #
+        # @return [Memory]
+        #   The new Memory Operand.
+        #
+        def *(scale)
+          Memory.new(index: self, scale: scale)
+        end
+
       end
     end
   end

@@ -20,6 +20,7 @@
 
 require_relative 'x86_64/immediate'
 require_relative 'x86_64/registers'
+require_relative 'x86_64/memory'
 
 module Ronin
   module ASM

@@ -252,50 +252,105 @@ describe Ronin::ASM::Program do
     end
 
     context "when given an Array operand" do
-      context "and it has one argument" do
-        context "and it's already a Memory object" do
-          let(:register) { Ronin::ASM::X86::Registers::EAX }
-          let(:memory) do
-            Ronin::ASM::Memory.new(base: register, displacement: 42)
-          end
-          let(:array) { [memory] }
+      context "and the program was initialized with `arch: :x86`" do
+        subject { described_class.new(arch: :x86) }
 
-          it "must return the #{described_class} object" do
-            expect(subject.coerce_operand(array)).to be(memory)
+        context "and it has one argument" do
+          context "and it's already a Ronin::ASM::X86::Memory object" do
+            let(:register) { Ronin::ASM::X86::Registers::EAX }
+            let(:memory) do
+              Ronin::ASM::X86::Memory.new(base: register, displacement: 42)
+            end
+            let(:array) { [memory] }
+
+            it "must return the Ronin::ASM::X86::Memory object" do
+              expect(subject.coerce_operand(array)).to be(memory)
+            end
+          end
+
+          context "but it's a Register object" do
+            let(:register) { Ronin::ASM::X86::Registers::EAX }
+            let(:array)    { [register] }
+
+            it "must create a new Ronin::ASM::X86::Memory object with the #base as the Register" do
+              new_memory = subject.coerce_operand(array)
+
+              expect(new_memory).to be_a(Ronin::ASM::X86::Memory)
+              expect(new_memory.base).to eq(register)
+            end
           end
         end
 
-        context "but it's a Register object" do
+        context "when given more than one argument" do
           let(:register) { Ronin::ASM::X86::Registers::EAX }
-          let(:array)    { [register] }
+          let(:array)    { [register, 42] }
 
-          it "must create a new Memory object with the #base as the Register" do
-            new_memory = subject.coerce_operand(array)
+          it do
+            expect {
+              subject.coerce_operand(array)
+            }.to raise_error("memory operands must have one argument: #{array.inspect}")
+          end
+        end
 
-            expect(new_memory).to be_kind_of(Ronin::ASM::Memory)
-            expect(new_memory.base).to eq(register)
+        context "when given no arguments" do
+          let(:array) { [] }
+
+          it do
+            expect {
+              subject.coerce_operand(array)
+            }.to raise_error("memory operands must have one argument: []")
           end
         end
       end
 
-      context "when given more than one argument" do
-        let(:register) { Ronin::ASM::X86::Registers::EAX }
-        let(:array)    { [register, 42] }
+      context "and the program was initialized with `arch: :x86_64`" do
+        subject { described_class.new(arch: :x86_64) }
 
-        it do
-          expect {
-            subject.coerce_operand(array)
-          }.to raise_error("memory operands must have one argument: #{array.inspect}")
+        context "and it has one argument" do
+          context "and it's already a Ronin::ASM::X86_64::Memory object" do
+            let(:register) { Ronin::ASM::X86_64::Registers::EAX }
+            let(:memory) do
+              Ronin::ASM::X86_64::Memory.new(base: register, displacement: 42)
+            end
+            let(:array) { [memory] }
+
+            it "must return the Ronin::ASM::X86_64::Memory object" do
+              expect(subject.coerce_operand(array)).to be(memory)
+            end
+          end
+
+          context "but it's a Register object" do
+            let(:register) { Ronin::ASM::X86_64::Registers::EAX }
+            let(:array)    { [register] }
+
+            it "must create a new Ronin::ASM::X86_64::Memory object with the #base as the Register" do
+              new_memory = subject.coerce_operand(array)
+
+              expect(new_memory).to be_a(Ronin::ASM::X86_64::Memory)
+              expect(new_memory.base).to eq(register)
+            end
+          end
         end
-      end
 
-      context "when given no arguments" do
-        let(:array) { [] }
+        context "when given more than one argument" do
+          let(:register) { Ronin::ASM::X86_64::Registers::EAX }
+          let(:array)    { [register, 42] }
 
-        it do
-          expect {
-            subject.coerce_operand(array)
-          }.to raise_error("memory operands must have one argument: []")
+          it do
+            expect {
+              subject.coerce_operand(array)
+            }.to raise_error("memory operands must have one argument: #{array.inspect}")
+          end
+        end
+
+        context "when given no arguments" do
+          let(:array) { [] }
+
+          it do
+            expect {
+              subject.coerce_operand(array)
+            }.to raise_error("memory operands must have one argument: []")
+          end
         end
       end
     end
@@ -403,21 +458,48 @@ describe Ronin::ASM::Program do
     end
 
     context "when given a Memory object" do
-      let(:register) do
-        Ronin::ASM::Register.new(:eax, width: 4, type: :reg32)
-      end
-      let(:memory) do
-        Ronin::ASM::Memory.new(base: register)
+      context "and the program was initialized with `arch: :x86`" do
+        subject { described_class.new(arch: :x86) }
+
+        let(:register) do
+          Ronin::ASM::X86::Register.new(:eax, width: 4, type: :reg32)
+        end
+        let(:memory) do
+          Ronin::ASM::X86::Memory.new(base: register)
+        end
+
+        it "must return a new Ronin::ASM::X86::Memory object" do
+          new_memory = subject.dword(memory)
+
+          expect(new_memory).to be_a(Ronin::ASM::X86::Memory)
+          expect(new_memory).to_not be(memory)
+        end
+
+        it "must have a width of 1" do
+          expect(subject.byte(memory).width).to eq(1)
+        end
       end
 
-      it "must return a Memory" do
-        expect(subject.byte(memory)).to be_kind_of(
-          Ronin::ASM::Memory
-        )
-      end
+      context "and the program was initialized with `arch: :x86_64`" do
+        subject { described_class.new(arch: :x86_64) }
 
-      it "must have a width of 1" do
-        expect(subject.byte(memory).width).to eq(1)
+        let(:register) do
+          Ronin::ASM::X86_64::Register.new(:eax, width: 4, type: :reg32)
+        end
+        let(:memory) do
+          Ronin::ASM::X86_64::Memory.new(base: register)
+        end
+
+        it "must return a new Ronin::ASM::X86_64::Memory object" do
+          new_memory = subject.dword(memory)
+
+          expect(new_memory).to be_a(Ronin::ASM::X86_64::Memory)
+          expect(new_memory).to_not be(memory)
+        end
+
+        it "must have a width of 1" do
+          expect(subject.byte(memory).width).to eq(1)
+        end
       end
     end
   end
@@ -450,21 +532,48 @@ describe Ronin::ASM::Program do
     end
 
     context "when given a Memory object" do
-      let(:register) do
-        Ronin::ASM::Register.new(:eax, width: 4, type: :reg32)
-      end
-      let(:memory) do
-        Ronin::ASM::Memory.new(base: register)
+      context "and the program was initialized with `arch: :x86`" do
+        subject { described_class.new(arch: :x86) }
+
+        let(:register) do
+          Ronin::ASM::X86::Register.new(:eax, width: 4, type: :reg32)
+        end
+        let(:memory) do
+          Ronin::ASM::X86::Memory.new(base: register)
+        end
+
+        it "must return a new Ronin::ASM::X86::Memory object" do
+          new_memory = subject.dword(memory)
+
+          expect(new_memory).to be_a(Ronin::ASM::X86::Memory)
+          expect(new_memory).to_not be(memory)
+        end
+
+        it "must have a width of 2" do
+          expect(subject.word(memory).width).to eq(2)
+        end
       end
 
-      it "must return a Memory" do
-        expect(subject.word(memory)).to be_kind_of(
-          Ronin::ASM::Memory
-        )
-      end
+      context "and the program was initialized with `arch: :x86_64`" do
+        subject { described_class.new(arch: :x86_64) }
 
-      it "must have a width of 2" do
-        expect(subject.word(memory).width).to eq(2)
+        let(:register) do
+          Ronin::ASM::X86_64::Register.new(:eax, width: 4, type: :reg32)
+        end
+        let(:memory) do
+          Ronin::ASM::X86_64::Memory.new(base: register)
+        end
+
+        it "must return a new Ronin::ASM::X86_64::Memory object" do
+          new_memory = subject.dword(memory)
+
+          expect(new_memory).to be_a(Ronin::ASM::X86_64::Memory)
+          expect(new_memory).to_not be(memory)
+        end
+
+        it "must have a width of 2" do
+          expect(subject.word(memory).width).to eq(2)
+        end
       end
     end
   end
@@ -497,21 +606,48 @@ describe Ronin::ASM::Program do
     end
 
     context "when given a Memory object" do
-      let(:register) do
-        Ronin::ASM::Register.new(:eax, width: 4, type: :reg32)
-      end
-      let(:memory) do
-        Ronin::ASM::Memory.new(base: register)
+      context "and the program was initialized with `arch: :x86`" do
+        subject { described_class.new(arch: :x86) }
+
+        let(:register) do
+          Ronin::ASM::X86::Register.new(:eax, width: 4, type: :reg32)
+        end
+        let(:memory) do
+          Ronin::ASM::X86::Memory.new(base: register)
+        end
+
+        it "must return a new Ronin::ASM::X86::Memory object" do
+          new_memory = subject.dword(memory)
+
+          expect(new_memory).to be_a(Ronin::ASM::X86::Memory)
+          expect(new_memory).to_not be(memory)
+        end
+
+        it "must have a width of 4" do
+          expect(subject.dword(memory).width).to eq(4)
+        end
       end
 
-      it "must return a Memory" do
-        expect(subject.dword(memory)).to be_kind_of(
-          Ronin::ASM::Memory
-        )
-      end
+      context "and the program was initialized with `arch: :x86_64`" do
+        subject { described_class.new(arch: :x86_64) }
 
-      it "must have a width of 4" do
-        expect(subject.dword(memory).width).to eq(4)
+        let(:register) do
+          Ronin::ASM::X86_64::Register.new(:eax, width: 4, type: :reg32)
+        end
+        let(:memory) do
+          Ronin::ASM::X86_64::Memory.new(base: register)
+        end
+
+        it "must return a new Ronin::ASM::X86_64::Memory object" do
+          new_memory = subject.dword(memory)
+
+          expect(new_memory).to be_a(Ronin::ASM::X86_64::Memory)
+          expect(new_memory).to_not be(memory)
+        end
+
+        it "must have a width of 4" do
+          expect(subject.dword(memory).width).to eq(4)
+        end
       end
     end
   end
@@ -544,21 +680,48 @@ describe Ronin::ASM::Program do
     end
 
     context "when given a Memory object" do
-      let(:register) do
-        Ronin::ASM::Register.new(:eax, width: 4, type: :reg32)
-      end
-      let(:memory) do
-        Ronin::ASM::Memory.new(base: register)
+      context "and the program was initialized with `arch: :x86`" do
+        subject { described_class.new(arch: :x86) }
+
+        let(:register) do
+          Ronin::ASM::X86::Register.new(:eax, width: 4, type: :reg32)
+        end
+        let(:memory) do
+          Ronin::ASM::X86::Memory.new(base: register)
+        end
+
+        it "must return a new Ronin::ASM::X86::Memory object" do
+          new_memory = subject.dword(memory)
+
+          expect(new_memory).to be_a(Ronin::ASM::X86::Memory)
+          expect(new_memory).to_not be(memory)
+        end
+
+        it "must have a width of 8" do
+          expect(subject.qword(memory).width).to eq(8)
+        end
       end
 
-      it "must return a Memory" do
-        expect(subject.qword(memory)).to be_kind_of(
-          Ronin::ASM::Memory
-        )
-      end
+      context "and the program was initialized with `arch: :x86_64`" do
+        subject { described_class.new(arch: :x86_64) }
 
-      it "must have a width of 8" do
-        expect(subject.qword(memory).width).to eq(8)
+        let(:register) do
+          Ronin::ASM::X86_64::Register.new(:eax, width: 4, type: :reg32)
+        end
+        let(:memory) do
+          Ronin::ASM::X86_64::Memory.new(base: register)
+        end
+
+        it "must return a new Ronin::ASM::X86_64::Memory object" do
+          new_memory = subject.dword(memory)
+
+          expect(new_memory).to be_a(Ronin::ASM::X86_64::Memory)
+          expect(new_memory).to_not be(memory)
+        end
+
+        it "must have a width of 8" do
+          expect(subject.qword(memory).width).to eq(8)
+        end
       end
     end
   end
