@@ -167,6 +167,7 @@ module Ronin
         @registers = arch_module::REGISTERS
 
         @immediate_class = arch_module::Immediate
+        @memory_class    = arch_module::Memory
 
         extend arch_module
       end
@@ -276,7 +277,7 @@ module Ronin
       def coerce_operand(value)
         case value
         when Integer, nil then @immediate_class.new(value)
-        when Array        then Memory[*value]
+        when Array        then @memory_class[*value]
         else                   value
         end
       end
