@@ -19,8 +19,8 @@
 #
 
 require_relative '../register'
-require_relative '../memory'
 require_relative 'operand'
+require_relative 'memory'
 
 module Ronin
   module ASM

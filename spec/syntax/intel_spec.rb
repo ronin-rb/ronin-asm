@@ -11,7 +11,7 @@ describe Ronin::ASM::Syntax::Intel do
   subject { described_class }
 
   describe ".emit_register" do
-    let(:register) { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
+    let(:register) { Ronin::ASM::X86::Register.new(:eax, width: 4) }
 
     it "must return the register name" do
       expect(subject.emit_register(register)).to eq("eax")
@@ -19,7 +19,7 @@ describe Ronin::ASM::Syntax::Intel do
   end
 
   describe ".emit_immediate" do
-    let(:operand) { Ronin::ASM::Immediate.new(255, width: 1) }
+    let(:operand) { Ronin::ASM::X86::Immediate.new(255, width: 1) }
 
     it "must prepend a size specifier" do
       expect(subject.emit_immediate(operand)).to eq("BYTE 0xff")
@@ -27,8 +27,8 @@ describe Ronin::ASM::Syntax::Intel do
   end
 
   describe ".emit_memory" do
-    let(:register) { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
-    let(:operand)  { Ronin::ASM::Memory.new(base: register) }
+    let(:register) { Ronin::ASM::X86::Register.new(:eax, width: 4) }
+    let(:operand)  { Ronin::ASM::X86::Memory.new(base: register) }
 
     it "must enclose the memory in brackets" do
       expect(subject.emit_memory(operand)).to eq("[eax]")
@@ -37,7 +37,7 @@ describe Ronin::ASM::Syntax::Intel do
     context "when operand width does not match the base width" do
       let(:width) { 2 }
       let(:operand) do
-        Ronin::ASM::Memory.new(base: register, width: width)
+        Ronin::ASM::X86::Memory.new(base: register, width: width)
       end
 
       it "must specify the width" do
@@ -48,7 +48,7 @@ describe Ronin::ASM::Syntax::Intel do
     context "with an displacement" do
       let(:displacement) { 255 }
       let(:operand) do
-        Ronin::ASM::Memory.new(base: register, displacement: displacement)
+        Ronin::ASM::X86::Memory.new(base: register, displacement: displacement)
       end
 
       it "must add the displacement to the base" do
@@ -56,7 +56,7 @@ describe Ronin::ASM::Syntax::Intel do
       end
 
       context "when 0" do
-        let(:operand) { Ronin::ASM::Memory.new(base: register, displacement: 0) }
+        let(:operand) { Ronin::ASM::X86::Memory.new(base: register, displacement: 0) }
 
         it "must omit the displacement" do
           expect(subject.emit_memory(operand)).to eq("[eax]")
@@ -65,8 +65,8 @@ describe Ronin::ASM::Syntax::Intel do
     end
 
     context "with an index" do
-      let(:index)   { Ronin::ASM::Register.new(:esi, width: 4, type: :reg32) }
-      let(:operand) { Ronin::ASM::Memory.new(base: register, index: index) }
+      let(:index)   { Ronin::ASM::X86::Register.new(:esi, width: 4) }
+      let(:operand) { Ronin::ASM::X86::Memory.new(base: register, index: index) }
 
       it "must add the index to the base" do
         expect(subject.emit_memory(operand)).to eq("[eax+esi]")
@@ -75,7 +75,7 @@ describe Ronin::ASM::Syntax::Intel do
       context "with a scale" do
         let(:scale)   { 4 }
         let(:operand) do
-          Ronin::ASM::Memory.new(base: register, index: index, scale: scale)
+          Ronin::ASM::X86::Memory.new(base: register, index: index, scale: scale)
         end
 
         it "must multiple the index by the scale" do
@@ -95,8 +95,8 @@ describe Ronin::ASM::Syntax::Intel do
     end
 
     context "with multiple operands" do
-      let(:register)    { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
-      let(:immediate)   { Ronin::ASM::Immediate.new(0xff, width: 1) }
+      let(:register)    { Ronin::ASM::X86::Register.new(:eax, width: 4) }
+      let(:immediate)   { Ronin::ASM::X86::Immediate.new(0xff, width: 1) }
       let(:instruction) { Ronin::ASM::Instruction.new(:mov, register, immediate) }
 
       it "must emit the operands" do
