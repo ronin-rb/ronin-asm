@@ -29,7 +29,7 @@ module Ronin
       class ATT < Common
 
         # Data sizes and their instruction mnemonics
-        WIDTHS = {
+        INSTRUCTION_SUFFIXES = {
           8 => 'q',
           4 => 'l',
           2 => 'w',
@@ -90,7 +90,7 @@ module Ronin
 
           unless ins.operands.empty?
             unless (ins.operands.length == 1 && ins.operand_width == 1)
-              line << WIDTHS[ins.operand_width]
+              line << INSTRUCTION_SUFFIXES[ins.operand_width]
             end
 
             line << "\t" << format_operands(ins.operands)
