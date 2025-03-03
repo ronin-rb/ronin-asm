@@ -63,13 +63,13 @@ module Ronin
         # @param [Integer] scale
         #   The scale to multiple `index` by.
         #
-        # @param [Integer, nil] width
-        #   The optional width of the memory operand.
+        # @param [Integer, nil] size
+        #   The optional size of the memory operand.
         #
         # @raise [ArgumentError]
         #   `base` was not a {Register} or `nil`.
         #
-        def initialize(base: nil, displacement: 0, index: nil, scale: 1, width: nil)
+        def initialize(base: nil, displacement: 0, index: nil, scale: 1, size: nil)
           unless (base.nil? || base.kind_of?(Register))
             raise(ArgumentError,"base must be a Register or nil")
           end
@@ -86,7 +86,7 @@ module Ronin
             raise(ArgumentError,"scale must be an Integer")
           end
 
-          super(base, width: width)
+          super(base, size: size)
 
           @displacement = displacement
           @index = index
@@ -131,18 +131,18 @@ module Ronin
         end
 
         #
-        # Changes the width of the memory.
+        # Changes the size of the memory.
         #
         # @return [Memory]
-        #   A new memory operand object with the new width.
+        #   A new memory operand object with the new size.
         #
-        def change_width(new_width)
+        def change_size(new_size)
           self.class.new(
             base:  @base,
             displacement: @displacement,
             index: @index,
             scale: @scale,
-            width: new_width
+            size: new_size
           )
         end
 
@@ -161,7 +161,7 @@ module Ronin
             displacement: @displacement + displacement,
             index: @index,
             scale: @scale,
-            width: @width
+            size: @size
           )
         end
 
@@ -180,7 +180,7 @@ module Ronin
             displacement: @displacement - displacement,
             index: @index,
             scale: @scale,
-            width: @width
+            size: @size
           )
         end
 

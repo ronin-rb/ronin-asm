@@ -49,7 +49,7 @@ module Ronin
           #   The formatted immediate operand.
           #
           def self.format_immediate(imm)
-            "#{SIZE_SPECIFIERS[imm.width]} #{format_integer(imm.value)}"
+            "#{SIZE_SPECIFIERS[imm.size]} #{format_integer(imm.value)}"
           end
 
           #
@@ -88,10 +88,10 @@ module Ronin
               asm << sign << format_integer(mem.displacement)
             end
 
-            if mem.width == mem.base.width
+            if mem.size == mem.base.size
               "[#{asm}]"
             else
-              "#{SIZE_SPECIFIERS[mem.width]} [#{asm}]"
+              "#{SIZE_SPECIFIERS[mem.size]} [#{asm}]"
             end
           end
 
