@@ -45,12 +45,12 @@ module Ronin
         # @param [Symbol] name
         #   The register name.
         #
-        # @param [Integer] width
-        #   The width of the register.
+        # @param [Integer] size
+        #   The size of the register.
         #
         # @param [Symbol] type
         #   The optional assembly class type of the register.
-        #   Defaults to `:reg#{width * 8}` if not given.
+        #   Defaults to `:reg#{size * 8}` if not given.
         #
         # @param [Hash{Symbol => Object}] kwargs
         #   Additional keyword arguments for {ASM::Register#initialize}.
@@ -61,12 +61,12 @@ module Ronin
         # @option kwargs [Boolean] :general (false)
         #   Specifies whether the register is a General Purpose Register (GPR).
         #
-        def initialize(name, width: ,
-                             type:  :"reg#{width * 8}",
-                             sp:    false,
-                             bp:    false,
+        def initialize(name, size: ,
+                             type: :"reg#{size * 8}",
+                             sp:   false,
+                             bp:   false,
                              **kwargs)
-          super(name, width: width, type: type, **kwargs)
+          super(name, size: size, type: type, **kwargs)
 
           @sp = sp
           @bp = bp

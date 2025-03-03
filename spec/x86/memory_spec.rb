@@ -23,18 +23,18 @@ describe Ronin::ASM::X86::Memory do
         expect(subject.base).to eq(register)
       end
 
-      it "must set #width to the base's #width" do
-        expect(subject.width).to eq(subject.base.width)
+      it "must set #size to the base's #size" do
+        expect(subject.size).to eq(subject.base.size)
       end
     end
 
-    context "when a width value is given" do
-      let(:width) { 2 }
+    context "when a size value is given" do
+      let(:size) { 2 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
-      it "must set #width to the given width value" do
-        expect(subject.width).to eq(width)
+      it "must set #size to the given size value" do
+        expect(subject.size).to eq(size)
       end
     end
 
@@ -71,7 +71,7 @@ describe Ronin::ASM::X86::Memory do
     end
 
     context "when the index is an XMM register" do
-      let(:index) { Ronin::ASM::X86::Register.new(:xmm0, width: 16, type: :xmm) }
+      let(:index) { Ronin::ASM::X86::Register.new(:xmm0, size: 16, type: :xmm) }
 
       context "and the scale is 4" do
         let(:scale) { 4 }
@@ -99,7 +99,7 @@ describe Ronin::ASM::X86::Memory do
     end
 
     context "when the index is an YMM register" do
-      let(:index) { Ronin::ASM::X86::Register.new(:ymm0, width: 32, type: :ymm) }
+      let(:index) { Ronin::ASM::X86::Register.new(:ymm0, size: 32, type: :ymm) }
 
       context "and the scale is 4" do
         let(:scale) { 4 }
@@ -127,7 +127,7 @@ describe Ronin::ASM::X86::Memory do
     end
 
     context "when the index is an ZMM register" do
-      let(:index) { Ronin::ASM::X86::Register.new(:zmm0, width: 64, type: :zmm) }
+      let(:index) { Ronin::ASM::X86::Register.new(:zmm0, size: 64, type: :zmm) }
 
       context "and the scale is 4" do
         let(:scale) { 4 }
@@ -201,18 +201,18 @@ describe Ronin::ASM::X86::Memory do
     end
   end
 
-  describe "#change_width" do
-    let(:new_width) { 8 }
+  describe "#change_size" do
+    let(:new_size) { 8 }
 
-    it "must return a new #{described_class} with the updated #width" do
-      new_memory = subject.change_width(new_width)
+    it "must return a new #{described_class} with the updated #size" do
+      new_memory = subject.change_size(new_size)
 
       expect(new_memory).to be_kind_of(described_class)
       expect(new_memory.base).to be(subject.base)
       expect(new_memory.displacement).to be(subject.displacement)
       expect(new_memory.index).to be(subject.index)
       expect(new_memory.scale).to be(subject.scale)
-      expect(new_memory.width).to eq(new_width)
+      expect(new_memory.size).to eq(new_size)
     end
   end
 

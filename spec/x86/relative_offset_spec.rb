@@ -15,23 +15,23 @@ describe Ronin::ASM::X86::RelativeOffset do
       expect(subject.value).to eq(value)
     end
 
-    context "when a width: keyword argument is given" do
+    context "when a size: keyword argument is given" do
       let(:value) { 0xff }
-      let(:width) { 4 }
+      let(:size)  { 4 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
-      it "must set #width" do
-        expect(subject.width).to eq(width)
+      it "must set #size" do
+        expect(subject.size).to eq(size)
       end
     end
 
-    context "when no width: keyword argument is given" do
+    context "when no size: keyword argument is given" do
       context "and when the value has a bit length less than 7 bits" do
         let(:value) { 0x01 }
 
-        it "must set #width to 1" do
-          expect(subject.width).to eq(1)
+        it "must set #size to 1" do
+          expect(subject.size).to eq(1)
         end
 
         it "must set #type to :rel8" do
@@ -42,8 +42,8 @@ describe Ronin::ASM::X86::RelativeOffset do
       context "and when the value has a bit length is equal to 7 bits" do
         let(:value) { 0x7f }
 
-        it "must set #width to 1" do
-          expect(subject.width).to eq(1)
+        it "must set #size to 1" do
+          expect(subject.size).to eq(1)
         end
 
         it "must set #type to :rel8" do
@@ -54,8 +54,8 @@ describe Ronin::ASM::X86::RelativeOffset do
       context "and when the value has a bit length is equal to 8 bits" do
         let(:value) { 0xff }
 
-        it "must set #width to 4" do
-          expect(subject.width).to eq(4)
+        it "must set #size to 4" do
+          expect(subject.size).to eq(4)
         end
 
         it "must set #type to :rel32" do
@@ -66,8 +66,8 @@ describe Ronin::ASM::X86::RelativeOffset do
       context "and when the value has a bit length is greater than 8 bits" do
         let(:value) { 0x11223344 }
 
-        it "must set #width to 4" do
-          expect(subject.width).to eq(4)
+        it "must set #size to 4" do
+          expect(subject.size).to eq(4)
         end
 
         it "must set #type to :rel32" do

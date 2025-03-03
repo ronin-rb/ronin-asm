@@ -13,10 +13,10 @@ describe Ronin::ASM::X86_64::Opmask do
   end
 
   let(:operand) do
-    Ronin::ASM::X86_64::Register.new(:xmm0, width: 16, number: 0, type: :xmm)
+    Ronin::ASM::X86_64::Register.new(:xmm0, size: 16, number: 0, type: :xmm)
   end
   let(:k) do
-    Ronin::ASM::X86_64::Register.new(:k1, width: 8, number: 1, type: :k)
+    Ronin::ASM::X86_64::Register.new(:k1, size: 8, number: 1, type: :k)
   end
 
   subject { described_class.new(operand,k) }
