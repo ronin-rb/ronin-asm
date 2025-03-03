@@ -31,18 +31,18 @@ describe Ronin::ASM::X86_64::Memory do
         expect(subject.base).to eq(register)
       end
 
-      it "must set #width to the base's #width" do
-        expect(subject.width).to eq(subject.base.width)
+      it "must set #size to the base's #size" do
+        expect(subject.size).to eq(subject.base.size)
       end
     end
 
-    context "when a width value is given" do
-      let(:width) { 2 }
+    context "when a size value is given" do
+      let(:size) { 2 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
-      it "must set #width to the given width value" do
-        expect(subject.width).to eq(width)
+      it "must set #size to the given size value" do
+        expect(subject.size).to eq(size)
       end
     end
 
@@ -80,40 +80,40 @@ describe Ronin::ASM::X86_64::Memory do
   end
 
   describe "#type" do
-    context "when the #width is 1" do
-      let(:width) { 1 }
+    context "when the #size is 1" do
+      let(:size) { 1 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
       it "must return :mem8" do
         expect(subject.type).to be(:mem8)
       end
     end
 
-    context "when the #width is 2" do
-      let(:width) { 2 }
+    context "when the #size is 2" do
+      let(:size) { 2 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
       it "must return :mem16" do
         expect(subject.type).to be(:mem16)
       end
     end
 
-    context "when the #width is 4" do
-      let(:width) { 4 }
+    context "when the #size is 4" do
+      let(:size) { 4 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
       it "must return :mem32" do
         expect(subject.type).to be(:mem32)
       end
     end
 
-    context "when the #width is 8" do
-      let(:width) { 8 }
+    context "when the #size is 8" do
+      let(:size) { 8 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
       it "must return :mem64" do
         expect(subject.type).to be(:mem64)
@@ -122,10 +122,10 @@ describe Ronin::ASM::X86_64::Memory do
   end
 
   describe "#mem8?" do
-    context "when the #width is 1" do
-      let(:width) { 1 }
+    context "when the #size is 1" do
+      let(:size) { 1 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
       it "must return true" do
         expect(subject.mem8?).to be(true)
@@ -133,9 +133,9 @@ describe Ronin::ASM::X86_64::Memory do
     end
 
     context "when the #type is not 1" do
-      let(:width) { 8 }
+      let(:size) { 8 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
       it "must return false" do
         expect(subject.mem8?).to be(false)
@@ -144,10 +144,10 @@ describe Ronin::ASM::X86_64::Memory do
   end
 
   describe "#mem16?" do
-    context "when the #width is 2" do
-      let(:width) { 2 }
+    context "when the #size is 2" do
+      let(:size) { 2 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
       it "must return true" do
         expect(subject.mem16?).to be(true)
@@ -155,9 +155,9 @@ describe Ronin::ASM::X86_64::Memory do
     end
 
     context "when the #type is not 2" do
-      let(:width) { 8 }
+      let(:size) { 8 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
       it "must return false" do
         expect(subject.mem16?).to be(false)
@@ -166,10 +166,10 @@ describe Ronin::ASM::X86_64::Memory do
   end
 
   describe "#mem32?" do
-    context "when the #width is 4" do
-      let(:width) { 4 }
+    context "when the #size is 4" do
+      let(:size) { 4 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
       it "must return true" do
         expect(subject.mem32?).to be(true)
@@ -177,9 +177,9 @@ describe Ronin::ASM::X86_64::Memory do
     end
 
     context "when the #type is not 4" do
-      let(:width) { 8 }
+      let(:size) { 8 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
       it "must return false" do
         expect(subject.mem32?).to be(false)
@@ -188,10 +188,10 @@ describe Ronin::ASM::X86_64::Memory do
   end
 
   describe "#mem64?" do
-    context "when the #width is 8" do
-      let(:width) { 8 }
+    context "when the #size is 8" do
+      let(:size) { 8 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
       it "must return true" do
         expect(subject.mem64?).to be(true)
@@ -199,9 +199,9 @@ describe Ronin::ASM::X86_64::Memory do
     end
 
     context "when the #type is not 8" do
-      let(:width) { 1 }
+      let(:size) { 1 }
 
-      subject { described_class.new(base: register, width: width) }
+      subject { described_class.new(base: register, size: size) }
 
       it "must return false" do
         expect(subject.mem64?).to be(false)

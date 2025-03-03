@@ -64,7 +64,7 @@ module Ronin
         #
         # @raise [ArgumentError]
         #   * The given operand was not a memory operand.
-        #   * The memory operand does not have a width.
+        #   * The memory operand does not have a size.
         #   * An invalid broadcast ratio value was given; must be
         #     `{1=>2}`, `{1=>4}`, `{1=>8}`, `{1=>16}`, or `{1=>32}`.
         #
@@ -73,8 +73,8 @@ module Ronin
             raise(ArgumentError,"broadcast operand must be a memory operand: #{memory.inspect}")
           end
 
-          unless memory.width
-            raise(ArgumentError,"cannot infer the width of the memory operand: #{memory.inspect}")
+          unless memory.size
+            raise(ArgumentError,"cannot infer the size of the memory operand: #{memory.inspect}")
           end
 
           unless RATIOS.include?(ratio)
@@ -86,7 +86,7 @@ module Ronin
           super(memory)
 
           @ratio = ratio
-          @type  = :"mem#{memory.width * 8 * multiplier}/#{memory.type}bcst"
+          @type  = :"mem#{memory.size * 8 * multiplier}/#{memory.type}bcst"
         end
 
         # The memory operand the broadcast is being applied to.
@@ -119,10 +119,10 @@ module Ronin
         # @return [Integer]
         def displacement = @operand.displacement
 
-        # The width of the memory operand.
+        # The size of the memory operand.
         #
         # @return [Integer, nil]
-        def width = @operand.width
+        def size = @operand.size
 
         #
         # Converts the memory to an integer value.

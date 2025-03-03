@@ -10,10 +10,10 @@ describe Ronin::ASM::X86::Opmask do
   end
 
   let(:operand) do
-    Ronin::ASM::X86::Register.new(:xmm0, width: 16, number: 0, type: :xmm)
+    Ronin::ASM::X86::Register.new(:xmm0, size: 16, number: 0, type: :xmm)
   end
   let(:k) do
-    Ronin::ASM::X86::Register.new(:k1, width: 8, number: 1, type: :k)
+    Ronin::ASM::X86::Register.new(:k1, size: 8, number: 1, type: :k)
   end
 
   subject { described_class.new(operand,k) }
@@ -71,7 +71,7 @@ describe Ronin::ASM::X86::Opmask do
 
     context "when given a non-k-type register for the k register" do
       let(:k) do
-        Ronin::ASM::X86::Register.new(:eax, width: 4, number: 0, general: true)
+        Ronin::ASM::X86::Register.new(:eax, size: 4, number: 0, general: true)
       end
 
       it do
@@ -110,9 +110,9 @@ describe Ronin::ASM::X86::Opmask do
     end
   end
 
-  describe "#width" do
-    it "must return the operand's #width" do
-      expect(subject.width).to eq(operand.width)
+  describe "#size" do
+    it "must return the operand's #size" do
+      expect(subject.size).to eq(operand.size)
     end
   end
 
