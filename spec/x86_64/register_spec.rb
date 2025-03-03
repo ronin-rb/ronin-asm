@@ -4,10 +4,10 @@ require 'ronin/asm/x86_64/register'
 describe Ronin::ASM::X86_64::Register do
   let(:name)     { :rax }
   let(:number)   { 0 }
-  let(:width)    { 8 }
+  let(:size)     { 8 }
   let(:type)     { :reg64 }
   let(:register) do
-    described_class.new(name, number: number, width: width, type: type)
+    described_class.new(name, number: number, size: size, type: type)
   end
 
   subject { register }

@@ -40,7 +40,7 @@ module Ronin
         # The size of the relative offset operand.
         #
         # @return [1, 4]
-        attr_reader :width
+        attr_reader :size
 
         # The operand type.
         #
@@ -53,16 +53,16 @@ module Ronin
         # @param [Integer] value
         #   The relative offset value.
         #
-        # @param [1, 4, nil] width
-        #   The optional width for the relative offset.
+        # @param [1, 4, nil] size
+        #   The optional size for the relative offset.
         #
-        def initialize(value, width: nil)
+        def initialize(value, size: nil)
           @value = value
-          @width = width || if value.bit_length <= 7 then 1
-                            else                          4
-                            end
+          @size  = size || if value.bit_length <= 7 then 1
+                           else                          4
+                           end
 
-          @type = :"rel#{@width * 8}"
+          @type = :"rel#{@size * 8}"
         end
 
         alias to_i value

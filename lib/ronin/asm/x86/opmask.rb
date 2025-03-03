@@ -98,10 +98,10 @@ module Ronin
         # @group Operand Methods
         #
 
-        # The width of the register or memory operand.
+        # The size of the register or memory operand.
         #
         # @return [Integer]
-        def width = @operand.width
+        def size = @operand.size
 
         #
         # Converts the register or memory operand to an integer value.

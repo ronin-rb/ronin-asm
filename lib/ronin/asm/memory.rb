@@ -39,10 +39,10 @@ module Ronin
       # @return [Register, nil]
       attr_reader :base
 
-      # The width of the memory operand.
+      # The size of the memory operand.
       #
       # @return [Integer, nil]
-      attr_reader :width
+      attr_reader :size
 
       # The assembly type class.
       #
@@ -55,17 +55,17 @@ module Ronin
       # @param [Register] base
       #   The base of the value.
       #
-      # @param [Integer, nil] width
-      #   The optional width of the memory operand.
+      # @param [Integer, nil] size
+      #   The optional size of the memory operand.
       #
-      def initialize(base, width: nil)
-        @base  = base
-        @width = width || if base
-                            base.width
-                          end
+      def initialize(base, size: nil)
+        @base = base
+        @size = size || if base
+                          base.size
+                        end
 
-        if @width
-          @type = :"mem#{@width * 8}"
+        if @size
+          @type = :"mem#{@size * 8}"
         end
       end
 
@@ -101,7 +101,7 @@ module Ronin
       # @since 1.0.0
       #
       def mem8?
-        @width == 1
+        @size == 1
       end
 
       #
@@ -112,7 +112,7 @@ module Ronin
       # @since 1.0.0
       #
       def mem16?
-        @width == 2
+        @size == 2
       end
 
       #
@@ -123,7 +123,7 @@ module Ronin
       # @since 1.0.0
       #
       def mem32?
-        @width == 4
+        @size == 4
       end
 
       #
@@ -134,17 +134,17 @@ module Ronin
       # @since 1.0.0
       #
       def mem64?
-        @width == 8
+        @size == 8
       end
 
       #
-      # Changes the width of the memory.
+      # Changes the size of the memory.
       #
       # @return [Memory]
-      #   A new memory operand object with the new width.
+      #   A new memory operand object with the new size.
       #
-      def change_width(new_width)
-        self.class.new(@base, width: new_width)
+      def change_size(new_size)
+        self.class.new(@base, size: new_size)
       end
 
       #

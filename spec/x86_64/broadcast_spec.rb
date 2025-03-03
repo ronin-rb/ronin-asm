@@ -13,8 +13,8 @@ describe Ronin::ASM::X86_64::Broadcast do
     expect(described_class).to include(Ronin::ASM::X86_64::Decorator)
   end
 
-  let(:base)   { Ronin::ASM::X86_64::Register.new(:eax, width: 4) }
-  let(:index)  { Ronin::ASM::X86_64::Register.new(:esi, width: 4) }
+  let(:base)   { Ronin::ASM::X86_64::Register.new(:eax, size: 4) }
+  let(:index)  { Ronin::ASM::X86_64::Register.new(:esi, size: 4) }
   let(:scale)  { 4 }
   let(:displacement) { 10 }
   let(:memory) do
