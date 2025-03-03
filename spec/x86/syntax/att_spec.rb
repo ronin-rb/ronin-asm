@@ -15,7 +15,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
   subject { described_class }
 
   describe ".format_memory" do
-    let(:register) { Ronin::ASM::X86::Register.new(:eax, width: 4) }
+    let(:register) { Ronin::ASM::X86::Register.new(:eax, size: 4) }
     let(:operand)  { Ronin::ASM::X86::Memory.new(base: register) }
 
     it "must enclose the memory in parenthesis" do
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
     end
 
     context "with an index" do
-      let(:index)   { Ronin::ASM::X86::Register.new(:esi, width: 4) }
+      let(:index)   { Ronin::ASM::X86::Register.new(:esi, size: 4) }
       let(:operand) { Ronin::ASM::X86::Memory.new(base: register, index: index) }
 
       it "must include the index argument" do

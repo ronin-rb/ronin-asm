@@ -11,7 +11,7 @@ describe Ronin::ASM::Syntax::ATT do
   subject { described_class }
 
   describe ".format_register" do
-    let(:register) { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
+    let(:register) { Ronin::ASM::Register.new(:eax, size: 4, type: :reg32) }
 
     it "must prepend a '%' to the register name" do
       expect(subject.format_register(register)).to eq("%eax")
@@ -19,7 +19,7 @@ describe Ronin::ASM::Syntax::ATT do
   end
 
   describe ".format_immediate" do
-    let(:operand) { Ronin::ASM::Immediate.new(255, width: 1) }
+    let(:operand) { Ronin::ASM::Immediate.new(255, size: 1) }
 
     it "must prepend a '$' to the immediate" do
       expect(subject.format_immediate(operand)).to eq("$0xff")
@@ -28,8 +28,8 @@ describe Ronin::ASM::Syntax::ATT do
 
   describe ".format_operands" do
     context "when given more than one operand" do
-      let(:operand1) { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
-      let(:operand2) { Ronin::ASM::Immediate.new(255, width: 1) }
+      let(:operand1) { Ronin::ASM::Register.new(:eax, size: 4, type: :reg32) }
+      let(:operand2) { Ronin::ASM::Immediate.new(255, size: 1) }
       let(:operands) { [operand1, operand2] }
 
       it "must format the operands as a tab and comma separated list, with the first operand as the last operand" do
@@ -40,7 +40,7 @@ describe Ronin::ASM::Syntax::ATT do
     end
 
     context "when only given one operand" do
-      let(:operand)  { Ronin::ASM::Immediate.new(255, width: 1) }
+      let(:operand)  { Ronin::ASM::Immediate.new(255, size: 1) }
       let(:operands) { [operand] }
 
       it "must format the single operand" do
@@ -63,8 +63,8 @@ describe Ronin::ASM::Syntax::ATT do
     end
 
     context "when the instruction has one operand" do
-      context "and the operand has a width of 1" do
-        let(:operand)     { Ronin::ASM::Immediate.new(0x80, width: 1) }
+      context "and the operand has a size of 1" do
+        let(:operand)     { Ronin::ASM::Immediate.new(0x80, size: 1) }
         let(:operands)    { [operand] }
         let(:instruction) { Ronin::ASM::Instruction.new(:int, *operands) }
 
@@ -77,8 +77,8 @@ describe Ronin::ASM::Syntax::ATT do
     end
 
     context "when the instruction has multiple operands" do
-      let(:operand1)    { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
-      let(:operand2)    { Ronin::ASM::Immediate.new(0xff, width: 1) }
+      let(:operand1)    { Ronin::ASM::Register.new(:eax, size: 4, type: :reg32) }
+      let(:operand2)    { Ronin::ASM::Immediate.new(0xff, size: 1) }
       let(:operands)    { [operand1, operand2] }
       let(:instruction) { Ronin::ASM::Instruction.new(:mov, *operands) }
 

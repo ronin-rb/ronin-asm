@@ -7,69 +7,69 @@ describe Ronin::ASM::Immediate do
   subject { described_class.new(value) }
 
   describe "#initialize" do
-    context "with a width" do
-      let(:width) { 2 }
+    context "with a size" do
+      let(:size) { 2 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
-      it "must set the width" do
-        expect(subject.width).to eq(width)
+      it "must set the size" do
+        expect(subject.size).to eq(size)
       end
     end
   end
 
-  describe "#width" do
-    context "when #width is not explicitly set by #initialize" do
+  describe "#size" do
+    context "when #size is not explicitly set by #initialize" do
       context "and it is 0" do
-        subject { described_class.new(0).width }
+        subject { described_class.new(0).size }
 
         it { expect(subject).to be == 1 }
       end
 
       context "and when between 0x00 .. 0xff" do
-        subject { described_class.new(0xff).width }
+        subject { described_class.new(0xff).size }
 
         it { expect(subject).to be == 1 }
       end
 
       context "and when between 0x00 .. -0x7f" do
-        subject { described_class.new(-0x7f).width }
+        subject { described_class.new(-0x7f).size }
 
         it { expect(subject).to be == 1 }
       end
 
       context "and when between 0x100 .. 0xffff" do
-        subject { described_class.new(0xffff).width }
+        subject { described_class.new(0xffff).size }
 
         it { expect(subject).to be == 2 }
       end
 
       context "and when between -0x80 .. -0x7fff" do
-        subject { described_class.new(-0x7fff).width }
+        subject { described_class.new(-0x7fff).size }
 
         it { expect(subject).to be == 2 }
       end
 
       context "and when between 0x10000 .. 0xffffffff" do
-        subject { described_class.new(0xffffffff).width }
+        subject { described_class.new(0xffffffff).size }
 
         it { expect(subject).to be == 4 }
       end
 
       context "and when between -0x80000 .. -0x7fffffff" do
-        subject { described_class.new(-0x7fffffff).width }
+        subject { described_class.new(-0x7fffffff).size }
 
         it { expect(subject).to be == 4 }
       end
 
       context "and when between 0x100000000 .. 0xffffffffffffffff" do
-        subject { described_class.new(0xffffffffffffffff).width }
+        subject { described_class.new(0xffffffffffffffff).size }
 
         it { expect(subject).to be == 8 }
       end
 
       context "and when between -0x800000000 .. -0x7fffffffffffffff" do
-        subject { described_class.new(-0x7fffffffffffffff).width }
+        subject { described_class.new(-0x7fffffffffffffff).size }
 
         it { expect(subject).to be == 8 }
       end
@@ -77,40 +77,40 @@ describe Ronin::ASM::Immediate do
   end
 
   describe "#type" do
-    context "when #width is 1" do
-      let(:width) { 1 }
+    context "when #size is 1" do
+      let(:size) { 1 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
       it "must return :imm8" do
         expect(subject.type).to eq(:imm8)
       end
     end
 
-    context "when #width is 2" do
-      let(:width) { 2 }
+    context "when #size is 2" do
+      let(:size) { 2 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
       it "must return :imm16" do
         expect(subject.type).to eq(:imm16)
       end
     end
 
-    context "when #width is 4" do
-      let(:width) { 4 }
+    context "when #size is 4" do
+      let(:size) { 4 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
       it "must return :imm32" do
         expect(subject.type).to eq(:imm32)
       end
     end
 
-    context "when #width is 8" do
-      let(:width) { 8 }
+    context "when #size is 8" do
+      let(:size) { 8 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
       it "must return :imm64" do
         expect(subject.type).to eq(:imm64)
@@ -125,10 +125,10 @@ describe Ronin::ASM::Immediate do
   end
 
   describe "#imm8?" do
-    context "when the #width is 1" do
-      let(:width) { 1 }
+    context "when the #size is 1" do
+      let(:size) { 1 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
       it "must return true" do
         expect(subject.imm8?).to be(true)
@@ -136,9 +136,9 @@ describe Ronin::ASM::Immediate do
     end
 
     context "when the #type is not 1" do
-      let(:width) { 8 }
+      let(:size) { 8 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
       it "must return false" do
         expect(subject.imm8?).to be(false)
@@ -147,10 +147,10 @@ describe Ronin::ASM::Immediate do
   end
 
   describe "#imm16?" do
-    context "when the #width is 2" do
-      let(:width) { 2 }
+    context "when the #size is 2" do
+      let(:size) { 2 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
       it "must return true" do
         expect(subject.imm16?).to be(true)
@@ -158,9 +158,9 @@ describe Ronin::ASM::Immediate do
     end
 
     context "when the #type is not 2" do
-      let(:width) { 1 }
+      let(:size) { 1 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
       it "must return false" do
         expect(subject.imm16?).to be(false)
@@ -169,10 +169,10 @@ describe Ronin::ASM::Immediate do
   end
 
   describe "#imm32?" do
-    context "when the #width is 4" do
-      let(:width) { 4 }
+    context "when the #size is 4" do
+      let(:size) { 4 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
       it "must return true" do
         expect(subject.imm32?).to be(true)
@@ -180,9 +180,9 @@ describe Ronin::ASM::Immediate do
     end
 
     context "when the #type is not 4" do
-      let(:width) { 1 }
+      let(:size) { 1 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
       it "must return false" do
         expect(subject.imm32?).to be(false)
@@ -191,10 +191,10 @@ describe Ronin::ASM::Immediate do
   end
 
   describe "#imm64?" do
-    context "when the #width is 8" do
-      let(:width) { 8 }
+    context "when the #size is 8" do
+      let(:size) { 8 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
       it "must return true" do
         expect(subject.imm64?).to be(true)
@@ -202,9 +202,9 @@ describe Ronin::ASM::Immediate do
     end
 
     context "when the #type is not 8" do
-      let(:width) { 1 }
+      let(:size) { 1 }
 
-      subject { described_class.new(value, width: width) }
+      subject { described_class.new(value, size: size) }
 
       it "must return false" do
         expect(subject.imm64?).to be(false)
@@ -212,16 +212,16 @@ describe Ronin::ASM::Immediate do
     end
   end
 
-  describe "#change_width" do
-    let(:new_width) { 8 }
+  describe "#change_size" do
+    let(:new_size) { 8 }
 
-    it "must return a new #{described_class} with the updated width" do
-      new_memory = subject.change_width(new_width)
+    it "must return a new #{described_class} with the updated size" do
+      new_memory = subject.change_size(new_size)
 
       expect(new_memory).to be_kind_of(described_class)
       expect(new_memory).to_not be(subject)
       expect(new_memory.value).to be(subject.value)
-      expect(new_memory.width).to eq(new_width)
+      expect(new_memory.size).to eq(new_size)
     end
   end
 

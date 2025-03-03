@@ -59,10 +59,10 @@ module Ronin
               asm << sign << format_integer(mem.displacement)
             end
 
-            if mem.width == mem.base.width
+            if mem.size == mem.base.size
               "[#{asm}]"
             else
-              "#{SIZE_SPECIFIERS[mem.width]} [#{asm}]"
+              "#{SIZE_SPECIFIERS[mem.size]} [#{asm}]"
             end
           end
 

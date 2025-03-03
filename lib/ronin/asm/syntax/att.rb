@@ -93,8 +93,8 @@ module Ronin
           line = format_keyword(insn.name)
 
           unless insn.operands.empty?
-            unless (insn.operands.length == 1 && insn.operand_width == 1)
-              line << INSTRUCTION_SUFFIXES[insn.operand_width]
+            unless (insn.operands.length == 1 && insn.operand_size == 1)
+              line << INSTRUCTION_SUFFIXES[insn.operand_size]
             end
 
             line << "\t" << format_operands(insn.operands)
