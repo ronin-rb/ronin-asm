@@ -70,20 +70,6 @@ module Ronin
         end
 
         #
-        # Emits a floating point number.
-        #
-        # @param [Float] value
-        #   The number.
-        #
-        # @return [String]
-        #   The formatted float.
-        #
-        # @abstract
-        #
-        def self.emit_float(value)
-        end
-
-        #
         # Emits an immediate operand.
         #
         # @param [Immediate] op
