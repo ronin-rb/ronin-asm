@@ -80,8 +80,8 @@ module Ronin
 
       # The registers available to the program
       #
-      # @return [Hash{Symbol => Register}]
-      #   The names and registers.
+      # @return [Set<Register>]
+      #   The set of register constants.
       attr_reader :registers
 
       # The syscalls available to the program

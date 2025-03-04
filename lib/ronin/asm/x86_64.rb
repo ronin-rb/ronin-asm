@@ -22,6 +22,8 @@ require_relative 'x86_64/immediate'
 require_relative 'x86_64/registers'
 require_relative 'x86_64/memory'
 
+require 'set'
+
 module Ronin
   module ASM
     #
@@ -32,98 +34,98 @@ module Ronin
       WORD_SIZE = 8
 
       # x86-64 registers
-      REGISTERS = {
-        al:  Registers::AL,
-        ah:  Registers::AH,
-        ax:  Registers::AX,
-        eax: Registers::EAX,
-        rax: Registers::RAX,
+      REGISTERS = Set[
+        Registers::AL,
+        Registers::AH,
+        Registers::AX,
+        Registers::EAX,
+        Registers::RAX,
 
-        bl:  Registers::BL,
-        bh:  Registers::BH,
-        bx:  Registers::BX,
-        ebx: Registers::EBX,
-        rbx: Registers::RBX,
+        Registers::BL,
+        Registers::BH,
+        Registers::BX,
+        Registers::EBX,
+        Registers::RBX,
 
-        cl:  Registers::CL,
-        ch:  Registers::CH,
-        cx:  Registers::CX,
-        ecx: Registers::ECX,
-        rcx: Registers::RCX,
+        Registers::CL,
+        Registers::CH,
+        Registers::CX,
+        Registers::ECX,
+        Registers::RCX,
 
-        dl:  Registers::DL,
-        dh:  Registers::DH,
-        dx:  Registers::DX,
-        edx: Registers::EDX,
-        rdx: Registers::RDX,
+        Registers::DL,
+        Registers::DH,
+        Registers::DX,
+        Registers::EDX,
+        Registers::RDX,
 
-        sil: Registers::SIL,
-        si:  Registers::SI,
-        esi: Registers::ESI,
-        rsi: Registers::RSI,
+        Registers::SIL,
+        Registers::SI,
+        Registers::ESI,
+        Registers::RSI,
 
-        dil: Registers::DIL,
-        di:  Registers::DI,
-        edi: Registers::EDI,
-        rdi: Registers::RDI,
+        Registers::DIL,
+        Registers::DI,
+        Registers::EDI,
+        Registers::RDI,
 
-        r8b: Registers::R8B,
-        r8w: Registers::R8W,
-        r8d: Registers::R8D,
-        r8:  Registers::R8,
+        Registers::R8B,
+        Registers::R8W,
+        Registers::R8D,
+        Registers::R8,
 
-        r9b: Registers::R9B,
-        r9w: Registers::R9W,
-        r9d: Registers::R9D,
-        r9:  Registers::R9,
+        Registers::R9B,
+        Registers::R9W,
+        Registers::R9D,
+        Registers::R9,
 
-        r10b: Registers::R10B,
-        r10w: Registers::R10W,
-        r10d: Registers::R10D,
-        r10:  Registers::R10,
+        Registers::R10B,
+        Registers::R10W,
+        Registers::R10D,
+        Registers::R10,
 
-        r11b: Registers::R11B,
-        r11w: Registers::R11W,
-        r11d: Registers::R11D,
-        r11:  Registers::R11,
+        Registers::R11B,
+        Registers::R11W,
+        Registers::R11D,
+        Registers::R11,
 
-        r12b: Registers::R12B,
-        r12w: Registers::R12W,
-        r12d: Registers::R12D,
-        r12:  Registers::R12,
+        Registers::R12B,
+        Registers::R12W,
+        Registers::R12D,
+        Registers::R12,
 
-        r13b: Registers::R13B,
-        r13w: Registers::R13W,
-        r13d: Registers::R13D,
-        r13:  Registers::R13,
+        Registers::R13B,
+        Registers::R13W,
+        Registers::R13D,
+        Registers::R13,
 
-        r14b: Registers::R14B,
-        r14w: Registers::R14W,
-        r14d: Registers::R14D,
-        r14:  Registers::R14,
+        Registers::R14B,
+        Registers::R14W,
+        Registers::R14D,
+        Registers::R14,
 
-        r15b: Registers::R15B,
-        r15w: Registers::R15W,
-        r15d: Registers::R15D,
-        r15:  Registers::R15,
+        Registers::R15B,
+        Registers::R15W,
+        Registers::R15D,
+        Registers::R15,
 
-        spl: Registers::SPL,
-        sp:  Registers::SP,
-        esp: Registers::ESP,
-        rsp: Registers::RSP,
+        Registers::SPL,
+        Registers::SP,
+        Registers::ESP,
+        Registers::RSP,
 
-        bpl: Registers::BPL,
-        bp:  Registers::BP,
-        ebp: Registers::EBP,
-        rbp: Registers::RBP,
+        Registers::BPL,
+        Registers::BP,
+        Registers::EBP,
+        Registers::RBP,
 
-        cs: Registers::CS,
-        ds: Registers::DS,
-        es: Registers::ES,
-        fs: Registers::FS,
-        gs: Registers::GS,
-        ss: Registers::SS
-      }
+        Registers::CS,
+        Registers::DS,
+        Registers::ES,
+        Registers::FS,
+        Registers::GS,
+        Registers::SS
+      ]
 
       #
       # @group Register Methods
