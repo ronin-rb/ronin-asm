@@ -217,6 +217,93 @@ module Ronin
           return lines.join($/)
         end
 
+        # The output stream to write to.
+        #
+        # @return [IO, StringIO]
+        attr_reader :output
+
+        #
+        # Initializes the syntax writer.
+        #
+        # @param [IO, StringIO] output
+        #   The output stream to write Assembly syntax to.
+        #
+        def initialize(output)
+          @output = output
+        end
+
+        #
+        # Writes the assembly program to the file.
+        #
+        # @param [String] path
+        #   The path to the output file.
+        #
+        # @param [Program] program
+        #   The assembly program to format and write out.
+        #
+        def self.write(path,program)
+          File.open(path,'w') do |file|
+            new(file).write_program(program)
+          end
+        end
+
+        #
+        # Writes the prologue line(s) of the program to the output stream.
+        #
+        # @param [Program] program
+        #
+        def write_prologue(program)
+          @output.puts self.class.format_prologue(program)
+        end
+
+        #
+        # Writes a section line to the output stream.
+        #
+        # @param [Symbol] name
+        #   The section name.
+        #
+        def write_section(name)
+          @output.puts self.class.format_section(name)
+        end
+
+        #
+        # Writes a label declaration to the output stream.
+        #
+        # @param [String] name
+        #   The label name.
+        #
+        def write_label(name)
+          @output.puts self.class.format_label(name)
+        end
+
+        #
+        # Writes an instruction line to the output stream.
+        #
+        # @param [Instruction] ins
+        #
+        def write_instruction(ins)
+          @output.puts "\t#{self.class.format_instruction(ins)}"
+        end
+
+        #
+        # Writes the program to the output stream.
+        #
+        # @param [Program] program
+        #   The assembly program to format and write out.
+        #
+        def write_program(program)
+          write_prologue(program)
+          write_section(:text)
+          write_label(:_start)
+
+          program.instructions.each do |ins|
+            case ins
+            when Label       then write_label(ins)
+            when Instruction then write_instruction(ins)
+            end
+          end
+        end
+
       end
     end
   end
