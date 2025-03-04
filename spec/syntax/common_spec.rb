@@ -122,6 +122,21 @@ describe Ronin::ASM::Syntax::Common do
     end
   end
 
+  describe ".emit_operands" do
+    let(:operands) do
+      [double('operand1'), double('operand2'), double('operand3')]
+    end
+    let(:formatted_operands) { %w[op1 op2 op3] }
+
+    it "just call emit_operand on each operand and join them together with ',\\t'" do
+      expect(subject).to receive(:emit_operand).with(operands[0]).and_return(formatted_operands[0])
+      expect(subject).to receive(:emit_operand).with(operands[1]).and_return(formatted_operands[1])
+      expect(subject).to receive(:emit_operand).with(operands[2]).and_return(formatted_operands[2])
+
+      expect(subject.emit_operands(operands)).to eq(formatted_operands.join(",\t"))
+    end
+  end
+
   describe ".emit_instruction" do
     let(:instruction) { double('Instruction') }
 
