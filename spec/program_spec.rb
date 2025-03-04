@@ -357,6 +357,25 @@ describe Ronin::ASM::Program do
     end
   end
 
+  describe "#<<" do
+    let(:instruction1) do
+      Ronin::ASM::Instruction.new(:push, Ronin::ASM::Immediate.new(0x41))
+    end
+    let(:instruction2) do
+      Ronin::ASM::Instruction.new(:push, Ronin::ASM::Immediate.new(0x42))
+    end
+
+    before do
+      subject << instruction1
+      subject << instruction2
+    end
+
+    it "must append the instruction to #instructions" do
+      expect(subject.instructions[0]).to eq(instruction1)
+      expect(subject.instructions[1]).to eq(instruction2)
+    end
+  end
+
   describe "#instruction" do
     it "must return a new Instruction object" do
       expect(subject.instruction(:hlt)).to be_kind_of(Ronin::ASM::Instruction)
