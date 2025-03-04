@@ -473,7 +473,7 @@ module Ronin
       end
 
       #
-      # @see #to_s
+      # @see #to_asm
       #
       def to_s
         to_asm
