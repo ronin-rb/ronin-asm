@@ -282,7 +282,7 @@ module Ronin
       # @param [Integer] number
       #   The interrupt number.
       #
-      def interrupt(number) = instruction(:int,number)
+      def interrupt(number) = int(number)
 
       #
       # Generates the instruction to invoke a syscall.
@@ -309,7 +309,7 @@ module Ronin
       # @param [Immediate, Memory, Register, Integer, LabelRef] op
       #   The value.
       #
-      def stack_push(op) = instruction(:push,op)
+      def stack_push(op) = push(op)
 
       #
       # Generates the instruction to pop a value off of the Stack.
@@ -317,7 +317,7 @@ module Ronin
       # @param [Register] op
       #   The register operand to store the value.
       #
-      def stack_pop(op) = instruction(:pop,op)
+      def stack_pop(op) = pop(op)
 
       #
       # Generates the instruction to clear a register.
@@ -325,7 +325,7 @@ module Ronin
       # @param [Register] register
       #   The register to clear.
       #
-      def register_clear(register) = instruction(:xor,register,register)
+      def register_clear(register) = xor(register,register)
 
       #
       # Generates the instruction to set a register.
@@ -336,7 +336,7 @@ module Ronin
       # @param [Immediate, Memory, Register, Integer, LabelRef] value
       #   The value to set.
       #
-      def register_set(register,value) = instruction(:mov,register,value)
+      def register_set(register,value) = mov(register,value)
 
       #
       # Generates the instruction to save a register.
