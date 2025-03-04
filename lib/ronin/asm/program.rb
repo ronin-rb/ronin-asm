@@ -195,19 +195,6 @@ module Ronin
       public
 
       #
-      # Determines if a register exists.
-      #
-      # @param [Symbol] name
-      #   The name of the register.
-      #
-      # @return [Boolean]
-      #   Specifies whether the register exists.
-      #
-      def register?(name)
-        @registers.has_key?(name.to_sym)
-      end
-
-      #
       # Mark the register as allocated.
       #
       # @param [Register] register
@@ -235,30 +222,6 @@ module Ronin
       #
       def free_register(register)
         @allocated_registers.delete(register)
-      end
-
-      #
-      # Accesses a register.
-      #
-      # @param [String, Symbol] name
-      #   The name of the register.
-      #
-      # @return [Register]
-      #   The register.
-      #
-      # @raise [ArgumentError]
-      #   The register could not be found.
-      #
-      def register(name)
-        name = name.to_sym
-
-        unless register?(name)
-          raise(ArgumentError,"unknown register: #{name}")
-        end
-
-        # mark the register as being used
-        allocate_register(name)
-        return @registers[name]
       end
 
       #
