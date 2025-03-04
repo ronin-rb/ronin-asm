@@ -138,9 +138,7 @@ module Ronin
       #
       # @since 1.0.0
       #
-      def general?
-        @general
-      end
+      def general? = @general
 
       #
       # Place holder method that attempts to change the width of the register.
@@ -156,9 +154,7 @@ module Ronin
       # @return [String]
       #   The register's name.
       #
-      def to_s
-        @name.to_s
-      end
+      def to_s = @name.to_s
 
       alias to_i number
 
