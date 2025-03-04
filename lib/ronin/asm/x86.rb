@@ -320,44 +320,44 @@ module Ronin
       #
       # Generates the instruction to clear a register.
       #
-      # @param [Symbol] name
-      #   The name of the register.
+      # @param [Register] register
+      #   The register to clear.
       #
-      def register_clear(name)
-        instruction(:xor,register(name),register(name))
+      def register_clear(register)
+        instruction(:xor,register,register)
       end
 
       #
       # Generates the instruction to set a register.
       #
-      # @param [Symbol] name
-      #   The name of the register.
+      # @param [Register] register
+      #   The register to set.
       #
       # @param [Immediate, Memory, Register, Integer, Symbol] value
       #   The value to set.
       #
-      def register_set(name,value)
-        instruction(:mov,register(name),value)
+      def register_set(register,value)
+        instruction(:mov,register,value)
       end
 
       #
       # Generates the instruction to save a register.
       #
-      # @param [Symbol] name
+      # @param [Register] register
       #   The name of the register.
       #
-      def register_save(name)
-        stack_push(register(name))
+      def register_save(register)
+        stack_push(register)
       end
 
       #
       # Generates the instruction to restore a register.
       #
-      # @param [Symbol] name
+      # @param [Register] register
       #   The name of the register.
       #
-      def register_load(name)
-        stack_pop(register(name))
+      def register_load(register)
+        stack_pop(register)
       end
     end
   end

@@ -56,60 +56,60 @@ describe Ronin::ASM::Program do
       end
 
       describe "#stack_pop" do
-        let(:register) { subject.register(:eax) }
+        let(:register) { Ronin::ASM::X86::Registers::EAX }
 
         before { subject.stack_pop(register) }
 
         it "must add a 'pop' instruction with a register" do
           expect(subject.instructions[-1].name).to eq(:pop)
-          expect(subject.instructions[-1].operands[0]).to eq(register)
+          expect(subject.instructions[-1].operands[0]).to be(register)
         end
       end
 
       describe "#register_clear" do
-        let(:name) { :eax }
+        let(:register) { Ronin::ASM::X86::Registers::EAX }
 
-        before { subject.register_clear(name) }
+        before { subject.register_clear(register) }
 
         it "must add a 'xor' instruction with a registers" do
           expect(subject.instructions[-1].name).to eq(:xor)
-          expect(subject.instructions[-1].operands[0].name).to eq(name)
-          expect(subject.instructions[-1].operands[1].name).to eq(name)
+          expect(subject.instructions[-1].operands[0]).to be(register)
+          expect(subject.instructions[-1].operands[1]).to be(register)
         end
       end
 
       describe "#register_set" do
-        let(:name)  { :eax }
-        let(:value) { 0xff }
+        let(:register) { Ronin::ASM::X86::Registers::EAX }
+        let(:value)    { 0xff }
 
-        before { subject.register_set(name,value) }
+        before { subject.register_set(register,value) }
 
         it "must add a 'xor' instruction with a registers" do
           expect(subject.instructions[-1].name).to eq(:mov)
-          expect(subject.instructions[-1].operands[0].name).to eq(name)
+          expect(subject.instructions[-1].operands[0]).to be(register)
           expect(subject.instructions[-1].operands[1].value).to eq(value)
         end
       end
 
       describe "#register_save" do
-        let(:name)  { :eax }
+        let(:register) { Ronin::ASM::X86::Registers::EAX }
 
-        before { subject.register_save(name) }
+        before { subject.register_save(register) }
 
         it "must add a 'xor' instruction with a registers" do
           expect(subject.instructions[-1].name).to eq(:push)
-          expect(subject.instructions[-1].operands[0].name).to eq(name)
+          expect(subject.instructions[-1].operands[0]).to be(register)
         end
       end
 
       describe "#register_save" do
-        let(:name)  { :eax }
+        let(:register) { Ronin::ASM::X86::Registers::EAX }
 
-        before { subject.register_load(name) }
+        before { subject.register_load(register) }
 
         it "must add a 'xor' instruction with a registers" do
           expect(subject.instructions[-1].name).to eq(:pop)
-          expect(subject.instructions[-1].operands[0].name).to eq(name)
+          expect(subject.instructions[-1].operands[0]).to be(register)
         end
       end
 
@@ -202,23 +202,25 @@ describe Ronin::ASM::Program do
   end
 
   describe "#allocate_register" do
-    it "must add the register name to #allocated_registers" do
-      subject.allocate_register(:ebx)
+    let(:register) { Ronin::ASM::X86_64::Registers::EAX }
 
-      expect(subject.allocated_registers).to include(:ebx)
+    it "must add the register name to #allocated_registers" do
+      subject.allocate_register(register)
+
+      expect(subject.allocated_registers).to include(register)
     end
   end
 
   describe "#free_register" do
-    let(:name) { :ebx }
+    let(:register) { Ronin::ASM::X86_64::Registers::EAX }
 
     before do
-      subject.allocate_register(name)
-      subject.free_register(name)
+      subject.allocate_register(register)
+      subject.free_register(register)
     end
 
     it "must remove the register name to #allocated_registers" do
-      expect(subject.allocated_registers).to_not include(name)
+      expect(subject.allocated_registers).to_not include(register)
     end
   end
 

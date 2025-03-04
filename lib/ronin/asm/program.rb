@@ -92,7 +92,7 @@ module Ronin
 
       # The registers used by the program
       #
-      # @return [Set<Symbol>]
+      # @return [Set<Register>]
       attr_reader :allocated_registers
 
       # The instructions of the program
@@ -210,31 +210,31 @@ module Ronin
       #
       # Mark the register as allocated.
       #
-      # @param [Symbol] name
-      #   The register name.
+      # @param [Register] register
+      #   The register to allocate.
       #
       # @return [Set<Symbol>]
       #   The set of allocated registers.
       #
       # @since 1.0.0
       #
-      def allocate_register(name)
-        @allocated_registers << name
+      def allocate_register(register)
+        @allocated_registers << register
       end
 
       #
       # Mark the register as de-allocated.
       #
-      # @param [Symbol] name
-      #   The register name.
+      # @param [Register] register
+      #   The register to free.
       #
       # @return [Set<Symbol>]
       #   The set of allocated registers.
       #
       # @since 1.0.0
       #
-      def free_register(name)
-        @allocated_registers.delete(name)
+      def free_register(register)
+        @allocated_registers.delete(register)
       end
 
       #
@@ -415,29 +415,29 @@ module Ronin
       #
       # Generic method for popping off the stack.
       #
-      # @param [Symbol] name
-      #   The name of the register.
+      # @param [Register] register
+      #   The register that will contain the value popped off the stack.
       #
       # @abstract
       #
-      def stack_pop(name)
+      def stack_pop(register)
       end
 
       #
       # Generic method for clearing a register.
       #
-      # @param [Symbol] name
-      #   The name of the register.
+      # @param [Register] register
+      #   The register to clear.
       #
       # @abstract
       #
-      def register_clear(name)
+      def register_clear(register)
       end
 
       #
       # Generic method for setting a register.
       #
-      # @param [Symbol] name
+      # @param [Register] register
       #   The name of the register.
       #
       # @param [Register, Immediate, Integer] value
@@ -445,48 +445,48 @@ module Ronin
       #
       # @abstract
       #
-      def register_set(name,value)
+      def register_set(register,value)
       end
 
       #
       # Generic method for saving a register.
       #
-      # @param [Symbol] name
+      # @param [Register] register
       #   The name of the register.
       #
       # @abstract
       #
-      def register_save(name)
+      def register_save(register)
       end
 
       #
       # Generic method for loading a register.
       #
-      # @param [Symbol] name
+      # @param [Register] register
       #   The name of the register.
       #
       # @abstract
       #
-      def register_load(name)
+      def register_load(register)
       end
 
       #
       # Defines a critical region, where the specified Registers
       # should be saved and then reloaded.
       #
-      # @param [Array<Symbol>] regs
+      # @param [Array<Register>] registers
       #   The registers to save and reload.
       #
       # @yield []
       #   The given block will be evaluated after the registers
       #   have been saved.
       #
-      def critical(*regs,&block)
-        regs.each { |name| register_save(name) }
+      def critical(*registers,&block)
+        registers.each { |register| register_save(register) }
 
         instance_eval(&block)
 
-        regs.reverse_each { |name| register_load(name) }
+        registers.reverse_each { |register| register_load(register) }
       end
 
       #
