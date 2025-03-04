@@ -376,6 +376,33 @@ describe Ronin::ASM::Program do
     end
   end
 
+  describe "#add_instruction" do
+    before do
+      subject.add_instruction Ronin::ASM::X86_64::Instructions::PUSH, 0x41
+      subject.add_instruction Ronin::ASM::X86_64::Instructions::MOV, [Ronin::ASM::X86_64::Registers::EAX], Ronin::ASM::X86_64::Registers::EBX
+    end
+
+    it "must initialize the instruction class and append the object to #instructions" do
+      expect(subject.instructions[0]).to be_a(Ronin::ASM::X86_64::Instructions::PUSH)
+      expect(subject.instructions[1]).to be_a(Ronin::ASM::X86_64::Instructions::MOV)
+    end
+
+    it "must coerce the given operands using #coerce_operand" do
+      expect(subject.instructions[0].operands[0]).to be_a(Ronin::ASM::X86_64::Immediate)
+      expect(subject.instructions[0].operands[0].value).to eq(0x41)
+
+      expect(subject.instructions[1].operands[0]).to be_a(Ronin::ASM::X86_64::Memory)
+      expect(subject.instructions[1].operands[0].base).to eq(Ronin::ASM::X86_64::Registers::EAX)
+      expect(subject.instructions[1].operands[1]).to eq(Ronin::ASM::X86_64::Registers::EBX)
+    end
+
+    it "must return the new instruction object" do
+      new_instruction = subject.add_instruction(Ronin::ASM::X86_64::Instructions::PUSH, 0x41)
+
+      expect(new_instruction).to be_a(Ronin::ASM::X86_64::Instructions::PUSH)
+    end
+  end
+
   describe "#instruction" do
     it "must return a new Instruction object" do
       expect(subject.instruction(:hlt)).to be_kind_of(Ronin::ASM::Instruction)

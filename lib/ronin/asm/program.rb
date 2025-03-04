@@ -226,6 +226,29 @@ module Ronin
       end
 
       #
+      # Coerces the given operands, initializes the instruction object, and
+      # appends it to the program.
+      #
+      # @param [Class<Instruction>] instruction_class
+      #   The instruction class.
+      #
+      # @param [Array] operands
+      #   The raw operand values.
+      #
+      # @return [Instruction]
+      #   The created instruction object.
+      #
+      # @api private
+      #
+      # @since 1.0.0
+      #
+      def add_instruction(instruction_class,*operands,**kwargs)
+        new_instruction = instruction_class.new(*operands.map(&method(:coerce_operand)))
+        @instructions << new_instruction
+        return new_instruction
+      end
+
+      #
       # Adds a new instruction to the program.
       #
       # @param [String, Symbol] name
