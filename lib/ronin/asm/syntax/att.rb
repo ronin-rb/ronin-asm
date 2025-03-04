@@ -46,9 +46,7 @@ module Ronin
         # @return [String]
         #   The register name.
         #
-        def self.emit_register(reg)
-          "%#{reg.name}"
-        end
+        def self.emit_register(reg) = "%#{reg.name}"
 
         #
         # Emits an immediate operand.
@@ -59,9 +57,7 @@ module Ronin
         # @return [String]
         #   The formatted immediate operand.
         #
-        def self.emit_immediate(op)
-          "$#{emit_integer(op.value)}"
-        end
+        def self.emit_immediate(op) = "$#{emit_integer(op.value)}"
 
         #
         # Emits a memory operand.
@@ -137,9 +133,7 @@ module Ronin
         #
         # @since 0.2.0
         #
-        def self.emit_section(name)
-          ".#{name}"
-        end
+        def self.emit_section(name) = ".#{name}"
 
         #
         # Emits the program's prologue.

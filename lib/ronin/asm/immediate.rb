@@ -130,9 +130,7 @@ module Ronin
       # @return [Integer]
       #   The value.
       #
-      def to_i
-        @value
-      end
+      def to_i = @value
 
       #
       # Converts the operand to a String.
@@ -140,9 +138,7 @@ module Ronin
       # @return [String]
       #   The value in String form.
       #
-      def to_s
-        @value.to_s
-      end
+      def to_s = @value.to_s
 
     end
   end
