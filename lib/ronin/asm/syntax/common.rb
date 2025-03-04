@@ -52,6 +52,7 @@ module Ronin
         # @abstract
         #
         def self.emit_register(reg)
+          raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
         #
@@ -81,6 +82,7 @@ module Ronin
         # @abstract
         #
         def self.emit_immediate(op)
+          raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
         #
@@ -95,6 +97,7 @@ module Ronin
         # @abstract
         #
         def self.emit_memory(op)
+          raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
         #
@@ -151,6 +154,7 @@ module Ronin
         # @abstract
         #
         def self.emit_instruction(ins)
+          raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
         #
@@ -165,6 +169,7 @@ module Ronin
         # @since 0.2.0
         #
         def self.emit_section(name)
+          raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
         #
@@ -179,6 +184,7 @@ module Ronin
         # @since 0.2.0
         #
         def self.emit_prologue(program)
+          raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
         #
