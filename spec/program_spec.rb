@@ -119,7 +119,7 @@ describe Ronin::ASM::Program do
         before { subject.interrupt(number) }
 
         it "must add an 'int' instruction with the interrupt number" do
-          expect(subject.instructions[-1].name).to eq(:int)
+          expect(subject.instructions[-1]).to be_a(Ronin::ASM::X86::Instructions::INT)
           expect(subject.instructions[-1].operands[0].value).to eq(number)
         end
       end
@@ -128,7 +128,7 @@ describe Ronin::ASM::Program do
         before { subject.syscall }
 
         it "must add an 'int 0x80' instruction" do
-          expect(subject.instructions[-1].name).to eq(:int)
+          expect(subject.instructions[-1]).to be_a(Ronin::ASM::X86::Instructions::INT)
           expect(subject.instructions[-1].operands[0].value).to eq(0x80)
         end
       end
@@ -159,7 +159,7 @@ describe Ronin::ASM::Program do
         before { subject.syscall }
 
         it "must add a 'syscall' instruction" do
-          expect(subject.instructions[-1].name).to eq(:syscall)
+          expect(subject.instructions[-1]).to be_a(Ronin::ASM::X86_64::Instructions::SYSCALL)
         end
       end
 
@@ -400,28 +400,6 @@ describe Ronin::ASM::Program do
       new_instruction = subject.add_instruction(Ronin::ASM::X86_64::Instructions::PUSH, 0x41)
 
       expect(new_instruction).to be_a(Ronin::ASM::X86_64::Instructions::PUSH)
-    end
-  end
-
-  describe "#instruction" do
-    it "must return a new Instruction object" do
-      expect(subject.instruction(:hlt)).to be_kind_of(Ronin::ASM::Instruction)
-    end
-
-    it "must append the new Instruction to #instructions" do
-      subject.instruction(:push, 1)
-
-      expect(subject.instructions.last.name).to eq(:push)
-    end
-
-    context "when the comment: keyword argument is given" do
-      let(:comment) { 'Foo bar' }
-
-      it "must initialize the Instruction with the comment" do
-        instruction = subject.instruction(:push, 0x41, comment: comment)
-
-        expect(instruction.comment).to eq(comment)
-      end
     end
   end
 
