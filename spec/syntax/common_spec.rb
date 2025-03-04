@@ -4,6 +4,8 @@ require 'ronin/asm/syntax/common'
 require 'ronin/asm/immediate'
 require 'ronin/asm/memory'
 require 'ronin/asm/label'
+require 'stringio'
+require 'tempfile'
 
 describe Ronin::ASM::Syntax::Common do
   subject { described_class }
@@ -282,6 +284,189 @@ describe Ronin::ASM::Syntax::Common do
             ''
           ].join($/)
         )
+      end
+    end
+  end
+
+  describe "#initialize" do
+    let(:output) { StringIO.new }
+
+    subject { described_class.new(output) }
+
+    it "must set #output" do
+      expect(subject.output).to be(output)
+    end
+  end
+
+  describe ".write" do
+    subject { described_class }
+
+    let(:tempfile) { Tempfile.new(['ronin-asm-','.s']) }
+    let(:path)     { tempfile.path }
+    let(:syntax)   { double('Syntax') }
+    let(:program)  { double('Program') }
+
+    it "must write the Assembly program to the file" do
+      expect(subject).to receive(:new).and_return(syntax)
+      expect(syntax).to receive(:write_program).with(program)
+
+      subject.write(path,program)
+    end
+  end
+
+  describe "#write_prologue" do
+    let(:output) { StringIO.new }
+
+    subject { described_class.new(output) }
+
+    let(:prologue) { '<prologue>' }
+    let(:program)  { double('Program') }
+
+    it "must write the result of .format_prologue to the output stream" do
+      expect(described_class).to receive(:format_prologue).with(program).and_return(prologue)
+
+      subject.write_prologue(program)
+
+      expect(output.string).to eq("#{prologue}#{$/}")
+    end
+  end
+
+  describe "#write_section" do
+    let(:output) { StringIO.new }
+
+    subject { described_class.new(output) }
+
+    let(:section) { '<section-name>' }
+    let(:name)    { :text }
+
+    it "must write the result of .format_section to the output stream" do
+      expect(described_class).to receive(:format_section).with(name).and_return(section)
+
+      subject.write_section(name)
+
+      expect(output.string).to eq("#{section}#{$/}")
+    end
+  end
+
+  describe "#write_label" do
+    let(:output) { StringIO.new }
+
+    subject { described_class.new(output) }
+
+    let(:name)  { :text }
+
+    it "must write the result of .format_label to the output stream" do
+      subject.write_label(name)
+
+      expect(output.string).to eq("#{described_class.format_label(name)}#{$/}")
+    end
+  end
+
+  describe "#write_instruction" do
+    let(:output) { StringIO.new }
+
+    subject { described_class.new(output) }
+
+    let(:immediate) { Ronin::ASM::Immediate.new(0x41) }
+    let(:register) do
+      Ronin::ASM::Register.new(:eax, number: 0, width: 4, type: :reg32)
+    end
+    let(:instruction) do
+      Ronin::ASM::Instruction.new(:mov, register, immediate)
+    end
+    let(:formatted_instruction) { '<instruction>' }
+
+    it "must write the tab-indented result of .format_instruction to the output stream" do
+      expect(described_class).to receive(:format_instruction).with(instruction).and_return(formatted_instruction)
+
+      subject.write_instruction(instruction)
+
+      expect(output.string).to eq("\t#{formatted_instruction}#{$/}")
+    end
+  end
+
+  describe "#write_program" do
+    let(:output) { StringIO.new }
+
+    subject { described_class.new(output) }
+
+    let(:immediate) { Ronin::ASM::Immediate.new(0x41) }
+    let(:register) do
+      Ronin::ASM::Register.new(:eax, number: 0, width: 4, type: :reg32)
+    end
+    let(:instructions) do
+      [
+        Ronin::ASM::Instruction.new(:mov, register, immediate),
+        Ronin::ASM::Instruction.new(:push, register),
+        Ronin::ASM::Instruction.new(:ret)
+      ]
+    end
+    let(:program) do
+      double('Program', instructions: instructions)
+    end
+
+    let(:formatted_prologue)     { '<prologue>' }
+    let(:formatted_text_section) { '<text-section>' }
+    let(:formatted_start_label)  { '_start:' }
+    let(:formatted_instructions) do
+      %w[
+        <instruction1>
+        <instruction2>
+        <instruction3>
+      ]
+    end
+
+    it "must call write_prologue with the program, then write_section(:text), then write_label(:_start), and then write_instruction for each instruction" do
+      allow(described_class).to receive(:format_prologue).with(program).and_return(formatted_prologue)
+      allow(described_class).to receive(:format_section).with(:text).and_return(formatted_text_section)
+
+      allow(described_class).to receive(:format_instruction).with(instructions[0]).and_return(formatted_instructions[0])
+      allow(described_class).to receive(:format_instruction).with(instructions[1]).and_return(formatted_instructions[1])
+      allow(described_class).to receive(:format_instruction).with(instructions[2]).and_return(formatted_instructions[2])
+
+      expect(subject).to receive(:write_instruction).with(instructions[0])
+      expect(subject).to receive(:write_instruction).with(instructions[1])
+      expect(subject).to receive(:write_instruction).with(instructions[2])
+
+      subject.write_program(program)
+    end
+
+    context "when the program's instructions contains a Label" do
+      let(:label1) { Ronin::ASM::Label.new('_label1') }
+      let(:label2) { Ronin::ASM::Label.new('_label2') }
+      let(:instructions) do
+        [
+          Ronin::ASM::Instruction.new(:mov, register, immediate),
+          label1,
+          Ronin::ASM::Instruction.new(:push, register),
+          label2,
+          Ronin::ASM::Instruction.new(:ret)
+        ]
+      end
+
+      let(:formatted_instructions) do
+        [
+          '<instruction1>',
+          "_label1:",
+          '<instruction2>',
+          "_label2:",
+          '<instruction3>'
+        ]
+      end
+
+      it "must call #write_label with each Label in Program#instructions" do
+        allow(described_class).to receive(:format_prologue).with(program).and_return(formatted_prologue)
+        allow(described_class).to receive(:format_section).with(:text).and_return(formatted_text_section)
+
+        allow(described_class).to receive(:format_instruction).with(instructions[0]).and_return(formatted_instructions[0])
+        allow(described_class).to receive(:format_instruction).with(instructions[2]).and_return(formatted_instructions[2])
+        allow(described_class).to receive(:format_instruction).with(instructions[4]).and_return(formatted_instructions[4])
+
+        allow(subject).to receive(:write_label).with(:_start)
+        expect(subject).to receive(:write_label).with(label1)
+        expect(subject).to receive(:write_label).with(label2)
+
+        subject.write_program(program)
       end
     end
   end
