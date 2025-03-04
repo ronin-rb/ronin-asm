@@ -209,6 +209,23 @@ module Ronin
       end
 
       #
+      # Appends an instruction object to the program.
+      #
+      # @param [Instruction] instruction
+      #   The instruction object to append.
+      #
+      # @return [self]
+      #
+      # @api private
+      #
+      # @since 1.0.0
+      #
+      def <<(instruction)
+        @instructions << instruction
+        return self
+      end
+
+      #
       # Adds a new instruction to the program.
       #
       # @param [String, Symbol] name
