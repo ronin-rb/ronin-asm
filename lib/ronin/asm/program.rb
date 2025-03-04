@@ -467,7 +467,7 @@ module Ronin
       #   The syntax to compile the program to.
       #
       def to_asm(syntax=:intel)
-        SYNTAX[syntax].emit_program(self)
+        SYNTAX[syntax].format_program(self)
       end
 
       #

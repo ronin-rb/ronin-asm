@@ -10,28 +10,28 @@ require 'ronin/asm/program'
 describe Ronin::ASM::Syntax::Intel do
   subject { described_class }
 
-  describe ".emit_register" do
+  describe ".format_register" do
     let(:register) { Ronin::ASM::X86::Register.new(:eax, width: 4) }
 
     it "must return the register name" do
-      expect(subject.emit_register(register)).to eq("eax")
+      expect(subject.format_register(register)).to eq("eax")
     end
   end
 
-  describe ".emit_immediate" do
+  describe ".format_immediate" do
     let(:operand) { Ronin::ASM::X86::Immediate.new(255, width: 1) }
 
     it "must prepend a size specifier" do
-      expect(subject.emit_immediate(operand)).to eq("BYTE 0xff")
+      expect(subject.format_immediate(operand)).to eq("BYTE 0xff")
     end
   end
 
-  describe ".emit_memory" do
+  describe ".format_memory" do
     let(:register) { Ronin::ASM::X86::Register.new(:eax, width: 4) }
     let(:operand)  { Ronin::ASM::X86::Memory.new(base: register) }
 
     it "must enclose the memory in brackets" do
-      expect(subject.emit_memory(operand)).to eq("[eax]")
+      expect(subject.format_memory(operand)).to eq("[eax]")
     end
 
     context "when operand width does not match the base width" do
@@ -41,7 +41,7 @@ describe Ronin::ASM::Syntax::Intel do
       end
 
       it "must specify the width" do
-        expect(subject.emit_memory(operand)).to eq("WORD [eax]")
+        expect(subject.format_memory(operand)).to eq("WORD [eax]")
       end
     end
 
@@ -52,14 +52,14 @@ describe Ronin::ASM::Syntax::Intel do
       end
 
       it "must add the displacement to the base" do
-        expect(subject.emit_memory(operand)).to eq("[eax+0xff]")
+        expect(subject.format_memory(operand)).to eq("[eax+0xff]")
       end
 
       context "when 0" do
         let(:operand) { Ronin::ASM::X86::Memory.new(base: register, displacement: 0) }
 
         it "must omit the displacement" do
-          expect(subject.emit_memory(operand)).to eq("[eax]")
+          expect(subject.format_memory(operand)).to eq("[eax]")
         end
       end
     end
@@ -69,7 +69,7 @@ describe Ronin::ASM::Syntax::Intel do
       let(:operand) { Ronin::ASM::X86::Memory.new(base: register, index: index) }
 
       it "must add the index to the base" do
-        expect(subject.emit_memory(operand)).to eq("[eax+esi]")
+        expect(subject.format_memory(operand)).to eq("[eax+esi]")
       end
 
       context "with a scale" do
@@ -79,18 +79,18 @@ describe Ronin::ASM::Syntax::Intel do
         end
 
         it "must multiple the index by the scale" do
-          expect(subject.emit_memory(operand)).to eq("[eax+esi*0x4]")
+          expect(subject.format_memory(operand)).to eq("[eax+esi*0x4]")
         end
       end
     end
   end
 
-  describe ".emit_instruction" do
+  describe ".format_instruction" do
     context "with no operands" do
       let(:instruction) { Ronin::ASM::Instruction.new(:ret) }
 
-      it "must emit the instruction name" do
-        expect(subject.emit_instruction(instruction)).to eq('ret')
+      it "must return the instruction name" do
+        expect(subject.format_instruction(instruction)).to eq('ret')
       end
     end
 
@@ -99,19 +99,19 @@ describe Ronin::ASM::Syntax::Intel do
       let(:immediate)   { Ronin::ASM::X86::Immediate.new(0xff, width: 1) }
       let(:instruction) { Ronin::ASM::Instruction.new(:mov, register, immediate) }
 
-      it "must emit the operands" do
-        expect(subject.emit_instruction(instruction)).to eq("mov\teax,\tBYTE 0xff")
+      it "must format the operands" do
+        expect(subject.format_instruction(instruction)).to eq("mov\teax,\tBYTE 0xff")
       end
     end
   end
 
-  describe ".emit_section" do
-    it "must emit the section name" do
-      expect(subject.emit_section(:text)).to eq("section .text")
+  describe ".format_section" do
+    it "must return the section name" do
+      expect(subject.format_section(:text)).to eq("section .text")
     end
   end
 
-  describe ".emit_program" do
+  describe ".format_program" do
     let(:program) do
       Ronin::ASM::Program.new(arch: :x86) do
         mov eax, 0xff
@@ -120,7 +120,7 @@ describe Ronin::ASM::Syntax::Intel do
     end
 
     it "must output the _start label and the program" do
-      asm = subject.emit_program(program)
+      asm = subject.format_program(program)
 
       expect(asm).to eq([
         "BITS 32",
@@ -132,7 +132,7 @@ describe Ronin::ASM::Syntax::Intel do
       ].join($/))
     end
 
-    context "when emitting labels" do
+    context "when formatting labels" do
       let(:program) do
         Ronin::ASM::Program.new(arch: :x86) do
           mov eax, 0
@@ -147,8 +147,8 @@ describe Ronin::ASM::Syntax::Intel do
         end
       end
 
-      it "must emit both labels and instructions" do
-        expect(subject.emit_program(program)).to eq([
+      it "must format both labels and instructions" do
+        expect(subject.format_program(program)).to eq([
           "BITS 32",
           "section .text",
           "_start:",
@@ -174,7 +174,7 @@ describe Ronin::ASM::Syntax::Intel do
       end
 
       it "must include start with the '.code64' directive" do
-        expect(subject.emit_program(program)).to match(/^BITS 64$/)
+        expect(subject.format_program(program)).to match(/^BITS 64$/)
       end
     end
   end

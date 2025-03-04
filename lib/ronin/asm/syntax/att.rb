@@ -46,7 +46,7 @@ module Ronin
         # @return [String]
         #   The register name.
         #
-        def self.emit_register(reg) = "%#{reg.name}"
+        def self.format_register(reg) = "%#{reg.name}"
 
         #
         # Emits an immediate operand.
@@ -57,7 +57,7 @@ module Ronin
         # @return [String]
         #   The formatted immediate operand.
         #
-        def self.emit_immediate(op) = "$#{emit_integer(op.value)}"
+        def self.format_immediate(op) = "$#{format_integer(op.value)}"
 
         #
         # Emits a memory operand.
@@ -68,16 +68,16 @@ module Ronin
         # @return [String]
         #   The formatted memory operand.
         #
-        def self.emit_memory(op)
-          asm = emit_register(op.base)
+        def self.format_memory(op)
+          asm = format_register(op.base)
 
           if op.index
-            asm << ',' << emit_register(op.index)
+            asm << ',' << format_register(op.index)
             asm << ',' << op.scale.to_s if op.scale > 1
           end
 
           asm = "(#{asm})"
-          asm = emit_integer(op.displacement) + asm if op.displacement != 0
+          asm = format_integer(op.displacement) + asm if op.displacement != 0
 
           return asm
         end
@@ -91,9 +91,9 @@ module Ronin
         # @return [String]
         #   The formatted operands.
         #
-        def self.emit_operands(ops)
+        def self.format_operands(ops)
           if ops.length > 1
-            [*ops[1..-1], ops[0]].map { |op| emit_operand(op) }.join(",\t")
+            [*ops[1..-1], ops[0]].map { |op| format_operand(op) }.join(",\t")
           else
             super(ops)
           end
@@ -108,15 +108,15 @@ module Ronin
         # @return [String]
         #   The formatted instruction.
         #
-        def self.emit_instruction(ins)
-          line = emit_keyword(ins.name)
+        def self.format_instruction(ins)
+          line = format_keyword(ins.name)
 
           unless ins.operands.empty?
             unless (ins.operands.length == 1 && ins.width == 1)
               line << WIDTHS[ins.width]
             end
 
-            line << "\t" << emit_operands(ins.operands)
+            line << "\t" << format_operands(ins.operands)
           end
 
           return line
@@ -133,7 +133,7 @@ module Ronin
         #
         # @since 0.2.0
         #
-        def self.emit_section(name) = ".#{name}"
+        def self.format_section(name) = ".#{name}"
 
         #
         # Emits the program's prologue.
@@ -146,7 +146,7 @@ module Ronin
         #
         # @since 0.2.0
         #
-        def self.emit_prologue(program)
+        def self.format_prologue(program)
           ".code#{program.word_size * 8}"
         end
 
