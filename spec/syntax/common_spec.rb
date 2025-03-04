@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'ronin/asm/syntax/common'
 
+require 'ronin/asm/immediate'
+require 'ronin/asm/memory'
 require 'ronin/asm/label'
 
 describe Ronin::ASM::Syntax::Common do
@@ -66,6 +68,57 @@ describe Ronin::ASM::Syntax::Common do
 
     it "must append a ':' to the name" do
       expect(subject.emit_label(label)).to eq('_start:')
+    end
+  end
+
+  describe ".emit_operand" do
+    context "when given an Immediate value" do
+      let(:immediate) { Ronin::ASM::Immediate.new(0x41) }
+      let(:string)    { double('formatted assembly') }
+
+      it "must call emit_immediate" do
+        expect(subject).to receive(:emit_immediate).with(immediate).and_return(string)
+
+        expect(subject.emit_operand(immediate)).to be(string)
+      end
+    end
+
+    context "when given a Register value" do
+      let(:register) do
+        Ronin::ASM::Register.new(:eax, number: 0, width: 4, type: :reg32)
+      end
+      let(:string) { double('formatted assembly') }
+
+      it "must call emit_immediate" do
+        expect(subject).to receive(:emit_register).with(register).and_return(string)
+
+        expect(subject.emit_operand(register)).to be(string)
+      end
+    end
+
+    context "when given a Memory value" do
+      let(:register) do
+        Ronin::ASM::Register.new(:eax, number: 0, width: 4, type: :reg32)
+      end
+      let(:memory) { Ronin::ASM::Memory.new(register) }
+      let(:string) { double('formatted assembly') }
+
+      it "must call emit_immediate" do
+        expect(subject).to receive(:emit_memory).with(memory).and_return(string)
+
+        expect(subject.emit_operand(memory)).to be(string)
+      end
+    end
+
+    context "when given a Symbol value" do
+      let(:symbol) { :_label }
+      let(:string) { double('formatted assembly') }
+
+      it "must call emit_keyword" do
+        expect(subject).to receive(:emit_keyword).with(symbol).and_return(string)
+
+        expect(subject.emit_operand(symbol)).to be(string)
+      end
     end
   end
 
