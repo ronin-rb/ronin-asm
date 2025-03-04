@@ -458,9 +458,7 @@ module Ronin
       # @yield []
       #   The code to evaluate.
       #
-      def eval(&block)
-        instance_eval(&block)
-      end
+      def eval(&block) = instance_eval(&block)
 
       #
       # Converts the program to Assembly Source Code.
@@ -475,9 +473,7 @@ module Ronin
       #
       # @see #to_asm
       #
-      def to_s
-        to_asm
-      end
+      def to_s = to_asm
 
       #
       # Assembles the program.

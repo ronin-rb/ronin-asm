@@ -152,9 +152,7 @@ module Ronin
       #
       # @return [Integer]
       #
-      def to_i
-        @base.to_i
-      end
+      def to_i = @base.to_i
 
     end
   end

@@ -282,26 +282,26 @@ module Ronin
       # @param [Integer] number
       #   The interrupt number.
       #
-      def interrupt(number); instruction(:int,number); end
+      def interrupt(number) = instruction(:int,number)
 
       #
       # Generates the instruction to invoke a syscall.
       #
-      def syscall; interrupt(0x80); end
+      def syscall = interrupt(0x80)
 
       #
       # The Stack Base Pointer register.
       #
       # @see #ebp
       #
-      def stack_base; Registers::EBP; end
+      def stack_base = Registers::EBP
 
       #
       # The Stack Pointer register.
       #
       # @see #esp
       #
-      def stack_pointer; Registers::ESP; end
+      def stack_pointer = Registers::ESP
 
       #
       # Generates the instruction to push a value onto the Stack.
@@ -309,7 +309,7 @@ module Ronin
       # @param [Immediate, Memory, Register, Integer, Symbol] op
       #   The value.
       #
-      def stack_push(op); instruction(:push,op); end
+      def stack_push(op) = instruction(:push,op)
 
       #
       # Generates the instruction to pop a value off of the Stack.
@@ -317,7 +317,7 @@ module Ronin
       # @param [Register] op
       #   The register operand to store the value.
       #
-      def stack_pop(op); instruction(:pop,op); end
+      def stack_pop(op) = instruction(:pop,op)
 
       #
       # Generates the instruction to clear a register.
@@ -325,9 +325,7 @@ module Ronin
       # @param [Register] register
       #   The register to clear.
       #
-      def register_clear(register)
-        instruction(:xor,register,register)
-      end
+      def register_clear(register) = instruction(:xor,register,register)
 
       #
       # Generates the instruction to set a register.
@@ -338,9 +336,7 @@ module Ronin
       # @param [Immediate, Memory, Register, Integer, Symbol] value
       #   The value to set.
       #
-      def register_set(register,value)
-        instruction(:mov,register,value)
-      end
+      def register_set(register,value) = instruction(:mov,register,value)
 
       #
       # Generates the instruction to save a register.
@@ -348,9 +344,7 @@ module Ronin
       # @param [Register] register
       #   The name of the register.
       #
-      def register_save(register)
-        stack_push(register)
-      end
+      def register_save(register) = stack_push(register)
 
       #
       # Generates the instruction to restore a register.
@@ -358,9 +352,7 @@ module Ronin
       # @param [Register] register
       #   The name of the register.
       #
-      def register_load(register)
-        stack_pop(register)
-      end
+      def register_load(register) = stack_pop(register)
     end
   end
 end
