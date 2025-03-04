@@ -22,6 +22,7 @@ require_relative '../register'
 require_relative '../immediate'
 require_relative '../memory'
 require_relative '../instruction'
+require_relative '../label'
 
 module Ronin
   module ASM
