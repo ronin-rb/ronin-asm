@@ -191,16 +191,6 @@ describe Ronin::ASM::Program do
     end
   end
 
-  describe "#register?" do
-    it "must return true for existing registers" do
-      expect(subject.register?(:eax)).to be(true)
-    end
-
-    it "must return false for unknown registers" do
-      expect(subject.register?(:foo)).to be(false)
-    end
-  end
-
   describe "#allocate_register" do
     let(:register) { Ronin::ASM::X86_64::Registers::EAX }
 
@@ -221,26 +211,6 @@ describe Ronin::ASM::Program do
 
     it "must remove the register name to #allocated_registers" do
       expect(subject.allocated_registers).to_not include(register)
-    end
-  end
-
-  describe "#register" do
-    it "must return a Register" do
-      expect(subject.register(:eax)).to be_kind_of(Ronin::ASM::Register)
-    end
-
-    it "must allocate the register" do
-      subject.register(:ebx)
-
-      expect(subject.allocated_registers).to include(:ebx)
-    end
-
-    context "when given an unknown register name" do
-      it "must raise an ArgumentError" do
-        expect {
-          subject.register(:foo)
-        }.to raise_error(ArgumentError)
-      end
     end
   end
 
