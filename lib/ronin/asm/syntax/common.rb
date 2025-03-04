@@ -201,7 +201,7 @@ module Ronin
             emit_prologue(program),
             emit_section(:text),
             emit_label(:_start)
-          ].compact
+          ]
 
           program.instructions.each do |ins|
             case ins
