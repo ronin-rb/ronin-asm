@@ -42,8 +42,7 @@ module Ronin
         # @return [String]
         #   The register name.
         #
-        def self.emit_register(reg)
-          reg.name.to_s
+        def self.emit_register(reg) = reg.name.to_s
         end
 
         #
@@ -123,9 +122,7 @@ module Ronin
         #
         # @since 0.2.0
         #
-        def self.emit_section(name)
-          "section .#{name}"
-        end
+        def self.emit_section(name) = "section .#{name}"
 
         #
         # Emits the program's prologue.

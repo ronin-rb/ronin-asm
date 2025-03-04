@@ -39,9 +39,7 @@ module Ronin
         # @return [String]
         #   The formatted keyword.
         #
-        def self.emit_keyword(name)
-          name.to_s
-        end
+        def self.emit_keyword(name) = name.to_s
 
         #
         # Emits a register.
@@ -153,9 +151,7 @@ module Ronin
         # @return [String]
         #   The formatted label.
         #
-        def self.emit_label(label)
-          "#{label.name}:"
-        end
+        def self.emit_label(label) = "#{label.name}:"
 
         #
         # Emits an instruction.
