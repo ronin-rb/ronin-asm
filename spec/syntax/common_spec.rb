@@ -166,4 +166,123 @@ describe Ronin::ASM::Syntax::Common do
       }.to raise_error(NotImplementedError,"#{subject}.emit_prologue was not implemented")
     end
   end
+
+  describe ".emit_program" do
+    let(:immediate) { Ronin::ASM::Immediate.new(0x41) }
+    let(:register) do
+      Ronin::ASM::Register.new(:eax, number: 0, width: 4, type: :reg32)
+    end
+    let(:instructions) do
+      [
+        Ronin::ASM::Instruction.new(:mov, register, immediate),
+        Ronin::ASM::Instruction.new(:push, register),
+        Ronin::ASM::Instruction.new(:ret)
+      ]
+    end
+    let(:program) do
+      double('Program', instructions: instructions)
+    end
+
+    let(:formatted_prologue)     { '<prologue>' }
+    let(:formatted_text_section) { '<text-section>' }
+    let(:formatted_start_label)  { '_start:' }
+    let(:formatted_instructions) do
+      %w[
+        <instruction1>
+        <instruction2>
+        <instruction3>
+      ]
+    end
+
+    it "must call .emit_prologue, then .emit_section(:text), then .emit_label(:_start), and then .emit_instruction for each instruction" do
+      expect(subject).to receive(:emit_prologue).with(program).and_return(formatted_prologue)
+      expect(subject).to receive(:emit_section).with(:text).and_return(formatted_text_section)
+
+      expect(subject).to receive(:emit_instruction).with(instructions[0]).and_return(formatted_instructions[0])
+      expect(subject).to receive(:emit_instruction).with(instructions[1]).and_return(formatted_instructions[1])
+      expect(subject).to receive(:emit_instruction).with(instructions[2]).and_return(formatted_instructions[2])
+
+      subject.emit_program(program)
+    end
+
+    it "must tab indent each instruction line in the resulting string and append a newline" do
+      allow(subject).to receive(:emit_prologue).with(program).and_return(formatted_prologue)
+      allow(subject).to receive(:emit_section).with(:text).and_return(formatted_text_section)
+
+      allow(subject).to receive(:emit_instruction).with(instructions[0]).and_return(formatted_instructions[0])
+      allow(subject).to receive(:emit_instruction).with(instructions[1]).and_return(formatted_instructions[1])
+      allow(subject).to receive(:emit_instruction).with(instructions[2]).and_return(formatted_instructions[2])
+
+      expect(subject.emit_program(program)).to eq(
+        [
+          formatted_prologue,
+          formatted_text_section,
+          formatted_start_label,
+          "\t#{formatted_instructions[0]}",
+          "\t#{formatted_instructions[1]}",
+          "\t#{formatted_instructions[2]}",
+          ''
+        ].join($/)
+      )
+    end
+
+    context "when the program's instructions contains a Label" do
+      let(:instructions) do
+        [
+          Ronin::ASM::Instruction.new(:mov, register, immediate),
+          Ronin::ASM::Label.new('_label1'),
+          Ronin::ASM::Instruction.new(:push, register),
+          Ronin::ASM::Label.new('_label2'),
+          Ronin::ASM::Instruction.new(:ret)
+        ]
+      end
+
+      let(:formatted_instructions) do
+        %w[
+          <instruction1>
+          _label1:
+          <instruction2>
+          _label2:
+          <instruction3>
+        ]
+      end
+
+      it "must call .emit_label with each Label" do
+        allow(subject).to receive(:emit_prologue).with(program).and_return(formatted_prologue)
+        allow(subject).to receive(:emit_section).with(:text).and_return(formatted_text_section)
+        allow(subject).to receive(:emit_label).with(:_start).and_return(formatted_start_label)
+
+        expect(subject).to receive(:emit_instruction).with(instructions[0]).and_return(formatted_instructions[0])
+        expect(subject).to receive(:emit_label).with(instructions[1]).and_return(formatted_instructions[1])
+        expect(subject).to receive(:emit_instruction).with(instructions[2]).and_return(formatted_instructions[2])
+        expect(subject).to receive(:emit_label).with(instructions[3]).and_return(formatted_instructions[3])
+        expect(subject).to receive(:emit_instruction).with(instructions[4]).and_return(formatted_instructions[4])
+
+        subject.emit_program(program)
+      end
+
+      it "must not tab indent the labels in the resulting string" do
+        allow(subject).to receive(:emit_prologue).with(program).and_return(formatted_prologue)
+        allow(subject).to receive(:emit_section).with(:text).and_return(formatted_text_section)
+
+        allow(subject).to receive(:emit_instruction).with(instructions[0]).and_return(formatted_instructions[0])
+        allow(subject).to receive(:emit_instruction).with(instructions[2]).and_return(formatted_instructions[2])
+        allow(subject).to receive(:emit_instruction).with(instructions[4]).and_return(formatted_instructions[4])
+
+        expect(subject.emit_program(program)).to eq(
+          [
+            formatted_prologue,
+            formatted_text_section,
+            formatted_start_label,
+            "\t#{formatted_instructions[0]}",
+            "#{formatted_instructions[1]}",
+            "\t#{formatted_instructions[2]}",
+            "#{formatted_instructions[3]}",
+            "\t#{formatted_instructions[4]}",
+            ''
+          ].join($/)
+        )
+      end
+    end
+  end
 end
