@@ -249,33 +249,6 @@ module Ronin
       end
 
       #
-      # Adds a new instruction to the program.
-      #
-      # @param [String, Symbol] name
-      #   The instruction name.
-      #
-      # @param [Array] operands
-      #   The operands for the instruction.
-      #
-      # @param [Hash{Symbol => Object}] kwargs
-      #   Additional keyword arguments for {Instruction#initialize}.
-      #
-      # @option kwargs [String, nil] :comment
-      #   Optional comment for the instruction.
-      #
-      # @return [Instruction]
-      #   The newly created instruction.
-      #
-      def instruction(name,*operands,**kwargs)
-        operands.map!(&method(:coerce_operand))
-
-        instruction = Instruction.new(name,*operands,**kwargs)
-
-        @instructions << instruction
-        return instruction
-      end
-
-      #
       # Creates an operand of size 1 (byte).
       #
       # @param [Memory, Integer] operand
