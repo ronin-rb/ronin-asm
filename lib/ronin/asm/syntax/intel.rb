@@ -42,7 +42,7 @@ module Ronin
         # @return [String]
         #   The register name.
         #
-        def self.emit_register(reg)
+        def self.format_register(reg)
           reg.name.to_s
         end
 
@@ -55,8 +55,8 @@ module Ronin
         # @return [String]
         #   The formatted immediate operand.
         #
-        def self.emit_immediate(op)
-          "#{WIDTHS[op.width]} #{emit_integer(op.value)}"
+        def self.format_immediate(op)
+          "#{WIDTHS[op.width]} #{format_integer(op.value)}"
         end
 
         #
@@ -68,12 +68,12 @@ module Ronin
         # @return [String]
         #   The formatted memory operand.
         #
-        def self.emit_memory(op)
-          asm = emit_register(op.base)
+        def self.format_memory(op)
+          asm = format_register(op.base)
 
           if op.index
-            asm << '+' << emit_register(op.index)
-            asm << '*' << emit_integer(op.scale) if op.scale > 1
+            asm << '+' << format_register(op.index)
+            asm << '*' << format_integer(op.scale) if op.scale > 1
           end
 
           if op.displacement != 0
@@ -81,7 +81,7 @@ module Ronin
                    else                         '-'
                    end
 
-            asm << sign << emit_integer(op.displacement)
+            asm << sign << format_integer(op.displacement)
           end
 
           asm = "[#{asm}]"
@@ -102,11 +102,11 @@ module Ronin
         # @return [String]
         #   The formatted instruction.
         #
-        def self.emit_instruction(ins)
-          line = emit_keyword(ins.name)
+        def self.format_instruction(ins)
+          line = format_keyword(ins.name)
 
           unless ins.operands.empty?
-            line << "\t" << emit_operands(ins.operands)
+            line << "\t" << format_operands(ins.operands)
           end
 
           return line
@@ -123,7 +123,7 @@ module Ronin
         #
         # @since 0.2.0
         #
-        def self.emit_section(name)
+        def self.format_section(name)
           "section .#{name}"
         end
 
@@ -138,7 +138,7 @@ module Ronin
         #
         # @since 0.2.0
         #
-        def self.emit_prologue(program)
+        def self.format_prologue(program)
           "BITS #{program.word_size * 8}"
         end
 

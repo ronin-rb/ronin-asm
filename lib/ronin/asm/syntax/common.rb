@@ -41,7 +41,7 @@ module Ronin
         # @return [String]
         #   The formatted keyword.
         #
-        def self.emit_keyword(name) = name.to_s
+        def self.format_keyword(name) = name.to_s
 
         #
         # Emits a register.
@@ -53,7 +53,7 @@ module Ronin
         #
         # @abstract
         #
-        def self.emit_register(reg)
+        def self.format_register(reg)
           raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
@@ -66,7 +66,7 @@ module Ronin
         # @return [String]
         #   The formatted integer.
         #
-        def self.emit_integer(value)
+        def self.format_integer(value)
           if value >= 0 then "0x%x" % value
           else               "-0x%x" % value.abs
           end
@@ -83,7 +83,7 @@ module Ronin
         #
         # @abstract
         #
-        def self.emit_immediate(op)
+        def self.format_immediate(op)
           raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
@@ -98,7 +98,7 @@ module Ronin
         #
         # @abstract
         #
-        def self.emit_memory(op)
+        def self.format_memory(op)
           raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
@@ -111,12 +111,12 @@ module Ronin
         # @return [String]
         #   The formatted operand.
         #
-        def self.emit_operand(op)
+        def self.format_operand(op)
           case op
-          when Immediate then emit_immediate(op)
-          when Register  then emit_register(op)
-          when Memory    then emit_memory(op)
-          when Symbol    then emit_keyword(op)
+          when Immediate then format_immediate(op)
+          when Register  then format_register(op)
+          when Memory    then format_memory(op)
+          when Symbol    then format_keyword(op)
           end
         end
 
@@ -129,8 +129,8 @@ module Ronin
         # @return [String]
         #   The formatted operands.
         #
-        def self.emit_operands(ops)
-          ops.map { |op| emit_operand(op) }.join(",\t")
+        def self.format_operands(ops)
+          ops.map { |op| format_operand(op) }.join(",\t")
         end
 
         #
@@ -142,7 +142,7 @@ module Ronin
         # @return [String]
         #   The formatted label.
         #
-        def self.emit_label(label) = "#{label.name}:"
+        def self.format_label(label) = "#{label.name}:"
 
         #
         # Emits an instruction.
@@ -155,7 +155,7 @@ module Ronin
         #
         # @abstract
         #
-        def self.emit_instruction(ins)
+        def self.format_instruction(ins)
           raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
@@ -170,7 +170,7 @@ module Ronin
         #
         # @since 0.2.0
         #
-        def self.emit_section(name)
+        def self.format_section(name)
           raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
@@ -185,7 +185,7 @@ module Ronin
         #
         # @since 0.2.0
         #
-        def self.emit_prologue(program)
+        def self.format_prologue(program)
           raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
@@ -198,17 +198,17 @@ module Ronin
         # @return [String]
         #   The formatted program.
         #
-        def self.emit_program(program)
+        def self.format_program(program)
           lines = [
-            emit_prologue(program),
-            emit_section(:text),
-            emit_label(:_start)
+            format_prologue(program),
+            format_section(:text),
+            format_label(:_start)
           ]
 
           program.instructions.each do |ins|
             case ins
-            when Label       then lines << emit_label(ins)
-            when Instruction then lines << "\t#{emit_instruction(ins)}"
+            when Label       then lines << format_label(ins)
+            when Instruction then lines << "\t#{format_instruction(ins)}"
             end
           end
 
