@@ -24,6 +24,8 @@ require_relative 'x86/memory'
 require_relative 'x86/relative_offset'
 require_relative 'x86/memory_offset'
 
+require 'set'
+
 module Ronin
   module ASM
     #
@@ -34,50 +36,50 @@ module Ronin
       WORD_SIZE = 4
 
       # X86 registers
-      REGISTERS = {
-        al:  Registers::AL,
-        ah:  Registers::AH,
-        ax:  Registers::AX,
-        eax: Registers::EAX,
+      REGISTERS = Set[
+        Registers::AL,
+        Registers::AH,
+        Registers::AX,
+        Registers::EAX,
 
-        bl:  Registers::BL,
-        bh:  Registers::BH,
-        bx:  Registers::BX,
-        ebx: Registers::EBX,
+        Registers::BL,
+        Registers::BH,
+        Registers::BX,
+        Registers::EBX,
 
-        cl:  Registers::CL,
-        ch:  Registers::CH,
-        cx:  Registers::CX,
-        ecx: Registers::ECX,
+        Registers::CL,
+        Registers::CH,
+        Registers::CX,
+        Registers::ECX,
 
-        dl:  Registers::DL,
-        dh:  Registers::DH,
-        dx:  Registers::DX,
-        edx: Registers::EDX,
+        Registers::DL,
+        Registers::DH,
+        Registers::DX,
+        Registers::EDX,
 
-        sil: Registers::SIL,
-        si:  Registers::SI,
-        esi: Registers::ESI,
+        Registers::SIL,
+        Registers::SI,
+        Registers::ESI,
 
-        dil: Registers::DIL,
-        di:  Registers::DI,
-        edi: Registers::EDI,
+        Registers::DIL,
+        Registers::DI,
+        Registers::EDI,
 
-        bpl: Registers::BPL,
-        bp:  Registers::BP,
-        ebp: Registers::EBP,
+        Registers::BPL,
+        Registers::BP,
+        Registers::EBP,
 
-        spl: Registers::SPL,
-        sp:  Registers::SP,
-        esp: Registers::ESP,
+        Registers::SPL,
+        Registers::SP,
+        Registers::ESP,
 
-        cs: Registers::CS,
-        ds: Registers::DS,
-        es: Registers::ES,
-        fs: Registers::FS,
-        gs: Registers::GS,
-        ss: Registers::SS
-      }
+        Registers::CS,
+        Registers::DS,
+        Registers::ES,
+        Registers::FS,
+        Registers::GS,
+        Registers::SS
+      ]
 
       #
       # @group Register Methods
