@@ -74,7 +74,7 @@ module Ronin
             src_operands = operands[1..]
             att_operands = [*src_operands, dest_operand]
 
-            att_operands.map { |op| format_operand(op) }.join(",\t")
+            att_operands.map(&method(:format_operand)).join(",\t")
           else
             super(operands)
           end

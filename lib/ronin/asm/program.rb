@@ -440,11 +440,11 @@ module Ronin
       #   have been saved.
       #
       def critical(*registers,&block)
-        registers.each { |register| register_save(register) }
+        registers.each(&method(:register_save))
 
         instance_eval(&block)
 
-        registers.reverse_each { |register| register_load(register) }
+        registers.reverse_each(&method(:register_load))
       end
 
       #
