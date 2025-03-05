@@ -228,6 +228,17 @@ describe Ronin::ASM::Syntax::Common do
       )
     end
 
+    it "must tab indent each instruction line in the resulting string and append a newline" do
+      allow(subject).to receive(:format_prologue).with(program).and_return(formatted_prologue)
+      allow(subject).to receive(:format_section).with(:text).and_return(formatted_text_section)
+
+      allow(subject).to receive(:format_instruction).with(instructions[0]).and_return(formatted_instructions[0])
+      allow(subject).to receive(:format_instruction).with(instructions[1]).and_return(formatted_instructions[1])
+      allow(subject).to receive(:format_instruction).with(instructions[2]).and_return(formatted_instructions[2])
+
+      expect(subject.format_program(program).encoding).to eq(Encoding::UTF_8)
+    end
+
     context "when the program's instructions contains a Label" do
       let(:instructions) do
         [
