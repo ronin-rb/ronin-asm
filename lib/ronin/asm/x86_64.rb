@@ -23,6 +23,7 @@ require_relative 'x86_64/registers'
 require_relative 'x86_64/memory'
 require_relative 'x86_64/memory_offset'
 require_relative 'x86_64/relative_offset'
+require_relative 'x86_64/syntax'
 
 require 'set'
 
@@ -128,6 +129,12 @@ module Ronin
         Registers::GS,
         Registers::SS
       ]
+
+      # Supported Assembly syntaxs
+      SYNTAXES = {
+        att:   Syntax::ATT,
+        intel: Syntax::Intel
+      }
 
       #
       # @group Register Methods
