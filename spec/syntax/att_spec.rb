@@ -11,7 +11,7 @@ describe Ronin::ASM::Syntax::ATT do
   subject { described_class }
 
   describe ".format_register" do
-    let(:register) { Ronin::ASM::X86::Register.new(:eax, width: 4) }
+    let(:register) { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
 
     it "must prepend a '%' to the register name" do
       expect(subject.format_register(register)).to eq("%eax")
@@ -19,7 +19,7 @@ describe Ronin::ASM::Syntax::ATT do
   end
 
   describe ".format_immediate" do
-    let(:operand) { Ronin::ASM::X86::Immediate.new(255, width: 1) }
+    let(:operand) { Ronin::ASM::Immediate.new(255, width: 1) }
 
     it "must prepend a '$' to the immediate" do
       expect(subject.format_immediate(operand)).to eq("$0xff")
@@ -28,8 +28,8 @@ describe Ronin::ASM::Syntax::ATT do
 
   describe ".format_operands" do
     context "when given more than one operand" do
-      let(:operand1) { Ronin::ASM::X86::Register.new(:eax, width: 4) }
-      let(:operand2) { Ronin::ASM::X86::Immediate.new(255, width: 1) }
+      let(:operand1) { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
+      let(:operand2) { Ronin::ASM::Immediate.new(255, width: 1) }
       let(:operands) { [operand1, operand2] }
 
       it "must format the operands as a tab and comma separated list, with the first operand as the last operand" do
@@ -40,7 +40,7 @@ describe Ronin::ASM::Syntax::ATT do
     end
 
     context "when only given one operand" do
-      let(:operand)  { Ronin::ASM::X86::Immediate.new(255, width: 1) }
+      let(:operand)  { Ronin::ASM::Immediate.new(255, width: 1) }
       let(:operands) { [operand] }
 
       it "must format the single operand" do
