@@ -26,7 +26,7 @@ module Ronin
       class Intel < Common
 
         # Data sizes and their identifiers
-        WIDTHS = {
+        SIZE_SPECIFIERS = {
           1 => 'BYTE',
           2 => 'WORD',
           4 => 'DWORD',
@@ -56,7 +56,7 @@ module Ronin
         #   The formatted immediate operand.
         #
         def self.format_immediate(op)
-          "#{WIDTHS[op.width]} #{format_integer(op.value)}"
+          "#{SIZE_SPECIFIERS[op.width]} #{format_integer(op.value)}"
         end
 
         #
