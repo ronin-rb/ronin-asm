@@ -51,49 +51,53 @@ module Ronin
         #
         # Emits an immediate operand.
         #
-        # @param [Immediate] op
-        #   The operand.
+        # @param [Immediate] imm
+        #   The immediate operand.
         #
         # @return [String]
         #   The formatted immediate operand.
         #
-        def self.format_immediate(op) = "$#{format_integer(op.value)}"
+        def self.format_immediate(imm) = "$#{format_integer(imm.value)}"
 
         #
         # Emits multiple operands.
         #
-        # @param [Array<Immediate, Memory, Register, Symbol>] ops
+        # @param [Array<Immediate, Memory, Register, Symbol>] operands
         #   The Array of operands.
         #
         # @return [String]
         #   The formatted operands.
         #
-        def self.format_operands(ops)
-          if ops.length > 1
-            [*ops[1..-1], ops[0]].map { |op| format_operand(op) }.join(",\t")
+        def self.format_operands(operands)
+          if operands.length > 1
+            dest_operand = operands[0]
+            src_operands = operands[1..]
+            att_operands = [*src_operands, dest_operand]
+
+            att_operands.map { |op| format_operand(op) }.join(",\t")
           else
-            super(ops)
+            super(operands)
           end
         end
 
         #
         # Emits an instruction.
         #
-        # @param [Instruction] ins
+        # @param [Instruction] insn
         #   The instruction.
         #
         # @return [String]
         #   The formatted instruction.
         #
-        def self.format_instruction(ins)
-          line = format_keyword(ins.name)
+        def self.format_instruction(insn)
+          line = format_keyword(insn.name)
 
-          unless ins.operands.empty?
-            unless (ins.operands.length == 1 && ins.operand_width == 1)
-              line << INSTRUCTION_SUFFIXES[ins.operand_width]
+          unless insn.operands.empty?
+            unless (insn.operands.length == 1 && insn.operand_width == 1)
+              line << INSTRUCTION_SUFFIXES[insn.operand_width]
             end
 
-            line << "\t" << format_operands(ins.operands)
+            line << "\t" << format_operands(insn.operands)
           end
 
           return line
