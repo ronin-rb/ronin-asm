@@ -48,10 +48,11 @@ module Ronin
               asm << ',' << mem.scale.to_s if mem.scale > 1
             end
 
-            asm = "(#{asm})"
-            asm = format_integer(mem.displacement) + asm if mem.displacement != 0
-
-            return asm
+            if mem.displacement != 0
+              "#{format_integer(mem.displacement)}(#{asm})"
+            else
+              "(#{asm })"
+            end
           end
 
         end
