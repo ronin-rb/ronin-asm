@@ -60,29 +60,6 @@ module Ronin
         def self.format_immediate(op) = "$#{format_integer(op.value)}"
 
         #
-        # Emits a memory operand.
-        #
-        # @param [Memory] op
-        #   The operand.
-        #
-        # @return [String]
-        #   The formatted memory operand.
-        #
-        def self.format_memory(op)
-          asm = format_register(op.base)
-
-          if op.index
-            asm << ',' << format_register(op.index)
-            asm << ',' << op.scale.to_s if op.scale > 1
-          end
-
-          asm = "(#{asm})"
-          asm = format_integer(op.displacement) + asm if op.displacement != 0
-
-          return asm
-        end
-
-        #
         # Emits multiple operands.
         #
         # @param [Array<Immediate, Memory, Register, Symbol>] ops
