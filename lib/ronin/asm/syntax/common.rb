@@ -18,12 +18,6 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../register'
-require_relative '../immediate'
-require_relative '../memory'
-require_relative '../instruction'
-require_relative '../label'
-
 module Ronin
   module ASM
     module Syntax
@@ -306,3 +300,9 @@ module Ronin
     end
   end
 end
+
+require_relative '../register'
+require_relative '../immediate'
+require_relative '../memory'
+require_relative '../instruction'
+require_relative '../label'
