@@ -38,12 +38,6 @@ module Ronin
     #
     class Program
 
-      # Supported Assembly Syntaxs
-      SYNTAX = {
-        att:   Syntax::ATT,
-        intel: Syntax::Intel
-      }
-
       # Mapping of architecture IDs to modules.
       ARCHES = {
         x86:    X86,
@@ -165,6 +159,7 @@ module Ronin
 
         @word_size = arch_module::WORD_SIZE
         @registers = arch_module::REGISTERS
+        @syntaxes  = arch_module::SYNTAXES
 
         @immediate_class = arch_module::Immediate
         @memory_class    = arch_module::Memory
@@ -467,7 +462,7 @@ module Ronin
       #   The syntax to compile the program to.
       #
       def to_asm(syntax=:intel)
-        SYNTAX[syntax].format_program(self)
+        @syntaxes[syntax].format_program(self)
       end
 
       #
