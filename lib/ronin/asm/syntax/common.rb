@@ -54,22 +54,22 @@ module Ronin
         #
         # Emits an integer.
         #
-        # @param [Integer] value
-        #   The integer.
+        # @param [Integer] int
+        #   The integer value.
         #
         # @return [String]
         #   The formatted integer.
         #
-        def self.format_integer(value)
-          if value >= 0 then "0x%x" % value
-          else               "-0x%x" % value.abs
+        def self.format_integer(int)
+          if int >= 0 then "0x%x" % int
+          else             "-0x%x" % int.abs
           end
         end
 
         #
         # Emits an immediate operand.
         #
-        # @param [Immediate] op
+        # @param [Immediate] imm
         #   The immediate operand.
         #
         # @return [String]
@@ -77,14 +77,14 @@ module Ronin
         #
         # @abstract
         #
-        def self.format_immediate(op)
+        def self.format_immediate(imm)
           raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
         #
         # Emits an memory operand.
         #
-        # @param [Memory] op
+        # @param [Memory] mem
         #   The memory operand.
         #
         # @return [String]
@@ -92,25 +92,25 @@ module Ronin
         #
         # @abstract
         #
-        def self.format_memory(op)
+        def self.format_memory(mem)
           raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
         #
         # Emits an operand.
         #
-        # @param [Immediate, Memory, Register, Symbol] op
+        # @param [Immediate, Memory, Register, Symbol] operand
         #   The operand.
         #
         # @return [String]
         #   The formatted operand.
         #
-        def self.format_operand(op)
-          case op
-          when Immediate then format_immediate(op)
-          when Register  then format_register(op)
-          when Memory    then format_memory(op)
-          when Symbol    then format_keyword(op)
+        def self.format_operand(operand)
+          case operand
+          when Immediate then format_immediate(operand)
+          when Register  then format_register(operand)
+          when Memory    then format_memory(operand)
+          when Symbol    then format_keyword(operand)
           end
         end
 
@@ -199,10 +199,10 @@ module Ronin
           asm << format_section(:text) << $/
           asm << format_label(:_start) << $/
 
-          program.instructions.each do |ins|
-            case ins
-            when Label       then asm << format_label(ins) << $/
-            when Instruction then asm << "\t#{format_instruction(ins)}" << $/
+          program.instructions.each do |insn|
+            case insn
+            when Label       then asm << format_label(insn) << $/
+            when Instruction then asm << "\t#{format_instruction(insn)}" << $/
             end
           end
 
@@ -271,10 +271,10 @@ module Ronin
         #
         # Writes an instruction line to the output stream.
         #
-        # @param [Instruction] ins
+        # @param [Instruction] insn
         #
-        def write_instruction(ins)
-          @output.puts "\t#{self.class.format_instruction(ins)}"
+        def write_instruction(insn)
+          @output.puts "\t#{self.class.format_instruction(insn)}"
         end
 
         #
@@ -288,10 +288,10 @@ module Ronin
           write_section(:text)
           write_label(:_start)
 
-          program.instructions.each do |ins|
-            case ins
-            when Label       then write_label(ins)
-            when Instruction then write_instruction(ins)
+          program.instructions.each do |insn|
+            case insn
+            when Label       then write_label(insn)
+            when Instruction then write_instruction(insn)
             end
           end
         end

@@ -34,32 +34,32 @@ module Ronin
           #
           # Emits a memory operand.
           #
-          # @param [Memory] op
-          #   The operand.
+          # @param [Memory] mem
+          #   The memory operand.
           #
           # @return [String]
           #   The formatted memory operand.
           #
-          def self.format_memory(op)
-            asm = format_register(op.base)
+          def self.format_memory(mem)
+            asm = format_register(mem.base)
 
-            if op.index
-              asm << '+' << format_register(op.index)
-              asm << '*' << format_integer(op.scale) if op.scale > 1
+            if mem.index
+              asm << '+' << format_register(mem.index)
+              asm << '*' << format_integer(mem.scale) if mem.scale > 1
             end
 
-            if op.displacement != 0
-              sign = if op.displacement >= 0 then '+'
-                     else                         '-'
+            if mem.displacement != 0
+              sign = if mem.displacement >= 0 then '+'
+                     else                          '-'
                      end
 
-              asm << sign << format_integer(op.displacement)
+              asm << sign << format_integer(mem.displacement)
             end
 
             asm = "[#{asm}]"
 
-            unless op.width == op.base.width
-              asm = "#{SIZE_SPECIFIERS[op.width]} #{asm}"
+            unless mem.width == mem.base.width
+              asm = "#{SIZE_SPECIFIERS[mem.width]} #{asm}"
             end
 
             return asm
