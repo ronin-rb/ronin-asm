@@ -61,8 +61,8 @@ module Ronin
         #   The formatted integer.
         #
         def self.format_integer(int)
-          if int >= 0 then "0x%x" % int
-          else             "-0x%x" % int.abs
+          if int >= 0 then format("0x%x",int)
+          else             format("-0x%x",int.abs)
           end
         end
 
