@@ -124,7 +124,7 @@ module Ronin
         #   The formatted operands.
         #
         def self.format_operands(ops)
-          ops.map { |op| format_operand(op) }.join(",\t")
+          ops.map(&method(:format_operand)).join(",\t")
         end
 
         #
