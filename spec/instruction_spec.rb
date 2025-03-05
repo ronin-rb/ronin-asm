@@ -13,12 +13,12 @@ describe Ronin::ASM::Instruction do
     Ronin::ASM::Immediate.new(0xff, width: 1)
   end
 
+  let(:name)     { :mov }
+  let(:operands) { [register, immediate] }
+
+  subject { described_class.new(name,*operands) }
+
   describe "#initialize" do
-    let(:name)     { :mov }
-    let(:operands) { [register, immediate] }
-
-    subject { described_class.new(name,*operands) }
-
     it "must set the name" do
       expect(subject.name).to eq(:mov)
     end
