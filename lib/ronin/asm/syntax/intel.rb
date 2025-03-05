@@ -47,30 +47,30 @@ module Ronin
         #
         # Emits an immediate operand.
         #
-        # @param [Immediate] op
-        #   The operand.
+        # @param [Immediate] imm
+        #   The immediate operand.
         #
         # @return [String]
         #   The formatted immediate operand.
         #
-        def self.format_immediate(op)
-          "#{SIZE_SPECIFIERS[op.width]} #{format_integer(op.value)}"
+        def self.format_immediate(imm)
+          "#{SIZE_SPECIFIERS[imm.width]} #{format_integer(imm.value)}"
         end
 
         #
         # Emits an instruction.
         #
-        # @param [Instruction] ins
+        # @param [Instruction] insn
         #   The instruction.
         #
         # @return [String]
         #   The formatted instruction.
         #
-        def self.format_instruction(ins)
-          line = format_keyword(ins.name)
+        def self.format_instruction(insn)
+          line = format_keyword(insn.name)
 
-          unless ins.operands.empty?
-            line << "\t" << format_operands(ins.operands)
+          unless insn.operands.empty?
+            line << "\t" << format_operands(insn.operands)
           end
 
           return line
