@@ -15,7 +15,7 @@ describe Ronin::ASM::Instruction do
 
   describe "#initialize" do
     let(:name)     { :mov }
-    let(:operands) { [immediate, register] }
+    let(:operands) { [register, immediate] }
 
     subject { described_class.new(name,*operands) }
 
@@ -43,7 +43,7 @@ describe Ronin::ASM::Instruction do
   end
 
   describe "#width" do
-    subject { described_class.new(:mov, immediate, register) }
+    subject { described_class.new(:mov, register, immediate) }
 
     it "must return the maximum width of the operands" do
       expect(subject.width).to eq(register.width)
