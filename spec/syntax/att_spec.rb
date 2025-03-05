@@ -27,36 +27,40 @@ describe Ronin::ASM::Syntax::ATT do
   end
 
   describe ".format_instruction" do
-    context "with no operands" do
+    context "when the instruction has no operands" do
       let(:instruction) { Ronin::ASM::Instruction.new(:ret) }
 
-      it "must return the instruction name" do
-        expect(subject.format_instruction(instruction)).to eq('ret')
+      it "must return the instruction name only" do
+        expect(subject.format_instruction(instruction)).to eq(
+          instruction.name.to_s
+        )
       end
     end
 
-    context "with one operand" do
-      context "with width of 1" do
-        let(:immediate)   { Ronin::ASM::X86::Immediate.new(0x80, width: 1) }
-        let(:instruction) { Ronin::ASM::Instruction.new(:int, immediate) }
+    context "when the instruction has one operand" do
+      context "and the operand has a width of 1" do
+        let(:operand)     { Ronin::ASM::Immediate.new(0x80, width: 1) }
+        let(:operands)    { [operand] }
+        let(:instruction) { Ronin::ASM::Instruction.new(:int, *operands) }
 
-        it "must not append a size specifier to the instruction name" do
-          expect(subject.format_instruction(instruction)).to eq("int\t$0x80")
+        it "must omit the size suffix from the instruction name" do
+          expect(subject.format_instruction(instruction)).to eq(
+            "#{instruction.name}\t#{subject.format_operands(operands)}"
+          )
         end
       end
     end
 
-    context "with multiple operands" do
-      let(:register)    { Ronin::ASM::X86::Register.new(:eax, width: 4) }
-      let(:immediate)   { Ronin::ASM::X86::Immediate.new(0xff, width: 1) }
-      let(:instruction) { Ronin::ASM::Instruction.new(:mov, register, immediate) }
+    context "when the instruction has multiple operands" do
+      let(:operand1)    { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
+      let(:operand2)    { Ronin::ASM::Immediate.new(0xff, width: 1) }
+      let(:operands)    { [operand1, operand2] }
+      let(:instruction) { Ronin::ASM::Instruction.new(:mov, *operands) }
 
-      it "must add a size specifier to the instruction name" do
-        expect(subject.format_instruction(instruction)).to match(/^movl/)
-      end
-
-      it "must format the operands" do
-        expect(subject.format_instruction(instruction)).to eq("movl\t$0xff,\t%eax")
+      it "must return the instruction name, with a size suffix, and the formatted operands, separated by a tab" do
+        expect(subject.format_instruction(instruction)).to eq(
+          "#{instruction.name}l\t#{subject.format_operands(operands)}"
+        )
       end
     end
   end
