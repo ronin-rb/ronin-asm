@@ -11,7 +11,7 @@ describe Ronin::ASM::Syntax::Intel do
   subject { described_class }
 
   describe ".format_register" do
-    let(:register) { Ronin::ASM::X86::Register.new(:eax, width: 4) }
+    let(:register) { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
 
     it "must return the register name" do
       expect(subject.format_register(register)).to eq("eax")
@@ -19,7 +19,7 @@ describe Ronin::ASM::Syntax::Intel do
   end
 
   describe ".format_immediate" do
-    let(:operand) { Ronin::ASM::X86::Immediate.new(255, width: 1) }
+    let(:operand) { Ronin::ASM::Immediate.new(255, width: 1) }
 
     it "must prepend a size specifier" do
       expect(subject.format_immediate(operand)).to eq("BYTE 0xff")
@@ -38,8 +38,8 @@ describe Ronin::ASM::Syntax::Intel do
     end
 
     context "when the instruction has operands" do
-      let(:operand1) { Ronin::ASM::X86::Register.new(:eax, width: 4) }
-      let(:operand2) { Ronin::ASM::X86::Immediate.new(0xff, width: 1) }
+      let(:operand1) { Ronin::ASM::Register.new(:eax, width: 4, type: :reg32) }
+      let(:operand2) { Ronin::ASM::Immediate.new(0xff, width: 1) }
       let(:operands) { [operand1, operand2] }
       let(:instruction) do
         Ronin::ASM::Instruction.new(:mov, *operands)
