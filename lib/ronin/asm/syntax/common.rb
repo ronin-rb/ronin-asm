@@ -199,22 +199,20 @@ module Ronin
         #   The formatted program.
         #
         def self.format_program(program)
-          lines = [
-            format_prologue(program),
-            format_section(:text),
-            format_label(:_start)
-          ]
+          asm = String.new(encoding: Encoding::UTF_8)
+
+          asm << format_prologue(program) << $/
+          asm << format_section(:text) << $/
+          asm << format_label(:_start) << $/
 
           program.instructions.each do |ins|
             case ins
-            when Label       then lines << format_label(ins)
-            when Instruction then lines << "\t#{format_instruction(ins)}"
+            when Label       then asm << format_label(ins) << $/
+            when Instruction then asm << "\t#{format_instruction(ins)}" << $/
             end
           end
 
-          lines << ''
-
-          return lines.join($/)
+          return asm
         end
 
         # The output stream to write to.
