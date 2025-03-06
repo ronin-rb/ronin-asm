@@ -89,6 +89,15 @@ module Ronin
         def bp? = @bp
 
         #
+        # Determines if the operand is 64bit K opmask register.
+        #
+        # @return [Boolean]
+        #
+        def k?
+          @type == :k
+        end
+
+        #
         # Adds a displacement to the value within the register and dereferences
         # the address.
         #

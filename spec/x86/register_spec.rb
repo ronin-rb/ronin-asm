@@ -112,6 +112,24 @@ describe Ronin::ASM::X86::Register do
     end
   end
 
+  describe "#k?" do
+    context "when initialized with `type: :k`" do
+      subject { described_class.new(:k0, width: 8, type: :k) }
+
+      it "must return true" do
+        expect(subject.k?).to be(true)
+      end
+    end
+
+    context "when not initialized with `type: :k`" do
+      subject { described_class.new(:eax, width: 4) }
+
+      it "must return false" do
+        expect(subject.k?).to be(false)
+      end
+    end
+  end
+
   describe "#+" do
     context "when given an Ronin::ASM::X86::Memory" do
       let(:operand) do
