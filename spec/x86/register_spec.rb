@@ -184,6 +184,24 @@ describe Ronin::ASM::X86::Register do
     end
   end
 
+  describe "#zmm?" do
+    context "when initialized with `type: :zmm`" do
+      subject { described_class.new(:zmm0, width: 64, type: :zmm) }
+
+      it "must return true" do
+        expect(subject.zmm?).to be(true)
+      end
+    end
+
+    context "when not initialized with `type: :zmm`" do
+      subject { described_class.new(:eax, width: 4) }
+
+      it "must return false" do
+        expect(subject.zmm?).to be(false)
+      end
+    end
+  end
+
   describe "#+" do
     context "when given an Ronin::ASM::X86::Memory" do
       let(:operand) do
