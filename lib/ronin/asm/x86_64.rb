@@ -413,6 +413,11 @@ module Ronin
       # @since 1.0.0
       def er = Operands::ER
 
+      # The `{sae}` operand.
+      #
+      # @since 1.0.0
+      def sae = Operands::SAE
+
       #
       # @group Type Methods
       #
