@@ -9,4 +9,12 @@ describe Ronin::ASM::X86::Operands do
       expect(subject.type).to eq(:"{er}")
     end
   end
+
+  describe "SAE" do
+    subject { described_class::SAE }
+
+    it "must have a #type of :'{sae}'" do
+      expect(subject.type).to eq(:"{sae}")
+    end
+  end
 end
