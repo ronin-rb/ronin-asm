@@ -91,6 +91,14 @@ module Ronin
           @displacement = displacement
           @index = index
           @scale = scale
+
+          if @index && (@scale == 4 || @scale == 8)
+            case @index.type
+            when :xmm then @type = :"vm#{@scale * 8}x"
+            when :ymm then @type = :"vm#{@scale * 8}y"
+            when :zmm then @type = :"vm#{@scale * 8}z"
+            end
+          end
         end
 
         #
