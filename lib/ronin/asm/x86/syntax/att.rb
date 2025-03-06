@@ -19,6 +19,7 @@
 #
 
 require_relative '../../syntax/att'
+require_relative 'common'
 
 module Ronin
   module ASM
@@ -30,6 +31,8 @@ module Ronin
         # @since 1.0.0
         #
         class ATT < ASM::Syntax::ATT
+
+          extend Common
 
           #
           # Emits a memory operand.

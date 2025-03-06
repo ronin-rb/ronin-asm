@@ -5,6 +5,8 @@ require 'ronin/asm/x86/immediate'
 require 'ronin/asm/x86/register'
 require 'ronin/asm/x86/memory'
 
+require_relative 'common_examples'
+
 describe Ronin::ASM::X86::Syntax::ATT do
   it "must inherit from Ronin::ASM::Syntax::ATT" do
     expect(described_class).to be < Ronin::ASM::Syntax::ATT
@@ -61,4 +63,6 @@ describe Ronin::ASM::X86::Syntax::ATT do
       end
     end
   end
+
+  include_context "Ronin::ASM::X86::Syntax::Common methods"
 end

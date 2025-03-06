@@ -18,56 +18,56 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../syntax/intel'
-require_relative 'common'
-
 module Ronin
   module ASM
     module X86
       module Syntax
         #
-        # Intel assembly syntax for x86.
+        # Common x86 Assembly syntax.
         #
         # @since 1.0.0
         #
-        class Intel < ASM::Syntax::Intel
+        module Common
+          # Broadcast ratios and their formatted syntax.
+          BROADCAST_RATIOS = {
+            {1=>2}  => '{1to2}',
+            {1=>4}  => '{1to4}',
+            {1=>8}  => '{1to8}',
+            {1=>16} => '{1to16}',
+            {1=>32} => '{1to32}'
+          }
 
-          extend Common
-
           #
-          # Emits a memory operand.
+          # Formats the broadcast decorator on a memory operand.
           #
-          # @param [Memory] mem
-          #   The memory operand.
-          #
+          # @param [Broadcast] bcst
           # @return [String]
-          #   The formatted memory operand.
           #
-          def self.format_memory(mem)
-            asm = format_register(mem.base)
+          def format_broadcast(bcst)
+            ratio = BROADCAST_RATIOS.fetch(bcst.ratio)
 
-            if mem.index
-              asm << '+' << format_register(mem.index)
-              asm << '*' << format_integer(mem.scale) if mem.scale > 1
-            end
-
-            if mem.displacement != 0
-              sign = if mem.displacement >= 0 then '+'
-                     else                          '-'
-                     end
-
-              asm << sign << format_integer(mem.displacement)
-            end
-
-            if mem.width == mem.base.width
-              "[#{asm}]"
-            else
-              "#{SIZE_SPECIFIERS[mem.width]} [#{asm}]"
-            end
+            "#{format_memory(bcst.memory)} #{ratio}"
           end
 
+          #
+          # Formats an operand.
+          #
+          # @param [Immediate, Memory, Register, LabelRef, Broadcast] operand
+          #   The operand.
+          #
+          # @return [String]
+          #   The formatted operand.
+          #
+          def format_operand(operand)
+            case operand
+            when Broadcast then format_broadcast(operand)
+            else                super(operand)
+            end
+          end
         end
       end
     end
   end
 end
+
+require_relative '../broadcast'
