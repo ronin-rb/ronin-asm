@@ -439,6 +439,15 @@ module Ronin
       def moffset32(value) = MemoryOffset.new(value, width: 4)
 
       #
+      # Explicitly creates an 64bit memory offset.
+      #
+      # @param [Integer] value
+      # @return [MemoryOffset]
+      # @since 1.0.0
+      #
+      def moffset64(value) = MemoryOffset.new(value, width: 8)
+
+      #
       # @group Internal Methods
       #
 
