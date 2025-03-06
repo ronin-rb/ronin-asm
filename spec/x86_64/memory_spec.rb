@@ -254,4 +254,12 @@ describe Ronin::ASM::X86_64::Memory do
       expect(subject.scale).to eq(operand.scale)
     end
   end
+
+  describe "#to_s" do
+    it "must call Ronin::ASM::X86_64::Syntax::Intel.format_memory" do
+      expect(subject.to_s).to eq(
+        Ronin::ASM::X86_64::Syntax::Intel.format_memory(subject)
+      )
+    end
+  end
 end
