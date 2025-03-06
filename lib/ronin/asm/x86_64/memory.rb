@@ -33,7 +33,16 @@ module Ronin
 
         include Operand
 
+        #
+        # Converts the memory into a String.
+        #
+        # @return [String]
+        #
+        def to_s = Syntax::Intel.format_memory(self)
+
       end
     end
   end
 end
+
+require_relative 'syntax/intel'
