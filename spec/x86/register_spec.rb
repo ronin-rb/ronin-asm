@@ -148,6 +148,24 @@ describe Ronin::ASM::X86::Register do
     end
   end
 
+  describe "#xmm?" do
+    context "when initialized with `type: :xmm`" do
+      subject { described_class.new(:xmm0, width: 16, type: :xmm) }
+
+      it "must return true" do
+        expect(subject.xmm?).to be(true)
+      end
+    end
+
+    context "when not initialized with `type: :xmm`" do
+      subject { described_class.new(:eax, width: 4) }
+
+      it "must return false" do
+        expect(subject.xmm?).to be(false)
+      end
+    end
+  end
+
   describe "#+" do
     context "when given an Ronin::ASM::X86::Memory" do
       let(:operand) do
