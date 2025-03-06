@@ -15,4 +15,10 @@ describe Ronin::ASM::X86::Operand do
   it "must also include Ronin::ASM::Operand" do
     expect(subject.class).to include(Ronin::ASM::Operand)
   end
+
+  describe "#mm?" do
+    it "must return false by default" do
+      expect(subject.mm?).to be(false)
+    end
+  end
 end
