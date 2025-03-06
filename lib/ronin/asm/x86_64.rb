@@ -408,6 +408,19 @@ module Ronin
       def zmm31 = Registers::ZMM31
 
       #
+      # @group Type Methods
+      #
+
+      #
+      # Explicitly creates an 8bit relative offset.
+      #
+      # @param [Integer] value
+      # @return [RelativeOffset]
+      # @since 1.0.0
+      #
+      def rel8(value) = RelativeOffset.new(value, width: 1)
+
+      #
       # @group Internal Methods
       #
 
