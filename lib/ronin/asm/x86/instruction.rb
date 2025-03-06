@@ -29,7 +29,17 @@ module Ronin
       # @since 1.0.0
       #
       class Instruction < ASM::Instruction
+
+        #
+        # Converts the instruction into a String.
+        #
+        # @return [String]
+        #
+        def to_s = Syntax::Intel.format_instruction(self)
+
       end
     end
   end
 end
+
+require_relative 'syntax/intel'
