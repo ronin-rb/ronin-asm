@@ -24,6 +24,7 @@ require_relative 'x86/operands'
 require_relative 'x86/memory'
 require_relative 'x86/relative_offset'
 require_relative 'x86/memory_offset'
+require_relative 'x86/broadcast'
 require_relative 'x86/syntax'
 
 require 'set'
@@ -291,6 +292,31 @@ module Ronin
       # @since 1.0.0
       #
       def moffset64(value) = MemoryOffset.new(value, width: 8)
+
+      #
+      # @group Operand Decorator Methods
+      #
+
+      #
+      # Broadcasts the memory operand to a vector register's lanes.
+      #
+      # @param [Memory, Array] operand
+      #   The memory operand.
+      #
+      # @param [{1=>2}, {1=>4}, {1=>8}, {1=>16}, {1=>32}] ratio
+      #   The broadcast ratio.
+      #
+      # @return [Broadcast]
+      #   The broadcasted operand.
+      #
+      # @example
+      #   bcst([rax], {1=>4})
+      #
+      # @since 1.0.0
+      #
+      def bcst(operand,ratio)
+        Broadcast.new(coerce_operand(operand),ratio)
+      end
 
       #
       # @group Internal Methods
