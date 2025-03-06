@@ -32,6 +32,13 @@ module Ronin
         include ASM::Operand
 
         #
+        # Determines if the operand is 64bit K opmask register.
+        #
+        # @return [Boolean]
+        #
+        def k? = false
+
+        #
         # Determines if the operand is a 64bit MMX register.
         #
         # @return [Boolean]
