@@ -51,6 +51,13 @@ module Ronin
         # @return [Boolean]
         #
         def ymm? = false
+
+        #
+        # Determines if the operand is a 256bit YMM register.
+        #
+        # @return [Boolean]
+        #
+        def zmm? = false
       end
     end
   end
