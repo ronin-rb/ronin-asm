@@ -116,6 +116,15 @@ module Ronin
         end
 
         #
+        # Determines if the operand is 256bit YMM register.
+        #
+        # @return [Boolean]
+        #
+        def ymm?
+          @type == :ymm
+        end
+
+        #
         # Adds a displacement to the value within the register and dereferences
         # the address.
         #
