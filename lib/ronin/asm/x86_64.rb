@@ -421,6 +421,15 @@ module Ronin
       def rel8(value) = RelativeOffset.new(value, width: 1)
 
       #
+      # Explicitly creates an 32bit relative offset.
+      #
+      # @param [Integer] value
+      # @return [RelativeOffset]
+      # @since 1.0.0
+      #
+      def rel32(value) = RelativeOffset.new(value, width: 4)
+
+      #
       # @group Internal Methods
       #
 
