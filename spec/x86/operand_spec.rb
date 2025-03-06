@@ -27,4 +27,10 @@ describe Ronin::ASM::X86::Operand do
       expect(subject.xmm?).to be(false)
     end
   end
+
+  describe "#ymm?" do
+    it "must return false by default" do
+      expect(subject.ymm?).to be(false)
+    end
+  end
 end
