@@ -30,6 +30,13 @@ module Ronin
       #
       module Operand
         include ASM::Operand
+
+        #
+        # Determines if the operand is a 64bit MMX register.
+        #
+        # @return [Boolean]
+        #
+        def mm? = false
       end
     end
   end
