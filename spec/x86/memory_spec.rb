@@ -69,6 +69,90 @@ describe Ronin::ASM::X86::Memory do
         }.to raise_error(ArgumentError,"scale must be an Integer")
       end
     end
+
+    context "when the index is an XMM register" do
+      let(:index) { Ronin::ASM::X86::Register.new(:xmm0, width: 16, type: :xmm) }
+
+      context "and the scale is 4" do
+        let(:scale) { 4 }
+
+        subject do
+          described_class.new(base: register, index: index, scale: scale)
+        end
+
+        it "must set the #type to :vm32x" do
+          expect(subject.type).to eq(:vm32x)
+        end
+      end
+
+      context "and the scale is 8" do
+        let(:scale) { 8 }
+
+        subject do
+          described_class.new(base: register, index: index, scale: scale)
+        end
+
+        it "must set the #type to :vm64x" do
+          expect(subject.type).to eq(:vm64x)
+        end
+      end
+    end
+
+    context "when the index is an YMM register" do
+      let(:index) { Ronin::ASM::X86::Register.new(:ymm0, width: 32, type: :ymm) }
+
+      context "and the scale is 4" do
+        let(:scale) { 4 }
+
+        subject do
+          described_class.new(base: register, index: index, scale: scale)
+        end
+
+        it "must set the #type to :vm32y" do
+          expect(subject.type).to eq(:vm32y)
+        end
+      end
+
+      context "and the scale is 8" do
+        let(:scale) { 8 }
+
+        subject do
+          described_class.new(base: register, index: index, scale: scale)
+        end
+
+        it "must set the #type to :vm64y" do
+          expect(subject.type).to eq(:vm64y)
+        end
+      end
+    end
+
+    context "when the index is an ZMM register" do
+      let(:index) { Ronin::ASM::X86::Register.new(:zmm0, width: 64, type: :zmm) }
+
+      context "and the scale is 4" do
+        let(:scale) { 4 }
+
+        subject do
+          described_class.new(base: register, index: index, scale: scale)
+        end
+
+        it "must set the #type to :vm32z" do
+          expect(subject.type).to eq(:vm32z)
+        end
+      end
+
+      context "and the scale is 8" do
+        let(:scale) { 8 }
+
+        subject do
+          described_class.new(base: register, index: index, scale: scale)
+        end
+
+        it "must set the #type to :vm64z" do
+          expect(subject.type).to eq(:vm64z)
+        end
+      end
+    end
   end
 
   describe ".[]" do
