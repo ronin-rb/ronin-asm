@@ -98,6 +98,15 @@ module Ronin
         end
 
         #
+        # Determines if the operand is 64bit MMX register.
+        #
+        # @return [Boolean]
+        #
+        def mm?
+          @type == :mm
+        end
+
+        #
         # Adds a displacement to the value within the register and dereferences
         # the address.
         #
