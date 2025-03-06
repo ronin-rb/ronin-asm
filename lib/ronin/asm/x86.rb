@@ -20,6 +20,7 @@
 
 require_relative 'x86/immediate'
 require_relative 'x86/registers'
+require_relative 'x86/operands'
 require_relative 'x86/memory'
 require_relative 'x86/relative_offset'
 require_relative 'x86/memory_offset'
@@ -238,6 +239,14 @@ module Ronin
       def zmm5 = Registers::ZMM5
       def zmm6 = Registers::ZMM6
       def zmm7 = Registers::ZMM7
+
+      #
+      # Special Operand Methods
+      #
+
+      # The `{er}` operand.
+      # @since 1.0.0
+      def er = Operands::ER
 
       #
       # @group Type Methods
