@@ -33,7 +33,16 @@ module Ronin
 
         include Operand
 
+        #
+        # Converts the immediate into a String.
+        #
+        # @return [String]
+        #
+        def to_s = Syntax::Intel.format_immediate(self)
+
       end
     end
   end
 end
+
+require_relative 'syntax/intel'
