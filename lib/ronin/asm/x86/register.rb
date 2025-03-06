@@ -125,6 +125,15 @@ module Ronin
         end
 
         #
+        # Determines if the operand is 512bit ZMM register.
+        #
+        # @return [Boolean]
+        #
+        def zmm?
+          @type == :zmm
+        end
+
+        #
         # Adds a displacement to the value within the register and dereferences
         # the address.
         #
