@@ -16,6 +16,12 @@ describe Ronin::ASM::X86::Operand do
     expect(subject.class).to include(Ronin::ASM::Operand)
   end
 
+  describe "#k?" do
+    it "must return false by default" do
+      expect(subject.k?).to be(false)
+    end
+  end
+
   describe "#mm?" do
     it "must return false by default" do
       expect(subject.mm?).to be(false)
