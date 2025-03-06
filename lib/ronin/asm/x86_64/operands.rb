@@ -31,6 +31,9 @@ module Ronin
       module Operands
         # Represents the `{er}` operand.
         ER = SpecialOperand.new(:"{er}")
+
+        # Represents the `{sae}` operand.
+        SAE = SpecialOperand.new(:"{sae}")
       end
     end
   end
