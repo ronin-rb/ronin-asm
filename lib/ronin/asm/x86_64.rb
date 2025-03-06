@@ -430,6 +430,15 @@ module Ronin
       def rel32(value) = RelativeOffset.new(value, width: 4)
 
       #
+      # Explicitly creates an 32bit memory offset.
+      #
+      # @param [Integer] value
+      # @return [MemoryOffset]
+      # @since 1.0.0
+      #
+      def moffset32(value) = MemoryOffset.new(value, width: 4)
+
+      #
       # @group Internal Methods
       #
 
