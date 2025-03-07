@@ -73,6 +73,34 @@ shared_examples_for "Ronin::ASM::X86::Syntax::Common methods" do
     end
   end
 
+  describe ".format_opmask" do
+    subject { described_class }
+
+    let(:operand) do
+      Ronin::ASM::X86::Register.new(:xmm0, width: 16, number: 0, type: :xmm)
+    end
+    let(:k) do
+      Ronin::ASM::X86::Register.new(:k1, width: 8, number: 1, type: :k)
+    end
+    let(:opmask) { Ronin::ASM::X86::Opmask.new(operand,k) }
+
+    it "must return the formatted operand and a '{k}' decorator with the k register" do
+      expect(subject.format_opmask(opmask)).to eq(
+        "#{subject.format_operand(opmask.operand)} {#{subject.format_register(k)}}"
+      )
+    end
+
+    context "when the opmask has zero masking enabled" do
+      let(:opmask) { Ronin::ASM::X86::Opmask.new(operand,k, zero: true) }
+
+      it "must add the '{z}' decorator to the end of the string" do
+        expect(subject.format_opmask(opmask)).to eq(
+          "#{subject.format_operand(opmask.operand)} {#{subject.format_register(k)}}{z}"
+        )
+      end
+    end
+  end
+
   describe ".format_operand" do
     subject { described_class }
 
@@ -96,6 +124,22 @@ shared_examples_for "Ronin::ASM::X86::Syntax::Common methods" do
       it "must call .format_broadcast with the operand" do
         expect(subject.format_operand(operand)).to eq(
           subject.format_broadcast(operand)
+        )
+      end
+    end
+
+    context "when given a Ronin::ASM::X86::Opmask object" do
+      let(:operand) do
+        Ronin::ASM::X86::Register.new(:xmm0, width: 16, number: 0, type: :xmm)
+      end
+      let(:k) do
+        Ronin::ASM::X86::Register.new(:k1, width: 8, number: 1, type: :k)
+      end
+      let(:opmask) { Ronin::ASM::X86::Opmask.new(operand,k) }
+
+      it "must call .format_opmask with the operand" do
+        expect(subject.format_operand(opmask)).to eq(
+          subject.format_opmask(opmask)
         )
       end
     end
