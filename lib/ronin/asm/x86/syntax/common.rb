@@ -50,6 +50,19 @@ module Ronin
           end
 
           #
+          # Formats an opmask decorator on a register or memory operand.
+          #
+          # @param [Opmask] opmask
+          # @return [String]
+          #
+          def format_opmask(opmask)
+            asm = "#{format_operand(opmask.operand)} {#{format_register(opmask.k)}}"
+            asm << '{z}' if opmask.zero?
+
+            return asm
+          end
+
+          #
           # Formats an operand.
           #
           # @param [Immediate, Memory, Register, LabelRef, Broadcast] operand
@@ -61,6 +74,7 @@ module Ronin
           def format_operand(operand)
             case operand
             when Broadcast then format_broadcast(operand)
+            when Opmask    then format_opmask(operand)
             else                super(operand)
             end
           end
@@ -71,3 +85,4 @@ module Ronin
 end
 
 require_relative '../broadcast'
+require_relative '../opmask'
