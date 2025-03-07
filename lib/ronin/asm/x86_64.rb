@@ -341,6 +341,22 @@ module Ronin
       def xmm13 = Registers::XMM13
       def xmm14 = Registers::XMM14
       def xmm15 = Registers::XMM15
+      def xmm16 = Registers::XMM16
+      def xmm17 = Registers::XMM17
+      def xmm18 = Registers::XMM18
+      def xmm19 = Registers::XMM19
+      def xmm20 = Registers::XMM20
+      def xmm21 = Registers::XMM21
+      def xmm22 = Registers::XMM22
+      def xmm23 = Registers::XMM23
+      def xmm24 = Registers::XMM24
+      def xmm25 = Registers::XMM25
+      def xmm26 = Registers::XMM26
+      def xmm27 = Registers::XMM27
+      def xmm28 = Registers::XMM28
+      def xmm29 = Registers::XMM29
+      def xmm30 = Registers::XMM30
+      def xmm31 = Registers::XMM31
 
       def ymm0 = Registers::YMM0
       def ymm1 = Registers::YMM1

@@ -254,6 +254,22 @@ module Ronin
         XMM13 = Register.new(:xmm13, width: 16, number: 13, type: :xmm)
         XMM14 = Register.new(:xmm14, width: 16, number: 14, type: :xmm)
         XMM15 = Register.new(:xmm15, width: 16, number: 15, type: :xmm)
+        XMM16 = Register.new(:xmm16, width: 16, number: 16, type: :xmm)
+        XMM17 = Register.new(:xmm17, width: 16, number: 17, type: :xmm)
+        XMM18 = Register.new(:xmm18, width: 16, number: 18, type: :xmm)
+        XMM19 = Register.new(:xmm19, width: 16, number: 19, type: :xmm)
+        XMM20 = Register.new(:xmm20, width: 16, number: 20, type: :xmm)
+        XMM21 = Register.new(:xmm21, width: 16, number: 21, type: :xmm)
+        XMM22 = Register.new(:xmm22, width: 16, number: 22, type: :xmm)
+        XMM23 = Register.new(:xmm23, width: 16, number: 23, type: :xmm)
+        XMM24 = Register.new(:xmm24, width: 16, number: 24, type: :xmm)
+        XMM25 = Register.new(:xmm25, width: 16, number: 25, type: :xmm)
+        XMM26 = Register.new(:xmm26, width: 16, number: 26, type: :xmm)
+        XMM27 = Register.new(:xmm27, width: 16, number: 27, type: :xmm)
+        XMM28 = Register.new(:xmm28, width: 16, number: 28, type: :xmm)
+        XMM29 = Register.new(:xmm29, width: 16, number: 29, type: :xmm)
+        XMM30 = Register.new(:xmm30, width: 16, number: 30, type: :xmm)
+        XMM31 = Register.new(:xmm31, width: 16, number: 31, type: :xmm)
 
         #
         # @group 256bit YMM Registers
