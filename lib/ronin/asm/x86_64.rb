@@ -25,6 +25,7 @@ require_relative 'x86_64/memory'
 require_relative 'x86_64/memory_offset'
 require_relative 'x86_64/relative_offset'
 require_relative 'x86_64/broadcast'
+require_relative 'x86_64/opmask'
 require_relative 'x86_64/syntax'
 
 require 'set'
@@ -498,6 +499,34 @@ module Ronin
       #
       def bcst(operand,ratio)
         Broadcast.new(coerce_operand(operand),ratio)
+      end
+
+      #
+      # Adds an opmask or write mask to another register.
+      #
+      # @param [Register] operand
+      #   The register to apply the opmask to.
+      #
+      # @param [Register] k
+      #   The opmask register.
+      #
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Additional keyword arguments.
+      #
+      # @option kwargs [Boolean] :zero (false)
+      #   Enables zero masking. Otherwise merge masking is enabled by default.
+      #
+      # @return [Opmask]
+      #   The opmask operand.
+      #
+      # @raise [ArgumentError]
+      #   * A non-register was given as the `register` argument.
+      #   * A non-opmask register was given as the `k` argument.
+      #
+      # @since 1.0.0
+      #
+      def opmask(operand,k,**kwargs)
+        Opmask.new(operand,k,**kwargs)
       end
 
       #
