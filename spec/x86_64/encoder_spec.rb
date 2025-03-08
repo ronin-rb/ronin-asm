@@ -1157,4 +1157,552 @@ describe Ronin::ASM::X86_64::Encoder do
       ).to eq(3)
     end
   end
+
+  describe "#write_evex" do
+    let(:mmm)  { 0b001 }
+    let(:pp)   { 0b01 }
+    let(:w)    { 1 }
+    let(:ll)   { 0b00 }
+    let(:vvvv) { Ronin::ASM::X86_64::Registers::XMM1 }
+    let(:v)    { Ronin::ASM::X86_64::Registers::XMM1 }
+    let(:rr)   { Ronin::ASM::X86_64::Registers::XMM0 }
+    let(:_B)   { Ronin::ASM::X86_64::Registers::XMM2 }
+    let(:x)    { Ronin::ASM::X86_64::Registers::XMM2 }
+    let(:b)    { 0 }
+    let(:aaa)  { 0 }
+    let(:z)    { 0 }
+
+    it "must write the 0b01100010 (0x62) byte first" do
+      subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+      expect(output.string.getbyte(0)).to eq(0b01100010)
+    end
+
+    it "must always set bit 3 to 1 in the third byte" do
+      subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+      byte3 = output.string.getbyte(2)
+
+      expect((byte3 & 0b00000100) >> 2).to eq(1)
+    end
+
+    it "must write four bytes to the output stream" do
+      subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+      expect(output.string.size).to eq(4)
+    end
+
+    it "must return 4" do
+      expect(
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+      ).to eq(4)
+    end
+
+    context "when the rr: value is a Ronin::ASM::X86_64::Register" do
+      context "but it's register number is less than or equal to 7" do
+        let(:rr) { Ronin::ASM::X86_64::Registers::XMM7 }
+
+        it "must set bits 8 and 5 in the second byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte2 = output.string.getbyte(1)
+
+          expect(byte2 & 0b10010000).to eq(0b10010000)
+        end
+      end
+
+      context "and it's register number is greater than 7" do
+        let(:rr) { Ronin::ASM::X86_64::Registers::XMM8 }
+
+        it "must not set bits 8 and 5 in the second byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte2 = output.string.getbyte(1)
+
+          expect(byte2 & 0b10010000).to eq(0)
+        end
+      end
+    end
+
+    context "when the rr: value is not a Ronin::ASM::X86_64::Register" do
+      let(:register) { Ronin::ASM::X86_64::Registers::RAX }
+      let(:memory)   { Ronin::ASM::X86_64::Memory.new(base: register) }
+
+      let(:rr) { memory }
+
+      it "must set bits 8 and 5 in the second byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte2 = output.string.getbyte(1)
+
+        expect(byte2 & 0b10010000).to eq(0b10010000)
+      end
+    end
+
+    context "when the rr: value is nil" do
+      let(:rr) { nil }
+
+      it "must set bits 8 and 5 in the second byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte2 = output.string.getbyte(1)
+
+        expect(byte2 & 0b10010000).to eq(0b10010000)
+      end
+    end
+
+    context "when the x: value is a Ronin::ASM::X86_64::Register" do
+      context "and it's register number is less than or equal to 7" do
+        let(:x) { Ronin::ASM::X86_64::Registers::XMM7 }
+
+        it "must set bit 7 to 1 in the second byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte2 = output.string.getbyte(1)
+
+          expect((byte2 & 0b01000000) >> 6).to eq(1)
+        end
+      end
+
+      context "but it's register number is greater than 7" do
+        let(:x) { Ronin::ASM::X86_64::Registers::XMM8 }
+
+        it "must not set bit 7 in the second byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte2 = output.string.getbyte(1)
+
+          expect((byte2 & 0b01000000) >> 6).to eq(0)
+        end
+      end
+    end
+
+    context "when the x: value is a Ronin::ASM::X86_64::Memory object" do
+      context "and it's index register's number is less than or equal to 7" do
+        let(:register) { Ronin::ASM::X86_64::Registers::RAX }
+        let(:index)    { Ronin::ASM::X86_64::Registers::XMM7 }
+        let(:memory) do
+          Ronin::ASM::X86_64::Memory.new(base: register, index: index, scale: 8)
+        end
+
+        let(:x) { memory }
+
+        it "must set bit 7 to 1 in the second byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte2 = output.string.getbyte(1)
+
+          expect((byte2 & 0b01000000) >> 6).to eq(1)
+        end
+      end
+
+      context "but it's index register's number is greater than 7" do
+        let(:register) { Ronin::ASM::X86_64::Registers::RAX }
+        let(:index)    { Ronin::ASM::X86_64::Registers::XMM8 }
+        let(:memory) do
+          Ronin::ASM::X86_64::Memory.new(base: register, index: index, scale: 8)
+        end
+
+        let(:x) { memory }
+
+        it "must not set bit 7 to 1 in the second byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte2 = output.string.getbyte(1)
+
+          expect((byte2 & 0b01000000) >> 6).to eq(0)
+        end
+      end
+    end
+
+    context "when the _B: value is a Register" do
+      context "and it's register number is less than or equal to 7" do
+        let(:_B) { Ronin::ASM::X86_64::Registers::XMM7 }
+
+        it "must set bit 6 to 1 in the second byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte2 = output.string.getbyte(1)
+
+          expect((byte2 & 0b00100000) >> 5).to eq(1)
+        end
+      end
+
+      context "and it's register number is greater than 7" do
+        let(:_B) { Ronin::ASM::X86_64::Registers::XMM8 }
+
+        it "must not set bit 6 in the second byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte2 = output.string.getbyte(1)
+
+          expect((byte2 & 0b00100000) >> 5).to eq(0)
+        end
+      end
+    end
+
+    context "when the _B: value is a Ronin::ASM::X86_64::Memory object" do
+      context "and it's base register's number is less than or equal to 7" do
+        let(:register) { Ronin::ASM::X86_64::Registers::RDI }
+        let(:memory)   { Ronin::ASM::X86_64::Memory.new(base: register) }
+
+        let(:_B) { memory }
+
+        it "must set bit 6 to 1 in the second byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte2 = output.string.getbyte(1)
+
+          expect((byte2 & 0b00100000) >> 5).to eq(1)
+        end
+      end
+
+      context "but it's base register's number is greater than 7" do
+        let(:register) { Ronin::ASM::X86_64::Registers::R8 }
+        let(:memory)   { Ronin::ASM::X86_64::Memory.new(base: register) }
+
+        let(:_B) { memory }
+
+        it "must not set bit 6 to 1 in the second byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte2 = output.string.getbyte(1)
+
+          expect((byte2 & 0b00100000) >> 5).to eq(0)
+        end
+      end
+    end
+
+    context "when the mmm: value is greater than 0" do
+      let(:mmm) { 0b101 }
+
+      it "must encode the mmm: value into bits 3, 2, and 1 of the second byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte2 = output.string.getbyte(1)
+
+        expect(byte2 & 0b00000111).to eq(mmm)
+      end
+    end
+
+    context "when the mmm: value is 0" do
+      let(:mmm) { 0b000 }
+
+      it "must not set bits 3, 2, or 1 in the second byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte2 = output.string.getbyte(1)
+
+        expect(byte2 & 0b00000111).to eq(0)
+      end
+    end
+
+    context "when the w: value is 1" do
+      let(:w) { 1 }
+
+      it "must set bit 8 to 1 in the third byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte3 = output.string.getbyte(2)
+
+        expect((byte3 & 0b10000000) >> 7).to eq(1)
+      end
+    end
+
+    context "when the w: value is 0" do
+      let(:w) { 0 }
+
+      it "must not set bit 8 in the third byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte3 = output.string.getbyte(2)
+
+        expect((byte3 & 0b10000000) >> 7).to eq(0)
+      end
+    end
+
+    context "when the w: value is nil" do
+      let(:w) { nil }
+
+      it "must not set bit 8 in the third byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte3 = output.string.getbyte(2)
+
+        expect((byte3 & 0b10000000) >> 7).to eq(0)
+      end
+    end
+
+    context "when the vvvv: value is a Ronin::ASM::X86::Operand" do
+      let(:vvvv) { Ronin::ASM::X86_64::Registers::XMM15 }
+
+      it "must set bits 7, 6, 5, and 4 to it's inverted value in the third byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte3 = output.string.getbyte(2)
+
+        expect((byte3 & 0b01111000) >> 3).to eq(~vvvv.number & 0b1111)
+      end
+    end
+
+    context "when the vvvv: value is 0" do
+      let(:vvvv) { 0 }
+
+      it "must not set bit 7, 6, 5, or 4 in the third byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte3 = output.string.getbyte(2)
+
+        expect((byte3 & 0b01111000) >> 3).to eq(0)
+      end
+    end
+
+    context "when the pp: value is greater than 0" do
+      let(:pp) { 0b10 }
+
+      it "must encode the pp: value into bits 2 and 1 of the third byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte3 = output.string.getbyte(2)
+
+        expect(byte3 & 0b00000011).to eq(pp)
+      end
+    end
+
+    context "when the pp: value is 0" do
+      let(:pp) { 0 }
+
+      it "must not set bits 2 and 1 of the third byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte3 = output.string.getbyte(2)
+
+        expect(byte3 & 0b00000011).to eq(0)
+      end
+    end
+
+    context "when the z: value is a Ronin::ASM::X86::Opmask" do
+      let(:xmm) { Ronin::ASM::X86_64::Registers::XMM0 }
+      let(:k)   { Ronin::ASM::X86_64::Registers::K5 }
+
+      let(:z) { Ronin::ASM::X86_64::Opmask.new(xmm,k) }
+
+      it "must set bit 8 to 1 of the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b10000000) >> 7).to eq(1)
+      end
+    end
+
+    context "when the z: value is 0" do
+      let(:z) { 0 }
+
+      it "must not set bit 8 to 1 of the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b10000000) >> 7).to eq(0)
+      end
+    end
+
+    context "when the ll: value is 0b01" do
+      let(:ll) { 0b01 }
+
+      it "must encode the ll: value into bits 6 and 5 of the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b01100000) >> 5).to eq(ll)
+      end
+    end
+
+    context "when the ll: value is Ronin::ASM::X86_64::Operands::ER" do
+      let(:ll) { Ronin::ASM::X86_64::Operands::ER }
+
+      it "must set bits 6 and 5 to 1 in the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b01100000) >> 5).to eq(0b11)
+      end
+    end
+
+    context "when the ll: value is a Ronin::ASM::X86_64::Operand" do
+      context "and it's #size is 32 (256 bits)" do
+        let(:ll) { Ronin::ASM::X86_64::Registers::YMM0 }
+
+        it "must encode 0b01 into bits 6 and 5 of the fourth byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte4 = output.string.getbyte(3)
+
+          expect((byte4 & 0b01100000) >> 5).to eq(0b01)
+        end
+      end
+
+      context "and it's #size is 64 (512 bits)" do
+        let(:ll) { Ronin::ASM::X86_64::Registers::ZMM0 }
+
+        it "must encode 0b10 into bits 6 and 5 of the fourth byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte4 = output.string.getbyte(3)
+
+          expect((byte4 & 0b01100000) >> 5).to eq(0b10)
+        end
+      end
+
+      context "and it's #size is less than 32 (256 bits)" do
+        let(:ll) { Ronin::ASM::X86_64::Registers::XMM0 }
+
+        it "must not set bits 6 and 5 in the fourth byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte4 = output.string.getbyte(3)
+
+          expect((byte4 & 0b01100000) >> 5).to eq(0)
+        end
+      end
+    end
+
+    context "when the ll: value is nil" do
+      let(:ll) { nil }
+
+      it "must not set bits 6 and 5 in the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b01100000) >> 5).to eq(0)
+      end
+    end
+
+    context "when the b: value is a Ronin::ASM::X86_64::Broadcast" do
+      let(:register) { Ronin::ASM::X86_64::Registers::EAX }
+      let(:memory)   { Ronin::ASM::X86_64::Memory.new(base: register) }
+
+      let(:b) { Ronin::ASM::X86_64::Broadcast.new(memory, 1=>4) }
+
+      it "must set bit 5 to 1 in the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b00010000) >> 4).to eq(1)
+      end
+    end
+
+    context "when the b: value is 1" do
+      let(:b) { 1 }
+
+      it "must set bit 5 to 1 in the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b00010000) >> 4).to eq(1)
+      end
+    end
+
+    context "when the b: value is 0" do
+      let(:b) { 0 }
+
+      it "must not set bit 5 in the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b00010000) >> 4).to eq(0)
+      end
+    end
+
+    context "when the v: value is a Ronin::ASM::X86_64::Register" do
+      context "and it's register number is less than or equal to 7" do
+        let(:v) { Ronin::ASM::X86_64::Registers::XMM7 }
+
+        it "must set bit 4 to 1 in the fourth byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte4 = output.string.getbyte(3)
+
+          expect((byte4 & 0b00001000) >> 3).to eq(1)
+        end
+      end
+
+      context "but it's register number is greater than 7" do
+        let(:v) { Ronin::ASM::X86_64::Registers::XMM8 }
+
+        it "must not set bit 4 to 1 in the fourth byte" do
+          subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+          byte4 = output.string.getbyte(3)
+
+          expect((byte4 & 0b00001000) >> 3).to eq(0)
+        end
+      end
+    end
+
+    context "when the v: value is 0" do
+      let(:v) { 0 }
+
+      it "must set bit 4 to 1 in the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b00001000) >> 3).to eq(1)
+      end
+    end
+
+    context "when the aaa: value is a Ronin::ASM::X86_64::Opmask" do
+      let(:xmm) { Ronin::ASM::X86_64::Registers::XMM0 }
+      let(:k)   { Ronin::ASM::X86_64::Registers::K5 }
+      let(:aaa) { Ronin::ASM::X86_64::Opmask.new(xmm,k) }
+
+      it "must encode the K opmask register number into bits 3, 2, and 1 of the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect(byte4 & 0b00000111).to eq(k.number)
+      end
+    end
+
+    context "when the aaa: value is 0" do
+      let(:aaa) { 0 }
+
+      it "must not set bits 3, 2, or 1 in the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect(byte4 & 0b00000111).to eq(0)
+      end
+    end
+
+    context "when the disp8xN: keyword argument is given" do
+      [1, 2, 4, 8, 16, 32, 64].each do |size|
+        context "and it's value is #{size}" do
+          let(:disp8xN) { size }
+
+          it "must write an additional fifth byte of #{size} to the output stream" do
+            subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z, disp8xN: disp8xN)
+
+            expect(output.string.getbyte(4)).to eq(disp8xN)
+          end
+
+          it "must return 5" do
+            expect(
+              subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z, disp8xN: disp8xN)
+            ).to eq(5)
+          end
+        end
+      end
+    end
+  end
 end
