@@ -18,6 +18,8 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'operand'
+
 module Ronin
   module ASM
     module X86
@@ -29,6 +31,8 @@ module Ronin
       # @see 1.0.0
       #
       module Decorator
+
+        include Operand
 
         # The operand that is being decorated.
         #
