@@ -19,6 +19,7 @@
 #
 
 require_relative '../x86/decorator'
+require_relative 'operand'
 
 module Ronin
   module ASM
@@ -31,6 +32,7 @@ module Ronin
       # @see 1.0.0
       #
       module Decorator
+        include Operand
         include X86::Decorator
       end
     end
