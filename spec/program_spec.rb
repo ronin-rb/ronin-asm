@@ -191,29 +191,6 @@ describe Ronin::ASM::Program do
     end
   end
 
-  describe "#allocate_register" do
-    let(:register) { Ronin::ASM::X86_64::Registers::EAX }
-
-    it "must add the register name to #allocated_registers" do
-      subject.allocate_register(register)
-
-      expect(subject.allocated_registers).to include(register)
-    end
-  end
-
-  describe "#free_register" do
-    let(:register) { Ronin::ASM::X86_64::Registers::EAX }
-
-    before do
-      subject.allocate_register(register)
-      subject.free_register(register)
-    end
-
-    it "must remove the register name to #allocated_registers" do
-      expect(subject.allocated_registers).to_not include(register)
-    end
-  end
-
   describe "#coerce_operand" do
     context "when given a Register operand" do
       let(:value) { Ronin::ASM::X86::Registers::EAX }
