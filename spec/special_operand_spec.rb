@@ -17,4 +17,10 @@ describe Ronin::ASM::SpecialOperand do
       expect(subject.type).to eq(type)
     end
   end
+
+  describe "#to_s" do
+    it "must return #type as a String" do
+      expect(subject.to_s).to eq(type.to_s)
+    end
+  end
 end
