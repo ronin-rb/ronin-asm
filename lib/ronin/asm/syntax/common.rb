@@ -111,6 +111,8 @@ module Ronin
           when Register  then format_register(operand)
           when Memory    then format_memory(operand)
           when Symbol    then format_keyword(operand)
+          else
+            raise(NotImplementedError,"cannot format unknown operand object: #{operand.inspect}")
           end
         end
 
