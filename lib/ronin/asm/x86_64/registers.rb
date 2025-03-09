@@ -19,6 +19,7 @@
 #
 
 require_relative 'register'
+require_relative 'ip_register'
 
 module Ronin
   module ASM
@@ -188,6 +189,18 @@ module Ronin
 
         # The `rbp` 64bit stack base pointer register.
         RBP =  Register.new(:rbp, width: 8, number: 5, bp: true, general: true)
+
+        #
+        # @group Instruction Pointer Registers
+        #
+
+        # The `eip` 32bit instruction pointer register used for RIP-relative
+        # addressing with 32bit instructions.
+        EIP = IPRegister.new(:rip, width: 4, type: :eip)
+
+        # The `rip` 64bit instruction pointer register used for RIP-relative
+        # addressing.
+        RIP = IPRegister.new(:rip, width: 8, type: :rip)
 
         #
         # @group Segment Registers
