@@ -189,36 +189,6 @@ module Ronin
       public
 
       #
-      # Mark the register as allocated.
-      #
-      # @param [Register] register
-      #   The register to allocate.
-      #
-      # @return [Set<Symbol>]
-      #   The set of allocated registers.
-      #
-      # @since 1.0.0
-      #
-      def allocate_register(register)
-        @allocated_registers << register
-      end
-
-      #
-      # Mark the register as de-allocated.
-      #
-      # @param [Register] register
-      #   The register to free.
-      #
-      # @return [Set<Symbol>]
-      #   The set of allocated registers.
-      #
-      # @since 1.0.0
-      #
-      def free_register(register)
-        @allocated_registers.delete(register)
-      end
-
-      #
       # Coerces an operand value into an operand object.
       #
       # @param [Integer, Register, Memory, nil] value
