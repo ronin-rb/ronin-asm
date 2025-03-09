@@ -39,52 +39,6 @@ module Ronin
       # Default word size
       WORD_SIZE = 4
 
-      # X86 registers
-      REGISTERS = Set[
-        Registers::AL,
-        Registers::AH,
-        Registers::AX,
-        Registers::EAX,
-
-        Registers::BL,
-        Registers::BH,
-        Registers::BX,
-        Registers::EBX,
-
-        Registers::CL,
-        Registers::CH,
-        Registers::CX,
-        Registers::ECX,
-
-        Registers::DL,
-        Registers::DH,
-        Registers::DX,
-        Registers::EDX,
-
-        Registers::SIL,
-        Registers::SI,
-        Registers::ESI,
-
-        Registers::DIL,
-        Registers::DI,
-        Registers::EDI,
-
-        Registers::BPL,
-        Registers::BP,
-        Registers::EBP,
-
-        Registers::SPL,
-        Registers::SP,
-        Registers::ESP,
-
-        Registers::CS,
-        Registers::DS,
-        Registers::ES,
-        Registers::FS,
-        Registers::GS,
-        Registers::SS
-      ]
-
       # Supported Assembly syntaxs
       SYNTAXES = {
         att:   Syntax::ATT,
