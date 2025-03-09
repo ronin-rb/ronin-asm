@@ -122,6 +122,16 @@ describe Ronin::ASM::Syntax::Common do
         expect(subject.format_operand(symbol)).to be(string)
       end
     end
+
+    context "when given an unknown operand object" do
+      let(:operand) { Object.new }
+
+      it do
+        expect {
+          subject.format_operand(operand)
+        }.to raise_error(NotImplementedError,"cannot format unknown operand object: #{operand.inspect}")
+      end
+    end
   end
 
   describe ".format_operands" do
