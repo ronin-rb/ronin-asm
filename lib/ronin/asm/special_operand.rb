@@ -46,6 +46,14 @@ module Ronin
         @type = type
       end
 
+      #
+      # Converts the special operand to a String.
+      #
+      # @return [String]
+      #   The {#type} attribute converted to a String.
+      #
+      def to_s = @type.to_s
+
     end
   end
 end
