@@ -158,7 +158,6 @@ module Ronin
         end
 
         @word_size = arch_module::WORD_SIZE
-        @registers = arch_module::REGISTERS
         @syntaxes  = arch_module::SYNTAXES
 
         @immediate_class = arch_module::Immediate
