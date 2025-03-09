@@ -197,6 +197,14 @@ module Ronin
       # The `rbp` 64bit stack base pointer register.
       def rbp = Registers::RBP
 
+      # The `eip` 32bit instruction pointer register used for RIP-relative
+      # addressing.
+      def eip = Registers::EIP
+
+      # The `rip` 64bit instruction pointer register used for RIP-relative
+      # addressing.
+      def rip = Registers::RIP
+
       # The `cs` 16bit Code Segment register.
       def cs = Registers::CS
 
