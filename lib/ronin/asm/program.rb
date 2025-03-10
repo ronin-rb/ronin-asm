@@ -26,7 +26,6 @@ require_relative 'register'
 require_relative 'instruction'
 require_relative 'immediate'
 require_relative 'label'
-require_relative 'symbol_ref'
 
 require 'set'
 require 'tempfile'
@@ -173,8 +172,9 @@ module Ronin
         @word_size = arch_module::WORD_SIZE
         @syntaxes  = arch_module::SYNTAXES
 
-        @immediate_class = arch_module::Immediate
-        @memory_class    = arch_module::Memory
+        @immediate_class  = arch_module::Immediate
+        @memory_class     = arch_module::Memory
+        @symbol_ref_class = arch_module::SymbolRef
 
         extend arch_module
       end
@@ -364,7 +364,7 @@ module Ronin
       def symbol_ref(name)
         name = name.to_s
 
-        @symbol_refs[name] ||= SymbolRef.new(name, value: @symbols[name])
+        @symbol_refs[name] ||= @symbol_ref_class.new(name, value: @symbols[name])
       end
 
       #
