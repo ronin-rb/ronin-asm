@@ -246,7 +246,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
           "_start:",
           "\tmovl\t$0x0,\t%eax",
           "_loop:",
-          "\tincl\t%eax",
+          "\tinc\t%eax",
           "\tcmpl\t$0xa,\t%eax",
           "\tjl\t_loop",
           "\tret",

@@ -120,7 +120,8 @@ module Ronin
             line = format_keyword(insn.name)
 
             unless insn.operands.empty?
-              unless (insn.operands.length == 1 && insn.operand_width == 1)
+              # multiple operands with differing widths?
+              if (insn.operands.length > 1 && insn.operands.map(&:width).uniq.length > 1)
                 line << INSTRUCTION_SUFFIXES[insn.operand_width]
               end
 
