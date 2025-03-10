@@ -145,6 +145,56 @@ describe Ronin::ASM::X86::Syntax::ATT do
         )
       end
     end
+
+    context "when the instruction starts with a 'j' character (jump instruction)" do
+      context "and it's operand is a Ronin::ASM::X86::Register operand" do
+        let(:register)    { Ronin::ASM::X86::Register.new(:eax, width: 4) }
+        let(:instruction) { Ronin::ASM::X86::Instruction.new(:jmp, register) }
+
+        it "must prepend a '*' character to the register" do
+          expect(subject.format_instruction(instruction)).to eq(
+            "#{instruction.name}\t*#{subject.format_register(register)}"
+          )
+        end
+      end
+
+      context "and it's operand is a Ronin::ASM::X86::Memory operand" do
+        let(:register)    { Ronin::ASM::X86::Register.new(:eax, width: 4) }
+        let(:memory)      { Ronin::ASM::X86::Memory.new(base: register) }
+        let(:instruction) { Ronin::ASM::X86::Instruction.new(:jmp, memory) }
+
+        it "must prepend a '*' character to the register" do
+          expect(subject.format_instruction(instruction)).to eq(
+            "#{instruction.name}\t*#{subject.format_memory(memory)}"
+          )
+        end
+      end
+    end
+
+    context "when the instruction name is :call" do
+      context "and it's operand is a Ronin::ASM::X86::Register operand" do
+        let(:register)    { Ronin::ASM::X86::Register.new(:eax, width: 4) }
+        let(:instruction) { Ronin::ASM::X86::Instruction.new(:call, register) }
+
+        it "must prepend a '*' character to the register" do
+          expect(subject.format_instruction(instruction)).to eq(
+            "#{instruction.name}\t*#{subject.format_register(register)}"
+          )
+        end
+      end
+
+      context "and it's operand is a Ronin::ASM::X86::Memory operand" do
+        let(:register)    { Ronin::ASM::X86::Register.new(:eax, width: 4) }
+        let(:memory)      { Ronin::ASM::X86::Memory.new(base: register) }
+        let(:instruction) { Ronin::ASM::X86::Instruction.new(:call, memory) }
+
+        it "must prepend a '*' character to the register" do
+          expect(subject.format_instruction(instruction)).to eq(
+            "#{instruction.name}\t*#{subject.format_memory(memory)}"
+          )
+        end
+      end
+    end
   end
 
   describe ".format_section" do
