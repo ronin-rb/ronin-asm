@@ -62,6 +62,9 @@ module Ronin
               mode = 0b10 # disp32 mode
               displacement_size = 4
             end
+          elsif (mem.base.type == :rip || mem.base.type == :eip)
+            # RIP/EIP relative requires a mode of 0 and a four byte displacement
+            diplacement_size = 4
           end
 
           count = 0
@@ -72,6 +75,8 @@ module Ronin
           elsif (mem.base.to_i & 0b111) == 4 # ESP/SP/SPL or R12 register, but without index/scale
             count += write_modrm_byte(mode,reg,rm)
             count += write_sib_byte(1,0b100,0b100)
+          elsif (mem.base.type == :rip || mem.base.type == :eip)
+            count += write_modrm_byte(mode,reg,0b101)
           else
             count += write_modrm_byte(mode,reg,rm)
           end

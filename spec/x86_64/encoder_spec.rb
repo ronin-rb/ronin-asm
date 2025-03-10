@@ -534,6 +534,36 @@ describe Ronin::ASM::X86_64::Encoder do
       end
     end
 
+    context "when both the reg operand and the base of the Memory operand is the RIP register (RIP-relative addressing)" do
+      let(:base) { Ronin::ASM::X86_64::Registers::RIP }
+      let(:mem)  { Ronin::ASM::X86_64::Memory.new(base: base) }
+      let(:reg)  { mem }
+
+      it "must encode 0b00 as the mode field in the ModRM byte" do
+        subject.write_modrm_mem(mem,reg,rm)
+
+        modrm = output.string.getbyte(0)
+
+        expect((modrm & 0b11_000_000) >> 6).to eq(0b00)
+      end
+
+      it "must encode 0 as the reg field in the ModRM byte" do
+        subject.write_modrm_mem(mem,reg,rm)
+
+        modrm = output.string.getbyte(0)
+
+        expect((modrm & 0b00_111_000) >> 3).to eq(0)
+      end
+
+      it "must encode 0b101 as the rm field in the ModRM byte" do
+        subject.write_modrm_mem(mem,reg,rm)
+
+        modrm = output.string.getbyte(0)
+
+        expect(modrm & 0b00_000_111).to eq(0b101)
+      end
+    end
+
     context "but the reg operand is an Integer instead of a Register" do
       let(:reg) { 6 }
 
