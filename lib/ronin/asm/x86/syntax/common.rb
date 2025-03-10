@@ -18,6 +18,8 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative '../../syntax/common'
+
 module Ronin
   module ASM
     module X86
@@ -27,7 +29,8 @@ module Ronin
         #
         # @since 1.0.0
         #
-        module Common
+        class Common < ASM::Syntax::Common
+
           # Broadcast ratios and their formatted syntax.
           BROADCAST_RATIOS = {
             {1=>2}  => '{1to2}',
@@ -43,7 +46,7 @@ module Ronin
           # @param [Broadcast] bcst
           # @return [String]
           #
-          def format_broadcast(bcst)
+          def self.format_broadcast(bcst)
             ratio = BROADCAST_RATIOS.fetch(bcst.ratio)
 
             "#{format_memory(bcst.memory)} #{ratio}"
@@ -55,7 +58,7 @@ module Ronin
           # @param [Opmask] opmask
           # @return [String]
           #
-          def format_opmask(opmask)
+          def self.format_opmask(opmask)
             asm = "#{format_operand(opmask.operand)} {#{format_register(opmask.k)}}"
             asm << '{z}' if opmask.zero?
 
@@ -71,13 +74,14 @@ module Ronin
           # @return [String]
           #   The formatted operand.
           #
-          def format_operand(operand)
+          def self.format_operand(operand)
             case operand
             when Broadcast then format_broadcast(operand)
             when Opmask    then format_opmask(operand)
             else                super(operand)
             end
           end
+
         end
       end
     end
