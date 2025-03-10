@@ -26,7 +26,7 @@ require_relative 'register'
 require_relative 'instruction'
 require_relative 'immediate'
 require_relative 'label'
-require_relative 'label_ref'
+require_relative 'symbol_ref'
 
 require 'set'
 require 'tempfile'
@@ -95,10 +95,10 @@ module Ronin
       # @return [Hash{String => Label}]
       attr_reader :labels
 
-      # The label references defined in the program.
+      # The symbol references defined in the program.
       #
-      # @return [Hash{String => Label}]
-      attr_reader :label_refs
+      # @return [Hash{String => Label,Integer}]
+      attr_reader :symbol_refs
 
       # The instructions of the program
       #
@@ -147,7 +147,7 @@ module Ronin
 
         @allocated_registers = Set.new
         @labels = {}
-        @label_refs = {}
+        @symbol_refs = {}
         @instructions = []
 
         instance_eval(&block) if block
@@ -342,8 +342,8 @@ module Ronin
         @labels[name] = new_label
         @instructions << new_label
 
-        if (label_ref = @label_refs[name])
-          label_ref.resolve(new_label)
+        if (symbol_ref = @symbol_refs[name])
+          symbol_ref.resolve(new_label)
         end
 
         instance_eval(&block)
@@ -356,15 +356,15 @@ module Ronin
       # @param [Symbol, String] name
       #   The name of the label being referenced.
       #
-      # @return [LabelRef]
+      # @return [LabelSymbol]
       #   The new label reference.
       #
       # @since 1.0.0
       #
-      def label_ref(name)
+      def symbol_ref(name)
         name = name.to_s
 
-        @label_refs[name] ||= LabelRef.new(name, label: @labels[name])
+        @symbol_refs[name] ||= SymbolRef.new(name, value: @labels[name])
       end
 
       #
@@ -511,9 +511,9 @@ module Ronin
       # @since 1.0.0
       #
       def validate
-        @label_refs.each_value do |label_ref|
-          unless label_ref.resolved?
-            raise(UndefinedLabelError,"undefined reference to label: #{label_ref.name.inspect}")
+        @symbol_refs.each_value do |symbol_ref|
+          unless symbol_ref.resolved?
+            raise(UndefinedLabelError,"undefined reference to label: #{symbol_ref.name.inspect}")
           end
         end
 
@@ -599,7 +599,7 @@ module Ronin
         if (block && arguments.empty? && kwargs.empty?)
           label(name,&block)
         elsif (block.nil? && arguments.empty? && kwargs.empty?)
-          label_ref(name)
+          symbol_ref(name)
         else
           super(name,*arguments,&block)
         end
