@@ -23,49 +23,49 @@ require_relative 'operand'
 module Ronin
   module ASM
     #
-    # Represents a reference to a label within an assembly program.
+    # Represents a reference to a symbol within an assembly program.
     #
     # @since 1.0.0
     #
-    class LabelRef
+    class SymbolRef
 
       include Operand
 
-      # The label name.
+      # The symbol name.
       #
       # @return [String]
       attr_reader :name
 
-      # The label being referenced.
+      # The symbol value being referenced.
       #
-      # @return [Label, nil]
-      attr_reader :label
+      # @return [Label, Integer, nil]
+      attr_reader :value
 
       #
-      # Initializes the label reference.
+      # Initializes the symbol reference.
       #
       # @param [String] name
-      #   The label's name.
+      #   The symbol's name.
       #
-      # @param [Label, nil] label
-      #   The label that's being referenced.
+      # @param [Label, Integer, nil] value
+      #   The optional symbol value that's being referenced.
       #
-      def initialize(name, label: nil)
+      def initialize(name, value: nil)
         @name  = name
-        @label = label
+        @value = value
       end
 
       #
-      # Determines if the label reference has been unresolved.
+      # Determines if the symbol reference has been unresolved.
       #
       # @return [Boolean]
       #
       # @api private
       #
-      def unresolved? = @label.nil?
+      def unresolved? = @value.nil?
 
       #
-      # Determines if the label reference has been resolved.
+      # Determines if the symbol reference has been resolved.
       #
       # @return [Boolean]
       #
@@ -74,16 +74,19 @@ module Ronin
       def resolved? = !unresolved?
 
       #
-      # Sets the label.
+      # Sets the symbol's value.
+      #
+      # @param [Label, Integer] value
+      #   The symbol's new value.
       #
       # @api private
       #
-      def resolve(label)
-        @label = label
+      def resolve(value)
+        @value = value
       end
 
       #
-      # Converts the label reference to a String.
+      # Converts the symbol reference to a String.
       #
       # @return [String]
       #

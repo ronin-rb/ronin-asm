@@ -99,7 +99,7 @@ module Ronin
         #
         # Emits an operand.
         #
-        # @param [Immediate, Memory, Register, LabelRef] operand
+        # @param [Immediate, Memory, Register, SymbolRef] operand
         #   The operand.
         #
         # @return [String]
@@ -110,7 +110,7 @@ module Ronin
           when Immediate then format_immediate(operand)
           when Register  then format_register(operand)
           when Memory    then format_memory(operand)
-          when LabelRef  then format_keyword(operand)
+          when SymbolRef then format_keyword(operand)
           else
             raise(NotImplementedError,"cannot format unknown operand object: #{operand.inspect}")
           end
@@ -119,7 +119,7 @@ module Ronin
         #
         # Emits multiple operands.
         #
-        # @param [Array<Immediate, Memory, Register, LabelRef>] ops
+        # @param [Array<Immediate, Memory, Register, SymbolRef>] ops
         #   The Array of operands.
         #
         # @return [String]
@@ -132,13 +132,13 @@ module Ronin
         #
         # Emits a reference to a label.
         #
-        # @param [LabelRef] label_ref
+        # @param [SymbolRef] symbol_ref
         #   The reference to a label.
         #
         # @return [String]
         #   The formatted label name.
         #
-        def self.format_label_ref(label_ref) = label_ref.to_s
+        def self.format_symbol_ref(symbol_ref) = symbol_ref.to_s
 
         #
         # Emits a label.
@@ -319,4 +319,4 @@ require_relative '../immediate'
 require_relative '../memory'
 require_relative '../instruction'
 require_relative '../label'
-require_relative '../label_ref'
+require_relative '../symbol_ref'
