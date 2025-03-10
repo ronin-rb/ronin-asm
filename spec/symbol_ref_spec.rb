@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'ronin/asm/label_ref'
+require 'ronin/asm/symbol_ref'
 require 'ronin/asm/label'
 
-describe Ronin::ASM::LabelRef do
+describe Ronin::ASM::SymbolRef do
   let(:name) { '_start' }
 
   subject { described_class.new(name) }
@@ -16,33 +16,35 @@ describe Ronin::ASM::LabelRef do
       expect(subject.name).to eq(name)
     end
 
-    it "must set #label to nil" do
-      expect(subject.label).to be(nil)
+    it "must set #value to nil" do
+      expect(subject.value).to be(nil)
     end
 
-    context "when given the label: keyword argument" do
-      let(:label) { Ronin::ASM::Label.new(name) }
+    context "when given the value: keyword argument" do
+      context "and it's a Ronin::ASM::Label" do
+        let(:value) { Ronin::ASM::Label.new(name) }
 
-      subject { described_class.new(name, label: label) }
+        subject { described_class.new(name, value: value) }
 
-      it "must set #label" do
-        expect(subject.label).to be(label)
+        it "must set #value" do
+          expect(subject.value).to be(value)
+        end
       end
     end
   end
 
   describe "#resolved?" do
-    context "when #label is set" do
-      let(:label) { Ronin::ASM::Label.new(name) }
+    context "when #value is set" do
+      let(:value) { Ronin::ASM::Label.new(name) }
 
-      subject { described_class.new(name, label: label) }
+      subject { described_class.new(name, value: value) }
 
       it "must return true" do
         expect(subject.resolved?).to be(true)
       end
     end
 
-    context "when #label is not set" do
+    context "when #value is not set" do
       it "must return false" do
         expect(subject.resolved?).to be(false)
       end
@@ -50,17 +52,17 @@ describe Ronin::ASM::LabelRef do
   end
 
   describe "#unresolved?" do
-    context "when #label is set" do
-      let(:label) { Ronin::ASM::Label.new(name) }
+    context "when #value is set" do
+      let(:value) { Ronin::ASM::Label.new(name) }
 
-      subject { described_class.new(name, label: label) }
+      subject { described_class.new(name, value: value) }
 
       it "must return false" do
         expect(subject.unresolved?).to be(false)
       end
     end
 
-    context "when #label is not set" do
+    context "when #value is not set" do
       it "must return true" do
         expect(subject.unresolved?).to be(true)
       end
@@ -68,12 +70,12 @@ describe Ronin::ASM::LabelRef do
   end
 
   describe "#resolve" do
-    let(:label) { Ronin::ASM::Label.new(name) }
+    let(:value) { Ronin::ASM::Label.new(name) }
 
-    before { subject.resolve(label) }
+    before { subject.resolve(value) }
 
-    it "must set #label" do
-      expect(subject.label).to be(label)
+    it "must set #value" do
+      expect(subject.value).to be(value)
     end
   end
 

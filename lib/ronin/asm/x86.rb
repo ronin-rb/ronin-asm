@@ -339,7 +339,7 @@ module Ronin
       #
       # Generates the instruction to push a value onto the Stack.
       #
-      # @param [Immediate, Memory, Register, Integer, LabelRef] op
+      # @param [Immediate, Memory, Register, Integer, SymbolRef] op
       #   The value.
       #
       def stack_push(op) = push(op)
@@ -366,7 +366,7 @@ module Ronin
       # @param [Register] register
       #   The register to set.
       #
-      # @param [Immediate, Memory, Register, Integer, LabelRef] value
+      # @param [Immediate, Memory, Register, Integer, SymbolRef] value
       #   The value to set.
       #
       def register_set(register,value) = mov(register,value)

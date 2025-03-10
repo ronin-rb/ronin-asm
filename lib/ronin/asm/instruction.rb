@@ -34,7 +34,7 @@ module Ronin
 
       # The operands of the instruction.
       #
-      # @return [Array<Memory, Register, LabelRef, Immediate>]
+      # @return [Array<Memory, Register, SymbolRef, Immediate>]
       attr_reader :operands
 
       # Optional comment for the instruction.
@@ -48,7 +48,7 @@ module Ronin
       # @param [Symbol] name
       #   The instruction name.
       #
-      # @param [Array<Memory, Register, LabelRef, Immediate>] operands
+      # @param [Array<Memory, Register, SymbolRef, Immediate>] operands
       #   Operands for the instruction.
       #
       # @param [String, nil] comment

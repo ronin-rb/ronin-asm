@@ -68,7 +68,7 @@ module Ronin
           #
           # Formats an operand.
           #
-          # @param [Immediate, Memory, Register, LabelRef, Broadcast] operand
+          # @param [Immediate, Memory, Register, SymbolRef, Broadcast] operand
           #   The operand.
           #
           # @return [String]

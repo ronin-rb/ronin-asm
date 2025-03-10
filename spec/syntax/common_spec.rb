@@ -64,12 +64,12 @@ describe Ronin::ASM::Syntax::Common do
     end
   end
 
-  describe ".format_label_ref" do
+  describe ".format_symbol_ref" do
     let(:name)      { :_start  }
-    let(:label_ref) { Ronin::ASM::LabelRef.new(name) }
+    let(:symbol_ref) { Ronin::ASM::SymbolRef.new(name) }
 
-    it "must return the LabelRef#name as a String" do
-      expect(subject.format_label_ref(label_ref)).to eq(name.to_s)
+    it "must return the SymbolRef#name as a String" do
+      expect(subject.format_symbol_ref(symbol_ref)).to eq(name.to_s)
     end
   end
 
@@ -121,11 +121,11 @@ describe Ronin::ASM::Syntax::Common do
       end
     end
 
-    context "when given a Ronin::ASM::LabelRef value" do
-      let(:label_ref) { Ronin::ASM::LabelRef.new('_label') }
+    context "when given a Ronin::ASM::SymbolRef value" do
+      let(:symbol_ref) { Ronin::ASM::SymbolRef.new('_label') }
 
       it "must call format_keyword" do
-        expect(subject.format_operand(label_ref)).to be(label_ref.name)
+        expect(subject.format_operand(symbol_ref)).to be(symbol_ref.name)
       end
     end
 
