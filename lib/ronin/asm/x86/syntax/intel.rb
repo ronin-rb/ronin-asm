@@ -18,7 +18,6 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../syntax/intel'
 require_relative 'common'
 
 module Ronin
@@ -30,9 +29,39 @@ module Ronin
         #
         # @since 1.0.0
         #
-        class Intel < ASM::Syntax::Intel
+        class Intel < Common
 
-          extend Common
+          # Data sizes and their identifiers
+          SIZE_SPECIFIERS = {
+            1 => 'BYTE',
+            2 => 'WORD',
+            4 => 'DWORD',
+            8 => 'QWORD'
+          }
+
+          #
+          # Emits an immediate operand.
+          #
+          # @param [Immediate] imm
+          #   The immediate operand.
+          #
+          # @return [String]
+          #   The formatted immediate operand.
+          #
+          def self.format_immediate(imm)
+            "#{SIZE_SPECIFIERS[imm.width]} #{format_integer(imm.value)}"
+          end
+
+          #
+          # Emits a register.
+          #
+          # @param [Register] reg
+          #   The register.
+          #
+          # @return [String]
+          #   The register name.
+          #
+          def self.format_register(reg) = reg.name.to_s
 
           #
           # Emits a memory operand.
@@ -64,6 +93,53 @@ module Ronin
             else
               "#{SIZE_SPECIFIERS[mem.width]} [#{asm}]"
             end
+          end
+
+          #
+          # Emits an instruction.
+          #
+          # @param [Instruction] insn
+          #   The instruction.
+          #
+          # @return [String]
+          #   The formatted instruction.
+          #
+          def self.format_instruction(insn)
+            line = format_keyword(insn.name)
+
+            unless insn.operands.empty?
+              line << "\t" << format_operands(insn.operands)
+            end
+
+            return line
+          end
+
+          #
+          # Emits a section name.
+          #
+          # @param [Symbol] name
+          #   The section name.
+          #
+          # @return [String]
+          #   The formatted section name.
+          #
+          # @since 0.2.0
+          #
+          def self.format_section(name) = "section .#{name}"
+
+          #
+          # Emits the program's prologue.
+          #
+          # @param [Program] program
+          #   The program.
+          #
+          # @return [String]
+          #   The formatted prologue.
+          #
+          # @since 0.2.0
+          #
+          def self.format_prologue(program)
+            "BITS #{program.word_size * 8}"
           end
 
         end

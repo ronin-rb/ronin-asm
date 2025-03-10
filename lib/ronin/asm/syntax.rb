@@ -19,4 +19,3 @@
 #
 
 require_relative 'syntax/common'
-require_relative 'syntax/intel'
