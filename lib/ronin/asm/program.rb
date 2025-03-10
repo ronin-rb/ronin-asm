@@ -25,7 +25,6 @@ require_relative 'register'
 require_relative 'instruction'
 require_relative 'immediate'
 require_relative 'label'
-require_relative 'syntax'
 
 require 'set'
 require 'tempfile'
