@@ -770,11 +770,26 @@ describe Ronin::ASM::Program do
   describe "#symbol_ref" do
     let(:name) { '_label' }
 
-    it "must return a new SymbolRef object with the given name" do
-      symbol_ref = subject.symbol_ref(name)
+    context "when initialized with `arch: :x86`" do
+      subject { described_class.new(arch: :x86) }
 
-      expect(symbol_ref).to be_kind_of(Ronin::ASM::SymbolRef)
-      expect(symbol_ref.name).to eq(name)
+      it "must return a new Ronin::ASM::X86::SymbolRef object with the given name" do
+        symbol_ref = subject.symbol_ref(name)
+
+        expect(symbol_ref).to be_kind_of(Ronin::ASM::X86::SymbolRef)
+        expect(symbol_ref.name).to eq(name)
+      end
+    end
+
+    context "when initialized with `arch: :x86_64`" do
+      subject { described_class.new(arch: :x86_64) }
+
+      it "must return a new Ronin::ASM::X86_64::SymbolRef object with the given name" do
+        symbol_ref = subject.symbol_ref(name)
+
+        expect(symbol_ref).to be_kind_of(Ronin::ASM::X86_64::SymbolRef)
+        expect(symbol_ref.name).to eq(name)
+      end
     end
 
     it "must cache created SymbolRef objects by name" do
