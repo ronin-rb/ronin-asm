@@ -18,7 +18,6 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../syntax/att'
 require_relative 'common'
 
 module Ronin
@@ -30,9 +29,38 @@ module Ronin
         #
         # @since 1.0.0
         #
-        class ATT < ASM::Syntax::ATT
+        class ATT < Common
 
-          extend Common
+          # Data sizes and their instruction mnemonics
+          INSTRUCTION_SUFFIXES = {
+            8 => 'q',
+            4 => 'l',
+            2 => 'w',
+            1 => 'b',
+            nil => ''
+          }
+
+          #
+          # Emits a register.
+          #
+          # @param [Register] reg
+          #   The register.
+          #
+          # @return [String]
+          #   The register name.
+          #
+          def self.format_register(reg) = "%#{reg.name}"
+
+          #
+          # Emits an immediate operand.
+          #
+          # @param [Immediate] imm
+          #   The immediate operand.
+          #
+          # @return [String]
+          #   The formatted immediate operand.
+          #
+          def self.format_immediate(imm) = "$#{format_integer(imm.value)}"
 
           #
           # Emits a memory operand.
@@ -56,6 +84,78 @@ module Ronin
             else
               "(#{asm })"
             end
+          end
+
+          #
+          # Emits multiple operands.
+          #
+          # @param [Array<Immediate, Memory, Register, Symbol>] operands
+          #   The Array of operands.
+          #
+          # @return [String]
+          #   The formatted operands.
+          #
+          def self.format_operands(operands)
+            if operands.length > 1
+              dest_operand = operands[0]
+              src_operands = operands[1..]
+              att_operands = [*src_operands, dest_operand]
+
+              att_operands.map(&method(:format_operand)).join(",\t")
+            else
+              super(operands)
+            end
+          end
+
+          #
+          # Emits an instruction.
+          #
+          # @param [Instruction] insn
+          #   The instruction.
+          #
+          # @return [String]
+          #   The formatted instruction.
+          #
+          def self.format_instruction(insn)
+            line = format_keyword(insn.name)
+
+            unless insn.operands.empty?
+              unless (insn.operands.length == 1 && insn.operand_width == 1)
+                line << INSTRUCTION_SUFFIXES[insn.operand_width]
+              end
+
+              line << "\t" << format_operands(insn.operands)
+            end
+
+            return line
+          end
+
+          #
+          # Emits a section name.
+          #
+          # @param [Symbol] name
+          #   The section name.
+          #
+          # @return [String]
+          #   The formatted section name.
+          #
+          # @since 0.2.0
+          #
+          def self.format_section(name) = ".#{name}"
+
+          #
+          # Emits the program's prologue.
+          #
+          # @param [Program] program
+          #   The program.
+          #
+          # @return [String]
+          #   The formatted prologue.
+          #
+          # @since 0.2.0
+          #
+          def self.format_prologue(program)
+            ".code#{program.word_size * 8}"
           end
 
         end
