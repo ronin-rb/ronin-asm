@@ -124,7 +124,19 @@ module Ronin
                 line << INSTRUCTION_SUFFIXES[insn.operand_width]
               end
 
-              line << "\t" << format_operands(insn.operands)
+              line << "\t"
+
+              # jump or call instruction?
+              if (insn.name.start_with?('j') || insn.name == :call)
+                case insn.operands[0]
+                when Register, Memory
+                  # prepend a '*' before any register or memory operands to
+                  # indicate an indirect jump/call
+                  line << '*'
+                end
+              end
+
+              line << format_operands(insn.operands)
             end
 
             return line
