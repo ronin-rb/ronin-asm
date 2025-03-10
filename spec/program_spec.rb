@@ -27,8 +27,8 @@ describe Ronin::ASM::Program do
       expect(subject.labels).to eq({})
     end
 
-    it "must initialize #label_refs to an empty Hash" do
-      expect(subject.label_refs).to eq({})
+    it "must initialize #symbol_refs to an empty Hash" do
+      expect(subject.symbol_refs).to eq({})
     end
 
     it "must initialize #instructions to an empty Array" do
@@ -757,34 +757,34 @@ describe Ronin::ASM::Program do
       end
     end
 
-    context "when there are pre-existing LabelRefs for the label name" do
-      it "must resolve the LabelRefs to the new Label object" do
-        label_ref = subject.label_ref(name)
+    context "when there are pre-existing SymbolRefs for the label name" do
+      it "must resolve the SymbolRefs to the new Label object" do
+        symbol_ref = subject.symbol_ref(name)
         label     = subject.label(name) { }
 
-        expect(label_ref.label).to be(label)
+        expect(symbol_ref.value).to be(label)
       end
     end
   end
 
-  describe "#label_ref" do
+  describe "#symbol_ref" do
     let(:name) { '_label' }
 
-    it "must return a new LabelRef object with the given name" do
-      label_ref = subject.label_ref(name)
+    it "must return a new SymbolRef object with the given name" do
+      symbol_ref = subject.symbol_ref(name)
 
-      expect(label_ref).to be_kind_of(Ronin::ASM::LabelRef)
-      expect(label_ref.name).to eq(name)
+      expect(symbol_ref).to be_kind_of(Ronin::ASM::SymbolRef)
+      expect(symbol_ref.name).to eq(name)
     end
 
-    it "must cache created LabelRef objects by name" do
-      expect(subject.label_ref(name)).to be(subject.label_ref(name))
+    it "must cache created SymbolRef objects by name" do
+      expect(subject.symbol_ref(name)).to be(subject.symbol_ref(name))
     end
 
-    it "must store the created LabelRef objects in #label_refs" do
-      label_ref = subject.label_ref(name)
+    it "must store the created SymbolRef objects in #symbol_refs" do
+      symbol_ref = subject.symbol_ref(name)
 
-      expect(subject.label_refs[name]).to be(label_ref)
+      expect(subject.symbol_refs[name]).to be(symbol_ref)
     end
   end
 
@@ -797,11 +797,11 @@ describe Ronin::ASM::Program do
       end
 
       context "and only one argument" do
-        it "must return a LabelRef object with the method name" do
-          label_ref = subject._label
+        it "must return a SymbolRef object with the method name" do
+          symbol_ref = subject._label
 
-          expect(label_ref).to be_kind_of(Ronin::ASM::LabelRef)
-          expect(label_ref.name).to eq('_label')
+          expect(symbol_ref).to be_kind_of(Ronin::ASM::SymbolRef)
+          expect(symbol_ref.name).to eq('_label')
         end
       end
     end
