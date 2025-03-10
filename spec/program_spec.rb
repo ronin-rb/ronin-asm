@@ -23,8 +23,8 @@ describe Ronin::ASM::Program do
       expect(subject.allocated_registers).to eq(Set.new)
     end
 
-    it "must initialize #labels to an empty Hash" do
-      expect(subject.labels).to eq({})
+    it "must initialize #symbols to an empty Hash" do
+      expect(subject.symbols).to eq({})
     end
 
     it "must initialize #symbol_refs to an empty Hash" do
@@ -726,10 +726,10 @@ describe Ronin::ASM::Program do
       end
     end
 
-    it "must add the new Label to #labels" do
+    it "must add the new Label to #symbols" do
       new_label = subject.label(name) { }
 
-      expect(subject.labels[new_label.name]).to be(new_label)
+      expect(subject.symbols[new_label.name]).to be(new_label)
     end
 
     it "must add the label to the instructions" do
@@ -753,7 +753,7 @@ describe Ronin::ASM::Program do
 
         expect {
           subject.label(name) { }
-        }.to raise_error(ArgumentError,"label is already defined: #{name.inspect}")
+        }.to raise_error(ArgumentError,"symbol is already defined: #{name.inspect}")
       end
     end
 

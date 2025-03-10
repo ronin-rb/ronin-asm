@@ -90,10 +90,10 @@ module Ronin
       # @return [Set<Register>]
       attr_reader :allocated_registers
 
-      # The labels defined in the program.
+      # The symbols defined in the program.
       #
-      # @return [Hash{String => Label}]
-      attr_reader :labels
+      # @return [Hash{String => Label,Integer}]
+      attr_reader :symbols
 
       # The symbol references defined in the program.
       #
@@ -146,7 +146,7 @@ module Ronin
         end
 
         @allocated_registers = Set.new
-        @labels = {}
+        @symbols = {}
         @symbol_refs = {}
         @instructions = []
 
@@ -333,13 +333,13 @@ module Ronin
       def label(name,&block)
         name = name.to_s
 
-        if @labels.has_key?(name)
-          raise(ArgumentError,"label is already defined: #{name.inspect}")
+        if @symbols.has_key?(name)
+          raise(ArgumentError,"symbol is already defined: #{name.inspect}")
         end
 
         new_label = Label.new(name)
 
-        @labels[name] = new_label
+        @symbols[name] = new_label
         @instructions << new_label
 
         if (symbol_ref = @symbol_refs[name])
@@ -364,7 +364,7 @@ module Ronin
       def symbol_ref(name)
         name = name.to_s
 
-        @symbol_refs[name] ||= SymbolRef.new(name, value: @labels[name])
+        @symbol_refs[name] ||= SymbolRef.new(name, value: @symbols[name])
       end
 
       #
