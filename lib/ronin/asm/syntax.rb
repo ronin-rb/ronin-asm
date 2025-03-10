@@ -18,5 +18,6 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'syntax/common'
 require_relative 'syntax/att'
 require_relative 'syntax/intel'
