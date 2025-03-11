@@ -89,9 +89,9 @@ module Ronin
       #
       def write_int(int,size)
         case size
-        when 8 then write_bytes([int].pack('Q<'))
-        when 4 then write_bytes([int].pack('L<'))
-        when 2 then write_bytes([int].pack('S<'))
+        when 8 then write_bytes([int].pack('q<'))
+        when 4 then write_bytes([int].pack('l<'))
+        when 2 then write_bytes([int].pack('s<'))
         when 1 then write_byte(int)
         when 0 then 0
         else
