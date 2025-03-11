@@ -51,11 +51,21 @@ describe Ronin::ASM::Encoder do
       it "must write the integer as a packed 64bit little endian integer" do
         subject.write_int(int,8)
 
-        expect(output.string).to eq([int].pack('Q<'))
+        expect(output.string).to eq([int].pack('q<'))
       end
 
       it "must return 8" do
         expect(subject.write_int(int,8)).to eq(8)
+      end
+
+      context "but the value is negative" do
+        let(:int) { -2 }
+
+        it "must sign-extend the value to 8 bytes" do
+          subject.write_int(int,8)
+
+          expect(output.string).to eq([int].pack('q<'))
+        end
       end
     end
 
@@ -65,11 +75,21 @@ describe Ronin::ASM::Encoder do
       it "must write the integer as a packed 32bit little endian integer" do
         subject.write_int(int,4)
 
-        expect(output.string).to eq([int].pack('L<'))
+        expect(output.string).to eq([int].pack('l<'))
       end
 
       it "must return 4" do
         expect(subject.write_int(int,4)).to eq(4)
+      end
+
+      context "but the value is negative" do
+        let(:int) { -2 }
+
+        it "must sign-extend the value to 4 bytes" do
+          subject.write_int(int,4)
+
+          expect(output.string).to eq([int].pack('l<'))
+        end
       end
     end
 
@@ -79,11 +99,21 @@ describe Ronin::ASM::Encoder do
       it "must write the integer as a packed 16bit little endian integer" do
         subject.write_int(int,2)
 
-        expect(output.string).to eq([int].pack('S<'))
+        expect(output.string).to eq([int].pack('s<'))
       end
 
       it "must return 2" do
         expect(subject.write_int(int,2)).to eq(2)
+      end
+
+      context "but the value is negative" do
+        let(:int) { -2 }
+
+        it "must sign-extend the value to 2 bytes" do
+          subject.write_int(int,2)
+
+          expect(output.string).to eq([int].pack('s<'))
+        end
       end
     end
 
@@ -98,6 +128,16 @@ describe Ronin::ASM::Encoder do
 
       it "must return 1" do
         expect(subject.write_int(int,1)).to eq(1)
+      end
+
+      context "but the value is negative" do
+        let(:int) { -2 }
+
+        it "must sign-extend the value to 8 bits" do
+          subject.write_int(int,1)
+
+          expect(output.string).to eq([int].pack('c'))
+        end
       end
     end
 
