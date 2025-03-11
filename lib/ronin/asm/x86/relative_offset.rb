@@ -58,7 +58,7 @@ module Ronin
         #
         def initialize(value, width: nil)
           @value = value
-          @width = width || if value.bit_length <= 8 then 1
+          @width = width || if value.bit_length <= 7 then 1
                             else                          4
                             end
 
