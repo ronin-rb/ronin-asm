@@ -9,7 +9,6 @@ email: postmodern.mod3@gmail.com
 homepage: https://github.com/ronin-rb/ronin-asm#readme
 has_yard: true
 
-requirements: yasm >= 0.6.0
 required_ruby_version: ">= 3.0.0"
 
 metadata:
@@ -26,7 +25,6 @@ generated_files:
   - man/ronin-asm-irb.1
 
 dependencies:
-  ruby-yasm: ~> 0.3
   # Ronin dependencies:
   ronin-core: ~> 0.2
 

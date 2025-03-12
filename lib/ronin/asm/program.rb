@@ -28,8 +28,7 @@ require_relative 'immediate'
 require_relative 'label'
 
 require 'set'
-require 'tempfile'
-require 'yasm/program'
+require 'stringio'
 
 module Ronin
   module ASM
@@ -49,12 +48,6 @@ module Ronin
       SYSCALLS = {
         linux:   Syscalls::Linux,
         freebsd: Syscalls::FreeBSD
-      }
-
-      # The Assembly Parsers
-      PARSERS = {
-        att:   :gas,
-        intel: :nasm
       }
 
       # The targeted architecture
@@ -175,6 +168,8 @@ module Ronin
         @immediate_class  = arch_module::Immediate
         @memory_class     = arch_module::Memory
         @symbol_ref_class = arch_module::SymbolRef
+
+        @assembler_class = arch_module::Assembler
 
         extend arch_module
       end
@@ -523,59 +518,34 @@ module Ronin
       #
       # Assembles the program.
       #
-      # @param [String] output
-      #   The path for the assembled program.
+      # @param [IO, StringIO] output
+      #   The output stream to write the assembled instructions to.
       #
-      # @param [Symbol, String] syntax
-      #   The syntax to compile the program to.
-      #
-      # @param [Symbol] format
-      #   The format of the assembled executable. May be one of:
-      #
-      #   * `:dbg` - Trace of all info passed to object format module.
-      #   * `:bin` - Flat format binary.
-      #   * `:dosexe` - DOS .EXE format binary.
-      #   * `:elf` - ELF.
-      #   * `:elf32` - ELF (32-bit).
-      #   * `:elf64` - ELF (64-bit).
-      #   * `:coff` - COFF (DJGPP).
-      #   * `:macho` - Mac OS X ABI Mach-O File Format.
-      #   * `:macho32` - Mac OS X ABI Mach-O File Format (32-bit).
-      #   * `:macho64` - Mac OS X ABI Mach-O File Format (64-bit).
-      #   * `:rdf` - Relocatable Dynamic Object File Format (RDOFF) v2.0.
-      #   * `:win32` - Win32.
-      #   * `:win64` / `:x64` - Win64.
-      #   * `:xdf` - Extended Dynamic Object.
-      #
-      # @return [String]
-      #   The path to the assembled program.
-      #
-      # @raise [ArgumentError]
-      #   The given syntax was not `:intel` or `:att`.
+      # @return [Integer]
+      #   The number of bytes written.
       #
       # @raise [UnresolvedSymbolError]
       #   The program contains a reference to a label that does not exist.
       #
-      def assemble(output, syntax: :intel, format: :bin)
-        parser = PARSERS.fetch(syntax) do
-          raise(ArgumentError,"unknown ASM syntax: #{syntax.inspect}")
-        end
-
+      def assemble(output)
         validate
 
-        source = Tempfile.new(['ronin-asm', '.s'])
-        source.write(to_asm(syntax))
-        source.close
+        return @assembler_class.assemble(self,output)
+      end
 
-        YASM::Command.run(
-          file:          source.path,
-          parser:        parser,
-          target:        @arch,
-          output_format: format,
-          output:        output
-        )
+      #
+      # Assembles the program and returns the encoded assembly instructions as a
+      # String.
+      #
+      # @return [String]
+      #
+      # @since 1.0.0
+      #
+      def to_bin
+        output = StringIO.new(encoding: Encoding::ASCII_8BIT)
 
-        return output
+        assemble(output)
+        return output.string
       end
 
       protected
