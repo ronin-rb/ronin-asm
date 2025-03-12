@@ -30,6 +30,7 @@ require_relative 'x86/opmask'
 require_relative 'x86/instructions'
 require_relative 'x86/syntax'
 require_relative 'x86/encoder'
+require_relative 'x86/assembler'
 
 require 'set'
 
