@@ -4,9 +4,6 @@ gemspec
 
 gem 'jruby-openssl',	'~> 0.7', platform: :jruby
 
-# gem 'ruby-yasm', '~> 0.3', github: 'postmodern/ruby-yasm',
-#                            branch: 'main'
-
 # Ronin dependencies
 # gem 'ronin-core',            '~> 0.2', github: 'ronin-rb/ronin-core',
 #                                        branch: 'main'

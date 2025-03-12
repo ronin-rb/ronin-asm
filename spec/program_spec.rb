@@ -915,49 +915,43 @@ describe Ronin::ASM::Program do
     end
   end
 
-  describe "#assemble", integration: true do
+  describe "#assemble" do
     subject do
       described_class.new(arch: :x86) do
-        push eax
-        push ebx
-        push ecx
-
-        mov ebx, eax
-        mov ebx, eax+0
-        mov ebx, eax+4
-        mov ebx, eax+esi
-        mov ebx, eax+(esi*4)
-        mov ebx, eax+(esi*4)+10
+        mov eax, ebx
+        inc eax
       end
     end
 
-    let(:output) { Tempfile.new(['ronin-asm', '.o']).path }
+    let(:expected_bytes) { "\x89\xd8\x40".b }
 
-    before { subject.assemble(output) }
+    let(:output) { StringIO.new(encoding: Encoding::ASCII_8BIT) }
 
-    it "must write to the output file" do
-      expect(File.size(output)).to be > 0
+    it "must assemble the instructions and write the encoded assembly to the IO object" do
+      subject.assemble(output)
+
+      output.rewind
+
+      expect(output.read).to eq(expected_bytes)
     end
+  end
 
-    context "when syntax: :intel is given" do
-      let(:tempfile) { Tempfile.new(['ronin-asm', '.o']) }
-      let(:output)   { tempfile.path }
-
-      before { subject.assemble(output, syntax: :intel) }
-
-      it "must write to the output file" do
-        expect(File.size(output)).to be > 0
+  describe "#to_bin" do
+    subject do
+      described_class.new(arch: :x86) do
+        mov eax, ebx
+        inc eax
       end
     end
 
-    context "when syntax is unknown" do
-      let(:syntax) { :foo }
+    let(:expected_bytes) { "\x89\xd8\x40".b }
 
-      it do
-        expect {
-          subject.assemble(output, syntax: syntax)
-        }.to raise_error(ArgumentError,"unknown ASM syntax: #{syntax.inspect}")
-      end
+    it "must return the assembled and encoded assembly instructions as a String" do
+      expect(subject.to_bin).to eq(expected_bytes)
+    end
+
+    it "must return a ASCII-8bit encoded String" do
+      expect(subject.to_bin.encoding).to be(Encoding::ASCII_8BIT)
     end
   end
 end
