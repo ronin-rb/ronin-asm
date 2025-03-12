@@ -19,7 +19,6 @@
 * Provides a Ruby DSL for writing Assembly programs.
   * Supports x86 and x86-64 instruction sets.
   * Supports ATT and Intel syntax.
-* Uses [yasm] to assemble the programs.
 * Supports assembling Shellcode.
 * Has 95% documentation coverage.
 * Has 99% test coverage.
@@ -152,52 +151,12 @@ end
 ## Requirements
 
 * [Ruby] >= 3.0.0
-* [yasm] >= 0.6.0
-* [ruby-yasm] ~> 0.3
 * [ronin-core] ~> 0.2
 
 ## Install
 
-### Ubuntu
-
 ```shell
-sudo apt install -y yasm
-gem install ronin-asm
-```
-
-### Fedora
-
-```shell
-sudo dnf install -y yasm
-gem install ronin-asm
-```
-
-### OpenSUSE
-
-```shell
-sudo zypper -n in -l yasm
-gem install ronin-asm
-```
-
-### Arch
-
-```shell
-sudo pacman -Sy yasm
-gem install ronin-asm
-```
-
-### macOS
-
-```shell
-brew install yasm
-gem install ronin-asm
-```
-
-### FreeBSD
-
-```shell
-sudo pkg install -y yasm
-gem install ronin-asm
+$ gem install ronin-asm
 ```
 
 ### Gemfile
@@ -243,7 +202,5 @@ You should have received a copy of the GNU Lesser General Public License
 along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 
 [Ruby]: https://www.ruby-lang.org
-[yasm]: https://yasm.tortall.net/
-[ruby-yasm]: https://github.com/postmodern/ruby-yasm#readme
 
 [ronin-core]: https://github.com/ronin-rb/ronin-core#readme
