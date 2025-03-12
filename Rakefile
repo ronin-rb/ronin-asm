@@ -26,15 +26,6 @@ RSpec::Core::RakeTask.new
 task :default => :spec
 task :test    => :spec
 
-namespace :spec do
-  RSpec::Core::RakeTask.new(:integration) do |t|
-    t.pattern    = %w[spec/program_spec.rb spec/shellcode_spec.rb]
-    t.rspec_opts = '--tag integration'
-  end
-end
-
-task :test => 'spec:integration'
-
 require 'yard'
 YARD::Rake::YardocTask.new
 
