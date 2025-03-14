@@ -37,11 +37,11 @@ module Ronin
     end
 
     #
-    # Indicates that an unknown label was referenced.
+    # Indicates that a referenced symbol could not be resolved.
     #
     # @since 1.0.0
     #
-    class UndefinedLabelError < SemanticError
+    class UnresolvedSymbolError < SemanticError
     end
   end
 end
