@@ -888,8 +888,8 @@ describe Ronin::ASM::Program do
   end
 
   describe "#validate" do
-    context "when the program contains an unresolved label reference" do
-      let(:undefined_label) { '_label2' }
+    context "when the program contains an unresolved symbol reference" do
+      let(:undefined_symbol) { '_label2' }
 
       subject do
         described_class.new(arch: :x86) do
@@ -904,7 +904,7 @@ describe Ronin::ASM::Program do
       it do
         expect {
           subject.validate
-        }.to raise_error(Ronin::ASM::UndefinedLabelError,"undefined reference to label: #{undefined_label.inspect}")
+        }.to raise_error(Ronin::ASM::UnresolvedSymbolError,"unresolved reference to symbol: #{undefined_symbol.inspect}")
       end
     end
 
