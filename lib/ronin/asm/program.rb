@@ -503,8 +503,8 @@ module Ronin
       # @return [true]
       #   Indicates no validation errors.
       #
-      # @raise [UndefinedLabelError]
-      #   The program contains a reference to a label that does not exist.
+      # @raise [UnresolvedSymbolError]
+      #   The program contains a symbol reference that was never resolved.
       #
       # @api private
       #
@@ -513,7 +513,7 @@ module Ronin
       def validate
         @symbol_refs.each_value do |symbol_ref|
           unless symbol_ref.resolved?
-            raise(UndefinedLabelError,"undefined reference to label: #{symbol_ref.name.inspect}")
+            raise(UnresolvedSymbolError,"unresolved reference to symbol: #{symbol_ref.name.inspect}")
           end
         end
 
@@ -553,7 +553,7 @@ module Ronin
       # @raise [ArgumentError]
       #   The given syntax was not `:intel` or `:att`.
       #
-      # @raise [UndefinedLabelError]
+      # @raise [UnresolvedSymbolError]
       #   The program contains a reference to a label that does not exist.
       #
       def assemble(output, syntax: :intel, format: :bin)
