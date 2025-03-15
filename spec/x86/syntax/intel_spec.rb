@@ -58,7 +58,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
       end
 
       it "must add the displacement to the base" do
-        expect(subject.format_memory(operand)).to eq("[eax+0xff]")
+        expect(subject.format_memory(operand)).to eq("[eax+#{displacement}]")
       end
 
       context "but it's 0" do
@@ -66,6 +66,14 @@ describe Ronin::ASM::X86::Syntax::Intel do
 
         it "must omit the displacement" do
           expect(subject.format_memory(operand)).to eq("[eax]")
+        end
+      end
+
+      context "but it's negative" do
+        let(:displacement) { -4 }
+
+        it "must subtract the diplacement from the base" do
+          expect(subject.format_memory(operand)).to eq("[eax-#{displacement.abs}]")
         end
       end
     end
