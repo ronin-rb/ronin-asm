@@ -52,9 +52,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
       end
 
       context "but it's 0" do
-        let(:operand) do
-          Ronin::ASM::X86::Memory.new(base: register, displacement: 0)
-        end
+        let(:displacement) { 0 }
 
         it "must omit the displacement" do
           expect(subject.format_memory(operand)).to eq("(%eax)")
