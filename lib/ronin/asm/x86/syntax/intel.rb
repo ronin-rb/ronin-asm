@@ -77,7 +77,7 @@ module Ronin
 
             if mem.index
               asm << '+' << format_register(mem.index)
-              asm << '*' << format_integer(mem.scale) if mem.scale > 1
+              asm << '*' << mem.scale.to_s if mem.scale > 1
             end
 
             if mem.displacement != 0
