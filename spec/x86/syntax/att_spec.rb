@@ -47,8 +47,8 @@ describe Ronin::ASM::X86::Syntax::ATT do
         Ronin::ASM::X86::Memory.new(base: register, displacement: displacement)
       end
 
-      it "must prepend the displacement as an integer" do
-        expect(subject.format_memory(operand)).to eq("0xff(%eax)")
+      it "must prepend the displacement as a decimal integer" do
+        expect(subject.format_memory(operand)).to eq("#{displacement}(%eax)")
       end
 
       context "but it's 0" do
@@ -56,6 +56,14 @@ describe Ronin::ASM::X86::Syntax::ATT do
 
         it "must omit the displacement" do
           expect(subject.format_memory(operand)).to eq("(%eax)")
+        end
+      end
+
+      context "but it's negative" do
+        let(:displacement) { -4 }
+
+        it "must prepend the negative displacement as a decimal integer" do
+          expect(subject.format_memory(operand)).to eq("#{displacement}(%eax)")
         end
       end
     end
