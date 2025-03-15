@@ -80,7 +80,7 @@ module Ronin
             end
 
             if mem.displacement != 0
-              "#{format_integer(mem.displacement)}(#{asm})"
+              "#{mem.displacement}(#{asm})"
             else
               "(#{asm })"
             end
