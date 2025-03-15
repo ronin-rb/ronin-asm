@@ -81,11 +81,7 @@ module Ronin
             end
 
             if mem.displacement != 0
-              sign = if mem.displacement >= 0 then '+'
-                     else                          '-'
-                     end
-
-              asm << sign << format_integer(mem.displacement)
+              asm << format("%+d",mem.displacement)
             end
 
             if mem.size == mem.base.size
