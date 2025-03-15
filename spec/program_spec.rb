@@ -858,10 +858,10 @@ describe Ronin::ASM::Program do
         "\tpush\tecx",
         "\tmov\tebx,\teax",
         "\tmov\tebx,\t[eax]",
-        "\tmov\tebx,\t[eax+0x4]",
+        "\tmov\tebx,\t[eax+4]",
         "\tmov\tebx,\t[eax+esi]",
         "\tmov\tebx,\t[eax+esi*0x4]",
-        "\tmov\tebx,\t[eax+esi*0x4+0xa]",
+        "\tmov\tebx,\t[eax+esi*0x4+10]",
         ""
       ].join($/))
     end
