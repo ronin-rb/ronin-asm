@@ -877,10 +877,10 @@ describe Ronin::ASM::Program do
           "\tpush\t%ecx",
           "\tmov\t%eax,\t%ebx",
           "\tmov\t(%eax),\t%ebx",
-          "\tmov\t0x4(%eax),\t%ebx",
+          "\tmov\t4(%eax),\t%ebx",
           "\tmov\t(%eax,%esi),\t%ebx",
           "\tmov\t(%eax,%esi,4),\t%ebx",
-          "\tmov\t0xa(%eax,%esi,4),\t%ebx",
+          "\tmov\t10(%eax,%esi,4),\t%ebx",
           ""
         ].join($/))
       end
