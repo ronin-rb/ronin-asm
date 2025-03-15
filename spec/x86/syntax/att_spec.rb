@@ -41,7 +41,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
       expect(subject.format_memory(operand)).to eq("(%eax)")
     end
 
-    context "with an displacement" do
+    context "when the Ronin::ASM::X86::Memory object has a displacement" do
       let(:displacement) { 255 }
       let(:operand) do
         Ronin::ASM::X86::Memory.new(base: register, displacement: displacement)
@@ -51,7 +51,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
         expect(subject.format_memory(operand)).to eq("0xff(%eax)")
       end
 
-      context "when 0" do
+      context "but it's 0" do
         let(:operand) do
           Ronin::ASM::X86::Memory.new(base: register, displacement: 0)
         end
@@ -62,7 +62,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
       end
     end
 
-    context "with an index" do
+    context "when the Ronin::ASM::X86::Memory object has an index" do
       let(:index)   { Ronin::ASM::X86::Register.new(:esi, size: 4) }
       let(:operand) { Ronin::ASM::X86::Memory.new(base: register, index: index) }
 
@@ -70,7 +70,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
         expect(subject.format_memory(operand)).to eq("(%eax,%esi)")
       end
 
-      context "with a scale" do
+      context "and a scale" do
         let(:scale)   { 4 }
         let(:operand) do
           Ronin::ASM::X86::Memory.new(base: register, index: index, scale: scale)
