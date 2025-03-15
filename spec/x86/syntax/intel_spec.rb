@@ -93,7 +93,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
         end
 
         it "must multiple the index by the scale" do
-          expect(subject.format_memory(operand)).to eq("[eax+esi*0x4]")
+          expect(subject.format_memory(operand)).to eq("[eax+esi*4]")
         end
       end
     end
