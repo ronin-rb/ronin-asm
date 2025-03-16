@@ -459,10 +459,14 @@ module Ronin
       # @param [Integer] number
       #   The interrupt number.
       #
+      # @api private
+      #
       def interrupt(number) = int(number)
 
       #
       # The Stack Base Pointer register.
+      #
+      # @api private
       #
       # @see #rbp
       #
@@ -470,6 +474,8 @@ module Ronin
 
       #
       # The Stack Pointer register.
+      #
+      # @api private
       #
       # @see #rsp
       #
@@ -481,6 +487,8 @@ module Ronin
       # @param [Immediate, Memory, Register, Integer, LabelRef] op
       #   The value.
       #
+      # @api private
+      #
       def stack_push(op) = push(op)
 
       #
@@ -489,6 +497,8 @@ module Ronin
       # @param [Register] op
       #   The register operand to store the value.
       #
+      # @api private
+      #
       def stack_pop(op) = pop(op)
 
       #
@@ -496,6 +506,8 @@ module Ronin
       #
       # @param [Register] register
       #   The register to clear.
+      #
+      # @api private
       #
       def register_clear(register) = xor(register,register)
 
@@ -508,6 +520,8 @@ module Ronin
       # @param [Immediate, Memory, Register, Integer, LabelRef] value
       #   The value to set.
       #
+      # @api private
+      #
       def register_set(register,value) = mov(register,value)
 
       #
@@ -516,6 +530,8 @@ module Ronin
       # @param [Register] register
       #   The name of the register.
       #
+      # @api private
+      #
       def register_save(register) = stack_push(register)
 
       #
@@ -523,6 +539,8 @@ module Ronin
       #
       # @param [Register] register
       #   The name of the register.
+      #
+      # @api private
       #
       def register_load(register) = stack_pop(register)
     end
