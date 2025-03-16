@@ -179,9 +179,6 @@ module Ronin
       def r15d = Registers::R15D
       def r15 = Registers::R15
 
-      # The `rsp` 64bit stack pointer register.
-      def rsp = Registers::RSP
-
       # The `bpl` 8bit stack base pointer register.
       def bpl = Registers::BPL
 
@@ -190,6 +187,9 @@ module Ronin
 
       # The `ebp` 32bit stack base pointer register.
       def ebp = Registers::EBP
+
+      # The `rbp` 64bit stack base pointer register.
+      def rbp = Registers::RBP
 
       # The `spl` 8bit stack pointer register.
       def spl = Registers::SPL
@@ -200,8 +200,8 @@ module Ronin
       # The `esp` 32bit stack pointer register.
       def esp = Registers::ESP
 
-      # The `rbp` 64bit stack base pointer register.
-      def rbp = Registers::RBP
+      # The `rsp` 64bit stack pointer register.
+      def rsp = Registers::RSP
 
       # The `eip` 32bit instruction pointer register used for RIP-relative
       # addressing.
