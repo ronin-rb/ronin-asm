@@ -424,7 +424,7 @@ module Ronin
       #
       # Adds an opmask or write mask to another register.
       #
-      # @param [Register] operand
+      # @param [Register, Memory] operand
       #   The register to apply the opmask to.
       #
       # @param [Register] k
@@ -446,7 +446,7 @@ module Ronin
       # @since 1.0.0
       #
       def opmask(operand,k,**kwargs)
-        Opmask.new(operand,k,**kwargs)
+        Opmask.new(coerce_operand(operand),k,**kwargs)
       end
 
       #
