@@ -454,6 +454,14 @@ module Ronin
       #
 
       #
+      # Generates the instruction to trigger an interrupt.
+      #
+      # @param [Integer] number
+      #   The interrupt number.
+      #
+      def interrupt(number) = int(number)
+
+      #
       # The Stack Base Pointer register.
       #
       # @see #rbp
@@ -466,6 +474,57 @@ module Ronin
       # @see #rsp
       #
       def stack_pointer = Registers::RSP
+
+      #
+      # Generates the instruction to push a value onto the Stack.
+      #
+      # @param [Immediate, Memory, Register, Integer, LabelRef] op
+      #   The value.
+      #
+      def stack_push(op) = push(op)
+
+      #
+      # Generates the instruction to pop a value off of the Stack.
+      #
+      # @param [Register] op
+      #   The register operand to store the value.
+      #
+      def stack_pop(op) = pop(op)
+
+      #
+      # Generates the instruction to clear a register.
+      #
+      # @param [Register] register
+      #   The register to clear.
+      #
+      def register_clear(register) = xor(register,register)
+
+      #
+      # Generates the instruction to set a register.
+      #
+      # @param [Register] register
+      #   The register to set.
+      #
+      # @param [Immediate, Memory, Register, Integer, LabelRef] value
+      #   The value to set.
+      #
+      def register_set(register,value) = mov(register,value)
+
+      #
+      # Generates the instruction to save a register.
+      #
+      # @param [Register] register
+      #   The name of the register.
+      #
+      def register_save(register) = stack_push(register)
+
+      #
+      # Generates the instruction to restore a register.
+      #
+      # @param [Register] register
+      #   The name of the register.
+      #
+      def register_load(register) = stack_pop(register)
     end
   end
 end
