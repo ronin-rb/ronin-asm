@@ -12,14 +12,14 @@
 
 ## Description
 
-{Ronin::ASM} is a Ruby DSL for crafting Assembly programs and Shellcode.
+{Ronin::ASM} is a Ruby DSL for crafting Assembly programs and shellcode.
 
 ## Features
 
 * Provides a Ruby DSL for writing Assembly programs.
   * Supports x86 and x86-64 instruction sets.
   * Supports ATT and Intel syntax.
-* Supports assembling Shellcode.
+* Supports assembling shellcode.
 * Has 95% documentation coverage.
 * Has 99% test coverage.
 
@@ -44,54 +44,45 @@ Commands:
 
 ## Examples
 
-Create a program:
+Create x86-64 shellcode:
+
+```ruby
+asm = Ronin::ASM.new do
+  xor rdx, rdx
+  mov rbx, 0x68732f6e69622f2f
+  shr rbx, 8
+  push rbx
+  mov rdi, rsp
+  push rax
+  push rdi
+  mov rsi, rsp
+  mov al, 0x3b
+  syscall
+end
+
+payload = asm.assemble
+# => "H1\xD2H\xBB//bin/shH\xC1\xEB\bSH\x89\xE7PWH\x89\xE6\xC6\xC0;\x0F\x05"
+```
+
+Create x86 shellcode:
 
 ```ruby
 asm = Ronin::ASM.new(arch: :x86) do
-  push ebx
-  mov  eax, 0xc0ffee
-  pop  ebx
-  hlt
-end
-
-puts asm.to_asm
-# BITS 32
-# section .text
-# _start:
-#	push	ebx
-#	mov	eax,	0xc0ffee
-#	pop	ebx
-#	hlt
-
-puts asm.to_asm(:att)
-# .code32
-# .text
-# _start:
-#	pushl	%ebx
-#	movl	$0xc0ffee,      %eax
-#	popl	%ebx
-#	hlt
-```
-
-Create shellcode:
-
-```ruby
-shellcode = Ronin::ASM::Shellcode.new(arch: :x86) do
-  xor   eax,  eax
+  xor   eax, eax
   push  eax
   push  0x68732f2f
   push  0x6e69622f
-  mov   ebx,  esp
+  mov   ebx, esp
   push  eax
   push  ebx
-  mov   ecx,  esp
-  xor   edx,  edx
-  mov   al,   0xb
+  mov   ecx, esp
+  xor   edx, edx
+  mov   al, 0xb
   int   0x80
 end
 
-shellcode.assemble
-# => "1\xC0Ph//shh/bin\x89\xDCPS\x89\xCC1\xD2\xB0\v\xCD\x80"
+payload = asm.assemble
+# => "1\xC0Ph//shh/bin\x89\xE3PS\x89\xE11\xD2\xC6\xC0\v\xCD\x80"
 ```
 
 ### Immediate Operands
@@ -99,8 +90,8 @@ shellcode.assemble
 Immediate operands can be Integers or `nil`:
 
 ```ruby
-mov eax, 0xff
-mov ebx, nil
+mov rax, 0xff
+mov rbx, nil
 ```
 
 The size of the operand can also be specified explicitly:
@@ -117,10 +108,11 @@ push qword(0xffffffffffffffff)
 Memory operands can be expressed as arithmetic on registers:
 
 ```ruby
-mov ebx, esp+8
-mov ebx, esp-8
-mov ebx, esp+esi
-mov ebx, esp+(esi*4)
+mov rbx, [rsp+10]
+mov rbx, [rsp-10]
+mov rbx, [rsp+rsi]
+mov rbx, [rsp+(rsi*8)]
+mov rbx, [rsp+(rsi*8)+10]
 ```
 
 ### Labels
@@ -129,23 +121,63 @@ Labels can be expressed with blocks:
 
 ```ruby
 _loop do
-  inc eax
-  cmp eax, 10
-  jl :_loop
+  inc rax
+  cmp al, 10
+  jl _loop
+end
+```
+
+### Variables
+
+Pass variables into the Assembly program:
+
+```ruby
+Ronin::ASM.new(defines: {port: 1337}) do
+  # ...
+  mov ax, @port
+  # ...
 end
 ```
 
 ### Syscalls
 
-If the `:os` option is specified, then syscall numbers can be looked up via the
-`syscalls` Hash:
+If the `os:` keyword argument is specified, then syscall numbers can be looked
+up via the `syscalls` Hash:
 
 ```ruby
-Ronin::ASM.new(os: 'Linux') do
+Ronin::ASM.new(os: :linux) do
   # ...
   mov al, syscalls[:execve]
-  int 0x80
+  syscall
 end
+```
+
+### ASM Output
+
+Output a `Ronin::ASM::Program` object to ASM syntax:
+
+```ruby
+asm = Ronin::ASM.new do
+  push rbx
+  mov  rax, qword(0xc0ffee)
+  pop  rbx
+end
+
+puts asm.to_asm
+# BITS 64
+# section .text
+# _start:
+#	push	rbx
+#	mov	rax,	QWORD 0xc0ffee
+#	pop	rbx
+
+puts asm.to_asm(:att)
+# .code64
+# .text
+# _start:
+#	push	%rbx
+#	mov	$0xc0ffee,      %rax
+#	pop	%rbx
 ```
 
 ## Requirements
