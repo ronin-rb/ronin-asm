@@ -43,11 +43,11 @@ describe Ronin::ASM::Instruction do
     end
   end
 
-  describe "#operand_size" do
+  describe "#max_operand_size" do
     subject { described_class.new(:mov, register, immediate) }
 
     it "must return the maximum size of the operands" do
-      expect(subject.operand_size).to eq(register.size)
+      expect(subject.max_operand_size).to eq(register.size)
     end
 
     context "when one of the operands does not define #size" do
@@ -56,7 +56,7 @@ describe Ronin::ASM::Instruction do
       subject { described_class.new(:mov, register, symbol_ref) }
 
       it "must ignore them" do
-        expect(subject.operand_size).to eq(register.size)
+        expect(subject.max_operand_size).to eq(register.size)
       end
     end
   end
