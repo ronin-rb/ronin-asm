@@ -58,7 +58,7 @@ module Ronin
         # @option kwargs [Integer] :number (0)
         #   The register's number used in encoding.
         #
-        # @option kwargs [Boolean] :general (false)
+        # @option kwargs [Boolean] :general_purpose (false)
         #   Specifies whether the register is a General Purpose Register (GPR).
         #
         def initialize(name, size: ,

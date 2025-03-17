@@ -34,92 +34,92 @@ module Ronin
         #
 
         # The `al` 8bit "accumulator" register.
-        AL  = Register.new(:al, size: 1, number: 0, general: true)
+        AL  = Register.new(:al, size: 1, number: 0, general_purpose: true)
 
         # The `ah` 8bit "accumulator" register.
-        AH  = Register.new(:ah, size: 1, number: 4, general: true)
+        AH  = Register.new(:ah, size: 1, number: 4, general_purpose: true)
 
         # The `ax` 16bit "accumulator" register.
-        AX  = Register.new(:ax, size: 2, number: 0, general: true)
+        AX  = Register.new(:ax, size: 2, number: 0, general_purpose: true)
 
         # The `eax` 32bit "accumulator" register.
-        EAX = Register.new(:eax, size: 4, number: 0, general: true)
+        EAX = Register.new(:eax, size: 4, number: 0, general_purpose: true)
 
         # The `bl` 8bit "base" register.
-        BL  = Register.new(:bl, size: 1, number: 3, general: true)
+        BL  = Register.new(:bl, size: 1, number: 3, general_purpose: true)
 
         # The `bh` 8bit "base" register.
-        BH  = Register.new(:bh, size: 1, number: 7, general: true)
+        BH  = Register.new(:bh, size: 1, number: 7, general_purpose: true)
 
         # The `bx` 16bit "base" register.
-        BX  = Register.new(:bx, size: 2, number: 3, general: true)
+        BX  = Register.new(:bx, size: 2, number: 3, general_purpose: true)
 
         # The `ebx` 32bit "base" register.
-        EBX = Register.new(:ebx, size: 4, number: 3, general: true)
+        EBX = Register.new(:ebx, size: 4, number: 3, general_purpose: true)
 
         # The `cl` 8bit "counter" register.
-        CL  = Register.new(:cl, size: 1, number: 1, general: true)
+        CL  = Register.new(:cl, size: 1, number: 1, general_purpose: true)
 
         # The `ch` 8bit "counter" register.
-        CH  = Register.new(:ch, size: 1, number: 5, general: true)
+        CH  = Register.new(:ch, size: 1, number: 5, general_purpose: true)
 
         # The `cx` 16bit "counter" register.
-        CX  = Register.new(:cx, size: 2, number: 1, general: true)
+        CX  = Register.new(:cx, size: 2, number: 1, general_purpose: true)
 
         # The `ecx` 32bit "counter" register.
-        ECX = Register.new(:ecx, size: 4, number: 1, general: true)
+        ECX = Register.new(:ecx, size: 4, number: 1, general_purpose: true)
 
         # The `dl` 8bit "data" register.
-        DL  = Register.new(:dl, size: 1, number: 2, general: true)
+        DL  = Register.new(:dl, size: 1, number: 2, general_purpose: true)
 
         # The `dh` 8bit "data" register.
-        DH  = Register.new(:dh, size: 1, number: 6, general: true)
+        DH  = Register.new(:dh, size: 1, number: 6, general_purpose: true)
 
         # The `dx` 16bit "data" register.
-        DX  = Register.new(:dx, size: 2, number: 2, general: true)
+        DX  = Register.new(:dx, size: 2, number: 2, general_purpose: true)
 
         # The `edx` 32bit "data" register.
-        EDX = Register.new(:edx, size: 4, number: 2, general: true)
+        EDX = Register.new(:edx, size: 4, number: 2, general_purpose: true)
 
         # The `sil` 8bit "source" register.
-        SIL = Register.new(:sil, size: 1, number: 6, general: true)
+        SIL = Register.new(:sil, size: 1, number: 6, general_purpose: true)
 
         # The `si` 16bit "source" register.
-        SI  = Register.new(:si, size: 2, number: 6, general: true)
+        SI  = Register.new(:si, size: 2, number: 6, general_purpose: true)
 
         # The `esi` 32bit "source" register.
-        ESI = Register.new(:esi, size: 4, number: 6, general: true)
+        ESI = Register.new(:esi, size: 4, number: 6, general_purpose: true)
 
         # The `dil` 8bit "destination" register.
-        DIL = Register.new(:dil, size: 1, number: 7, general: true)
+        DIL = Register.new(:dil, size: 1, number: 7, general_purpose: true)
 
         # The `di` 16bit "destination" register.
-        DI  = Register.new(:di, size: 2, number: 7, general: true)
+        DI  = Register.new(:di, size: 2, number: 7, general_purpose: true)
 
         # The `edi` 32bit "destination" register.
-        EDI = Register.new(:edi, size: 4, number: 7, general: true)
+        EDI = Register.new(:edi, size: 4, number: 7, general_purpose: true)
 
         #
         # @group Stack Registers.
         #
 
         # The `spl` 8bit stack pointer register.
-        SPL = Register.new(:sp, size: 1, number: 4, sp: true, general: true)
+        SPL = Register.new(:sp, size: 1, number: 4, sp: true, general_purpose: true)
 
         # The `sp` 16bit stack pointer register.
-        SP  = Register.new(:sp, size: 2, number: 4, sp: true, general: true)
+        SP  = Register.new(:sp, size: 2, number: 4, sp: true, general_purpose: true)
 
         # The `esp` 32bit stack pointer register.
-        ESP = Register.new(:esp, size: 4, number: 4, sp: true, general: true)
+        ESP = Register.new(:esp, size: 4, number: 4, sp: true, general_purpose: true)
 
         # The `bpl` 8bit stack base pointer register.
-        BPL = Register.new(:sp, size: 1, number: 5, bp: true, general: true)
+        BPL = Register.new(:sp, size: 1, number: 5, bp: true, general_purpose: true)
 
         # The `bp` 16bit stack base pointer register.
-        BP  = Register.new(:bp, size: 2, number: 5, bp: true, general: true)
+        BP  = Register.new(:bp, size: 2, number: 5, bp: true, general_purpose: true)
 
         # The `ebp` 32bit stack base pointer register.
-        EBP = Register.new(:ebp, size: 4, number: 5, bp: true, general: true)
+        EBP = Register.new(:ebp, size: 4, number: 5, bp: true, general_purpose: true)
 
         #
         # @group Segment Registers

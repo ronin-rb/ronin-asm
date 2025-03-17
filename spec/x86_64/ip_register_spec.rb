@@ -27,7 +27,7 @@ describe Ronin::ASM::X86_64::IPRegister do
 
     context "when given another register" do
       let(:register) do
-        Ronin::ASM::X86_64::Register.new(:rax, size: 8, number: 0, general: true)
+        Ronin::ASM::X86_64::Register.new(:rax, size: 8, number: 0, general_purpose: true)
       end
 
       it do
@@ -53,7 +53,7 @@ describe Ronin::ASM::X86_64::IPRegister do
 
     context "when given another register" do
       let(:register) do
-        Ronin::ASM::X86_64::Register.new(:rax, size: 8, number: 0, general: true)
+        Ronin::ASM::X86_64::Register.new(:rax, size: 8, number: 0, general_purpose: true)
       end
 
       it do
