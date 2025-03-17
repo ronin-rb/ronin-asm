@@ -132,8 +132,8 @@ module Ronin
           instance_variable_set("@#{name}",value)
         end
 
-        @symbols = {}
-        @symbol_refs = {}
+        @symbols      = {}
+        @symbol_refs  = {}
         @instructions = []
 
         instance_eval(&block) if block
