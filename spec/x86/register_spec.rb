@@ -76,38 +76,38 @@ describe Ronin::ASM::X86::Register do
     end
   end
 
-  describe "#sp?" do
-    context "when initialized with `sp: true`" do
-      subject { described_class.new(:esp, size: 4, sp: true) }
+  describe "#stack_pointer?" do
+    context "when initialized with `stack_pointer: true`" do
+      subject { described_class.new(:esp, size: 4, stack_pointer: true) }
 
       it "must return true" do
-        expect(subject.sp?).to be(true)
+        expect(subject.stack_pointer?).to be(true)
       end
     end
 
-    context "when not initialized with `sp: true`" do
+    context "when not initialized with `stack_pointer: true`" do
       subject { described_class.new(:eax, size: 4) }
 
       it "must return false" do
-        expect(subject.sp?).to be(false)
+        expect(subject.stack_pointer?).to be(false)
       end
     end
   end
 
-  describe "#bp?" do
-    context "when initialized with `bp: true`" do
-      subject { described_class.new(:ebp, size: 4, bp: true) }
+  describe "#base_pointer?" do
+    context "when initialized with `base_pointer: true`" do
+      subject { described_class.new(:ebp, size: 4, base_pointer: true) }
 
       it "must return true" do
-        expect(subject.bp?).to be(true)
+        expect(subject.base_pointer?).to be(true)
       end
     end
 
-    context "when not initialized with `bp: true`" do
+    context "when not initialized with `base_pointer: true`" do
       subject { described_class.new(:eax, size: 4) }
 
       it "must return false" do
-        expect(subject.bp?).to be(false)
+        expect(subject.base_pointer?).to be(false)
       end
     end
   end
