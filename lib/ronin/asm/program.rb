@@ -57,7 +57,7 @@ module Ronin
 
       # The targeted Operating System
       #
-      # @return [Symbol, nil]
+      # @return [:linux, :freebsd, nil]
       attr_reader :os
 
       # The default word size
@@ -98,7 +98,7 @@ module Ronin
       # @param [Symbol] arch
       #   The Architecture to target.
       #
-      # @param [Symbol, nil] os
+      # @param [:linux, :freebsd, nil] os
       #   The Operating System to target.
       #
       # @param [Hash{Symbol => Object}] define
