@@ -61,6 +61,20 @@ module Ronin
       end
 
       #
+      # The minimum operand size of instruction.
+      #
+      # @return [Integer, nil]
+      #   The minimum operand size in bytes.
+      #
+      # @since 1.0.0
+      #
+      def min_operand_size
+        @operands.map { |op|
+          op.size if op.respond_to?(:size)
+        }.compact.min
+      end
+
+      #
       # The maximum operand size of instruction.
       #
       # @return [Integer, nil]
