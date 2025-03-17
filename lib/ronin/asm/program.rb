@@ -110,13 +110,30 @@ module Ronin
       # @raise [ArgumentError]
       #   An invalid `arch:` or `os:` keyword argument value was given.
       #
-      # @example
-      #   Program.new(arch: :x86) do
-      #     push  rax
-      #     push  rbx
+      # @example Create a x86-64 Assembly program:
+      #   Program.new do
+      #     xor rax, rax
+      #     # ...
+      #   end
       #
-      #     mov   rsp,     rax
-      #     mov   rax[8],  rbx
+      # @example Create a x86 Assembly program:
+      #   Program.new(arch: :x86) do
+      #     xor eax, eax
+      #   end
+      #
+      # @example Pass variables into an Assembly program:
+      #   Program.new(define: {port: 1337}) do
+      #     # ...
+      #     xor eax, eax
+      #     mov ax, @port
+      #     # ...
+      #   end
+      #
+      # @example Create an Assembly program with Linux syscalls:
+      #   Program.new(os: :linux) do
+      #     # ...
+      #     mov al, syscalls[:execve]
+      #     syscall
       #   end
       #
       def initialize(arch: :x86_64, os: nil, define: {}, &block)
