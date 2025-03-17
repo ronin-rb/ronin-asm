@@ -33,7 +33,7 @@ require 'stringio'
 module Ronin
   module ASM
     #
-    # Represents a full Assembly program.
+    # Represents Assembly code.
     #
     class Program
 
