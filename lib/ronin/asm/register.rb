@@ -141,6 +141,8 @@ module Ronin
       #
       def general_purpose? = @general
 
+      alias gpr? general_purpose?
+
       #
       # Place holder method that attempts to change the size of the register.
       #
