@@ -24,38 +24,54 @@ require_relative 'asm/version'
 module Ronin
   module ASM
     #
-    # Creates a new Assembly Program.
+    # Creates a new Assembly program.
     #
     # @param [Hash{Symbol => Object}] kwargs
     #   Additional keyword arguments for {Program#initialize}.
     #
-    # @option kwargs [String, Symbol] :arch (:x86)
+    # @option kwargs [String, Symbol] :arch (:x86_64)
     #   The architecture of the Program.
     #
-    # @option kwargs [Hash{Symbol => Object}] :variables
+    # @option kwargs [:linux, :freebsd, nil] :os
+    #   The Operating System to target.
+    #
+    # @option kwargs [Hash{Symbol => Object}] :define
     #   Variables to set in the program.
     #
     # @yield []
     #   The given block will be evaluated within the program.
     #
     # @return [Program]
-    #   The new Assembly Program.
+    #   The new Assembly program.
     #
-    # @example
+    # @raise [ArgumentError]
+    #   An invalid `arch:` or `os:` keyword argument value was given.
+    #
+    # @example Create a x86-64 Assembly program:
     #   ASM.new do
-    #     mov  1, eax
-    #     mov  1, ebx
-    #     mov  2, ecx
+    #     xor rax, rax
+    #     # ...
+    #   end
     #
-    #     _loop do
-    #       push  ecx
-    #       imul  ebx, ecx
-    #       pop   ebx
+    # @example Create a x86 Assembly program:
+    #   ASM.new(arch: :x86) do
+    #     xor eax, eax
+    #     # ...
+    #   end
     #
-    #       inc eax
-    #       cmp ebx, 10
-    #       jl  :_loop
-    #     end
+    # @example Pass variables into an Assembly program:
+    #   ASM.new(define: {port: 1337}) do
+    #     # ...
+    #     xor eax, eax
+    #     mov ax, @port
+    #     # ...
+    #   end
+    #
+    # @example Create an Assembly program with Linux syscalls:
+    #   ASM.new(os: :linux) do
+    #     # ...
+    #     mov al, syscalls[:execve]
+    #     syscall
     #   end
     #
     def ASM.new(**kwargs,&block)
