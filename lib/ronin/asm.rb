@@ -19,7 +19,6 @@
 #
 
 require_relative 'asm/program'
-require_relative 'asm/shellcode'
 require_relative 'asm/version'
 
 module Ronin
