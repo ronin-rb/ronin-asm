@@ -8,19 +8,9 @@ describe Ronin::ASM::Program do
     end
   end
 
-  describe "#allocated_registers" do
-    it "must return a Set" do
-      expect(subject.allocated_registers).to be_kind_of(Set)
-    end
-  end
-
   describe "#initialize" do
     it "must default the architecture to :x86_64" do
       expect(subject.arch).to eq(:x86_64)
-    end
-
-    it "must initialize #allocated_registers to an empty Set" do
-      expect(subject.allocated_registers).to eq(Set.new)
     end
 
     it "must initialize #symbols to an empty Hash" do

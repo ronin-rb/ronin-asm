@@ -77,11 +77,6 @@ module Ronin
       #   The syscall names and numbers.
       attr_reader :syscalls
 
-      # The registers used by the program
-      #
-      # @return [Set<Register>]
-      attr_reader :allocated_registers
-
       # The symbols defined in the program.
       #
       # @return [Hash{String => Label,Integer}]
@@ -137,7 +132,6 @@ module Ronin
           instance_variable_set("@#{name}",value)
         end
 
-        @allocated_registers = Set.new
         @symbols = {}
         @symbol_refs = {}
         @instructions = []
