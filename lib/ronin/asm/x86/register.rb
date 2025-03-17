@@ -63,13 +63,14 @@ module Ronin
         #
         def initialize(name, size: ,
                              type: :"reg#{size * 8}",
-                             sp:   false,
-                             bp:   false,
+
+                             stack_pointer: false,
+                             base_pointer:  false,
                              **kwargs)
           super(name, size: size, type: type, **kwargs)
 
-          @sp = sp
-          @bp = bp
+          @stack_pointer = stack_pointer
+          @base_pointer  = base_pointer
         end
 
         #
@@ -78,7 +79,9 @@ module Ronin
         #
         # @return [Boolean]
         #
-        def sp? = @sp
+        def stack_pointer? = @stack_pointer
+
+        alias sp? stack_pointer?
 
         #
         # Determines if the register is the stack pointer register
@@ -86,7 +89,9 @@ module Ronin
         #
         # @return [Boolean]
         #
-        def bp? = @bp
+        def base_pointer? = @base_pointer
+
+        alias bp? base_pointer?
 
         #
         # Determines if the operand is 64bit K opmask register.

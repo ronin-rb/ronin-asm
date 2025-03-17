@@ -104,22 +104,22 @@ module Ronin
         #
 
         # The `spl` 8bit stack pointer register.
-        SPL = Register.new(:sp, size: 1, number: 4, sp: true, general_purpose: true)
+        SPL = Register.new(:sp, size: 1, number: 4, stack_pointer: true, general_purpose: true)
 
         # The `sp` 16bit stack pointer register.
-        SP  = Register.new(:sp, size: 2, number: 4, sp: true, general_purpose: true)
+        SP  = Register.new(:sp, size: 2, number: 4, stack_pointer: true, general_purpose: true)
 
         # The `esp` 32bit stack pointer register.
-        ESP = Register.new(:esp, size: 4, number: 4, sp: true, general_purpose: true)
+        ESP = Register.new(:esp, size: 4, number: 4, stack_pointer: true, general_purpose: true)
 
         # The `bpl` 8bit stack base pointer register.
-        BPL = Register.new(:sp, size: 1, number: 5, bp: true, general_purpose: true)
+        BPL = Register.new(:sp, size: 1, number: 5, base_pointer: true, general_purpose: true)
 
         # The `bp` 16bit stack base pointer register.
-        BP  = Register.new(:bp, size: 2, number: 5, bp: true, general_purpose: true)
+        BP  = Register.new(:bp, size: 2, number: 5, base_pointer: true, general_purpose: true)
 
         # The `ebp` 32bit stack base pointer register.
-        EBP = Register.new(:ebp, size: 4, number: 5, bp: true, general_purpose: true)
+        EBP = Register.new(:ebp, size: 4, number: 5, base_pointer: true, general_purpose: true)
 
         #
         # @group Segment Registers
