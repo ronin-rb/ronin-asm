@@ -71,7 +71,7 @@ describe Ronin::ASM::X86::Opmask do
 
     context "when given a non-k-type register for the k register" do
       let(:k) do
-        Ronin::ASM::X86::Register.new(:eax, size: 4, number: 0, general: true)
+        Ronin::ASM::X86::Register.new(:eax, size: 4, number: 0, general_purpose: true)
       end
 
       it do

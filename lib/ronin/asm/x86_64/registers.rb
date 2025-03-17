@@ -35,160 +35,160 @@ module Ronin
         #
 
         # The `al` 8bit "accumulator" register.
-        AL  = Register.new(:al, size: 1, number: 0, general: true)
+        AL  = Register.new(:al, size: 1, number: 0, general_purpose: true)
 
         # The `ah` 8bit "accumulator" register.
-        AH  = Register.new(:ah, size: 1, number: 4, general: true)
+        AH  = Register.new(:ah, size: 1, number: 4, general_purpose: true)
 
         # The `ax` 16bit "accumulator" register.
-        AX  = Register.new(:ax, size: 2, number: 0, general: true)
+        AX  = Register.new(:ax, size: 2, number: 0, general_purpose: true)
 
         # The `eax` 32bit "accumulator" register.
-        EAX = Register.new(:eax, size: 4, number: 0, general: true)
+        EAX = Register.new(:eax, size: 4, number: 0, general_purpose: true)
 
         # The `rax` 64bit "accumulator" register.
-        RAX =  Register.new(:rax, size: 8, number: 0, general: true)
+        RAX =  Register.new(:rax, size: 8, number: 0, general_purpose: true)
 
         # The `bl` 8bit "base" register.
-        BL  = Register.new(:bl, size: 1, number: 3, general: true)
+        BL  = Register.new(:bl, size: 1, number: 3, general_purpose: true)
 
         # The `bh` 8bit "base" register.
-        BH  = Register.new(:bh, size: 1, number: 7, general: true)
+        BH  = Register.new(:bh, size: 1, number: 7, general_purpose: true)
 
         # The `bx` 16bit "base" register.
-        BX  = Register.new(:bx, size: 2, number: 3, general: true)
+        BX  = Register.new(:bx, size: 2, number: 3, general_purpose: true)
 
         # The `ebx` 32bit "base" register.
-        EBX = Register.new(:ebx, size: 4, number: 3, general: true)
+        EBX = Register.new(:ebx, size: 4, number: 3, general_purpose: true)
 
         # The `rbx` 64bit "accumulator" register.
-        RBX =  Register.new(:rbx, size: 8, number: 3, general: true)
+        RBX =  Register.new(:rbx, size: 8, number: 3, general_purpose: true)
 
         # The `cl` 8bit "counter" register.
-        CL  = Register.new(:cl, size: 1, number: 1, general: true)
+        CL  = Register.new(:cl, size: 1, number: 1, general_purpose: true)
 
         # The `ch` 8bit "counter" register.
-        CH  = Register.new(:ch, size: 1, number: 5, general: true)
+        CH  = Register.new(:ch, size: 1, number: 5, general_purpose: true)
 
         # The `cx` 16bit "counter" register.
-        CX  = Register.new(:cx, size: 2, number: 1, general: true)
+        CX  = Register.new(:cx, size: 2, number: 1, general_purpose: true)
 
         # The `ecx` 32bit "counter" register.
-        ECX = Register.new(:ecx, size: 4, number: 1, general: true)
+        ECX = Register.new(:ecx, size: 4, number: 1, general_purpose: true)
 
         # The `rcx` 64bit "accumulator" register.
-        RCX =  Register.new(:rcx, size: 8, number: 1, general: true)
+        RCX =  Register.new(:rcx, size: 8, number: 1, general_purpose: true)
 
         # The `dl` 8bit "data" register.
-        DL  = Register.new(:dl, size: 1, number: 2, general: true)
+        DL  = Register.new(:dl, size: 1, number: 2, general_purpose: true)
 
         # The `dh` 8bit "data" register.
-        DH  = Register.new(:dh, size: 1, number: 6, general: true)
+        DH  = Register.new(:dh, size: 1, number: 6, general_purpose: true)
 
         # The `dx` 16bit "data" register.
-        DX  = Register.new(:dx, size: 2, number: 2, general: true)
+        DX  = Register.new(:dx, size: 2, number: 2, general_purpose: true)
 
         # The `edx` 32bit "data" register.
-        EDX = Register.new(:edx, size: 4, number: 2, general: true)
+        EDX = Register.new(:edx, size: 4, number: 2, general_purpose: true)
 
         # The `rdx` 64bit "accumulator" register.
-        RDX =  Register.new(:rdx, size: 8, number: 2, general: true)
+        RDX =  Register.new(:rdx, size: 8, number: 2, general_purpose: true)
 
         # The `sil` 8bit "source" register.
-        SIL = Register.new(:sil, size: 1, number: 6, general: true)
+        SIL = Register.new(:sil, size: 1, number: 6, general_purpose: true)
 
         # The `si` 16bit "source" register.
-        SI  = Register.new(:si, size: 2, number: 6, general: true)
+        SI  = Register.new(:si, size: 2, number: 6, general_purpose: true)
 
         # The `esi` 32bit "source" register.
-        ESI = Register.new(:esi, size: 4, number: 6, general: true)
+        ESI = Register.new(:esi, size: 4, number: 6, general_purpose: true)
 
         # The `rsi` 64bit "source" register.
-        RSI =  Register.new(:rsi, size: 8, number: 6, general: true)
+        RSI =  Register.new(:rsi, size: 8, number: 6, general_purpose: true)
 
         # The `dil` 8bit "destination" register.
-        DIL = Register.new(:dil, size: 1, number: 7, general: true)
+        DIL = Register.new(:dil, size: 1, number: 7, general_purpose: true)
 
         # The `di` 16bit "destination" register.
-        DI  = Register.new(:di, size: 2, number: 7, general: true)
+        DI  = Register.new(:di, size: 2, number: 7, general_purpose: true)
 
         # The `edi` 32bit "destination" register.
-        EDI = Register.new(:edi, size: 4, number: 7, general: true)
+        EDI = Register.new(:edi, size: 4, number: 7, general_purpose: true)
 
         # The `rdi` 64bit "destination" register.
-        RDI =  Register.new(:rdi, size: 8, number: 7, general: true)
+        RDI =  Register.new(:rdi, size: 8, number: 7, general_purpose: true)
 
         #
         # @group Extended Registers
         #
 
-        R8B =  Register.new(:r8b, size: 1, number: 8, general: true)
-        R8W =  Register.new(:r8w, size: 2, number: 8, general: true)
-        R8D =  Register.new(:r8d, size: 4, number: 8, general: true)
-        R8  =  Register.new(:r8, size: 8, number: 8, general: true)
+        R8B =  Register.new(:r8b, size: 1, number: 8, general_purpose: true)
+        R8W =  Register.new(:r8w, size: 2, number: 8, general_purpose: true)
+        R8D =  Register.new(:r8d, size: 4, number: 8, general_purpose: true)
+        R8  =  Register.new(:r8, size: 8, number: 8, general_purpose: true)
 
-        R9B =  Register.new(:r9b, size: 1, number: 9, general: true)
-        R9W =  Register.new(:r9w, size: 2, number: 9, general: true)
-        R9D =  Register.new(:r9d, size: 4, number: 9, general: true)
-        R9  =  Register.new(:r9, size: 8, number: 9, general: true)
+        R9B =  Register.new(:r9b, size: 1, number: 9, general_purpose: true)
+        R9W =  Register.new(:r9w, size: 2, number: 9, general_purpose: true)
+        R9D =  Register.new(:r9d, size: 4, number: 9, general_purpose: true)
+        R9  =  Register.new(:r9, size: 8, number: 9, general_purpose: true)
 
-        R10B =  Register.new(:r10b, size: 1, number: 10, general: true)
-        R10W =  Register.new(:r10w, size: 2, number: 10, general: true)
-        R10D =  Register.new(:r10d, size: 4, number: 10, general: true)
-        R10  =  Register.new(:r10, size: 8, number: 10, general: true)
+        R10B =  Register.new(:r10b, size: 1, number: 10, general_purpose: true)
+        R10W =  Register.new(:r10w, size: 2, number: 10, general_purpose: true)
+        R10D =  Register.new(:r10d, size: 4, number: 10, general_purpose: true)
+        R10  =  Register.new(:r10, size: 8, number: 10, general_purpose: true)
 
-        R11B =  Register.new(:r11b, size: 1, number: 11, general: true)
-        R11W =  Register.new(:r11w, size: 2, number: 11, general: true)
-        R11D =  Register.new(:r11d, size: 4, number: 11, general: true)
-        R11  =  Register.new(:r11, size: 8, number: 11, general: true)
+        R11B =  Register.new(:r11b, size: 1, number: 11, general_purpose: true)
+        R11W =  Register.new(:r11w, size: 2, number: 11, general_purpose: true)
+        R11D =  Register.new(:r11d, size: 4, number: 11, general_purpose: true)
+        R11  =  Register.new(:r11, size: 8, number: 11, general_purpose: true)
 
-        R12B =  Register.new(:r12b, size: 1, number: 12, general: true)
-        R12W =  Register.new(:r12w, size: 2, number: 12, general: true)
-        R12D =  Register.new(:r12d, size: 4, number: 12, general: true)
-        R12  =  Register.new(:r12, size: 8, number: 12, general: true)
+        R12B =  Register.new(:r12b, size: 1, number: 12, general_purpose: true)
+        R12W =  Register.new(:r12w, size: 2, number: 12, general_purpose: true)
+        R12D =  Register.new(:r12d, size: 4, number: 12, general_purpose: true)
+        R12  =  Register.new(:r12, size: 8, number: 12, general_purpose: true)
 
-        R13B =  Register.new(:r13b, size: 1, number: 13, general: true)
-        R13W =  Register.new(:r13w, size: 2, number: 13, general: true)
-        R13D =  Register.new(:r13d, size: 4, number: 13, general: true)
-        R13  =  Register.new(:r13, size: 8, number: 13, general: true)
+        R13B =  Register.new(:r13b, size: 1, number: 13, general_purpose: true)
+        R13W =  Register.new(:r13w, size: 2, number: 13, general_purpose: true)
+        R13D =  Register.new(:r13d, size: 4, number: 13, general_purpose: true)
+        R13  =  Register.new(:r13, size: 8, number: 13, general_purpose: true)
 
-        R14B =  Register.new(:r14b, size: 1, number: 14, general: true)
-        R14W =  Register.new(:r14w, size: 2, number: 14, general: true)
-        R14D =  Register.new(:r14d, size: 4, number: 14, general: true)
-        R14  =  Register.new(:r14, size: 8, number: 14, general: true)
+        R14B =  Register.new(:r14b, size: 1, number: 14, general_purpose: true)
+        R14W =  Register.new(:r14w, size: 2, number: 14, general_purpose: true)
+        R14D =  Register.new(:r14d, size: 4, number: 14, general_purpose: true)
+        R14  =  Register.new(:r14, size: 8, number: 14, general_purpose: true)
 
-        R15B =  Register.new(:r15b, size: 1, number: 15, general: true)
-        R15W =  Register.new(:r15w, size: 2, number: 15, general: true)
-        R15D =  Register.new(:r15d, size: 4, number: 15, general: true)
-        R15  =  Register.new(:r15, size: 8, number: 15, general: true)
+        R15B =  Register.new(:r15b, size: 1, number: 15, general_purpose: true)
+        R15W =  Register.new(:r15w, size: 2, number: 15, general_purpose: true)
+        R15D =  Register.new(:r15d, size: 4, number: 15, general_purpose: true)
+        R15  =  Register.new(:r15, size: 8, number: 15, general_purpose: true)
 
         #
         # @group Stack Registers.
         #
 
         # The `spl` 8bit stack pointer register.
-        SPL = Register.new(:sp, size: 1, number: 4, sp: true, general: true)
+        SPL = Register.new(:sp, size: 1, number: 4, sp: true, general_purpose: true)
 
         # The `sp` 16bit stack pointer register.
-        SP  = Register.new(:sp, size: 2, number: 4, sp: true, general: true)
+        SP  = Register.new(:sp, size: 2, number: 4, sp: true, general_purpose: true)
 
         # The `esp` 32bit stack pointer register.
-        ESP = Register.new(:esp, size: 4, number: 4, sp: true, general: true)
+        ESP = Register.new(:esp, size: 4, number: 4, sp: true, general_purpose: true)
 
         # The `rsp` 64bit stack pointer register.
-        RSP =  Register.new(:rsp, size: 8, number: 4, sp: true, general: true)
+        RSP =  Register.new(:rsp, size: 8, number: 4, sp: true, general_purpose: true)
 
         # The `bpl` 8bit stack base pointer register.
-        BPL = Register.new(:sp, size: 1, number: 5, bp: true, general: true)
+        BPL = Register.new(:sp, size: 1, number: 5, bp: true, general_purpose: true)
 
         # The `bp` 16bit stack base pointer register.
-        BP  = Register.new(:bp, size: 2, number: 5, bp: true, general: true)
+        BP  = Register.new(:bp, size: 2, number: 5, bp: true, general_purpose: true)
 
         # The `ebp` 32bit stack base pointer register.
-        EBP = Register.new(:ebp, size: 4, number: 5, bp: true, general: true)
+        EBP = Register.new(:ebp, size: 4, number: 5, bp: true, general_purpose: true)
 
         # The `rbp` 64bit stack base pointer register.
-        RBP =  Register.new(:rbp, size: 8, number: 5, bp: true, general: true)
+        RBP =  Register.new(:rbp, size: 8, number: 5, bp: true, general_purpose: true)
 
         #
         # @group Instruction Pointer Registers
