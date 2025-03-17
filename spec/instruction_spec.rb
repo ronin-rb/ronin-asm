@@ -43,6 +43,24 @@ describe Ronin::ASM::Instruction do
     end
   end
 
+  describe "#min_operand_size" do
+    subject { described_class.new(:mov, register, immediate) }
+
+    it "must return the minimum size of the operands" do
+      expect(subject.min_operand_size).to eq(immediate.size)
+    end
+
+    context "when one of the operands does not define #size" do
+      let(:symbol_ref) { Ronin::ASM::SymbolRef.new('_label') }
+
+      subject { described_class.new(:mov, register, symbol_ref) }
+
+      it "must ignore them" do
+        expect(subject.min_operand_size).to eq(register.size)
+      end
+    end
+  end
+
   describe "#max_operand_size" do
     subject { described_class.new(:mov, register, immediate) }
 
