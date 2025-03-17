@@ -52,6 +52,14 @@ module Ronin
         #   The optional assembly class type of the register.
         #   Defaults to `:reg#{size * 8}` if not given.
         #
+        # @param [Boolean] stack_pointer
+        #   Indicates that the register is used as a stack pointer register
+        #   (`spl`, `sp`, or `esp`).
+        #
+        # @param [Boolean] base_pointer
+        #   Indicates that the register is used as a base pointer register
+        #   (`bpl`, `bp`, or `ebp`).
+        #
         # @param [Hash{Symbol => Object}] kwargs
         #   Additional keyword arguments for {ASM::Register#initialize}.
         #
