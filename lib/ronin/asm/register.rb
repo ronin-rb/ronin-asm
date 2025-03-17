@@ -63,19 +63,20 @@ module Ronin
       # @param [Integer] number
       #   The register's number used in encoding.
       #
-      # @param [Boolean] general
+      # @param [Boolean] general_purpose
       #   Specifies whether the register is a General Purpose Register (GPR).
       #
       # @param [Symbol] type
       #   The type of the register.
       #
-      def initialize(name, size: , number: 0, general: false, type: )
+      def initialize(name, size: , number: 0, general_purpose: false, type: )
         @name = name
 
-        @size    = size
-        @number  = number
-        @general = general
-        @type    = type
+        @size   = size
+        @number = number
+        @type   = type
+
+        @general_purpose = general_purpose
       end
 
       #
@@ -138,7 +139,7 @@ module Ronin
       #
       # @since 1.0.0
       #
-      def general? = @general
+      def general_purpose? = @general
 
       #
       # Place holder method that attempts to change the size of the register.
