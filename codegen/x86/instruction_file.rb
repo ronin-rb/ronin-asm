@@ -73,6 +73,11 @@ module CodeGen
       # @param [Symbol] operand_type
       # @return [Symbol]
       #
+      # @note
+      #   The reason why we translate certain operand types is for readability
+      #   and to disambiguate certain types, such as `r8` which could refer to
+      #   an 8bit register or the x86-64 register `r8`.
+      #
       def ronin_operand_type(operand_type)
         OPERAND_TYPE_MAPPING.fetch(operand_type,operand_type)
       end
