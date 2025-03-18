@@ -30,6 +30,20 @@ module Ronin
         # @since 1.0.0
         #
         class ATT < X86::Syntax::ATT
+
+          #
+          # Emits the program's prologue.
+          #
+          # @param [Program] program
+          #   The program.
+          #
+          # @return [String]
+          #   The formatted prologue.
+          #
+          def self.format_prologue(program)
+            '.code64'
+          end
+
         end
       end
     end

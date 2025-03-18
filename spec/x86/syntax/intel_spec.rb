@@ -132,6 +132,19 @@ describe Ronin::ASM::X86::Syntax::Intel do
     end
   end
 
+  describe ".format_prologue" do
+    let(:program) do
+      Ronin::ASM::Program.new(arch: :x86) do
+        mov eax, 0xff
+        ret
+      end
+    end
+
+    it "must return 'BITS 32'" do
+      expect(subject.format_prologue(program)).to eq('BITS 32')
+    end
+  end
+
   describe ".format_program" do
     let(:program) do
       Ronin::ASM::Program.new(arch: :x86) do
@@ -181,21 +194,6 @@ describe Ronin::ASM::X86::Syntax::Intel do
           "\tret",
           ""
         ].join($/))
-      end
-    end
-
-    context "when the program arch is :amd64" do
-      let(:program) do
-        Ronin::ASM::Program.new(arch: :amd64) do
-          push rax
-          push rbx
-          mov  rax, 0xff
-          ret
-        end
-      end
-
-      it "must include start with the '.code64' directive" do
-        expect(subject.format_program(program)).to match(/^BITS 64$/)
       end
     end
   end
