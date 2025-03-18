@@ -103,6 +103,35 @@ push dword(0xffffffff)
 push qword(0xffffffffffffffff)
 ```
 
+### Registers
+
+All user-space registers for the architecture are defined as methods and can be
+used as operands:
+
+```ruby
+mov al, bl
+mov ax, bx
+mov eax, ebx
+mov rax, rbx
+
+mov bpl, spl
+mov bp, sp
+mov ebp, esp
+mov rbp, rsp
+
+mov r15b, r14b
+mov r15w, r14w
+mov r15d, r14d
+mov r15, r14
+
+kmov k1, k2
+
+movq mm0, mm1
+movapd xmm0, xmm1
+vmovapd ymm0, ymm1
+vmovapd zmm0, zmm1
+```
+
 ### Memory Operands
 
 Memory operands can be expressed as arithmetic on registers:
