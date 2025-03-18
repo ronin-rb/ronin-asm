@@ -142,7 +142,7 @@ end
 ### Syscalls
 
 If the `os:` keyword argument is specified, then syscall numbers can be looked
-up via the `syscalls` Hash:
+up via the [syscalls][Ronin::ASM::Program#syscalls] Hash:
 
 ```ruby
 Ronin::ASM.new(os: :linux) do
@@ -154,7 +154,7 @@ end
 
 ### ASM Output
 
-Output a `Ronin::ASM::Program` object to ASM syntax:
+Output a [Ronin::ASM::Program] object to ASM syntax:
 
 ```ruby
 asm = Ronin::ASM.new do
@@ -236,3 +236,6 @@ along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 [Ruby]: https://www.ruby-lang.org
 
 [ronin-core]: https://github.com/ronin-rb/ronin-core#readme
+
+[Ronin::ASM::Program]: https://ronin-rb.dev/docs/ronin-asm/Ronin/ASM/Program.html
+[Ronin::ASM::Program#syscalls]: https://ronin-rb.dev/docs/ronin-asm/Ronin/ASM/Program.html#syscalls-instance_method
