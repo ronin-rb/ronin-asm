@@ -144,6 +144,18 @@ mov rbx, [rsp+(rsi*8)]
 mov rbx, [rsp+(rsi*8)+10]
 ```
 
+#### x86-64 RIP-relative Addressing
+
+x86-64 RIP-relative or EIP-relative addressing is also supported:
+
+```ruby
+jmp [rip+10]
+jmp [rip-10]
+
+lea ebx, [eip+10]
+lea ebx, [eip-10]
+```
+
 ### Labels
 
 Labels can be expressed with blocks:
