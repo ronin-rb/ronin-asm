@@ -18,6 +18,8 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'root'
+
 require 'fileutils'
 
 module CodeGen
@@ -25,9 +27,6 @@ module CodeGen
   # Represents a `lib/ronin/asm/<arch>/instructions/` directory.
   #
   class InstructionsDir
-
-    # The root directory of the project.
-    ROOT = File.expand_path(File.join(__dir__,'..'))
 
     #
     # Gets or sets the output directory.
