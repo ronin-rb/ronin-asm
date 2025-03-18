@@ -28,153 +28,40 @@ describe Ronin::ASM::Program do
     context "when the arch: keyword argument is :x86" do
       subject { described_class.new(arch: :x86) }
 
-      it { expect(subject.word_size).to eq(4) }
-
-      describe "#stask_base" do
-        it "must be ebp" do
-          expect(subject.stack_base.name).to eq(:ebp)
-        end
+      it "must set #word_size to Ronin::ASM::X86::WORD_SIZE" do
+        expect(subject.word_size).to eq(Ronin::ASM::X86::WORD_SIZE)
       end
 
-      describe "#stask_pointer" do
-        it "must be esp" do
-          expect(subject.stack_pointer.name).to eq(:esp)
-        end
-      end
-
-      describe "#stack_push" do
-        let(:value) { 0xff }
-
-        before { subject.stack_push(value) }
-
-        it "must add a 'push' instruction with a value" do
-          expect(subject.instructions[-1].name).to eq(:push)
-          expect(subject.instructions[-1].operands[0].value).to eq(value)
-        end
-      end
-
-      describe "#stack_pop" do
-        let(:register) { Ronin::ASM::X86::Registers::EAX }
-
-        before { subject.stack_pop(register) }
-
-        it "must add a 'pop' instruction with a register" do
-          expect(subject.instructions[-1].name).to eq(:pop)
-          expect(subject.instructions[-1].operands[0]).to be(register)
-        end
-      end
-
-      describe "#register_clear" do
-        let(:register) { Ronin::ASM::X86::Registers::EAX }
-
-        before { subject.register_clear(register) }
-
-        it "must add a 'xor' instruction with a registers" do
-          expect(subject.instructions[-1].name).to eq(:xor)
-          expect(subject.instructions[-1].operands[0]).to be(register)
-          expect(subject.instructions[-1].operands[1]).to be(register)
-        end
-      end
-
-      describe "#register_set" do
-        let(:register) { Ronin::ASM::X86::Registers::EAX }
-        let(:value)    { 0xff }
-
-        before { subject.register_set(register,value) }
-
-        it "must add a 'xor' instruction with a registers" do
-          expect(subject.instructions[-1].name).to eq(:mov)
-          expect(subject.instructions[-1].operands[0]).to be(register)
-          expect(subject.instructions[-1].operands[1].value).to eq(value)
-        end
-      end
-
-      describe "#register_save" do
-        let(:register) { Ronin::ASM::X86::Registers::EAX }
-
-        before { subject.register_save(register) }
-
-        it "must add a 'xor' instruction with a registers" do
-          expect(subject.instructions[-1].name).to eq(:push)
-          expect(subject.instructions[-1].operands[0]).to be(register)
-        end
-      end
-
-      describe "#register_save" do
-        let(:register) { Ronin::ASM::X86::Registers::EAX }
-
-        before { subject.register_load(register) }
-
-        it "must add a 'xor' instruction with a registers" do
-          expect(subject.instructions[-1].name).to eq(:pop)
-          expect(subject.instructions[-1].operands[0]).to be(register)
-        end
-      end
-
-      describe "#interrupt" do
-        let(:number) { 0x0a }
-
-        before { subject.interrupt(number) }
-
-        it "must add an 'int' instruction with the interrupt number" do
-          expect(subject.instructions[-1]).to be_a(Ronin::ASM::X86::Instructions::INT)
-          expect(subject.instructions[-1].operands[0].value).to eq(number)
-        end
-      end
-
-      describe "#syscall" do
-        before { subject.syscall }
-
-        it "must add an 'int 0x80' instruction" do
-          expect(subject.instructions[-1]).to be_a(Ronin::ASM::X86::Instructions::INT)
-          expect(subject.instructions[-1].operands[0].value).to eq(0x80)
-        end
-      end
-
-      context "and when the os: keyword argument is :linux" do
-        subject { described_class.new(arch: :x86, os: :linux) }
-
-        it "must set #syscalls to Ronin::ASM::Syscalls::Linux::SYSCALLS" do
-          expect(subject.syscalls).to eq(Ronin::ASM::Syscalls::Linux::SYSCALLS)
-        end
-      end
-
-      context "and when the os: keyword argument is :freebsd" do
-        subject { described_class.new(arch: :x86, os: :freebsd) }
-
-        it "must set #syscalls to Ronin::ASM::Syscalls::FreeBSD::SYSCALLS" do
-          expect(subject.syscalls).to eq(Ronin::ASM::Syscalls::FreeBSD::SYSCALLS)
-        end
+      it "must extend Ronin::ASM::X86" do
+        expect(subject).to be_kind_of(Ronin::ASM::X86)
       end
     end
 
     context "when the arch: keyword argument is :amd64" do
       subject { described_class.new(arch: :amd64) }
 
-      it { expect(subject.word_size).to eq(8) }
-
-      describe "#syscall" do
-        before { subject.syscall }
-
-        it "must add a 'syscall' instruction" do
-          expect(subject.instructions[-1]).to be_a(Ronin::ASM::X86_64::Instructions::SYSCALL)
-        end
+      it "must set #word_size to Ronin::ASM::X86_64::WORD_SIZE" do
+        expect(subject.word_size).to eq(Ronin::ASM::X86_64::WORD_SIZE)
       end
 
-      context "and when the os: keyword argument is :linux" do
-        subject { described_class.new(arch: :amd64, os: :linux) }
-
-        it "must set #syscalls to Ronin::ASM::Syscalls::Linux::SYSCALLS" do
-          expect(subject.syscalls).to eq(Ronin::ASM::Syscalls::Linux::SYSCALLS)
-        end
+      it "must extend Ronin::ASM::X86_64" do
+        expect(subject).to be_kind_of(Ronin::ASM::X86_64)
       end
+    end
 
-      context "and when the os: keyword argument is :freebsd" do
-        subject { described_class.new(arch: :amd64, os: :freebsd) }
+    context "and when the os: keyword argument is :linux" do
+      subject { described_class.new(os: :linux) }
 
-        it "must set #syscalls to Ronin::ASM::Syscalls::FreeBSD::SYSCALLS" do
-          expect(subject.syscalls).to eq(Ronin::ASM::Syscalls::FreeBSD::SYSCALLS)
-        end
+      it "must set #syscalls to Ronin::ASM::Syscalls::Linux::SYSCALLS" do
+        expect(subject.syscalls).to eq(Ronin::ASM::Syscalls::Linux::SYSCALLS)
+      end
+    end
+
+    context "and when the os: keyword argument is :freebsd" do
+      subject { described_class.new(os: :freebsd) }
+
+      it "must set #syscalls to Ronin::ASM::Syscalls::FreeBSD::SYSCALLS" do
+        expect(subject.syscalls).to eq(Ronin::ASM::Syscalls::FreeBSD::SYSCALLS)
       end
     end
 
