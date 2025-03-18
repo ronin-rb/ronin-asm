@@ -30,6 +30,18 @@ module Ronin
         # @since 1.0.0
         #
         class Intel < X86::Syntax::Intel
+
+          #
+          # Emits the program's prologue.
+          #
+          # @param [Program] program
+          #   The program.
+          #
+          # @return [String]
+          #   The formatted prologue.
+          #
+          def self.format_prologue(program) = 'BITS 64'
+
         end
       end
     end

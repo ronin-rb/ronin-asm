@@ -169,9 +169,7 @@ module Ronin
           #
           # @since 0.2.0
           #
-          def self.format_prologue(program)
-            ".code#{program.word_size * 8}"
-          end
+          def self.format_prologue(program) = '.code32'
 
         end
       end
