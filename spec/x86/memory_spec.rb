@@ -71,7 +71,7 @@ describe Ronin::ASM::X86::Memory do
     end
 
     context "when the index is an XMM register" do
-      let(:index) { Ronin::ASM::X86::Register.new(:xmm0, size: 16, type: :xmm) }
+      let(:index) { Ronin::ASM::X86::Registers::XMM0 }
 
       context "and the scale is 4" do
         let(:scale) { 4 }
@@ -99,7 +99,7 @@ describe Ronin::ASM::X86::Memory do
     end
 
     context "when the index is an YMM register" do
-      let(:index) { Ronin::ASM::X86::Register.new(:ymm0, size: 32, type: :ymm) }
+      let(:index) { Ronin::ASM::X86::Registers::YMM0 }
 
       context "and the scale is 4" do
         let(:scale) { 4 }
@@ -127,7 +127,7 @@ describe Ronin::ASM::X86::Memory do
     end
 
     context "when the index is an ZMM register" do
-      let(:index) { Ronin::ASM::X86::Register.new(:zmm0, size: 64, type: :zmm) }
+      let(:index) { Ronin::ASM::X86::Registers::ZMM0 }
 
       context "and the scale is 4" do
         let(:scale) { 4 }
