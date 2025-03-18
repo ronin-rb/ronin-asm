@@ -19,15 +19,22 @@
 #
 
 require_relative 'x86/isa'
-require_relative 'x86/instructions_dir'
+require_relative 'x86/instruction_file'
 require_relative 'x86/instructions_file'
 
 if $0 == __FILE__
+  require 'fileutils'
+  extend FileUtils
+
+  # Load all instructions from the ISA XML file `vendor/isa/x86.xml`.
   instructions = CodeGen::X86::ISA.load
 
   # Create the `lib/ronin/asm/x86/instructions/` directory and generate the
   # individual instruction Ruby files within it.
-  CodeGen::X86::InstructionsDir.generate(instructions)
+  mkdir_p CodeGen::X86::InstructionFile.output_dir
+  instructions.each do |instruction|
+    CodeGen::X86::InstructionFile.generate(instruction)
+  end
 
   # Generate the `lib/ronin/asm/x86/instructions.rb` file.
   CodeGen::X86::InstructionsFile.generate(instructions)
