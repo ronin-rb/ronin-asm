@@ -17,7 +17,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
   subject { described_class }
 
   describe ".format_immediate" do
-    let(:operand) { Ronin::ASM::Immediate.new(255, size: 1) }
+    let(:operand) { Ronin::ASM::X86::Immediate.new(255, size: 1) }
 
     it "must prepend a size specifier" do
       expect(subject.format_immediate(operand)).to eq("BYTE 0xff")
@@ -101,7 +101,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
 
   describe ".format_instruction" do
     context "when the instruction has no operands" do
-      let(:instruction) { Ronin::ASM::Instruction.new(:ret) }
+      let(:instruction) { Ronin::ASM::X86::Instruction.new(:ret) }
 
       it "must return the instruction name only" do
         expect(subject.format_instruction(instruction)).to eq(
@@ -112,10 +112,10 @@ describe Ronin::ASM::X86::Syntax::Intel do
 
     context "when the instruction has operands" do
       let(:operand1) { Ronin::ASM::X86::Registers::EAX }
-      let(:operand2) { Ronin::ASM::Immediate.new(0xff, size: 1) }
+      let(:operand2) { Ronin::ASM::X86::Immediate.new(0xff, size: 1) }
       let(:operands) { [operand1, operand2] }
       let(:instruction) do
-        Ronin::ASM::Instruction.new(:mov, *operands)
+        Ronin::ASM::X86::Instruction.new(:mov, *operands)
       end
 
       it "must return the instruction name followed by the formatted operands, separated by tabs" do
