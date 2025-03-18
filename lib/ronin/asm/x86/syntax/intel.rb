@@ -134,9 +134,7 @@ module Ronin
           #
           # @since 0.2.0
           #
-          def self.format_prologue(program)
-            "BITS #{program.word_size * 8}"
-          end
+          def self.format_prologue(program) = 'BITS 32'
 
         end
       end
