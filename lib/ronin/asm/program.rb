@@ -529,19 +529,29 @@ module Ronin
       #
       # Assembles the program.
       #
-      # @param [IO, StringIO] output
-      #   The output stream to write the assembled instructions to.
-      #
-      # @return [Integer]
-      #   The number of bytes written.
+      # @overload assemble
+      #   @return [String]
+      #     Assembles the program and returns the encoded assembled instructions.
+      # @overload assemble(output)
+      #   @param [IO, StringIO] output
+      #     The output stream to write the encoded assembled instructions to.
+      #   @return [Integer]
+      #     The number of bytes written.
       #
       # @raise [UnresolvedSymbolError]
       #   The program contains a reference to a label that does not exist.
       #
-      def assemble(output)
-        validate
+      def assemble(output=nil)
+        if output
+          validate
 
-        return @assembler_class.assemble(self,output)
+          return @assembler_class.assemble(self,output)
+        else
+          output = StringIO.new(encoding: Encoding::ASCII_8BIT)
+
+          assemble(output)
+          return output.string
+        end
       end
 
       #
@@ -552,12 +562,7 @@ module Ronin
       #
       # @since 1.0.0
       #
-      def to_bin
-        output = StringIO.new(encoding: Encoding::ASCII_8BIT)
-
-        assemble(output)
-        return output.string
-      end
+      def to_bin = assemble
 
       protected
 
