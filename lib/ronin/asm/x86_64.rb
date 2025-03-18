@@ -42,9 +42,6 @@ module Ronin
     module X86_64
       include Instructions
 
-      # Default word size
-      WORD_SIZE = 8
-
       # Supported Assembly syntaxs
       SYNTAXES = {
         att:   Syntax::ATT,
