@@ -60,11 +60,6 @@ module Ronin
       # @return [:linux, :freebsd, nil]
       attr_reader :os
 
-      # The default word size
-      #
-      # @return [Integer]
-      attr_reader :word_size
-
       # The registers available to the program
       #
       # @return [Set<Register>]
@@ -173,8 +168,7 @@ module Ronin
           raise(ArgumentError,"unknown architecture: #{arch.inspect}")
         end
 
-        @word_size = arch_module::WORD_SIZE
-        @syntaxes  = arch_module::SYNTAXES
+        @syntaxes = arch_module::SYNTAXES
 
         @immediate_class  = arch_module::Immediate
         @memory_class     = arch_module::Memory
