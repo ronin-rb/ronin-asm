@@ -18,6 +18,7 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'root'
 require_relative 'template_file'
 require_relative 'helpers/ruby'
 
@@ -25,9 +26,6 @@ module CodeGen
   class InstructionsFile < TemplateFile
 
     include Helpers::Ruby
-
-    # The root directory of the project.
-    ROOT = File.expand_path(File.join(__dir__,'..'))
 
     #
     # Gets or sets the output file.
