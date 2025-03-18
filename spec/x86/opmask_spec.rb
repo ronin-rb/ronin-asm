@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'ronin/asm/x86/opmask'
 
-require 'ronin/asm/x86/register'
+require 'ronin/asm/x86/registers'
 require 'ronin/asm/x86/immediate'
 
 describe Ronin::ASM::X86::Opmask do
@@ -9,12 +9,8 @@ describe Ronin::ASM::X86::Opmask do
     expect(described_class).to include(Ronin::ASM::X86::Decorator)
   end
 
-  let(:operand) do
-    Ronin::ASM::X86::Register.new(:xmm0, size: 16, number: 0, type: :xmm)
-  end
-  let(:k) do
-    Ronin::ASM::X86::Register.new(:k1, size: 8, number: 1, type: :k)
-  end
+  let(:operand) { Ronin::ASM::X86::Registers::XMM0 }
+  let(:k)       { Ronin::ASM::X86::Registers::K1 }
 
   subject { described_class.new(operand,k) }
 
@@ -70,9 +66,7 @@ describe Ronin::ASM::X86::Opmask do
     end
 
     context "when given a non-k-type register for the k register" do
-      let(:k) do
-        Ronin::ASM::X86::Register.new(:eax, size: 4, number: 0, general_purpose: true)
-      end
+      let(:k) { Ronin::ASM::X86::Registers::EAX }
 
       it do
         expect {
