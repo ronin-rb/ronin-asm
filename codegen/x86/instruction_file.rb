@@ -73,7 +73,7 @@ module CodeGen
       # @param [Symbol] operand_type
       # @return [Symbol]
       #
-      def translate_operand_type(operand_type)
+      def ronin_operand_type(operand_type)
         OPERAND_TYPE_MAPPING.fetch(operand_type,operand_type)
       end
 
@@ -93,7 +93,7 @@ module CodeGen
           "@operands[#{index}].mem?"
         else
           # compare the operand's type
-          "@operands[#{index}].type == #{translate_operand_type(operand.type).inspect}"
+          "@operands[#{index}].type == #{ronin_operand_type(operand.type).inspect}"
         end
       end
 
