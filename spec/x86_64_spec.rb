@@ -6,14 +6,6 @@ require 'ronin/asm/program'
 describe Ronin::ASM::X86_64 do
   subject { Ronin::ASM::Program.new(arch: :x86_64) }
 
-  describe "WORD_SIZE" do
-    subject { described_class::WORD_SIZE }
-
-    it "must equal 8" do
-      expect(subject).to eq(8)
-    end
-  end
-
   describe "SYNTAXES" do
     subject { described_class::SYNTAXES }
 

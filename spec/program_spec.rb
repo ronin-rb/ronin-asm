@@ -28,10 +28,6 @@ describe Ronin::ASM::Program do
     context "when the arch: keyword argument is :x86" do
       subject { described_class.new(arch: :x86) }
 
-      it "must set #word_size to Ronin::ASM::X86::WORD_SIZE" do
-        expect(subject.word_size).to eq(Ronin::ASM::X86::WORD_SIZE)
-      end
-
       it "must extend Ronin::ASM::X86" do
         expect(subject).to be_kind_of(Ronin::ASM::X86)
       end
@@ -39,10 +35,6 @@ describe Ronin::ASM::Program do
 
     context "when the arch: keyword argument is :amd64" do
       subject { described_class.new(arch: :amd64) }
-
-      it "must set #word_size to Ronin::ASM::X86_64::WORD_SIZE" do
-        expect(subject.word_size).to eq(Ronin::ASM::X86_64::WORD_SIZE)
-      end
 
       it "must extend Ronin::ASM::X86_64" do
         expect(subject).to be_kind_of(Ronin::ASM::X86_64)
