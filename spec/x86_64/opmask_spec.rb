@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/opmask'
 
-require 'ronin/asm/x86_64/register'
+require 'ronin/asm/x86_64/registers'
 
 describe Ronin::ASM::X86_64::Opmask do
   it "must inherit from Ronin::ASM::X86::Opasm" do
@@ -12,12 +12,8 @@ describe Ronin::ASM::X86_64::Opmask do
     expect(described_class).to include(Ronin::ASM::X86_64::Decorator)
   end
 
-  let(:operand) do
-    Ronin::ASM::X86_64::Register.new(:xmm0, size: 16, number: 0, type: :xmm)
-  end
-  let(:k) do
-    Ronin::ASM::X86_64::Register.new(:k1, size: 8, number: 1, type: :k)
-  end
+  let(:operand) { Ronin::ASM::X86_64::Registers::XMM0 }
+  let(:k)       { Ronin::ASM::X86_64::Registers::K1 }
 
   subject { described_class.new(operand,k) }
 

@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'ronin/asm/x86/syntax/att'
 
 require 'ronin/asm/x86/immediate'
-require 'ronin/asm/x86/register'
+require 'ronin/asm/x86/registers'
 require 'ronin/asm/x86/memory'
 require 'ronin/asm/x86/instruction'
 require 'ronin/asm/program'
@@ -17,7 +17,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
   subject { described_class }
 
   describe ".format_register" do
-    let(:register) { Ronin::ASM::X86::Register.new(:eax, size: 4) }
+    let(:register) { Ronin::ASM::X86::Registers::EAX }
 
     it "must prepend a '%' to the register name" do
       expect(subject.format_register(register)).to eq("%eax")
@@ -34,7 +34,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
 
 
   describe ".format_memory" do
-    let(:register) { Ronin::ASM::X86::Register.new(:eax, size: 4) }
+    let(:register) { Ronin::ASM::X86::Registers::EAX }
     let(:operand)  { Ronin::ASM::X86::Memory.new(base: register) }
 
     it "must enclose the memory in parenthesis" do
@@ -69,7 +69,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
     end
 
     context "when the Ronin::ASM::X86::Memory object has an index" do
-      let(:index)   { Ronin::ASM::X86::Register.new(:esi, size: 4) }
+      let(:index)   { Ronin::ASM::X86::Registers::ESI }
       let(:operand) { Ronin::ASM::X86::Memory.new(base: register, index: index) }
 
       it "must include the index argument" do
@@ -91,7 +91,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
 
   describe ".format_operands" do
     context "when given more than one operand" do
-      let(:operand1) { Ronin::ASM::X86::Register.new(:eax, size: 4) }
+      let(:operand1) { Ronin::ASM::X86::Registers::EAX }
       let(:operand2) { Ronin::ASM::X86::Immediate.new(255) }
       let(:operands) { [operand1, operand2] }
 
@@ -140,7 +140,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
     end
 
     context "when the instruction has multiple operands" do
-      let(:operand1)    { Ronin::ASM::X86::Register.new(:eax, size: 4) }
+      let(:operand1)    { Ronin::ASM::X86::Registers::EAX }
       let(:operand2)    { Ronin::ASM::X86::Immediate.new(0xff) }
       let(:operands)    { [operand1, operand2] }
       let(:instruction) { Ronin::ASM::X86::Instruction.new(:mov, *operands) }
@@ -154,7 +154,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
 
     context "when the instruction starts with a 'j' character (jump instruction)" do
       context "and it's operand is a Ronin::ASM::X86::Register operand" do
-        let(:register)    { Ronin::ASM::X86::Register.new(:eax, size: 4) }
+        let(:register)    { Ronin::ASM::X86::Registers::EAX }
         let(:instruction) { Ronin::ASM::X86::Instruction.new(:jmp, register) }
 
         it "must prepend a '*' character to the register" do
@@ -165,7 +165,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
       end
 
       context "and it's operand is a Ronin::ASM::X86::Memory operand" do
-        let(:register)    { Ronin::ASM::X86::Register.new(:eax, size: 4) }
+        let(:register)    { Ronin::ASM::X86::Registers::EAX }
         let(:memory)      { Ronin::ASM::X86::Memory.new(base: register) }
         let(:instruction) { Ronin::ASM::X86::Instruction.new(:jmp, memory) }
 
@@ -179,7 +179,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
 
     context "when the instruction name is :call" do
       context "and it's operand is a Ronin::ASM::X86::Register operand" do
-        let(:register)    { Ronin::ASM::X86::Register.new(:eax, size: 4) }
+        let(:register)    { Ronin::ASM::X86::Registers::EAX }
         let(:instruction) { Ronin::ASM::X86::Instruction.new(:call, register) }
 
         it "must prepend a '*' character to the register" do
@@ -190,7 +190,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
       end
 
       context "and it's operand is a Ronin::ASM::X86::Memory operand" do
-        let(:register)    { Ronin::ASM::X86::Register.new(:eax, size: 4) }
+        let(:register)    { Ronin::ASM::X86::Registers::EAX }
         let(:memory)      { Ronin::ASM::X86::Memory.new(base: register) }
         let(:instruction) { Ronin::ASM::X86::Instruction.new(:call, memory) }
 
