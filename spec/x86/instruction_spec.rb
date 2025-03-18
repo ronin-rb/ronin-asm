@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instruction'
 
-require 'ronin/asm/x86/register'
+require 'ronin/asm/x86/registers'
 require 'ronin/asm/x86/immediate'
 require 'ronin/asm/x86/memory'
 
@@ -10,15 +10,10 @@ describe Ronin::ASM::X86::Instruction do
     expect(described_class).to be < Ronin::ASM::Instruction
   end
 
-  let(:register) do
-    Ronin::ASM::X86::Register.new(:eax, size: 4)
-  end
-  let(:immediate) do
-    Ronin::ASM::X86::Immediate.new(0xff, size: 1)
-  end
-
-  let(:name)     { :mov }
-  let(:operands) { [register, immediate] }
+  let(:register)  { Ronin::ASM::X86::Registers::EAX }
+  let(:immediate) { Ronin::ASM::X86::Immediate.new(0xff, size: 1) }
+  let(:name)      { :mov }
+  let(:operands)  { [register, immediate] }
 
   subject { described_class.new(name, *operands) }
 

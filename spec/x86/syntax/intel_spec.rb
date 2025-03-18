@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'ronin/asm/x86/syntax/intel'
 
 require 'ronin/asm/x86/immediate'
-require 'ronin/asm/x86/register'
+require 'ronin/asm/x86/registers'
 require 'ronin/asm/x86/memory'
 require 'ronin/asm/x86/instruction'
 require 'ronin/asm/program'
@@ -25,7 +25,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
   end
 
   describe ".format_register" do
-    let(:register) { Ronin::ASM::Register.new(:eax, size: 4, type: :reg32) }
+    let(:register) { Ronin::ASM::X86::Registers::EAX }
 
     it "must return the register name" do
       expect(subject.format_register(register)).to eq("eax")
@@ -33,7 +33,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
   end
 
   describe ".format_memory" do
-    let(:register) { Ronin::ASM::X86::Register.new(:eax, size: 4) }
+    let(:register) { Ronin::ASM::X86::Registers::EAX }
     let(:operand)  { Ronin::ASM::X86::Memory.new(base: register) }
 
     it "must enclose the memory in brackets" do
@@ -79,7 +79,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
     end
 
     context "when the Ronin::ASM::X86::Memory object has an index" do
-      let(:index)   { Ronin::ASM::X86::Register.new(:esi, size: 4) }
+      let(:index)   { Ronin::ASM::X86::Registers::ESI }
       let(:operand) { Ronin::ASM::X86::Memory.new(base: register, index: index) }
 
       it "must add the index to the base" do
@@ -111,7 +111,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
     end
 
     context "when the instruction has operands" do
-      let(:operand1) { Ronin::ASM::Register.new(:eax, size: 4, type: :reg32) }
+      let(:operand1) { Ronin::ASM::X86::Registers::EAX }
       let(:operand2) { Ronin::ASM::Immediate.new(0xff, size: 1) }
       let(:operands) { [operand1, operand2] }
       let(:instruction) do

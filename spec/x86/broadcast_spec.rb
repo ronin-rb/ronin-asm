@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'ronin/asm/x86/broadcast'
 
-require 'ronin/asm/x86/register'
+require 'ronin/asm/x86/registers'
 require 'ronin/asm/x86/memory'
 
 describe Ronin::ASM::X86::Broadcast do
@@ -9,8 +9,8 @@ describe Ronin::ASM::X86::Broadcast do
     expect(described_class).to include(Ronin::ASM::X86::Decorator)
   end
 
-  let(:base)   { Ronin::ASM::X86::Register.new(:eax, size: 4) }
-  let(:index)  { Ronin::ASM::X86::Register.new(:esi, size: 4) }
+  let(:base)   { Ronin::ASM::X86::Registers::EAX }
+  let(:index)  { Ronin::ASM::X86::Registers::ESI }
   let(:scale)  { 4 }
   let(:displacement) { 10 }
   let(:memory) do
