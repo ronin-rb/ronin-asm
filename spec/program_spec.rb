@@ -915,14 +915,30 @@ describe Ronin::ASM::Program do
 
     let(:expected_bytes) { "\x89\xd8\x40".b }
 
-    let(:output) { StringIO.new(encoding: Encoding::ASCII_8BIT) }
+    context "when given an IO object" do
+      let(:output) { StringIO.new(encoding: Encoding::ASCII_8BIT) }
 
-    it "must assemble the instructions and write the encoded assembly to the IO object" do
-      subject.assemble(output)
+      it "must assemble the instructions and write the encoded assembly to the IO object" do
+        subject.assemble(output)
 
-      output.rewind
+        output.rewind
 
-      expect(output.read).to eq(expected_bytes)
+        expect(output.read).to eq(expected_bytes)
+      end
+
+      it "must return the number of bytes written to the output" do
+        expect(subject.assemble(output)).to eq(expected_bytes.bytesize)
+      end
+    end
+
+    context "when given no arguments" do
+      it "must return the assembled and encoded instructions as a binary String" do
+        expect(subject.assemble).to eq(expected_bytes)
+      end
+
+      it "must return an Encoding::ASCII_8BIT encoded String" do
+        expect(subject.assemble.encoding).to be(Encoding::ASCII_8BIT)
+      end
     end
   end
 
