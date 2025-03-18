@@ -170,7 +170,11 @@ puts asm.to_asm
 #	push	rbx
 #	mov	rax,	QWORD 0xc0ffee
 #	pop	rbx
+```
 
+Or output the program as ATT Assembly syntax:
+
+```ruby
 puts asm.to_asm(:att)
 # .code64
 # .text
