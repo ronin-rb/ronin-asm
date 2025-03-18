@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/ip_register'
 
-require 'ronin/asm/x86_64/register'
+require 'ronin/asm/x86_64/registers'
 
 describe Ronin::ASM::X86_64::IPRegister do
   it "must inherit from Ronin::ASM::X86_64::Register" do
@@ -26,9 +26,7 @@ describe Ronin::ASM::X86_64::IPRegister do
     end
 
     context "when given another register" do
-      let(:register) do
-        Ronin::ASM::X86_64::Register.new(:rax, size: 8, number: 0, general_purpose: true)
-      end
+      let(:register) { Ronin::ASM::X86_64::Registers::RAX }
 
       it do
         expect {
@@ -52,9 +50,7 @@ describe Ronin::ASM::X86_64::IPRegister do
     end
 
     context "when given another register" do
-      let(:register) do
-        Ronin::ASM::X86_64::Register.new(:rax, size: 8, number: 0, general_purpose: true)
-      end
+      let(:register) { Ronin::ASM::X86_64::Registers::RAX }
 
       it do
         expect {
