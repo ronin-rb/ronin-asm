@@ -55,6 +55,20 @@ module CodeGen
       end
 
       #
+      # Returns a comparison expression for the desired operand type.
+      #
+      # @param [ISA::Operand] operand
+      # @return [String]
+      #
+      def operand_match_expression(index,operand)
+        if operand.sibmem?
+          "@operands[#{index}].sibmem?"
+        else
+          super(index,operand)
+        end
+      end
+
+      #
       # Builds an `encoding.write_<encoding>(...)` method call based on the
       # given encoding object.
       #
