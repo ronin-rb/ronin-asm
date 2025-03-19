@@ -58,23 +58,23 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :m128
+            if @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem128
               encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00010, pp: 0b01, r: @operands[0], x: @operands[1], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :m128
+            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem128
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b00, w: 0, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: 0, z: 0, disp8xN: 16) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :m256
+            elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :mem256
               encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00010, pp: 0b01, r: @operands[0], x: @operands[1], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :m256
+            elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :mem256
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b01, w: 0, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: 0, z: 0, disp8xN: 32) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :zmm && @operands[1].type == :m512
+            elsif @operands.length == 2 && @operands[0].type == :zmm && @operands[1].type == :mem512
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b10, w: 0, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: 0, z: 0, disp8xN: 64) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])

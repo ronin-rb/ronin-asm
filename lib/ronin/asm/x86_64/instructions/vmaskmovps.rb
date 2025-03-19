@@ -58,19 +58,19 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :m128
+            if @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :mem128
               encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00010, pp: 0b01, r: @operands[0], x: @operands[2], b: @operands[2], vvvv: @operands[1]) +
               encoder.write_opcode(0x2c) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :ymm && @operands[1].type == :ymm && @operands[2].type == :m256
+            elsif @operands.length == 3 && @operands[0].type == :ymm && @operands[1].type == :ymm && @operands[2].type == :mem256
               encoder.write_vex(type: :vex, w: 0, l: 1, m_mmmm: 0b00010, pp: 0b01, r: @operands[0], x: @operands[2], b: @operands[2], vvvv: @operands[1]) +
               encoder.write_opcode(0x2c) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :m128 && @operands[1].type == :xmm && @operands[2].type == :xmm
+            elsif @operands.length == 3 && @operands[0].type == :mem128 && @operands[1].type == :xmm && @operands[2].type == :xmm
               encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00010, pp: 0b01, r: @operands[2], x: @operands[0], b: @operands[0], vvvv: @operands[1]) +
               encoder.write_opcode(0x2e) +
               encoder.write_modrm(@operands[0],@operands[2],@operands[0])
-            elsif @operands.length == 3 && @operands[0].type == :m256 && @operands[1].type == :ymm && @operands[2].type == :ymm
+            elsif @operands.length == 3 && @operands[0].type == :mem256 && @operands[1].type == :ymm && @operands[2].type == :ymm
               encoder.write_vex(type: :vex, w: 0, l: 1, m_mmmm: 0b00010, pp: 0b01, r: @operands[2], x: @operands[0], b: @operands[0], vvvv: @operands[1]) +
               encoder.write_opcode(0x2e) +
               encoder.write_modrm(@operands[0],@operands[2],@operands[0])

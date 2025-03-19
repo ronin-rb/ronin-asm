@@ -62,7 +62,7 @@ module Ronin
               encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b10, r: @operands[0], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x6f) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :m128
+            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem128
               encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b10, r: @operands[0], x: @operands[1], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x6f) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
@@ -70,15 +70,15 @@ module Ronin
               encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00001, pp: 0b10, r: @operands[0], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x6f) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :m256
+            elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :mem256
               encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00001, pp: 0b10, r: @operands[0], x: @operands[1], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x6f) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :m128 && @operands[1].type == :xmm
+            elsif @operands.length == 2 && @operands[0].type == :mem128 && @operands[1].type == :xmm
               encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b10, r: @operands[1], x: @operands[0], b: @operands[0], vvvv: 0) +
               encoder.write_opcode(0x7f) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type == :m256 && @operands[1].type == :ymm
+            elsif @operands.length == 2 && @operands[0].type == :mem256 && @operands[1].type == :ymm
               encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00001, pp: 0b10, r: @operands[1], x: @operands[0], b: @operands[0], vvvv: 0) +
               encoder.write_opcode(0x7f) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
