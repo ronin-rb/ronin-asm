@@ -343,6 +343,15 @@ module Ronin
       def zmm30 = Registers::ZMM30
       def zmm31 = Registers::ZMM31
 
+      def tmm0 = Registers::TMM0
+      def tmm1 = Registers::TMM1
+      def tmm2 = Registers::TMM2
+      def tmm3 = Registers::TMM3
+      def tmm4 = Registers::TMM4
+      def tmm5 = Registers::TMM5
+      def tmm6 = Registers::TMM6
+      def tmm7 = Registers::TMM7
+
       # The `{er}` operand.
       #
       # @since 1.0.0
