@@ -272,7 +272,7 @@ module CodeGen
         def specific_immediate? = SPECIFIC_IMM_TYPES.include?(type)
 
         # K mask register?
-        def k? = type == :k
+        def k_register? = type == :k
 
         OPMASK_TYPES = Set[
           :"k{k}",
