@@ -30,6 +30,30 @@ module CodeGen
       template File.join(__dir__,'instruction.rb.erb')
       output_dir 'lib/ronin/asm/x86_64/instructions'
 
+      # Mapping of ISA operand types to ronin-asm operand types.
+      OPERAND_TYPE_MAPPING = X86::InstructionFile::OPERAND_TYPE_MAPPING.merge(
+        # NOTE: rel32m is only used in the `prefetchit0` and `prefetchit1`
+        # instructions, but other x86-64 instruction set documentation sources
+        # use `m8`/`mem8`, since the instructions take a pointer to a byte array.
+        # Thus `rel32m` can be simplified to `mem8`.
+        :rel32m => :mem8
+      )
+
+      #
+      # Translates a x86-64 ISA operand type to a ronin-asm operand type.
+      #
+      # @param [Symbol] operand_type
+      # @return [Symbol]
+      #
+      # @note
+      #   The reason why we translate certain operand types is for readability
+      #   and to disambiguate certain types, such as `r8` which could refer to
+      #   an 8bit register or the x86-64 register `r8`.
+      #
+      def ronin_operand_type(operand_type)
+        OPERAND_TYPE_MAPPING.fetch(operand_type,operand_type)
+      end
+
       #
       # Builds an `encoding.write_<encoding>(...)` method call based on the
       # given encoding object.
