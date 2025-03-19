@@ -22,6 +22,7 @@ ronin-asm is a Ruby DSL for crafting Assembly programs and shellcode.
 * Even supports more exotic Assembly features such as:
   * RIP-relative Addressing.
   * Floating point / vector registers and instructions.
+  * Tile Registers.
   * Memory broadcasts (`BCST` / `{1to4}`)
   * Operand masks/writemasks (`{k1}{z}`).
 * Supports outputting back to Intel or ATT Assembly syntax.
