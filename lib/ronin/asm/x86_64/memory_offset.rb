@@ -24,7 +24,7 @@ module Ronin
   module ASM
     module X86_64
       #
-      # Represents a memory offset (`memoffs32` or `memoffs64`).
+      # Represents a memory offset (`moffset32` or `moffset64`).
       #
       # @since 1.0.0
       #
