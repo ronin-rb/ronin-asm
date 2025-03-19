@@ -281,7 +281,7 @@ module CodeGen
           :"zmm{k}", :"zmm{k}{z}",
           :"m16{k}", :"m32{k}", :"m64{k}", :"m128{k}", :"m256{k}", :"m512{k}"
         ]
-        def opmask_register? = OPMASK_TYPES.include?(type)
+        def opmask? = OPMASK_TYPES.include?(type)
 
         # MMX registers
         MMX_REG_TYPES = Set[:mm]
