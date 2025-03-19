@@ -34,8 +34,8 @@ describe Ronin::ASM::X86::MemoryOffset do
           expect(subject.size).to eq(4)
         end
 
-        it "must set #type to :memoffs32" do
-          expect(subject.type).to eq(:memoffs32)
+        it "must set #type to :moffset32" do
+          expect(subject.type).to eq(:moffset32)
         end
       end
 
@@ -46,8 +46,8 @@ describe Ronin::ASM::X86::MemoryOffset do
           expect(subject.size).to eq(8)
         end
 
-        it "must set #type to :memoffs64" do
-          expect(subject.type).to eq(:memoffs64)
+        it "must set #type to :moffset64" do
+          expect(subject.type).to eq(:moffset64)
         end
       end
     end
