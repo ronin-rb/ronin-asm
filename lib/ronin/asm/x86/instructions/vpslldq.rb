@@ -68,7 +68,7 @@ module Ronin
               encoder.write_opcode(0x73) +
               encoder.write_modrm(0b11,7,@operands[1]) +
               encoder.write_immediate(@operands[2],1)
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :m128 && @operands[2].type == :imm8
+            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :mem128 && @operands[2].type == :imm8
               encoder.write_evex(mmm: 0b001, pp: 0b01, ll: 0b00, vvvv: @operands[0], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 16) +
               encoder.write_opcode(0x73) +
               encoder.write_modrm(@operands[1],7,@operands[1]) +
@@ -83,7 +83,7 @@ module Ronin
               encoder.write_opcode(0x73) +
               encoder.write_modrm(0b11,7,@operands[1]) +
               encoder.write_immediate(@operands[2],1)
-            elsif @operands.length == 3 && @operands[0].type == :ymm && @operands[1].type == :m256 && @operands[2].type == :imm8
+            elsif @operands.length == 3 && @operands[0].type == :ymm && @operands[1].type == :mem256 && @operands[2].type == :imm8
               encoder.write_evex(mmm: 0b001, pp: 0b01, ll: 0b01, vvvv: @operands[0], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 32) +
               encoder.write_opcode(0x73) +
               encoder.write_modrm(@operands[1],7,@operands[1]) +
@@ -93,7 +93,7 @@ module Ronin
               encoder.write_opcode(0x73) +
               encoder.write_modrm(0b11,7,@operands[1]) +
               encoder.write_immediate(@operands[2],1)
-            elsif @operands.length == 3 && @operands[0].type == :zmm && @operands[1].type == :m512 && @operands[2].type == :imm8
+            elsif @operands.length == 3 && @operands[0].type == :zmm && @operands[1].type == :mem512 && @operands[2].type == :imm8
               encoder.write_evex(mmm: 0b001, pp: 0b01, ll: 0b10, vvvv: @operands[0], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 64) +
               encoder.write_opcode(0x73) +
               encoder.write_modrm(@operands[1],7,@operands[1]) +

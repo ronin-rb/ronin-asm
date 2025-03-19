@@ -67,16 +67,16 @@ module Ronin
               encoder.write_vex(type: :xop, w: 0, l: 0, m_mmmm: 0b01001, pp: 0b00, r: @operands[0], b: @operands[1], vvvv: @operands[2]) +
               encoder.write_opcode(0x91) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :m128
+            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :mem128
               encoder.write_vex(type: :xop, w: 1, l: 0, m_mmmm: 0b01001, pp: 0b00, r: @operands[0], x: @operands[2], b: @operands[2], vvvv: @operands[1]) +
               encoder.write_opcode(0x91) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :m128 && @operands[2].type == :imm8
+            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :mem128 && @operands[2].type == :imm8
               encoder.write_vex(type: :xop, w: 0, l: 0, m_mmmm: 0b01000, pp: 0b00, r: @operands[0], x: @operands[1], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0xc1) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1]) +
               encoder.write_immediate(@operands[2],1)
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :m128 && @operands[2].type == :xmm
+            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :mem128 && @operands[2].type == :xmm
               encoder.write_vex(type: :xop, w: 0, l: 0, m_mmmm: 0b01001, pp: 0b00, r: @operands[0], x: @operands[1], b: @operands[1], vvvv: @operands[2]) +
               encoder.write_opcode(0x91) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])

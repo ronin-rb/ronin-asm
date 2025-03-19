@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 1 && @operands[0].type == :m512
+            if @operands.length == 1 && @operands[0].type == :mem512
               encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00010, pp: 0b01, x: @operands[0], b: @operands[0], vvvv: 0) +
               encoder.write_opcode(0x49) +
               encoder.write_modrm(@operands[0],0,@operands[0])
