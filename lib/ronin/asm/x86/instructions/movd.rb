@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :mm
+            if @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :mmx
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x7e) +
               encoder.write_modrm(0b11,@operands[1],@operands[0])
@@ -67,11 +67,11 @@ module Ronin
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x7e) +
               encoder.write_modrm(0b11,@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type == :mm && @operands[1].type == :reg32
+            elsif @operands.length == 2 && @operands[0].type == :mmx && @operands[1].type == :reg32
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x6e) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :mm && @operands[1].type == :mem32
+            elsif @operands.length == 2 && @operands[0].type == :mmx && @operands[1].type == :mem32
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x6e) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
@@ -85,7 +85,7 @@ module Ronin
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x6e) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :mem32 && @operands[1].type == :mm
+            elsif @operands.length == 2 && @operands[0].type == :mem32 && @operands[1].type == :mmx
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x7e) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])

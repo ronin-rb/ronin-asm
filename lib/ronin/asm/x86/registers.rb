@@ -158,14 +158,14 @@ module Ronin
         #
         # @group 64bit MMX Registers
         #
-        MM0 = Register.new(:mm0, size: 8, number: 0, type: :mm)
-        MM1 = Register.new(:mm1, size: 8, number: 1, type: :mm)
-        MM2 = Register.new(:mm2, size: 8, number: 2, type: :mm)
-        MM3 = Register.new(:mm3, size: 8, number: 3, type: :mm)
-        MM4 = Register.new(:mm4, size: 8, number: 4, type: :mm)
-        MM5 = Register.new(:mm5, size: 8, number: 5, type: :mm)
-        MM6 = Register.new(:mm6, size: 8, number: 6, type: :mm)
-        MM7 = Register.new(:mm7, size: 8, number: 7, type: :mm)
+        MM0 = Register.new(:mm0, size: 8, number: 0, type: :mmx)
+        MM1 = Register.new(:mm1, size: 8, number: 1, type: :mmx)
+        MM2 = Register.new(:mm2, size: 8, number: 2, type: :mmx)
+        MM3 = Register.new(:mm3, size: 8, number: 3, type: :mmx)
+        MM4 = Register.new(:mm4, size: 8, number: 4, type: :mmx)
+        MM5 = Register.new(:mm5, size: 8, number: 5, type: :mmx)
+        MM6 = Register.new(:mm6, size: 8, number: 6, type: :mmx)
+        MM7 = Register.new(:mm7, size: 8, number: 7, type: :mmx)
 
         #
         # @group 128bit XMM Registers
