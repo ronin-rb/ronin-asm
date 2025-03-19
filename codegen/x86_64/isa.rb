@@ -341,7 +341,7 @@ module CodeGen
         def specific_register? = SPECIFIC_REGISTERS.include?(type)
 
         # Register types
-        REG_TYPES = X86::ISA::REG_TYPES + Set[:r64, :r8l, :r16l, :r32l]
+        REG_TYPES = X86::ISA::REG_TYPES + Set[:r64, :r8l, :r16l, :r32l, :tmm]
         def register? = REG_TYPES.include?(type)
 
         # Mapping of types and their sub-types
