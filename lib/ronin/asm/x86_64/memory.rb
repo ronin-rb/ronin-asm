@@ -34,6 +34,13 @@ module Ronin
         include Operand
 
         #
+        # Determines if the operand is scale-index-base memory operand.
+        #
+        # @return [Boolean]
+        #
+        def sibmem? = !@scale.nil? && !@index.nil?
+
+        #
         # Converts the memory into a String.
         #
         # @return [String]

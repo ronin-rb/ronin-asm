@@ -255,6 +255,38 @@ describe Ronin::ASM::X86_64::Memory do
     end
   end
 
+  describe "#sibmem?" do
+    context "when only #index is set" do
+      subject do
+        described_class.new(base: register, index: register)
+      end
+
+      it "must return true" do
+        expect(subject.sibmem?).to be(true)
+      end
+    end
+
+    context "when #index and #scale are set" do
+      subject do
+        described_class.new(base: register, index: register, scale: 4)
+      end
+
+      it "must return true" do
+        expect(subject.sibmem?).to be(true)
+      end
+    end
+
+    context "when #index and #scale are not set" do
+      subject do
+        described_class.new(base: register, displacement: 10)
+      end
+
+      it "must return false" do
+        expect(subject.sibmem?).to be(false)
+      end
+    end
+  end
+
   describe "#to_s" do
     it "must call Ronin::ASM::X86_64::Syntax::Intel.format_memory" do
       expect(subject.to_s).to eq(
