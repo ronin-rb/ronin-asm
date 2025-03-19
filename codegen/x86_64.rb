@@ -21,6 +21,7 @@
 require_relative 'x86_64/isa'
 require_relative 'x86_64/instruction_file'
 require_relative 'x86_64/instructions_file'
+require_relative 'x86_64/instruction_spec_file'
 
 if $0 == __FILE__
   require 'fileutils'
@@ -38,4 +39,11 @@ if $0 == __FILE__
 
   # Generate the `lib/ronin/asm/x86_64/instructions.rb` file.
   CodeGen::X86_64::InstructionsFile.generate(instructions)
+
+  # Create the `spec/x86_64/instructions/` directory and generate the individual
+  # spec files within it.
+  mkdir_p CodeGen::X86_64::InstructionSpecFile.output_dir
+  instructions.each do |instruction|
+    CodeGen::X86_64::InstructionSpecFile.generate(instruction)
+  end
 end
