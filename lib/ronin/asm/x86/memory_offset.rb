@@ -24,7 +24,7 @@ module Ronin
   module ASM
     module X86
       #
-      # Represents a memory offset (`memoffs32` or `memoffs64`).
+      # Represents a memory offset (`moffset32` or `moffset64`).
       #
       # @since 1.0.0
       #
@@ -44,7 +44,7 @@ module Ronin
 
         # The operand type.
         #
-        # @return [:memoffs32, :memoffs64]
+        # @return [:moffset32, :moffset64]
         attr_reader :type
 
         #
@@ -62,7 +62,7 @@ module Ronin
                            else                           8
                            end
 
-          @type = :"memoffs#{@size * 8}"
+          @type = :"moffset#{@size * 8}"
         end
 
         alias to_i value
