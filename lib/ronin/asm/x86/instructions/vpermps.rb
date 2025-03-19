@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 3 && @operands[0].type == :"ymm{k}{z}" && @operands[1].type == :ymm && @operands[2].type == :"mem256/m32bcst"
+            if @operands.length == 3 && @operands[0].type == :"ymm{k}{z}" && @operands[1].type == :ymm && @operands[2].type == :"mem256/mem32bcst"
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b01, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[2], aaa: @operands[0], z: @operands[0], disp8xN: 32) +
               encoder.write_opcode(0x16) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
@@ -66,7 +66,7 @@ module Ronin
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b01, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x16) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :zmm && @operands[2].type == :"mem512/m32bcst"
+            elsif @operands.length == 3 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :zmm && @operands[2].type == :"mem512/mem32bcst"
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b10, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[2], aaa: @operands[0], z: @operands[0], disp8xN: 64) +
               encoder.write_opcode(0x16) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
@@ -74,7 +74,7 @@ module Ronin
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b10, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x16) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :ymm && @operands[1].type == :ymm && @operands[2].type == :"mem256/m32bcst"
+            elsif @operands.length == 3 && @operands[0].type == :ymm && @operands[1].type == :ymm && @operands[2].type == :"mem256/mem32bcst"
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b01, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[2], aaa: 0, z: 0, disp8xN: 32) +
               encoder.write_opcode(0x16) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
@@ -90,7 +90,7 @@ module Ronin
               encoder.write_vex(type: :vex, w: 0, l: 1, m_mmmm: 0b00010, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0x16) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :zmm && @operands[1].type == :zmm && @operands[2].type == :"mem512/m32bcst"
+            elsif @operands.length == 3 && @operands[0].type == :zmm && @operands[1].type == :zmm && @operands[2].type == :"mem512/mem32bcst"
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b10, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[2], aaa: 0, z: 0, disp8xN: 64) +
               encoder.write_opcode(0x16) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
