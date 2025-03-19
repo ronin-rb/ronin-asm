@@ -58,19 +58,19 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :"ymm{k}{z}" && @operands[1].type == :m128
+            if @operands.length == 2 && @operands[0].type == :"ymm{k}{z}" && @operands[1].type == :mem128
               encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 0b01, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0], disp8xN: 16) +
               encoder.write_opcode(0x1a) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :m128
+            elsif @operands.length == 2 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :mem128
               encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0], disp8xN: 16) +
               encoder.write_opcode(0x1a) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :m128
+            elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :mem128
               encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 0b01, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 16) +
               encoder.write_opcode(0x1a) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :zmm && @operands[1].type == :m128
+            elsif @operands.length == 2 && @operands[0].type == :zmm && @operands[1].type == :mem128
               encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 16) +
               encoder.write_opcode(0x1a) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])

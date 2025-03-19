@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :m512
+            if @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :mem512
               encoder.write_prefix(0x66, mandatory: true) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x38) +

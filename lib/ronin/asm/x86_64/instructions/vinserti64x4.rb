@@ -63,7 +63,7 @@ module Ronin
               encoder.write_opcode(0x3a) +
               encoder.write_modrm(0b11,@operands[0],@operands[2]) +
               encoder.write_immediate(@operands[3],1)
-            elsif @operands.length == 4 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :zmm && @operands[2].type == :m256 && @operands[3].type == :imm8
+            elsif @operands.length == 4 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :zmm && @operands[2].type == :mem256 && @operands[3].type == :imm8
               encoder.write_evex(mmm: 0b011, pp: 0b01, w: 1, ll: 0b10, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[2], x: @operands[2], b: 0, aaa: @operands[0], z: @operands[0], disp8xN: 32) +
               encoder.write_opcode(0x3a) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2]) +
@@ -73,7 +73,7 @@ module Ronin
               encoder.write_opcode(0x3a) +
               encoder.write_modrm(0b11,@operands[0],@operands[2]) +
               encoder.write_immediate(@operands[3],1)
-            elsif @operands.length == 4 && @operands[0].type == :zmm && @operands[1].type == :zmm && @operands[2].type == :m256 && @operands[3].type == :imm8
+            elsif @operands.length == 4 && @operands[0].type == :zmm && @operands[1].type == :zmm && @operands[2].type == :mem256 && @operands[3].type == :imm8
               encoder.write_evex(mmm: 0b011, pp: 0b01, w: 1, ll: 0b10, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[2], x: @operands[2], b: 0, aaa: 0, z: 0, disp8xN: 32) +
               encoder.write_opcode(0x3a) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2]) +

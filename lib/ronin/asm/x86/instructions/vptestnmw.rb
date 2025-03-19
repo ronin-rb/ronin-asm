@@ -66,11 +66,11 @@ module Ronin
               encoder.write_evex(mmm: 0b010, pp: 0b10, w: 1, ll: 0b00, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x26) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :"k{k}" && @operands[1].type == :xmm && @operands[2].type == :m128
+            elsif @operands.length == 3 && @operands[0].type == :"k{k}" && @operands[1].type == :xmm && @operands[2].type == :mem128
               encoder.write_evex(mmm: 0b010, pp: 0b10, w: 1, ll: 0b00, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 16) +
               encoder.write_opcode(0x26) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :k && @operands[1].type == :xmm && @operands[2].type == :m128
+            elsif @operands.length == 3 && @operands[0].type == :k && @operands[1].type == :xmm && @operands[2].type == :mem128
               encoder.write_evex(mmm: 0b010, pp: 0b10, w: 1, ll: 0b00, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 16) +
               encoder.write_opcode(0x26) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
@@ -82,11 +82,11 @@ module Ronin
               encoder.write_evex(mmm: 0b010, pp: 0b10, w: 1, ll: 0b01, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x26) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :"k{k}" && @operands[1].type == :ymm && @operands[2].type == :m256
+            elsif @operands.length == 3 && @operands[0].type == :"k{k}" && @operands[1].type == :ymm && @operands[2].type == :mem256
               encoder.write_evex(mmm: 0b010, pp: 0b10, w: 1, ll: 0b01, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 32) +
               encoder.write_opcode(0x26) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :k && @operands[1].type == :ymm && @operands[2].type == :m256
+            elsif @operands.length == 3 && @operands[0].type == :k && @operands[1].type == :ymm && @operands[2].type == :mem256
               encoder.write_evex(mmm: 0b010, pp: 0b10, w: 1, ll: 0b01, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 32) +
               encoder.write_opcode(0x26) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
@@ -98,11 +98,11 @@ module Ronin
               encoder.write_evex(mmm: 0b010, pp: 0b10, w: 1, ll: 0b10, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x26) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :"k{k}" && @operands[1].type == :zmm && @operands[2].type == :m512
+            elsif @operands.length == 3 && @operands[0].type == :"k{k}" && @operands[1].type == :zmm && @operands[2].type == :mem512
               encoder.write_evex(mmm: 0b010, pp: 0b10, w: 1, ll: 0b10, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 64) +
               encoder.write_opcode(0x26) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :k && @operands[1].type == :zmm && @operands[2].type == :m512
+            elsif @operands.length == 3 && @operands[0].type == :k && @operands[1].type == :zmm && @operands[2].type == :mem512
               encoder.write_evex(mmm: 0b010, pp: 0b10, w: 1, ll: 0b10, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 64) +
               encoder.write_opcode(0x26) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])

@@ -106,11 +106,11 @@ module Ronin
               encoder.write_vex(type: :vex, w: 0, l: 1, m_mmmm: 0b00010, pp: 0b10, r: @operands[0], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x72) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :m128
+            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem128
               encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00010, pp: 0b10, r: @operands[0], x: @operands[1], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x72) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :m256
+            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem256
               encoder.write_vex(type: :vex, w: 0, l: 1, m_mmmm: 0b00010, pp: 0b10, r: @operands[0], x: @operands[1], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x72) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])

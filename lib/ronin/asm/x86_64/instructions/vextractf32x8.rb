@@ -73,7 +73,7 @@ module Ronin
               encoder.write_opcode(0x1b) +
               encoder.write_modrm(0b11,@operands[1],@operands[0]) +
               encoder.write_immediate(@operands[2],1)
-            elsif @operands.length == 3 && @operands[0].type == :m256 && @operands[1].type == :zmm && @operands[2].type == :imm8
+            elsif @operands.length == 3 && @operands[0].type == :mem256 && @operands[1].type == :zmm && @operands[2].type == :imm8
               encoder.write_evex(mmm: 0b011, pp: 0b01, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: @operands[1], _B: @operands[0], x: @operands[0], b: 0, aaa: 0, z: 0, disp8xN: 32) +
               encoder.write_opcode(0x1b) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0]) +

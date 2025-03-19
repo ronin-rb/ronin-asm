@@ -110,7 +110,7 @@ module Ronin
               encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, ll: 0b01, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0xe6) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :m128
+            elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :mem128
               encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00001, pp: 0b10, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0xe6) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])

@@ -94,15 +94,15 @@ module Ronin
               encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x63) +
               encoder.write_modrm(0b11,@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type == :m128 && @operands[1].type == :xmm
+            elsif @operands.length == 2 && @operands[0].type == :mem128 && @operands[1].type == :xmm
               encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 0b00, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 1) +
               encoder.write_opcode(0x63) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type == :m256 && @operands[1].type == :ymm
+            elsif @operands.length == 2 && @operands[0].type == :mem256 && @operands[1].type == :ymm
               encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 0b01, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 1) +
               encoder.write_opcode(0x63) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type == :m512 && @operands[1].type == :zmm
+            elsif @operands.length == 2 && @operands[0].type == :mem512 && @operands[1].type == :zmm
               encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 1) +
               encoder.write_opcode(0x63) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
