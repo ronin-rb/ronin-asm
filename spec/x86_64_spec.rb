@@ -228,7 +228,16 @@ describe Ronin::ASM::X86_64 do
     zmm28: described_class::Registers::ZMM28,
     zmm29: described_class::Registers::ZMM29,
     zmm30: described_class::Registers::ZMM30,
-    zmm31: described_class::Registers::ZMM31
+    zmm31: described_class::Registers::ZMM31,
+
+    tmm0: described_class::Registers::TMM0,
+    tmm1: described_class::Registers::TMM1,
+    tmm2: described_class::Registers::TMM2,
+    tmm3: described_class::Registers::TMM3,
+    tmm4: described_class::Registers::TMM4,
+    tmm5: described_class::Registers::TMM5,
+    tmm6: described_class::Registers::TMM6,
+    tmm7: described_class::Registers::TMM7
   }.each do |name,reg|
     describe "##{name}" do
       subject { super().send(name) }
