@@ -30,6 +30,13 @@ module Ronin
       #
       module Operand
         include X86::Operand
+
+        #
+        # Determines if the operand is scale-index-base memory operand.
+        #
+        # @return [Boolean]
+        #
+        def sibmem? = false
       end
     end
   end
