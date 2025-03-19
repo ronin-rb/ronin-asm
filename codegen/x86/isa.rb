@@ -338,6 +338,57 @@ module CodeGen
         def input?  = input
         def output? = output
 
+        # Mapping of ISA operand types to renamed ronin-asm operand types.
+        TYPE_RENAMES = {
+          # NOTE: rename the imm4 operand type to imm8.
+          :imm4 => :imm8,
+
+          :r8  => :reg8,
+          :r16 => :reg16,
+          :r32 => :reg32,
+          :r64 => :reg64,
+
+          :m   => :mem,
+          :m8  => :mem8,
+          :m16 => :mem16,
+          :m32 => :mem32,
+          :m64 => :mem64,
+
+          :"m16{k}"  => :"mem16{k}",
+          :"m32{k}"  => :"mem32{k}",
+          :"m64{k}"  => :"mem64{k}",
+          :"m128{k}" => :"mem128{k}",
+          :"m256{k}" => :"mem256{k}",
+          :"m512{k}" => :"mem512{k}",
+
+          :"m32/m16bcst"  => :"mem32/mem16bcst",
+          :"m64/m16bcst"  => :"mem64/mem16bcst",
+          :"m64/m32bcst"  => :"mem64/mem32bcst",
+          :"m128/m16bcst" => :"mem128/mem16bcst",
+          :"m128/m32bcst" => :"mem128/mem32bcst",
+          :"m128/m64bcst" => :"mem128/mem64bcst",
+          :"m256/m16bcst" => :"mem256/mem16bcst",
+          :"m256/m32bcst" => :"mem256/mem32bcst",
+          :"m256/m64bcst" => :"mem256/mem64bcst",
+          :"m512/m16bcst" => :"mem512/mem16bcst",
+          :"m512/m32bcst" => :"mem512/mem32bcst",
+          :"m512/m64bcst" => :"mem512/mem64bcst",
+
+          :moffs32 => :moffset32,
+          :moffs64 => :moffset64
+        }
+
+        #
+        # Translates a x86 ISA operand type to a ronin-asm operand type.
+        #
+        # @return [Symbol]
+        #
+        # @note
+        #   The reason why we translate certain operand types is for readability
+        #   and to disambiguate certain types.
+        #
+        def ronin_type = TYPE_RENAMES.fetch(type,type)
+
       end
 
       #
