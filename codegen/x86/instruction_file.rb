@@ -30,61 +30,6 @@ module CodeGen
       template File.join(__dir__,'instruction.rb.erb')
       output_dir 'lib/ronin/asm/x86/instructions'
 
-      # Mapping of ISA operand types to ronin-asm operand types.
-      OPERAND_TYPE_MAPPING = {
-        # NOTE: rename the imm4 operand type to imm8.
-        :imm4 => :imm8,
-
-        :r8  => :reg8,
-        :r16 => :reg16,
-        :r32 => :reg32,
-        :r64 => :reg64,
-
-        :m   => :mem,
-        :m8  => :mem8,
-        :m16 => :mem16,
-        :m32 => :mem32,
-        :m64 => :mem64,
-
-        :"m16{k}"  => :"mem16{k}",
-        :"m32{k}"  => :"mem32{k}",
-        :"m64{k}"  => :"mem64{k}",
-        :"m128{k}" => :"mem128{k}",
-        :"m256{k}" => :"mem256{k}",
-        :"m512{k}" => :"mem512{k}",
-
-        :"m32/m16bcst"  => :"mem32/mem16bcst",
-        :"m64/m16bcst"  => :"mem64/mem16bcst",
-        :"m64/m32bcst"  => :"mem64/mem32bcst",
-        :"m128/m16bcst" => :"mem128/mem16bcst",
-        :"m128/m32bcst" => :"mem128/mem32bcst",
-        :"m128/m64bcst" => :"mem128/mem64bcst",
-        :"m256/m16bcst" => :"mem256/mem16bcst",
-        :"m256/m32bcst" => :"mem256/mem32bcst",
-        :"m256/m64bcst" => :"mem256/mem64bcst",
-        :"m512/m16bcst" => :"mem512/mem16bcst",
-        :"m512/m32bcst" => :"mem512/mem32bcst",
-        :"m512/m64bcst" => :"mem512/mem64bcst",
-
-        :moffs32 => :moffset32,
-        :moffs64 => :moffset64
-      }
-
-      #
-      # Translates a x86 ISA operand type to a ronin-asm operand type.
-      #
-      # @param [Symbol] operand_type
-      # @return [Symbol]
-      #
-      # @note
-      #   The reason why we translate certain operand types is for readability
-      #   and to disambiguate certain types, such as `r8` which could refer to
-      #   an 8bit register or the x86-64 register `r8`.
-      #
-      def ronin_operand_type(operand_type)
-        OPERAND_TYPE_MAPPING.fetch(operand_type,operand_type)
-      end
-
       #
       # Returns a comparison expression for the desired operand type.
       #
@@ -101,7 +46,7 @@ module CodeGen
           "@operands[#{index}].mem?"
         else
           # compare the operand's type
-          "@operands[#{index}].type == #{ronin_operand_type(operand.type).inspect}"
+          "@operands[#{index}].type == #{operand.ronin_type.inspect}"
         end
       end
 
