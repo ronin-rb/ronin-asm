@@ -62,11 +62,11 @@ module Ronin
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x28) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :m128
+            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem128
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x28) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :m128 && @operands[1].type == :xmm
+            elsif @operands.length == 2 && @operands[0].type == :mem128 && @operands[1].type == :xmm
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x29) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
