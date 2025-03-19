@@ -355,6 +355,18 @@ module Ronin
         ZMM29  = Register.new(:zmm29, size: 64, number: 29, type: :zmm)
         ZMM30  = Register.new(:zmm30, size: 64, number: 30, type: :zmm)
         ZMM31  = Register.new(:zmm31, size: 64, number: 31, type: :zmm)
+
+        #
+        # @group 1024bit (16x16x32bits) Tile Registers
+        #
+        TMM0 = Register.new(:tmm0, size: 1024, number: 0, type: :tmm)
+        TMM1 = Register.new(:tmm1, size: 1024, number: 1, type: :tmm)
+        TMM2 = Register.new(:tmm2, size: 1024, number: 2, type: :tmm)
+        TMM3 = Register.new(:tmm3, size: 1024, number: 3, type: :tmm)
+        TMM4 = Register.new(:tmm4, size: 1024, number: 4, type: :tmm)
+        TMM5 = Register.new(:tmm5, size: 1024, number: 5, type: :tmm)
+        TMM6 = Register.new(:tmm6, size: 1024, number: 6, type: :tmm)
+        TMM7 = Register.new(:tmm7, size: 1024, number: 7, type: :tmm)
       end
     end
   end
