@@ -58,15 +58,15 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :"xmm{k}{z}" && @operands[1].type == :"mem128/m16bcst"
+            if @operands.length == 2 && @operands[0].type == :"xmm{k}{z}" && @operands[1].type == :"mem128/mem16bcst"
               encoder.write_evex(mmm: 0b101, pp: 0b11, w: 0, ll: 0b00, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: @operands[1], aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x7d) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :"ymm{k}{z}" && @operands[1].type == :"mem256/m16bcst"
+            elsif @operands.length == 2 && @operands[0].type == :"ymm{k}{z}" && @operands[1].type == :"mem256/mem16bcst"
               encoder.write_evex(mmm: 0b101, pp: 0b11, w: 0, ll: 0b01, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: @operands[1], aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x7d) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :"mem512/m16bcst"
+            elsif @operands.length == 2 && @operands[0].type == :"zmm{k}{z}" && @operands[1].type == :"mem512/mem16bcst"
               encoder.write_evex(mmm: 0b101, pp: 0b11, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: @operands[1], aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x7d) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
@@ -82,7 +82,7 @@ module Ronin
               encoder.write_evex(mmm: 0b101, pp: 0b11, w: 0, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x7d) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :"mem128/m16bcst"
+            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :"mem128/mem16bcst"
               encoder.write_evex(mmm: 0b101, pp: 0b11, w: 0, ll: 0b00, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: @operands[1], aaa: 0, z: 0) +
               encoder.write_opcode(0x7d) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
@@ -90,7 +90,7 @@ module Ronin
               encoder.write_evex(mmm: 0b101, pp: 0b11, w: 0, ll: 0b00, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x7d) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :"mem256/m16bcst"
+            elsif @operands.length == 2 && @operands[0].type == :ymm && @operands[1].type == :"mem256/mem16bcst"
               encoder.write_evex(mmm: 0b101, pp: 0b11, w: 0, ll: 0b01, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: @operands[1], aaa: 0, z: 0) +
               encoder.write_opcode(0x7d) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
@@ -98,7 +98,7 @@ module Ronin
               encoder.write_evex(mmm: 0b101, pp: 0b11, w: 0, ll: 0b01, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x7d) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :zmm && @operands[1].type == :"mem512/m16bcst"
+            elsif @operands.length == 2 && @operands[0].type == :zmm && @operands[1].type == :"mem512/mem16bcst"
               encoder.write_evex(mmm: 0b101, pp: 0b11, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: @operands[1], aaa: 0, z: 0) +
               encoder.write_opcode(0x7d) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
