@@ -343,6 +343,7 @@ module CodeGen
         # Register types
         REG_TYPES = X86::ISA::REG_TYPES + Set[:r64, :r8l, :r16l, :r32l]
         def register? = REG_TYPES.include?(type)
+
       end
 
     end
