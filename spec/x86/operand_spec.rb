@@ -22,9 +22,9 @@ describe Ronin::ASM::X86::Operand do
     end
   end
 
-  describe "#mm?" do
+  describe "#mmx?" do
     it "must return false by default" do
-      expect(subject.mm?).to be(false)
+      expect(subject.mmx?).to be(false)
     end
   end
 

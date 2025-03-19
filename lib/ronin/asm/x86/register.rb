@@ -115,8 +115,8 @@ module Ronin
         #
         # @return [Boolean]
         #
-        def mm?
-          @type == :mm
+        def mmx?
+          @type == :mmx
         end
 
         #

@@ -43,7 +43,7 @@ module Ronin
         #
         # @return [Boolean]
         #
-        def mm? = false
+        def mmx? = false
 
         #
         # Determines if the operand is a 128bit XMM register.

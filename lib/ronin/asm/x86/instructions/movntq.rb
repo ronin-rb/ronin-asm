@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :mem64 && @operands[1].type == :mm
+            if @operands.length == 2 && @operands[0].type == :mem64 && @operands[1].type == :mmx
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xe7) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
