@@ -32,6 +32,9 @@ module CodeGen
 
       # Mapping of ISA operand types to ronin-asm operand types.
       OPERAND_TYPE_MAPPING = {
+        # NOTE: rename the imm4 operand type to imm8.
+        :imm4 => :imm8,
+
         :r8  => :reg8,
         :r16 => :reg16,
         :r32 => :reg32,
