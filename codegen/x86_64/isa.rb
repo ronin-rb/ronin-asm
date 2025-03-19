@@ -344,6 +344,27 @@ module CodeGen
         REG_TYPES = X86::ISA::REG_TYPES + Set[:r64, :r8l, :r16l, :r32l]
         def register? = REG_TYPES.include?(type)
 
+        # Mapping of ISA operand types to renamed ronin-asm operand types.
+        TYPE_RENAMES = X86::ISA::TYPE_RENAMES.merge(
+          # NOTE: rel32m is only used in the `prefetchit0` and `prefetchit1`
+          # instructions, but other x86-64 instruction set documentation sources
+          # use `m8`/`mem8`, since the instructions take a pointer to a
+          # byte array. Thus `rel32m` can be simplified to `mem8`.
+          :rel32m => :mem8
+        )
+
+        #
+        # Translates a x86-64 ISA operand type to a ronin-asm operand type.
+        #
+        # @return [Symbol]
+        #
+        # @note
+        #   The reason why we translate certain operand types is for readability
+        #   and to disambiguate certain types, such as `r8` which could refer to
+        #   an 8bit register or the x86-64 register `r8`.
+        #
+        def ronin_type = TYPE_RENAMES.fetch(type,type)
+
       end
 
     end
