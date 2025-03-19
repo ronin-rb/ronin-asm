@@ -58,18 +58,18 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :mm && @operands[1].type == :imm8
+            if @operands.length == 2 && @operands[0].type == :mmx && @operands[1].type == :imm8
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x71) +
               encoder.write_modrm(0b11,4,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type == :mm && @operands[1].type == :mm
+            elsif @operands.length == 2 && @operands[0].type == :mmx && @operands[1].type == :mmx
               encoder.write_rex(mandatory: false, w: 0, r: @operands[0], b: @operands[1]) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xe1) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :mm && @operands[1].type == :mem64
+            elsif @operands.length == 2 && @operands[0].type == :mmx && @operands[1].type == :mem64
               encoder.write_rex(mandatory: false, w: 0, r: @operands[0], x: @operands[1], b: @operands[1]) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xe1) +

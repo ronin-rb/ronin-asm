@@ -348,6 +348,8 @@ module CodeGen
           :r32 => :reg32,
           :r64 => :reg64,
 
+          :mm => :mmx,
+
           :m    => :mem,
           :m8   => :mem8,
           :m16  => :mem16,

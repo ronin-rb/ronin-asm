@@ -130,20 +130,20 @@ describe Ronin::ASM::X86::Register do
     end
   end
 
-  describe "#mm?" do
-    context "when initialized with `type: :mm`" do
-      subject { described_class.new(:mm0, size: 8, type: :mm) }
+  describe "#mmx?" do
+    context "when initialized with `type: :mmx`" do
+      subject { described_class.new(:mm0, size: 8, type: :mmx) }
 
       it "must return true" do
-        expect(subject.mm?).to be(true)
+        expect(subject.mmx?).to be(true)
       end
     end
 
-    context "when not initialized with `type: :mm`" do
+    context "when not initialized with `type: :mmx`" do
       subject { described_class.new(:eax, size: 4) }
 
       it "must return false" do
-        expect(subject.mm?).to be(false)
+        expect(subject.mmx?).to be(false)
       end
     end
   end
