@@ -268,7 +268,7 @@ module CodeGen
         def immediate? = IMM_TYPES.include?(type)
 
         # Specific immediate value types
-        SPECIFIC_IMM_TYPES = Set[:"1"]
+        SPECIFIC_IMM_TYPES = Set[:"1", :"3"]
         def specific_immediate? = SPECIFIC_IMM_TYPES.include?(type)
 
         # K mask register?
