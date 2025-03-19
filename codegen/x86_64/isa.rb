@@ -344,6 +344,13 @@ module CodeGen
         REG_TYPES = X86::ISA::REG_TYPES + Set[:r64, :r8l, :r16l, :r32l]
         def register? = REG_TYPES.include?(type)
 
+        # Mapping of types and their sub-types
+        SUB_TYPES = X86::ISA::SUB_TYPES.merge(
+          :sibmem => :m,
+          :rel32m => :m8
+        )
+        def sub_type = SUB_TYPES[type]
+
         # Mapping of ISA operand types to renamed ronin-asm operand types.
         TYPE_RENAMES = X86::ISA::TYPE_RENAMES.merge(
           # NOTE: rel32m is only used in the `prefetchit0` and `prefetchit1`
