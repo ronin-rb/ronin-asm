@@ -304,7 +304,7 @@ module CodeGen
         def specific_register? = SPECIFIC_REGISTERS.include?(type)
 
         # Register types
-        REG_TYPES = Set[:r8, :r16, :r32] + SPECIFIC_REGISTERS + WRITE_MASK_TYPES + MMX_REG_TYPES + XMM_REG_TYPES + YMM_REG_TYPES + ZMM_REG_TYPES
+        REG_TYPES = Set[:r8, :r16, :r32, :k, :mm, :xmm, :ymm, :zmm] + SPECIFIC_REGISTERS
         def register? = REG_TYPES.include?(type)
 
         # Memory offset types
