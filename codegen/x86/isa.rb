@@ -261,10 +261,7 @@ module CodeGen
         def relative? = REL_TYPES.include?(type)
 
         # Immediate types
-        IMM_TYPES = Set[
-          :imm4, :imm8, :imm16, :imm32,
-          :rel8 # rel8 offsets are expressed as literal integers
-        ]
+        IMM_TYPES = Set[:imm4, :imm8, :imm16, :imm32]
         def immediate? = IMM_TYPES.include?(type)
 
         # Specific immediate value types
