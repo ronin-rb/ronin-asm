@@ -338,6 +338,46 @@ module CodeGen
         def input?  = input
         def output? = output
 
+        # Mapping of types and their sub-types
+        SUB_TYPES = {
+          :"k{k}" => :k,
+
+          :"xmm{k}"    => :xmm,
+          :"xmm{k}{z}" => :xmm,
+          :"ymm{k}"    => :ymm,
+          :"ymm{k}{z}" => :ymm,
+          :"zmm{k}"    => :zmm,
+          :"zmm{k}{z}" => :zmm,
+
+          :"m16{k}"  => :m16,
+          :"m32{k}"  => :m32,
+          :"m64{k}"  => :m64,
+          :"m128{k}" => :m128,
+          :"m256{k}" => :m256,
+          :"m512{k}" => :m512,
+
+          :"m32/m16bcst"  => :m16,
+          :"m64/m16bcst"  => :m16,
+          :"m128/m16bcst" => :m16,
+          :"m256/m16bcst" => :m16,
+          :"m512/m16bcst" => :m16,
+          :"m64/m32bcst"  => :m32,
+          :"m128/m32bcst" => :m32,
+          :"m256/m32bcst" => :m32,
+          :"m512/m32bcst" => :m32,
+          :"m128/m64bcst" => :m64,
+          :"m256/m64bcst" => :m64,
+          :"m512/m64bcst" => :m64,
+
+          :vm32x => :m32,
+          :vm64x => :m64,
+          :vm32y => :m32,
+          :vm64y => :m64,
+          :vm32z => :m32,
+          :vm64z => :m64
+        }
+        def sub_type = SUB_TYPES[type]
+
         # Mapping of ISA operand types to renamed ronin-asm operand types.
         TYPE_RENAMES = {
           # NOTE: rename the imm4 operand type to imm8.
