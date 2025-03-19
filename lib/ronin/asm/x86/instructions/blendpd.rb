@@ -65,7 +65,7 @@ module Ronin
               encoder.write_opcode(0x0d) +
               encoder.write_modrm(0b11,@operands[0],@operands[1]) +
               encoder.write_immediate(@operands[2],1)
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :m128 && @operands[2].type == :imm8
+            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :mem128 && @operands[2].type == :imm8
               encoder.write_prefix(0x66, mandatory: true) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x3a) +
