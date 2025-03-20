@@ -37,7 +37,8 @@ module Ronin
             2  => 'WORD',
             4  => 'DWORD',
             8  => 'QWORD',
-            16 => 'OWORD'
+            16 => 'OWORD',
+            32 => 'YWORD'
           }
 
           #
