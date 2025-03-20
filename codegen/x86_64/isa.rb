@@ -329,7 +329,7 @@ module CodeGen
         IMM_TYPES = X86::ISA::IMM_TYPES + Set[:imm64]
         def immediate? = IMM_TYPES.include?(type)
 
-        MEM_TYPES = X86::ISA::MEM_TYPES + Set[:sibmem]
+        MEM_TYPES = X86::ISA::MEM_TYPES + Set[:sibmem, :rel32m]
         def memory? = MEM_TYPES.include?(type)
 
         def tmm? = type == :tmm
