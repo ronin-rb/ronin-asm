@@ -132,6 +132,38 @@ describe Ronin::ASM::X86 do
     end
   end
 
+  describe "#oword" do
+    context "when given an Integer" do
+      it "must return a Ronin::ASM::X86::Immediate" do
+        expect(subject.oword(1)).to be_kind_of(Ronin::ASM::X86::Immediate)
+      end
+
+      it "must have size of 16" do
+        expect(subject.oword(1).size).to eq(16)
+      end
+    end
+
+    context "when given a Memory object" do
+      let(:register) do
+        Ronin::ASM::X86::Register.new(:eax, size: 4, type: :reg32)
+      end
+      let(:memory) do
+        Ronin::ASM::X86::Memory.new(base: register)
+      end
+
+      it "must return a new Ronin::ASM::X86::Memory object" do
+        new_memory = subject.oword(memory)
+
+        expect(new_memory).to be_a(Ronin::ASM::X86::Memory)
+        expect(new_memory).to_not be(memory)
+      end
+
+      it "must have a size of 16" do
+        expect(subject.oword(memory).size).to eq(16)
+      end
+    end
+  end
+
   describe "#rel8" do
     let(:value) { 0x41 }
 
