@@ -86,7 +86,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
     let(:register) { Ronin::ASM::X86::Registers::EAX }
     let(:operand)  { Ronin::ASM::X86::Memory.new(base: register) }
 
-    it "must enclose the memory in brackets" do
+    it "must enclose the memory operand's base register in brackets" do
       expect(subject.format_memory(operand)).to eq("[eax]")
     end
 
@@ -96,7 +96,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
         Ronin::ASM::X86::Memory.new(base: register, size: size)
       end
 
-      it "must specify the size" do
+      it "must add a size specifier keyword" do
         expect(subject.format_memory(operand)).to eq("WORD [eax]")
       end
     end
