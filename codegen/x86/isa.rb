@@ -297,7 +297,7 @@ module CodeGen
 
         # Memory offset types
         MOFFSET_TYPES = Set[:moffs32, :moffs64]
-        def moffset? = MOFFSET_TYPES.include?(type)
+        def memory_offset? = MOFFSET_TYPES.include?(type)
 
         # Vector memory types
         VECTOR_MEMORY_TYPES = Set[
