@@ -271,9 +271,7 @@ module Ronin
       # @return [Memory, Immediate]
       #   The new operand value.
       #
-      def byte(operand)
-        coerce_operand(operand).change_size(1)
-      end
+      def byte(operand) = coerce_operand(operand).change_size(1)
 
       #
       # Creates a operand of size 16bits (2 bytes).
@@ -284,9 +282,7 @@ module Ronin
       # @return [Memory, Immediate]
       #   The new operand value.
       #
-      def word(operand)
-        coerce_operand(operand).change_size(2)
-      end
+      def word(operand) = coerce_operand(operand).change_size(2)
 
       #
       # Creates a operand of size 32bits (4 bytes).
@@ -297,9 +293,7 @@ module Ronin
       # @return [Immediate]
       #   The new operand value.
       #
-      def dword(operand)
-        coerce_operand(operand).change_size(4)
-      end
+      def dword(operand) = coerce_operand(operand).change_size(4)
 
       #
       # Creates a operand of size 64bits (8 bytes).
@@ -310,9 +304,7 @@ module Ronin
       # @return [Memory, Immediate]
       #   The new operand.
       #
-      def qword(operand)
-        coerce_operand(operand).change_size(8)
-      end
+      def qword(operand) = coerce_operand(operand).change_size(8)
 
       #
       # Adds a label to the program.
