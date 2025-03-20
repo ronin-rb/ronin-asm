@@ -332,7 +332,8 @@ module CodeGen
         MEM_TYPES = X86::ISA::MEM_TYPES + Set[:sibmem, :rel32m]
         def memory? = MEM_TYPES.include?(type)
 
-        def tmm? = type == :tmm
+        def tmm_register? = type == :tmm
+
         def sibmem? = type == :sibmem
 
         # Set of specific register types.
