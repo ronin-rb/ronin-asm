@@ -320,7 +320,7 @@ module CodeGen
           :m128,
           :m256,
           :m512
-        ] + MOFFSET_TYPES + VECTOR_MEMORY_TYPES
+        ] + VECTOR_MEMORY_TYPES
         def memory? = MEM_TYPES.include?(type)
         def any_memory_type? = type == :m
 
