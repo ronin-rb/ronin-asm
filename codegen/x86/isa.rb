@@ -343,6 +343,10 @@ module CodeGen
         ]
         def bcst? = BCST_TYPES.include?(type)
 
+        # Special operand types
+        SPECIAL_OPERAND_TYPES = Set[:"{er}", :"{sae}"]
+        def special_operand? = SPECIAL_OPERAND_TYPES.include?(type)
+
         def input?  = input
         def output? = output
 
