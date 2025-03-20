@@ -263,7 +263,7 @@ module Ronin
       end
 
       #
-      # Creates an operand of size 1 (byte).
+      # Creates an operand of size 8bits (1 byte).
       #
       # @param [Memory, Integer] operand
       #   The value of the operand.
@@ -276,7 +276,7 @@ module Ronin
       end
 
       #
-      # Creates a operand of size 2 (bytes).
+      # Creates a operand of size 16bits (2 bytes).
       #
       # @param [Memory, Integer] operand
       #   The value of the operand.
@@ -289,7 +289,7 @@ module Ronin
       end
 
       #
-      # Creates a operand of size 4 (bytes).
+      # Creates a operand of size 32bits (4 bytes).
       #
       # @param [Memory, Integer] operand
       #   The value of the operand.
@@ -302,7 +302,7 @@ module Ronin
       end
 
       #
-      # Creates a operand of size 8 (bytes).
+      # Creates a operand of size 64bits (8 bytes).
       #
       # @param [Memory, Integer] operand
       #   The value of the operand.

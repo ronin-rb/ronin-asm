@@ -367,7 +367,7 @@ module Ronin
       #
 
       #
-      # Creates an operand of size 16 (bytes).
+      # Creates an operand of size 128bits (16 bytes).
       #
       # @param [Memory, Integer] operand
       #   The value of the operand.
@@ -380,7 +380,7 @@ module Ronin
       def oword(operand) = coerce_operand(operand).change_size(16)
 
       #
-      # Creates an operand of size 32 (bytes).
+      # Creates an operand of size 256bits (32 bytes).
       #
       # @param [Memory, Integer] operand
       #   The value of the operand.
@@ -393,7 +393,7 @@ module Ronin
       def yword(operand) = coerce_operand(operand).change_size(32)
 
       #
-      # Creates an operand of size 64 (bytes).
+      # Creates an operand of size 512bits (64 bytes).
       #
       # @param [Memory, Integer] operand
       #   The value of the operand.
