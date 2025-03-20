@@ -64,6 +64,14 @@ describe Ronin::ASM::X86::Syntax::Intel do
         expect(subject.format_immediate(operand)).to eq("YWORD 0xff")
       end
     end
+
+    context "when the immediate's #size is 64" do
+      let(:operand) { Ronin::ASM::X86::Immediate.new(255, size: 64) }
+
+      it "must prepend the ZWORD size specifier" do
+        expect(subject.format_immediate(operand)).to eq("ZWORD 0xff")
+      end
+    end
   end
 
   describe ".format_register" do
