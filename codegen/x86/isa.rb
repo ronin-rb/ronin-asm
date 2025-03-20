@@ -322,12 +322,12 @@ module CodeGen
         MEM_TYPES = Set[
           :m,
           :m8,
-          :m16, :"m16{k}",
-          :m32, :"m32{k}",
-          :m64, :"m64{k}",
-          :m128, :"m128{k}",
-          :m256, :"m256{k}",
-          :m512, :"m512{k}"
+          :m16,
+          :m32,
+          :m64,
+          :m128,
+          :m256,
+          :m512
         ] + MOFFSET_TYPES + BCST_TYPES
         def memory? = MEM_TYPES.include?(type)
         def any_memory_type? = type == :m
