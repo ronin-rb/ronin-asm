@@ -299,6 +299,17 @@ module CodeGen
         MOFFSET_TYPES = Set[:moffs32, :moffs64]
         def moffset? = MOFFSET_TYPES.include?(type)
 
+        # Vector memory types
+        VECTOR_MEMORY_TYPES = Set[
+          :vm32x,
+          :vm64x,
+          :vm32y,
+          :vm64y,
+          :vm32z,
+          :vm64z
+        ]
+        def vector_memory? = VECTOR_MEMORY_TYPES.include?(type)
+
         # Memory types
         MEM_TYPES = Set[
           :m,
