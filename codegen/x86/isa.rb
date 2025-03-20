@@ -271,15 +271,6 @@ module CodeGen
         # K mask register?
         def k_register? = type == :k
 
-        OPMASK_TYPES = Set[
-          :"k{k}",
-          :"xmm{k}", :"xmm{k}{z}",
-          :"ymm{k}", :"ymm{k}{z}",
-          :"zmm{k}", :"zmm{k}{z}",
-          :"m16{k}", :"m32{k}", :"m64{k}", :"m128{k}", :"m256{k}", :"m512{k}"
-        ]
-        def opmask? = OPMASK_TYPES.include?(type)
-
         # MMX registers
         MMX_REG_TYPES = Set[:mm]
         def mmx_register? = MMX_REG_TYPES.include?(type)
@@ -308,16 +299,6 @@ module CodeGen
         MOFFSET_TYPES = Set[:moffs32, :moffs64]
         def moffset? = MOFFSET_TYPES.include?(type)
 
-        # Source broadcast types
-        BCST_TYPES = Set[
-          :"m32/m16bcst",
-          :"m64/m16bcst", :"m64/m32bcst",
-          :"m128/m16bcst", :"m128/m32bcst", :"m128/m64bcst",
-          :"m256/m16bcst", :"m256/m32bcst", :"m256/m64bcst",
-          :"m512/m16bcst", :"m512/m32bcst", :"m512/m64bcst"
-        ]
-        def bcst? = BCST_TYPES.include?(type)
-
         # Memory types
         MEM_TYPES = Set[
           :m,
@@ -331,6 +312,25 @@ module CodeGen
         ] + MOFFSET_TYPES
         def memory? = MEM_TYPES.include?(type)
         def any_memory_type? = type == :m
+
+        OPMASK_TYPES = Set[
+          :"k{k}",
+          :"xmm{k}", :"xmm{k}{z}",
+          :"ymm{k}", :"ymm{k}{z}",
+          :"zmm{k}", :"zmm{k}{z}",
+          :"m16{k}", :"m32{k}", :"m64{k}", :"m128{k}", :"m256{k}", :"m512{k}"
+        ]
+        def opmask? = OPMASK_TYPES.include?(type)
+
+        # Source broadcast types
+        BCST_TYPES = Set[
+          :"m32/m16bcst",
+          :"m64/m16bcst", :"m64/m32bcst",
+          :"m128/m16bcst", :"m128/m32bcst", :"m128/m64bcst",
+          :"m256/m16bcst", :"m256/m32bcst", :"m256/m64bcst",
+          :"m512/m16bcst", :"m512/m32bcst", :"m512/m64bcst"
+        ]
+        def bcst? = BCST_TYPES.include?(type)
 
         def input?  = input
         def output? = output
