@@ -287,6 +287,10 @@ module Ronin
       # @return [Memory, Immediate]
       #   The new operand value.
       #
+      # @example
+      #   byte(0x41)
+      #   byte([rax])
+      #
       def byte(operand) = coerce_operand(operand).change_size(1)
 
       #
@@ -297,6 +301,10 @@ module Ronin
       #
       # @return [Memory, Immediate]
       #   The new operand value.
+      #
+      # @example
+      #   word(0x41)
+      #   word([rax])
       #
       def word(operand) = coerce_operand(operand).change_size(2)
 
@@ -309,6 +317,10 @@ module Ronin
       # @return [Immediate]
       #   The new operand value.
       #
+      # @example
+      #   dword(0x41)
+      #   dword([rax])
+      #
       def dword(operand) = coerce_operand(operand).change_size(4)
 
       #
@@ -319,6 +331,10 @@ module Ronin
       #
       # @return [Memory, Immediate]
       #   The new operand.
+      #
+      # @example
+      #   qword(0x41)
+      #   qword([rax])
       #
       def qword(operand) = coerce_operand(operand).change_size(8)
 
