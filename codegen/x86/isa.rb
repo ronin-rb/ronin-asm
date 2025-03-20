@@ -260,13 +260,13 @@ module CodeGen
         REL_TYPES = Set[:rel8, :rel32]
         def relative_offset? = REL_TYPES.include?(type)
 
-        # Immediate types
-        IMM_TYPES = Set[:imm4, :imm8, :imm16, :imm32]
-        def immediate? = IMM_TYPES.include?(type)
-
         # Specific immediate value types
         SPECIFIC_IMM_TYPES = Set[:"1", :"3"]
         def specific_immediate? = SPECIFIC_IMM_TYPES.include?(type)
+
+        # Immediate types
+        IMM_TYPES = Set[:imm4, :imm8, :imm16, :imm32] + SPECIFIC_IMM_TYPES
+        def immediate? = IMM_TYPES.include?(type)
 
         # K mask register?
         def k_register? = type == :k
