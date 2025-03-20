@@ -375,6 +375,10 @@ module Ronin
       # @return [Memory, Immediate]
       #   The new operand.
       #
+      # @example
+      #   oword(0x41)
+      #   oword([rax])
+      #
       # @since 1.0.0
       #
       def oword(operand) = coerce_operand(operand).change_size(16)
@@ -388,6 +392,10 @@ module Ronin
       # @return [Memory, Immediate]
       #   The new operand.
       #
+      # @example
+      #   yword(0x41)
+      #   yword([rax])
+      #
       # @since 1.0.0
       #
       def yword(operand) = coerce_operand(operand).change_size(32)
@@ -400,6 +408,10 @@ module Ronin
       #
       # @return [Memory, Immediate]
       #   The new operand.
+      #
+      # @example
+      #   zword(0x41)
+      #   zword([rax])
       #
       # @since 1.0.0
       #
