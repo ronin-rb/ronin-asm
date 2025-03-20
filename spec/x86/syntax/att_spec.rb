@@ -37,7 +37,7 @@ describe Ronin::ASM::X86::Syntax::ATT do
     let(:register) { Ronin::ASM::X86::Registers::EAX }
     let(:operand)  { Ronin::ASM::X86::Memory.new(base: register) }
 
-    it "must enclose the memory in parenthesis" do
+    it "must enclose the memory operand's base register in parenthesis" do
       expect(subject.format_memory(operand)).to eq("(%eax)")
     end
 
