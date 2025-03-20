@@ -33,10 +33,11 @@ module Ronin
 
           # Data sizes and their identifiers
           SIZE_SPECIFIERS = {
-            1 => 'BYTE',
-            2 => 'WORD',
-            4 => 'DWORD',
-            8 => 'QWORD'
+            1  => 'BYTE',
+            2  => 'WORD',
+            4  => 'DWORD',
+            8  => 'QWORD',
+            16 => 'OWORD'
           }
 
           #
