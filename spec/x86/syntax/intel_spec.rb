@@ -17,10 +17,36 @@ describe Ronin::ASM::X86::Syntax::Intel do
   subject { described_class }
 
   describe ".format_immediate" do
-    let(:operand) { Ronin::ASM::X86::Immediate.new(255, size: 1) }
+    context "when the immediate's #size is 1" do
+      let(:operand) { Ronin::ASM::X86::Immediate.new(255, size: 1) }
 
-    it "must prepend a size specifier" do
-      expect(subject.format_immediate(operand)).to eq("BYTE 0xff")
+      it "must prepend the BYTE size specifier" do
+        expect(subject.format_immediate(operand)).to eq("BYTE 0xff")
+      end
+    end
+
+    context "when the immediate's #size is 2" do
+      let(:operand) { Ronin::ASM::X86::Immediate.new(255, size: 2) }
+
+      it "must prepend the WORD size specifier" do
+        expect(subject.format_immediate(operand)).to eq("WORD 0xff")
+      end
+    end
+
+    context "when the immediate's #size is 4" do
+      let(:operand) { Ronin::ASM::X86::Immediate.new(255, size: 4) }
+
+      it "must prepend the DWORD size specifier" do
+        expect(subject.format_immediate(operand)).to eq("DWORD 0xff")
+      end
+    end
+
+    context "when the immediate's #size is 8" do
+      let(:operand) { Ronin::ASM::X86::Immediate.new(255, size: 8) }
+
+      it "must prepend the QWORD size specifier" do
+        expect(subject.format_immediate(operand)).to eq("QWORD 0xff")
+      end
     end
   end
 
