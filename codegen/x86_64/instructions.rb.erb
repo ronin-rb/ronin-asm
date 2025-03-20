@@ -27,6 +27,14 @@ module Ronin
       <%- end -%>
 
       <%- @instructions.each do |instruction| -%>
+        # <%= instruction.summary %>
+        # @return [Ronin::ASM::X86_64::Instructions::<%= instruction.name.upcase %>]
+        <%- unless instruction.no_operands? -%>
+        # @example
+        <%- instruction_examples(instruction).each do |example| -%>
+        #   <%= example %>
+        <%- end -%>
+        <%- end -%>
         def <%= instruction.name %>(*operands,**kwargs) = add_instruction(Instructions::<%= instruction.name.upcase %>,*operands,**kwargs)
       <%- end -%>
       end
