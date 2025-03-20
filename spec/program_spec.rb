@@ -319,7 +319,7 @@ describe Ronin::ASM::Program do
         end
 
         it "must return a new Ronin::ASM::X86::Memory object" do
-          new_memory = subject.dword(memory)
+          new_memory = subject.byte(memory)
 
           expect(new_memory).to be_a(Ronin::ASM::X86::Memory)
           expect(new_memory).to_not be(memory)
@@ -341,7 +341,7 @@ describe Ronin::ASM::Program do
         end
 
         it "must return a new Ronin::ASM::X86_64::Memory object" do
-          new_memory = subject.dword(memory)
+          new_memory = subject.byte(memory)
 
           expect(new_memory).to be_a(Ronin::ASM::X86_64::Memory)
           expect(new_memory).to_not be(memory)
@@ -393,7 +393,7 @@ describe Ronin::ASM::Program do
         end
 
         it "must return a new Ronin::ASM::X86::Memory object" do
-          new_memory = subject.dword(memory)
+          new_memory = subject.word(memory)
 
           expect(new_memory).to be_a(Ronin::ASM::X86::Memory)
           expect(new_memory).to_not be(memory)
@@ -415,7 +415,7 @@ describe Ronin::ASM::Program do
         end
 
         it "must return a new Ronin::ASM::X86_64::Memory object" do
-          new_memory = subject.dword(memory)
+          new_memory = subject.word(memory)
 
           expect(new_memory).to be_a(Ronin::ASM::X86_64::Memory)
           expect(new_memory).to_not be(memory)
@@ -520,11 +520,11 @@ describe Ronin::ASM::Program do
         subject { described_class.new(arch: :x86_64) }
 
         it "must return a Ronin::ASM::X86_64::Immediate" do
-          expect(subject.word(1)).to be_a(Ronin::ASM::X86_64::Immediate)
+          expect(subject.qword(1)).to be_a(Ronin::ASM::X86_64::Immediate)
         end
 
-        it "must have size of 2" do
-          expect(subject.word(1).size).to eq(2)
+        it "must have size of 8" do
+          expect(subject.qword(1).size).to eq(8)
         end
       end
     end
@@ -541,7 +541,7 @@ describe Ronin::ASM::Program do
         end
 
         it "must return a new Ronin::ASM::X86::Memory object" do
-          new_memory = subject.dword(memory)
+          new_memory = subject.qword(memory)
 
           expect(new_memory).to be_a(Ronin::ASM::X86::Memory)
           expect(new_memory).to_not be(memory)
@@ -563,7 +563,7 @@ describe Ronin::ASM::Program do
         end
 
         it "must return a new Ronin::ASM::X86_64::Memory object" do
-          new_memory = subject.dword(memory)
+          new_memory = subject.qword(memory)
 
           expect(new_memory).to be_a(Ronin::ASM::X86_64::Memory)
           expect(new_memory).to_not be(memory)
