@@ -258,7 +258,7 @@ module CodeGen
 
         # Relative offset types
         REL_TYPES = Set[:rel8, :rel32]
-        def relative? = REL_TYPES.include?(type)
+        def relative_offset? = REL_TYPES.include?(type)
 
         # Immediate types
         IMM_TYPES = Set[:imm4, :imm8, :imm16, :imm32]

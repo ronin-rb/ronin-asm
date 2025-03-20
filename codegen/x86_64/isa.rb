@@ -324,7 +324,7 @@ module CodeGen
 
         # Relative offset types
         REL_TYPES = X86::ISA::REL_TYPES + Set[:rel32m]
-        def relative? = REL_TYPES.include?(type)
+        def relative_offset? = REL_TYPES.include?(type)
 
         IMM_TYPES = X86::ISA::IMM_TYPES + Set[:imm64]
         def immediate? = IMM_TYPES.include?(type)
