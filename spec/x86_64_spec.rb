@@ -296,6 +296,38 @@ describe Ronin::ASM::X86_64 do
     end
   end
 
+  describe "#yword" do
+    context "when given an Integer" do
+      it "must return a Ronin::ASM::X86_64::Immediate" do
+        expect(subject.yword(1)).to be_a(Ronin::ASM::X86_64::Immediate)
+      end
+
+      it "must have size of 32" do
+        expect(subject.yword(1).size).to eq(32)
+      end
+    end
+
+    context "when given a Memory object" do
+      let(:register) do
+        Ronin::ASM::X86_64::Register.new(:eax, size: 4, type: :reg32)
+      end
+      let(:memory) do
+        Ronin::ASM::X86_64::Memory.new(base: register)
+      end
+
+      it "must return a new Ronin::ASM::X86_64::Memory object" do
+        new_memory = subject.yword(memory)
+
+        expect(new_memory).to be_a(Ronin::ASM::X86_64::Memory)
+        expect(new_memory).to_not be(memory)
+      end
+
+      it "must have a size of 32" do
+        expect(subject.yword(memory).size).to eq(32)
+      end
+    end
+  end
+
   describe "#rel8" do
     let(:value) { 0x41 }
 
