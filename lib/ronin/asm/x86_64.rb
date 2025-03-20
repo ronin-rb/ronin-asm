@@ -380,6 +380,19 @@ module Ronin
       def oword(operand) = coerce_operand(operand).change_size(16)
 
       #
+      # Creates an operand of size 32 (bytes).
+      #
+      # @param [Memory, Integer] operand
+      #   The value of the operand.
+      #
+      # @return [Memory, Immediate]
+      #   The new operand.
+      #
+      # @since 1.0.0
+      #
+      def yword(operand) = coerce_operand(operand).change_size(32)
+
+      #
       # Explicitly creates an 8bit relative offset.
       #
       # @param [Integer] value
