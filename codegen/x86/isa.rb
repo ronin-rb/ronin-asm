@@ -329,7 +329,13 @@ module CodeGen
           :"xmm{k}", :"xmm{k}{z}",
           :"ymm{k}", :"ymm{k}{z}",
           :"zmm{k}", :"zmm{k}{z}",
-          :"m16{k}", :"m32{k}", :"m64{k}", :"m128{k}", :"m256{k}", :"m512{k}"
+          :"m16{k}", :"m32{k}", :"m64{k}", :"m128{k}", :"m256{k}", :"m512{k}",
+          :"vm32x{k}",
+          :"vm64x{k}",
+          :"vm32y{k}",
+          :"vm64y{k}",
+          :"vm32z{k}",
+          :"vm64z{k}"
         ]
         def opmask? = OPMASK_TYPES.include?(type)
 
