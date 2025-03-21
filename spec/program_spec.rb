@@ -1,6 +1,10 @@
 require 'spec_helper'
 require 'ronin/asm/program'
 
+require_relative 'helpers/nasm'
+require_relative 'helpers/yasm'
+require_relative 'helpers/gas'
+
 describe Ronin::ASM::Program do
   describe "#arch" do
     it "must return the architecture name" do
@@ -737,6 +741,42 @@ describe Ronin::ASM::Program do
         )
       end
 
+      it "must return NASM-compatible Intel syntax", :compatibility do
+        extend Helpers::NASM
+
+        unless Helpers::NASM.installed?
+          skip "the nasm command is not installed"
+        end
+
+        asm = subject.to_asm
+
+        expect(nasm(asm)).to be(true), -> {
+          <<~ERROR
+            Could not assemble the program using nasm:
+
+            #{asm}
+          ERROR
+        }
+      end
+
+      it "must return YASM-compatible Intel syntax", :compatibility do
+        extend Helpers::YASM
+
+        unless Helpers::YASM.installed?
+          skip "the yasm command is not installed"
+        end
+
+        asm = subject.to_asm
+
+        expect(yasm(asm, arch: :x86)).to be(true), -> {
+          <<~ERROR
+            Could not assemble the program using yasm:
+
+            #{asm}
+          ERROR
+        }
+      end
+
       context "when given :att" do
         it "must convert the program to ATT syntax" do
           expect(subject.to_asm(:att)).to eq(
@@ -755,6 +795,24 @@ describe Ronin::ASM::Program do
               \tmov\t10(%eax,%esi,4),\t%ebx
             ASM
           )
+        end
+
+        it "must return GAS-compatible Intel syntax", :compatibility do
+          extend Helpers::GAS
+
+          unless Helpers::GAS.installed?
+            skip "the GNU as command is not installed"
+          end
+
+          asm = subject.to_asm(:att)
+
+          expect(gas(asm, arch: :x86)).to be(true), -> {
+            <<~ERROR
+              Could not assemble the program using GNU as:
+
+              #{asm}
+            ERROR
+          }
         end
       end
     end
@@ -794,6 +852,42 @@ describe Ronin::ASM::Program do
         )
       end
 
+      it "must return NASM-compatible Intel syntax", :compatibility do
+        extend Helpers::NASM
+
+        unless Helpers::NASM.installed?
+          skip "the nasm command is not installed"
+        end
+
+        asm = subject.to_asm
+
+        expect(nasm(asm)).to be(true), -> {
+          <<~ERROR
+            Could not assemble the program using nasm:
+
+            #{asm}
+          ERROR
+        }
+      end
+
+      it "must return YASM-compatible Intel syntax", :compatibility do
+        extend Helpers::YASM
+
+        unless Helpers::YASM.installed?
+          skip "the yasm command is not installed"
+        end
+
+        asm = subject.to_asm
+
+        expect(yasm(asm, arch: :x86_64)).to be(true), -> {
+          <<~ERROR
+            Could not assemble the program using yasm:
+
+            #{asm}
+          ERROR
+        }
+      end
+
       context "when given :att" do
         it "must convert the program to ATT syntax" do
           expect(subject.to_asm(:att)).to eq(
@@ -812,6 +906,24 @@ describe Ronin::ASM::Program do
               \tmov\t10(%rax,%rsi,4),\t%rbx
             ASM
           )
+        end
+
+        it "must return GAS-compatible Intel syntax", :compatibility do
+          extend Helpers::GAS
+
+          unless Helpers::GAS.installed?
+            skip "the GNU as command is not installed"
+          end
+
+          asm = subject.to_asm(:att)
+
+          expect(gas(asm, arch: :x86_64)).to be(true), -> {
+            <<~ERROR
+              Could not assemble the program using GNU as:
+
+              #{asm}
+            ERROR
+          }
         end
       end
     end
