@@ -195,58 +195,5 @@ describe Ronin::ASM::X86::Syntax::Intel do
     end
   end
 
-  describe ".format_program" do
-    let(:program) do
-      Ronin::ASM::Program.new(arch: :x86) do
-        mov eax, 0xff
-        ret
-      end
-    end
-
-    it "must output the _start label and the program" do
-      asm = subject.format_program(program)
-
-      expect(asm).to eq([
-        "BITS 32",
-        "section .text",
-        "_start:",
-        "\tmov\teax,\tBYTE 0xff",
-        "\tret",
-        ""
-      ].join($/))
-    end
-
-    context "when formatting labels" do
-      let(:program) do
-        Ronin::ASM::Program.new(arch: :x86) do
-          mov eax, 0
-
-          _loop do
-            inc eax
-            cmp eax, 10
-            jl  _loop
-          end
-
-          ret
-        end
-      end
-
-      it "must format both labels and instructions" do
-        expect(subject.format_program(program)).to eq([
-          "BITS 32",
-          "section .text",
-          "_start:",
-          "\tmov\teax,\tBYTE 0x0",
-          "_loop:",
-          "\tinc\teax",
-          "\tcmp\teax,\tBYTE 0xa",
-          "\tjl\t_loop",
-          "\tret",
-          ""
-        ].join($/))
-      end
-    end
-  end
-
   include_context "Ronin::ASM::X86::Syntax::Common methods"
 end
