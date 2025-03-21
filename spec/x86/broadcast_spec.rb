@@ -13,12 +13,14 @@ describe Ronin::ASM::X86::Broadcast do
   let(:index)  { Ronin::ASM::X86::Registers::ESI }
   let(:scale)  { 4 }
   let(:displacement) { 10 }
+  let(:size)   { 4 }
   let(:memory) do
     Ronin::ASM::X86::Memory.new(
       base:  base,
       index: index,
       scale: scale,
-      displacement: displacement
+      displacement: displacement,
+      size:  size
     )
   end
 
@@ -35,8 +37,27 @@ describe Ronin::ASM::X86::Broadcast do
       expect(subject.ratio).to eq(ratio)
     end
 
-    it "must set #type using the Memory's #type and the #ratio" do
-      expect(subject.type).to eq(:"mem128/mem32bcst")
+    context "when given a Memory operand" do
+      context "and the memory operand has a defined #size and #type" do
+        it "must set #type using the Memory's #type and the #ratio" do
+          expect(subject.type).to eq(:"mem128/mem32bcst")
+        end
+      end
+
+      context "but the memory operand does not have a #size or #type" do
+        let(:memory) do
+          Ronin::ASM::X86::Memory.new(
+            base:  base,
+            index: index,
+            scale: scale,
+            displacement: displacement
+          )
+        end
+
+        it "must set #type to :bcst" do
+          expect(subject.type).to eq(:bcst)
+        end
+      end
     end
 
     context "when given a non-Memory operand" do
@@ -46,16 +67,6 @@ describe Ronin::ASM::X86::Broadcast do
         expect {
           described_class.new(operand,ratio)
         }.to raise_error(ArgumentError,"broadcast operand must be a memory operand: #{operand.inspect}")
-      end
-    end
-
-    context "when the memory operand does not define a #size" do
-      let(:memory) { Ronin::ASM::X86::Memory.new(index: index, scale: scale) }
-
-      it do
-        expect {
-          described_class.new(memory,ratio)
-        }.to raise_error(ArgumentError,"cannot infer the size of the memory operand: #{memory.inspect}")
       end
     end
 
