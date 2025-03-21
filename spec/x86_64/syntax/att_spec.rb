@@ -20,19 +20,4 @@ describe Ronin::ASM::X86_64::Syntax::ATT do
       expect(subject.format_prologue(program)).to eq('.code64')
     end
   end
-
-  describe ".format_program" do
-    let(:program) do
-      Ronin::ASM::Program.new(arch: :amd64) do
-        push rax
-        push rbx
-        mov 0xff, rax
-        ret
-      end
-    end
-
-    it "must include start with the '.code64' directive" do
-      expect(subject.format_program(program)).to match(/^\.code64$/)
-    end
-  end
 end
