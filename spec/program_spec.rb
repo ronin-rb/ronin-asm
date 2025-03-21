@@ -702,56 +702,113 @@ describe Ronin::ASM::Program do
   end
 
   describe "#to_asm" do
-    subject do
-      described_class.new(arch: :x86) do
-        push eax
-        push ebx
-        push ecx
+    context "when initialized with `arch: :x86`" do
+      subject do
+        described_class.new(arch: :x86) do
+          push eax
+          push ebx
+          push ecx
 
-        mov ebx, eax
-        mov ebx, eax+0
-        mov ebx, eax+4
-        mov ebx, eax+esi
-        mov ebx, eax+(esi*4)
-        mov ebx, eax+(esi*4)+10
+          mov ebx, eax
+          mov ebx, [eax]
+          mov ebx, [eax+4]
+          mov ebx, [eax+esi]
+          mov ebx, [eax+(esi*4)]
+          mov ebx, [eax+(esi*4)+10]
+        end
+      end
+
+      it "must convert the program to Intel syntax" do
+        expect(subject.to_asm).to eq([
+          "BITS 32",
+          "section .text",
+          "_start:",
+          "\tpush\teax",
+          "\tpush\tebx",
+          "\tpush\tecx",
+          "\tmov\tebx,\teax",
+          "\tmov\tebx,\t[eax]",
+          "\tmov\tebx,\t[eax+4]",
+          "\tmov\tebx,\t[eax+esi]",
+          "\tmov\tebx,\t[eax+esi*4]",
+          "\tmov\tebx,\t[eax+esi*4+10]",
+          ""
+        ].join($/))
+      end
+
+      context "when given :att" do
+        it "must convert the program to ATT syntax" do
+          expect(subject.to_asm(:att)).to eq([
+            ".code32",
+            ".text",
+            "_start:",
+            "\tpush\t%eax",
+            "\tpush\t%ebx",
+            "\tpush\t%ecx",
+            "\tmov\t%eax,\t%ebx",
+            "\tmov\t(%eax),\t%ebx",
+            "\tmov\t4(%eax),\t%ebx",
+            "\tmov\t(%eax,%esi),\t%ebx",
+            "\tmov\t(%eax,%esi,4),\t%ebx",
+            "\tmov\t10(%eax,%esi,4),\t%ebx",
+            ""
+          ].join($/))
+        end
       end
     end
 
-    it "must convert the program to Intel syntax" do
-      expect(subject.to_asm).to eq([
-        "BITS 32",
-        "section .text",
-        "_start:",
-        "\tpush\teax",
-        "\tpush\tebx",
-        "\tpush\tecx",
-        "\tmov\tebx,\teax",
-        "\tmov\tebx,\t[eax]",
-        "\tmov\tebx,\t[eax+4]",
-        "\tmov\tebx,\t[eax+esi]",
-        "\tmov\tebx,\t[eax+esi*4]",
-        "\tmov\tebx,\t[eax+esi*4+10]",
-        ""
-      ].join($/))
-    end
+    context "when initialized with `arch: :x86_64`" do
+      subject do
+        described_class.new(arch: :x86_64) do
+          push rax
+          push rbx
+          push rcx
 
-    context "when given :att" do
-      it "must convert the program to ATT syntax" do
-        expect(subject.to_asm(:att)).to eq([
-          ".code32",
-          ".text",
+          mov rbx, rax
+          mov rbx, [rax]
+          mov rbx, [rax+4]
+          mov rbx, [rax+rsi]
+          mov rbx, [rax+(rsi*4)]
+          mov rbx, [rax+(rsi*4)+10]
+        end
+      end
+
+      it "must convert the program to Intel syntax" do
+        expect(subject.to_asm).to eq([
+          "BITS 64",
+          "section .text",
           "_start:",
-          "\tpush\t%eax",
-          "\tpush\t%ebx",
-          "\tpush\t%ecx",
-          "\tmov\t%eax,\t%ebx",
-          "\tmov\t(%eax),\t%ebx",
-          "\tmov\t4(%eax),\t%ebx",
-          "\tmov\t(%eax,%esi),\t%ebx",
-          "\tmov\t(%eax,%esi,4),\t%ebx",
-          "\tmov\t10(%eax,%esi,4),\t%ebx",
+          "\tpush\trax",
+          "\tpush\trbx",
+          "\tpush\trcx",
+          "\tmov\trbx,\trax",
+          "\tmov\trbx,\t[rax]",
+          "\tmov\trbx,\t[rax+4]",
+          "\tmov\trbx,\t[rax+rsi]",
+          "\tmov\trbx,\t[rax+rsi*4]",
+          "\tmov\trbx,\t[rax+rsi*4+10]",
           ""
         ].join($/))
+      end
+
+      context "when given :att" do
+        it "must convert the program to ATT syntax" do
+          expect(subject.to_asm(:att)).to eq([
+            ".code64",
+            ".text",
+            "_start:",
+            "\tpush\t%rax",
+            "\tpush\t%rbx",
+            "\tpush\t%rcx",
+            "\tmov\t%rax,\t%rbx",
+            "\tmov\t(%rax),\t%rbx",
+            "\tmov\t4(%rax),\t%rbx",
+            "\tmov\t(%rax,%rsi),\t%rbx",
+            "\tmov\t(%rax,%rsi,4),\t%rbx",
+            "\tmov\t10(%rax,%rsi,4),\t%rbx",
+            ""
+          ].join($/))
+        end
       end
     end
   end
