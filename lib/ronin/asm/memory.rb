@@ -60,13 +60,10 @@ module Ronin
       #
       def initialize(base, size: nil)
         @base = base
-        @size = size || if base
-                          base.size
-                        end
-
-        if @size
-          @type = :"mem#{@size * 8}"
-        end
+        @size = size
+        @type = if size then :"mem#{size * 8}"
+                else         :mem
+                end
       end
 
       #
