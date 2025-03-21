@@ -23,8 +23,15 @@ Gem::Tasks.new(sign: {checksum: true, pgp: true})
 
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new
+
+namespace :spec do
+  RSpec::Core::RakeTask.new(:compatibility) do |t|
+    t.rspec_opts = '--tag compatibility'
+  end
+end
+
 task :default => :spec
-task :test    => :spec
+task :test    => [:spec, 'spec:compatibility']
 
 require 'yard'
 YARD::Rake::YardocTask.new
