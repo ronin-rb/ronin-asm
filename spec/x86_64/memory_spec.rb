@@ -30,19 +30,29 @@ describe Ronin::ASM::X86_64::Memory do
       it "must set #base" do
         expect(subject.base).to eq(register)
       end
+    end
 
-      it "must set #size to the base's #size" do
-        expect(subject.size).to eq(subject.base.size)
+    context "when the size: keyword argument is not given" do
+      it "must set #size to nil" do
+        expect(subject.size).to be(nil)
+      end
+
+      it "must set #type to :mem" do
+        expect(subject.type).to be(:mem)
       end
     end
 
-    context "when a size value is given" do
+    context "when the size: keyword argument is given" do
       let(:size) { 2 }
 
       subject { described_class.new(base: register, size: size) }
 
       it "must set #size to the given size value" do
         expect(subject.size).to eq(size)
+      end
+
+      it "must set #type to :mem and the size multiplied by 8" do
+        expect(subject.type).to be(:"mem#{size * 8}")
       end
     end
 
