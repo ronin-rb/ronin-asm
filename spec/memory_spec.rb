@@ -16,8 +16,12 @@ describe Ronin::ASM::Memory do
     end
 
     context "when the size: keyword argument is not given" do
-      it "must set #size to the base's #size" do
-        expect(subject.size).to eq(subject.base.size)
+      it "must set #size to nil" do
+        expect(subject.size).to be(nil)
+      end
+
+      it "must set #type to :mem" do
+        expect(subject.type).to be(:mem)
       end
     end
 
@@ -28,6 +32,10 @@ describe Ronin::ASM::Memory do
 
       it "must set #size to the given size value" do
         expect(subject.size).to eq(size)
+      end
+
+      it "must set #type to :mem and the size multiplied by 8" do
+        expect(subject.type).to be(:"mem#{size * 8}")
       end
     end
   end
@@ -45,8 +53,10 @@ describe Ronin::ASM::Memory do
   end
 
   describe "#size" do
-    it "must return the size of base" do
-      expect(subject.size).to eq(register.size)
+    context "when the #size has not been explicitly set with the `size:` keyword argument" do
+      it "must return nil" do
+        expect(subject.size).to be(nil)
+      end
     end
 
     context "when the #size has been explicitly set with the `size:` keyword argument" do
@@ -98,6 +108,12 @@ describe Ronin::ASM::Memory do
 
       it "must return :mem64" do
         expect(subject.type).to be(:mem64)
+      end
+    end
+
+    context "but #size is nil" do
+      it "must return :mem" do
+        expect(subject.type).to be(:mem)
       end
     end
   end

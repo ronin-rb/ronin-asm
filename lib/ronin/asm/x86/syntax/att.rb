@@ -120,13 +120,6 @@ module Ronin
             line = format_keyword(insn.name)
 
             unless insn.operands.empty?
-              # multiple operands with differing sizes?
-              if (insn.operands.length > 1 && insn.operands.map(&:size).uniq.length > 1) ||
-                 # BUG: `yasm -p gas` assumes `push imm32` == `pushb imm32`
-                 (insn.name == :push && insn.operands[0].kind_of?(Immediate))
-                line << INSTRUCTION_SUFFIXES[insn.max_operand_size]
-              end
-
               line << "\t"
 
               # jump or call instruction?

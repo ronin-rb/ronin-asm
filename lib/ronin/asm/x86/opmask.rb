@@ -72,7 +72,6 @@ module Ronin
 
           @k    = k
           @zero = zero
-
           @type = if zero then :"#{@operand.type}{k}{z}"
                   else         :"#{@operand.type}{k}"
                   end

@@ -40,12 +40,12 @@ module Ronin
 
       # The size of the immediate operand.
       #
-      # @return [1, 2, 4, 8]
+      # @return [1, 2, 4, 8, nil]
       attr_reader :size
 
       # The x86 assembly class type.
       #
-      # @return [:imm8, :imm16, :imm32, :imm64]
+      # @return [:imm8, :imm16, :imm32, :imm64, nil]
       attr_reader :type
 
       #
@@ -59,13 +59,10 @@ module Ronin
       #
       def initialize(value, size: nil)
         @value = value.to_i
-        @size  = size || if @value == 0
-                           1
-                         else
-                           (@value.bit_length / 8.0).ceil
-                         end
-
-        @type = :"imm#{@size * 8}"
+        @size  = size
+        @type  = if size then :"imm#{size * 8}"
+                 else         :imm
+                 end
       end
 
       #
