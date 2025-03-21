@@ -73,20 +73,20 @@ module Ronin
             raise(ArgumentError,"broadcast operand must be a memory operand: #{memory.inspect}")
           end
 
-          unless memory.size
-            raise(ArgumentError,"cannot infer the size of the memory operand: #{memory.inspect}")
-          end
-
           unless RATIOS.include?(ratio)
             raise(ArgumentError,"invalid broadcast ratio: #{ratio.inspect}")
           end
 
-          multiplier = ratio.fetch(1)
-
           super(memory)
 
           @ratio = ratio
-          @type  = :"mem#{memory.size * 8 * multiplier}/#{memory.type}bcst"
+          @type  = if (memory.size && memory.type)
+                     multiplier = ratio.fetch(1)
+
+                     :"mem#{memory.size * 8 * multiplier}/#{memory.type}bcst"
+                   else
+                     :bcst
+                   end
         end
 
         # The memory operand the broadcast is being applied to.

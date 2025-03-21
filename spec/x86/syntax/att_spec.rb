@@ -145,9 +145,9 @@ describe Ronin::ASM::X86::Syntax::ATT do
       let(:operands)    { [operand1, operand2] }
       let(:instruction) { Ronin::ASM::X86::Instruction.new(:mov, *operands) }
 
-      it "must return the instruction name, with a size suffix, and the formatted operands, separated by a tab" do
+      it "must return the instruction name and the formatted operands, separated by a tab" do
         expect(subject.format_instruction(instruction)).to eq(
-          "#{instruction.name}l\t#{subject.format_operands(operands)}"
+          "#{instruction.name}\t#{subject.format_operands(operands)}"
         )
       end
     end
