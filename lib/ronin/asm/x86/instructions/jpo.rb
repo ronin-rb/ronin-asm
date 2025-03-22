@@ -58,10 +58,10 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 1 && @operands[0].type == :rel8
+            if @operands.length == 1 && @operands[0].type_of?(:rel8)
               encoder.write_opcode(0x7b) +
               encoder.write_code_offset(@operands[0],1)
-            elsif @operands.length == 1 && @operands[0].type == :rel32
+            elsif @operands.length == 1 && @operands[0].type_of?(:rel32)
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x8b) +
               encoder.write_code_offset(@operands[0],4)

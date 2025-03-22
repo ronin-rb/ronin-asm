@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 3 && @operands[0].type == :k && @operands[1].type == :k && @operands[2].type == :k
+            if @operands.length == 3 && @operands[0].type_of?(:k) && @operands[1].type_of?(:k) && @operands[2].type_of?(:k)
               encoder.write_vex(type: :vex, w: 0, l: 1, m_mmmm: 0b00001, pp: 0b00, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0x47) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])

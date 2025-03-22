@@ -61,7 +61,7 @@ module Ronin
             if @operands.empty?
               encoder.write_opcode(0xd4) +
               encoder.write_opcode(0x0a)
-            elsif @operands.length == 1 && @operands[0].type == :imm8
+            elsif @operands.length == 1 && @operands[0].type_of?(:imm8)
               encoder.write_opcode(0xd4) +
               encoder.write_immediate(@operands[0],1)
             else

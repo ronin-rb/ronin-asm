@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 1 && @operands[0].type == :reg32
+            if @operands.length == 1 && @operands[0].type_of?(:reg32)
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xc8,@operands[0])
             else

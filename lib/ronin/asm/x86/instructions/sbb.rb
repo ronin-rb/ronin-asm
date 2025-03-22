@@ -58,88 +58,88 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0] == Registers::AL && @operands[1].type == :imm8
+            if @operands.length == 2 && @operands[0] == Registers::AL && @operands[1].type_of?(:imm8)
               encoder.write_opcode(0x1c) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type == :reg8 && @operands[1].type == :imm8
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg8) && @operands[1].type_of?(:imm8)
               encoder.write_opcode(0x80) +
               encoder.write_modrm(0b11,3,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type == :reg8 && @operands[1].type == :reg8
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg8) && @operands[1].type_of?(:reg8)
               encoder.write_opcode(0x18) +
               encoder.write_modrm(0b11,@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type == :reg8 && @operands[1].type == :mem8
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg8) && @operands[1].type_of?(:mem8)
               encoder.write_opcode(0x1a) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0] == Registers::AX && @operands[1].type == :imm16
+            elsif @operands.length == 2 && @operands[0] == Registers::AX && @operands[1].type_of?(:imm16)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x1d) +
               encoder.write_immediate(@operands[1],2)
-            elsif @operands.length == 2 && @operands[0].type == :reg16 && @operands[1].type == :imm8
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg16) && @operands[1].type_of?(:imm8)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x83) +
               encoder.write_modrm(0b11,3,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type == :reg16 && @operands[1].type == :imm16
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg16) && @operands[1].type_of?(:imm16)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x81) +
               encoder.write_modrm(0b11,3,@operands[0]) +
               encoder.write_immediate(@operands[1],2)
-            elsif @operands.length == 2 && @operands[0].type == :reg16 && @operands[1].type == :reg16
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg16) && @operands[1].type_of?(:reg16)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x19) +
               encoder.write_modrm(0b11,@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type == :reg16 && @operands[1].type == :mem16
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg16) && @operands[1].type_of?(:mem16)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x1b) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0] == Registers::EAX && @operands[1].type == :imm32
+            elsif @operands.length == 2 && @operands[0] == Registers::EAX && @operands[1].type_of?(:imm32)
               encoder.write_opcode(0x1d) +
               encoder.write_immediate(@operands[1],4)
-            elsif @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :imm8
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:imm8)
               encoder.write_opcode(0x83) +
               encoder.write_modrm(0b11,3,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :imm32
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:imm32)
               encoder.write_opcode(0x81) +
               encoder.write_modrm(0b11,3,@operands[0]) +
               encoder.write_immediate(@operands[1],4)
-            elsif @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :reg32
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:reg32)
               encoder.write_opcode(0x19) +
               encoder.write_modrm(0b11,@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :mem32
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:mem32)
               encoder.write_opcode(0x1b) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :mem8 && @operands[1].type == :imm8
+            elsif @operands.length == 2 && @operands[0].type_of?(:mem8) && @operands[1].type_of?(:imm8)
               encoder.write_opcode(0x80) +
               encoder.write_modrm(@operands[0],3,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type == :mem8 && @operands[1].type == :reg8
+            elsif @operands.length == 2 && @operands[0].type_of?(:mem8) && @operands[1].type_of?(:reg8)
               encoder.write_opcode(0x18) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type == :mem16 && @operands[1].type == :imm8
+            elsif @operands.length == 2 && @operands[0].type_of?(:mem16) && @operands[1].type_of?(:imm8)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x83) +
               encoder.write_modrm(@operands[0],3,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type == :mem16 && @operands[1].type == :imm16
+            elsif @operands.length == 2 && @operands[0].type_of?(:mem16) && @operands[1].type_of?(:imm16)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x81) +
               encoder.write_modrm(@operands[0],3,@operands[0]) +
               encoder.write_immediate(@operands[1],2)
-            elsif @operands.length == 2 && @operands[0].type == :mem16 && @operands[1].type == :reg16
+            elsif @operands.length == 2 && @operands[0].type_of?(:mem16) && @operands[1].type_of?(:reg16)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x19) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type == :mem32 && @operands[1].type == :imm8
+            elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:imm8)
               encoder.write_opcode(0x83) +
               encoder.write_modrm(@operands[0],3,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type == :mem32 && @operands[1].type == :imm32
+            elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:imm32)
               encoder.write_opcode(0x81) +
               encoder.write_modrm(@operands[0],3,@operands[0]) +
               encoder.write_immediate(@operands[1],4)
-            elsif @operands.length == 2 && @operands[0].type == :mem32 && @operands[1].type == :reg32
+            elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:reg32)
               encoder.write_opcode(0x19) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
             else

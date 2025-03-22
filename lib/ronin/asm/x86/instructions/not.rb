@@ -58,24 +58,24 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 1 && @operands[0].type == :reg8
+            if @operands.length == 1 && @operands[0].type_of?(:reg8)
               encoder.write_opcode(0xf6) +
               encoder.write_modrm(0b11,2,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :reg16
+            elsif @operands.length == 1 && @operands[0].type_of?(:reg16)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0xf7) +
               encoder.write_modrm(0b11,2,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :reg32
+            elsif @operands.length == 1 && @operands[0].type_of?(:reg32)
               encoder.write_opcode(0xf7) +
               encoder.write_modrm(0b11,2,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :mem8
+            elsif @operands.length == 1 && @operands[0].type_of?(:mem8)
               encoder.write_opcode(0xf6) +
               encoder.write_modrm(@operands[0],2,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :mem16
+            elsif @operands.length == 1 && @operands[0].type_of?(:mem16)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0xf7) +
               encoder.write_modrm(@operands[0],2,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :mem32
+            elsif @operands.length == 1 && @operands[0].type_of?(:mem32)
               encoder.write_opcode(0xf7) +
               encoder.write_modrm(@operands[0],2,@operands[0])
             else
