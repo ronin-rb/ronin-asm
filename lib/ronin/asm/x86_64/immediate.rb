@@ -34,6 +34,34 @@ module Ronin
         include Operand
 
         #
+        # Determines if the immediate operand is equal to or compatible with the
+        # given type.
+        #
+        # @param [Symbol] type
+        # @return [Boolean]
+        #
+        # @example
+        #   imm64.type_of?(:imm)
+        #   # => true
+        #   imm64.type_of?(:imm64)
+        #   # => true
+        #   imm64.type_of?(:imm32)
+        #   # => false
+        #   imm64.type_of?(:reg32)
+        #   # => false
+        #
+        # @note
+        #   Immediate operands without a defined size will match `:imm8`,
+        #   `:imm16`, `:imm32`, and `:imm64`, as a size-less immediate operand
+        #   can be implicitly typecast to a sized immediate operand.
+        #
+        def type_of?(type)
+          (@type == :imm && type == :imm64) ||
+          (@type == :imm64 && type == :imm) ||
+          super(type)
+        end
+
+        #
         # Converts the immediate into a String.
         #
         # @return [String]
