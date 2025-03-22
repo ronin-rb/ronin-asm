@@ -58,37 +58,37 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 1 && @operands[0].type == :reg8
+            if @operands.length == 1 && @operands[0].type_of?(:reg8)
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0xf6) +
               encoder.write_modrm(0b11,7,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :reg16
+            elsif @operands.length == 1 && @operands[0].type_of?(:reg16)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0xf7) +
               encoder.write_modrm(0b11,7,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :reg32
+            elsif @operands.length == 1 && @operands[0].type_of?(:reg32)
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0xf7) +
               encoder.write_modrm(0b11,7,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :reg64
+            elsif @operands.length == 1 && @operands[0].type_of?(:reg64)
               encoder.write_rex(mandatory: true, w: 1, b: @operands[0]) +
               encoder.write_opcode(0xf7) +
               encoder.write_modrm(0b11,7,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :mem8
+            elsif @operands.length == 1 && @operands[0].type_of?(:mem8)
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xf6) +
               encoder.write_modrm(@operands[0],7,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :mem16
+            elsif @operands.length == 1 && @operands[0].type_of?(:mem16)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xf7) +
               encoder.write_modrm(@operands[0],7,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :mem32
+            elsif @operands.length == 1 && @operands[0].type_of?(:mem32)
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xf7) +
               encoder.write_modrm(@operands[0],7,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :mem64
+            elsif @operands.length == 1 && @operands[0].type_of?(:mem64)
               encoder.write_rex(mandatory: true, w: 1, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xf7) +
               encoder.write_modrm(@operands[0],7,@operands[0])

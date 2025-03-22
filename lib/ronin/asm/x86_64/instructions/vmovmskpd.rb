@@ -58,11 +58,11 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :xmm
+            if @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:xmm)
               encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b01, r: @operands[0], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x50) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :ymm
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:ymm)
               encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00001, pp: 0b01, r: @operands[0], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x50) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
