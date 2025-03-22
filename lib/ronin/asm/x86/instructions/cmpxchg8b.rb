@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 1 && @operands[0].type == :mem64
+            if @operands.length == 1 && @operands[0].type_of?(:mem64)
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xc7) +
               encoder.write_modrm(@operands[0],1,@operands[0])

@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 1 && @operands[0].type == :imm8
+            if @operands.length == 1 && @operands[0].type_of?(:imm8)
               encoder.write_opcode(0xcd) +
               encoder.write_immediate(@operands[0],1)
             else

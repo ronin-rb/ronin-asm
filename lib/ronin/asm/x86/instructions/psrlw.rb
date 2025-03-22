@@ -58,31 +58,31 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :mmx && @operands[1].type == :imm8
+            if @operands.length == 2 && @operands[0].type_of?(:mmx) && @operands[1].type_of?(:imm8)
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x71) +
               encoder.write_modrm(0b11,2,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type == :mmx && @operands[1].type == :mmx
+            elsif @operands.length == 2 && @operands[0].type_of?(:mmx) && @operands[1].type_of?(:mmx)
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xd1) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :mmx && @operands[1].type == :mem64
+            elsif @operands.length == 2 && @operands[0].type_of?(:mmx) && @operands[1].type_of?(:mem64)
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xd1) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :imm8
+            elsif @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:imm8)
               encoder.write_prefix(0x66, mandatory: true) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x71) +
               encoder.write_modrm(0b11,2,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :xmm
+            elsif @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm)
               encoder.write_prefix(0x66, mandatory: true) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xd1) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem128
+            elsif @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:mem128)
               encoder.write_prefix(0x66, mandatory: true) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xd1) +
