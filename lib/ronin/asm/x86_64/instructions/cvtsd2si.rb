@@ -58,25 +58,25 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :xmm
+            if @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:xmm)
               encoder.write_prefix(0xf2, mandatory: true) +
               encoder.write_rex(mandatory: false, w: 0, r: @operands[0], b: @operands[1]) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x2d) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :mem64
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:mem64)
               encoder.write_prefix(0xf2, mandatory: true) +
               encoder.write_rex(mandatory: false, w: 0, r: @operands[0], x: @operands[1], b: @operands[1]) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x2d) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :reg64 && @operands[1].type == :xmm
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg64) && @operands[1].type_of?(:xmm)
               encoder.write_prefix(0xf2, mandatory: true) +
               encoder.write_rex(mandatory: true, w: 1, r: @operands[0], b: @operands[1]) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x2d) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :reg64 && @operands[1].type == :mem64
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg64) && @operands[1].type_of?(:mem64)
               encoder.write_prefix(0xf2, mandatory: true) +
               encoder.write_rex(mandatory: true, w: 1, r: @operands[0], x: @operands[1], b: @operands[1]) +
               encoder.write_opcode(0x0f) +

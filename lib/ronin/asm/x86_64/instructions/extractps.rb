@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 3 && @operands[0].type == :reg32 && @operands[1].type == :xmm && @operands[2].type == :imm8
+            if @operands.length == 3 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:imm8)
               encoder.write_prefix(0x66, mandatory: true) +
               encoder.write_rex(mandatory: false, w: 0, r: @operands[1], b: @operands[0]) +
               encoder.write_opcode(0x0f) +
@@ -66,7 +66,7 @@ module Ronin
               encoder.write_opcode(0x17) +
               encoder.write_modrm(0b11,@operands[1],@operands[0]) +
               encoder.write_immediate(@operands[2],1)
-            elsif @operands.length == 3 && @operands[0].type == :mem32 && @operands[1].type == :xmm && @operands[2].type == :imm8
+            elsif @operands.length == 3 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:imm8)
               encoder.write_prefix(0x66, mandatory: true) +
               encoder.write_rex(mandatory: false, w: 0, r: @operands[1], x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0x0f) +
