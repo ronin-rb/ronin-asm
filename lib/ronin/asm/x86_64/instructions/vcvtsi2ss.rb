@@ -58,43 +58,43 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :reg32
+            if @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:reg32)
               encoder.write_vex(type: :vex, w: 0, m_mmmm: 0b00001, pp: 0b10, r: @operands[0], b: @operands[2], vvvv: @operands[1]) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :reg32
+            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:reg32)
               encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[2], x: @operands[2], b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :reg64
+            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:reg64)
               encoder.write_vex(type: :vex, w: 1, m_mmmm: 0b00001, pp: 0b10, r: @operands[0], b: @operands[2], vvvv: @operands[1]) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :reg64
+            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:reg64)
               encoder.write_evex(mmm: 0b001, pp: 0b10, w: 1, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[2], x: @operands[2], b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :mem32
+            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem32)
               encoder.write_vex(type: :vex, w: 0, m_mmmm: 0b00001, pp: 0b10, r: @operands[0], x: @operands[2], b: @operands[2], vvvv: @operands[1]) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :mem32
+            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem32)
               encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, ll: 0b00, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[2], x: @operands[2], b: 0, aaa: 0, z: 0, disp8xN: 4) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :mem64
+            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem64)
               encoder.write_vex(type: :vex, w: 1, m_mmmm: 0b00001, pp: 0b10, r: @operands[0], x: @operands[2], b: @operands[2], vvvv: @operands[1]) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :mem64
+            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem64)
               encoder.write_evex(mmm: 0b001, pp: 0b10, w: 1, ll: 0b00, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[2], x: @operands[2], b: 0, aaa: 0, z: 0, disp8xN: 8) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 4 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :"{er}" && @operands[3].type == :reg32
+            elsif @operands.length == 4 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:"{er}") && @operands[3].type_of?(:reg32)
               encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, ll: @operands[2], vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[3], x: @operands[3], b: 1, aaa: 0, z: 0) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(0b11,@operands[0],@operands[3])
-            elsif @operands.length == 4 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :"{er}" && @operands[3].type == :reg64
+            elsif @operands.length == 4 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:"{er}") && @operands[3].type_of?(:reg64)
               encoder.write_evex(mmm: 0b001, pp: 0b10, w: 1, ll: @operands[2], vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[3], x: @operands[3], b: 1, aaa: 0, z: 0) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(0b11,@operands[0],@operands[3])

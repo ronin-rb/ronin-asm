@@ -58,15 +58,15 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :k && @operands[1].type == :xmm
+            if @operands.length == 2 && @operands[0].type_of?(:k) && @operands[1].type_of?(:xmm)
               encoder.write_evex(mmm: 0b010, pp: 0b10, w: 1, ll: 0b00, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x39) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :k && @operands[1].type == :ymm
+            elsif @operands.length == 2 && @operands[0].type_of?(:k) && @operands[1].type_of?(:ymm)
               encoder.write_evex(mmm: 0b010, pp: 0b10, w: 1, ll: 0b01, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x39) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :k && @operands[1].type == :zmm
+            elsif @operands.length == 2 && @operands[0].type_of?(:k) && @operands[1].type_of?(:zmm)
               encoder.write_evex(mmm: 0b010, pp: 0b10, w: 1, ll: 0b10, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x39) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
