@@ -42,11 +42,9 @@ module CodeGen
           "@operands[#{index}] == Registers::#{operand.type.upcase}"
         elsif operand.specific_immediate?
           "(@operands[#{index}].kind_of?(Immediate) && @operands[#{index}].value == #{operand.type})"
-        elsif operand.any_memory_type?
-          "@operands[#{index}].mem?"
         else
-          # compare the operand's type
-          "@operands[#{index}].type == #{operand.ronin_type.inspect}"
+          # use Operand#type_of? to fuzzy match the operand's type
+          "@operands[#{index}].type_of?(#{operand.ronin_type.inspect})"
         end
       end
 
