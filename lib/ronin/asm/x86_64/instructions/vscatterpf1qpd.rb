@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 1 && @operands[0].type == :"vm64z{k}"
+            if @operands.length == 1 && @operands[0].type_of?(:"vm64z{k}")
               encoder.write_evex(mmm: 0b010, pp: 0b01, w: 1, ll: 0b10, vvvv: 0, v: @operands[0], _B: @operands[0], x: @operands[0], b: 0, aaa: @operands[0], z: 0, disp8xN: 8) +
               encoder.write_opcode(0xc7) +
               encoder.write_modrm(@operands[0],6,@operands[0])
