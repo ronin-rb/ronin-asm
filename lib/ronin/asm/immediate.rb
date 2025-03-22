@@ -109,6 +109,32 @@ module Ronin
       end
 
       #
+      # Determines if the immediate operand is equal to or compatible with the
+      # given type.
+      #
+      # @param [Symbol] type
+      # @return [Boolean]
+      #
+      # @example
+      #   imm32.type_of?(:imm)
+      #   # => true
+      #   imm32.type_of?(:imm32)
+      #   # => true
+      #   imm32.type_of?(:reg32)
+      #   # => false
+      #
+      # @note
+      #   Immediate operands without a defined size will match `:imm8`, `:imm16`,
+      #   `:imm32`, as a size-less immediate operand can be implicitly typecast
+      #   to a sized immediate operand.
+      #
+      def type_of?(type)
+        type == :imm ||
+        (@type == :imm && (type == :imm8 || type == :imm16 || type == :imm32)) ||
+        (@type == type)
+      end
+
+      #
       # Changes the size of the immediate operand.
       #
       # @param [Integer] new_size
