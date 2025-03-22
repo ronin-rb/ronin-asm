@@ -58,23 +58,23 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :k && @operands[1].type == :k
+            if @operands.length == 2 && @operands[0].type_of?(:k) && @operands[1].type_of?(:k)
               encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00001, pp: 0b01, r: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x90) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :k && @operands[1].type == :reg32
+            elsif @operands.length == 2 && @operands[0].type_of?(:k) && @operands[1].type_of?(:reg32)
               encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00001, pp: 0b01, r: 0, b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x92) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :k && @operands[1].type == :mem8
+            elsif @operands.length == 2 && @operands[0].type_of?(:k) && @operands[1].type_of?(:mem8)
               encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00001, pp: 0b01, r: 0, x: @operands[1], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x90) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :reg32 && @operands[1].type == :k
+            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:k)
               encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00001, pp: 0b01, r: @operands[0], b: 0, vvvv: 0) +
               encoder.write_opcode(0x93) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :mem8 && @operands[1].type == :k
+            elsif @operands.length == 2 && @operands[0].type_of?(:mem8) && @operands[1].type_of?(:k)
               encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00001, pp: 0b01, r: 0, x: @operands[0], b: @operands[0], vvvv: 0) +
               encoder.write_opcode(0x91) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
