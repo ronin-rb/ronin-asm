@@ -120,6 +120,8 @@ module Ronin
       #   # => true
       #   imm32.type_of?(:imm32)
       #   # => true
+      #   imm32.type_of?(:imm16)
+      #   # => false
       #   imm32.type_of?(:reg32)
       #   # => false
       #
@@ -129,9 +131,9 @@ module Ronin
       #   to a sized immediate operand.
       #
       def type_of?(type)
-        type == :imm ||
+        (@type == type) ||
         (@type == :imm && (type == :imm8 || type == :imm16 || type == :imm32)) ||
-        (@type == type)
+        (type == :imm)
       end
 
       #
