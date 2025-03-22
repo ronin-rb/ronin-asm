@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 1 && @operands[0].type == :mem8
+            if @operands.length == 1 && @operands[0].type_of?(:mem8)
               encoder.write_prefix(0x66, mandatory: true) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xae) +

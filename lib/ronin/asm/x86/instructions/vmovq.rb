@@ -58,27 +58,27 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :xmm
+            if @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm)
               encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b10, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x7e) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :xmm
+            elsif @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm)
               encoder.write_evex(mmm: 0b001, pp: 0b10, ll: 0b00, w: 1, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x7e) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem64
+            elsif @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:mem64)
               encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b10, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x7e) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :xmm && @operands[1].type == :mem64
+            elsif @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:mem64)
               encoder.write_evex(mmm: 0b001, pp: 0b10, ll: 0b00, w: 1, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 8) +
               encoder.write_opcode(0x7e) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type == :mem64 && @operands[1].type == :xmm
+            elsif @operands.length == 2 && @operands[0].type_of?(:mem64) && @operands[1].type_of?(:xmm)
               encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b01, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0xd6) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type == :mem64 && @operands[1].type == :xmm
+            elsif @operands.length == 2 && @operands[0].type_of?(:mem64) && @operands[1].type_of?(:xmm)
               encoder.write_evex(mmm: 0b001, pp: 0b01, ll: 0b00, w: 1, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 8) +
               encoder.write_opcode(0xd6) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
