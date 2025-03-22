@@ -219,6 +219,86 @@ describe Ronin::ASM::X86_64::Memory do
     end
   end
 
+  describe "#type_of?" do
+    context "when given :mem" do
+      it "must return true" do
+        expect(subject.type_of?(:mem)).to be(true)
+      end
+    end
+
+    context "when the #type is :mem" do
+      subject { described_class.new(base: register) }
+
+      context "and when given :mem8" do
+        it "must return true" do
+          expect(subject.type_of?(:mem8)).to be(true)
+        end
+      end
+
+      context "and when given :mem16" do
+        it "must return true" do
+          expect(subject.type_of?(:mem16)).to be(true)
+        end
+      end
+
+      context "and when given :mem32" do
+        it "must return true" do
+          expect(subject.type_of?(:mem32)).to be(true)
+        end
+      end
+
+      context "and when given :mem64" do
+        it "must return true" do
+          expect(subject.type_of?(:mem64)).to be(true)
+        end
+      end
+    end
+
+    context "when given :sibmem" do
+      context "when only #index is set" do
+        subject do
+          described_class.new(base: register, index: register)
+        end
+
+        it "must return true" do
+          expect(subject.type_of?(:sibmem)).to be(true)
+        end
+      end
+
+      context "when #index and #scale are set" do
+        subject do
+          described_class.new(base: register, index: register, scale: 4)
+        end
+
+        it "must return true" do
+          expect(subject.type_of?(:sibmem)).to be(true)
+        end
+      end
+
+      context "when #index and #scale are not set" do
+        subject do
+          described_class.new(base: register, displacement: 10)
+        end
+
+        it "must return false" do
+          expect(subject.type_of?(:sibmem)).to be(false)
+        end
+      end
+    end
+
+    context "when the given type equals #type" do
+      it "must return true" do
+        expect(subject.type_of?(subject.type)).to be(true)
+      end
+    end
+
+    context "when the given type does not equal #type" do
+      it "must return false" do
+        expect(subject.type_of?(:foo)).to be(false)
+      end
+    end
+  end
+
   describe "#+" do
     let(:operand) do
       described_class.new(

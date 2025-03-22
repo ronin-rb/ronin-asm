@@ -34,6 +34,32 @@ module Ronin
         include Operand
 
         #
+        # Determines if the memory operand is equal to or compatible with the
+        # given type.
+        #
+        # @param [Symbol] type
+        # @return [Boolean]
+        #
+        # @example
+        #   mem64.type_of?(:mem)
+        #   # => true
+        #   mem64.type_of?(:mem64)
+        #   # => true
+        #   mem64.type_of?(:mem32)
+        #   # => false
+        #   mem64.type_of?(:reg64)
+        #   # => false
+        #
+        # @note
+        #   Memory operands without a defined size will match `:mem8`, `:mem16`,
+        #   `:mem32`, and `:mem64`, a size-less memory operands can be implicitly
+        #   typecast to a sized memory operand.
+        #
+        def type_of?(type)
+          (type == :sibmem && sibmem?) || super(type)
+        end
+
+        #
         # Determines if the operand is scale-index-base memory operand.
         #
         # @return [Boolean]
