@@ -135,6 +135,32 @@ module Ronin
       end
 
       #
+      # Determines if the memory operand is equal to or compatible with the
+      # given type.
+      #
+      # @param [Symbol] type
+      # @return [Boolean]
+      #
+      # @example
+      #   mem32.type_of?(:mem)
+      #   # => true
+      #   mem32.type_of?(:mem32)
+      #   # => true
+      #   mem32.type_of?(:reg32)
+      #   # => false
+      #
+      # @note
+      #   Memory operands without a defined size will match `:mem8`, `:mem16`,
+      #   `:mem32`, as a size-less memory operand can be implicitly typecast to
+      #   a sized memory operand.
+      #
+      def type_of?(type)
+        type == :mem ||
+        (@type == :mem && (type == :mem8 || type == :mem16 || type == :mem32)) ||
+        (@type == type)
+      end
+
+      #
       # Changes the size of the memory.
       #
       # @return [Memory]
