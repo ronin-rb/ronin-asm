@@ -60,7 +60,7 @@ module Ronin
           def encode(encoder)
             if @operands.empty?
               encoder.write_opcode(0xc3)
-            elsif @operands.length == 1 && @operands[0].type == :imm16
+            elsif @operands.length == 1 && @operands[0].type_of?(:imm16)
               encoder.write_opcode(0xc2) +
               encoder.write_immediate(@operands[0],2)
             else

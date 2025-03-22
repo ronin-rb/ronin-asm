@@ -58,7 +58,7 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type == :mmx && @operands[1].type == :mmx
+            if @operands.length == 2 && @operands[0].type_of?(:mmx) && @operands[1].type_of?(:mmx)
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xf7) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])

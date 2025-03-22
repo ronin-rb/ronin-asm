@@ -58,27 +58,27 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 3 && @operands[0].type == :"xmm{k}{z}" && @operands[1].type == :xmm && @operands[2].type == :xmm
+            if @operands.length == 3 && @operands[0].type_of?(:"xmm{k}{z}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm)
               encoder.write_evex(mmm: 0b110, pp: 0b01, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0xaf) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :"xmm{k}{z}" && @operands[1].type == :xmm && @operands[2].type == :mem16
+            elsif @operands.length == 3 && @operands[0].type_of?(:"xmm{k}{z}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem16)
               encoder.write_evex(mmm: 0b110, pp: 0b01, w: 0, ll: 0b00, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0], disp8xN: 4) +
               encoder.write_opcode(0xaf) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :xmm
+            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm)
               encoder.write_evex(mmm: 0b110, pp: 0b01, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0xaf) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :mem16
+            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem16)
               encoder.write_evex(mmm: 0b110, pp: 0b01, w: 0, ll: 0b00, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 4) +
               encoder.write_opcode(0xaf) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 4 && @operands[0].type == :"xmm{k}{z}" && @operands[1].type == :xmm && @operands[2].type == :xmm && @operands[3].type == :"{er}"
+            elsif @operands.length == 4 && @operands[0].type_of?(:"xmm{k}{z}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm) && @operands[3].type_of?(:"{er}")
               encoder.write_evex(mmm: 0b110, pp: 0b01, w: 0, ll: @operands[3], vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 1, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0xaf) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 4 && @operands[0].type == :xmm && @operands[1].type == :xmm && @operands[2].type == :xmm && @operands[3].type == :"{er}"
+            elsif @operands.length == 4 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm) && @operands[3].type_of?(:"{er}")
               encoder.write_evex(mmm: 0b110, pp: 0b01, w: 0, ll: @operands[3], vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 1, aaa: 0, z: 0) +
               encoder.write_opcode(0xaf) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])

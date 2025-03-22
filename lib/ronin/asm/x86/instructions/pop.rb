@@ -58,16 +58,16 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 1 && @operands[0].type == :reg16
+            if @operands.length == 1 && @operands[0].type_of?(:reg16)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x58,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :reg32
+            elsif @operands.length == 1 && @operands[0].type_of?(:reg32)
               encoder.write_opcode(0x58,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :mem16
+            elsif @operands.length == 1 && @operands[0].type_of?(:mem16)
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x8f) +
               encoder.write_modrm(@operands[0],0,@operands[0])
-            elsif @operands.length == 1 && @operands[0].type == :mem32
+            elsif @operands.length == 1 && @operands[0].type_of?(:mem32)
               encoder.write_opcode(0x8f) +
               encoder.write_modrm(@operands[0],0,@operands[0])
             else
