@@ -709,16 +709,40 @@ describe Ronin::ASM::Program do
     context "when initialized with `arch: :x86`" do
       subject do
         described_class.new(arch: :x86) do
-          push eax
-          push ebx
-          push ecx
+          # instruction without operands
+          nop
 
-          mov ebx, eax
-          mov ebx, [eax]
-          mov ebx, [eax+4]
-          mov ebx, [eax+esi]
-          mov ebx, [eax+(esi*4)]
-          mov ebx, [eax+(esi*4)+10]
+          # register operands
+          inc al
+          inc ax
+          inc eax
+
+          # immediate operands without size specifiers
+          mov eax, 0xff
+          mov eax, 0xffff
+          mov eax, 0xffffffff
+
+          # immediate operands with size specifiers
+          mov al, byte(0xff)
+          mov ax, word(0xffff)
+          mov eax, dword(0xffffffff)
+
+          # memory operands without size specifiers
+          mov al, [ebx]
+          mov ax, [ebx]
+          mov eax, [ebx]
+
+          # memory operands with size specifiers
+          mov al, byte([ebx])
+          mov ax, word([ebx])
+          mov eax, dword([ebx])
+
+          # SIB memory operands
+          mov eax, [ebx]
+          mov eax, [ebx+10]
+          mov eax, [ebx+esi]
+          mov eax, [ebx+(esi*4)]
+          mov eax, [ebx+(esi*4)+10]
         end
       end
 
@@ -728,15 +752,27 @@ describe Ronin::ASM::Program do
             BITS 32
             section .text
             _start:
-            \tpush\teax
-            \tpush\tebx
-            \tpush\tecx
-            \tmov\tebx,\teax
-            \tmov\tebx,\t[eax]
-            \tmov\tebx,\t[eax+4]
-            \tmov\tebx,\t[eax+esi]
-            \tmov\tebx,\t[eax+esi*4]
-            \tmov\tebx,\t[eax+esi*4+10]
+            \tnop
+            \tinc\tal
+            \tinc\tax
+            \tinc\teax
+            \tmov\teax,\t0xff
+            \tmov\teax,\t0xffff
+            \tmov\teax,\t0xffffffff
+            \tmov\tal,\tBYTE 0xff
+            \tmov\tax,\tWORD 0xffff
+            \tmov\teax,\tDWORD 0xffffffff
+            \tmov\tal,\t[ebx]
+            \tmov\tax,\t[ebx]
+            \tmov\teax,\t[ebx]
+            \tmov\tal,\tBYTE [ebx]
+            \tmov\tax,\tWORD [ebx]
+            \tmov\teax,\tDWORD [ebx]
+            \tmov\teax,\t[ebx]
+            \tmov\teax,\t[ebx+10]
+            \tmov\teax,\t[ebx+esi]
+            \tmov\teax,\t[ebx+esi*4]
+            \tmov\teax,\t[ebx+esi*4+10]
           ASM
         )
       end
@@ -788,15 +824,27 @@ describe Ronin::ASM::Program do
               .code32
               .text
               _start:
-              \tpush\t%eax
-              \tpush\t%ebx
-              \tpush\t%ecx
-              \tmov\t%eax,\t%ebx
-              \tmov\t(%eax),\t%ebx
-              \tmov\t4(%eax),\t%ebx
-              \tmov\t(%eax,%esi),\t%ebx
-              \tmov\t(%eax,%esi,4),\t%ebx
-              \tmov\t10(%eax,%esi,4),\t%ebx
+              \tnop
+              \tinc\t%al
+              \tinc\t%ax
+              \tinc\t%eax
+              \tmov\t$0xff,\t%eax
+              \tmov\t$0xffff,\t%eax
+              \tmov\t$0xffffffff,\t%eax
+              \tmov\t$0xff,\t%al
+              \tmov\t$0xffff,\t%ax
+              \tmov\t$0xffffffff,\t%eax
+              \tmov\t(%ebx),\t%al
+              \tmov\t(%ebx),\t%ax
+              \tmov\t(%ebx),\t%eax
+              \tmov\t(%ebx),\t%al
+              \tmov\t(%ebx),\t%ax
+              \tmov\t(%ebx),\t%eax
+              \tmov\t(%ebx),\t%eax
+              \tmov\t10(%ebx),\t%eax
+              \tmov\t(%ebx,%esi),\t%eax
+              \tmov\t(%ebx,%esi,4),\t%eax
+              \tmov\t10(%ebx,%esi,4),\t%eax
             ASM
           )
         end
@@ -826,16 +874,45 @@ describe Ronin::ASM::Program do
     context "when initialized with `arch: :x86_64`" do
       subject do
         described_class.new(arch: :x86_64) do
-          push rax
-          push rbx
-          push rcx
+          # instruction without operands
+          nop
 
-          mov rbx, rax
-          mov rbx, [rax]
-          mov rbx, [rax+4]
-          mov rbx, [rax+rsi]
-          mov rbx, [rax+(rsi*4)]
-          mov rbx, [rax+(rsi*4)+10]
+          # register operands
+          inc al
+          inc ax
+          inc eax
+          inc rax
+
+          # immediate operands without size specifiers
+          mov eax, 0xff
+          mov eax, 0xffff
+          mov eax, 0xffffffff
+          mov rax, 0xffffffffffffffff
+
+          # immediate operands with size specifiers
+          mov al, byte(0xff)
+          mov ax, word(0xffff)
+          mov eax, dword(0xffffffff)
+          mov rax, qword(0xffffffffffffffff)
+
+          # memory operands without size specifiers
+          mov al, [ebx]
+          mov ax, [ebx]
+          mov eax, [ebx]
+          mov rax, [rbx]
+
+          # memory operands with size specifiers
+          mov al, byte([ebx])
+          mov ax, word([ebx])
+          mov eax, dword([ebx])
+          mov rax, qword([rbx])
+
+          # SIB memory operands
+          mov rax, [rbx]
+          mov rax, [rbx+10]
+          mov rax, [rbx+rsi]
+          mov rax, [rbx+(rsi*4)]
+          mov rax, [rbx+(rsi*4)+10]
         end
       end
 
@@ -845,15 +922,32 @@ describe Ronin::ASM::Program do
             BITS 64
             section .text
             _start:
-            \tpush\trax
-            \tpush\trbx
-            \tpush\trcx
-            \tmov\trbx,\trax
-            \tmov\trbx,\t[rax]
-            \tmov\trbx,\t[rax+4]
-            \tmov\trbx,\t[rax+rsi]
-            \tmov\trbx,\t[rax+rsi*4]
-            \tmov\trbx,\t[rax+rsi*4+10]
+            \tnop
+            \tinc\tal
+            \tinc\tax
+            \tinc\teax
+            \tinc\trax
+            \tmov\teax,\t0xff
+            \tmov\teax,\t0xffff
+            \tmov\teax,\t0xffffffff
+            \tmov\trax,\t0xffffffffffffffff
+            \tmov\tal,\tBYTE 0xff
+            \tmov\tax,\tWORD 0xffff
+            \tmov\teax,\tDWORD 0xffffffff
+            \tmov\trax,\tQWORD 0xffffffffffffffff
+            \tmov\tal,\t[ebx]
+            \tmov\tax,\t[ebx]
+            \tmov\teax,\t[ebx]
+            \tmov\trax,\t[rbx]
+            \tmov\tal,\tBYTE [ebx]
+            \tmov\tax,\tWORD [ebx]
+            \tmov\teax,\tDWORD [ebx]
+            \tmov\trax,\tQWORD [rbx]
+            \tmov\trax,\t[rbx]
+            \tmov\trax,\t[rbx+10]
+            \tmov\trax,\t[rbx+rsi]
+            \tmov\trax,\t[rbx+rsi*4]
+            \tmov\trax,\t[rbx+rsi*4+10]
           ASM
         )
       end
@@ -905,15 +999,32 @@ describe Ronin::ASM::Program do
               .code64
               .text
               _start:
-              \tpush\t%rax
-              \tpush\t%rbx
-              \tpush\t%rcx
-              \tmov\t%rax,\t%rbx
-              \tmov\t(%rax),\t%rbx
-              \tmov\t4(%rax),\t%rbx
-              \tmov\t(%rax,%rsi),\t%rbx
-              \tmov\t(%rax,%rsi,4),\t%rbx
-              \tmov\t10(%rax,%rsi,4),\t%rbx
+              \tnop
+              \tinc\t%al
+              \tinc\t%ax
+              \tinc\t%eax
+              \tinc\t%rax
+              \tmov\t$0xff,\t%eax
+              \tmov\t$0xffff,\t%eax
+              \tmov\t$0xffffffff,\t%eax
+              \tmov\t$0xffffffffffffffff,\t%rax
+              \tmov\t$0xff,\t%al
+              \tmov\t$0xffff,\t%ax
+              \tmov\t$0xffffffff,\t%eax
+              \tmov\t$0xffffffffffffffff,\t%rax
+              \tmov\t(%ebx),\t%al
+              \tmov\t(%ebx),\t%ax
+              \tmov\t(%ebx),\t%eax
+              \tmov\t(%rbx),\t%rax
+              \tmov\t(%ebx),\t%al
+              \tmov\t(%ebx),\t%ax
+              \tmov\t(%ebx),\t%eax
+              \tmov\t(%rbx),\t%rax
+              \tmov\t(%rbx),\t%rax
+              \tmov\t10(%rbx),\t%rax
+              \tmov\t(%rbx,%rsi),\t%rax
+              \tmov\t(%rbx,%rsi,4),\t%rax
+              \tmov\t10(%rbx,%rsi,4),\t%rax
             ASM
           )
         end
