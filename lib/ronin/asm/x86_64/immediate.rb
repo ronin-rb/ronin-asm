@@ -56,7 +56,7 @@ module Ronin
         #   can be implicitly typecast to a sized immediate operand.
         #
         def type_of?(type)
-          (@type == :imm && type == :imm64) ||
+          (@type == :imm && type == :imm64 && @value.bit_length <= 64) ||
           (@type == :imm64 && type == :imm) ||
           super(type)
         end
