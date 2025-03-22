@@ -132,7 +132,11 @@ module Ronin
       #
       def type_of?(type)
         (@type == type) ||
-        (@type == :imm && (type == :imm8 || type == :imm16 || type == :imm32)) ||
+        (@type == :imm && (
+          (type == :imm8  && @value.bit_length <= 8)  ||
+          (type == :imm16 && @value.bit_length <= 16) ||
+          (type == :imm32 && @value.bit_length <= 32)
+        )) ||
         (type == :imm)
       end
 
