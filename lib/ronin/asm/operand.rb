@@ -146,6 +146,16 @@ module Ronin
       def mem64? = false
 
       #
+      # Determines if the immediate operand is equal to the given type.
+      #
+      # @param [Symbol] type
+      # @return [Boolean]
+      #
+      def type_of?(type)
+        self.type == type
+      end
+
+      #
       # Changes the size of the operand.
       #
       # @return [Operand]
