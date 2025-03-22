@@ -25,26 +25,74 @@ describe Ronin::ASM::X86_64::Immediate do
       subject { described_class.new(value) }
 
       context "and when given :imm8" do
-        it "must return true" do
-          expect(subject.type_of?(:imm8)).to be(true)
+        context "and the value's bit length is less or equal to 8 bits" do
+          let(:value) { 0xff }
+
+          it "must return true" do
+            expect(subject.type_of?(:imm8)).to be(true)
+          end
+        end
+
+        context "but the value's bit length exceeds 8 bits" do
+          let(:value) { 0x100 }
+
+          it "must return false" do
+            expect(subject.type_of?(:imm8)).to be(false)
+          end
         end
       end
 
       context "and when given :imm16" do
-        it "must return true" do
-          expect(subject.type_of?(:imm16)).to be(true)
+        context "and the value's bit length is less or equal to 16 bits" do
+          let(:value) { 0xffff }
+
+          it "must return true" do
+            expect(subject.type_of?(:imm16)).to be(true)
+          end
+        end
+
+        context "but the value's bit length exceeds 16 bits" do
+          let(:value) { 0x10000 }
+
+          it "must return false" do
+            expect(subject.type_of?(:imm16)).to be(false)
+          end
         end
       end
 
       context "and when given :imm32" do
-        it "must return true" do
-          expect(subject.type_of?(:imm32)).to be(true)
+        context "and the value's bit length is less or equal to 32 bits" do
+          let(:value) { 0xffffffff }
+
+          it "must return true" do
+            expect(subject.type_of?(:imm32)).to be(true)
+          end
+        end
+
+        context "but the value's bit length exceeds 32 bits" do
+          let(:value) { 0x100000000 }
+
+          it "must return false" do
+            expect(subject.type_of?(:imm32)).to be(false)
+          end
         end
       end
 
       context "and when given :imm64" do
-        it "must return true" do
-          expect(subject.type_of?(:imm64)).to be(true)
+        context "and the value's bit length is less or equal to 64 bits" do
+          let(:value) { 0xffffffffffffffff }
+
+          it "must return true" do
+            expect(subject.type_of?(:imm64)).to be(true)
+          end
+        end
+
+        context "but the value's bit length exceeds 64 bits" do
+          let(:value) { 0x10000000000000000 }
+
+          it "must return false" do
+            expect(subject.type_of?(:imm64)).to be(false)
+          end
         end
       end
     end
