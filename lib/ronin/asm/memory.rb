@@ -146,18 +146,20 @@ module Ronin
       #   # => true
       #   mem32.type_of?(:mem32)
       #   # => true
+      #   mem32.type_of?(:mem64)
+      #   # => false
       #   mem32.type_of?(:reg32)
       #   # => false
       #
       # @note
       #   Memory operands without a defined size will match `:mem8`, `:mem16`,
-      #   `:mem32`, as a size-less memory operand can be implicitly typecast to
-      #   a sized memory operand.
+      #   `:mem32`, `:mem64` as a size-less memory operand can be implicitly
+      #   typecast to a sized memory operand.
       #
       def type_of?(type)
-        type == :mem ||
-        (@type == :mem && (type == :mem8 || type == :mem16 || type == :mem32)) ||
-        (@type == type)
+        (@type == type) ||
+        (@type == :mem && (type == :mem8 || type == :mem16 || type == :mem32 || type == :mem64)) ||
+        (type == :mem)
       end
 
       #
