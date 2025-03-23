@@ -207,6 +207,13 @@ module CodeGen
         def cancelling_inputs? = cancelling_inputs
 
         #
+        # The number of operands the instruction form requires.
+        #
+        # @return [Integer]
+        #
+        def operand_count = operands.length
+
+        #
         # Determines if the instruction form does not accept any operands.
         #
         # @return [Boolean]
