@@ -14,6 +14,50 @@ describe Ronin::ASM::X86_64::Immediate do
 
   subject { described_class.new(value) }
 
+  describe "#infer_size" do
+    context "when the immediate's value fits within 8 bits" do
+      let(:value) { 0xff }
+
+      it "must return 1" do
+        expect(subject.infer_size).to be(1)
+      end
+    end
+
+    context "when the immediate's value fits within 16 bits" do
+      let(:value) { 0xffff }
+
+      it "must return 2" do
+        expect(subject.infer_size).to be(2)
+      end
+    end
+
+    context "when the immediate's value fits within 32 bits" do
+      let(:value) { 0xffffffff }
+
+      it "must return 4" do
+        expect(subject.infer_size).to be(4)
+      end
+    end
+
+    context "when the immediate's value fits within 64 bits" do
+      let(:value) { 0xffffffffffffffff }
+
+      it "must return 8" do
+        expect(subject.infer_size).to be(8)
+      end
+    end
+
+    context "when the immediate's value is greater than 64 bits" do
+      let(:value) { 1 << 64 }
+
+      it do
+        expect {
+          subject.infer_size
+        }.to raise_error(TypeError,"immediate operand has a value larger than 64 bits: #{subject.inspect}")
+      end
+    end
+  end
+
   describe "#type_of?" do
     context "when given :imm" do
       it "must return true" do
