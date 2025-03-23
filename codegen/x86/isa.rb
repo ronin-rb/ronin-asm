@@ -153,6 +153,13 @@ module CodeGen
         end
 
         #
+        # Determines the minimum number of operands the instruction requires.
+        #
+        # @return [Integer]
+        #
+        def min_operands = forms.map(&:operand_count).min
+
+        #
         # Determines whether the instruction accepts no operands.
         #
         # @return [Boolean]
