@@ -737,6 +737,9 @@ describe Ronin::ASM::Program do
           mov ax, word([ebx])
           mov eax, dword([ebx])
 
+          # when both operands have an ambiguis size
+          mov [ebx], 0xff
+
           # SIB memory operands
           mov eax, [ebx]
           mov eax, [ebx+10]
@@ -768,6 +771,7 @@ describe Ronin::ASM::Program do
             \tmov\tal,\tBYTE [ebx]
             \tmov\tax,\tWORD [ebx]
             \tmov\teax,\tDWORD [ebx]
+            \tmov\tBYTE [ebx],\t0xff
             \tmov\teax,\t[ebx]
             \tmov\teax,\t[ebx+10]
             \tmov\teax,\t[ebx+esi]
@@ -840,6 +844,7 @@ describe Ronin::ASM::Program do
               \tmov\t(%ebx),\t%al
               \tmov\t(%ebx),\t%ax
               \tmov\t(%ebx),\t%eax
+              \tmovb\t$0xff,\t(%ebx)
               \tmov\t(%ebx),\t%eax
               \tmov\t10(%ebx),\t%eax
               \tmov\t(%ebx,%esi),\t%eax
@@ -907,6 +912,9 @@ describe Ronin::ASM::Program do
           mov eax, dword([ebx])
           mov rax, qword([rbx])
 
+          # when both operands have an ambiguis size
+          mov [rbx], 0xff
+
           # SIB memory operands
           mov rax, [rbx]
           mov rax, [rbx+10]
@@ -943,6 +951,7 @@ describe Ronin::ASM::Program do
             \tmov\tax,\tWORD [ebx]
             \tmov\teax,\tDWORD [ebx]
             \tmov\trax,\tQWORD [rbx]
+            \tmov\tBYTE [rbx],\t0xff
             \tmov\trax,\t[rbx]
             \tmov\trax,\t[rbx+10]
             \tmov\trax,\t[rbx+rsi]
@@ -1020,6 +1029,7 @@ describe Ronin::ASM::Program do
               \tmov\t(%ebx),\t%ax
               \tmov\t(%ebx),\t%eax
               \tmov\t(%rbx),\t%rax
+              \tmovb\t$0xff,\t(%rbx)
               \tmov\t(%rbx),\t%rax
               \tmov\t10(%rbx),\t%rax
               \tmov\t(%rbx,%rsi),\t%rax
