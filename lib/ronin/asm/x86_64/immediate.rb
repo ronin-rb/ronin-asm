@@ -34,6 +34,28 @@ module Ronin
         include Operand
 
         #
+        # Infers the size of the immediate operand based on the bit length of
+        # it's value.
+        #
+        # @return [1, 2, 4, 8]
+        #   The size of the immediate value in bytes.
+        #
+        # @raise [TypeError]
+        #   The immediate's value is larger than 64bits.
+        #
+        def infer_size
+          bit_length = @value.bit_length
+
+          if    bit_length <= 8  then 1
+          elsif bit_length <= 16 then 2
+          elsif bit_length <= 32 then 4
+          elsif bit_length <= 64 then 8
+          else
+            raise(TypeError,"immediate operand has a value larger than 64 bits: #{self.inspect}")
+          end
+        end
+
+        #
         # Determines if the immediate operand is equal to or compatible with the
         # given type.
         #
