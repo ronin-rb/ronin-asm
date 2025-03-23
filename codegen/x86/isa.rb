@@ -203,6 +203,7 @@ module CodeGen
         def xmm_mode? = !xmm_mode.nil?
         def cancelling_inputs? = cancelling_inputs
 
+        def operand_count = operands.length
         def no_operands? = operands.empty?
 
       end
