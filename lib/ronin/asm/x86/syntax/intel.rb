@@ -101,6 +101,34 @@ module Ronin
           end
 
           #
+          # Formats multiple operands.
+          #
+          # @param [Array<Immediate, Memory, Register, SymbolRef>] operands
+          #   The Array of operands.
+          #
+          # @return [String]
+          #   The formatted operands.
+          #
+          def self.format_operands(operands)
+            # handle when both the memory operand and immediate operand do not
+            # have a defined size.
+            if (operands.length == 2 && operands[0].type == :mem && operands[1].type == :imm)
+              memory    = operands[0]
+              immediate = operands[1]
+
+              bit_length     = immediate.value.bit_length
+              size_specifier = SIZE_SPECIFIERS.fetch(immediate.infer_size)
+
+              # add a size specifier to the destination operand when both
+              # operands have ambiguous sizes.
+              "#{size_specifier} #{super(operands)}"
+            else
+              # format operands as a comma separated list
+              super(operands)
+            end
+          end
+
+          #
           # Emits an instruction.
           #
           # @param [Instruction] insn
