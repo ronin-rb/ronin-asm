@@ -199,6 +199,13 @@ module CodeGen
         def xmm_mode? = !xmm_mode.nil?
         def cancelling_inputs? = cancelling_inputs
 
+        #
+        # Determines if the instruction form does not accept any operands.
+        #
+        # @return [Boolean]
+        #
+        def no_operands? = operands.empty?
+
       end
 
       #
