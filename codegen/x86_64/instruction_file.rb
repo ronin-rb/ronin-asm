@@ -27,7 +27,7 @@ module CodeGen
     #
     class InstructionFile < X86::InstructionFile
 
-      template File.join(__dir__,'instruction.rb.erb')
+      template File.join(__dir__,'templates','instruction.rb.erb')
       output_dir 'lib/ronin/asm/x86_64/instructions'
 
       #
