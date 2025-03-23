@@ -149,6 +149,58 @@ describe Ronin::ASM::X86::Syntax::Intel do
     end
   end
 
+  describe ".format_operands" do
+    context "when the first operand is of type :mem and the second operand is of type :imm" do
+      let(:register)  { Ronin::ASM::X86::Registers::EBX }
+      let(:memory)    { Ronin::ASM::X86::Memory.new(base: register) }
+      let(:immediate) { Ronin::ASM::X86::Immediate.new(value) }
+      let(:operands)  { [memory, immediate] }
+
+      context "and the immediate's value fits within 8 bits" do
+        let(:value) { 0xff }
+
+        it "must add a BYTE size specifier to the immediate operand to disambiguate their desired sizes" do
+          expect(subject.format_operands(operands)).to eq(
+            "BYTE #{subject.format_memory(memory)},\t#{subject.format_immediate(immediate)}"
+          )
+        end
+      end
+
+      context "and the immediate's value bit length is between 16 and 8 bits" do
+        let(:value) { 0xffff }
+
+        it "must add a WORD size specifier to the immediate operand to disambiguate their desired sizes" do
+          expect(subject.format_operands(operands)).to eq(
+            "WORD #{subject.format_memory(memory)},\t#{subject.format_immediate(immediate)}"
+          )
+        end
+      end
+
+      context "and the immediate's value bit length is between 32 and 16 bits" do
+        let(:value) { 0xffffffff }
+
+        it "must add a DWORD size specifier to the immediate operand to disambiguate their desired sizes" do
+          expect(subject.format_operands(operands)).to eq(
+            "DWORD #{subject.format_memory(memory)},\t#{subject.format_immediate(immediate)}"
+          )
+        end
+      end
+    end
+
+    context "when at least one of the operands has a defined size" do
+      let(:register)  { Ronin::ASM::X86::Registers::EBX }
+      let(:memory)    { Ronin::ASM::X86::Memory.new(base: register) }
+      let(:immediate) { Ronin::ASM::X86::Immediate.new(0x41, size: 1) }
+      let(:operands)  { [memory, immediate] }
+
+      it "must format the operands without adding a size specifier to the destination operand" do
+          expect(subject.format_operands(operands)).to eq(
+            "#{subject.format_memory(memory)},\t#{subject.format_immediate(immediate)}"
+          )
+      end
+    end
+  end
+
   describe ".format_instruction" do
     context "when the instruction has no operands" do
       let(:instruction) { Ronin::ASM::X86::Instruction.new(:ret) }
