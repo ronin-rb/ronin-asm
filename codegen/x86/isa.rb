@@ -152,6 +152,13 @@ module CodeGen
           )
         end
 
+        #
+        # Determines whether the instruction accepts no operands.
+        #
+        # @return [Boolean]
+        #
+        def no_operands? = forms.all?(&:no_operands?)
+
       end
 
       #
