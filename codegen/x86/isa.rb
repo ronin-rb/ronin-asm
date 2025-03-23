@@ -152,6 +152,8 @@ module CodeGen
           )
         end
 
+        def no_operands? = forms.all?(&:no_operands?)
+
       end
 
       #
