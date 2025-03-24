@@ -47,16 +47,16 @@ module CodeGen
       end
     end
 
-    # The x86 instruction metadata.
+    # The x86/x86-64 instruction metadata.
     #
-    # @return [ISA::Instruction]
+    # @return [X86::ISA::Instruction, X86_64::ISA::Instruction]
     attr_reader :instruction
 
     #
     # Initializes the instruction file.
     #
-    # @param [ISA::Instruction] instruction
-    #   The x86 instruction metadata object.
+    # @param [X86::ISA::Instruction, X86_64::ISA::Instruction] instruction
+    #   The x86/x86-64 instruction metadata object.
     #
     def initialize(instruction)
       @instruction = instruction
