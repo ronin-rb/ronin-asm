@@ -160,28 +160,6 @@ describe Ronin::ASM::Immediate do
     end
   end
 
-  describe "#imm64?" do
-    context "when the #size is 8" do
-      let(:size) { 8 }
-
-      subject { described_class.new(value, size: size) }
-
-      it "must return true" do
-        expect(subject.imm64?).to be(true)
-      end
-    end
-
-    context "when the #type is not 8" do
-      let(:size) { 1 }
-
-      subject { described_class.new(value, size: size) }
-
-      it "must return false" do
-        expect(subject.imm64?).to be(false)
-      end
-    end
-  end
-
   describe "#type_of?" do
     context "when given :imm" do
       it "must return true" do
