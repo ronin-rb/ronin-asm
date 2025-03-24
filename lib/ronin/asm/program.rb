@@ -568,7 +568,7 @@ module Ronin
 
       protected
 
-      # undefine the syscall method, so method_missing handles it
+      # undefine the syscall method to prevent accidentally calling it
       undef syscall
 
       #
