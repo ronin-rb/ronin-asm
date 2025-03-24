@@ -1,0 +1,146 @@
+#
+# NOTE: this file was automatically generated. Do not edit!
+#
+
+require 'spec_helper'
+require 'ronin/asm/x86/instructions/vcvttph2qq'
+
+require_relative 'operand_examples'
+
+describe Ronin::ASM::X86::Instructions::VCVTTPH2QQ do
+  include_context "Ronin::ASM::X86 Operands"
+
+  let(:operands) { [xmm_k_z, mem32_mem16_bcst] }
+
+  subject { described_class.new(*operands) }
+
+  describe "#initialize" do
+    it "must set #name to :vcvttph2qq" do
+      expect(subject.name).to be(:vcvttph2qq)
+    end
+
+    context "when given operands of types xmm{k}{z}, mem32/mem16bcst" do
+      let(:operands) { [xmm_k_z, mem32_mem16_bcst] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types ymm{k}{z}, mem64/mem16bcst" do
+      let(:operands) { [ymm_k_z, mem64_mem16_bcst] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types zmm{k}{z}, mem128/mem16bcst" do
+      let(:operands) { [zmm_k_z, mem128_mem16_bcst] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types xmm{k}{z}, xmm" do
+      let(:operands) { [xmm_k_z, xmm] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types ymm{k}{z}, xmm" do
+      let(:operands) { [ymm_k_z, xmm] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types zmm{k}{z}, xmm" do
+      let(:operands) { [zmm_k_z, xmm] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types xmm, mem32/mem16bcst" do
+      let(:operands) { [xmm, mem32_mem16_bcst] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types xmm, xmm" do
+      let(:operands) { [xmm, xmm] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types ymm, mem64/mem16bcst" do
+      let(:operands) { [ymm, mem64_mem16_bcst] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types ymm, xmm" do
+      let(:operands) { [ymm, xmm] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types zmm, mem128/mem16bcst" do
+      let(:operands) { [zmm, mem128_mem16_bcst] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types zmm, xmm" do
+      let(:operands) { [zmm, xmm] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types zmm{k}{z}, xmm, {sae}" do
+      let(:operands) { [zmm_k_z, xmm, sae] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given operands of types zmm, xmm, {sae}" do
+      let(:operands) { [zmm, xmm, sae] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+    end
+
+    context "when given additional keyword arguments" do
+      let(:comment) { 'comment' }
+
+      subject { described_class.new(*operands, comment: comment) }
+
+      it "must pass the keyword arguments to Ronin::ASM::Instruction#initialize" do
+        expect(subject.comment).to be(comment)
+      end
+    end
+  end
+
+  describe "#encode"
+end
