@@ -34,6 +34,41 @@ module Ronin
         include Operand
 
         #
+        # Initializes the x86 immediate value.
+        #
+        # @param [Integer, nil] value
+        #   The value.
+        #
+        # @param [nil, 1, 2, 4] size
+        #   The size in bytes of the value.
+        #
+        # @raise [ArgumentError]
+        #   * A value greater than 32bits was given.
+        #   * An invalid size was given.
+        #
+        def initialize(value, size: nil)
+          check_value(value)
+
+          super(value, size: size)
+        end
+
+        private
+
+        #
+        # Checks if the given value is valid.
+        #
+        # @param [Integer, nil] value
+        # @raise [ArgumentError]
+        #
+        def check_value(value)
+          if (value && value.bit_length > 32)
+            raise(ArgumentError,"x86 does not support immediate values greater than 32bits: #{value.inspect}")
+          end
+        end
+
+        public
+
+        #
         # Infers the size of the immediate operand based on the bit length of
         # it's value.
         #
@@ -50,7 +85,7 @@ module Ronin
           elsif bit_length <= 16 then 2
           elsif bit_length <= 32 then 4
           else
-            raise(TypeError,"immediate operand has a value larger than 32 bits: #{self.inspect}")
+            raise(NotImplementedError,"x86 does not support immediate values larger than 32bits: #{@value.inspect}")
           end
         end
 
