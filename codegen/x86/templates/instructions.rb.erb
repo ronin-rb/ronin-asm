@@ -35,7 +35,7 @@ module Ronin
         #   <%= example %>
         <%- end -%>
         <%- end -%>
-        def <%= instruction.name %>(*operands,**kwargs) = add_instruction(Instructions::<%= instruction.name.upcase %>,*operands,**kwargs)
+        def <%= instruction.name %>(<%= instruction_method_args(instruction) %>) = add_instruction(Instructions::<%= instruction.name.upcase %>,<%= instruction_method_args(instruction) %>)
       <%- end -%>
       end
     end
