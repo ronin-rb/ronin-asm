@@ -41,8 +41,7 @@ module CodeGen
       # @return [String]
       #
       def instruction_method_args(instruction)
-        min_operands = instruction.min_operands
-        max_operands = instruction.max_operands
+        min_operands, max_operands = instruction.min_max_operands
 
         if (min_operands == 0 && max_operands == 0)
           # no operands

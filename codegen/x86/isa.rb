@@ -154,6 +154,7 @@ module CodeGen
 
         def min_operands = forms.map(&:operand_count).min
         def max_operands = forms.map(&:operand_count).max
+        def min_max_operands = forms.map(&:operand_count).minmax
         def no_operands? = forms.all?(&:no_operands?)
 
       end
