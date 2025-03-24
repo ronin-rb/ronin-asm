@@ -22,6 +22,7 @@ require_relative 'x86/isa'
 require_relative 'x86/instruction_file'
 require_relative 'x86/instructions_file'
 require_relative 'x86/instruction_spec_file'
+require_relative 'x86/instructions_spec_file'
 
 if $0 == __FILE__
   require 'fileutils'
@@ -46,4 +47,7 @@ if $0 == __FILE__
   instructions.each do |instruction|
     CodeGen::X86::InstructionSpecFile.generate(instruction)
   end
+
+  # Generate the `spec/x86/instructions_spec.rb` file.
+  CodeGen::X86::InstructionsSpecFile.generate(instructions)
 end
