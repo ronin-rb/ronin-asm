@@ -1469,13 +1469,13 @@ module Ronin
         # @example
         #   aadd [rax], ebx
         #   aadd [rax], rbx
-        def aadd(*operands,**kwargs) = add_instruction(Instructions::AADD,*operands,**kwargs)
+        def aadd(operand1,operand2,**kwargs) = add_instruction(Instructions::AADD,operand1,operand2,**kwargs)
         # Atomically AND
         # @return [Ronin::ASM::X86_64::Instructions::AAND]
         # @example
         #   aand [rax], ebx
         #   aand [rax], rbx
-        def aand(*operands,**kwargs) = add_instruction(Instructions::AAND,*operands,**kwargs)
+        def aand(operand1,operand2,**kwargs) = add_instruction(Instructions::AAND,operand1,operand2,**kwargs)
         # Add with Carry
         # @return [Ronin::ASM::X86_64::Instructions::ADC]
         # @example
@@ -1501,7 +1501,7 @@ module Ronin
         #   adc [rax], 0x00000002
         #   adc [rax], ebx
         #   adc [rax], rbx
-        def adc(*operands,**kwargs) = add_instruction(Instructions::ADC,*operands,**kwargs)
+        def adc(operand1,operand2,**kwargs) = add_instruction(Instructions::ADC,operand1,operand2,**kwargs)
         # Unsigned Integer Addition of Two Operands with Carry Flag
         # @return [Ronin::ASM::X86_64::Instructions::ADCX]
         # @example
@@ -1509,7 +1509,7 @@ module Ronin
         #   adcx eax, [rbx]
         #   adcx rax, rbx
         #   adcx rax, [rbx]
-        def adcx(*operands,**kwargs) = add_instruction(Instructions::ADCX,*operands,**kwargs)
+        def adcx(operand1,operand2,**kwargs) = add_instruction(Instructions::ADCX,operand1,operand2,**kwargs)
         # Add
         # @return [Ronin::ASM::X86_64::Instructions::ADD]
         # @example
@@ -1535,43 +1535,43 @@ module Ronin
         #   add [rax], 0x00000002
         #   add [rax], ebx
         #   add [rax], rbx
-        def add(*operands,**kwargs) = add_instruction(Instructions::ADD,*operands,**kwargs)
+        def add(operand1,operand2,**kwargs) = add_instruction(Instructions::ADD,operand1,operand2,**kwargs)
         # Add Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ADDPD]
         # @example
         #   addpd xmm0, xmm1
         #   addpd xmm0, [rbx]
-        def addpd(*operands,**kwargs) = add_instruction(Instructions::ADDPD,*operands,**kwargs)
+        def addpd(operand1,operand2,**kwargs) = add_instruction(Instructions::ADDPD,operand1,operand2,**kwargs)
         # Add Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ADDPS]
         # @example
         #   addps xmm0, xmm1
         #   addps xmm0, [rbx]
-        def addps(*operands,**kwargs) = add_instruction(Instructions::ADDPS,*operands,**kwargs)
+        def addps(operand1,operand2,**kwargs) = add_instruction(Instructions::ADDPS,operand1,operand2,**kwargs)
         # Add Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ADDSD]
         # @example
         #   addsd xmm0, xmm1
         #   addsd xmm0, [rbx]
-        def addsd(*operands,**kwargs) = add_instruction(Instructions::ADDSD,*operands,**kwargs)
+        def addsd(operand1,operand2,**kwargs) = add_instruction(Instructions::ADDSD,operand1,operand2,**kwargs)
         # Add Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ADDSS]
         # @example
         #   addss xmm0, xmm1
         #   addss xmm0, [rbx]
-        def addss(*operands,**kwargs) = add_instruction(Instructions::ADDSS,*operands,**kwargs)
+        def addss(operand1,operand2,**kwargs) = add_instruction(Instructions::ADDSS,operand1,operand2,**kwargs)
         # Packed Double-FP Add/Subtract
         # @return [Ronin::ASM::X86_64::Instructions::ADDSUBPD]
         # @example
         #   addsubpd xmm0, xmm1
         #   addsubpd xmm0, [rbx]
-        def addsubpd(*operands,**kwargs) = add_instruction(Instructions::ADDSUBPD,*operands,**kwargs)
+        def addsubpd(operand1,operand2,**kwargs) = add_instruction(Instructions::ADDSUBPD,operand1,operand2,**kwargs)
         # Packed Single-FP Add/Subtract
         # @return [Ronin::ASM::X86_64::Instructions::ADDSUBPS]
         # @example
         #   addsubps xmm0, xmm1
         #   addsubps xmm0, [rbx]
-        def addsubps(*operands,**kwargs) = add_instruction(Instructions::ADDSUBPS,*operands,**kwargs)
+        def addsubps(operand1,operand2,**kwargs) = add_instruction(Instructions::ADDSUBPS,operand1,operand2,**kwargs)
         # Unsigned Integer Addition of Two Operands with Overflow Flag
         # @return [Ronin::ASM::X86_64::Instructions::ADOX]
         # @example
@@ -1579,43 +1579,43 @@ module Ronin
         #   adox eax, [rbx]
         #   adox rax, rbx
         #   adox rax, [rbx]
-        def adox(*operands,**kwargs) = add_instruction(Instructions::ADOX,*operands,**kwargs)
+        def adox(operand1,operand2,**kwargs) = add_instruction(Instructions::ADOX,operand1,operand2,**kwargs)
         # Perform One Round of an AES Decryption Flow
         # @return [Ronin::ASM::X86_64::Instructions::AESDEC]
         # @example
         #   aesdec xmm0, xmm1
         #   aesdec xmm0, [rbx]
-        def aesdec(*operands,**kwargs) = add_instruction(Instructions::AESDEC,*operands,**kwargs)
+        def aesdec(operand1,operand2,**kwargs) = add_instruction(Instructions::AESDEC,operand1,operand2,**kwargs)
         # Perform Last Round of an AES Decryption Flow
         # @return [Ronin::ASM::X86_64::Instructions::AESDECLAST]
         # @example
         #   aesdeclast xmm0, xmm1
         #   aesdeclast xmm0, [rbx]
-        def aesdeclast(*operands,**kwargs) = add_instruction(Instructions::AESDECLAST,*operands,**kwargs)
+        def aesdeclast(operand1,operand2,**kwargs) = add_instruction(Instructions::AESDECLAST,operand1,operand2,**kwargs)
         # Perform One Round of an AES Encryption Flow
         # @return [Ronin::ASM::X86_64::Instructions::AESENC]
         # @example
         #   aesenc xmm0, xmm1
         #   aesenc xmm0, [rbx]
-        def aesenc(*operands,**kwargs) = add_instruction(Instructions::AESENC,*operands,**kwargs)
+        def aesenc(operand1,operand2,**kwargs) = add_instruction(Instructions::AESENC,operand1,operand2,**kwargs)
         # Perform Last Round of an AES Encryption Flow
         # @return [Ronin::ASM::X86_64::Instructions::AESENCLAST]
         # @example
         #   aesenclast xmm0, xmm1
         #   aesenclast xmm0, [rbx]
-        def aesenclast(*operands,**kwargs) = add_instruction(Instructions::AESENCLAST,*operands,**kwargs)
+        def aesenclast(operand1,operand2,**kwargs) = add_instruction(Instructions::AESENCLAST,operand1,operand2,**kwargs)
         # Perform the AES InvMixColumn Transformation
         # @return [Ronin::ASM::X86_64::Instructions::AESIMC]
         # @example
         #   aesimc xmm0, xmm1
         #   aesimc xmm0, [rbx]
-        def aesimc(*operands,**kwargs) = add_instruction(Instructions::AESIMC,*operands,**kwargs)
+        def aesimc(operand1,operand2,**kwargs) = add_instruction(Instructions::AESIMC,operand1,operand2,**kwargs)
         # AES Round Key Generation Assist
         # @return [Ronin::ASM::X86_64::Instructions::AESKEYGENASSIST]
         # @example
         #   aeskeygenassist xmm0, xmm1, 0x03
         #   aeskeygenassist xmm0, [rbx], 0x03
-        def aeskeygenassist(*operands,**kwargs) = add_instruction(Instructions::AESKEYGENASSIST,*operands,**kwargs)
+        def aeskeygenassist(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::AESKEYGENASSIST,operand1,operand2,operand3,**kwargs)
         # Logical AND
         # @return [Ronin::ASM::X86_64::Instructions::AND]
         # @example
@@ -1641,7 +1641,7 @@ module Ronin
         #   and [rax], 0x00000002
         #   and [rax], ebx
         #   and [rax], rbx
-        def and(*operands,**kwargs) = add_instruction(Instructions::AND,*operands,**kwargs)
+        def and(operand1,operand2,**kwargs) = add_instruction(Instructions::AND,operand1,operand2,**kwargs)
         # Logical AND NOT
         # @return [Ronin::ASM::X86_64::Instructions::ANDN]
         # @example
@@ -1649,43 +1649,43 @@ module Ronin
         #   andn eax, ebx, [rcx]
         #   andn rax, rbx, rcx
         #   andn rax, rbx, [rcx]
-        def andn(*operands,**kwargs) = add_instruction(Instructions::ANDN,*operands,**kwargs)
+        def andn(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::ANDN,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ANDNPD]
         # @example
         #   andnpd xmm0, xmm1
         #   andnpd xmm0, [rbx]
-        def andnpd(*operands,**kwargs) = add_instruction(Instructions::ANDNPD,*operands,**kwargs)
+        def andnpd(operand1,operand2,**kwargs) = add_instruction(Instructions::ANDNPD,operand1,operand2,**kwargs)
         # Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ANDNPS]
         # @example
         #   andnps xmm0, xmm1
         #   andnps xmm0, [rbx]
-        def andnps(*operands,**kwargs) = add_instruction(Instructions::ANDNPS,*operands,**kwargs)
+        def andnps(operand1,operand2,**kwargs) = add_instruction(Instructions::ANDNPS,operand1,operand2,**kwargs)
         # Bitwise Logical AND of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ANDPD]
         # @example
         #   andpd xmm0, xmm1
         #   andpd xmm0, [rbx]
-        def andpd(*operands,**kwargs) = add_instruction(Instructions::ANDPD,*operands,**kwargs)
+        def andpd(operand1,operand2,**kwargs) = add_instruction(Instructions::ANDPD,operand1,operand2,**kwargs)
         # Bitwise Logical AND of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ANDPS]
         # @example
         #   andps xmm0, xmm1
         #   andps xmm0, [rbx]
-        def andps(*operands,**kwargs) = add_instruction(Instructions::ANDPS,*operands,**kwargs)
+        def andps(operand1,operand2,**kwargs) = add_instruction(Instructions::ANDPS,operand1,operand2,**kwargs)
         # Atomically OR
         # @return [Ronin::ASM::X86_64::Instructions::AOR]
         # @example
         #   aor [rax], ebx
         #   aor [rax], rbx
-        def aor(*operands,**kwargs) = add_instruction(Instructions::AOR,*operands,**kwargs)
+        def aor(operand1,operand2,**kwargs) = add_instruction(Instructions::AOR,operand1,operand2,**kwargs)
         # Atomically XOR
         # @return [Ronin::ASM::X86_64::Instructions::AXOR]
         # @example
         #   axor [rax], ebx
         #   axor [rax], rbx
-        def axor(*operands,**kwargs) = add_instruction(Instructions::AXOR,*operands,**kwargs)
+        def axor(operand1,operand2,**kwargs) = add_instruction(Instructions::AXOR,operand1,operand2,**kwargs)
         # Bit Field Extract
         # @return [Ronin::ASM::X86_64::Instructions::BEXTR]
         # @example
@@ -1697,7 +1697,7 @@ module Ronin
         #   bextr rax, rbx, rcx
         #   bextr rax, [rbx], 0x00000003
         #   bextr rax, [rbx], rcx
-        def bextr(*operands,**kwargs) = add_instruction(Instructions::BEXTR,*operands,**kwargs)
+        def bextr(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::BEXTR,operand1,operand2,operand3,**kwargs)
         # Fill From Lowest Clear Bit
         # @return [Ronin::ASM::X86_64::Instructions::BLCFILL]
         # @example
@@ -1705,7 +1705,7 @@ module Ronin
         #   blcfill eax, [rbx]
         #   blcfill rax, rbx
         #   blcfill rax, [rbx]
-        def blcfill(*operands,**kwargs) = add_instruction(Instructions::BLCFILL,*operands,**kwargs)
+        def blcfill(operand1,operand2,**kwargs) = add_instruction(Instructions::BLCFILL,operand1,operand2,**kwargs)
         # Isolate Lowest Clear Bit
         # @return [Ronin::ASM::X86_64::Instructions::BLCI]
         # @example
@@ -1713,7 +1713,7 @@ module Ronin
         #   blci eax, [rbx]
         #   blci rax, rbx
         #   blci rax, [rbx]
-        def blci(*operands,**kwargs) = add_instruction(Instructions::BLCI,*operands,**kwargs)
+        def blci(operand1,operand2,**kwargs) = add_instruction(Instructions::BLCI,operand1,operand2,**kwargs)
         # Isolate Lowest Set Bit and Complement
         # @return [Ronin::ASM::X86_64::Instructions::BLCIC]
         # @example
@@ -1721,7 +1721,7 @@ module Ronin
         #   blcic eax, [rbx]
         #   blcic rax, rbx
         #   blcic rax, [rbx]
-        def blcic(*operands,**kwargs) = add_instruction(Instructions::BLCIC,*operands,**kwargs)
+        def blcic(operand1,operand2,**kwargs) = add_instruction(Instructions::BLCIC,operand1,operand2,**kwargs)
         # Mask From Lowest Clear Bit
         # @return [Ronin::ASM::X86_64::Instructions::BLCMSK]
         # @example
@@ -1729,7 +1729,7 @@ module Ronin
         #   blcmsk eax, [rbx]
         #   blcmsk rax, rbx
         #   blcmsk rax, [rbx]
-        def blcmsk(*operands,**kwargs) = add_instruction(Instructions::BLCMSK,*operands,**kwargs)
+        def blcmsk(operand1,operand2,**kwargs) = add_instruction(Instructions::BLCMSK,operand1,operand2,**kwargs)
         # Set Lowest Clear Bit
         # @return [Ronin::ASM::X86_64::Instructions::BLCS]
         # @example
@@ -1737,31 +1737,31 @@ module Ronin
         #   blcs eax, [rbx]
         #   blcs rax, rbx
         #   blcs rax, [rbx]
-        def blcs(*operands,**kwargs) = add_instruction(Instructions::BLCS,*operands,**kwargs)
+        def blcs(operand1,operand2,**kwargs) = add_instruction(Instructions::BLCS,operand1,operand2,**kwargs)
         # Blend Packed Double Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::BLENDPD]
         # @example
         #   blendpd xmm0, xmm1, 0x03
         #   blendpd xmm0, [rbx], 0x03
-        def blendpd(*operands,**kwargs) = add_instruction(Instructions::BLENDPD,*operands,**kwargs)
+        def blendpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::BLENDPD,operand1,operand2,operand3,**kwargs)
         #  Blend Packed Single Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::BLENDPS]
         # @example
         #   blendps xmm0, xmm1, 0x03
         #   blendps xmm0, [rbx], 0x03
-        def blendps(*operands,**kwargs) = add_instruction(Instructions::BLENDPS,*operands,**kwargs)
+        def blendps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::BLENDPS,operand1,operand2,operand3,**kwargs)
         #  Variable Blend Packed Double Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::BLENDVPD]
         # @example
         #   blendvpd xmm0, xmm1, xmm0
         #   blendvpd xmm0, [rbx], xmm0
-        def blendvpd(*operands,**kwargs) = add_instruction(Instructions::BLENDVPD,*operands,**kwargs)
+        def blendvpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::BLENDVPD,operand1,operand2,operand3,**kwargs)
         #  Variable Blend Packed Single Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::BLENDVPS]
         # @example
         #   blendvps xmm0, xmm1, xmm0
         #   blendvps xmm0, [rbx], xmm0
-        def blendvps(*operands,**kwargs) = add_instruction(Instructions::BLENDVPS,*operands,**kwargs)
+        def blendvps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::BLENDVPS,operand1,operand2,operand3,**kwargs)
         # Fill From Lowest Set Bit
         # @return [Ronin::ASM::X86_64::Instructions::BLSFILL]
         # @example
@@ -1769,7 +1769,7 @@ module Ronin
         #   blsfill eax, [rbx]
         #   blsfill rax, rbx
         #   blsfill rax, [rbx]
-        def blsfill(*operands,**kwargs) = add_instruction(Instructions::BLSFILL,*operands,**kwargs)
+        def blsfill(operand1,operand2,**kwargs) = add_instruction(Instructions::BLSFILL,operand1,operand2,**kwargs)
         # Isolate Lowest Set Bit
         # @return [Ronin::ASM::X86_64::Instructions::BLSI]
         # @example
@@ -1777,7 +1777,7 @@ module Ronin
         #   blsi eax, [rbx]
         #   blsi rax, rbx
         #   blsi rax, [rbx]
-        def blsi(*operands,**kwargs) = add_instruction(Instructions::BLSI,*operands,**kwargs)
+        def blsi(operand1,operand2,**kwargs) = add_instruction(Instructions::BLSI,operand1,operand2,**kwargs)
         # Isolate Lowest Set Bit and Complement
         # @return [Ronin::ASM::X86_64::Instructions::BLSIC]
         # @example
@@ -1785,7 +1785,7 @@ module Ronin
         #   blsic eax, [rbx]
         #   blsic rax, rbx
         #   blsic rax, [rbx]
-        def blsic(*operands,**kwargs) = add_instruction(Instructions::BLSIC,*operands,**kwargs)
+        def blsic(operand1,operand2,**kwargs) = add_instruction(Instructions::BLSIC,operand1,operand2,**kwargs)
         # Mask From Lowest Set Bit
         # @return [Ronin::ASM::X86_64::Instructions::BLSMSK]
         # @example
@@ -1793,7 +1793,7 @@ module Ronin
         #   blsmsk eax, [rbx]
         #   blsmsk rax, rbx
         #   blsmsk rax, [rbx]
-        def blsmsk(*operands,**kwargs) = add_instruction(Instructions::BLSMSK,*operands,**kwargs)
+        def blsmsk(operand1,operand2,**kwargs) = add_instruction(Instructions::BLSMSK,operand1,operand2,**kwargs)
         # Reset Lowest Set Bit
         # @return [Ronin::ASM::X86_64::Instructions::BLSR]
         # @example
@@ -1801,7 +1801,7 @@ module Ronin
         #   blsr eax, [rbx]
         #   blsr rax, rbx
         #   blsr rax, [rbx]
-        def blsr(*operands,**kwargs) = add_instruction(Instructions::BLSR,*operands,**kwargs)
+        def blsr(operand1,operand2,**kwargs) = add_instruction(Instructions::BLSR,operand1,operand2,**kwargs)
         # Bit Scan Forward
         # @return [Ronin::ASM::X86_64::Instructions::BSF]
         # @example
@@ -1811,7 +1811,7 @@ module Ronin
         #   bsf eax, [rbx]
         #   bsf rax, rbx
         #   bsf rax, [rbx]
-        def bsf(*operands,**kwargs) = add_instruction(Instructions::BSF,*operands,**kwargs)
+        def bsf(operand1,operand2,**kwargs) = add_instruction(Instructions::BSF,operand1,operand2,**kwargs)
         # Bit Scan Reverse
         # @return [Ronin::ASM::X86_64::Instructions::BSR]
         # @example
@@ -1821,13 +1821,13 @@ module Ronin
         #   bsr eax, [rbx]
         #   bsr rax, rbx
         #   bsr rax, [rbx]
-        def bsr(*operands,**kwargs) = add_instruction(Instructions::BSR,*operands,**kwargs)
+        def bsr(operand1,operand2,**kwargs) = add_instruction(Instructions::BSR,operand1,operand2,**kwargs)
         # Byte Swap
         # @return [Ronin::ASM::X86_64::Instructions::BSWAP]
         # @example
         #   bswap eax
         #   bswap rax
-        def bswap(*operands,**kwargs) = add_instruction(Instructions::BSWAP,*operands,**kwargs)
+        def bswap(operand,**kwargs) = add_instruction(Instructions::BSWAP,operand,**kwargs)
         # Bit Test
         # @return [Ronin::ASM::X86_64::Instructions::BT]
         # @example
@@ -1841,7 +1841,7 @@ module Ronin
         #   bt [rax], bx
         #   bt [rax], ebx
         #   bt [rax], rbx
-        def bt(*operands,**kwargs) = add_instruction(Instructions::BT,*operands,**kwargs)
+        def bt(operand1,operand2,**kwargs) = add_instruction(Instructions::BT,operand1,operand2,**kwargs)
         # Bit Test and Complement
         # @return [Ronin::ASM::X86_64::Instructions::BTC]
         # @example
@@ -1855,7 +1855,7 @@ module Ronin
         #   btc [rax], bx
         #   btc [rax], ebx
         #   btc [rax], rbx
-        def btc(*operands,**kwargs) = add_instruction(Instructions::BTC,*operands,**kwargs)
+        def btc(operand1,operand2,**kwargs) = add_instruction(Instructions::BTC,operand1,operand2,**kwargs)
         # Bit Test and Reset
         # @return [Ronin::ASM::X86_64::Instructions::BTR]
         # @example
@@ -1869,7 +1869,7 @@ module Ronin
         #   btr [rax], bx
         #   btr [rax], ebx
         #   btr [rax], rbx
-        def btr(*operands,**kwargs) = add_instruction(Instructions::BTR,*operands,**kwargs)
+        def btr(operand1,operand2,**kwargs) = add_instruction(Instructions::BTR,operand1,operand2,**kwargs)
         # Bit Test and Set
         # @return [Ronin::ASM::X86_64::Instructions::BTS]
         # @example
@@ -1883,7 +1883,7 @@ module Ronin
         #   bts [rax], bx
         #   bts [rax], ebx
         #   bts [rax], rbx
-        def bts(*operands,**kwargs) = add_instruction(Instructions::BTS,*operands,**kwargs)
+        def bts(operand1,operand2,**kwargs) = add_instruction(Instructions::BTS,operand1,operand2,**kwargs)
         # Zero High Bits Starting with Specified Bit Position
         # @return [Ronin::ASM::X86_64::Instructions::BZHI]
         # @example
@@ -1891,55 +1891,55 @@ module Ronin
         #   bzhi eax, [rbx], ecx
         #   bzhi rax, rbx, rcx
         #   bzhi rax, [rbx], rcx
-        def bzhi(*operands,**kwargs) = add_instruction(Instructions::BZHI,*operands,**kwargs)
+        def bzhi(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::BZHI,operand1,operand2,operand3,**kwargs)
         # Call Procedure
         # @return [Ronin::ASM::X86_64::Instructions::CALL]
         # @example
         #   call rel32(0x10000)
         #   call rax
         #   call [rax]
-        def call(*operands,**kwargs) = add_instruction(Instructions::CALL,*operands,**kwargs)
+        def call(operand,**kwargs) = add_instruction(Instructions::CALL,operand,**kwargs)
         # Convert Byte to Word
         # @return [Ronin::ASM::X86_64::Instructions::CBW]
-        def cbw(*operands,**kwargs) = add_instruction(Instructions::CBW,*operands,**kwargs)
+        def cbw(**kwargs) = add_instruction(Instructions::CBW,**kwargs)
         # Convert Doubleword to Quadword
         # @return [Ronin::ASM::X86_64::Instructions::CDQ]
-        def cdq(*operands,**kwargs) = add_instruction(Instructions::CDQ,*operands,**kwargs)
+        def cdq(**kwargs) = add_instruction(Instructions::CDQ,**kwargs)
         # Convert Doubleword to Quadword
         # @return [Ronin::ASM::X86_64::Instructions::CDQE]
-        def cdqe(*operands,**kwargs) = add_instruction(Instructions::CDQE,*operands,**kwargs)
+        def cdqe(**kwargs) = add_instruction(Instructions::CDQE,**kwargs)
         # Clear Carry Flag
         # @return [Ronin::ASM::X86_64::Instructions::CLC]
-        def clc(*operands,**kwargs) = add_instruction(Instructions::CLC,*operands,**kwargs)
+        def clc(**kwargs) = add_instruction(Instructions::CLC,**kwargs)
         # Clear Direction Flag
         # @return [Ronin::ASM::X86_64::Instructions::CLD]
-        def cld(*operands,**kwargs) = add_instruction(Instructions::CLD,*operands,**kwargs)
+        def cld(**kwargs) = add_instruction(Instructions::CLD,**kwargs)
         # Cache Line Demote
         # @return [Ronin::ASM::X86_64::Instructions::CLDEMOTE]
         # @example
         #   cldemote [rax]
-        def cldemote(*operands,**kwargs) = add_instruction(Instructions::CLDEMOTE,*operands,**kwargs)
+        def cldemote(operand,**kwargs) = add_instruction(Instructions::CLDEMOTE,operand,**kwargs)
         # Flush Cache Line
         # @return [Ronin::ASM::X86_64::Instructions::CLFLUSH]
         # @example
         #   clflush [rax]
-        def clflush(*operands,**kwargs) = add_instruction(Instructions::CLFLUSH,*operands,**kwargs)
+        def clflush(operand,**kwargs) = add_instruction(Instructions::CLFLUSH,operand,**kwargs)
         # Flush Cache Line Optimized
         # @return [Ronin::ASM::X86_64::Instructions::CLFLUSHOPT]
         # @example
         #   clflushopt [rax]
-        def clflushopt(*operands,**kwargs) = add_instruction(Instructions::CLFLUSHOPT,*operands,**kwargs)
+        def clflushopt(operand,**kwargs) = add_instruction(Instructions::CLFLUSHOPT,operand,**kwargs)
         # Cache Line Write Back
         # @return [Ronin::ASM::X86_64::Instructions::CLWB]
         # @example
         #   clwb [rax]
-        def clwb(*operands,**kwargs) = add_instruction(Instructions::CLWB,*operands,**kwargs)
+        def clwb(operand,**kwargs) = add_instruction(Instructions::CLWB,operand,**kwargs)
         # Zero-out 64-bit Cache Line
         # @return [Ronin::ASM::X86_64::Instructions::CLZERO]
-        def clzero(*operands,**kwargs) = add_instruction(Instructions::CLZERO,*operands,**kwargs)
+        def clzero(**kwargs) = add_instruction(Instructions::CLZERO,**kwargs)
         # Complement Carry Flag
         # @return [Ronin::ASM::X86_64::Instructions::CMC]
-        def cmc(*operands,**kwargs) = add_instruction(Instructions::CMC,*operands,**kwargs)
+        def cmc(**kwargs) = add_instruction(Instructions::CMC,**kwargs)
         # Move if above (CF == 0 and ZF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVA]
         # @example
@@ -1949,7 +1949,7 @@ module Ronin
         #   cmova eax, [rbx]
         #   cmova rax, rbx
         #   cmova rax, [rbx]
-        def cmova(*operands,**kwargs) = add_instruction(Instructions::CMOVA,*operands,**kwargs)
+        def cmova(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVA,operand1,operand2,**kwargs)
         # Move if above or equal (CF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVAE]
         # @example
@@ -1959,7 +1959,7 @@ module Ronin
         #   cmovae eax, [rbx]
         #   cmovae rax, rbx
         #   cmovae rax, [rbx]
-        def cmovae(*operands,**kwargs) = add_instruction(Instructions::CMOVAE,*operands,**kwargs)
+        def cmovae(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVAE,operand1,operand2,**kwargs)
         # Move if below (CF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVB]
         # @example
@@ -1969,7 +1969,7 @@ module Ronin
         #   cmovb eax, [rbx]
         #   cmovb rax, rbx
         #   cmovb rax, [rbx]
-        def cmovb(*operands,**kwargs) = add_instruction(Instructions::CMOVB,*operands,**kwargs)
+        def cmovb(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVB,operand1,operand2,**kwargs)
         # Move if below or equal (CF == 1 or ZF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVBE]
         # @example
@@ -1979,7 +1979,7 @@ module Ronin
         #   cmovbe eax, [rbx]
         #   cmovbe rax, rbx
         #   cmovbe rax, [rbx]
-        def cmovbe(*operands,**kwargs) = add_instruction(Instructions::CMOVBE,*operands,**kwargs)
+        def cmovbe(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVBE,operand1,operand2,**kwargs)
         # Move if carry (CF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVC]
         # @example
@@ -1989,7 +1989,7 @@ module Ronin
         #   cmovc eax, [rbx]
         #   cmovc rax, rbx
         #   cmovc rax, [rbx]
-        def cmovc(*operands,**kwargs) = add_instruction(Instructions::CMOVC,*operands,**kwargs)
+        def cmovc(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVC,operand1,operand2,**kwargs)
         # Move if equal (ZF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVE]
         # @example
@@ -1999,7 +1999,7 @@ module Ronin
         #   cmove eax, [rbx]
         #   cmove rax, rbx
         #   cmove rax, [rbx]
-        def cmove(*operands,**kwargs) = add_instruction(Instructions::CMOVE,*operands,**kwargs)
+        def cmove(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVE,operand1,operand2,**kwargs)
         # Move if greater (ZF == 0 and SF == OF)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVG]
         # @example
@@ -2009,7 +2009,7 @@ module Ronin
         #   cmovg eax, [rbx]
         #   cmovg rax, rbx
         #   cmovg rax, [rbx]
-        def cmovg(*operands,**kwargs) = add_instruction(Instructions::CMOVG,*operands,**kwargs)
+        def cmovg(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVG,operand1,operand2,**kwargs)
         # Move if greater or equal (SF == OF)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVGE]
         # @example
@@ -2019,7 +2019,7 @@ module Ronin
         #   cmovge eax, [rbx]
         #   cmovge rax, rbx
         #   cmovge rax, [rbx]
-        def cmovge(*operands,**kwargs) = add_instruction(Instructions::CMOVGE,*operands,**kwargs)
+        def cmovge(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVGE,operand1,operand2,**kwargs)
         # Move if less (SF != OF)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVL]
         # @example
@@ -2029,7 +2029,7 @@ module Ronin
         #   cmovl eax, [rbx]
         #   cmovl rax, rbx
         #   cmovl rax, [rbx]
-        def cmovl(*operands,**kwargs) = add_instruction(Instructions::CMOVL,*operands,**kwargs)
+        def cmovl(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVL,operand1,operand2,**kwargs)
         # Move if less or equal (ZF == 1 or SF != OF)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVLE]
         # @example
@@ -2039,7 +2039,7 @@ module Ronin
         #   cmovle eax, [rbx]
         #   cmovle rax, rbx
         #   cmovle rax, [rbx]
-        def cmovle(*operands,**kwargs) = add_instruction(Instructions::CMOVLE,*operands,**kwargs)
+        def cmovle(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVLE,operand1,operand2,**kwargs)
         # Move if not above (CF == 1 or ZF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNA]
         # @example
@@ -2049,7 +2049,7 @@ module Ronin
         #   cmovna eax, [rbx]
         #   cmovna rax, rbx
         #   cmovna rax, [rbx]
-        def cmovna(*operands,**kwargs) = add_instruction(Instructions::CMOVNA,*operands,**kwargs)
+        def cmovna(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNA,operand1,operand2,**kwargs)
         # Move if not above or equal (CF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNAE]
         # @example
@@ -2059,7 +2059,7 @@ module Ronin
         #   cmovnae eax, [rbx]
         #   cmovnae rax, rbx
         #   cmovnae rax, [rbx]
-        def cmovnae(*operands,**kwargs) = add_instruction(Instructions::CMOVNAE,*operands,**kwargs)
+        def cmovnae(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNAE,operand1,operand2,**kwargs)
         # Move if not below (CF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNB]
         # @example
@@ -2069,7 +2069,7 @@ module Ronin
         #   cmovnb eax, [rbx]
         #   cmovnb rax, rbx
         #   cmovnb rax, [rbx]
-        def cmovnb(*operands,**kwargs) = add_instruction(Instructions::CMOVNB,*operands,**kwargs)
+        def cmovnb(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNB,operand1,operand2,**kwargs)
         # Move if not below or equal (CF == 0 and ZF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNBE]
         # @example
@@ -2079,7 +2079,7 @@ module Ronin
         #   cmovnbe eax, [rbx]
         #   cmovnbe rax, rbx
         #   cmovnbe rax, [rbx]
-        def cmovnbe(*operands,**kwargs) = add_instruction(Instructions::CMOVNBE,*operands,**kwargs)
+        def cmovnbe(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNBE,operand1,operand2,**kwargs)
         # Move if not carry (CF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNC]
         # @example
@@ -2089,7 +2089,7 @@ module Ronin
         #   cmovnc eax, [rbx]
         #   cmovnc rax, rbx
         #   cmovnc rax, [rbx]
-        def cmovnc(*operands,**kwargs) = add_instruction(Instructions::CMOVNC,*operands,**kwargs)
+        def cmovnc(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNC,operand1,operand2,**kwargs)
         # Move if not equal (ZF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNE]
         # @example
@@ -2099,7 +2099,7 @@ module Ronin
         #   cmovne eax, [rbx]
         #   cmovne rax, rbx
         #   cmovne rax, [rbx]
-        def cmovne(*operands,**kwargs) = add_instruction(Instructions::CMOVNE,*operands,**kwargs)
+        def cmovne(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNE,operand1,operand2,**kwargs)
         # Move if not greater (ZF == 1 or SF != OF)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNG]
         # @example
@@ -2109,7 +2109,7 @@ module Ronin
         #   cmovng eax, [rbx]
         #   cmovng rax, rbx
         #   cmovng rax, [rbx]
-        def cmovng(*operands,**kwargs) = add_instruction(Instructions::CMOVNG,*operands,**kwargs)
+        def cmovng(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNG,operand1,operand2,**kwargs)
         # Move if not greater or equal (SF != OF)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNGE]
         # @example
@@ -2119,7 +2119,7 @@ module Ronin
         #   cmovnge eax, [rbx]
         #   cmovnge rax, rbx
         #   cmovnge rax, [rbx]
-        def cmovnge(*operands,**kwargs) = add_instruction(Instructions::CMOVNGE,*operands,**kwargs)
+        def cmovnge(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNGE,operand1,operand2,**kwargs)
         # Move if not less (SF == OF)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNL]
         # @example
@@ -2129,7 +2129,7 @@ module Ronin
         #   cmovnl eax, [rbx]
         #   cmovnl rax, rbx
         #   cmovnl rax, [rbx]
-        def cmovnl(*operands,**kwargs) = add_instruction(Instructions::CMOVNL,*operands,**kwargs)
+        def cmovnl(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNL,operand1,operand2,**kwargs)
         # Move if not less or equal (ZF == 0 and SF == OF)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNLE]
         # @example
@@ -2139,7 +2139,7 @@ module Ronin
         #   cmovnle eax, [rbx]
         #   cmovnle rax, rbx
         #   cmovnle rax, [rbx]
-        def cmovnle(*operands,**kwargs) = add_instruction(Instructions::CMOVNLE,*operands,**kwargs)
+        def cmovnle(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNLE,operand1,operand2,**kwargs)
         # Move if not overflow (OF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNO]
         # @example
@@ -2149,7 +2149,7 @@ module Ronin
         #   cmovno eax, [rbx]
         #   cmovno rax, rbx
         #   cmovno rax, [rbx]
-        def cmovno(*operands,**kwargs) = add_instruction(Instructions::CMOVNO,*operands,**kwargs)
+        def cmovno(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNO,operand1,operand2,**kwargs)
         # Move if not parity (PF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNP]
         # @example
@@ -2159,7 +2159,7 @@ module Ronin
         #   cmovnp eax, [rbx]
         #   cmovnp rax, rbx
         #   cmovnp rax, [rbx]
-        def cmovnp(*operands,**kwargs) = add_instruction(Instructions::CMOVNP,*operands,**kwargs)
+        def cmovnp(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNP,operand1,operand2,**kwargs)
         # Move if not sign (SF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNS]
         # @example
@@ -2169,7 +2169,7 @@ module Ronin
         #   cmovns eax, [rbx]
         #   cmovns rax, rbx
         #   cmovns rax, [rbx]
-        def cmovns(*operands,**kwargs) = add_instruction(Instructions::CMOVNS,*operands,**kwargs)
+        def cmovns(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNS,operand1,operand2,**kwargs)
         # Move if not zero (ZF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVNZ]
         # @example
@@ -2179,7 +2179,7 @@ module Ronin
         #   cmovnz eax, [rbx]
         #   cmovnz rax, rbx
         #   cmovnz rax, [rbx]
-        def cmovnz(*operands,**kwargs) = add_instruction(Instructions::CMOVNZ,*operands,**kwargs)
+        def cmovnz(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVNZ,operand1,operand2,**kwargs)
         # Move if overflow (OF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVO]
         # @example
@@ -2189,7 +2189,7 @@ module Ronin
         #   cmovo eax, [rbx]
         #   cmovo rax, rbx
         #   cmovo rax, [rbx]
-        def cmovo(*operands,**kwargs) = add_instruction(Instructions::CMOVO,*operands,**kwargs)
+        def cmovo(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVO,operand1,operand2,**kwargs)
         # Move if parity (PF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVP]
         # @example
@@ -2199,7 +2199,7 @@ module Ronin
         #   cmovp eax, [rbx]
         #   cmovp rax, rbx
         #   cmovp rax, [rbx]
-        def cmovp(*operands,**kwargs) = add_instruction(Instructions::CMOVP,*operands,**kwargs)
+        def cmovp(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVP,operand1,operand2,**kwargs)
         # Move if parity even (PF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVPE]
         # @example
@@ -2209,7 +2209,7 @@ module Ronin
         #   cmovpe eax, [rbx]
         #   cmovpe rax, rbx
         #   cmovpe rax, [rbx]
-        def cmovpe(*operands,**kwargs) = add_instruction(Instructions::CMOVPE,*operands,**kwargs)
+        def cmovpe(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVPE,operand1,operand2,**kwargs)
         # Move if parity odd (PF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVPO]
         # @example
@@ -2219,7 +2219,7 @@ module Ronin
         #   cmovpo eax, [rbx]
         #   cmovpo rax, rbx
         #   cmovpo rax, [rbx]
-        def cmovpo(*operands,**kwargs) = add_instruction(Instructions::CMOVPO,*operands,**kwargs)
+        def cmovpo(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVPO,operand1,operand2,**kwargs)
         # Move if sign (SF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVS]
         # @example
@@ -2229,7 +2229,7 @@ module Ronin
         #   cmovs eax, [rbx]
         #   cmovs rax, rbx
         #   cmovs rax, [rbx]
-        def cmovs(*operands,**kwargs) = add_instruction(Instructions::CMOVS,*operands,**kwargs)
+        def cmovs(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVS,operand1,operand2,**kwargs)
         # Move if zero (ZF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::CMOVZ]
         # @example
@@ -2239,7 +2239,7 @@ module Ronin
         #   cmovz eax, [rbx]
         #   cmovz rax, rbx
         #   cmovz rax, [rbx]
-        def cmovz(*operands,**kwargs) = add_instruction(Instructions::CMOVZ,*operands,**kwargs)
+        def cmovz(operand1,operand2,**kwargs) = add_instruction(Instructions::CMOVZ,operand1,operand2,**kwargs)
         # Compare Two Operands
         # @return [Ronin::ASM::X86_64::Instructions::CMP]
         # @example
@@ -2265,121 +2265,121 @@ module Ronin
         #   cmp [rax], 0x00000002
         #   cmp [rax], ebx
         #   cmp [rax], rbx
-        def cmp(*operands,**kwargs) = add_instruction(Instructions::CMP,*operands,**kwargs)
+        def cmp(operand1,operand2,**kwargs) = add_instruction(Instructions::CMP,operand1,operand2,**kwargs)
         # Compare for Below or Equals and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPBEXADD]
         # @example
         #   cmpbexadd [rax], ebx, ecx
         #   cmpbexadd [rax], rbx, rcx
-        def cmpbexadd(*operands,**kwargs) = add_instruction(Instructions::CMPBEXADD,*operands,**kwargs)
+        def cmpbexadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPBEXADD,operand1,operand2,operand3,**kwargs)
         # Compare for Below and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPBXADD]
         # @example
         #   cmpbxadd [rax], ebx, ecx
         #   cmpbxadd [rax], rbx, rcx
-        def cmpbxadd(*operands,**kwargs) = add_instruction(Instructions::CMPBXADD,*operands,**kwargs)
+        def cmpbxadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPBXADD,operand1,operand2,operand3,**kwargs)
         # Compare for Less or Equals and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPLEXADD]
         # @example
         #   cmplexadd [rax], ebx, ecx
         #   cmplexadd [rax], rbx, rcx
-        def cmplexadd(*operands,**kwargs) = add_instruction(Instructions::CMPLEXADD,*operands,**kwargs)
+        def cmplexadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPLEXADD,operand1,operand2,operand3,**kwargs)
         # Compare for Less and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPLXADD]
         # @example
         #   cmplxadd [rax], ebx, ecx
         #   cmplxadd [rax], rbx, rcx
-        def cmplxadd(*operands,**kwargs) = add_instruction(Instructions::CMPLXADD,*operands,**kwargs)
+        def cmplxadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPLXADD,operand1,operand2,operand3,**kwargs)
         # Compare for Not Below or Equals and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPNBEXADD]
         # @example
         #   cmpnbexadd [rax], ebx, ecx
         #   cmpnbexadd [rax], rbx, rcx
-        def cmpnbexadd(*operands,**kwargs) = add_instruction(Instructions::CMPNBEXADD,*operands,**kwargs)
+        def cmpnbexadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPNBEXADD,operand1,operand2,operand3,**kwargs)
         # Compare for Not Below and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPNBXADD]
         # @example
         #   cmpnbxadd [rax], ebx, ecx
         #   cmpnbxadd [rax], rbx, rcx
-        def cmpnbxadd(*operands,**kwargs) = add_instruction(Instructions::CMPNBXADD,*operands,**kwargs)
+        def cmpnbxadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPNBXADD,operand1,operand2,operand3,**kwargs)
         # Compare for Not Less or Equals and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPNLEXADD]
         # @example
         #   cmpnlexadd [rax], ebx, ecx
         #   cmpnlexadd [rax], rbx, rcx
-        def cmpnlexadd(*operands,**kwargs) = add_instruction(Instructions::CMPNLEXADD,*operands,**kwargs)
+        def cmpnlexadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPNLEXADD,operand1,operand2,operand3,**kwargs)
         # Compare for Not Less and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPNLXADD]
         # @example
         #   cmpnlxadd [rax], ebx, ecx
         #   cmpnlxadd [rax], rbx, rcx
-        def cmpnlxadd(*operands,**kwargs) = add_instruction(Instructions::CMPNLXADD,*operands,**kwargs)
+        def cmpnlxadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPNLXADD,operand1,operand2,operand3,**kwargs)
         # Compare for Not Overflow and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPNOXADD]
         # @example
         #   cmpnoxadd [rax], ebx, ecx
         #   cmpnoxadd [rax], rbx, rcx
-        def cmpnoxadd(*operands,**kwargs) = add_instruction(Instructions::CMPNOXADD,*operands,**kwargs)
+        def cmpnoxadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPNOXADD,operand1,operand2,operand3,**kwargs)
         # Compare for Not Parity and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPNPXADD]
         # @example
         #   cmpnpxadd [rax], ebx, ecx
         #   cmpnpxadd [rax], rbx, rcx
-        def cmpnpxadd(*operands,**kwargs) = add_instruction(Instructions::CMPNPXADD,*operands,**kwargs)
+        def cmpnpxadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPNPXADD,operand1,operand2,operand3,**kwargs)
         # Compare for Not Sign and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPNSXADD]
         # @example
         #   cmpnsxadd [rax], ebx, ecx
         #   cmpnsxadd [rax], rbx, rcx
-        def cmpnsxadd(*operands,**kwargs) = add_instruction(Instructions::CMPNSXADD,*operands,**kwargs)
+        def cmpnsxadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPNSXADD,operand1,operand2,operand3,**kwargs)
         # Compare for Not Zero and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPNZXADD]
         # @example
         #   cmpnzxadd [rax], ebx, ecx
         #   cmpnzxadd [rax], rbx, rcx
-        def cmpnzxadd(*operands,**kwargs) = add_instruction(Instructions::CMPNZXADD,*operands,**kwargs)
+        def cmpnzxadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPNZXADD,operand1,operand2,operand3,**kwargs)
         # Compare for Overflow and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPOXADD]
         # @example
         #   cmpoxadd [rax], ebx, ecx
         #   cmpoxadd [rax], rbx, rcx
-        def cmpoxadd(*operands,**kwargs) = add_instruction(Instructions::CMPOXADD,*operands,**kwargs)
+        def cmpoxadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPOXADD,operand1,operand2,operand3,**kwargs)
         # Compare Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::CMPPD]
         # @example
         #   cmppd xmm0, xmm1, 0x03
         #   cmppd xmm0, [rbx], 0x03
-        def cmppd(*operands,**kwargs) = add_instruction(Instructions::CMPPD,*operands,**kwargs)
+        def cmppd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPPD,operand1,operand2,operand3,**kwargs)
         # Compare Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::CMPPS]
         # @example
         #   cmpps xmm0, xmm1, 0x03
         #   cmpps xmm0, [rbx], 0x03
-        def cmpps(*operands,**kwargs) = add_instruction(Instructions::CMPPS,*operands,**kwargs)
+        def cmpps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPPS,operand1,operand2,operand3,**kwargs)
         # Compare for Parity and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPPXADD]
         # @example
         #   cmppxadd [rax], ebx, ecx
         #   cmppxadd [rax], rbx, rcx
-        def cmppxadd(*operands,**kwargs) = add_instruction(Instructions::CMPPXADD,*operands,**kwargs)
+        def cmppxadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPPXADD,operand1,operand2,operand3,**kwargs)
         # Compare Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::CMPSD]
         # @example
         #   cmpsd xmm0, xmm1, 0x03
         #   cmpsd xmm0, [rbx], 0x03
-        def cmpsd(*operands,**kwargs) = add_instruction(Instructions::CMPSD,*operands,**kwargs)
+        def cmpsd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPSD,operand1,operand2,operand3,**kwargs)
         # Compare Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::CMPSS]
         # @example
         #   cmpss xmm0, xmm1, 0x03
         #   cmpss xmm0, [rbx], 0x03
-        def cmpss(*operands,**kwargs) = add_instruction(Instructions::CMPSS,*operands,**kwargs)
+        def cmpss(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPSS,operand1,operand2,operand3,**kwargs)
         # Compare for Sign and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPSXADD]
         # @example
         #   cmpsxadd [rax], ebx, ecx
         #   cmpsxadd [rax], rbx, rcx
-        def cmpsxadd(*operands,**kwargs) = add_instruction(Instructions::CMPSXADD,*operands,**kwargs)
+        def cmpsxadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPSXADD,operand1,operand2,operand3,**kwargs)
         # Compare and Exchange
         # @return [Ronin::ASM::X86_64::Instructions::CMPXCHG]
         # @example
@@ -2391,41 +2391,41 @@ module Ronin
         #   cmpxchg [rax], bx
         #   cmpxchg [rax], ebx
         #   cmpxchg [rax], rbx
-        def cmpxchg(*operands,**kwargs) = add_instruction(Instructions::CMPXCHG,*operands,**kwargs)
+        def cmpxchg(operand1,operand2,**kwargs) = add_instruction(Instructions::CMPXCHG,operand1,operand2,**kwargs)
         # Compare and Exchange 16 Bytes
         # @return [Ronin::ASM::X86_64::Instructions::CMPXCHG16B]
         # @example
         #   cmpxchg16b [rax]
-        def cmpxchg16b(*operands,**kwargs) = add_instruction(Instructions::CMPXCHG16B,*operands,**kwargs)
+        def cmpxchg16b(operand,**kwargs) = add_instruction(Instructions::CMPXCHG16B,operand,**kwargs)
         # Compare and Exchange 8 Bytes
         # @return [Ronin::ASM::X86_64::Instructions::CMPXCHG8B]
         # @example
         #   cmpxchg8b [rax]
-        def cmpxchg8b(*operands,**kwargs) = add_instruction(Instructions::CMPXCHG8B,*operands,**kwargs)
+        def cmpxchg8b(operand,**kwargs) = add_instruction(Instructions::CMPXCHG8B,operand,**kwargs)
         # Compare for Zero and Add
         # @return [Ronin::ASM::X86_64::Instructions::CMPZXADD]
         # @example
         #   cmpzxadd [rax], ebx, ecx
         #   cmpzxadd [rax], rbx, rcx
-        def cmpzxadd(*operands,**kwargs) = add_instruction(Instructions::CMPZXADD,*operands,**kwargs)
+        def cmpzxadd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::CMPZXADD,operand1,operand2,operand3,**kwargs)
         # Compare Scalar Ordered Double-Precision Floating-Point Values and Set EFLAGS
         # @return [Ronin::ASM::X86_64::Instructions::COMISD]
         # @example
         #   comisd xmm0, xmm1
         #   comisd xmm0, [rbx]
-        def comisd(*operands,**kwargs) = add_instruction(Instructions::COMISD,*operands,**kwargs)
+        def comisd(operand1,operand2,**kwargs) = add_instruction(Instructions::COMISD,operand1,operand2,**kwargs)
         # Compare Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS
         # @return [Ronin::ASM::X86_64::Instructions::COMISS]
         # @example
         #   comiss xmm0, xmm1
         #   comiss xmm0, [rbx]
-        def comiss(*operands,**kwargs) = add_instruction(Instructions::COMISS,*operands,**kwargs)
+        def comiss(operand1,operand2,**kwargs) = add_instruction(Instructions::COMISS,operand1,operand2,**kwargs)
         # CPU Identification
         # @return [Ronin::ASM::X86_64::Instructions::CPUID]
-        def cpuid(*operands,**kwargs) = add_instruction(Instructions::CPUID,*operands,**kwargs)
+        def cpuid(**kwargs) = add_instruction(Instructions::CPUID,**kwargs)
         # Convert Quadword to Octaword
         # @return [Ronin::ASM::X86_64::Instructions::CQO]
-        def cqo(*operands,**kwargs) = add_instruction(Instructions::CQO,*operands,**kwargs)
+        def cqo(**kwargs) = add_instruction(Instructions::CQO,**kwargs)
         # Accumulate CRC32 Value
         # @return [Ronin::ASM::X86_64::Instructions::CRC32]
         # @example
@@ -2436,67 +2436,67 @@ module Ronin
         #   crc32 rax, bl
         #   crc32 rax, rbx
         #   crc32 rax, [rbx]
-        def crc32(*operands,**kwargs) = add_instruction(Instructions::CRC32,*operands,**kwargs)
+        def crc32(operand1,operand2,**kwargs) = add_instruction(Instructions::CRC32,operand1,operand2,**kwargs)
         # Convert Packed Dword Integers to Packed Double-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::CVTDQ2PD]
         # @example
         #   cvtdq2pd xmm0, xmm1
         #   cvtdq2pd xmm0, [rbx]
-        def cvtdq2pd(*operands,**kwargs) = add_instruction(Instructions::CVTDQ2PD,*operands,**kwargs)
+        def cvtdq2pd(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTDQ2PD,operand1,operand2,**kwargs)
         # Convert Packed Dword Integers to Packed Single-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::CVTDQ2PS]
         # @example
         #   cvtdq2ps xmm0, xmm1
         #   cvtdq2ps xmm0, [rbx]
-        def cvtdq2ps(*operands,**kwargs) = add_instruction(Instructions::CVTDQ2PS,*operands,**kwargs)
+        def cvtdq2ps(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTDQ2PS,operand1,operand2,**kwargs)
         # Convert Packed Double-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::CVTPD2DQ]
         # @example
         #   cvtpd2dq xmm0, xmm1
         #   cvtpd2dq xmm0, [rbx]
-        def cvtpd2dq(*operands,**kwargs) = add_instruction(Instructions::CVTPD2DQ,*operands,**kwargs)
+        def cvtpd2dq(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTPD2DQ,operand1,operand2,**kwargs)
         # Convert Packed Double-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::CVTPD2PI]
         # @example
         #   cvtpd2pi mm0, xmm1
         #   cvtpd2pi mm0, [rbx]
-        def cvtpd2pi(*operands,**kwargs) = add_instruction(Instructions::CVTPD2PI,*operands,**kwargs)
+        def cvtpd2pi(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTPD2PI,operand1,operand2,**kwargs)
         # Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::CVTPD2PS]
         # @example
         #   cvtpd2ps xmm0, xmm1
         #   cvtpd2ps xmm0, [rbx]
-        def cvtpd2ps(*operands,**kwargs) = add_instruction(Instructions::CVTPD2PS,*operands,**kwargs)
+        def cvtpd2ps(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTPD2PS,operand1,operand2,**kwargs)
         # Convert Packed Dword Integers to Packed Double-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::CVTPI2PD]
         # @example
         #   cvtpi2pd xmm0, mm1
         #   cvtpi2pd xmm0, [rbx]
-        def cvtpi2pd(*operands,**kwargs) = add_instruction(Instructions::CVTPI2PD,*operands,**kwargs)
+        def cvtpi2pd(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTPI2PD,operand1,operand2,**kwargs)
         # Convert Packed Dword Integers to Packed Single-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::CVTPI2PS]
         # @example
         #   cvtpi2ps xmm0, mm1
         #   cvtpi2ps xmm0, [rbx]
-        def cvtpi2ps(*operands,**kwargs) = add_instruction(Instructions::CVTPI2PS,*operands,**kwargs)
+        def cvtpi2ps(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTPI2PS,operand1,operand2,**kwargs)
         # Convert Packed Single-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::CVTPS2DQ]
         # @example
         #   cvtps2dq xmm0, xmm1
         #   cvtps2dq xmm0, [rbx]
-        def cvtps2dq(*operands,**kwargs) = add_instruction(Instructions::CVTPS2DQ,*operands,**kwargs)
+        def cvtps2dq(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTPS2DQ,operand1,operand2,**kwargs)
         # Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::CVTPS2PD]
         # @example
         #   cvtps2pd xmm0, xmm1
         #   cvtps2pd xmm0, [rbx]
-        def cvtps2pd(*operands,**kwargs) = add_instruction(Instructions::CVTPS2PD,*operands,**kwargs)
+        def cvtps2pd(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTPS2PD,operand1,operand2,**kwargs)
         # Convert Packed Single-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::CVTPS2PI]
         # @example
         #   cvtps2pi mm0, xmm1
         #   cvtps2pi mm0, [rbx]
-        def cvtps2pi(*operands,**kwargs) = add_instruction(Instructions::CVTPS2PI,*operands,**kwargs)
+        def cvtps2pi(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTPS2PI,operand1,operand2,**kwargs)
         # Convert Scalar Double-Precision FP Value to Integer
         # @return [Ronin::ASM::X86_64::Instructions::CVTSD2SI]
         # @example
@@ -2504,33 +2504,33 @@ module Ronin
         #   cvtsd2si eax, [rbx]
         #   cvtsd2si rax, xmm1
         #   cvtsd2si rax, [rbx]
-        def cvtsd2si(*operands,**kwargs) = add_instruction(Instructions::CVTSD2SI,*operands,**kwargs)
+        def cvtsd2si(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTSD2SI,operand1,operand2,**kwargs)
         # Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::CVTSD2SS]
         # @example
         #   cvtsd2ss xmm0, xmm1
         #   cvtsd2ss xmm0, [rbx]
-        def cvtsd2ss(*operands,**kwargs) = add_instruction(Instructions::CVTSD2SS,*operands,**kwargs)
+        def cvtsd2ss(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTSD2SS,operand1,operand2,**kwargs)
         # Convert Dword Integer to Scalar Double-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::CVTSI2SD]
         # @example
         #   cvtsi2sd xmm0, ebx
         #   cvtsi2sd xmm0, rbx
         #   cvtsi2sd xmm0, [rbx]
-        def cvtsi2sd(*operands,**kwargs) = add_instruction(Instructions::CVTSI2SD,*operands,**kwargs)
+        def cvtsi2sd(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTSI2SD,operand1,operand2,**kwargs)
         # Convert Dword Integer to Scalar Single-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::CVTSI2SS]
         # @example
         #   cvtsi2ss xmm0, ebx
         #   cvtsi2ss xmm0, rbx
         #   cvtsi2ss xmm0, [rbx]
-        def cvtsi2ss(*operands,**kwargs) = add_instruction(Instructions::CVTSI2SS,*operands,**kwargs)
+        def cvtsi2ss(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTSI2SS,operand1,operand2,**kwargs)
         # Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::CVTSS2SD]
         # @example
         #   cvtss2sd xmm0, xmm1
         #   cvtss2sd xmm0, [rbx]
-        def cvtss2sd(*operands,**kwargs) = add_instruction(Instructions::CVTSS2SD,*operands,**kwargs)
+        def cvtss2sd(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTSS2SD,operand1,operand2,**kwargs)
         # Convert Scalar Single-Precision FP Value to Dword Integer
         # @return [Ronin::ASM::X86_64::Instructions::CVTSS2SI]
         # @example
@@ -2538,31 +2538,31 @@ module Ronin
         #   cvtss2si eax, [rbx]
         #   cvtss2si rax, xmm1
         #   cvtss2si rax, [rbx]
-        def cvtss2si(*operands,**kwargs) = add_instruction(Instructions::CVTSS2SI,*operands,**kwargs)
+        def cvtss2si(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTSS2SI,operand1,operand2,**kwargs)
         # Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::CVTTPD2DQ]
         # @example
         #   cvttpd2dq xmm0, xmm1
         #   cvttpd2dq xmm0, [rbx]
-        def cvttpd2dq(*operands,**kwargs) = add_instruction(Instructions::CVTTPD2DQ,*operands,**kwargs)
+        def cvttpd2dq(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTTPD2DQ,operand1,operand2,**kwargs)
         # Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::CVTTPD2PI]
         # @example
         #   cvttpd2pi mm0, xmm1
         #   cvttpd2pi mm0, [rbx]
-        def cvttpd2pi(*operands,**kwargs) = add_instruction(Instructions::CVTTPD2PI,*operands,**kwargs)
+        def cvttpd2pi(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTTPD2PI,operand1,operand2,**kwargs)
         # Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::CVTTPS2DQ]
         # @example
         #   cvttps2dq xmm0, xmm1
         #   cvttps2dq xmm0, [rbx]
-        def cvttps2dq(*operands,**kwargs) = add_instruction(Instructions::CVTTPS2DQ,*operands,**kwargs)
+        def cvttps2dq(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTTPS2DQ,operand1,operand2,**kwargs)
         # Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::CVTTPS2PI]
         # @example
         #   cvttps2pi mm0, xmm1
         #   cvttps2pi mm0, [rbx]
-        def cvttps2pi(*operands,**kwargs) = add_instruction(Instructions::CVTTPS2PI,*operands,**kwargs)
+        def cvttps2pi(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTTPS2PI,operand1,operand2,**kwargs)
         # Convert with Truncation Scalar Double-Precision FP Value to Signed Integer
         # @return [Ronin::ASM::X86_64::Instructions::CVTTSD2SI]
         # @example
@@ -2570,7 +2570,7 @@ module Ronin
         #   cvttsd2si eax, [rbx]
         #   cvttsd2si rax, xmm1
         #   cvttsd2si rax, [rbx]
-        def cvttsd2si(*operands,**kwargs) = add_instruction(Instructions::CVTTSD2SI,*operands,**kwargs)
+        def cvttsd2si(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTTSD2SI,operand1,operand2,**kwargs)
         # Convert with Truncation Scalar Single-Precision FP Value to Dword Integer
         # @return [Ronin::ASM::X86_64::Instructions::CVTTSS2SI]
         # @example
@@ -2578,13 +2578,13 @@ module Ronin
         #   cvttss2si eax, [rbx]
         #   cvttss2si rax, xmm1
         #   cvttss2si rax, [rbx]
-        def cvttss2si(*operands,**kwargs) = add_instruction(Instructions::CVTTSS2SI,*operands,**kwargs)
+        def cvttss2si(operand1,operand2,**kwargs) = add_instruction(Instructions::CVTTSS2SI,operand1,operand2,**kwargs)
         # Convert Word to Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::CWD]
-        def cwd(*operands,**kwargs) = add_instruction(Instructions::CWD,*operands,**kwargs)
+        def cwd(**kwargs) = add_instruction(Instructions::CWD,**kwargs)
         # Convert Word to Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::CWDE]
-        def cwde(*operands,**kwargs) = add_instruction(Instructions::CWDE,*operands,**kwargs)
+        def cwde(**kwargs) = add_instruction(Instructions::CWDE,**kwargs)
         # Decrement by 1
         # @return [Ronin::ASM::X86_64::Instructions::DEC]
         # @example
@@ -2593,7 +2593,7 @@ module Ronin
         #   dec eax
         #   dec rax
         #   dec [rax]
-        def dec(*operands,**kwargs) = add_instruction(Instructions::DEC,*operands,**kwargs)
+        def dec(operand,**kwargs) = add_instruction(Instructions::DEC,operand,**kwargs)
         # Unsigned Divide
         # @return [Ronin::ASM::X86_64::Instructions::DIV]
         # @example
@@ -2602,106 +2602,106 @@ module Ronin
         #   div eax
         #   div rax
         #   div [rax]
-        def div(*operands,**kwargs) = add_instruction(Instructions::DIV,*operands,**kwargs)
+        def div(operand,**kwargs) = add_instruction(Instructions::DIV,operand,**kwargs)
         # Divide Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::DIVPD]
         # @example
         #   divpd xmm0, xmm1
         #   divpd xmm0, [rbx]
-        def divpd(*operands,**kwargs) = add_instruction(Instructions::DIVPD,*operands,**kwargs)
+        def divpd(operand1,operand2,**kwargs) = add_instruction(Instructions::DIVPD,operand1,operand2,**kwargs)
         # Divide Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::DIVPS]
         # @example
         #   divps xmm0, xmm1
         #   divps xmm0, [rbx]
-        def divps(*operands,**kwargs) = add_instruction(Instructions::DIVPS,*operands,**kwargs)
+        def divps(operand1,operand2,**kwargs) = add_instruction(Instructions::DIVPS,operand1,operand2,**kwargs)
         # Divide Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::DIVSD]
         # @example
         #   divsd xmm0, xmm1
         #   divsd xmm0, [rbx]
-        def divsd(*operands,**kwargs) = add_instruction(Instructions::DIVSD,*operands,**kwargs)
+        def divsd(operand1,operand2,**kwargs) = add_instruction(Instructions::DIVSD,operand1,operand2,**kwargs)
         # Divide Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::DIVSS]
         # @example
         #   divss xmm0, xmm1
         #   divss xmm0, [rbx]
-        def divss(*operands,**kwargs) = add_instruction(Instructions::DIVSS,*operands,**kwargs)
+        def divss(operand1,operand2,**kwargs) = add_instruction(Instructions::DIVSS,operand1,operand2,**kwargs)
         # Dot Product of Packed Double Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::DPPD]
         # @example
         #   dppd xmm0, xmm1, 0x03
         #   dppd xmm0, [rbx], 0x03
-        def dppd(*operands,**kwargs) = add_instruction(Instructions::DPPD,*operands,**kwargs)
+        def dppd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::DPPD,operand1,operand2,operand3,**kwargs)
         # Dot Product of Packed Single Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::DPPS]
         # @example
         #   dpps xmm0, xmm1, 0x03
         #   dpps xmm0, [rbx], 0x03
-        def dpps(*operands,**kwargs) = add_instruction(Instructions::DPPS,*operands,**kwargs)
+        def dpps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::DPPS,operand1,operand2,operand3,**kwargs)
         # Exit MMX State
         # @return [Ronin::ASM::X86_64::Instructions::EMMS]
-        def emms(*operands,**kwargs) = add_instruction(Instructions::EMMS,*operands,**kwargs)
+        def emms(**kwargs) = add_instruction(Instructions::EMMS,**kwargs)
         # END (terminate) BRanch in 64-bit mode
         # @return [Ronin::ASM::X86_64::Instructions::ENDBR64]
-        def endbr64(*operands,**kwargs) = add_instruction(Instructions::ENDBR64,*operands,**kwargs)
+        def endbr64(**kwargs) = add_instruction(Instructions::ENDBR64,**kwargs)
         # Extract Packed Single Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::EXTRACTPS]
         # @example
         #   extractps eax, xmm1, 0x03
         #   extractps [rax], xmm1, 0x03
-        def extractps(*operands,**kwargs) = add_instruction(Instructions::EXTRACTPS,*operands,**kwargs)
+        def extractps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::EXTRACTPS,operand1,operand2,operand3,**kwargs)
         # Extract Field
         # @return [Ronin::ASM::X86_64::Instructions::EXTRQ]
         # @example
         #   extrq xmm0, xmm1
         #   extrq xmm0, 0x02, 0x03
-        def extrq(*operands,**kwargs) = add_instruction(Instructions::EXTRQ,*operands,**kwargs)
+        def extrq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::EXTRQ,operand1,operand2,*operands,**kwargs)
         # Fast Exit Multimedia State
         # @return [Ronin::ASM::X86_64::Instructions::FEMMS]
-        def femms(*operands,**kwargs) = add_instruction(Instructions::FEMMS,*operands,**kwargs)
+        def femms(**kwargs) = add_instruction(Instructions::FEMMS,**kwargs)
         # Galois Field (2^8) Affine Inverse Transformation
         # @return [Ronin::ASM::X86_64::Instructions::GF2P8AFFINEINVQB]
         # @example
         #   gf2p8affineinvqb xmm0, xmm1, 0x03
         #   gf2p8affineinvqb xmm0, [rbx], 0x03
-        def gf2p8affineinvqb(*operands,**kwargs) = add_instruction(Instructions::GF2P8AFFINEINVQB,*operands,**kwargs)
+        def gf2p8affineinvqb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::GF2P8AFFINEINVQB,operand1,operand2,operand3,**kwargs)
         # Galois Field (2^8) Affine Transformation
         # @return [Ronin::ASM::X86_64::Instructions::GF2P8AFFINEQB]
         # @example
         #   gf2p8affineqb xmm0, xmm1, 0x03
         #   gf2p8affineqb xmm0, [rbx], 0x03
-        def gf2p8affineqb(*operands,**kwargs) = add_instruction(Instructions::GF2P8AFFINEQB,*operands,**kwargs)
+        def gf2p8affineqb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::GF2P8AFFINEQB,operand1,operand2,operand3,**kwargs)
         # Galois Field Multiply Bytes
         # @return [Ronin::ASM::X86_64::Instructions::GF2P8MULB]
         # @example
         #   gf2p8mulb xmm0, xmm1
         #   gf2p8mulb xmm0, [rbx]
-        def gf2p8mulb(*operands,**kwargs) = add_instruction(Instructions::GF2P8MULB,*operands,**kwargs)
+        def gf2p8mulb(operand1,operand2,**kwargs) = add_instruction(Instructions::GF2P8MULB,operand1,operand2,**kwargs)
         # Packed Double-FP Horizontal Add
         # @return [Ronin::ASM::X86_64::Instructions::HADDPD]
         # @example
         #   haddpd xmm0, xmm1
         #   haddpd xmm0, [rbx]
-        def haddpd(*operands,**kwargs) = add_instruction(Instructions::HADDPD,*operands,**kwargs)
+        def haddpd(operand1,operand2,**kwargs) = add_instruction(Instructions::HADDPD,operand1,operand2,**kwargs)
         # Packed Single-FP Horizontal Add
         # @return [Ronin::ASM::X86_64::Instructions::HADDPS]
         # @example
         #   haddps xmm0, xmm1
         #   haddps xmm0, [rbx]
-        def haddps(*operands,**kwargs) = add_instruction(Instructions::HADDPS,*operands,**kwargs)
+        def haddps(operand1,operand2,**kwargs) = add_instruction(Instructions::HADDPS,operand1,operand2,**kwargs)
         # Packed Double-FP Horizontal Subtract
         # @return [Ronin::ASM::X86_64::Instructions::HSUBPD]
         # @example
         #   hsubpd xmm0, xmm1
         #   hsubpd xmm0, [rbx]
-        def hsubpd(*operands,**kwargs) = add_instruction(Instructions::HSUBPD,*operands,**kwargs)
+        def hsubpd(operand1,operand2,**kwargs) = add_instruction(Instructions::HSUBPD,operand1,operand2,**kwargs)
         # Packed Single-FP Horizontal Subtract
         # @return [Ronin::ASM::X86_64::Instructions::HSUBPS]
         # @example
         #   hsubps xmm0, xmm1
         #   hsubps xmm0, [rbx]
-        def hsubps(*operands,**kwargs) = add_instruction(Instructions::HSUBPS,*operands,**kwargs)
+        def hsubps(operand1,operand2,**kwargs) = add_instruction(Instructions::HSUBPS,operand1,operand2,**kwargs)
         # Signed Divide
         # @return [Ronin::ASM::X86_64::Instructions::IDIV]
         # @example
@@ -2710,7 +2710,7 @@ module Ronin
         #   idiv eax
         #   idiv rax
         #   idiv [rax]
-        def idiv(*operands,**kwargs) = add_instruction(Instructions::IDIV,*operands,**kwargs)
+        def idiv(operand,**kwargs) = add_instruction(Instructions::IDIV,operand,**kwargs)
         # Signed Multiply
         # @return [Ronin::ASM::X86_64::Instructions::IMUL]
         # @example
@@ -2737,7 +2737,7 @@ module Ronin
         #   imul rax, rbx, 0x00000003
         #   imul rax, [rbx], 0x03
         #   imul rax, [rbx], 0x00000003
-        def imul(*operands,**kwargs) = add_instruction(Instructions::IMUL,*operands,**kwargs)
+        def imul(operand1,*operands,**kwargs) = add_instruction(Instructions::IMUL,operand1,*operands,**kwargs)
         # Increment by 1
         # @return [Ronin::ASM::X86_64::Instructions::INC]
         # @example
@@ -2746,92 +2746,92 @@ module Ronin
         #   inc eax
         #   inc rax
         #   inc [rax]
-        def inc(*operands,**kwargs) = add_instruction(Instructions::INC,*operands,**kwargs)
+        def inc(operand,**kwargs) = add_instruction(Instructions::INC,operand,**kwargs)
         # Insert Packed Single Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::INSERTPS]
         # @example
         #   insertps xmm0, xmm1, 0x03
         #   insertps xmm0, [rbx], 0x03
-        def insertps(*operands,**kwargs) = add_instruction(Instructions::INSERTPS,*operands,**kwargs)
+        def insertps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::INSERTPS,operand1,operand2,operand3,**kwargs)
         # Insert Field
         # @return [Ronin::ASM::X86_64::Instructions::INSERTQ]
         # @example
         #   insertq xmm0, xmm1
         #   insertq xmm0, xmm1, 0x03, 0x04
-        def insertq(*operands,**kwargs) = add_instruction(Instructions::INSERTQ,*operands,**kwargs)
+        def insertq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::INSERTQ,operand1,operand2,*operands,**kwargs)
         # Call to Interrupt Procedure
         # @return [Ronin::ASM::X86_64::Instructions::INT]
         # @example
         #   int 0x01
-        def int(*operands,**kwargs) = add_instruction(Instructions::INT,*operands,**kwargs)
+        def int(operand,**kwargs) = add_instruction(Instructions::INT,operand,**kwargs)
         # Interrupt 3 (debug trap)
         # @return [Ronin::ASM::X86_64::Instructions::INT3]
-        def int3(*operands,**kwargs) = add_instruction(Instructions::INT3,*operands,**kwargs)
+        def int3(**kwargs) = add_instruction(Instructions::INT3,**kwargs)
         # Jump if above (CF == 0 and ZF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::JA]
         # @example
         #   ja rel8(-4)
         #   ja rel32(0x10000)
-        def ja(*operands,**kwargs) = add_instruction(Instructions::JA,*operands,**kwargs)
+        def ja(operand,**kwargs) = add_instruction(Instructions::JA,operand,**kwargs)
         # Jump if above or equal (CF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::JAE]
         # @example
         #   jae rel8(-4)
         #   jae rel32(0x10000)
-        def jae(*operands,**kwargs) = add_instruction(Instructions::JAE,*operands,**kwargs)
+        def jae(operand,**kwargs) = add_instruction(Instructions::JAE,operand,**kwargs)
         # Jump if below (CF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::JB]
         # @example
         #   jb rel8(-4)
         #   jb rel32(0x10000)
-        def jb(*operands,**kwargs) = add_instruction(Instructions::JB,*operands,**kwargs)
+        def jb(operand,**kwargs) = add_instruction(Instructions::JB,operand,**kwargs)
         # Jump if below or equal (CF == 1 or ZF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::JBE]
         # @example
         #   jbe rel8(-4)
         #   jbe rel32(0x10000)
-        def jbe(*operands,**kwargs) = add_instruction(Instructions::JBE,*operands,**kwargs)
+        def jbe(operand,**kwargs) = add_instruction(Instructions::JBE,operand,**kwargs)
         # Jump if carry (CF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::JC]
         # @example
         #   jc rel8(-4)
         #   jc rel32(0x10000)
-        def jc(*operands,**kwargs) = add_instruction(Instructions::JC,*operands,**kwargs)
+        def jc(operand,**kwargs) = add_instruction(Instructions::JC,operand,**kwargs)
         # Jump if equal (ZF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::JE]
         # @example
         #   je rel8(-4)
         #   je rel32(0x10000)
-        def je(*operands,**kwargs) = add_instruction(Instructions::JE,*operands,**kwargs)
+        def je(operand,**kwargs) = add_instruction(Instructions::JE,operand,**kwargs)
         # Jump if ECX register is 0
         # @return [Ronin::ASM::X86_64::Instructions::JECXZ]
         # @example
         #   jecxz rel8(-4)
-        def jecxz(*operands,**kwargs) = add_instruction(Instructions::JECXZ,*operands,**kwargs)
+        def jecxz(operand,**kwargs) = add_instruction(Instructions::JECXZ,operand,**kwargs)
         # Jump if greater (ZF == 0 and SF == OF)
         # @return [Ronin::ASM::X86_64::Instructions::JG]
         # @example
         #   jg rel8(-4)
         #   jg rel32(0x10000)
-        def jg(*operands,**kwargs) = add_instruction(Instructions::JG,*operands,**kwargs)
+        def jg(operand,**kwargs) = add_instruction(Instructions::JG,operand,**kwargs)
         # Jump if greater or equal (SF == OF)
         # @return [Ronin::ASM::X86_64::Instructions::JGE]
         # @example
         #   jge rel8(-4)
         #   jge rel32(0x10000)
-        def jge(*operands,**kwargs) = add_instruction(Instructions::JGE,*operands,**kwargs)
+        def jge(operand,**kwargs) = add_instruction(Instructions::JGE,operand,**kwargs)
         # Jump if less (SF != OF)
         # @return [Ronin::ASM::X86_64::Instructions::JL]
         # @example
         #   jl rel8(-4)
         #   jl rel32(0x10000)
-        def jl(*operands,**kwargs) = add_instruction(Instructions::JL,*operands,**kwargs)
+        def jl(operand,**kwargs) = add_instruction(Instructions::JL,operand,**kwargs)
         # Jump if less or equal (ZF == 1 or SF != OF)
         # @return [Ronin::ASM::X86_64::Instructions::JLE]
         # @example
         #   jle rel8(-4)
         #   jle rel32(0x10000)
-        def jle(*operands,**kwargs) = add_instruction(Instructions::JLE,*operands,**kwargs)
+        def jle(operand,**kwargs) = add_instruction(Instructions::JLE,operand,**kwargs)
         # Jump Unconditionally
         # @return [Ronin::ASM::X86_64::Instructions::JMP]
         # @example
@@ -2839,192 +2839,192 @@ module Ronin
         #   jmp rel32(0x10000)
         #   jmp rax
         #   jmp [rax]
-        def jmp(*operands,**kwargs) = add_instruction(Instructions::JMP,*operands,**kwargs)
+        def jmp(operand,**kwargs) = add_instruction(Instructions::JMP,operand,**kwargs)
         # Jump if not above (CF == 1 or ZF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::JNA]
         # @example
         #   jna rel8(-4)
         #   jna rel32(0x10000)
-        def jna(*operands,**kwargs) = add_instruction(Instructions::JNA,*operands,**kwargs)
+        def jna(operand,**kwargs) = add_instruction(Instructions::JNA,operand,**kwargs)
         # Jump if not above or equal (CF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::JNAE]
         # @example
         #   jnae rel8(-4)
         #   jnae rel32(0x10000)
-        def jnae(*operands,**kwargs) = add_instruction(Instructions::JNAE,*operands,**kwargs)
+        def jnae(operand,**kwargs) = add_instruction(Instructions::JNAE,operand,**kwargs)
         # Jump if not below (CF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::JNB]
         # @example
         #   jnb rel8(-4)
         #   jnb rel32(0x10000)
-        def jnb(*operands,**kwargs) = add_instruction(Instructions::JNB,*operands,**kwargs)
+        def jnb(operand,**kwargs) = add_instruction(Instructions::JNB,operand,**kwargs)
         # Jump if not below or equal (CF == 0 and ZF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::JNBE]
         # @example
         #   jnbe rel8(-4)
         #   jnbe rel32(0x10000)
-        def jnbe(*operands,**kwargs) = add_instruction(Instructions::JNBE,*operands,**kwargs)
+        def jnbe(operand,**kwargs) = add_instruction(Instructions::JNBE,operand,**kwargs)
         # Jump if not carry (CF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::JNC]
         # @example
         #   jnc rel8(-4)
         #   jnc rel32(0x10000)
-        def jnc(*operands,**kwargs) = add_instruction(Instructions::JNC,*operands,**kwargs)
+        def jnc(operand,**kwargs) = add_instruction(Instructions::JNC,operand,**kwargs)
         # Jump if not equal (ZF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::JNE]
         # @example
         #   jne rel8(-4)
         #   jne rel32(0x10000)
-        def jne(*operands,**kwargs) = add_instruction(Instructions::JNE,*operands,**kwargs)
+        def jne(operand,**kwargs) = add_instruction(Instructions::JNE,operand,**kwargs)
         # Jump if not greater (ZF == 1 or SF != OF)
         # @return [Ronin::ASM::X86_64::Instructions::JNG]
         # @example
         #   jng rel8(-4)
         #   jng rel32(0x10000)
-        def jng(*operands,**kwargs) = add_instruction(Instructions::JNG,*operands,**kwargs)
+        def jng(operand,**kwargs) = add_instruction(Instructions::JNG,operand,**kwargs)
         # Jump if not greater or equal (SF != OF)
         # @return [Ronin::ASM::X86_64::Instructions::JNGE]
         # @example
         #   jnge rel8(-4)
         #   jnge rel32(0x10000)
-        def jnge(*operands,**kwargs) = add_instruction(Instructions::JNGE,*operands,**kwargs)
+        def jnge(operand,**kwargs) = add_instruction(Instructions::JNGE,operand,**kwargs)
         # Jump if not less (SF == OF)
         # @return [Ronin::ASM::X86_64::Instructions::JNL]
         # @example
         #   jnl rel8(-4)
         #   jnl rel32(0x10000)
-        def jnl(*operands,**kwargs) = add_instruction(Instructions::JNL,*operands,**kwargs)
+        def jnl(operand,**kwargs) = add_instruction(Instructions::JNL,operand,**kwargs)
         # Jump if not less or equal (ZF == 0 and SF == OF)
         # @return [Ronin::ASM::X86_64::Instructions::JNLE]
         # @example
         #   jnle rel8(-4)
         #   jnle rel32(0x10000)
-        def jnle(*operands,**kwargs) = add_instruction(Instructions::JNLE,*operands,**kwargs)
+        def jnle(operand,**kwargs) = add_instruction(Instructions::JNLE,operand,**kwargs)
         # Jump if not overflow (OF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::JNO]
         # @example
         #   jno rel8(-4)
         #   jno rel32(0x10000)
-        def jno(*operands,**kwargs) = add_instruction(Instructions::JNO,*operands,**kwargs)
+        def jno(operand,**kwargs) = add_instruction(Instructions::JNO,operand,**kwargs)
         # Jump if not parity (PF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::JNP]
         # @example
         #   jnp rel8(-4)
         #   jnp rel32(0x10000)
-        def jnp(*operands,**kwargs) = add_instruction(Instructions::JNP,*operands,**kwargs)
+        def jnp(operand,**kwargs) = add_instruction(Instructions::JNP,operand,**kwargs)
         # Jump if not sign (SF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::JNS]
         # @example
         #   jns rel8(-4)
         #   jns rel32(0x10000)
-        def jns(*operands,**kwargs) = add_instruction(Instructions::JNS,*operands,**kwargs)
+        def jns(operand,**kwargs) = add_instruction(Instructions::JNS,operand,**kwargs)
         # Jump if not zero (ZF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::JNZ]
         # @example
         #   jnz rel8(-4)
         #   jnz rel32(0x10000)
-        def jnz(*operands,**kwargs) = add_instruction(Instructions::JNZ,*operands,**kwargs)
+        def jnz(operand,**kwargs) = add_instruction(Instructions::JNZ,operand,**kwargs)
         # Jump if overflow (OF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::JO]
         # @example
         #   jo rel8(-4)
         #   jo rel32(0x10000)
-        def jo(*operands,**kwargs) = add_instruction(Instructions::JO,*operands,**kwargs)
+        def jo(operand,**kwargs) = add_instruction(Instructions::JO,operand,**kwargs)
         # Jump if parity (PF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::JP]
         # @example
         #   jp rel8(-4)
         #   jp rel32(0x10000)
-        def jp(*operands,**kwargs) = add_instruction(Instructions::JP,*operands,**kwargs)
+        def jp(operand,**kwargs) = add_instruction(Instructions::JP,operand,**kwargs)
         # Jump if parity even (PF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::JPE]
         # @example
         #   jpe rel8(-4)
         #   jpe rel32(0x10000)
-        def jpe(*operands,**kwargs) = add_instruction(Instructions::JPE,*operands,**kwargs)
+        def jpe(operand,**kwargs) = add_instruction(Instructions::JPE,operand,**kwargs)
         # Jump if parity odd (PF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::JPO]
         # @example
         #   jpo rel8(-4)
         #   jpo rel32(0x10000)
-        def jpo(*operands,**kwargs) = add_instruction(Instructions::JPO,*operands,**kwargs)
+        def jpo(operand,**kwargs) = add_instruction(Instructions::JPO,operand,**kwargs)
         # Jump if RCX register is 0
         # @return [Ronin::ASM::X86_64::Instructions::JRCXZ]
         # @example
         #   jrcxz rel8(-4)
-        def jrcxz(*operands,**kwargs) = add_instruction(Instructions::JRCXZ,*operands,**kwargs)
+        def jrcxz(operand,**kwargs) = add_instruction(Instructions::JRCXZ,operand,**kwargs)
         # Jump if sign (SF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::JS]
         # @example
         #   js rel8(-4)
         #   js rel32(0x10000)
-        def js(*operands,**kwargs) = add_instruction(Instructions::JS,*operands,**kwargs)
+        def js(operand,**kwargs) = add_instruction(Instructions::JS,operand,**kwargs)
         # Jump if zero (ZF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::JZ]
         # @example
         #   jz rel8(-4)
         #   jz rel32(0x10000)
-        def jz(*operands,**kwargs) = add_instruction(Instructions::JZ,*operands,**kwargs)
+        def jz(operand,**kwargs) = add_instruction(Instructions::JZ,operand,**kwargs)
         # ADD Two 8-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KADDB]
         # @example
         #   kaddb k1, k2, k3
-        def kaddb(*operands,**kwargs) = add_instruction(Instructions::KADDB,*operands,**kwargs)
+        def kaddb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KADDB,operand1,operand2,operand3,**kwargs)
         # ADD Two 32-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KADDD]
         # @example
         #   kaddd k1, k2, k3
-        def kaddd(*operands,**kwargs) = add_instruction(Instructions::KADDD,*operands,**kwargs)
+        def kaddd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KADDD,operand1,operand2,operand3,**kwargs)
         # ADD Two 64-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KADDQ]
         # @example
         #   kaddq k1, k2, k3
-        def kaddq(*operands,**kwargs) = add_instruction(Instructions::KADDQ,*operands,**kwargs)
+        def kaddq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KADDQ,operand1,operand2,operand3,**kwargs)
         # ADD Two 16-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KADDW]
         # @example
         #   kaddw k1, k2, k3
-        def kaddw(*operands,**kwargs) = add_instruction(Instructions::KADDW,*operands,**kwargs)
+        def kaddw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KADDW,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND 8-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KANDB]
         # @example
         #   kandb k1, k2, k3
-        def kandb(*operands,**kwargs) = add_instruction(Instructions::KANDB,*operands,**kwargs)
+        def kandb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KANDB,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND 32-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KANDD]
         # @example
         #   kandd k1, k2, k3
-        def kandd(*operands,**kwargs) = add_instruction(Instructions::KANDD,*operands,**kwargs)
+        def kandd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KANDD,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND NOT 8-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KANDNB]
         # @example
         #   kandnb k1, k2, k3
-        def kandnb(*operands,**kwargs) = add_instruction(Instructions::KANDNB,*operands,**kwargs)
+        def kandnb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KANDNB,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND NOT 32-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KANDND]
         # @example
         #   kandnd k1, k2, k3
-        def kandnd(*operands,**kwargs) = add_instruction(Instructions::KANDND,*operands,**kwargs)
+        def kandnd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KANDND,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND NOT 64-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KANDNQ]
         # @example
         #   kandnq k1, k2, k3
-        def kandnq(*operands,**kwargs) = add_instruction(Instructions::KANDNQ,*operands,**kwargs)
+        def kandnq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KANDNQ,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND NOT 16-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KANDNW]
         # @example
         #   kandnw k1, k2, k3
-        def kandnw(*operands,**kwargs) = add_instruction(Instructions::KANDNW,*operands,**kwargs)
+        def kandnw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KANDNW,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND 64-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KANDQ]
         # @example
         #   kandq k1, k2, k3
-        def kandq(*operands,**kwargs) = add_instruction(Instructions::KANDQ,*operands,**kwargs)
+        def kandq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KANDQ,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND 16-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KANDW]
         # @example
         #   kandw k1, k2, k3
-        def kandw(*operands,**kwargs) = add_instruction(Instructions::KANDW,*operands,**kwargs)
+        def kandw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KANDW,operand1,operand2,operand3,**kwargs)
         # Move 8-bit Mask
         # @return [Ronin::ASM::X86_64::Instructions::KMOVB]
         # @example
@@ -3033,7 +3033,7 @@ module Ronin
         #   kmovb k1, [rbx]
         #   kmovb eax, k2
         #   kmovb [rax], k2
-        def kmovb(*operands,**kwargs) = add_instruction(Instructions::KMOVB,*operands,**kwargs)
+        def kmovb(operand1,operand2,**kwargs) = add_instruction(Instructions::KMOVB,operand1,operand2,**kwargs)
         # Move 32-bit Mask
         # @return [Ronin::ASM::X86_64::Instructions::KMOVD]
         # @example
@@ -3042,7 +3042,7 @@ module Ronin
         #   kmovd k1, [rbx]
         #   kmovd eax, k2
         #   kmovd [rax], k2
-        def kmovd(*operands,**kwargs) = add_instruction(Instructions::KMOVD,*operands,**kwargs)
+        def kmovd(operand1,operand2,**kwargs) = add_instruction(Instructions::KMOVD,operand1,operand2,**kwargs)
         # Move 64-bit Mask
         # @return [Ronin::ASM::X86_64::Instructions::KMOVQ]
         # @example
@@ -3051,7 +3051,7 @@ module Ronin
         #   kmovq k1, [rbx]
         #   kmovq rax, k2
         #   kmovq [rax], k2
-        def kmovq(*operands,**kwargs) = add_instruction(Instructions::KMOVQ,*operands,**kwargs)
+        def kmovq(operand1,operand2,**kwargs) = add_instruction(Instructions::KMOVQ,operand1,operand2,**kwargs)
         # Move 16-bit Mask
         # @return [Ronin::ASM::X86_64::Instructions::KMOVW]
         # @example
@@ -3060,210 +3060,210 @@ module Ronin
         #   kmovw k1, [rbx]
         #   kmovw eax, k2
         #   kmovw [rax], k2
-        def kmovw(*operands,**kwargs) = add_instruction(Instructions::KMOVW,*operands,**kwargs)
+        def kmovw(operand1,operand2,**kwargs) = add_instruction(Instructions::KMOVW,operand1,operand2,**kwargs)
         # NOT 8-bit Mask Register
         # @return [Ronin::ASM::X86_64::Instructions::KNOTB]
         # @example
         #   knotb k1, k2
-        def knotb(*operands,**kwargs) = add_instruction(Instructions::KNOTB,*operands,**kwargs)
+        def knotb(operand1,operand2,**kwargs) = add_instruction(Instructions::KNOTB,operand1,operand2,**kwargs)
         # NOT 32-bit Mask Register
         # @return [Ronin::ASM::X86_64::Instructions::KNOTD]
         # @example
         #   knotd k1, k2
-        def knotd(*operands,**kwargs) = add_instruction(Instructions::KNOTD,*operands,**kwargs)
+        def knotd(operand1,operand2,**kwargs) = add_instruction(Instructions::KNOTD,operand1,operand2,**kwargs)
         # NOT 64-bit Mask Register
         # @return [Ronin::ASM::X86_64::Instructions::KNOTQ]
         # @example
         #   knotq k1, k2
-        def knotq(*operands,**kwargs) = add_instruction(Instructions::KNOTQ,*operands,**kwargs)
+        def knotq(operand1,operand2,**kwargs) = add_instruction(Instructions::KNOTQ,operand1,operand2,**kwargs)
         # NOT 16-bit Mask Register
         # @return [Ronin::ASM::X86_64::Instructions::KNOTW]
         # @example
         #   knotw k1, k2
-        def knotw(*operands,**kwargs) = add_instruction(Instructions::KNOTW,*operands,**kwargs)
+        def knotw(operand1,operand2,**kwargs) = add_instruction(Instructions::KNOTW,operand1,operand2,**kwargs)
         # Bitwise Logical OR 8-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KORB]
         # @example
         #   korb k1, k2, k3
-        def korb(*operands,**kwargs) = add_instruction(Instructions::KORB,*operands,**kwargs)
+        def korb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KORB,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical OR 32-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KORD]
         # @example
         #   kord k1, k2, k3
-        def kord(*operands,**kwargs) = add_instruction(Instructions::KORD,*operands,**kwargs)
+        def kord(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KORD,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical OR 64-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KORQ]
         # @example
         #   korq k1, k2, k3
-        def korq(*operands,**kwargs) = add_instruction(Instructions::KORQ,*operands,**kwargs)
+        def korq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KORQ,operand1,operand2,operand3,**kwargs)
         # OR 8-bit Masks and Set Flags
         # @return [Ronin::ASM::X86_64::Instructions::KORTESTB]
         # @example
         #   kortestb k1, k2
-        def kortestb(*operands,**kwargs) = add_instruction(Instructions::KORTESTB,*operands,**kwargs)
+        def kortestb(operand1,operand2,**kwargs) = add_instruction(Instructions::KORTESTB,operand1,operand2,**kwargs)
         # OR 32-bit Masks and Set Flags
         # @return [Ronin::ASM::X86_64::Instructions::KORTESTD]
         # @example
         #   kortestd k1, k2
-        def kortestd(*operands,**kwargs) = add_instruction(Instructions::KORTESTD,*operands,**kwargs)
+        def kortestd(operand1,operand2,**kwargs) = add_instruction(Instructions::KORTESTD,operand1,operand2,**kwargs)
         # OR 64-bit Masks and Set Flags
         # @return [Ronin::ASM::X86_64::Instructions::KORTESTQ]
         # @example
         #   kortestq k1, k2
-        def kortestq(*operands,**kwargs) = add_instruction(Instructions::KORTESTQ,*operands,**kwargs)
+        def kortestq(operand1,operand2,**kwargs) = add_instruction(Instructions::KORTESTQ,operand1,operand2,**kwargs)
         # OR 16-bit Masks and Set Flags
         # @return [Ronin::ASM::X86_64::Instructions::KORTESTW]
         # @example
         #   kortestw k1, k2
-        def kortestw(*operands,**kwargs) = add_instruction(Instructions::KORTESTW,*operands,**kwargs)
+        def kortestw(operand1,operand2,**kwargs) = add_instruction(Instructions::KORTESTW,operand1,operand2,**kwargs)
         # Bitwise Logical OR 16-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KORW]
         # @example
         #   korw k1, k2, k3
-        def korw(*operands,**kwargs) = add_instruction(Instructions::KORW,*operands,**kwargs)
+        def korw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KORW,operand1,operand2,operand3,**kwargs)
         # Shift Left 8-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KSHIFTLB]
         # @example
         #   kshiftlb k1, k2, 0x03
-        def kshiftlb(*operands,**kwargs) = add_instruction(Instructions::KSHIFTLB,*operands,**kwargs)
+        def kshiftlb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KSHIFTLB,operand1,operand2,operand3,**kwargs)
         # Shift Left 32-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KSHIFTLD]
         # @example
         #   kshiftld k1, k2, 0x03
-        def kshiftld(*operands,**kwargs) = add_instruction(Instructions::KSHIFTLD,*operands,**kwargs)
+        def kshiftld(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KSHIFTLD,operand1,operand2,operand3,**kwargs)
         # Shift Left 64-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KSHIFTLQ]
         # @example
         #   kshiftlq k1, k2, 0x03
-        def kshiftlq(*operands,**kwargs) = add_instruction(Instructions::KSHIFTLQ,*operands,**kwargs)
+        def kshiftlq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KSHIFTLQ,operand1,operand2,operand3,**kwargs)
         # Shift Left 16-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KSHIFTLW]
         # @example
         #   kshiftlw k1, k2, 0x03
-        def kshiftlw(*operands,**kwargs) = add_instruction(Instructions::KSHIFTLW,*operands,**kwargs)
+        def kshiftlw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KSHIFTLW,operand1,operand2,operand3,**kwargs)
         # Shift Right 8-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KSHIFTRB]
         # @example
         #   kshiftrb k1, k2, 0x03
-        def kshiftrb(*operands,**kwargs) = add_instruction(Instructions::KSHIFTRB,*operands,**kwargs)
+        def kshiftrb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KSHIFTRB,operand1,operand2,operand3,**kwargs)
         # Shift Right 32-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KSHIFTRD]
         # @example
         #   kshiftrd k1, k2, 0x03
-        def kshiftrd(*operands,**kwargs) = add_instruction(Instructions::KSHIFTRD,*operands,**kwargs)
+        def kshiftrd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KSHIFTRD,operand1,operand2,operand3,**kwargs)
         # Shift Right 64-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KSHIFTRQ]
         # @example
         #   kshiftrq k1, k2, 0x03
-        def kshiftrq(*operands,**kwargs) = add_instruction(Instructions::KSHIFTRQ,*operands,**kwargs)
+        def kshiftrq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KSHIFTRQ,operand1,operand2,operand3,**kwargs)
         # Shift Right 16-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KSHIFTRW]
         # @example
         #   kshiftrw k1, k2, 0x03
-        def kshiftrw(*operands,**kwargs) = add_instruction(Instructions::KSHIFTRW,*operands,**kwargs)
+        def kshiftrw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KSHIFTRW,operand1,operand2,operand3,**kwargs)
         # Bit Test 8-bit Masks and Set Flags
         # @return [Ronin::ASM::X86_64::Instructions::KTESTB]
         # @example
         #   ktestb k1, k2
-        def ktestb(*operands,**kwargs) = add_instruction(Instructions::KTESTB,*operands,**kwargs)
+        def ktestb(operand1,operand2,**kwargs) = add_instruction(Instructions::KTESTB,operand1,operand2,**kwargs)
         # Bit Test 32-bit Masks and Set Flags
         # @return [Ronin::ASM::X86_64::Instructions::KTESTD]
         # @example
         #   ktestd k1, k2
-        def ktestd(*operands,**kwargs) = add_instruction(Instructions::KTESTD,*operands,**kwargs)
+        def ktestd(operand1,operand2,**kwargs) = add_instruction(Instructions::KTESTD,operand1,operand2,**kwargs)
         # Bit Test 64-bit Masks and Set Flags
         # @return [Ronin::ASM::X86_64::Instructions::KTESTQ]
         # @example
         #   ktestq k1, k2
-        def ktestq(*operands,**kwargs) = add_instruction(Instructions::KTESTQ,*operands,**kwargs)
+        def ktestq(operand1,operand2,**kwargs) = add_instruction(Instructions::KTESTQ,operand1,operand2,**kwargs)
         # Bit Test 16-bit Masks and Set Flags
         # @return [Ronin::ASM::X86_64::Instructions::KTESTW]
         # @example
         #   ktestw k1, k2
-        def ktestw(*operands,**kwargs) = add_instruction(Instructions::KTESTW,*operands,**kwargs)
+        def ktestw(operand1,operand2,**kwargs) = add_instruction(Instructions::KTESTW,operand1,operand2,**kwargs)
         # Unpack and Interleave 8-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KUNPCKBW]
         # @example
         #   kunpckbw k1, k2, k3
-        def kunpckbw(*operands,**kwargs) = add_instruction(Instructions::KUNPCKBW,*operands,**kwargs)
+        def kunpckbw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KUNPCKBW,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave 32-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KUNPCKDQ]
         # @example
         #   kunpckdq k1, k2, k3
-        def kunpckdq(*operands,**kwargs) = add_instruction(Instructions::KUNPCKDQ,*operands,**kwargs)
+        def kunpckdq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KUNPCKDQ,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave 16-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KUNPCKWD]
         # @example
         #   kunpckwd k1, k2, k3
-        def kunpckwd(*operands,**kwargs) = add_instruction(Instructions::KUNPCKWD,*operands,**kwargs)
+        def kunpckwd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KUNPCKWD,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical XNOR 8-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KXNORB]
         # @example
         #   kxnorb k1, k2, k3
-        def kxnorb(*operands,**kwargs) = add_instruction(Instructions::KXNORB,*operands,**kwargs)
+        def kxnorb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KXNORB,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical XNOR 32-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KXNORD]
         # @example
         #   kxnord k1, k2, k3
-        def kxnord(*operands,**kwargs) = add_instruction(Instructions::KXNORD,*operands,**kwargs)
+        def kxnord(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KXNORD,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical XNOR 64-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KXNORQ]
         # @example
         #   kxnorq k1, k2, k3
-        def kxnorq(*operands,**kwargs) = add_instruction(Instructions::KXNORQ,*operands,**kwargs)
+        def kxnorq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KXNORQ,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical XNOR 16-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KXNORW]
         # @example
         #   kxnorw k1, k2, k3
-        def kxnorw(*operands,**kwargs) = add_instruction(Instructions::KXNORW,*operands,**kwargs)
+        def kxnorw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KXNORW,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical XOR 8-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KXORB]
         # @example
         #   kxorb k1, k2, k3
-        def kxorb(*operands,**kwargs) = add_instruction(Instructions::KXORB,*operands,**kwargs)
+        def kxorb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KXORB,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical XOR 32-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KXORD]
         # @example
         #   kxord k1, k2, k3
-        def kxord(*operands,**kwargs) = add_instruction(Instructions::KXORD,*operands,**kwargs)
+        def kxord(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KXORD,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical XOR 64-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KXORQ]
         # @example
         #   kxorq k1, k2, k3
-        def kxorq(*operands,**kwargs) = add_instruction(Instructions::KXORQ,*operands,**kwargs)
+        def kxorq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KXORQ,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical XOR 16-bit Masks
         # @return [Ronin::ASM::X86_64::Instructions::KXORW]
         # @example
         #   kxorw k1, k2, k3
-        def kxorw(*operands,**kwargs) = add_instruction(Instructions::KXORW,*operands,**kwargs)
+        def kxorw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::KXORW,operand1,operand2,operand3,**kwargs)
         # Load AH from Flags
         # @return [Ronin::ASM::X86_64::Instructions::LAHF]
-        def lahf(*operands,**kwargs) = add_instruction(Instructions::LAHF,*operands,**kwargs)
+        def lahf(**kwargs) = add_instruction(Instructions::LAHF,**kwargs)
         # Load Unaligned Integer 128 Bits
         # @return [Ronin::ASM::X86_64::Instructions::LDDQU]
         # @example
         #   lddqu xmm0, [rbx]
-        def lddqu(*operands,**kwargs) = add_instruction(Instructions::LDDQU,*operands,**kwargs)
+        def lddqu(operand1,operand2,**kwargs) = add_instruction(Instructions::LDDQU,operand1,operand2,**kwargs)
         # Load MXCSR Register
         # @return [Ronin::ASM::X86_64::Instructions::LDMXCSR]
         # @example
         #   ldmxcsr [rax]
-        def ldmxcsr(*operands,**kwargs) = add_instruction(Instructions::LDMXCSR,*operands,**kwargs)
+        def ldmxcsr(operand,**kwargs) = add_instruction(Instructions::LDMXCSR,operand,**kwargs)
         # LoaD TILE ConFiGuration
         # @return [Ronin::ASM::X86_64::Instructions::LDTILECFG]
         # @example
         #   ldtilecfg [rax]
-        def ldtilecfg(*operands,**kwargs) = add_instruction(Instructions::LDTILECFG,*operands,**kwargs)
+        def ldtilecfg(operand,**kwargs) = add_instruction(Instructions::LDTILECFG,operand,**kwargs)
         # Load Effective Address
         # @return [Ronin::ASM::X86_64::Instructions::LEA]
         # @example
         #   lea ax, [rbx]
         #   lea eax, [rbx]
         #   lea rax, [rbx]
-        def lea(*operands,**kwargs) = add_instruction(Instructions::LEA,*operands,**kwargs)
+        def lea(operand1,operand2,**kwargs) = add_instruction(Instructions::LEA,operand1,operand2,**kwargs)
         # Load Fence
         # @return [Ronin::ASM::X86_64::Instructions::LFENCE]
-        def lfence(*operands,**kwargs) = add_instruction(Instructions::LFENCE,*operands,**kwargs)
+        def lfence(**kwargs) = add_instruction(Instructions::LFENCE,**kwargs)
         # Count the Number of Leading Zero Bits
         # @return [Ronin::ASM::X86_64::Instructions::LZCNT]
         # @example
@@ -3273,77 +3273,77 @@ module Ronin
         #   lzcnt eax, [rbx]
         #   lzcnt rax, rbx
         #   lzcnt rax, [rbx]
-        def lzcnt(*operands,**kwargs) = add_instruction(Instructions::LZCNT,*operands,**kwargs)
+        def lzcnt(operand1,operand2,**kwargs) = add_instruction(Instructions::LZCNT,operand1,operand2,**kwargs)
         # Store Selected Bytes of Double Quadword
         # @return [Ronin::ASM::X86_64::Instructions::MASKMOVDQU]
         # @example
         #   maskmovdqu xmm0, xmm1
-        def maskmovdqu(*operands,**kwargs) = add_instruction(Instructions::MASKMOVDQU,*operands,**kwargs)
+        def maskmovdqu(operand1,operand2,**kwargs) = add_instruction(Instructions::MASKMOVDQU,operand1,operand2,**kwargs)
         # Store Selected Bytes of Quadword
         # @return [Ronin::ASM::X86_64::Instructions::MASKMOVQ]
         # @example
         #   maskmovq mm0, mm1
-        def maskmovq(*operands,**kwargs) = add_instruction(Instructions::MASKMOVQ,*operands,**kwargs)
+        def maskmovq(operand1,operand2,**kwargs) = add_instruction(Instructions::MASKMOVQ,operand1,operand2,**kwargs)
         # Return Maximum Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MAXPD]
         # @example
         #   maxpd xmm0, xmm1
         #   maxpd xmm0, [rbx]
-        def maxpd(*operands,**kwargs) = add_instruction(Instructions::MAXPD,*operands,**kwargs)
+        def maxpd(operand1,operand2,**kwargs) = add_instruction(Instructions::MAXPD,operand1,operand2,**kwargs)
         # Return Maximum Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MAXPS]
         # @example
         #   maxps xmm0, xmm1
         #   maxps xmm0, [rbx]
-        def maxps(*operands,**kwargs) = add_instruction(Instructions::MAXPS,*operands,**kwargs)
+        def maxps(operand1,operand2,**kwargs) = add_instruction(Instructions::MAXPS,operand1,operand2,**kwargs)
         # Return Maximum Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::MAXSD]
         # @example
         #   maxsd xmm0, xmm1
         #   maxsd xmm0, [rbx]
-        def maxsd(*operands,**kwargs) = add_instruction(Instructions::MAXSD,*operands,**kwargs)
+        def maxsd(operand1,operand2,**kwargs) = add_instruction(Instructions::MAXSD,operand1,operand2,**kwargs)
         # Return Maximum Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::MAXSS]
         # @example
         #   maxss xmm0, xmm1
         #   maxss xmm0, [rbx]
-        def maxss(*operands,**kwargs) = add_instruction(Instructions::MAXSS,*operands,**kwargs)
+        def maxss(operand1,operand2,**kwargs) = add_instruction(Instructions::MAXSS,operand1,operand2,**kwargs)
         # Memory COMMIT
         # @return [Ronin::ASM::X86_64::Instructions::MCOMMIT]
-        def mcommit(*operands,**kwargs) = add_instruction(Instructions::MCOMMIT,*operands,**kwargs)
+        def mcommit(**kwargs) = add_instruction(Instructions::MCOMMIT,**kwargs)
         # Memory Fence
         # @return [Ronin::ASM::X86_64::Instructions::MFENCE]
-        def mfence(*operands,**kwargs) = add_instruction(Instructions::MFENCE,*operands,**kwargs)
+        def mfence(**kwargs) = add_instruction(Instructions::MFENCE,**kwargs)
         # Return Minimum Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MINPD]
         # @example
         #   minpd xmm0, xmm1
         #   minpd xmm0, [rbx]
-        def minpd(*operands,**kwargs) = add_instruction(Instructions::MINPD,*operands,**kwargs)
+        def minpd(operand1,operand2,**kwargs) = add_instruction(Instructions::MINPD,operand1,operand2,**kwargs)
         # Return Minimum Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MINPS]
         # @example
         #   minps xmm0, xmm1
         #   minps xmm0, [rbx]
-        def minps(*operands,**kwargs) = add_instruction(Instructions::MINPS,*operands,**kwargs)
+        def minps(operand1,operand2,**kwargs) = add_instruction(Instructions::MINPS,operand1,operand2,**kwargs)
         # Return Minimum Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::MINSD]
         # @example
         #   minsd xmm0, xmm1
         #   minsd xmm0, [rbx]
-        def minsd(*operands,**kwargs) = add_instruction(Instructions::MINSD,*operands,**kwargs)
+        def minsd(operand1,operand2,**kwargs) = add_instruction(Instructions::MINSD,operand1,operand2,**kwargs)
         # Return Minimum Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::MINSS]
         # @example
         #   minss xmm0, xmm1
         #   minss xmm0, [rbx]
-        def minss(*operands,**kwargs) = add_instruction(Instructions::MINSS,*operands,**kwargs)
+        def minss(operand1,operand2,**kwargs) = add_instruction(Instructions::MINSS,operand1,operand2,**kwargs)
         # Monitor a Linear Address Range
         # @return [Ronin::ASM::X86_64::Instructions::MONITOR]
-        def monitor(*operands,**kwargs) = add_instruction(Instructions::MONITOR,*operands,**kwargs)
+        def monitor(**kwargs) = add_instruction(Instructions::MONITOR,**kwargs)
         # Monitor a Linear Address Range with Timeout
         # @return [Ronin::ASM::X86_64::Instructions::MONITORX]
-        def monitorx(*operands,**kwargs) = add_instruction(Instructions::MONITORX,*operands,**kwargs)
+        def monitorx(**kwargs) = add_instruction(Instructions::MONITORX,**kwargs)
         # Move
         # @return [Ronin::ASM::X86_64::Instructions::MOV]
         # @example
@@ -3371,21 +3371,21 @@ module Ronin
         #   mov [rax], rbx
         #   mov moffset32(0x10000), eax
         #   mov moffset64(0x10000), rax
-        def mov(*operands,**kwargs) = add_instruction(Instructions::MOV,*operands,**kwargs)
+        def mov(operand1,operand2,**kwargs) = add_instruction(Instructions::MOV,operand1,operand2,**kwargs)
         # Move Aligned Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MOVAPD]
         # @example
         #   movapd xmm0, xmm1
         #   movapd xmm0, [rbx]
         #   movapd [rax], xmm1
-        def movapd(*operands,**kwargs) = add_instruction(Instructions::MOVAPD,*operands,**kwargs)
+        def movapd(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVAPD,operand1,operand2,**kwargs)
         # Move Aligned Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MOVAPS]
         # @example
         #   movaps xmm0, xmm1
         #   movaps xmm0, [rbx]
         #   movaps [rax], xmm1
-        def movaps(*operands,**kwargs) = add_instruction(Instructions::MOVAPS,*operands,**kwargs)
+        def movaps(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVAPS,operand1,operand2,**kwargs)
         # Move Data After Swapping Bytes
         # @return [Ronin::ASM::X86_64::Instructions::MOVBE]
         # @example
@@ -3395,7 +3395,7 @@ module Ronin
         #   movbe [rax], bx
         #   movbe [rax], ebx
         #   movbe [rax], rbx
-        def movbe(*operands,**kwargs) = add_instruction(Instructions::MOVBE,*operands,**kwargs)
+        def movbe(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVBE,operand1,operand2,**kwargs)
         # Move Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::MOVD]
         # @example
@@ -3407,128 +3407,128 @@ module Ronin
         #   movd xmm0, [rbx]
         #   movd [rax], mm1
         #   movd [rax], xmm1
-        def movd(*operands,**kwargs) = add_instruction(Instructions::MOVD,*operands,**kwargs)
+        def movd(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVD,operand1,operand2,**kwargs)
         # Move One Double-FP and Duplicate
         # @return [Ronin::ASM::X86_64::Instructions::MOVDDUP]
         # @example
         #   movddup xmm0, xmm1
         #   movddup xmm0, [rbx]
-        def movddup(*operands,**kwargs) = add_instruction(Instructions::MOVDDUP,*operands,**kwargs)
+        def movddup(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVDDUP,operand1,operand2,**kwargs)
         # MOVe to DIRect store 64 Bytes
         # @return [Ronin::ASM::X86_64::Instructions::MOVDIR64B]
         # @example
         #   movdir64b rax, [rbx]
-        def movdir64b(*operands,**kwargs) = add_instruction(Instructions::MOVDIR64B,*operands,**kwargs)
+        def movdir64b(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVDIR64B,operand1,operand2,**kwargs)
         # MOVe to DIRect store Integer
         # @return [Ronin::ASM::X86_64::Instructions::MOVDIRI]
         # @example
         #   movdiri [rax], ebx
         #   movdiri [rax], rbx
-        def movdiri(*operands,**kwargs) = add_instruction(Instructions::MOVDIRI,*operands,**kwargs)
+        def movdiri(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVDIRI,operand1,operand2,**kwargs)
         # Move Quadword from XMM to MMX Technology Register
         # @return [Ronin::ASM::X86_64::Instructions::MOVDQ2Q]
         # @example
         #   movdq2q mm0, xmm1
-        def movdq2q(*operands,**kwargs) = add_instruction(Instructions::MOVDQ2Q,*operands,**kwargs)
+        def movdq2q(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVDQ2Q,operand1,operand2,**kwargs)
         # Move Aligned Double Quadword
         # @return [Ronin::ASM::X86_64::Instructions::MOVDQA]
         # @example
         #   movdqa xmm0, xmm1
         #   movdqa xmm0, [rbx]
         #   movdqa [rax], xmm1
-        def movdqa(*operands,**kwargs) = add_instruction(Instructions::MOVDQA,*operands,**kwargs)
+        def movdqa(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVDQA,operand1,operand2,**kwargs)
         # Move Unaligned Double Quadword
         # @return [Ronin::ASM::X86_64::Instructions::MOVDQU]
         # @example
         #   movdqu xmm0, xmm1
         #   movdqu xmm0, [rbx]
         #   movdqu [rax], xmm1
-        def movdqu(*operands,**kwargs) = add_instruction(Instructions::MOVDQU,*operands,**kwargs)
+        def movdqu(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVDQU,operand1,operand2,**kwargs)
         # Move Packed Single-Precision Floating-Point Values High to Low
         # @return [Ronin::ASM::X86_64::Instructions::MOVHLPS]
         # @example
         #   movhlps xmm0, xmm1
-        def movhlps(*operands,**kwargs) = add_instruction(Instructions::MOVHLPS,*operands,**kwargs)
+        def movhlps(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVHLPS,operand1,operand2,**kwargs)
         # Move High Packed Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::MOVHPD]
         # @example
         #   movhpd xmm0, [rbx]
         #   movhpd [rax], xmm1
-        def movhpd(*operands,**kwargs) = add_instruction(Instructions::MOVHPD,*operands,**kwargs)
+        def movhpd(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVHPD,operand1,operand2,**kwargs)
         # Move High Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MOVHPS]
         # @example
         #   movhps xmm0, [rbx]
         #   movhps [rax], xmm1
-        def movhps(*operands,**kwargs) = add_instruction(Instructions::MOVHPS,*operands,**kwargs)
+        def movhps(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVHPS,operand1,operand2,**kwargs)
         # Move Packed Single-Precision Floating-Point Values Low to High
         # @return [Ronin::ASM::X86_64::Instructions::MOVLHPS]
         # @example
         #   movlhps xmm0, xmm1
-        def movlhps(*operands,**kwargs) = add_instruction(Instructions::MOVLHPS,*operands,**kwargs)
+        def movlhps(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVLHPS,operand1,operand2,**kwargs)
         # Move Low Packed Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::MOVLPD]
         # @example
         #   movlpd xmm0, [rbx]
         #   movlpd [rax], xmm1
-        def movlpd(*operands,**kwargs) = add_instruction(Instructions::MOVLPD,*operands,**kwargs)
+        def movlpd(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVLPD,operand1,operand2,**kwargs)
         # Move Low Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MOVLPS]
         # @example
         #   movlps xmm0, [rbx]
         #   movlps [rax], xmm1
-        def movlps(*operands,**kwargs) = add_instruction(Instructions::MOVLPS,*operands,**kwargs)
+        def movlps(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVLPS,operand1,operand2,**kwargs)
         # Extract Packed Double-Precision Floating-Point Sign Mask
         # @return [Ronin::ASM::X86_64::Instructions::MOVMSKPD]
         # @example
         #   movmskpd eax, xmm1
-        def movmskpd(*operands,**kwargs) = add_instruction(Instructions::MOVMSKPD,*operands,**kwargs)
+        def movmskpd(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVMSKPD,operand1,operand2,**kwargs)
         # Extract Packed Single-Precision Floating-Point Sign Mask
         # @return [Ronin::ASM::X86_64::Instructions::MOVMSKPS]
         # @example
         #   movmskps eax, xmm1
-        def movmskps(*operands,**kwargs) = add_instruction(Instructions::MOVMSKPS,*operands,**kwargs)
+        def movmskps(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVMSKPS,operand1,operand2,**kwargs)
         # Store Double Quadword Using Non-Temporal Hint
         # @return [Ronin::ASM::X86_64::Instructions::MOVNTDQ]
         # @example
         #   movntdq [rax], xmm1
-        def movntdq(*operands,**kwargs) = add_instruction(Instructions::MOVNTDQ,*operands,**kwargs)
+        def movntdq(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVNTDQ,operand1,operand2,**kwargs)
         # Load Double Quadword Non-Temporal Aligned Hint
         # @return [Ronin::ASM::X86_64::Instructions::MOVNTDQA]
         # @example
         #   movntdqa xmm0, [rbx]
-        def movntdqa(*operands,**kwargs) = add_instruction(Instructions::MOVNTDQA,*operands,**kwargs)
+        def movntdqa(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVNTDQA,operand1,operand2,**kwargs)
         # Store Doubleword Using Non-Temporal Hint
         # @return [Ronin::ASM::X86_64::Instructions::MOVNTI]
         # @example
         #   movnti [rax], ebx
         #   movnti [rax], rbx
-        def movnti(*operands,**kwargs) = add_instruction(Instructions::MOVNTI,*operands,**kwargs)
+        def movnti(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVNTI,operand1,operand2,**kwargs)
         # Store Packed Double-Precision Floating-Point Values Using Non-Temporal Hint
         # @return [Ronin::ASM::X86_64::Instructions::MOVNTPD]
         # @example
         #   movntpd [rax], xmm1
-        def movntpd(*operands,**kwargs) = add_instruction(Instructions::MOVNTPD,*operands,**kwargs)
+        def movntpd(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVNTPD,operand1,operand2,**kwargs)
         # Store Packed Single-Precision Floating-Point Values Using Non-Temporal Hint
         # @return [Ronin::ASM::X86_64::Instructions::MOVNTPS]
         # @example
         #   movntps [rax], xmm1
-        def movntps(*operands,**kwargs) = add_instruction(Instructions::MOVNTPS,*operands,**kwargs)
+        def movntps(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVNTPS,operand1,operand2,**kwargs)
         # Store of Quadword Using Non-Temporal Hint
         # @return [Ronin::ASM::X86_64::Instructions::MOVNTQ]
         # @example
         #   movntq [rax], mm1
-        def movntq(*operands,**kwargs) = add_instruction(Instructions::MOVNTQ,*operands,**kwargs)
+        def movntq(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVNTQ,operand1,operand2,**kwargs)
         # Store Scalar Double-Precision Floating-Point Values Using Non-Temporal Hint
         # @return [Ronin::ASM::X86_64::Instructions::MOVNTSD]
         # @example
         #   movntsd [rax], xmm1
-        def movntsd(*operands,**kwargs) = add_instruction(Instructions::MOVNTSD,*operands,**kwargs)
+        def movntsd(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVNTSD,operand1,operand2,**kwargs)
         # Store Scalar Single-Precision Floating-Point Values Using Non-Temporal Hint
         # @return [Ronin::ASM::X86_64::Instructions::MOVNTSS]
         # @example
         #   movntss [rax], xmm1
-        def movntss(*operands,**kwargs) = add_instruction(Instructions::MOVNTSS,*operands,**kwargs)
+        def movntss(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVNTSS,operand1,operand2,**kwargs)
         # Move Quadword
         # @return [Ronin::ASM::X86_64::Instructions::MOVQ]
         # @example
@@ -3542,38 +3542,38 @@ module Ronin
         #   movq xmm0, [rbx]
         #   movq [rax], mm1
         #   movq [rax], xmm1
-        def movq(*operands,**kwargs) = add_instruction(Instructions::MOVQ,*operands,**kwargs)
+        def movq(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVQ,operand1,operand2,**kwargs)
         # Move Quadword from MMX Technology to XMM Register
         # @return [Ronin::ASM::X86_64::Instructions::MOVQ2DQ]
         # @example
         #   movq2dq xmm0, mm1
-        def movq2dq(*operands,**kwargs) = add_instruction(Instructions::MOVQ2DQ,*operands,**kwargs)
+        def movq2dq(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVQ2DQ,operand1,operand2,**kwargs)
         # Move Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::MOVSD]
         # @example
         #   movsd xmm0, xmm1
         #   movsd xmm0, [rbx]
         #   movsd [rax], xmm1
-        def movsd(*operands,**kwargs) = add_instruction(Instructions::MOVSD,*operands,**kwargs)
+        def movsd(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVSD,operand1,operand2,**kwargs)
         # Move Packed Single-FP High and Duplicate
         # @return [Ronin::ASM::X86_64::Instructions::MOVSHDUP]
         # @example
         #   movshdup xmm0, xmm1
         #   movshdup xmm0, [rbx]
-        def movshdup(*operands,**kwargs) = add_instruction(Instructions::MOVSHDUP,*operands,**kwargs)
+        def movshdup(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVSHDUP,operand1,operand2,**kwargs)
         # Move Packed Single-FP Low and Duplicate
         # @return [Ronin::ASM::X86_64::Instructions::MOVSLDUP]
         # @example
         #   movsldup xmm0, xmm1
         #   movsldup xmm0, [rbx]
-        def movsldup(*operands,**kwargs) = add_instruction(Instructions::MOVSLDUP,*operands,**kwargs)
+        def movsldup(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVSLDUP,operand1,operand2,**kwargs)
         # Move Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MOVSS]
         # @example
         #   movss xmm0, xmm1
         #   movss xmm0, [rbx]
         #   movss [rax], xmm1
-        def movss(*operands,**kwargs) = add_instruction(Instructions::MOVSS,*operands,**kwargs)
+        def movss(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVSS,operand1,operand2,**kwargs)
         # Move with Sign-Extension
         # @return [Ronin::ASM::X86_64::Instructions::MOVSX]
         # @example
@@ -3585,27 +3585,27 @@ module Ronin
         #   movsx rax, bl
         #   movsx rax, bx
         #   movsx rax, [rbx]
-        def movsx(*operands,**kwargs) = add_instruction(Instructions::MOVSX,*operands,**kwargs)
+        def movsx(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVSX,operand1,operand2,**kwargs)
         # Move Doubleword to Quadword with Sign-Extension
         # @return [Ronin::ASM::X86_64::Instructions::MOVSXD]
         # @example
         #   movsxd rax, ebx
         #   movsxd rax, [rbx]
-        def movsxd(*operands,**kwargs) = add_instruction(Instructions::MOVSXD,*operands,**kwargs)
+        def movsxd(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVSXD,operand1,operand2,**kwargs)
         # Move Unaligned Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MOVUPD]
         # @example
         #   movupd xmm0, xmm1
         #   movupd xmm0, [rbx]
         #   movupd [rax], xmm1
-        def movupd(*operands,**kwargs) = add_instruction(Instructions::MOVUPD,*operands,**kwargs)
+        def movupd(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVUPD,operand1,operand2,**kwargs)
         # Move Unaligned Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MOVUPS]
         # @example
         #   movups xmm0, xmm1
         #   movups xmm0, [rbx]
         #   movups [rax], xmm1
-        def movups(*operands,**kwargs) = add_instruction(Instructions::MOVUPS,*operands,**kwargs)
+        def movups(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVUPS,operand1,operand2,**kwargs)
         # Move with Zero-Extend
         # @return [Ronin::ASM::X86_64::Instructions::MOVZX]
         # @example
@@ -3617,13 +3617,13 @@ module Ronin
         #   movzx rax, bl
         #   movzx rax, bx
         #   movzx rax, [rbx]
-        def movzx(*operands,**kwargs) = add_instruction(Instructions::MOVZX,*operands,**kwargs)
+        def movzx(operand1,operand2,**kwargs) = add_instruction(Instructions::MOVZX,operand1,operand2,**kwargs)
         # Compute Multiple Packed Sums of Absolute Difference
         # @return [Ronin::ASM::X86_64::Instructions::MPSADBW]
         # @example
         #   mpsadbw xmm0, xmm1, 0x03
         #   mpsadbw xmm0, [rbx], 0x03
-        def mpsadbw(*operands,**kwargs) = add_instruction(Instructions::MPSADBW,*operands,**kwargs)
+        def mpsadbw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::MPSADBW,operand1,operand2,operand3,**kwargs)
         # Unsigned Multiply
         # @return [Ronin::ASM::X86_64::Instructions::MUL]
         # @example
@@ -3632,31 +3632,31 @@ module Ronin
         #   mul eax
         #   mul rax
         #   mul [rax]
-        def mul(*operands,**kwargs) = add_instruction(Instructions::MUL,*operands,**kwargs)
+        def mul(operand,**kwargs) = add_instruction(Instructions::MUL,operand,**kwargs)
         # Multiply Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MULPD]
         # @example
         #   mulpd xmm0, xmm1
         #   mulpd xmm0, [rbx]
-        def mulpd(*operands,**kwargs) = add_instruction(Instructions::MULPD,*operands,**kwargs)
+        def mulpd(operand1,operand2,**kwargs) = add_instruction(Instructions::MULPD,operand1,operand2,**kwargs)
         # Multiply Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MULPS]
         # @example
         #   mulps xmm0, xmm1
         #   mulps xmm0, [rbx]
-        def mulps(*operands,**kwargs) = add_instruction(Instructions::MULPS,*operands,**kwargs)
+        def mulps(operand1,operand2,**kwargs) = add_instruction(Instructions::MULPS,operand1,operand2,**kwargs)
         # Multiply Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MULSD]
         # @example
         #   mulsd xmm0, xmm1
         #   mulsd xmm0, [rbx]
-        def mulsd(*operands,**kwargs) = add_instruction(Instructions::MULSD,*operands,**kwargs)
+        def mulsd(operand1,operand2,**kwargs) = add_instruction(Instructions::MULSD,operand1,operand2,**kwargs)
         # Multiply Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::MULSS]
         # @example
         #   mulss xmm0, xmm1
         #   mulss xmm0, [rbx]
-        def mulss(*operands,**kwargs) = add_instruction(Instructions::MULSS,*operands,**kwargs)
+        def mulss(operand1,operand2,**kwargs) = add_instruction(Instructions::MULSS,operand1,operand2,**kwargs)
         # Unsigned Multiply Without Affecting Flags
         # @return [Ronin::ASM::X86_64::Instructions::MULX]
         # @example
@@ -3664,13 +3664,13 @@ module Ronin
         #   mulx eax, ebx, [rcx]
         #   mulx rax, rbx, rcx
         #   mulx rax, rbx, [rcx]
-        def mulx(*operands,**kwargs) = add_instruction(Instructions::MULX,*operands,**kwargs)
+        def mulx(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::MULX,operand1,operand2,operand3,**kwargs)
         # Monitor Wait
         # @return [Ronin::ASM::X86_64::Instructions::MWAIT]
-        def mwait(*operands,**kwargs) = add_instruction(Instructions::MWAIT,*operands,**kwargs)
+        def mwait(**kwargs) = add_instruction(Instructions::MWAIT,**kwargs)
         # Monitor Wait with Timeout
         # @return [Ronin::ASM::X86_64::Instructions::MWAITX]
-        def mwaitx(*operands,**kwargs) = add_instruction(Instructions::MWAITX,*operands,**kwargs)
+        def mwaitx(**kwargs) = add_instruction(Instructions::MWAITX,**kwargs)
         # Two's Complement Negation
         # @return [Ronin::ASM::X86_64::Instructions::NEG]
         # @example
@@ -3679,10 +3679,10 @@ module Ronin
         #   neg eax
         #   neg rax
         #   neg [rax]
-        def neg(*operands,**kwargs) = add_instruction(Instructions::NEG,*operands,**kwargs)
+        def neg(operand,**kwargs) = add_instruction(Instructions::NEG,operand,**kwargs)
         # No Operation
         # @return [Ronin::ASM::X86_64::Instructions::NOP]
-        def nop(*operands,**kwargs) = add_instruction(Instructions::NOP,*operands,**kwargs)
+        def nop(**kwargs) = add_instruction(Instructions::NOP,**kwargs)
         # One's Complement Negation
         # @return [Ronin::ASM::X86_64::Instructions::NOT]
         # @example
@@ -3691,7 +3691,7 @@ module Ronin
         #   not eax
         #   not rax
         #   not [rax]
-        def not(*operands,**kwargs) = add_instruction(Instructions::NOT,*operands,**kwargs)
+        def not(operand,**kwargs) = add_instruction(Instructions::NOT,operand,**kwargs)
         # Logical Inclusive OR
         # @return [Ronin::ASM::X86_64::Instructions::OR]
         # @example
@@ -3717,19 +3717,19 @@ module Ronin
         #   or [rax], 0x00000002
         #   or [rax], ebx
         #   or [rax], rbx
-        def or(*operands,**kwargs) = add_instruction(Instructions::OR,*operands,**kwargs)
+        def or(operand1,operand2,**kwargs) = add_instruction(Instructions::OR,operand1,operand2,**kwargs)
         # Bitwise Logical OR of Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ORPD]
         # @example
         #   orpd xmm0, xmm1
         #   orpd xmm0, [rbx]
-        def orpd(*operands,**kwargs) = add_instruction(Instructions::ORPD,*operands,**kwargs)
+        def orpd(operand1,operand2,**kwargs) = add_instruction(Instructions::ORPD,operand1,operand2,**kwargs)
         # Bitwise Logical OR of Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ORPS]
         # @example
         #   orps xmm0, xmm1
         #   orps xmm0, [rbx]
-        def orps(*operands,**kwargs) = add_instruction(Instructions::ORPS,*operands,**kwargs)
+        def orps(operand1,operand2,**kwargs) = add_instruction(Instructions::ORPS,operand1,operand2,**kwargs)
         # Packed Absolute Value of Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::PABSB]
         # @example
@@ -3737,7 +3737,7 @@ module Ronin
         #   pabsb mm0, [rbx]
         #   pabsb xmm0, xmm1
         #   pabsb xmm0, [rbx]
-        def pabsb(*operands,**kwargs) = add_instruction(Instructions::PABSB,*operands,**kwargs)
+        def pabsb(operand1,operand2,**kwargs) = add_instruction(Instructions::PABSB,operand1,operand2,**kwargs)
         # Packed Absolute Value of Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::PABSD]
         # @example
@@ -3745,7 +3745,7 @@ module Ronin
         #   pabsd mm0, [rbx]
         #   pabsd xmm0, xmm1
         #   pabsd xmm0, [rbx]
-        def pabsd(*operands,**kwargs) = add_instruction(Instructions::PABSD,*operands,**kwargs)
+        def pabsd(operand1,operand2,**kwargs) = add_instruction(Instructions::PABSD,operand1,operand2,**kwargs)
         # Packed Absolute Value of Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PABSW]
         # @example
@@ -3753,7 +3753,7 @@ module Ronin
         #   pabsw mm0, [rbx]
         #   pabsw xmm0, xmm1
         #   pabsw xmm0, [rbx]
-        def pabsw(*operands,**kwargs) = add_instruction(Instructions::PABSW,*operands,**kwargs)
+        def pabsw(operand1,operand2,**kwargs) = add_instruction(Instructions::PABSW,operand1,operand2,**kwargs)
         # Pack Doublewords into Words with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PACKSSDW]
         # @example
@@ -3761,7 +3761,7 @@ module Ronin
         #   packssdw mm0, [rbx]
         #   packssdw xmm0, xmm1
         #   packssdw xmm0, [rbx]
-        def packssdw(*operands,**kwargs) = add_instruction(Instructions::PACKSSDW,*operands,**kwargs)
+        def packssdw(operand1,operand2,**kwargs) = add_instruction(Instructions::PACKSSDW,operand1,operand2,**kwargs)
         # Pack Words into Bytes with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PACKSSWB]
         # @example
@@ -3769,13 +3769,13 @@ module Ronin
         #   packsswb mm0, [rbx]
         #   packsswb xmm0, xmm1
         #   packsswb xmm0, [rbx]
-        def packsswb(*operands,**kwargs) = add_instruction(Instructions::PACKSSWB,*operands,**kwargs)
+        def packsswb(operand1,operand2,**kwargs) = add_instruction(Instructions::PACKSSWB,operand1,operand2,**kwargs)
         # Pack Doublewords into Words with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PACKUSDW]
         # @example
         #   packusdw xmm0, xmm1
         #   packusdw xmm0, [rbx]
-        def packusdw(*operands,**kwargs) = add_instruction(Instructions::PACKUSDW,*operands,**kwargs)
+        def packusdw(operand1,operand2,**kwargs) = add_instruction(Instructions::PACKUSDW,operand1,operand2,**kwargs)
         # Pack Words into Bytes with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PACKUSWB]
         # @example
@@ -3783,7 +3783,7 @@ module Ronin
         #   packuswb mm0, [rbx]
         #   packuswb xmm0, xmm1
         #   packuswb xmm0, [rbx]
-        def packuswb(*operands,**kwargs) = add_instruction(Instructions::PACKUSWB,*operands,**kwargs)
+        def packuswb(operand1,operand2,**kwargs) = add_instruction(Instructions::PACKUSWB,operand1,operand2,**kwargs)
         # Add Packed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::PADDB]
         # @example
@@ -3791,7 +3791,7 @@ module Ronin
         #   paddb mm0, [rbx]
         #   paddb xmm0, xmm1
         #   paddb xmm0, [rbx]
-        def paddb(*operands,**kwargs) = add_instruction(Instructions::PADDB,*operands,**kwargs)
+        def paddb(operand1,operand2,**kwargs) = add_instruction(Instructions::PADDB,operand1,operand2,**kwargs)
         # Add Packed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::PADDD]
         # @example
@@ -3799,7 +3799,7 @@ module Ronin
         #   paddd mm0, [rbx]
         #   paddd xmm0, xmm1
         #   paddd xmm0, [rbx]
-        def paddd(*operands,**kwargs) = add_instruction(Instructions::PADDD,*operands,**kwargs)
+        def paddd(operand1,operand2,**kwargs) = add_instruction(Instructions::PADDD,operand1,operand2,**kwargs)
         # Add Packed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::PADDQ]
         # @example
@@ -3807,7 +3807,7 @@ module Ronin
         #   paddq mm0, [rbx]
         #   paddq xmm0, xmm1
         #   paddq xmm0, [rbx]
-        def paddq(*operands,**kwargs) = add_instruction(Instructions::PADDQ,*operands,**kwargs)
+        def paddq(operand1,operand2,**kwargs) = add_instruction(Instructions::PADDQ,operand1,operand2,**kwargs)
         # Add Packed Signed Byte Integers with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PADDSB]
         # @example
@@ -3815,7 +3815,7 @@ module Ronin
         #   paddsb mm0, [rbx]
         #   paddsb xmm0, xmm1
         #   paddsb xmm0, [rbx]
-        def paddsb(*operands,**kwargs) = add_instruction(Instructions::PADDSB,*operands,**kwargs)
+        def paddsb(operand1,operand2,**kwargs) = add_instruction(Instructions::PADDSB,operand1,operand2,**kwargs)
         # Add Packed Signed Word Integers with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PADDSW]
         # @example
@@ -3823,7 +3823,7 @@ module Ronin
         #   paddsw mm0, [rbx]
         #   paddsw xmm0, xmm1
         #   paddsw xmm0, [rbx]
-        def paddsw(*operands,**kwargs) = add_instruction(Instructions::PADDSW,*operands,**kwargs)
+        def paddsw(operand1,operand2,**kwargs) = add_instruction(Instructions::PADDSW,operand1,operand2,**kwargs)
         # Add Packed Unsigned Byte Integers with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PADDUSB]
         # @example
@@ -3831,7 +3831,7 @@ module Ronin
         #   paddusb mm0, [rbx]
         #   paddusb xmm0, xmm1
         #   paddusb xmm0, [rbx]
-        def paddusb(*operands,**kwargs) = add_instruction(Instructions::PADDUSB,*operands,**kwargs)
+        def paddusb(operand1,operand2,**kwargs) = add_instruction(Instructions::PADDUSB,operand1,operand2,**kwargs)
         # Add Packed Unsigned Word Integers with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PADDUSW]
         # @example
@@ -3839,7 +3839,7 @@ module Ronin
         #   paddusw mm0, [rbx]
         #   paddusw xmm0, xmm1
         #   paddusw xmm0, [rbx]
-        def paddusw(*operands,**kwargs) = add_instruction(Instructions::PADDUSW,*operands,**kwargs)
+        def paddusw(operand1,operand2,**kwargs) = add_instruction(Instructions::PADDUSW,operand1,operand2,**kwargs)
         # Add Packed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PADDW]
         # @example
@@ -3847,7 +3847,7 @@ module Ronin
         #   paddw mm0, [rbx]
         #   paddw xmm0, xmm1
         #   paddw xmm0, [rbx]
-        def paddw(*operands,**kwargs) = add_instruction(Instructions::PADDW,*operands,**kwargs)
+        def paddw(operand1,operand2,**kwargs) = add_instruction(Instructions::PADDW,operand1,operand2,**kwargs)
         # Packed Align Right
         # @return [Ronin::ASM::X86_64::Instructions::PALIGNR]
         # @example
@@ -3855,7 +3855,7 @@ module Ronin
         #   palignr mm0, [rbx], 0x03
         #   palignr xmm0, xmm1, 0x03
         #   palignr xmm0, [rbx], 0x03
-        def palignr(*operands,**kwargs) = add_instruction(Instructions::PALIGNR,*operands,**kwargs)
+        def palignr(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PALIGNR,operand1,operand2,operand3,**kwargs)
         # Packed Bitwise Logical AND
         # @return [Ronin::ASM::X86_64::Instructions::PAND]
         # @example
@@ -3863,7 +3863,7 @@ module Ronin
         #   pand mm0, [rbx]
         #   pand xmm0, xmm1
         #   pand xmm0, [rbx]
-        def pand(*operands,**kwargs) = add_instruction(Instructions::PAND,*operands,**kwargs)
+        def pand(operand1,operand2,**kwargs) = add_instruction(Instructions::PAND,operand1,operand2,**kwargs)
         # Packed Bitwise Logical AND NOT
         # @return [Ronin::ASM::X86_64::Instructions::PANDN]
         # @example
@@ -3871,10 +3871,10 @@ module Ronin
         #   pandn mm0, [rbx]
         #   pandn xmm0, xmm1
         #   pandn xmm0, [rbx]
-        def pandn(*operands,**kwargs) = add_instruction(Instructions::PANDN,*operands,**kwargs)
+        def pandn(operand1,operand2,**kwargs) = add_instruction(Instructions::PANDN,operand1,operand2,**kwargs)
         # Spin Loop Hint
         # @return [Ronin::ASM::X86_64::Instructions::PAUSE]
-        def pause(*operands,**kwargs) = add_instruction(Instructions::PAUSE,*operands,**kwargs)
+        def pause(**kwargs) = add_instruction(Instructions::PAUSE,**kwargs)
         # Average Packed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::PAVGB]
         # @example
@@ -3882,13 +3882,13 @@ module Ronin
         #   pavgb mm0, [rbx]
         #   pavgb xmm0, xmm1
         #   pavgb xmm0, [rbx]
-        def pavgb(*operands,**kwargs) = add_instruction(Instructions::PAVGB,*operands,**kwargs)
+        def pavgb(operand1,operand2,**kwargs) = add_instruction(Instructions::PAVGB,operand1,operand2,**kwargs)
         # Average Packed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::PAVGUSB]
         # @example
         #   pavgusb mm0, mm1
         #   pavgusb mm0, [rbx]
-        def pavgusb(*operands,**kwargs) = add_instruction(Instructions::PAVGUSB,*operands,**kwargs)
+        def pavgusb(operand1,operand2,**kwargs) = add_instruction(Instructions::PAVGUSB,operand1,operand2,**kwargs)
         # Average Packed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PAVGW]
         # @example
@@ -3896,25 +3896,25 @@ module Ronin
         #   pavgw mm0, [rbx]
         #   pavgw xmm0, xmm1
         #   pavgw xmm0, [rbx]
-        def pavgw(*operands,**kwargs) = add_instruction(Instructions::PAVGW,*operands,**kwargs)
+        def pavgw(operand1,operand2,**kwargs) = add_instruction(Instructions::PAVGW,operand1,operand2,**kwargs)
         # Variable Blend Packed Bytes
         # @return [Ronin::ASM::X86_64::Instructions::PBLENDVB]
         # @example
         #   pblendvb xmm0, xmm1, xmm0
         #   pblendvb xmm0, [rbx], xmm0
-        def pblendvb(*operands,**kwargs) = add_instruction(Instructions::PBLENDVB,*operands,**kwargs)
+        def pblendvb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PBLENDVB,operand1,operand2,operand3,**kwargs)
         # Blend Packed Words
         # @return [Ronin::ASM::X86_64::Instructions::PBLENDW]
         # @example
         #   pblendw xmm0, xmm1, 0x03
         #   pblendw xmm0, [rbx], 0x03
-        def pblendw(*operands,**kwargs) = add_instruction(Instructions::PBLENDW,*operands,**kwargs)
+        def pblendw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PBLENDW,operand1,operand2,operand3,**kwargs)
         # Carry-Less Quadword Multiplication
         # @return [Ronin::ASM::X86_64::Instructions::PCLMULQDQ]
         # @example
         #   pclmulqdq xmm0, xmm1, 0x03
         #   pclmulqdq xmm0, [rbx], 0x03
-        def pclmulqdq(*operands,**kwargs) = add_instruction(Instructions::PCLMULQDQ,*operands,**kwargs)
+        def pclmulqdq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PCLMULQDQ,operand1,operand2,operand3,**kwargs)
         # Compare Packed Byte Data for Equality
         # @return [Ronin::ASM::X86_64::Instructions::PCMPEQB]
         # @example
@@ -3922,7 +3922,7 @@ module Ronin
         #   pcmpeqb mm0, [rbx]
         #   pcmpeqb xmm0, xmm1
         #   pcmpeqb xmm0, [rbx]
-        def pcmpeqb(*operands,**kwargs) = add_instruction(Instructions::PCMPEQB,*operands,**kwargs)
+        def pcmpeqb(operand1,operand2,**kwargs) = add_instruction(Instructions::PCMPEQB,operand1,operand2,**kwargs)
         # Compare Packed Doubleword Data for Equality
         # @return [Ronin::ASM::X86_64::Instructions::PCMPEQD]
         # @example
@@ -3930,13 +3930,13 @@ module Ronin
         #   pcmpeqd mm0, [rbx]
         #   pcmpeqd xmm0, xmm1
         #   pcmpeqd xmm0, [rbx]
-        def pcmpeqd(*operands,**kwargs) = add_instruction(Instructions::PCMPEQD,*operands,**kwargs)
+        def pcmpeqd(operand1,operand2,**kwargs) = add_instruction(Instructions::PCMPEQD,operand1,operand2,**kwargs)
         # Compare Packed Quadword Data for Equality
         # @return [Ronin::ASM::X86_64::Instructions::PCMPEQQ]
         # @example
         #   pcmpeqq xmm0, xmm1
         #   pcmpeqq xmm0, [rbx]
-        def pcmpeqq(*operands,**kwargs) = add_instruction(Instructions::PCMPEQQ,*operands,**kwargs)
+        def pcmpeqq(operand1,operand2,**kwargs) = add_instruction(Instructions::PCMPEQQ,operand1,operand2,**kwargs)
         # Compare Packed Word Data for Equality
         # @return [Ronin::ASM::X86_64::Instructions::PCMPEQW]
         # @example
@@ -3944,19 +3944,19 @@ module Ronin
         #   pcmpeqw mm0, [rbx]
         #   pcmpeqw xmm0, xmm1
         #   pcmpeqw xmm0, [rbx]
-        def pcmpeqw(*operands,**kwargs) = add_instruction(Instructions::PCMPEQW,*operands,**kwargs)
+        def pcmpeqw(operand1,operand2,**kwargs) = add_instruction(Instructions::PCMPEQW,operand1,operand2,**kwargs)
         # Packed Compare Explicit Length Strings, Return Index
         # @return [Ronin::ASM::X86_64::Instructions::PCMPESTRI]
         # @example
         #   pcmpestri xmm0, xmm1, 0x03
         #   pcmpestri xmm0, [rbx], 0x03
-        def pcmpestri(*operands,**kwargs) = add_instruction(Instructions::PCMPESTRI,*operands,**kwargs)
+        def pcmpestri(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PCMPESTRI,operand1,operand2,operand3,**kwargs)
         # Packed Compare Explicit Length Strings, Return Mask
         # @return [Ronin::ASM::X86_64::Instructions::PCMPESTRM]
         # @example
         #   pcmpestrm xmm0, xmm1, 0x03
         #   pcmpestrm xmm0, [rbx], 0x03
-        def pcmpestrm(*operands,**kwargs) = add_instruction(Instructions::PCMPESTRM,*operands,**kwargs)
+        def pcmpestrm(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PCMPESTRM,operand1,operand2,operand3,**kwargs)
         # Compare Packed Signed Byte Integers for Greater Than
         # @return [Ronin::ASM::X86_64::Instructions::PCMPGTB]
         # @example
@@ -3964,7 +3964,7 @@ module Ronin
         #   pcmpgtb mm0, [rbx]
         #   pcmpgtb xmm0, xmm1
         #   pcmpgtb xmm0, [rbx]
-        def pcmpgtb(*operands,**kwargs) = add_instruction(Instructions::PCMPGTB,*operands,**kwargs)
+        def pcmpgtb(operand1,operand2,**kwargs) = add_instruction(Instructions::PCMPGTB,operand1,operand2,**kwargs)
         # Compare Packed Signed Doubleword Integers for Greater Than
         # @return [Ronin::ASM::X86_64::Instructions::PCMPGTD]
         # @example
@@ -3972,13 +3972,13 @@ module Ronin
         #   pcmpgtd mm0, [rbx]
         #   pcmpgtd xmm0, xmm1
         #   pcmpgtd xmm0, [rbx]
-        def pcmpgtd(*operands,**kwargs) = add_instruction(Instructions::PCMPGTD,*operands,**kwargs)
+        def pcmpgtd(operand1,operand2,**kwargs) = add_instruction(Instructions::PCMPGTD,operand1,operand2,**kwargs)
         # Compare Packed Data for Greater Than
         # @return [Ronin::ASM::X86_64::Instructions::PCMPGTQ]
         # @example
         #   pcmpgtq xmm0, xmm1
         #   pcmpgtq xmm0, [rbx]
-        def pcmpgtq(*operands,**kwargs) = add_instruction(Instructions::PCMPGTQ,*operands,**kwargs)
+        def pcmpgtq(operand1,operand2,**kwargs) = add_instruction(Instructions::PCMPGTQ,operand1,operand2,**kwargs)
         # Compare Packed Signed Word Integers for Greater Than
         # @return [Ronin::ASM::X86_64::Instructions::PCMPGTW]
         # @example
@@ -3986,19 +3986,19 @@ module Ronin
         #   pcmpgtw mm0, [rbx]
         #   pcmpgtw xmm0, xmm1
         #   pcmpgtw xmm0, [rbx]
-        def pcmpgtw(*operands,**kwargs) = add_instruction(Instructions::PCMPGTW,*operands,**kwargs)
+        def pcmpgtw(operand1,operand2,**kwargs) = add_instruction(Instructions::PCMPGTW,operand1,operand2,**kwargs)
         # Packed Compare Implicit Length Strings, Return Index
         # @return [Ronin::ASM::X86_64::Instructions::PCMPISTRI]
         # @example
         #   pcmpistri xmm0, xmm1, 0x03
         #   pcmpistri xmm0, [rbx], 0x03
-        def pcmpistri(*operands,**kwargs) = add_instruction(Instructions::PCMPISTRI,*operands,**kwargs)
+        def pcmpistri(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PCMPISTRI,operand1,operand2,operand3,**kwargs)
         # Packed Compare Implicit Length Strings, Return Mask
         # @return [Ronin::ASM::X86_64::Instructions::PCMPISTRM]
         # @example
         #   pcmpistrm xmm0, xmm1, 0x03
         #   pcmpistrm xmm0, [rbx], 0x03
-        def pcmpistrm(*operands,**kwargs) = add_instruction(Instructions::PCMPISTRM,*operands,**kwargs)
+        def pcmpistrm(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PCMPISTRM,operand1,operand2,operand3,**kwargs)
         # Parallel Bits Deposit
         # @return [Ronin::ASM::X86_64::Instructions::PDEP]
         # @example
@@ -4006,7 +4006,7 @@ module Ronin
         #   pdep eax, ebx, [rcx]
         #   pdep rax, rbx, rcx
         #   pdep rax, rbx, [rcx]
-        def pdep(*operands,**kwargs) = add_instruction(Instructions::PDEP,*operands,**kwargs)
+        def pdep(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PDEP,operand1,operand2,operand3,**kwargs)
         # Parallel Bits Extract
         # @return [Ronin::ASM::X86_64::Instructions::PEXT]
         # @example
@@ -4014,146 +4014,146 @@ module Ronin
         #   pext eax, ebx, [rcx]
         #   pext rax, rbx, rcx
         #   pext rax, rbx, [rcx]
-        def pext(*operands,**kwargs) = add_instruction(Instructions::PEXT,*operands,**kwargs)
+        def pext(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PEXT,operand1,operand2,operand3,**kwargs)
         # Extract Byte
         # @return [Ronin::ASM::X86_64::Instructions::PEXTRB]
         # @example
         #   pextrb eax, xmm1, 0x03
         #   pextrb [rax], xmm1, 0x03
-        def pextrb(*operands,**kwargs) = add_instruction(Instructions::PEXTRB,*operands,**kwargs)
+        def pextrb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PEXTRB,operand1,operand2,operand3,**kwargs)
         # Extract Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::PEXTRD]
         # @example
         #   pextrd eax, xmm1, 0x03
         #   pextrd [rax], xmm1, 0x03
-        def pextrd(*operands,**kwargs) = add_instruction(Instructions::PEXTRD,*operands,**kwargs)
+        def pextrd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PEXTRD,operand1,operand2,operand3,**kwargs)
         # Extract Quadword
         # @return [Ronin::ASM::X86_64::Instructions::PEXTRQ]
         # @example
         #   pextrq rax, xmm1, 0x03
         #   pextrq [rax], xmm1, 0x03
-        def pextrq(*operands,**kwargs) = add_instruction(Instructions::PEXTRQ,*operands,**kwargs)
+        def pextrq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PEXTRQ,operand1,operand2,operand3,**kwargs)
         # Extract Word
         # @return [Ronin::ASM::X86_64::Instructions::PEXTRW]
         # @example
         #   pextrw eax, mm1, 0x03
         #   pextrw eax, xmm1, 0x03
         #   pextrw [rax], xmm1, 0x03
-        def pextrw(*operands,**kwargs) = add_instruction(Instructions::PEXTRW,*operands,**kwargs)
+        def pextrw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PEXTRW,operand1,operand2,operand3,**kwargs)
         # Packed Floating-Point to Integer Doubleword Converson
         # @return [Ronin::ASM::X86_64::Instructions::PF2ID]
         # @example
         #   pf2id mm0, mm1
         #   pf2id mm0, [rbx]
-        def pf2id(*operands,**kwargs) = add_instruction(Instructions::PF2ID,*operands,**kwargs)
+        def pf2id(operand1,operand2,**kwargs) = add_instruction(Instructions::PF2ID,operand1,operand2,**kwargs)
         # Packed Floating-Point to Integer Word Conversion
         # @return [Ronin::ASM::X86_64::Instructions::PF2IW]
         # @example
         #   pf2iw mm0, mm1
         #   pf2iw mm0, [rbx]
-        def pf2iw(*operands,**kwargs) = add_instruction(Instructions::PF2IW,*operands,**kwargs)
+        def pf2iw(operand1,operand2,**kwargs) = add_instruction(Instructions::PF2IW,operand1,operand2,**kwargs)
         # Packed Floating-Point Accumulate
         # @return [Ronin::ASM::X86_64::Instructions::PFACC]
         # @example
         #   pfacc mm0, mm1
         #   pfacc mm0, [rbx]
-        def pfacc(*operands,**kwargs) = add_instruction(Instructions::PFACC,*operands,**kwargs)
+        def pfacc(operand1,operand2,**kwargs) = add_instruction(Instructions::PFACC,operand1,operand2,**kwargs)
         # Packed Floating-Point Add
         # @return [Ronin::ASM::X86_64::Instructions::PFADD]
         # @example
         #   pfadd mm0, mm1
         #   pfadd mm0, [rbx]
-        def pfadd(*operands,**kwargs) = add_instruction(Instructions::PFADD,*operands,**kwargs)
+        def pfadd(operand1,operand2,**kwargs) = add_instruction(Instructions::PFADD,operand1,operand2,**kwargs)
         # Packed Floating-Point Compare for Equal
         # @return [Ronin::ASM::X86_64::Instructions::PFCMPEQ]
         # @example
         #   pfcmpeq mm0, mm1
         #   pfcmpeq mm0, [rbx]
-        def pfcmpeq(*operands,**kwargs) = add_instruction(Instructions::PFCMPEQ,*operands,**kwargs)
+        def pfcmpeq(operand1,operand2,**kwargs) = add_instruction(Instructions::PFCMPEQ,operand1,operand2,**kwargs)
         # Packed Floating-Point Compare for Greater or Equal
         # @return [Ronin::ASM::X86_64::Instructions::PFCMPGE]
         # @example
         #   pfcmpge mm0, mm1
         #   pfcmpge mm0, [rbx]
-        def pfcmpge(*operands,**kwargs) = add_instruction(Instructions::PFCMPGE,*operands,**kwargs)
+        def pfcmpge(operand1,operand2,**kwargs) = add_instruction(Instructions::PFCMPGE,operand1,operand2,**kwargs)
         # Packed Floating-Point Compare for Greater Than
         # @return [Ronin::ASM::X86_64::Instructions::PFCMPGT]
         # @example
         #   pfcmpgt mm0, mm1
         #   pfcmpgt mm0, [rbx]
-        def pfcmpgt(*operands,**kwargs) = add_instruction(Instructions::PFCMPGT,*operands,**kwargs)
+        def pfcmpgt(operand1,operand2,**kwargs) = add_instruction(Instructions::PFCMPGT,operand1,operand2,**kwargs)
         # Packed Floating-Point Maximum
         # @return [Ronin::ASM::X86_64::Instructions::PFMAX]
         # @example
         #   pfmax mm0, mm1
         #   pfmax mm0, [rbx]
-        def pfmax(*operands,**kwargs) = add_instruction(Instructions::PFMAX,*operands,**kwargs)
+        def pfmax(operand1,operand2,**kwargs) = add_instruction(Instructions::PFMAX,operand1,operand2,**kwargs)
         # Packed Floating-Point Minimum
         # @return [Ronin::ASM::X86_64::Instructions::PFMIN]
         # @example
         #   pfmin mm0, mm1
         #   pfmin mm0, [rbx]
-        def pfmin(*operands,**kwargs) = add_instruction(Instructions::PFMIN,*operands,**kwargs)
+        def pfmin(operand1,operand2,**kwargs) = add_instruction(Instructions::PFMIN,operand1,operand2,**kwargs)
         # Packed Floating-Point Multiply
         # @return [Ronin::ASM::X86_64::Instructions::PFMUL]
         # @example
         #   pfmul mm0, mm1
         #   pfmul mm0, [rbx]
-        def pfmul(*operands,**kwargs) = add_instruction(Instructions::PFMUL,*operands,**kwargs)
+        def pfmul(operand1,operand2,**kwargs) = add_instruction(Instructions::PFMUL,operand1,operand2,**kwargs)
         # Packed Floating-Point Negative Accumulate
         # @return [Ronin::ASM::X86_64::Instructions::PFNACC]
         # @example
         #   pfnacc mm0, mm1
         #   pfnacc mm0, [rbx]
-        def pfnacc(*operands,**kwargs) = add_instruction(Instructions::PFNACC,*operands,**kwargs)
+        def pfnacc(operand1,operand2,**kwargs) = add_instruction(Instructions::PFNACC,operand1,operand2,**kwargs)
         # Packed Floating-Point Positive-Negative Accumulate
         # @return [Ronin::ASM::X86_64::Instructions::PFPNACC]
         # @example
         #   pfpnacc mm0, mm1
         #   pfpnacc mm0, [rbx]
-        def pfpnacc(*operands,**kwargs) = add_instruction(Instructions::PFPNACC,*operands,**kwargs)
+        def pfpnacc(operand1,operand2,**kwargs) = add_instruction(Instructions::PFPNACC,operand1,operand2,**kwargs)
         # Packed Floating-Point Reciprocal Approximation
         # @return [Ronin::ASM::X86_64::Instructions::PFRCP]
         # @example
         #   pfrcp mm0, mm1
         #   pfrcp mm0, [rbx]
-        def pfrcp(*operands,**kwargs) = add_instruction(Instructions::PFRCP,*operands,**kwargs)
+        def pfrcp(operand1,operand2,**kwargs) = add_instruction(Instructions::PFRCP,operand1,operand2,**kwargs)
         # Packed Floating-Point Reciprocal Iteration 1
         # @return [Ronin::ASM::X86_64::Instructions::PFRCPIT1]
         # @example
         #   pfrcpit1 mm0, mm1
         #   pfrcpit1 mm0, [rbx]
-        def pfrcpit1(*operands,**kwargs) = add_instruction(Instructions::PFRCPIT1,*operands,**kwargs)
+        def pfrcpit1(operand1,operand2,**kwargs) = add_instruction(Instructions::PFRCPIT1,operand1,operand2,**kwargs)
         # Packed Floating-Point Reciprocal Iteration 2
         # @return [Ronin::ASM::X86_64::Instructions::PFRCPIT2]
         # @example
         #   pfrcpit2 mm0, mm1
         #   pfrcpit2 mm0, [rbx]
-        def pfrcpit2(*operands,**kwargs) = add_instruction(Instructions::PFRCPIT2,*operands,**kwargs)
+        def pfrcpit2(operand1,operand2,**kwargs) = add_instruction(Instructions::PFRCPIT2,operand1,operand2,**kwargs)
         # Packed Floating-Point Reciprocal Square Root Iteration 1
         # @return [Ronin::ASM::X86_64::Instructions::PFRSQIT1]
         # @example
         #   pfrsqit1 mm0, mm1
         #   pfrsqit1 mm0, [rbx]
-        def pfrsqit1(*operands,**kwargs) = add_instruction(Instructions::PFRSQIT1,*operands,**kwargs)
+        def pfrsqit1(operand1,operand2,**kwargs) = add_instruction(Instructions::PFRSQIT1,operand1,operand2,**kwargs)
         # Packed Floating-Point Reciprocal Square Root Approximation
         # @return [Ronin::ASM::X86_64::Instructions::PFRSQRT]
         # @example
         #   pfrsqrt mm0, mm1
         #   pfrsqrt mm0, [rbx]
-        def pfrsqrt(*operands,**kwargs) = add_instruction(Instructions::PFRSQRT,*operands,**kwargs)
+        def pfrsqrt(operand1,operand2,**kwargs) = add_instruction(Instructions::PFRSQRT,operand1,operand2,**kwargs)
         # Packed Floating-Point Subtract
         # @return [Ronin::ASM::X86_64::Instructions::PFSUB]
         # @example
         #   pfsub mm0, mm1
         #   pfsub mm0, [rbx]
-        def pfsub(*operands,**kwargs) = add_instruction(Instructions::PFSUB,*operands,**kwargs)
+        def pfsub(operand1,operand2,**kwargs) = add_instruction(Instructions::PFSUB,operand1,operand2,**kwargs)
         # Packed Floating-Point Subtract Reverse
         # @return [Ronin::ASM::X86_64::Instructions::PFSUBR]
         # @example
         #   pfsubr mm0, mm1
         #   pfsubr mm0, [rbx]
-        def pfsubr(*operands,**kwargs) = add_instruction(Instructions::PFSUBR,*operands,**kwargs)
+        def pfsubr(operand1,operand2,**kwargs) = add_instruction(Instructions::PFSUBR,operand1,operand2,**kwargs)
         # Packed Horizontal Add Doubleword Integer
         # @return [Ronin::ASM::X86_64::Instructions::PHADDD]
         # @example
@@ -4161,7 +4161,7 @@ module Ronin
         #   phaddd mm0, [rbx]
         #   phaddd xmm0, xmm1
         #   phaddd xmm0, [rbx]
-        def phaddd(*operands,**kwargs) = add_instruction(Instructions::PHADDD,*operands,**kwargs)
+        def phaddd(operand1,operand2,**kwargs) = add_instruction(Instructions::PHADDD,operand1,operand2,**kwargs)
         # Packed Horizontal Add Signed Word Integers with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PHADDSW]
         # @example
@@ -4169,7 +4169,7 @@ module Ronin
         #   phaddsw mm0, [rbx]
         #   phaddsw xmm0, xmm1
         #   phaddsw xmm0, [rbx]
-        def phaddsw(*operands,**kwargs) = add_instruction(Instructions::PHADDSW,*operands,**kwargs)
+        def phaddsw(operand1,operand2,**kwargs) = add_instruction(Instructions::PHADDSW,operand1,operand2,**kwargs)
         # Packed Horizontal Add Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PHADDW]
         # @example
@@ -4177,13 +4177,13 @@ module Ronin
         #   phaddw mm0, [rbx]
         #   phaddw xmm0, xmm1
         #   phaddw xmm0, [rbx]
-        def phaddw(*operands,**kwargs) = add_instruction(Instructions::PHADDW,*operands,**kwargs)
+        def phaddw(operand1,operand2,**kwargs) = add_instruction(Instructions::PHADDW,operand1,operand2,**kwargs)
         # Packed Horizontal Minimum of Unsigned Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PHMINPOSUW]
         # @example
         #   phminposuw xmm0, xmm1
         #   phminposuw xmm0, [rbx]
-        def phminposuw(*operands,**kwargs) = add_instruction(Instructions::PHMINPOSUW,*operands,**kwargs)
+        def phminposuw(operand1,operand2,**kwargs) = add_instruction(Instructions::PHMINPOSUW,operand1,operand2,**kwargs)
         # Packed Horizontal Subtract Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::PHSUBD]
         # @example
@@ -4191,7 +4191,7 @@ module Ronin
         #   phsubd mm0, [rbx]
         #   phsubd xmm0, xmm1
         #   phsubd xmm0, [rbx]
-        def phsubd(*operands,**kwargs) = add_instruction(Instructions::PHSUBD,*operands,**kwargs)
+        def phsubd(operand1,operand2,**kwargs) = add_instruction(Instructions::PHSUBD,operand1,operand2,**kwargs)
         # Packed Horizontal Subtract Signed Word Integers with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PHSUBSW]
         # @example
@@ -4199,7 +4199,7 @@ module Ronin
         #   phsubsw mm0, [rbx]
         #   phsubsw xmm0, xmm1
         #   phsubsw xmm0, [rbx]
-        def phsubsw(*operands,**kwargs) = add_instruction(Instructions::PHSUBSW,*operands,**kwargs)
+        def phsubsw(operand1,operand2,**kwargs) = add_instruction(Instructions::PHSUBSW,operand1,operand2,**kwargs)
         # Packed Horizontal Subtract Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PHSUBW]
         # @example
@@ -4207,37 +4207,37 @@ module Ronin
         #   phsubw mm0, [rbx]
         #   phsubw xmm0, xmm1
         #   phsubw xmm0, [rbx]
-        def phsubw(*operands,**kwargs) = add_instruction(Instructions::PHSUBW,*operands,**kwargs)
+        def phsubw(operand1,operand2,**kwargs) = add_instruction(Instructions::PHSUBW,operand1,operand2,**kwargs)
         # Packed Integer to Floating-Point Doubleword Conversion
         # @return [Ronin::ASM::X86_64::Instructions::PI2FD]
         # @example
         #   pi2fd mm0, mm1
         #   pi2fd mm0, [rbx]
-        def pi2fd(*operands,**kwargs) = add_instruction(Instructions::PI2FD,*operands,**kwargs)
+        def pi2fd(operand1,operand2,**kwargs) = add_instruction(Instructions::PI2FD,operand1,operand2,**kwargs)
         # Packed Integer to Floating-Point Word Conversion
         # @return [Ronin::ASM::X86_64::Instructions::PI2FW]
         # @example
         #   pi2fw mm0, mm1
         #   pi2fw mm0, [rbx]
-        def pi2fw(*operands,**kwargs) = add_instruction(Instructions::PI2FW,*operands,**kwargs)
+        def pi2fw(operand1,operand2,**kwargs) = add_instruction(Instructions::PI2FW,operand1,operand2,**kwargs)
         # Insert Byte
         # @return [Ronin::ASM::X86_64::Instructions::PINSRB]
         # @example
         #   pinsrb xmm0, ebx, 0x03
         #   pinsrb xmm0, [rbx], 0x03
-        def pinsrb(*operands,**kwargs) = add_instruction(Instructions::PINSRB,*operands,**kwargs)
+        def pinsrb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PINSRB,operand1,operand2,operand3,**kwargs)
         # Insert Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::PINSRD]
         # @example
         #   pinsrd xmm0, ebx, 0x03
         #   pinsrd xmm0, [rbx], 0x03
-        def pinsrd(*operands,**kwargs) = add_instruction(Instructions::PINSRD,*operands,**kwargs)
+        def pinsrd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PINSRD,operand1,operand2,operand3,**kwargs)
         # Insert Quadword
         # @return [Ronin::ASM::X86_64::Instructions::PINSRQ]
         # @example
         #   pinsrq xmm0, rbx, 0x03
         #   pinsrq xmm0, [rbx], 0x03
-        def pinsrq(*operands,**kwargs) = add_instruction(Instructions::PINSRQ,*operands,**kwargs)
+        def pinsrq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PINSRQ,operand1,operand2,operand3,**kwargs)
         # Insert Word
         # @return [Ronin::ASM::X86_64::Instructions::PINSRW]
         # @example
@@ -4245,7 +4245,7 @@ module Ronin
         #   pinsrw mm0, [rbx], 0x03
         #   pinsrw xmm0, ebx, 0x03
         #   pinsrw xmm0, [rbx], 0x03
-        def pinsrw(*operands,**kwargs) = add_instruction(Instructions::PINSRW,*operands,**kwargs)
+        def pinsrw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PINSRW,operand1,operand2,operand3,**kwargs)
         # Multiply and Add Packed Signed and Unsigned Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMADDUBSW]
         # @example
@@ -4253,7 +4253,7 @@ module Ronin
         #   pmaddubsw mm0, [rbx]
         #   pmaddubsw xmm0, xmm1
         #   pmaddubsw xmm0, [rbx]
-        def pmaddubsw(*operands,**kwargs) = add_instruction(Instructions::PMADDUBSW,*operands,**kwargs)
+        def pmaddubsw(operand1,operand2,**kwargs) = add_instruction(Instructions::PMADDUBSW,operand1,operand2,**kwargs)
         # Multiply and Add Packed Signed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMADDWD]
         # @example
@@ -4261,19 +4261,19 @@ module Ronin
         #   pmaddwd mm0, [rbx]
         #   pmaddwd xmm0, xmm1
         #   pmaddwd xmm0, [rbx]
-        def pmaddwd(*operands,**kwargs) = add_instruction(Instructions::PMADDWD,*operands,**kwargs)
+        def pmaddwd(operand1,operand2,**kwargs) = add_instruction(Instructions::PMADDWD,operand1,operand2,**kwargs)
         # Maximum of Packed Signed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMAXSB]
         # @example
         #   pmaxsb xmm0, xmm1
         #   pmaxsb xmm0, [rbx]
-        def pmaxsb(*operands,**kwargs) = add_instruction(Instructions::PMAXSB,*operands,**kwargs)
+        def pmaxsb(operand1,operand2,**kwargs) = add_instruction(Instructions::PMAXSB,operand1,operand2,**kwargs)
         # Maximum of Packed Signed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMAXSD]
         # @example
         #   pmaxsd xmm0, xmm1
         #   pmaxsd xmm0, [rbx]
-        def pmaxsd(*operands,**kwargs) = add_instruction(Instructions::PMAXSD,*operands,**kwargs)
+        def pmaxsd(operand1,operand2,**kwargs) = add_instruction(Instructions::PMAXSD,operand1,operand2,**kwargs)
         # Maximum of Packed Signed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMAXSW]
         # @example
@@ -4281,7 +4281,7 @@ module Ronin
         #   pmaxsw mm0, [rbx]
         #   pmaxsw xmm0, xmm1
         #   pmaxsw xmm0, [rbx]
-        def pmaxsw(*operands,**kwargs) = add_instruction(Instructions::PMAXSW,*operands,**kwargs)
+        def pmaxsw(operand1,operand2,**kwargs) = add_instruction(Instructions::PMAXSW,operand1,operand2,**kwargs)
         # Maximum of Packed Unsigned Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMAXUB]
         # @example
@@ -4289,31 +4289,31 @@ module Ronin
         #   pmaxub mm0, [rbx]
         #   pmaxub xmm0, xmm1
         #   pmaxub xmm0, [rbx]
-        def pmaxub(*operands,**kwargs) = add_instruction(Instructions::PMAXUB,*operands,**kwargs)
+        def pmaxub(operand1,operand2,**kwargs) = add_instruction(Instructions::PMAXUB,operand1,operand2,**kwargs)
         # Maximum of Packed Unsigned Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMAXUD]
         # @example
         #   pmaxud xmm0, xmm1
         #   pmaxud xmm0, [rbx]
-        def pmaxud(*operands,**kwargs) = add_instruction(Instructions::PMAXUD,*operands,**kwargs)
+        def pmaxud(operand1,operand2,**kwargs) = add_instruction(Instructions::PMAXUD,operand1,operand2,**kwargs)
         # Maximum of Packed Unsigned Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMAXUW]
         # @example
         #   pmaxuw xmm0, xmm1
         #   pmaxuw xmm0, [rbx]
-        def pmaxuw(*operands,**kwargs) = add_instruction(Instructions::PMAXUW,*operands,**kwargs)
+        def pmaxuw(operand1,operand2,**kwargs) = add_instruction(Instructions::PMAXUW,operand1,operand2,**kwargs)
         # Minimum of Packed Signed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMINSB]
         # @example
         #   pminsb xmm0, xmm1
         #   pminsb xmm0, [rbx]
-        def pminsb(*operands,**kwargs) = add_instruction(Instructions::PMINSB,*operands,**kwargs)
+        def pminsb(operand1,operand2,**kwargs) = add_instruction(Instructions::PMINSB,operand1,operand2,**kwargs)
         # Minimum of Packed Signed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMINSD]
         # @example
         #   pminsd xmm0, xmm1
         #   pminsd xmm0, [rbx]
-        def pminsd(*operands,**kwargs) = add_instruction(Instructions::PMINSD,*operands,**kwargs)
+        def pminsd(operand1,operand2,**kwargs) = add_instruction(Instructions::PMINSD,operand1,operand2,**kwargs)
         # Minimum of Packed Signed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMINSW]
         # @example
@@ -4321,7 +4321,7 @@ module Ronin
         #   pminsw mm0, [rbx]
         #   pminsw xmm0, xmm1
         #   pminsw xmm0, [rbx]
-        def pminsw(*operands,**kwargs) = add_instruction(Instructions::PMINSW,*operands,**kwargs)
+        def pminsw(operand1,operand2,**kwargs) = add_instruction(Instructions::PMINSW,operand1,operand2,**kwargs)
         # Minimum of Packed Unsigned Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMINUB]
         # @example
@@ -4329,103 +4329,103 @@ module Ronin
         #   pminub mm0, [rbx]
         #   pminub xmm0, xmm1
         #   pminub xmm0, [rbx]
-        def pminub(*operands,**kwargs) = add_instruction(Instructions::PMINUB,*operands,**kwargs)
+        def pminub(operand1,operand2,**kwargs) = add_instruction(Instructions::PMINUB,operand1,operand2,**kwargs)
         # Minimum of Packed Unsigned Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMINUD]
         # @example
         #   pminud xmm0, xmm1
         #   pminud xmm0, [rbx]
-        def pminud(*operands,**kwargs) = add_instruction(Instructions::PMINUD,*operands,**kwargs)
+        def pminud(operand1,operand2,**kwargs) = add_instruction(Instructions::PMINUD,operand1,operand2,**kwargs)
         # Minimum of Packed Unsigned Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMINUW]
         # @example
         #   pminuw xmm0, xmm1
         #   pminuw xmm0, [rbx]
-        def pminuw(*operands,**kwargs) = add_instruction(Instructions::PMINUW,*operands,**kwargs)
+        def pminuw(operand1,operand2,**kwargs) = add_instruction(Instructions::PMINUW,operand1,operand2,**kwargs)
         # Move Byte Mask
         # @return [Ronin::ASM::X86_64::Instructions::PMOVMSKB]
         # @example
         #   pmovmskb eax, mm1
         #   pmovmskb eax, xmm1
-        def pmovmskb(*operands,**kwargs) = add_instruction(Instructions::PMOVMSKB,*operands,**kwargs)
+        def pmovmskb(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVMSKB,operand1,operand2,**kwargs)
         # Move Packed Byte Integers to Doubleword Integers with Sign Extension
         # @return [Ronin::ASM::X86_64::Instructions::PMOVSXBD]
         # @example
         #   pmovsxbd xmm0, xmm1
         #   pmovsxbd xmm0, [rbx]
-        def pmovsxbd(*operands,**kwargs) = add_instruction(Instructions::PMOVSXBD,*operands,**kwargs)
+        def pmovsxbd(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVSXBD,operand1,operand2,**kwargs)
         # Move Packed Byte Integers to Quadword Integers with Sign Extension
         # @return [Ronin::ASM::X86_64::Instructions::PMOVSXBQ]
         # @example
         #   pmovsxbq xmm0, xmm1
         #   pmovsxbq xmm0, [rbx]
-        def pmovsxbq(*operands,**kwargs) = add_instruction(Instructions::PMOVSXBQ,*operands,**kwargs)
+        def pmovsxbq(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVSXBQ,operand1,operand2,**kwargs)
         # Move Packed Byte Integers to Word Integers with Sign Extension
         # @return [Ronin::ASM::X86_64::Instructions::PMOVSXBW]
         # @example
         #   pmovsxbw xmm0, xmm1
         #   pmovsxbw xmm0, [rbx]
-        def pmovsxbw(*operands,**kwargs) = add_instruction(Instructions::PMOVSXBW,*operands,**kwargs)
+        def pmovsxbw(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVSXBW,operand1,operand2,**kwargs)
         # Move Packed Doubleword Integers to Quadword Integers with Sign Extension
         # @return [Ronin::ASM::X86_64::Instructions::PMOVSXDQ]
         # @example
         #   pmovsxdq xmm0, xmm1
         #   pmovsxdq xmm0, [rbx]
-        def pmovsxdq(*operands,**kwargs) = add_instruction(Instructions::PMOVSXDQ,*operands,**kwargs)
+        def pmovsxdq(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVSXDQ,operand1,operand2,**kwargs)
         # Move Packed Word Integers to Doubleword Integers with Sign Extension
         # @return [Ronin::ASM::X86_64::Instructions::PMOVSXWD]
         # @example
         #   pmovsxwd xmm0, xmm1
         #   pmovsxwd xmm0, [rbx]
-        def pmovsxwd(*operands,**kwargs) = add_instruction(Instructions::PMOVSXWD,*operands,**kwargs)
+        def pmovsxwd(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVSXWD,operand1,operand2,**kwargs)
         # Move Packed Word Integers to Quadword Integers with Sign Extension
         # @return [Ronin::ASM::X86_64::Instructions::PMOVSXWQ]
         # @example
         #   pmovsxwq xmm0, xmm1
         #   pmovsxwq xmm0, [rbx]
-        def pmovsxwq(*operands,**kwargs) = add_instruction(Instructions::PMOVSXWQ,*operands,**kwargs)
+        def pmovsxwq(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVSXWQ,operand1,operand2,**kwargs)
         # Move Packed Byte Integers to Doubleword Integers with Zero Extension
         # @return [Ronin::ASM::X86_64::Instructions::PMOVZXBD]
         # @example
         #   pmovzxbd xmm0, xmm1
         #   pmovzxbd xmm0, [rbx]
-        def pmovzxbd(*operands,**kwargs) = add_instruction(Instructions::PMOVZXBD,*operands,**kwargs)
+        def pmovzxbd(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVZXBD,operand1,operand2,**kwargs)
         # Move Packed Byte Integers to Quadword Integers with Zero Extension
         # @return [Ronin::ASM::X86_64::Instructions::PMOVZXBQ]
         # @example
         #   pmovzxbq xmm0, xmm1
         #   pmovzxbq xmm0, [rbx]
-        def pmovzxbq(*operands,**kwargs) = add_instruction(Instructions::PMOVZXBQ,*operands,**kwargs)
+        def pmovzxbq(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVZXBQ,operand1,operand2,**kwargs)
         # Move Packed Byte Integers to Word Integers with Zero Extension
         # @return [Ronin::ASM::X86_64::Instructions::PMOVZXBW]
         # @example
         #   pmovzxbw xmm0, xmm1
         #   pmovzxbw xmm0, [rbx]
-        def pmovzxbw(*operands,**kwargs) = add_instruction(Instructions::PMOVZXBW,*operands,**kwargs)
+        def pmovzxbw(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVZXBW,operand1,operand2,**kwargs)
         # Move Packed Doubleword Integers to Quadword Integers with Zero Extension
         # @return [Ronin::ASM::X86_64::Instructions::PMOVZXDQ]
         # @example
         #   pmovzxdq xmm0, xmm1
         #   pmovzxdq xmm0, [rbx]
-        def pmovzxdq(*operands,**kwargs) = add_instruction(Instructions::PMOVZXDQ,*operands,**kwargs)
+        def pmovzxdq(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVZXDQ,operand1,operand2,**kwargs)
         # Move Packed Word Integers to Doubleword Integers with Zero Extension
         # @return [Ronin::ASM::X86_64::Instructions::PMOVZXWD]
         # @example
         #   pmovzxwd xmm0, xmm1
         #   pmovzxwd xmm0, [rbx]
-        def pmovzxwd(*operands,**kwargs) = add_instruction(Instructions::PMOVZXWD,*operands,**kwargs)
+        def pmovzxwd(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVZXWD,operand1,operand2,**kwargs)
         # Move Packed Word Integers to Quadword Integers with Zero Extension
         # @return [Ronin::ASM::X86_64::Instructions::PMOVZXWQ]
         # @example
         #   pmovzxwq xmm0, xmm1
         #   pmovzxwq xmm0, [rbx]
-        def pmovzxwq(*operands,**kwargs) = add_instruction(Instructions::PMOVZXWQ,*operands,**kwargs)
+        def pmovzxwq(operand1,operand2,**kwargs) = add_instruction(Instructions::PMOVZXWQ,operand1,operand2,**kwargs)
         # Multiply Packed Signed Doubleword Integers and Store Quadword Result
         # @return [Ronin::ASM::X86_64::Instructions::PMULDQ]
         # @example
         #   pmuldq xmm0, xmm1
         #   pmuldq xmm0, [rbx]
-        def pmuldq(*operands,**kwargs) = add_instruction(Instructions::PMULDQ,*operands,**kwargs)
+        def pmuldq(operand1,operand2,**kwargs) = add_instruction(Instructions::PMULDQ,operand1,operand2,**kwargs)
         # Packed Multiply Signed Word Integers and Store High Result with Round and Scale
         # @return [Ronin::ASM::X86_64::Instructions::PMULHRSW]
         # @example
@@ -4433,13 +4433,13 @@ module Ronin
         #   pmulhrsw mm0, [rbx]
         #   pmulhrsw xmm0, xmm1
         #   pmulhrsw xmm0, [rbx]
-        def pmulhrsw(*operands,**kwargs) = add_instruction(Instructions::PMULHRSW,*operands,**kwargs)
+        def pmulhrsw(operand1,operand2,**kwargs) = add_instruction(Instructions::PMULHRSW,operand1,operand2,**kwargs)
         # Packed Multiply High Rounded Word
         # @return [Ronin::ASM::X86_64::Instructions::PMULHRW]
         # @example
         #   pmulhrw mm0, mm1
         #   pmulhrw mm0, [rbx]
-        def pmulhrw(*operands,**kwargs) = add_instruction(Instructions::PMULHRW,*operands,**kwargs)
+        def pmulhrw(operand1,operand2,**kwargs) = add_instruction(Instructions::PMULHRW,operand1,operand2,**kwargs)
         # Multiply Packed Unsigned Word Integers and Store High Result
         # @return [Ronin::ASM::X86_64::Instructions::PMULHUW]
         # @example
@@ -4447,7 +4447,7 @@ module Ronin
         #   pmulhuw mm0, [rbx]
         #   pmulhuw xmm0, xmm1
         #   pmulhuw xmm0, [rbx]
-        def pmulhuw(*operands,**kwargs) = add_instruction(Instructions::PMULHUW,*operands,**kwargs)
+        def pmulhuw(operand1,operand2,**kwargs) = add_instruction(Instructions::PMULHUW,operand1,operand2,**kwargs)
         # Multiply Packed Signed Word Integers and Store High Result
         # @return [Ronin::ASM::X86_64::Instructions::PMULHW]
         # @example
@@ -4455,13 +4455,13 @@ module Ronin
         #   pmulhw mm0, [rbx]
         #   pmulhw xmm0, xmm1
         #   pmulhw xmm0, [rbx]
-        def pmulhw(*operands,**kwargs) = add_instruction(Instructions::PMULHW,*operands,**kwargs)
+        def pmulhw(operand1,operand2,**kwargs) = add_instruction(Instructions::PMULHW,operand1,operand2,**kwargs)
         # Multiply Packed Signed Doubleword Integers and Store Low Result
         # @return [Ronin::ASM::X86_64::Instructions::PMULLD]
         # @example
         #   pmulld xmm0, xmm1
         #   pmulld xmm0, [rbx]
-        def pmulld(*operands,**kwargs) = add_instruction(Instructions::PMULLD,*operands,**kwargs)
+        def pmulld(operand1,operand2,**kwargs) = add_instruction(Instructions::PMULLD,operand1,operand2,**kwargs)
         # Multiply Packed Signed Word Integers and Store Low Result
         # @return [Ronin::ASM::X86_64::Instructions::PMULLW]
         # @example
@@ -4469,7 +4469,7 @@ module Ronin
         #   pmullw mm0, [rbx]
         #   pmullw xmm0, xmm1
         #   pmullw xmm0, [rbx]
-        def pmullw(*operands,**kwargs) = add_instruction(Instructions::PMULLW,*operands,**kwargs)
+        def pmullw(operand1,operand2,**kwargs) = add_instruction(Instructions::PMULLW,operand1,operand2,**kwargs)
         # Multiply Packed Unsigned Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::PMULUDQ]
         # @example
@@ -4477,14 +4477,14 @@ module Ronin
         #   pmuludq mm0, [rbx]
         #   pmuludq xmm0, xmm1
         #   pmuludq xmm0, [rbx]
-        def pmuludq(*operands,**kwargs) = add_instruction(Instructions::PMULUDQ,*operands,**kwargs)
+        def pmuludq(operand1,operand2,**kwargs) = add_instruction(Instructions::PMULUDQ,operand1,operand2,**kwargs)
         # Pop a Value from the Stack
         # @return [Ronin::ASM::X86_64::Instructions::POP]
         # @example
         #   pop ax
         #   pop rax
         #   pop [rax]
-        def pop(*operands,**kwargs) = add_instruction(Instructions::POP,*operands,**kwargs)
+        def pop(operand,**kwargs) = add_instruction(Instructions::POP,operand,**kwargs)
         # Count of Number of Bits Set to 1
         # @return [Ronin::ASM::X86_64::Instructions::POPCNT]
         # @example
@@ -4494,7 +4494,7 @@ module Ronin
         #   popcnt eax, [rbx]
         #   popcnt rax, rbx
         #   popcnt rax, [rbx]
-        def popcnt(*operands,**kwargs) = add_instruction(Instructions::POPCNT,*operands,**kwargs)
+        def popcnt(operand1,operand2,**kwargs) = add_instruction(Instructions::POPCNT,operand1,operand2,**kwargs)
         # Packed Bitwise Logical OR
         # @return [Ronin::ASM::X86_64::Instructions::POR]
         # @example
@@ -4502,52 +4502,52 @@ module Ronin
         #   por mm0, [rbx]
         #   por xmm0, xmm1
         #   por xmm0, [rbx]
-        def por(*operands,**kwargs) = add_instruction(Instructions::POR,*operands,**kwargs)
+        def por(operand1,operand2,**kwargs) = add_instruction(Instructions::POR,operand1,operand2,**kwargs)
         # Prefetch Data into Caches
         # @return [Ronin::ASM::X86_64::Instructions::PREFETCH]
         # @example
         #   prefetch [rax]
-        def prefetch(*operands,**kwargs) = add_instruction(Instructions::PREFETCH,*operands,**kwargs)
+        def prefetch(operand,**kwargs) = add_instruction(Instructions::PREFETCH,operand,**kwargs)
         # Prefetch Code Into Instruction Caches using IT0 Hint
         # @return [Ronin::ASM::X86_64::Instructions::PREFETCHIT0]
         # @example
         #   prefetchit0 [rax]
-        def prefetchit0(*operands,**kwargs) = add_instruction(Instructions::PREFETCHIT0,*operands,**kwargs)
+        def prefetchit0(operand,**kwargs) = add_instruction(Instructions::PREFETCHIT0,operand,**kwargs)
         # Prefetch Code Into Instruction Caches using IT1 Hint
         # @return [Ronin::ASM::X86_64::Instructions::PREFETCHIT1]
         # @example
         #   prefetchit1 [rax]
-        def prefetchit1(*operands,**kwargs) = add_instruction(Instructions::PREFETCHIT1,*operands,**kwargs)
+        def prefetchit1(operand,**kwargs) = add_instruction(Instructions::PREFETCHIT1,operand,**kwargs)
         # Prefetch Data Into Caches using NTA Hint
         # @return [Ronin::ASM::X86_64::Instructions::PREFETCHNTA]
         # @example
         #   prefetchnta [rax]
-        def prefetchnta(*operands,**kwargs) = add_instruction(Instructions::PREFETCHNTA,*operands,**kwargs)
+        def prefetchnta(operand,**kwargs) = add_instruction(Instructions::PREFETCHNTA,operand,**kwargs)
         # Prefetch Data Into Caches using T0 Hint
         # @return [Ronin::ASM::X86_64::Instructions::PREFETCHT0]
         # @example
         #   prefetcht0 [rax]
-        def prefetcht0(*operands,**kwargs) = add_instruction(Instructions::PREFETCHT0,*operands,**kwargs)
+        def prefetcht0(operand,**kwargs) = add_instruction(Instructions::PREFETCHT0,operand,**kwargs)
         # Prefetch Data Into Caches using T1 Hint
         # @return [Ronin::ASM::X86_64::Instructions::PREFETCHT1]
         # @example
         #   prefetcht1 [rax]
-        def prefetcht1(*operands,**kwargs) = add_instruction(Instructions::PREFETCHT1,*operands,**kwargs)
+        def prefetcht1(operand,**kwargs) = add_instruction(Instructions::PREFETCHT1,operand,**kwargs)
         # Prefetch Data Into Caches using T2 Hint
         # @return [Ronin::ASM::X86_64::Instructions::PREFETCHT2]
         # @example
         #   prefetcht2 [rax]
-        def prefetcht2(*operands,**kwargs) = add_instruction(Instructions::PREFETCHT2,*operands,**kwargs)
+        def prefetcht2(operand,**kwargs) = add_instruction(Instructions::PREFETCHT2,operand,**kwargs)
         # Prefetch Data into Caches in Anticipation of a Write
         # @return [Ronin::ASM::X86_64::Instructions::PREFETCHW]
         # @example
         #   prefetchw [rax]
-        def prefetchw(*operands,**kwargs) = add_instruction(Instructions::PREFETCHW,*operands,**kwargs)
+        def prefetchw(operand,**kwargs) = add_instruction(Instructions::PREFETCHW,operand,**kwargs)
         # Prefetch Vector Data Into Caches with Intent to Write and T1 Hint
         # @return [Ronin::ASM::X86_64::Instructions::PREFETCHWT1]
         # @example
         #   prefetchwt1 [rax]
-        def prefetchwt1(*operands,**kwargs) = add_instruction(Instructions::PREFETCHWT1,*operands,**kwargs)
+        def prefetchwt1(operand,**kwargs) = add_instruction(Instructions::PREFETCHWT1,operand,**kwargs)
         # Compute Sum of Absolute Differences
         # @return [Ronin::ASM::X86_64::Instructions::PSADBW]
         # @example
@@ -4555,7 +4555,7 @@ module Ronin
         #   psadbw mm0, [rbx]
         #   psadbw xmm0, xmm1
         #   psadbw xmm0, [rbx]
-        def psadbw(*operands,**kwargs) = add_instruction(Instructions::PSADBW,*operands,**kwargs)
+        def psadbw(operand1,operand2,**kwargs) = add_instruction(Instructions::PSADBW,operand1,operand2,**kwargs)
         # Packed Shuffle Bytes
         # @return [Ronin::ASM::X86_64::Instructions::PSHUFB]
         # @example
@@ -4563,31 +4563,31 @@ module Ronin
         #   pshufb mm0, [rbx]
         #   pshufb xmm0, xmm1
         #   pshufb xmm0, [rbx]
-        def pshufb(*operands,**kwargs) = add_instruction(Instructions::PSHUFB,*operands,**kwargs)
+        def pshufb(operand1,operand2,**kwargs) = add_instruction(Instructions::PSHUFB,operand1,operand2,**kwargs)
         # Shuffle Packed Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::PSHUFD]
         # @example
         #   pshufd xmm0, xmm1, 0x03
         #   pshufd xmm0, [rbx], 0x03
-        def pshufd(*operands,**kwargs) = add_instruction(Instructions::PSHUFD,*operands,**kwargs)
+        def pshufd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PSHUFD,operand1,operand2,operand3,**kwargs)
         # Shuffle Packed High Words
         # @return [Ronin::ASM::X86_64::Instructions::PSHUFHW]
         # @example
         #   pshufhw xmm0, xmm1, 0x03
         #   pshufhw xmm0, [rbx], 0x03
-        def pshufhw(*operands,**kwargs) = add_instruction(Instructions::PSHUFHW,*operands,**kwargs)
+        def pshufhw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PSHUFHW,operand1,operand2,operand3,**kwargs)
         # Shuffle Packed Low Words
         # @return [Ronin::ASM::X86_64::Instructions::PSHUFLW]
         # @example
         #   pshuflw xmm0, xmm1, 0x03
         #   pshuflw xmm0, [rbx], 0x03
-        def pshuflw(*operands,**kwargs) = add_instruction(Instructions::PSHUFLW,*operands,**kwargs)
+        def pshuflw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PSHUFLW,operand1,operand2,operand3,**kwargs)
         # Shuffle Packed Words
         # @return [Ronin::ASM::X86_64::Instructions::PSHUFW]
         # @example
         #   pshufw mm0, mm1, 0x03
         #   pshufw mm0, [rbx], 0x03
-        def pshufw(*operands,**kwargs) = add_instruction(Instructions::PSHUFW,*operands,**kwargs)
+        def pshufw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::PSHUFW,operand1,operand2,operand3,**kwargs)
         # Packed Sign of Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::PSIGNB]
         # @example
@@ -4595,7 +4595,7 @@ module Ronin
         #   psignb mm0, [rbx]
         #   psignb xmm0, xmm1
         #   psignb xmm0, [rbx]
-        def psignb(*operands,**kwargs) = add_instruction(Instructions::PSIGNB,*operands,**kwargs)
+        def psignb(operand1,operand2,**kwargs) = add_instruction(Instructions::PSIGNB,operand1,operand2,**kwargs)
         # Packed Sign of Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::PSIGND]
         # @example
@@ -4603,7 +4603,7 @@ module Ronin
         #   psignd mm0, [rbx]
         #   psignd xmm0, xmm1
         #   psignd xmm0, [rbx]
-        def psignd(*operands,**kwargs) = add_instruction(Instructions::PSIGND,*operands,**kwargs)
+        def psignd(operand1,operand2,**kwargs) = add_instruction(Instructions::PSIGND,operand1,operand2,**kwargs)
         # Packed Sign of Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PSIGNW]
         # @example
@@ -4611,7 +4611,7 @@ module Ronin
         #   psignw mm0, [rbx]
         #   psignw xmm0, xmm1
         #   psignw xmm0, [rbx]
-        def psignw(*operands,**kwargs) = add_instruction(Instructions::PSIGNW,*operands,**kwargs)
+        def psignw(operand1,operand2,**kwargs) = add_instruction(Instructions::PSIGNW,operand1,operand2,**kwargs)
         # Shift Packed Doubleword Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::PSLLD]
         # @example
@@ -4621,12 +4621,12 @@ module Ronin
         #   pslld xmm0, 0x02
         #   pslld xmm0, xmm1
         #   pslld xmm0, [rbx]
-        def pslld(*operands,**kwargs) = add_instruction(Instructions::PSLLD,*operands,**kwargs)
+        def pslld(operand1,operand2,**kwargs) = add_instruction(Instructions::PSLLD,operand1,operand2,**kwargs)
         # Shift Packed Double Quadword Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::PSLLDQ]
         # @example
         #   pslldq xmm0, 0x02
-        def pslldq(*operands,**kwargs) = add_instruction(Instructions::PSLLDQ,*operands,**kwargs)
+        def pslldq(operand1,operand2,**kwargs) = add_instruction(Instructions::PSLLDQ,operand1,operand2,**kwargs)
         # Shift Packed Quadword Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::PSLLQ]
         # @example
@@ -4636,7 +4636,7 @@ module Ronin
         #   psllq xmm0, 0x02
         #   psllq xmm0, xmm1
         #   psllq xmm0, [rbx]
-        def psllq(*operands,**kwargs) = add_instruction(Instructions::PSLLQ,*operands,**kwargs)
+        def psllq(operand1,operand2,**kwargs) = add_instruction(Instructions::PSLLQ,operand1,operand2,**kwargs)
         # Shift Packed Word Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::PSLLW]
         # @example
@@ -4646,7 +4646,7 @@ module Ronin
         #   psllw xmm0, 0x02
         #   psllw xmm0, xmm1
         #   psllw xmm0, [rbx]
-        def psllw(*operands,**kwargs) = add_instruction(Instructions::PSLLW,*operands,**kwargs)
+        def psllw(operand1,operand2,**kwargs) = add_instruction(Instructions::PSLLW,operand1,operand2,**kwargs)
         # Shift Packed Doubleword Data Right Arithmetic
         # @return [Ronin::ASM::X86_64::Instructions::PSRAD]
         # @example
@@ -4656,7 +4656,7 @@ module Ronin
         #   psrad xmm0, 0x02
         #   psrad xmm0, xmm1
         #   psrad xmm0, [rbx]
-        def psrad(*operands,**kwargs) = add_instruction(Instructions::PSRAD,*operands,**kwargs)
+        def psrad(operand1,operand2,**kwargs) = add_instruction(Instructions::PSRAD,operand1,operand2,**kwargs)
         # Shift Packed Word Data Right Arithmetic
         # @return [Ronin::ASM::X86_64::Instructions::PSRAW]
         # @example
@@ -4666,7 +4666,7 @@ module Ronin
         #   psraw xmm0, 0x02
         #   psraw xmm0, xmm1
         #   psraw xmm0, [rbx]
-        def psraw(*operands,**kwargs) = add_instruction(Instructions::PSRAW,*operands,**kwargs)
+        def psraw(operand1,operand2,**kwargs) = add_instruction(Instructions::PSRAW,operand1,operand2,**kwargs)
         # Shift Packed Doubleword Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::PSRLD]
         # @example
@@ -4676,12 +4676,12 @@ module Ronin
         #   psrld xmm0, 0x02
         #   psrld xmm0, xmm1
         #   psrld xmm0, [rbx]
-        def psrld(*operands,**kwargs) = add_instruction(Instructions::PSRLD,*operands,**kwargs)
+        def psrld(operand1,operand2,**kwargs) = add_instruction(Instructions::PSRLD,operand1,operand2,**kwargs)
         # Shift Packed Double Quadword Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::PSRLDQ]
         # @example
         #   psrldq xmm0, 0x02
-        def psrldq(*operands,**kwargs) = add_instruction(Instructions::PSRLDQ,*operands,**kwargs)
+        def psrldq(operand1,operand2,**kwargs) = add_instruction(Instructions::PSRLDQ,operand1,operand2,**kwargs)
         # Shift Packed Quadword Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::PSRLQ]
         # @example
@@ -4691,7 +4691,7 @@ module Ronin
         #   psrlq xmm0, 0x02
         #   psrlq xmm0, xmm1
         #   psrlq xmm0, [rbx]
-        def psrlq(*operands,**kwargs) = add_instruction(Instructions::PSRLQ,*operands,**kwargs)
+        def psrlq(operand1,operand2,**kwargs) = add_instruction(Instructions::PSRLQ,operand1,operand2,**kwargs)
         # Shift Packed Word Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::PSRLW]
         # @example
@@ -4701,7 +4701,7 @@ module Ronin
         #   psrlw xmm0, 0x02
         #   psrlw xmm0, xmm1
         #   psrlw xmm0, [rbx]
-        def psrlw(*operands,**kwargs) = add_instruction(Instructions::PSRLW,*operands,**kwargs)
+        def psrlw(operand1,operand2,**kwargs) = add_instruction(Instructions::PSRLW,operand1,operand2,**kwargs)
         # Subtract Packed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::PSUBB]
         # @example
@@ -4709,7 +4709,7 @@ module Ronin
         #   psubb mm0, [rbx]
         #   psubb xmm0, xmm1
         #   psubb xmm0, [rbx]
-        def psubb(*operands,**kwargs) = add_instruction(Instructions::PSUBB,*operands,**kwargs)
+        def psubb(operand1,operand2,**kwargs) = add_instruction(Instructions::PSUBB,operand1,operand2,**kwargs)
         # Subtract Packed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::PSUBD]
         # @example
@@ -4717,7 +4717,7 @@ module Ronin
         #   psubd mm0, [rbx]
         #   psubd xmm0, xmm1
         #   psubd xmm0, [rbx]
-        def psubd(*operands,**kwargs) = add_instruction(Instructions::PSUBD,*operands,**kwargs)
+        def psubd(operand1,operand2,**kwargs) = add_instruction(Instructions::PSUBD,operand1,operand2,**kwargs)
         # Subtract Packed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::PSUBQ]
         # @example
@@ -4725,7 +4725,7 @@ module Ronin
         #   psubq mm0, [rbx]
         #   psubq xmm0, xmm1
         #   psubq xmm0, [rbx]
-        def psubq(*operands,**kwargs) = add_instruction(Instructions::PSUBQ,*operands,**kwargs)
+        def psubq(operand1,operand2,**kwargs) = add_instruction(Instructions::PSUBQ,operand1,operand2,**kwargs)
         # Subtract Packed Signed Byte Integers with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PSUBSB]
         # @example
@@ -4733,7 +4733,7 @@ module Ronin
         #   psubsb mm0, [rbx]
         #   psubsb xmm0, xmm1
         #   psubsb xmm0, [rbx]
-        def psubsb(*operands,**kwargs) = add_instruction(Instructions::PSUBSB,*operands,**kwargs)
+        def psubsb(operand1,operand2,**kwargs) = add_instruction(Instructions::PSUBSB,operand1,operand2,**kwargs)
         # Subtract Packed Signed Word Integers with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PSUBSW]
         # @example
@@ -4741,7 +4741,7 @@ module Ronin
         #   psubsw mm0, [rbx]
         #   psubsw xmm0, xmm1
         #   psubsw xmm0, [rbx]
-        def psubsw(*operands,**kwargs) = add_instruction(Instructions::PSUBSW,*operands,**kwargs)
+        def psubsw(operand1,operand2,**kwargs) = add_instruction(Instructions::PSUBSW,operand1,operand2,**kwargs)
         # Subtract Packed Unsigned Byte Integers with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PSUBUSB]
         # @example
@@ -4749,7 +4749,7 @@ module Ronin
         #   psubusb mm0, [rbx]
         #   psubusb xmm0, xmm1
         #   psubusb xmm0, [rbx]
-        def psubusb(*operands,**kwargs) = add_instruction(Instructions::PSUBUSB,*operands,**kwargs)
+        def psubusb(operand1,operand2,**kwargs) = add_instruction(Instructions::PSUBUSB,operand1,operand2,**kwargs)
         # Subtract Packed Unsigned Word Integers with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::PSUBUSW]
         # @example
@@ -4757,7 +4757,7 @@ module Ronin
         #   psubusw mm0, [rbx]
         #   psubusw xmm0, xmm1
         #   psubusw xmm0, [rbx]
-        def psubusw(*operands,**kwargs) = add_instruction(Instructions::PSUBUSW,*operands,**kwargs)
+        def psubusw(operand1,operand2,**kwargs) = add_instruction(Instructions::PSUBUSW,operand1,operand2,**kwargs)
         # Subtract Packed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::PSUBW]
         # @example
@@ -4765,19 +4765,19 @@ module Ronin
         #   psubw mm0, [rbx]
         #   psubw xmm0, xmm1
         #   psubw xmm0, [rbx]
-        def psubw(*operands,**kwargs) = add_instruction(Instructions::PSUBW,*operands,**kwargs)
+        def psubw(operand1,operand2,**kwargs) = add_instruction(Instructions::PSUBW,operand1,operand2,**kwargs)
         # Packed Swap Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::PSWAPD]
         # @example
         #   pswapd mm0, mm1
         #   pswapd mm0, [rbx]
-        def pswapd(*operands,**kwargs) = add_instruction(Instructions::PSWAPD,*operands,**kwargs)
+        def pswapd(operand1,operand2,**kwargs) = add_instruction(Instructions::PSWAPD,operand1,operand2,**kwargs)
         # Packed Logical Compare
         # @return [Ronin::ASM::X86_64::Instructions::PTEST]
         # @example
         #   ptest xmm0, xmm1
         #   ptest xmm0, [rbx]
-        def ptest(*operands,**kwargs) = add_instruction(Instructions::PTEST,*operands,**kwargs)
+        def ptest(operand1,operand2,**kwargs) = add_instruction(Instructions::PTEST,operand1,operand2,**kwargs)
         # Unpack and Interleave High-Order Bytes into Words
         # @return [Ronin::ASM::X86_64::Instructions::PUNPCKHBW]
         # @example
@@ -4785,7 +4785,7 @@ module Ronin
         #   punpckhbw mm0, [rbx]
         #   punpckhbw xmm0, xmm1
         #   punpckhbw xmm0, [rbx]
-        def punpckhbw(*operands,**kwargs) = add_instruction(Instructions::PUNPCKHBW,*operands,**kwargs)
+        def punpckhbw(operand1,operand2,**kwargs) = add_instruction(Instructions::PUNPCKHBW,operand1,operand2,**kwargs)
         # Unpack and Interleave High-Order Doublewords into Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::PUNPCKHDQ]
         # @example
@@ -4793,13 +4793,13 @@ module Ronin
         #   punpckhdq mm0, [rbx]
         #   punpckhdq xmm0, xmm1
         #   punpckhdq xmm0, [rbx]
-        def punpckhdq(*operands,**kwargs) = add_instruction(Instructions::PUNPCKHDQ,*operands,**kwargs)
+        def punpckhdq(operand1,operand2,**kwargs) = add_instruction(Instructions::PUNPCKHDQ,operand1,operand2,**kwargs)
         # Unpack and Interleave High-Order Quadwords into Double Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::PUNPCKHQDQ]
         # @example
         #   punpckhqdq xmm0, xmm1
         #   punpckhqdq xmm0, [rbx]
-        def punpckhqdq(*operands,**kwargs) = add_instruction(Instructions::PUNPCKHQDQ,*operands,**kwargs)
+        def punpckhqdq(operand1,operand2,**kwargs) = add_instruction(Instructions::PUNPCKHQDQ,operand1,operand2,**kwargs)
         # Unpack and Interleave High-Order Words into Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::PUNPCKHWD]
         # @example
@@ -4807,7 +4807,7 @@ module Ronin
         #   punpckhwd mm0, [rbx]
         #   punpckhwd xmm0, xmm1
         #   punpckhwd xmm0, [rbx]
-        def punpckhwd(*operands,**kwargs) = add_instruction(Instructions::PUNPCKHWD,*operands,**kwargs)
+        def punpckhwd(operand1,operand2,**kwargs) = add_instruction(Instructions::PUNPCKHWD,operand1,operand2,**kwargs)
         # Unpack and Interleave Low-Order Bytes into Words
         # @return [Ronin::ASM::X86_64::Instructions::PUNPCKLBW]
         # @example
@@ -4815,7 +4815,7 @@ module Ronin
         #   punpcklbw mm0, [rbx]
         #   punpcklbw xmm0, xmm1
         #   punpcklbw xmm0, [rbx]
-        def punpcklbw(*operands,**kwargs) = add_instruction(Instructions::PUNPCKLBW,*operands,**kwargs)
+        def punpcklbw(operand1,operand2,**kwargs) = add_instruction(Instructions::PUNPCKLBW,operand1,operand2,**kwargs)
         # Unpack and Interleave Low-Order Doublewords into Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::PUNPCKLDQ]
         # @example
@@ -4823,13 +4823,13 @@ module Ronin
         #   punpckldq mm0, [rbx]
         #   punpckldq xmm0, xmm1
         #   punpckldq xmm0, [rbx]
-        def punpckldq(*operands,**kwargs) = add_instruction(Instructions::PUNPCKLDQ,*operands,**kwargs)
+        def punpckldq(operand1,operand2,**kwargs) = add_instruction(Instructions::PUNPCKLDQ,operand1,operand2,**kwargs)
         # Unpack and Interleave Low-Order Quadwords into Double Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::PUNPCKLQDQ]
         # @example
         #   punpcklqdq xmm0, xmm1
         #   punpcklqdq xmm0, [rbx]
-        def punpcklqdq(*operands,**kwargs) = add_instruction(Instructions::PUNPCKLQDQ,*operands,**kwargs)
+        def punpcklqdq(operand1,operand2,**kwargs) = add_instruction(Instructions::PUNPCKLQDQ,operand1,operand2,**kwargs)
         # Unpack and Interleave Low-Order Words into Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::PUNPCKLWD]
         # @example
@@ -4837,7 +4837,7 @@ module Ronin
         #   punpcklwd mm0, [rbx]
         #   punpcklwd xmm0, xmm1
         #   punpcklwd xmm0, [rbx]
-        def punpcklwd(*operands,**kwargs) = add_instruction(Instructions::PUNPCKLWD,*operands,**kwargs)
+        def punpcklwd(operand1,operand2,**kwargs) = add_instruction(Instructions::PUNPCKLWD,operand1,operand2,**kwargs)
         # Push Value Onto the Stack
         # @return [Ronin::ASM::X86_64::Instructions::PUSH]
         # @example
@@ -4846,7 +4846,7 @@ module Ronin
         #   push ax
         #   push rax
         #   push [rax]
-        def push(*operands,**kwargs) = add_instruction(Instructions::PUSH,*operands,**kwargs)
+        def push(operand,**kwargs) = add_instruction(Instructions::PUSH,operand,**kwargs)
         # Packed Bitwise Logical Exclusive OR
         # @return [Ronin::ASM::X86_64::Instructions::PXOR]
         # @example
@@ -4854,7 +4854,7 @@ module Ronin
         #   pxor mm0, [rbx]
         #   pxor xmm0, xmm1
         #   pxor xmm0, [rbx]
-        def pxor(*operands,**kwargs) = add_instruction(Instructions::PXOR,*operands,**kwargs)
+        def pxor(operand1,operand2,**kwargs) = add_instruction(Instructions::PXOR,operand1,operand2,**kwargs)
         # Rotate Left through Carry Flag
         # @return [Ronin::ASM::X86_64::Instructions::RCL]
         # @example
@@ -4873,19 +4873,19 @@ module Ronin
         #   rcl [rax], 1
         #   rcl [rax], 0x02
         #   rcl [rax], cl
-        def rcl(*operands,**kwargs) = add_instruction(Instructions::RCL,*operands,**kwargs)
+        def rcl(operand1,operand2,**kwargs) = add_instruction(Instructions::RCL,operand1,operand2,**kwargs)
         # Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::RCPPS]
         # @example
         #   rcpps xmm0, xmm1
         #   rcpps xmm0, [rbx]
-        def rcpps(*operands,**kwargs) = add_instruction(Instructions::RCPPS,*operands,**kwargs)
+        def rcpps(operand1,operand2,**kwargs) = add_instruction(Instructions::RCPPS,operand1,operand2,**kwargs)
         # Compute Approximate Reciprocal of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::RCPSS]
         # @example
         #   rcpss xmm0, xmm1
         #   rcpss xmm0, [rbx]
-        def rcpss(*operands,**kwargs) = add_instruction(Instructions::RCPSS,*operands,**kwargs)
+        def rcpss(operand1,operand2,**kwargs) = add_instruction(Instructions::RCPSS,operand1,operand2,**kwargs)
         # Rotate Right through Carry Flag
         # @return [Ronin::ASM::X86_64::Instructions::RCR]
         # @example
@@ -4904,50 +4904,50 @@ module Ronin
         #   rcr [rax], 1
         #   rcr [rax], 0x02
         #   rcr [rax], cl
-        def rcr(*operands,**kwargs) = add_instruction(Instructions::RCR,*operands,**kwargs)
+        def rcr(operand1,operand2,**kwargs) = add_instruction(Instructions::RCR,operand1,operand2,**kwargs)
         # ReaD FS segment BASE
         # @return [Ronin::ASM::X86_64::Instructions::RDFSBASE]
         # @example
         #   rdfsbase eax
         #   rdfsbase rax
-        def rdfsbase(*operands,**kwargs) = add_instruction(Instructions::RDFSBASE,*operands,**kwargs)
+        def rdfsbase(operand,**kwargs) = add_instruction(Instructions::RDFSBASE,operand,**kwargs)
         # ReaD GS segment BASE
         # @return [Ronin::ASM::X86_64::Instructions::RDGSBASE]
         # @example
         #   rdgsbase eax
         #   rdgsbase rax
-        def rdgsbase(*operands,**kwargs) = add_instruction(Instructions::RDGSBASE,*operands,**kwargs)
+        def rdgsbase(operand,**kwargs) = add_instruction(Instructions::RDGSBASE,operand,**kwargs)
         # Read Processor ID
         # @return [Ronin::ASM::X86_64::Instructions::RDPID]
         # @example
         #   rdpid rax
-        def rdpid(*operands,**kwargs) = add_instruction(Instructions::RDPID,*operands,**kwargs)
+        def rdpid(operand,**kwargs) = add_instruction(Instructions::RDPID,operand,**kwargs)
         # Read Performance-Monitoring Counter
         # @return [Ronin::ASM::X86_64::Instructions::RDPMC]
-        def rdpmc(*operands,**kwargs) = add_instruction(Instructions::RDPMC,*operands,**kwargs)
+        def rdpmc(**kwargs) = add_instruction(Instructions::RDPMC,**kwargs)
         # Read Processor Register in User mode
         # @return [Ronin::ASM::X86_64::Instructions::RDPRU]
-        def rdpru(*operands,**kwargs) = add_instruction(Instructions::RDPRU,*operands,**kwargs)
+        def rdpru(**kwargs) = add_instruction(Instructions::RDPRU,**kwargs)
         # Read Random Number
         # @return [Ronin::ASM::X86_64::Instructions::RDRAND]
         # @example
         #   rdrand ax
         #   rdrand eax
         #   rdrand rax
-        def rdrand(*operands,**kwargs) = add_instruction(Instructions::RDRAND,*operands,**kwargs)
+        def rdrand(operand,**kwargs) = add_instruction(Instructions::RDRAND,operand,**kwargs)
         # Read Random SEED
         # @return [Ronin::ASM::X86_64::Instructions::RDSEED]
         # @example
         #   rdseed ax
         #   rdseed eax
         #   rdseed rax
-        def rdseed(*operands,**kwargs) = add_instruction(Instructions::RDSEED,*operands,**kwargs)
+        def rdseed(operand,**kwargs) = add_instruction(Instructions::RDSEED,operand,**kwargs)
         # Read Time-Stamp Counter
         # @return [Ronin::ASM::X86_64::Instructions::RDTSC]
-        def rdtsc(*operands,**kwargs) = add_instruction(Instructions::RDTSC,*operands,**kwargs)
+        def rdtsc(**kwargs) = add_instruction(Instructions::RDTSC,**kwargs)
         # Read Time-Stamp Counter and Processor ID
         # @return [Ronin::ASM::X86_64::Instructions::RDTSCP]
-        def rdtscp(*operands,**kwargs) = add_instruction(Instructions::RDTSCP,*operands,**kwargs)
+        def rdtscp(**kwargs) = add_instruction(Instructions::RDTSCP,**kwargs)
         # Return from Procedure
         # @return [Ronin::ASM::X86_64::Instructions::RET]
         # @example
@@ -4972,7 +4972,7 @@ module Ronin
         #   rol [rax], 1
         #   rol [rax], 0x02
         #   rol [rax], cl
-        def rol(*operands,**kwargs) = add_instruction(Instructions::ROL,*operands,**kwargs)
+        def rol(operand1,operand2,**kwargs) = add_instruction(Instructions::ROL,operand1,operand2,**kwargs)
         # Rotate Right
         # @return [Ronin::ASM::X86_64::Instructions::ROR]
         # @example
@@ -4991,7 +4991,7 @@ module Ronin
         #   ror [rax], 1
         #   ror [rax], 0x02
         #   ror [rax], cl
-        def ror(*operands,**kwargs) = add_instruction(Instructions::ROR,*operands,**kwargs)
+        def ror(operand1,operand2,**kwargs) = add_instruction(Instructions::ROR,operand1,operand2,**kwargs)
         # Rotate Right Logical Without Affecting Flags
         # @return [Ronin::ASM::X86_64::Instructions::RORX]
         # @example
@@ -4999,46 +4999,46 @@ module Ronin
         #   rorx eax, [rbx], 0x03
         #   rorx rax, rbx, 0x03
         #   rorx rax, [rbx], 0x03
-        def rorx(*operands,**kwargs) = add_instruction(Instructions::RORX,*operands,**kwargs)
+        def rorx(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::RORX,operand1,operand2,operand3,**kwargs)
         # Round Packed Double Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ROUNDPD]
         # @example
         #   roundpd xmm0, xmm1, 0x03
         #   roundpd xmm0, [rbx], 0x03
-        def roundpd(*operands,**kwargs) = add_instruction(Instructions::ROUNDPD,*operands,**kwargs)
+        def roundpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::ROUNDPD,operand1,operand2,operand3,**kwargs)
         # Round Packed Single Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ROUNDPS]
         # @example
         #   roundps xmm0, xmm1, 0x03
         #   roundps xmm0, [rbx], 0x03
-        def roundps(*operands,**kwargs) = add_instruction(Instructions::ROUNDPS,*operands,**kwargs)
+        def roundps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::ROUNDPS,operand1,operand2,operand3,**kwargs)
         # Round Scalar Double Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ROUNDSD]
         # @example
         #   roundsd xmm0, xmm1, 0x03
         #   roundsd xmm0, [rbx], 0x03
-        def roundsd(*operands,**kwargs) = add_instruction(Instructions::ROUNDSD,*operands,**kwargs)
+        def roundsd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::ROUNDSD,operand1,operand2,operand3,**kwargs)
         # Round Scalar Single Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::ROUNDSS]
         # @example
         #   roundss xmm0, xmm1, 0x03
         #   roundss xmm0, [rbx], 0x03
-        def roundss(*operands,**kwargs) = add_instruction(Instructions::ROUNDSS,*operands,**kwargs)
+        def roundss(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::ROUNDSS,operand1,operand2,operand3,**kwargs)
         # Compute Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::RSQRTPS]
         # @example
         #   rsqrtps xmm0, xmm1
         #   rsqrtps xmm0, [rbx]
-        def rsqrtps(*operands,**kwargs) = add_instruction(Instructions::RSQRTPS,*operands,**kwargs)
+        def rsqrtps(operand1,operand2,**kwargs) = add_instruction(Instructions::RSQRTPS,operand1,operand2,**kwargs)
         # Compute Reciprocal of Square Root of Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::RSQRTSS]
         # @example
         #   rsqrtss xmm0, xmm1
         #   rsqrtss xmm0, [rbx]
-        def rsqrtss(*operands,**kwargs) = add_instruction(Instructions::RSQRTSS,*operands,**kwargs)
+        def rsqrtss(operand1,operand2,**kwargs) = add_instruction(Instructions::RSQRTSS,operand1,operand2,**kwargs)
         # Store AH into Flags
         # @return [Ronin::ASM::X86_64::Instructions::SAHF]
-        def sahf(*operands,**kwargs) = add_instruction(Instructions::SAHF,*operands,**kwargs)
+        def sahf(**kwargs) = add_instruction(Instructions::SAHF,**kwargs)
         # Arithmetic Shift Left
         # @return [Ronin::ASM::X86_64::Instructions::SAL]
         # @example
@@ -5057,7 +5057,7 @@ module Ronin
         #   sal [rax], 1
         #   sal [rax], 0x02
         #   sal [rax], cl
-        def sal(*operands,**kwargs) = add_instruction(Instructions::SAL,*operands,**kwargs)
+        def sal(operand1,operand2,**kwargs) = add_instruction(Instructions::SAL,operand1,operand2,**kwargs)
         # Arithmetic Shift Right
         # @return [Ronin::ASM::X86_64::Instructions::SAR]
         # @example
@@ -5076,7 +5076,7 @@ module Ronin
         #   sar [rax], 1
         #   sar [rax], 0x02
         #   sar [rax], cl
-        def sar(*operands,**kwargs) = add_instruction(Instructions::SAR,*operands,**kwargs)
+        def sar(operand1,operand2,**kwargs) = add_instruction(Instructions::SAR,operand1,operand2,**kwargs)
         # Arithmetic Shift Right Without Affecting Flags
         # @return [Ronin::ASM::X86_64::Instructions::SARX]
         # @example
@@ -5084,7 +5084,7 @@ module Ronin
         #   sarx eax, [rbx], ecx
         #   sarx rax, rbx, rcx
         #   sarx rax, [rbx], rcx
-        def sarx(*operands,**kwargs) = add_instruction(Instructions::SARX,*operands,**kwargs)
+        def sarx(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::SARX,operand1,operand2,operand3,**kwargs)
         # Subtract with Borrow
         # @return [Ronin::ASM::X86_64::Instructions::SBB]
         # @example
@@ -5110,235 +5110,235 @@ module Ronin
         #   sbb [rax], 0x00000002
         #   sbb [rax], ebx
         #   sbb [rax], rbx
-        def sbb(*operands,**kwargs) = add_instruction(Instructions::SBB,*operands,**kwargs)
+        def sbb(operand1,operand2,**kwargs) = add_instruction(Instructions::SBB,operand1,operand2,**kwargs)
         # Serialize Instruction Execution
         # @return [Ronin::ASM::X86_64::Instructions::SERIALIZE]
-        def serialize(*operands,**kwargs) = add_instruction(Instructions::SERIALIZE,*operands,**kwargs)
+        def serialize(**kwargs) = add_instruction(Instructions::SERIALIZE,**kwargs)
         # Set byte if above (CF == 0 and ZF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::SETA]
         # @example
         #   seta al
         #   seta [rax]
-        def seta(*operands,**kwargs) = add_instruction(Instructions::SETA,*operands,**kwargs)
+        def seta(operand,**kwargs) = add_instruction(Instructions::SETA,operand,**kwargs)
         # Set byte if above or equal (CF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::SETAE]
         # @example
         #   setae al
         #   setae [rax]
-        def setae(*operands,**kwargs) = add_instruction(Instructions::SETAE,*operands,**kwargs)
+        def setae(operand,**kwargs) = add_instruction(Instructions::SETAE,operand,**kwargs)
         # Set byte if below (CF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::SETB]
         # @example
         #   setb al
         #   setb [rax]
-        def setb(*operands,**kwargs) = add_instruction(Instructions::SETB,*operands,**kwargs)
+        def setb(operand,**kwargs) = add_instruction(Instructions::SETB,operand,**kwargs)
         # Set byte if below or equal (CF == 1 or ZF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::SETBE]
         # @example
         #   setbe al
         #   setbe [rax]
-        def setbe(*operands,**kwargs) = add_instruction(Instructions::SETBE,*operands,**kwargs)
+        def setbe(operand,**kwargs) = add_instruction(Instructions::SETBE,operand,**kwargs)
         # Set byte if carry (CF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::SETC]
         # @example
         #   setc al
         #   setc [rax]
-        def setc(*operands,**kwargs) = add_instruction(Instructions::SETC,*operands,**kwargs)
+        def setc(operand,**kwargs) = add_instruction(Instructions::SETC,operand,**kwargs)
         # Set byte if equal (ZF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::SETE]
         # @example
         #   sete al
         #   sete [rax]
-        def sete(*operands,**kwargs) = add_instruction(Instructions::SETE,*operands,**kwargs)
+        def sete(operand,**kwargs) = add_instruction(Instructions::SETE,operand,**kwargs)
         # Set byte if greater (ZF == 0 and SF == OF)
         # @return [Ronin::ASM::X86_64::Instructions::SETG]
         # @example
         #   setg al
         #   setg [rax]
-        def setg(*operands,**kwargs) = add_instruction(Instructions::SETG,*operands,**kwargs)
+        def setg(operand,**kwargs) = add_instruction(Instructions::SETG,operand,**kwargs)
         # Set byte if greater or equal (SF == OF)
         # @return [Ronin::ASM::X86_64::Instructions::SETGE]
         # @example
         #   setge al
         #   setge [rax]
-        def setge(*operands,**kwargs) = add_instruction(Instructions::SETGE,*operands,**kwargs)
+        def setge(operand,**kwargs) = add_instruction(Instructions::SETGE,operand,**kwargs)
         # Set byte if less (SF != OF)
         # @return [Ronin::ASM::X86_64::Instructions::SETL]
         # @example
         #   setl al
         #   setl [rax]
-        def setl(*operands,**kwargs) = add_instruction(Instructions::SETL,*operands,**kwargs)
+        def setl(operand,**kwargs) = add_instruction(Instructions::SETL,operand,**kwargs)
         # Set byte if less or equal (ZF == 1 or SF != OF)
         # @return [Ronin::ASM::X86_64::Instructions::SETLE]
         # @example
         #   setle al
         #   setle [rax]
-        def setle(*operands,**kwargs) = add_instruction(Instructions::SETLE,*operands,**kwargs)
+        def setle(operand,**kwargs) = add_instruction(Instructions::SETLE,operand,**kwargs)
         # Set byte if not above (CF == 1 or ZF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::SETNA]
         # @example
         #   setna al
         #   setna [rax]
-        def setna(*operands,**kwargs) = add_instruction(Instructions::SETNA,*operands,**kwargs)
+        def setna(operand,**kwargs) = add_instruction(Instructions::SETNA,operand,**kwargs)
         # Set byte if not above or equal (CF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::SETNAE]
         # @example
         #   setnae al
         #   setnae [rax]
-        def setnae(*operands,**kwargs) = add_instruction(Instructions::SETNAE,*operands,**kwargs)
+        def setnae(operand,**kwargs) = add_instruction(Instructions::SETNAE,operand,**kwargs)
         # Set byte if not below (CF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::SETNB]
         # @example
         #   setnb al
         #   setnb [rax]
-        def setnb(*operands,**kwargs) = add_instruction(Instructions::SETNB,*operands,**kwargs)
+        def setnb(operand,**kwargs) = add_instruction(Instructions::SETNB,operand,**kwargs)
         # Set byte if not below or equal (CF == 0 and ZF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::SETNBE]
         # @example
         #   setnbe al
         #   setnbe [rax]
-        def setnbe(*operands,**kwargs) = add_instruction(Instructions::SETNBE,*operands,**kwargs)
+        def setnbe(operand,**kwargs) = add_instruction(Instructions::SETNBE,operand,**kwargs)
         # Set byte if not carry (CF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::SETNC]
         # @example
         #   setnc al
         #   setnc [rax]
-        def setnc(*operands,**kwargs) = add_instruction(Instructions::SETNC,*operands,**kwargs)
+        def setnc(operand,**kwargs) = add_instruction(Instructions::SETNC,operand,**kwargs)
         # Set byte if not equal (ZF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::SETNE]
         # @example
         #   setne al
         #   setne [rax]
-        def setne(*operands,**kwargs) = add_instruction(Instructions::SETNE,*operands,**kwargs)
+        def setne(operand,**kwargs) = add_instruction(Instructions::SETNE,operand,**kwargs)
         # Set byte if not greater (ZF == 1 or SF != OF)
         # @return [Ronin::ASM::X86_64::Instructions::SETNG]
         # @example
         #   setng al
         #   setng [rax]
-        def setng(*operands,**kwargs) = add_instruction(Instructions::SETNG,*operands,**kwargs)
+        def setng(operand,**kwargs) = add_instruction(Instructions::SETNG,operand,**kwargs)
         # Set byte if not greater or equal (SF != OF)
         # @return [Ronin::ASM::X86_64::Instructions::SETNGE]
         # @example
         #   setnge al
         #   setnge [rax]
-        def setnge(*operands,**kwargs) = add_instruction(Instructions::SETNGE,*operands,**kwargs)
+        def setnge(operand,**kwargs) = add_instruction(Instructions::SETNGE,operand,**kwargs)
         # Set byte if not less (SF == OF)
         # @return [Ronin::ASM::X86_64::Instructions::SETNL]
         # @example
         #   setnl al
         #   setnl [rax]
-        def setnl(*operands,**kwargs) = add_instruction(Instructions::SETNL,*operands,**kwargs)
+        def setnl(operand,**kwargs) = add_instruction(Instructions::SETNL,operand,**kwargs)
         # Set byte if not less or equal (ZF == 0 and SF == OF)
         # @return [Ronin::ASM::X86_64::Instructions::SETNLE]
         # @example
         #   setnle al
         #   setnle [rax]
-        def setnle(*operands,**kwargs) = add_instruction(Instructions::SETNLE,*operands,**kwargs)
+        def setnle(operand,**kwargs) = add_instruction(Instructions::SETNLE,operand,**kwargs)
         # Set byte if not overflow (OF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::SETNO]
         # @example
         #   setno al
         #   setno [rax]
-        def setno(*operands,**kwargs) = add_instruction(Instructions::SETNO,*operands,**kwargs)
+        def setno(operand,**kwargs) = add_instruction(Instructions::SETNO,operand,**kwargs)
         # Set byte if not parity (PF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::SETNP]
         # @example
         #   setnp al
         #   setnp [rax]
-        def setnp(*operands,**kwargs) = add_instruction(Instructions::SETNP,*operands,**kwargs)
+        def setnp(operand,**kwargs) = add_instruction(Instructions::SETNP,operand,**kwargs)
         # Set byte if not sign (SF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::SETNS]
         # @example
         #   setns al
         #   setns [rax]
-        def setns(*operands,**kwargs) = add_instruction(Instructions::SETNS,*operands,**kwargs)
+        def setns(operand,**kwargs) = add_instruction(Instructions::SETNS,operand,**kwargs)
         # Set byte if not zero (ZF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::SETNZ]
         # @example
         #   setnz al
         #   setnz [rax]
-        def setnz(*operands,**kwargs) = add_instruction(Instructions::SETNZ,*operands,**kwargs)
+        def setnz(operand,**kwargs) = add_instruction(Instructions::SETNZ,operand,**kwargs)
         # Set byte if overflow (OF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::SETO]
         # @example
         #   seto al
         #   seto [rax]
-        def seto(*operands,**kwargs) = add_instruction(Instructions::SETO,*operands,**kwargs)
+        def seto(operand,**kwargs) = add_instruction(Instructions::SETO,operand,**kwargs)
         # Set byte if parity (PF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::SETP]
         # @example
         #   setp al
         #   setp [rax]
-        def setp(*operands,**kwargs) = add_instruction(Instructions::SETP,*operands,**kwargs)
+        def setp(operand,**kwargs) = add_instruction(Instructions::SETP,operand,**kwargs)
         # Set byte if parity even (PF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::SETPE]
         # @example
         #   setpe al
         #   setpe [rax]
-        def setpe(*operands,**kwargs) = add_instruction(Instructions::SETPE,*operands,**kwargs)
+        def setpe(operand,**kwargs) = add_instruction(Instructions::SETPE,operand,**kwargs)
         # Set byte if parity odd (PF == 0)
         # @return [Ronin::ASM::X86_64::Instructions::SETPO]
         # @example
         #   setpo al
         #   setpo [rax]
-        def setpo(*operands,**kwargs) = add_instruction(Instructions::SETPO,*operands,**kwargs)
+        def setpo(operand,**kwargs) = add_instruction(Instructions::SETPO,operand,**kwargs)
         # Set byte if sign (SF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::SETS]
         # @example
         #   sets al
         #   sets [rax]
-        def sets(*operands,**kwargs) = add_instruction(Instructions::SETS,*operands,**kwargs)
+        def sets(operand,**kwargs) = add_instruction(Instructions::SETS,operand,**kwargs)
         # Set byte if zero (ZF == 1)
         # @return [Ronin::ASM::X86_64::Instructions::SETZ]
         # @example
         #   setz al
         #   setz [rax]
-        def setz(*operands,**kwargs) = add_instruction(Instructions::SETZ,*operands,**kwargs)
+        def setz(operand,**kwargs) = add_instruction(Instructions::SETZ,operand,**kwargs)
         # Store Fence
         # @return [Ronin::ASM::X86_64::Instructions::SFENCE]
-        def sfence(*operands,**kwargs) = add_instruction(Instructions::SFENCE,*operands,**kwargs)
+        def sfence(**kwargs) = add_instruction(Instructions::SFENCE,**kwargs)
         # Perform an Intermediate Calculation for the Next Four SHA1 Message Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::SHA1MSG1]
         # @example
         #   sha1msg1 xmm0, xmm1
         #   sha1msg1 xmm0, [rbx]
-        def sha1msg1(*operands,**kwargs) = add_instruction(Instructions::SHA1MSG1,*operands,**kwargs)
+        def sha1msg1(operand1,operand2,**kwargs) = add_instruction(Instructions::SHA1MSG1,operand1,operand2,**kwargs)
         # Perform a Final Calculation for the Next Four SHA1 Message Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::SHA1MSG2]
         # @example
         #   sha1msg2 xmm0, xmm1
         #   sha1msg2 xmm0, [rbx]
-        def sha1msg2(*operands,**kwargs) = add_instruction(Instructions::SHA1MSG2,*operands,**kwargs)
+        def sha1msg2(operand1,operand2,**kwargs) = add_instruction(Instructions::SHA1MSG2,operand1,operand2,**kwargs)
         # Calculate SHA1 State Variable E after Four Rounds
         # @return [Ronin::ASM::X86_64::Instructions::SHA1NEXTE]
         # @example
         #   sha1nexte xmm0, xmm1
         #   sha1nexte xmm0, [rbx]
-        def sha1nexte(*operands,**kwargs) = add_instruction(Instructions::SHA1NEXTE,*operands,**kwargs)
+        def sha1nexte(operand1,operand2,**kwargs) = add_instruction(Instructions::SHA1NEXTE,operand1,operand2,**kwargs)
         # Perform Four Rounds of SHA1 Operation
         # @return [Ronin::ASM::X86_64::Instructions::SHA1RNDS4]
         # @example
         #   sha1rnds4 xmm0, xmm1, 0x03
         #   sha1rnds4 xmm0, [rbx], 0x03
-        def sha1rnds4(*operands,**kwargs) = add_instruction(Instructions::SHA1RNDS4,*operands,**kwargs)
+        def sha1rnds4(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::SHA1RNDS4,operand1,operand2,operand3,**kwargs)
         # Perform an Intermediate Calculation for the Next Four SHA256 Message Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::SHA256MSG1]
         # @example
         #   sha256msg1 xmm0, xmm1
         #   sha256msg1 xmm0, [rbx]
-        def sha256msg1(*operands,**kwargs) = add_instruction(Instructions::SHA256MSG1,*operands,**kwargs)
+        def sha256msg1(operand1,operand2,**kwargs) = add_instruction(Instructions::SHA256MSG1,operand1,operand2,**kwargs)
         # Perform a Final Calculation for the Next Four SHA256 Message Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::SHA256MSG2]
         # @example
         #   sha256msg2 xmm0, xmm1
         #   sha256msg2 xmm0, [rbx]
-        def sha256msg2(*operands,**kwargs) = add_instruction(Instructions::SHA256MSG2,*operands,**kwargs)
+        def sha256msg2(operand1,operand2,**kwargs) = add_instruction(Instructions::SHA256MSG2,operand1,operand2,**kwargs)
         # Perform Two Rounds of SHA256 Operation
         # @return [Ronin::ASM::X86_64::Instructions::SHA256RNDS2]
         # @example
         #   sha256rnds2 xmm0, xmm1, xmm0
         #   sha256rnds2 xmm0, [rbx], xmm0
-        def sha256rnds2(*operands,**kwargs) = add_instruction(Instructions::SHA256RNDS2,*operands,**kwargs)
+        def sha256rnds2(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::SHA256RNDS2,operand1,operand2,operand3,**kwargs)
         # Logical Shift Left
         # @return [Ronin::ASM::X86_64::Instructions::SHL]
         # @example
@@ -5357,7 +5357,7 @@ module Ronin
         #   shl [rax], 1
         #   shl [rax], 0x02
         #   shl [rax], cl
-        def shl(*operands,**kwargs) = add_instruction(Instructions::SHL,*operands,**kwargs)
+        def shl(operand1,operand2,**kwargs) = add_instruction(Instructions::SHL,operand1,operand2,**kwargs)
         # Integer Double Precision Shift Left
         # @return [Ronin::ASM::X86_64::Instructions::SHLD]
         # @example
@@ -5373,7 +5373,7 @@ module Ronin
         #   shld [rax], ebx, cl
         #   shld [rax], rbx, 0x03
         #   shld [rax], rbx, cl
-        def shld(*operands,**kwargs) = add_instruction(Instructions::SHLD,*operands,**kwargs)
+        def shld(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::SHLD,operand1,operand2,operand3,**kwargs)
         # Logical Shift Left Without Affecting Flags
         # @return [Ronin::ASM::X86_64::Instructions::SHLX]
         # @example
@@ -5381,7 +5381,7 @@ module Ronin
         #   shlx eax, [rbx], ecx
         #   shlx rax, rbx, rcx
         #   shlx rax, [rbx], rcx
-        def shlx(*operands,**kwargs) = add_instruction(Instructions::SHLX,*operands,**kwargs)
+        def shlx(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::SHLX,operand1,operand2,operand3,**kwargs)
         # Logical Shift Right
         # @return [Ronin::ASM::X86_64::Instructions::SHR]
         # @example
@@ -5400,7 +5400,7 @@ module Ronin
         #   shr [rax], 1
         #   shr [rax], 0x02
         #   shr [rax], cl
-        def shr(*operands,**kwargs) = add_instruction(Instructions::SHR,*operands,**kwargs)
+        def shr(operand1,operand2,**kwargs) = add_instruction(Instructions::SHR,operand1,operand2,**kwargs)
         # Integer Double Precision Shift Right
         # @return [Ronin::ASM::X86_64::Instructions::SHRD]
         # @example
@@ -5416,7 +5416,7 @@ module Ronin
         #   shrd [rax], ebx, cl
         #   shrd [rax], rbx, 0x03
         #   shrd [rax], rbx, cl
-        def shrd(*operands,**kwargs) = add_instruction(Instructions::SHRD,*operands,**kwargs)
+        def shrd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::SHRD,operand1,operand2,operand3,**kwargs)
         # Logical Shift Right Without Affecting Flags
         # @return [Ronin::ASM::X86_64::Instructions::SHRX]
         # @example
@@ -5424,59 +5424,59 @@ module Ronin
         #   shrx eax, [rbx], ecx
         #   shrx rax, rbx, rcx
         #   shrx rax, [rbx], rcx
-        def shrx(*operands,**kwargs) = add_instruction(Instructions::SHRX,*operands,**kwargs)
+        def shrx(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::SHRX,operand1,operand2,operand3,**kwargs)
         # Shuffle Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::SHUFPD]
         # @example
         #   shufpd xmm0, xmm1, 0x03
         #   shufpd xmm0, [rbx], 0x03
-        def shufpd(*operands,**kwargs) = add_instruction(Instructions::SHUFPD,*operands,**kwargs)
+        def shufpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::SHUFPD,operand1,operand2,operand3,**kwargs)
         # Shuffle Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::SHUFPS]
         # @example
         #   shufps xmm0, xmm1, 0x03
         #   shufps xmm0, [rbx], 0x03
-        def shufps(*operands,**kwargs) = add_instruction(Instructions::SHUFPS,*operands,**kwargs)
+        def shufps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::SHUFPS,operand1,operand2,operand3,**kwargs)
         # Compute Square Roots of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::SQRTPD]
         # @example
         #   sqrtpd xmm0, xmm1
         #   sqrtpd xmm0, [rbx]
-        def sqrtpd(*operands,**kwargs) = add_instruction(Instructions::SQRTPD,*operands,**kwargs)
+        def sqrtpd(operand1,operand2,**kwargs) = add_instruction(Instructions::SQRTPD,operand1,operand2,**kwargs)
         # Compute Square Roots of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::SQRTPS]
         # @example
         #   sqrtps xmm0, xmm1
         #   sqrtps xmm0, [rbx]
-        def sqrtps(*operands,**kwargs) = add_instruction(Instructions::SQRTPS,*operands,**kwargs)
+        def sqrtps(operand1,operand2,**kwargs) = add_instruction(Instructions::SQRTPS,operand1,operand2,**kwargs)
         # Compute Square Root of Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::SQRTSD]
         # @example
         #   sqrtsd xmm0, xmm1
         #   sqrtsd xmm0, [rbx]
-        def sqrtsd(*operands,**kwargs) = add_instruction(Instructions::SQRTSD,*operands,**kwargs)
+        def sqrtsd(operand1,operand2,**kwargs) = add_instruction(Instructions::SQRTSD,operand1,operand2,**kwargs)
         # Compute Square Root of Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::SQRTSS]
         # @example
         #   sqrtss xmm0, xmm1
         #   sqrtss xmm0, [rbx]
-        def sqrtss(*operands,**kwargs) = add_instruction(Instructions::SQRTSS,*operands,**kwargs)
+        def sqrtss(operand1,operand2,**kwargs) = add_instruction(Instructions::SQRTSS,operand1,operand2,**kwargs)
         # Set Carry Flag
         # @return [Ronin::ASM::X86_64::Instructions::STC]
-        def stc(*operands,**kwargs) = add_instruction(Instructions::STC,*operands,**kwargs)
+        def stc(**kwargs) = add_instruction(Instructions::STC,**kwargs)
         # Set Direction Flag
         # @return [Ronin::ASM::X86_64::Instructions::STD]
-        def std(*operands,**kwargs) = add_instruction(Instructions::STD,*operands,**kwargs)
+        def std(**kwargs) = add_instruction(Instructions::STD,**kwargs)
         # Store MXCSR Register State
         # @return [Ronin::ASM::X86_64::Instructions::STMXCSR]
         # @example
         #   stmxcsr [rax]
-        def stmxcsr(*operands,**kwargs) = add_instruction(Instructions::STMXCSR,*operands,**kwargs)
+        def stmxcsr(operand,**kwargs) = add_instruction(Instructions::STMXCSR,operand,**kwargs)
         # STore TILE ConFiGuration
         # @return [Ronin::ASM::X86_64::Instructions::STTILECFG]
         # @example
         #   sttilecfg [rax]
-        def sttilecfg(*operands,**kwargs) = add_instruction(Instructions::STTILECFG,*operands,**kwargs)
+        def sttilecfg(operand,**kwargs) = add_instruction(Instructions::STTILECFG,operand,**kwargs)
         # Subtract
         # @return [Ronin::ASM::X86_64::Instructions::SUB]
         # @example
@@ -5502,34 +5502,34 @@ module Ronin
         #   sub [rax], 0x00000002
         #   sub [rax], ebx
         #   sub [rax], rbx
-        def sub(*operands,**kwargs) = add_instruction(Instructions::SUB,*operands,**kwargs)
+        def sub(operand1,operand2,**kwargs) = add_instruction(Instructions::SUB,operand1,operand2,**kwargs)
         # Subtract Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::SUBPD]
         # @example
         #   subpd xmm0, xmm1
         #   subpd xmm0, [rbx]
-        def subpd(*operands,**kwargs) = add_instruction(Instructions::SUBPD,*operands,**kwargs)
+        def subpd(operand1,operand2,**kwargs) = add_instruction(Instructions::SUBPD,operand1,operand2,**kwargs)
         # Subtract Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::SUBPS]
         # @example
         #   subps xmm0, xmm1
         #   subps xmm0, [rbx]
-        def subps(*operands,**kwargs) = add_instruction(Instructions::SUBPS,*operands,**kwargs)
+        def subps(operand1,operand2,**kwargs) = add_instruction(Instructions::SUBPS,operand1,operand2,**kwargs)
         # Subtract Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::SUBSD]
         # @example
         #   subsd xmm0, xmm1
         #   subsd xmm0, [rbx]
-        def subsd(*operands,**kwargs) = add_instruction(Instructions::SUBSD,*operands,**kwargs)
+        def subsd(operand1,operand2,**kwargs) = add_instruction(Instructions::SUBSD,operand1,operand2,**kwargs)
         # Subtract Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::SUBSS]
         # @example
         #   subss xmm0, xmm1
         #   subss xmm0, [rbx]
-        def subss(*operands,**kwargs) = add_instruction(Instructions::SUBSS,*operands,**kwargs)
+        def subss(operand1,operand2,**kwargs) = add_instruction(Instructions::SUBSS,operand1,operand2,**kwargs)
         # Fast System Call
         # @return [Ronin::ASM::X86_64::Instructions::SYSCALL]
-        def syscall(*operands,**kwargs) = add_instruction(Instructions::SYSCALL,*operands,**kwargs)
+        def syscall(**kwargs) = add_instruction(Instructions::SYSCALL,**kwargs)
         # Inverse Mask From Trailing Ones
         # @return [Ronin::ASM::X86_64::Instructions::T1MSKC]
         # @example
@@ -5537,47 +5537,47 @@ module Ronin
         #   t1mskc eax, [rbx]
         #   t1mskc rax, rbx
         #   t1mskc rax, [rbx]
-        def t1mskc(*operands,**kwargs) = add_instruction(Instructions::T1MSKC,*operands,**kwargs)
+        def t1mskc(operand1,operand2,**kwargs) = add_instruction(Instructions::T1MSKC,operand1,operand2,**kwargs)
         # Tile Complex Matrix Multiply IMaginary part of FP16 tiles with Packed Single-precision accumulation
         # @return [Ronin::ASM::X86_64::Instructions::TCMMIMFP16PS]
         # @example
         #   tcmmimfp16ps tmm0, tmm1, tmm2
-        def tcmmimfp16ps(*operands,**kwargs) = add_instruction(Instructions::TCMMIMFP16PS,*operands,**kwargs)
+        def tcmmimfp16ps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::TCMMIMFP16PS,operand1,operand2,operand3,**kwargs)
         # Tile Complex Matrix Multiply ReaL part of FP16 tiles with Packed Single-precision accumulation
         # @return [Ronin::ASM::X86_64::Instructions::TCMMRLFP16PS]
         # @example
         #   tcmmrlfp16ps tmm0, tmm1, tmm2
-        def tcmmrlfp16ps(*operands,**kwargs) = add_instruction(Instructions::TCMMRLFP16PS,*operands,**kwargs)
+        def tcmmrlfp16ps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::TCMMRLFP16PS,operand1,operand2,operand3,**kwargs)
         # Tile Dot Product of BF16 tiles with Packed Single-precision accumulation
         # @return [Ronin::ASM::X86_64::Instructions::TDPBF16PS]
         # @example
         #   tdpbf16ps tmm0, tmm1, tmm2
-        def tdpbf16ps(*operands,**kwargs) = add_instruction(Instructions::TDPBF16PS,*operands,**kwargs)
+        def tdpbf16ps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::TDPBF16PS,operand1,operand2,operand3,**kwargs)
         # Tile Dot Product of Signed bytes by Signed bytes with Doubleword accumulation
         # @return [Ronin::ASM::X86_64::Instructions::TDPBSSD]
         # @example
         #   tdpbssd tmm0, tmm1, tmm2
-        def tdpbssd(*operands,**kwargs) = add_instruction(Instructions::TDPBSSD,*operands,**kwargs)
+        def tdpbssd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::TDPBSSD,operand1,operand2,operand3,**kwargs)
         # Tile Dot Product of Signed bytes by Unsigned bytes with Doubleword accumulation
         # @return [Ronin::ASM::X86_64::Instructions::TDPBSUD]
         # @example
         #   tdpbsud tmm0, tmm1, tmm2
-        def tdpbsud(*operands,**kwargs) = add_instruction(Instructions::TDPBSUD,*operands,**kwargs)
+        def tdpbsud(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::TDPBSUD,operand1,operand2,operand3,**kwargs)
         # Tile Dot Product of Unsigned bytes by Signed bytes with Doubleword accumulation
         # @return [Ronin::ASM::X86_64::Instructions::TDPBUSD]
         # @example
         #   tdpbusd tmm0, tmm1, tmm2
-        def tdpbusd(*operands,**kwargs) = add_instruction(Instructions::TDPBUSD,*operands,**kwargs)
+        def tdpbusd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::TDPBUSD,operand1,operand2,operand3,**kwargs)
         # Tile Dot Product of Unsigned bytes by Unsigned bytes with Doubleword accumulation
         # @return [Ronin::ASM::X86_64::Instructions::TDPBUUD]
         # @example
         #   tdpbuud tmm0, tmm1, tmm2
-        def tdpbuud(*operands,**kwargs) = add_instruction(Instructions::TDPBUUD,*operands,**kwargs)
+        def tdpbuud(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::TDPBUUD,operand1,operand2,operand3,**kwargs)
         # Tile Dot Product of FP16 tiles with Packed Single-precision accumulation
         # @return [Ronin::ASM::X86_64::Instructions::TDPFP16PS]
         # @example
         #   tdpfp16ps tmm0, tmm1, tmm2
-        def tdpfp16ps(*operands,**kwargs) = add_instruction(Instructions::TDPFP16PS,*operands,**kwargs)
+        def tdpfp16ps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::TDPFP16PS,operand1,operand2,operand3,**kwargs)
         # Logical Compare
         # @return [Ronin::ASM::X86_64::Instructions::TEST]
         # @example
@@ -5596,35 +5596,35 @@ module Ronin
         #   test [rax], 0x00000002
         #   test [rax], ebx
         #   test [rax], rbx
-        def test(*operands,**kwargs) = add_instruction(Instructions::TEST,*operands,**kwargs)
+        def test(operand1,operand2,**kwargs) = add_instruction(Instructions::TEST,operand1,operand2,**kwargs)
         # TILE LOAD Data
         # @return [Ronin::ASM::X86_64::Instructions::TILELOADD]
         # @example
         #   tileloadd tmm0, [rbx+r10]
-        def tileloadd(*operands,**kwargs) = add_instruction(Instructions::TILELOADD,*operands,**kwargs)
+        def tileloadd(operand1,operand2,**kwargs) = add_instruction(Instructions::TILELOADD,operand1,operand2,**kwargs)
         # TILE LOAD Data with T1 caching hint
         # @return [Ronin::ASM::X86_64::Instructions::TILELOADDT1]
         # @example
         #   tileloaddt1 tmm0, [rbx+r10]
-        def tileloaddt1(*operands,**kwargs) = add_instruction(Instructions::TILELOADDT1,*operands,**kwargs)
+        def tileloaddt1(operand1,operand2,**kwargs) = add_instruction(Instructions::TILELOADDT1,operand1,operand2,**kwargs)
         # TILE RELEASE register state
         # @return [Ronin::ASM::X86_64::Instructions::TILERELEASE]
-        def tilerelease(*operands,**kwargs) = add_instruction(Instructions::TILERELEASE,*operands,**kwargs)
+        def tilerelease(**kwargs) = add_instruction(Instructions::TILERELEASE,**kwargs)
         # TILE STORE Data
         # @return [Ronin::ASM::X86_64::Instructions::TILESTORED]
         # @example
         #   tilestored [rax+r10], tmm1
-        def tilestored(*operands,**kwargs) = add_instruction(Instructions::TILESTORED,*operands,**kwargs)
+        def tilestored(operand1,operand2,**kwargs) = add_instruction(Instructions::TILESTORED,operand1,operand2,**kwargs)
         # TILE ZERO data
         # @return [Ronin::ASM::X86_64::Instructions::TILEZERO]
         # @example
         #   tilezero tmm0
-        def tilezero(*operands,**kwargs) = add_instruction(Instructions::TILEZERO,*operands,**kwargs)
+        def tilezero(operand,**kwargs) = add_instruction(Instructions::TILEZERO,operand,**kwargs)
         # Timed PAUSE
         # @return [Ronin::ASM::X86_64::Instructions::TPAUSE]
         # @example
         #   tpause eax
-        def tpause(*operands,**kwargs) = add_instruction(Instructions::TPAUSE,*operands,**kwargs)
+        def tpause(operand,**kwargs) = add_instruction(Instructions::TPAUSE,operand,**kwargs)
         # Count the Number of Trailing Zero Bits
         # @return [Ronin::ASM::X86_64::Instructions::TZCNT]
         # @example
@@ -5634,7 +5634,7 @@ module Ronin
         #   tzcnt eax, [rbx]
         #   tzcnt rax, rbx
         #   tzcnt rax, [rbx]
-        def tzcnt(*operands,**kwargs) = add_instruction(Instructions::TZCNT,*operands,**kwargs)
+        def tzcnt(operand1,operand2,**kwargs) = add_instruction(Instructions::TZCNT,operand1,operand2,**kwargs)
         # Mask From Trailing Zeros
         # @return [Ronin::ASM::X86_64::Instructions::TZMSK]
         # @example
@@ -5642,56 +5642,56 @@ module Ronin
         #   tzmsk eax, [rbx]
         #   tzmsk rax, rbx
         #   tzmsk rax, [rbx]
-        def tzmsk(*operands,**kwargs) = add_instruction(Instructions::TZMSK,*operands,**kwargs)
+        def tzmsk(operand1,operand2,**kwargs) = add_instruction(Instructions::TZMSK,operand1,operand2,**kwargs)
         # Unordered Compare Scalar Double-Precision Floating-Point Values and Set EFLAGS
         # @return [Ronin::ASM::X86_64::Instructions::UCOMISD]
         # @example
         #   ucomisd xmm0, xmm1
         #   ucomisd xmm0, [rbx]
-        def ucomisd(*operands,**kwargs) = add_instruction(Instructions::UCOMISD,*operands,**kwargs)
+        def ucomisd(operand1,operand2,**kwargs) = add_instruction(Instructions::UCOMISD,operand1,operand2,**kwargs)
         # Unordered Compare Scalar Single-Precision Floating-Point Values and Set EFLAGS
         # @return [Ronin::ASM::X86_64::Instructions::UCOMISS]
         # @example
         #   ucomiss xmm0, xmm1
         #   ucomiss xmm0, [rbx]
-        def ucomiss(*operands,**kwargs) = add_instruction(Instructions::UCOMISS,*operands,**kwargs)
+        def ucomiss(operand1,operand2,**kwargs) = add_instruction(Instructions::UCOMISS,operand1,operand2,**kwargs)
         # Undefined Instruction
         # @return [Ronin::ASM::X86_64::Instructions::UD2]
-        def ud2(*operands,**kwargs) = add_instruction(Instructions::UD2,*operands,**kwargs)
+        def ud2(**kwargs) = add_instruction(Instructions::UD2,**kwargs)
         # User mode Monitor a Linear Address Range
         # @return [Ronin::ASM::X86_64::Instructions::UMONITOR]
         # @example
         #   umonitor rax
-        def umonitor(*operands,**kwargs) = add_instruction(Instructions::UMONITOR,*operands,**kwargs)
+        def umonitor(operand,**kwargs) = add_instruction(Instructions::UMONITOR,operand,**kwargs)
         # User mode Monitor Wait
         # @return [Ronin::ASM::X86_64::Instructions::UMWAIT]
         # @example
         #   umwait eax
-        def umwait(*operands,**kwargs) = add_instruction(Instructions::UMWAIT,*operands,**kwargs)
+        def umwait(operand,**kwargs) = add_instruction(Instructions::UMWAIT,operand,**kwargs)
         # Unpack and Interleave High Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::UNPCKHPD]
         # @example
         #   unpckhpd xmm0, xmm1
         #   unpckhpd xmm0, [rbx]
-        def unpckhpd(*operands,**kwargs) = add_instruction(Instructions::UNPCKHPD,*operands,**kwargs)
+        def unpckhpd(operand1,operand2,**kwargs) = add_instruction(Instructions::UNPCKHPD,operand1,operand2,**kwargs)
         # Unpack and Interleave High Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::UNPCKHPS]
         # @example
         #   unpckhps xmm0, xmm1
         #   unpckhps xmm0, [rbx]
-        def unpckhps(*operands,**kwargs) = add_instruction(Instructions::UNPCKHPS,*operands,**kwargs)
+        def unpckhps(operand1,operand2,**kwargs) = add_instruction(Instructions::UNPCKHPS,operand1,operand2,**kwargs)
         # Unpack and Interleave Low Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::UNPCKLPD]
         # @example
         #   unpcklpd xmm0, xmm1
         #   unpcklpd xmm0, [rbx]
-        def unpcklpd(*operands,**kwargs) = add_instruction(Instructions::UNPCKLPD,*operands,**kwargs)
+        def unpcklpd(operand1,operand2,**kwargs) = add_instruction(Instructions::UNPCKLPD,operand1,operand2,**kwargs)
         # Unpack and Interleave Low Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::UNPCKLPS]
         # @example
         #   unpcklps xmm0, xmm1
         #   unpcklps xmm0, [rbx]
-        def unpcklps(*operands,**kwargs) = add_instruction(Instructions::UNPCKLPS,*operands,**kwargs)
+        def unpcklps(operand1,operand2,**kwargs) = add_instruction(Instructions::UNPCKLPS,operand1,operand2,**kwargs)
         # Add Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VADDPD]
         # @example
@@ -5711,7 +5711,7 @@ module Ronin
         #   vaddpd zmm0, zmm1, zmm2
         #   vaddpd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vaddpd zmm0, zmm1, zmm2, er
-        def vaddpd(*operands,**kwargs) = add_instruction(Instructions::VADDPD,*operands,**kwargs)
+        def vaddpd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VADDPD,operand1,operand2,operand3,*operands,**kwargs)
         # Add Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VADDPH]
         # @example
@@ -5729,7 +5729,7 @@ module Ronin
         #   vaddph zmm0, zmm1, zmm2
         #   vaddph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vaddph zmm0, zmm1, zmm2, er
-        def vaddph(*operands,**kwargs) = add_instruction(Instructions::VADDPH,*operands,**kwargs)
+        def vaddph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VADDPH,operand1,operand2,operand3,*operands,**kwargs)
         # Add Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VADDPS]
         # @example
@@ -5749,7 +5749,7 @@ module Ronin
         #   vaddps zmm0, zmm1, zmm2
         #   vaddps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vaddps zmm0, zmm1, zmm2, er
-        def vaddps(*operands,**kwargs) = add_instruction(Instructions::VADDPS,*operands,**kwargs)
+        def vaddps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VADDPS,operand1,operand2,operand3,*operands,**kwargs)
         # Add Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VADDSD]
         # @example
@@ -5759,7 +5759,7 @@ module Ronin
         #   vaddsd xmm0, xmm1, [rcx]
         #   vaddsd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vaddsd xmm0, xmm1, xmm2, er
-        def vaddsd(*operands,**kwargs) = add_instruction(Instructions::VADDSD,*operands,**kwargs)
+        def vaddsd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VADDSD,operand1,operand2,operand3,*operands,**kwargs)
         # Add Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VADDSH]
         # @example
@@ -5769,7 +5769,7 @@ module Ronin
         #   vaddsh xmm0, xmm1, [rcx]
         #   vaddsh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vaddsh xmm0, xmm1, xmm2, er
-        def vaddsh(*operands,**kwargs) = add_instruction(Instructions::VADDSH,*operands,**kwargs)
+        def vaddsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VADDSH,operand1,operand2,operand3,*operands,**kwargs)
         # Add Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VADDSS]
         # @example
@@ -5779,7 +5779,7 @@ module Ronin
         #   vaddss xmm0, xmm1, [rcx]
         #   vaddss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vaddss xmm0, xmm1, xmm2, er
-        def vaddss(*operands,**kwargs) = add_instruction(Instructions::VADDSS,*operands,**kwargs)
+        def vaddss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VADDSS,operand1,operand2,operand3,*operands,**kwargs)
         # Packed Double-FP Add/Subtract
         # @return [Ronin::ASM::X86_64::Instructions::VADDSUBPD]
         # @example
@@ -5787,7 +5787,7 @@ module Ronin
         #   vaddsubpd xmm0, xmm1, [rcx]
         #   vaddsubpd ymm0, ymm1, ymm2
         #   vaddsubpd ymm0, ymm1, [rcx]
-        def vaddsubpd(*operands,**kwargs) = add_instruction(Instructions::VADDSUBPD,*operands,**kwargs)
+        def vaddsubpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VADDSUBPD,operand1,operand2,operand3,**kwargs)
         # Packed Single-FP Add/Subtract
         # @return [Ronin::ASM::X86_64::Instructions::VADDSUBPS]
         # @example
@@ -5795,7 +5795,7 @@ module Ronin
         #   vaddsubps xmm0, xmm1, [rcx]
         #   vaddsubps ymm0, ymm1, ymm2
         #   vaddsubps ymm0, ymm1, [rcx]
-        def vaddsubps(*operands,**kwargs) = add_instruction(Instructions::VADDSUBPS,*operands,**kwargs)
+        def vaddsubps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VADDSUBPS,operand1,operand2,operand3,**kwargs)
         # Perform One Round of an AES Decryption Flow
         # @return [Ronin::ASM::X86_64::Instructions::VAESDEC]
         # @example
@@ -5805,7 +5805,7 @@ module Ronin
         #   vaesdec ymm0, ymm1, [rcx]
         #   vaesdec zmm0, zmm1, zmm2
         #   vaesdec zmm0, zmm1, [rcx]
-        def vaesdec(*operands,**kwargs) = add_instruction(Instructions::VAESDEC,*operands,**kwargs)
+        def vaesdec(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VAESDEC,operand1,operand2,operand3,**kwargs)
         # Perform Last Round of an AES Decryption Flow
         # @return [Ronin::ASM::X86_64::Instructions::VAESDECLAST]
         # @example
@@ -5815,7 +5815,7 @@ module Ronin
         #   vaesdeclast ymm0, ymm1, [rcx]
         #   vaesdeclast zmm0, zmm1, zmm2
         #   vaesdeclast zmm0, zmm1, [rcx]
-        def vaesdeclast(*operands,**kwargs) = add_instruction(Instructions::VAESDECLAST,*operands,**kwargs)
+        def vaesdeclast(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VAESDECLAST,operand1,operand2,operand3,**kwargs)
         # Perform One Round of an AES Encryption Flow
         # @return [Ronin::ASM::X86_64::Instructions::VAESENC]
         # @example
@@ -5825,7 +5825,7 @@ module Ronin
         #   vaesenc ymm0, ymm1, [rcx]
         #   vaesenc zmm0, zmm1, zmm2
         #   vaesenc zmm0, zmm1, [rcx]
-        def vaesenc(*operands,**kwargs) = add_instruction(Instructions::VAESENC,*operands,**kwargs)
+        def vaesenc(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VAESENC,operand1,operand2,operand3,**kwargs)
         # Perform Last Round of an AES Encryption Flow
         # @return [Ronin::ASM::X86_64::Instructions::VAESENCLAST]
         # @example
@@ -5835,19 +5835,19 @@ module Ronin
         #   vaesenclast ymm0, ymm1, [rcx]
         #   vaesenclast zmm0, zmm1, zmm2
         #   vaesenclast zmm0, zmm1, [rcx]
-        def vaesenclast(*operands,**kwargs) = add_instruction(Instructions::VAESENCLAST,*operands,**kwargs)
+        def vaesenclast(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VAESENCLAST,operand1,operand2,operand3,**kwargs)
         # Perform the AES InvMixColumn Transformation
         # @return [Ronin::ASM::X86_64::Instructions::VAESIMC]
         # @example
         #   vaesimc xmm0, xmm1
         #   vaesimc xmm0, [rbx]
-        def vaesimc(*operands,**kwargs) = add_instruction(Instructions::VAESIMC,*operands,**kwargs)
+        def vaesimc(operand1,operand2,**kwargs) = add_instruction(Instructions::VAESIMC,operand1,operand2,**kwargs)
         # AES Round Key Generation Assist
         # @return [Ronin::ASM::X86_64::Instructions::VAESKEYGENASSIST]
         # @example
         #   vaeskeygenassist xmm0, xmm1, 0x03
         #   vaeskeygenassist xmm0, [rbx], 0x03
-        def vaeskeygenassist(*operands,**kwargs) = add_instruction(Instructions::VAESKEYGENASSIST,*operands,**kwargs)
+        def vaeskeygenassist(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VAESKEYGENASSIST,operand1,operand2,operand3,**kwargs)
         # Align Doubleword Vectors
         # @return [Ronin::ASM::X86_64::Instructions::VALIGND]
         # @example
@@ -5863,7 +5863,7 @@ module Ronin
         #   valignd ymm0, ymm1, ymm2, 0x04
         #   valignd zmm0, zmm1, bcst([rcx], {1=>16}), 0x04
         #   valignd zmm0, zmm1, zmm2, 0x04
-        def valignd(*operands,**kwargs) = add_instruction(Instructions::VALIGND,*operands,**kwargs)
+        def valignd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VALIGND,operand1,operand2,operand3,operand4,**kwargs)
         # Align Quadword Vectors
         # @return [Ronin::ASM::X86_64::Instructions::VALIGNQ]
         # @example
@@ -5879,7 +5879,7 @@ module Ronin
         #   valignq ymm0, ymm1, ymm2, 0x04
         #   valignq zmm0, zmm1, bcst([rcx], {1=>8}), 0x04
         #   valignq zmm0, zmm1, zmm2, 0x04
-        def valignq(*operands,**kwargs) = add_instruction(Instructions::VALIGNQ,*operands,**kwargs)
+        def valignq(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VALIGNQ,operand1,operand2,operand3,operand4,**kwargs)
         # Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VANDNPD]
         # @example
@@ -5897,7 +5897,7 @@ module Ronin
         #   vandnpd ymm0, ymm1, [rcx]
         #   vandnpd zmm0, zmm1, bcst([rcx], {1=>8})
         #   vandnpd zmm0, zmm1, zmm2
-        def vandnpd(*operands,**kwargs) = add_instruction(Instructions::VANDNPD,*operands,**kwargs)
+        def vandnpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VANDNPD,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VANDNPS]
         # @example
@@ -5915,7 +5915,7 @@ module Ronin
         #   vandnps ymm0, ymm1, [rcx]
         #   vandnps zmm0, zmm1, bcst([rcx], {1=>16})
         #   vandnps zmm0, zmm1, zmm2
-        def vandnps(*operands,**kwargs) = add_instruction(Instructions::VANDNPS,*operands,**kwargs)
+        def vandnps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VANDNPS,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VANDPD]
         # @example
@@ -5933,7 +5933,7 @@ module Ronin
         #   vandpd ymm0, ymm1, [rcx]
         #   vandpd zmm0, zmm1, bcst([rcx], {1=>8})
         #   vandpd zmm0, zmm1, zmm2
-        def vandpd(*operands,**kwargs) = add_instruction(Instructions::VANDPD,*operands,**kwargs)
+        def vandpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VANDPD,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VANDPS]
         # @example
@@ -5951,19 +5951,19 @@ module Ronin
         #   vandps ymm0, ymm1, [rcx]
         #   vandps zmm0, zmm1, bcst([rcx], {1=>16})
         #   vandps zmm0, zmm1, zmm2
-        def vandps(*operands,**kwargs) = add_instruction(Instructions::VANDPS,*operands,**kwargs)
+        def vandps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VANDPS,operand1,operand2,operand3,**kwargs)
         # Load BF16 Element and Convert to FP32 Element With Broadcas
         # @return [Ronin::ASM::X86_64::Instructions::VBCSTNEBF162PS]
         # @example
         #   vbcstnebf162ps xmm0, [rbx]
         #   vbcstnebf162ps ymm0, [rbx]
-        def vbcstnebf162ps(*operands,**kwargs) = add_instruction(Instructions::VBCSTNEBF162PS,*operands,**kwargs)
+        def vbcstnebf162ps(operand1,operand2,**kwargs) = add_instruction(Instructions::VBCSTNEBF162PS,operand1,operand2,**kwargs)
         # Load FP16 Element and Convert to FP32 Element with Broadcast
         # @return [Ronin::ASM::X86_64::Instructions::VBCSTNESH2PS]
         # @example
         #   vbcstnesh2ps xmm0, [rbx]
         #   vbcstnesh2ps ymm0, [rbx]
-        def vbcstnesh2ps(*operands,**kwargs) = add_instruction(Instructions::VBCSTNESH2PS,*operands,**kwargs)
+        def vbcstnesh2ps(operand1,operand2,**kwargs) = add_instruction(Instructions::VBCSTNESH2PS,operand1,operand2,**kwargs)
         # Blend Packed Double-Precision Floating-Point Vectors Using an OpMask Control
         # @return [Ronin::ASM::X86_64::Instructions::VBLENDMPD]
         # @example
@@ -5979,7 +5979,7 @@ module Ronin
         #   vblendmpd ymm0, ymm1, ymm2
         #   vblendmpd zmm0, zmm1, bcst([rcx], {1=>8})
         #   vblendmpd zmm0, zmm1, zmm2
-        def vblendmpd(*operands,**kwargs) = add_instruction(Instructions::VBLENDMPD,*operands,**kwargs)
+        def vblendmpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VBLENDMPD,operand1,operand2,operand3,**kwargs)
         # Blend Packed Single-Precision Floating-Point Vectors Using an OpMask Control
         # @return [Ronin::ASM::X86_64::Instructions::VBLENDMPS]
         # @example
@@ -5995,7 +5995,7 @@ module Ronin
         #   vblendmps ymm0, ymm1, ymm2
         #   vblendmps zmm0, zmm1, bcst([rcx], {1=>16})
         #   vblendmps zmm0, zmm1, zmm2
-        def vblendmps(*operands,**kwargs) = add_instruction(Instructions::VBLENDMPS,*operands,**kwargs)
+        def vblendmps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VBLENDMPS,operand1,operand2,operand3,**kwargs)
         # Blend Packed Double Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VBLENDPD]
         # @example
@@ -6003,7 +6003,7 @@ module Ronin
         #   vblendpd xmm0, xmm1, [rcx], 0x04
         #   vblendpd ymm0, ymm1, ymm2, 0x04
         #   vblendpd ymm0, ymm1, [rcx], 0x04
-        def vblendpd(*operands,**kwargs) = add_instruction(Instructions::VBLENDPD,*operands,**kwargs)
+        def vblendpd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VBLENDPD,operand1,operand2,operand3,operand4,**kwargs)
         #  Blend Packed Single Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VBLENDPS]
         # @example
@@ -6011,7 +6011,7 @@ module Ronin
         #   vblendps xmm0, xmm1, [rcx], 0x04
         #   vblendps ymm0, ymm1, ymm2, 0x04
         #   vblendps ymm0, ymm1, [rcx], 0x04
-        def vblendps(*operands,**kwargs) = add_instruction(Instructions::VBLENDPS,*operands,**kwargs)
+        def vblendps(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VBLENDPS,operand1,operand2,operand3,operand4,**kwargs)
         #  Variable Blend Packed Double Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VBLENDVPD]
         # @example
@@ -6019,7 +6019,7 @@ module Ronin
         #   vblendvpd xmm0, xmm1, [rcx], xmm3
         #   vblendvpd ymm0, ymm1, ymm2, ymm3
         #   vblendvpd ymm0, ymm1, [rcx], ymm3
-        def vblendvpd(*operands,**kwargs) = add_instruction(Instructions::VBLENDVPD,*operands,**kwargs)
+        def vblendvpd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VBLENDVPD,operand1,operand2,operand3,operand4,**kwargs)
         #  Variable Blend Packed Single Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VBLENDVPS]
         # @example
@@ -6027,12 +6027,12 @@ module Ronin
         #   vblendvps xmm0, xmm1, [rcx], xmm3
         #   vblendvps ymm0, ymm1, ymm2, ymm3
         #   vblendvps ymm0, ymm1, [rcx], ymm3
-        def vblendvps(*operands,**kwargs) = add_instruction(Instructions::VBLENDVPS,*operands,**kwargs)
+        def vblendvps(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VBLENDVPS,operand1,operand2,operand3,operand4,**kwargs)
         # Broadcast 128 Bit of Floating-Point Data
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTF128]
         # @example
         #   vbroadcastf128 ymm0, [rbx]
-        def vbroadcastf128(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTF128,*operands,**kwargs)
+        def vbroadcastf128(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTF128,operand1,operand2,**kwargs)
         # Broadcast Two Single-Precision Floating-Point Elements
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTF32X2]
         # @example
@@ -6044,7 +6044,7 @@ module Ronin
         #   vbroadcastf32x2 ymm0, [rbx]
         #   vbroadcastf32x2 zmm0, xmm1
         #   vbroadcastf32x2 zmm0, [rbx]
-        def vbroadcastf32x2(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTF32X2,*operands,**kwargs)
+        def vbroadcastf32x2(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTF32X2,operand1,operand2,**kwargs)
         # Broadcast Four Single-Precision Floating-Point Elements
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTF32X4]
         # @example
@@ -6052,13 +6052,13 @@ module Ronin
         #   vbroadcastf32x4 opmask(zmm0, k1, zero: true), [rbx]
         #   vbroadcastf32x4 ymm0, [rbx]
         #   vbroadcastf32x4 zmm0, [rbx]
-        def vbroadcastf32x4(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTF32X4,*operands,**kwargs)
+        def vbroadcastf32x4(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTF32X4,operand1,operand2,**kwargs)
         # Broadcast Eight Single-Precision Floating-Point Elements
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTF32X8]
         # @example
         #   vbroadcastf32x8 opmask(zmm0, k1, zero: true), [rbx]
         #   vbroadcastf32x8 zmm0, [rbx]
-        def vbroadcastf32x8(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTF32X8,*operands,**kwargs)
+        def vbroadcastf32x8(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTF32X8,operand1,operand2,**kwargs)
         # Broadcast Two Double-Precision Floating-Point Elements
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTF64X2]
         # @example
@@ -6066,18 +6066,18 @@ module Ronin
         #   vbroadcastf64x2 opmask(zmm0, k1, zero: true), [rbx]
         #   vbroadcastf64x2 ymm0, [rbx]
         #   vbroadcastf64x2 zmm0, [rbx]
-        def vbroadcastf64x2(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTF64X2,*operands,**kwargs)
+        def vbroadcastf64x2(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTF64X2,operand1,operand2,**kwargs)
         # Broadcast Four Double-Precision Floating-Point Elements
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTF64X4]
         # @example
         #   vbroadcastf64x4 opmask(zmm0, k1, zero: true), [rbx]
         #   vbroadcastf64x4 zmm0, [rbx]
-        def vbroadcastf64x4(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTF64X4,*operands,**kwargs)
+        def vbroadcastf64x4(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTF64X4,operand1,operand2,**kwargs)
         # Broadcast 128 Bits of Integer Data
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTI128]
         # @example
         #   vbroadcasti128 ymm0, [rbx]
-        def vbroadcasti128(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTI128,*operands,**kwargs)
+        def vbroadcasti128(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTI128,operand1,operand2,**kwargs)
         # Broadcast Two Doubleword Elements
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTI32X2]
         # @example
@@ -6093,7 +6093,7 @@ module Ronin
         #   vbroadcasti32x2 ymm0, [rbx]
         #   vbroadcasti32x2 zmm0, xmm1
         #   vbroadcasti32x2 zmm0, [rbx]
-        def vbroadcasti32x2(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTI32X2,*operands,**kwargs)
+        def vbroadcasti32x2(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTI32X2,operand1,operand2,**kwargs)
         # Broadcast Four Doubleword Elements
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTI32X4]
         # @example
@@ -6101,13 +6101,13 @@ module Ronin
         #   vbroadcasti32x4 opmask(zmm0, k1, zero: true), [rbx]
         #   vbroadcasti32x4 ymm0, [rbx]
         #   vbroadcasti32x4 zmm0, [rbx]
-        def vbroadcasti32x4(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTI32X4,*operands,**kwargs)
+        def vbroadcasti32x4(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTI32X4,operand1,operand2,**kwargs)
         # Broadcast Eight Doubleword Elements
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTI32X8]
         # @example
         #   vbroadcasti32x8 opmask(zmm0, k1, zero: true), [rbx]
         #   vbroadcasti32x8 zmm0, [rbx]
-        def vbroadcasti32x8(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTI32X8,*operands,**kwargs)
+        def vbroadcasti32x8(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTI32X8,operand1,operand2,**kwargs)
         # Broadcast Two Quadword Elements
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTI64X2]
         # @example
@@ -6115,13 +6115,13 @@ module Ronin
         #   vbroadcasti64x2 opmask(zmm0, k1, zero: true), [rbx]
         #   vbroadcasti64x2 ymm0, [rbx]
         #   vbroadcasti64x2 zmm0, [rbx]
-        def vbroadcasti64x2(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTI64X2,*operands,**kwargs)
+        def vbroadcasti64x2(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTI64X2,operand1,operand2,**kwargs)
         # Broadcast Four Quadword Elements
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTI64X4]
         # @example
         #   vbroadcasti64x4 opmask(zmm0, k1, zero: true), [rbx]
         #   vbroadcasti64x4 zmm0, [rbx]
-        def vbroadcasti64x4(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTI64X4,*operands,**kwargs)
+        def vbroadcasti64x4(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTI64X4,operand1,operand2,**kwargs)
         # Broadcast Double-Precision Floating-Point Element
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTSD]
         # @example
@@ -6133,7 +6133,7 @@ module Ronin
         #   vbroadcastsd ymm0, [rbx]
         #   vbroadcastsd zmm0, xmm1
         #   vbroadcastsd zmm0, [rbx]
-        def vbroadcastsd(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTSD,*operands,**kwargs)
+        def vbroadcastsd(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTSD,operand1,operand2,**kwargs)
         # Broadcast Single-Precision Floating-Point Element
         # @return [Ronin::ASM::X86_64::Instructions::VBROADCASTSS]
         # @example
@@ -6147,7 +6147,7 @@ module Ronin
         #   vbroadcastss ymm0, [rbx]
         #   vbroadcastss zmm0, xmm1
         #   vbroadcastss zmm0, [rbx]
-        def vbroadcastss(*operands,**kwargs) = add_instruction(Instructions::VBROADCASTSS,*operands,**kwargs)
+        def vbroadcastss(operand1,operand2,**kwargs) = add_instruction(Instructions::VBROADCASTSS,operand1,operand2,**kwargs)
         # Compare Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCMPPD]
         # @example
@@ -6169,7 +6169,7 @@ module Ronin
         #   vcmppd ymm0, ymm1, [rcx], 0x04
         #   vcmppd opmask(k1, k2), zmm1, zmm2, sae, 0x05
         #   vcmppd k1, zmm1, zmm2, sae, 0x05
-        def vcmppd(*operands,**kwargs) = add_instruction(Instructions::VCMPPD,*operands,**kwargs)
+        def vcmppd(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VCMPPD,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Compare Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCMPPH]
         # @example
@@ -6187,7 +6187,7 @@ module Ronin
         #   vcmpph k1, zmm1, zmm2, 0x04
         #   vcmpph opmask(k1, k2), zmm1, zmm2, sae, 0x05
         #   vcmpph k1, zmm1, zmm2, sae, 0x05
-        def vcmpph(*operands,**kwargs) = add_instruction(Instructions::VCMPPH,*operands,**kwargs)
+        def vcmpph(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VCMPPH,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Compare Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCMPPS]
         # @example
@@ -6209,7 +6209,7 @@ module Ronin
         #   vcmpps ymm0, ymm1, [rcx], 0x04
         #   vcmpps opmask(k1, k2), zmm1, zmm2, sae, 0x05
         #   vcmpps k1, zmm1, zmm2, sae, 0x05
-        def vcmpps(*operands,**kwargs) = add_instruction(Instructions::VCMPPS,*operands,**kwargs)
+        def vcmpps(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VCMPPS,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Compare Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCMPSD]
         # @example
@@ -6221,7 +6221,7 @@ module Ronin
         #   vcmpsd xmm0, xmm1, [rcx], 0x04
         #   vcmpsd opmask(k1, k2), xmm1, xmm2, sae, 0x05
         #   vcmpsd k1, xmm1, xmm2, sae, 0x05
-        def vcmpsd(*operands,**kwargs) = add_instruction(Instructions::VCMPSD,*operands,**kwargs)
+        def vcmpsd(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VCMPSD,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Compare Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCMPSH]
         # @example
@@ -6231,7 +6231,7 @@ module Ronin
         #   vcmpsh k1, xmm1, [rcx], 0x04
         #   vcmpsh opmask(k1, k2), xmm1, xmm2, sae, 0x05
         #   vcmpsh k1, xmm1, xmm2, sae, 0x05
-        def vcmpsh(*operands,**kwargs) = add_instruction(Instructions::VCMPSH,*operands,**kwargs)
+        def vcmpsh(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VCMPSH,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Compare Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCMPSS]
         # @example
@@ -6243,28 +6243,28 @@ module Ronin
         #   vcmpss xmm0, xmm1, [rcx], 0x04
         #   vcmpss opmask(k1, k2), xmm1, xmm2, sae, 0x05
         #   vcmpss k1, xmm1, xmm2, sae, 0x05
-        def vcmpss(*operands,**kwargs) = add_instruction(Instructions::VCMPSS,*operands,**kwargs)
+        def vcmpss(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VCMPSS,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Compare Scalar Ordered Double-Precision Floating-Point Values and Set EFLAGS
         # @return [Ronin::ASM::X86_64::Instructions::VCOMISD]
         # @example
         #   vcomisd xmm0, xmm1
         #   vcomisd xmm0, [rbx]
         #   vcomisd xmm0, xmm1, sae
-        def vcomisd(*operands,**kwargs) = add_instruction(Instructions::VCOMISD,*operands,**kwargs)
+        def vcomisd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCOMISD,operand1,operand2,*operands,**kwargs)
         # Compare Scalar Ordered Half-Precision Floating-Point Values and Set EFLAGS
         # @return [Ronin::ASM::X86_64::Instructions::VCOMISH]
         # @example
         #   vcomish xmm0, xmm1
         #   vcomish xmm0, [rbx]
         #   vcomish xmm0, xmm1, sae
-        def vcomish(*operands,**kwargs) = add_instruction(Instructions::VCOMISH,*operands,**kwargs)
+        def vcomish(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCOMISH,operand1,operand2,*operands,**kwargs)
         # Compare Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS
         # @return [Ronin::ASM::X86_64::Instructions::VCOMISS]
         # @example
         #   vcomiss xmm0, xmm1
         #   vcomiss xmm0, [rbx]
         #   vcomiss xmm0, xmm1, sae
-        def vcomiss(*operands,**kwargs) = add_instruction(Instructions::VCOMISS,*operands,**kwargs)
+        def vcomiss(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCOMISS,operand1,operand2,*operands,**kwargs)
         # Store Sparse Packed Double-Precision Floating-Point Values into Dense Memory/Register
         # @return [Ronin::ASM::X86_64::Instructions::VCOMPRESSPD]
         # @example
@@ -6280,7 +6280,7 @@ module Ronin
         #   vcompresspd [rax], xmm1
         #   vcompresspd [rax], ymm1
         #   vcompresspd [rax], zmm1
-        def vcompresspd(*operands,**kwargs) = add_instruction(Instructions::VCOMPRESSPD,*operands,**kwargs)
+        def vcompresspd(operand1,operand2,**kwargs) = add_instruction(Instructions::VCOMPRESSPD,operand1,operand2,**kwargs)
         # Store Sparse Packed Single-Precision Floating-Point Values into Dense Memory/Register
         # @return [Ronin::ASM::X86_64::Instructions::VCOMPRESSPS]
         # @example
@@ -6296,7 +6296,7 @@ module Ronin
         #   vcompressps [rax], xmm1
         #   vcompressps [rax], ymm1
         #   vcompressps [rax], zmm1
-        def vcompressps(*operands,**kwargs) = add_instruction(Instructions::VCOMPRESSPS,*operands,**kwargs)
+        def vcompressps(operand1,operand2,**kwargs) = add_instruction(Instructions::VCOMPRESSPS,operand1,operand2,**kwargs)
         # Convert Packed Dword Integers to Packed Double-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTDQ2PD]
         # @example
@@ -6314,7 +6314,7 @@ module Ronin
         #   vcvtdq2pd ymm0, [rbx]
         #   vcvtdq2pd zmm0, bcst([rbx], {1=>8})
         #   vcvtdq2pd zmm0, ymm1
-        def vcvtdq2pd(*operands,**kwargs) = add_instruction(Instructions::VCVTDQ2PD,*operands,**kwargs)
+        def vcvtdq2pd(operand1,operand2,**kwargs) = add_instruction(Instructions::VCVTDQ2PD,operand1,operand2,**kwargs)
         # Convert Packed Dword Integers to Packed Half-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTDQ2PH]
         # @example
@@ -6332,7 +6332,7 @@ module Ronin
         #   vcvtdq2ph ymm0, zmm1
         #   vcvtdq2ph opmask(ymm0, k1, zero: true), zmm1, er
         #   vcvtdq2ph ymm0, zmm1, er
-        def vcvtdq2ph(*operands,**kwargs) = add_instruction(Instructions::VCVTDQ2PH,*operands,**kwargs)
+        def vcvtdq2ph(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTDQ2PH,operand1,operand2,*operands,**kwargs)
         # Convert Packed Dword Integers to Packed Single-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTDQ2PS]
         # @example
@@ -6352,7 +6352,7 @@ module Ronin
         #   vcvtdq2ps zmm0, zmm1
         #   vcvtdq2ps opmask(zmm0, k1, zero: true), zmm1, er
         #   vcvtdq2ps zmm0, zmm1, er
-        def vcvtdq2ps(*operands,**kwargs) = add_instruction(Instructions::VCVTDQ2PS,*operands,**kwargs)
+        def vcvtdq2ps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTDQ2PS,operand1,operand2,*operands,**kwargs)
         # Convert with Nearest-Even rounding 2 Single-Precision FP vectors into BFloat16 FP vector
         # @return [Ronin::ASM::X86_64::Instructions::VCVTNE2PS2BF16]
         # @example
@@ -6368,31 +6368,31 @@ module Ronin
         #   vcvtne2ps2bf16 ymm0, ymm1, ymm2
         #   vcvtne2ps2bf16 zmm0, zmm1, bcst([rcx], {1=>16})
         #   vcvtne2ps2bf16 zmm0, zmm1, zmm2
-        def vcvtne2ps2bf16(*operands,**kwargs) = add_instruction(Instructions::VCVTNE2PS2BF16,*operands,**kwargs)
+        def vcvtne2ps2bf16(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VCVTNE2PS2BF16,operand1,operand2,operand3,**kwargs)
         # Convert Even Elements of Packed BF16 Values to FP32 Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTNEEBF162PS]
         # @example
         #   vcvtneebf162ps xmm0, [rbx]
         #   vcvtneebf162ps ymm0, [rbx]
-        def vcvtneebf162ps(*operands,**kwargs) = add_instruction(Instructions::VCVTNEEBF162PS,*operands,**kwargs)
+        def vcvtneebf162ps(operand1,operand2,**kwargs) = add_instruction(Instructions::VCVTNEEBF162PS,operand1,operand2,**kwargs)
         # Convert Even Elements of Packed FP16 Values to FP32 Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTNEEPH2PS]
         # @example
         #   vcvtneeph2ps xmm0, [rbx]
         #   vcvtneeph2ps ymm0, [rbx]
-        def vcvtneeph2ps(*operands,**kwargs) = add_instruction(Instructions::VCVTNEEPH2PS,*operands,**kwargs)
+        def vcvtneeph2ps(operand1,operand2,**kwargs) = add_instruction(Instructions::VCVTNEEPH2PS,operand1,operand2,**kwargs)
         # Convert Odd Elements of Packed BF16 Values to FP32 Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTNEOBF162PS]
         # @example
         #   vcvtneobf162ps xmm0, [rbx]
         #   vcvtneobf162ps ymm0, [rbx]
-        def vcvtneobf162ps(*operands,**kwargs) = add_instruction(Instructions::VCVTNEOBF162PS,*operands,**kwargs)
+        def vcvtneobf162ps(operand1,operand2,**kwargs) = add_instruction(Instructions::VCVTNEOBF162PS,operand1,operand2,**kwargs)
         # Convert Odd Elements of Packed FP16 Values to FP32 Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTNEOPH2PS]
         # @example
         #   vcvtneoph2ps xmm0, [rbx]
         #   vcvtneoph2ps ymm0, [rbx]
-        def vcvtneoph2ps(*operands,**kwargs) = add_instruction(Instructions::VCVTNEOPH2PS,*operands,**kwargs)
+        def vcvtneoph2ps(operand1,operand2,**kwargs) = add_instruction(Instructions::VCVTNEOPH2PS,operand1,operand2,**kwargs)
         # Convert with Nearest-Even rounding a Single-Precision FP vector into a BFloat16 FP vector
         # @return [Ronin::ASM::X86_64::Instructions::VCVTNEPS2BF16]
         # @example
@@ -6409,7 +6409,7 @@ module Ronin
         #   vcvtneps2bf16 xmm0, [rbx]
         #   vcvtneps2bf16 ymm0, bcst([rbx], {1=>16})
         #   vcvtneps2bf16 ymm0, zmm1
-        def vcvtneps2bf16(*operands,**kwargs) = add_instruction(Instructions::VCVTNEPS2BF16,*operands,**kwargs)
+        def vcvtneps2bf16(operand1,operand2,**kwargs) = add_instruction(Instructions::VCVTNEPS2BF16,operand1,operand2,**kwargs)
         # Convert Packed Double-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPD2DQ]
         # @example
@@ -6428,7 +6428,7 @@ module Ronin
         #   vcvtpd2dq ymm0, zmm1
         #   vcvtpd2dq opmask(ymm0, k1, zero: true), zmm1, er
         #   vcvtpd2dq ymm0, zmm1, er
-        def vcvtpd2dq(*operands,**kwargs) = add_instruction(Instructions::VCVTPD2DQ,*operands,**kwargs)
+        def vcvtpd2dq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPD2DQ,operand1,operand2,*operands,**kwargs)
         # Convert Packed Double-Precision FP Values to Packed Half-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPD2PH]
         # @example
@@ -6446,7 +6446,7 @@ module Ronin
         #   vcvtpd2ph xmm0, zmm1
         #   vcvtpd2ph opmask(xmm0, k1, zero: true), zmm1, er
         #   vcvtpd2ph xmm0, zmm1, er
-        def vcvtpd2ph(*operands,**kwargs) = add_instruction(Instructions::VCVTPD2PH,*operands,**kwargs)
+        def vcvtpd2ph(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPD2PH,operand1,operand2,*operands,**kwargs)
         # Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPD2PS]
         # @example
@@ -6465,7 +6465,7 @@ module Ronin
         #   vcvtpd2ps ymm0, zmm1
         #   vcvtpd2ps opmask(ymm0, k1, zero: true), zmm1, er
         #   vcvtpd2ps ymm0, zmm1, er
-        def vcvtpd2ps(*operands,**kwargs) = add_instruction(Instructions::VCVTPD2PS,*operands,**kwargs)
+        def vcvtpd2ps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPD2PS,operand1,operand2,*operands,**kwargs)
         # Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPD2QQ]
         # @example
@@ -6483,7 +6483,7 @@ module Ronin
         #   vcvtpd2qq zmm0, zmm1
         #   vcvtpd2qq opmask(zmm0, k1, zero: true), zmm1, er
         #   vcvtpd2qq zmm0, zmm1, er
-        def vcvtpd2qq(*operands,**kwargs) = add_instruction(Instructions::VCVTPD2QQ,*operands,**kwargs)
+        def vcvtpd2qq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPD2QQ,operand1,operand2,*operands,**kwargs)
         # Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPD2UDQ]
         # @example
@@ -6501,7 +6501,7 @@ module Ronin
         #   vcvtpd2udq ymm0, zmm1
         #   vcvtpd2udq opmask(ymm0, k1, zero: true), zmm1, er
         #   vcvtpd2udq ymm0, zmm1, er
-        def vcvtpd2udq(*operands,**kwargs) = add_instruction(Instructions::VCVTPD2UDQ,*operands,**kwargs)
+        def vcvtpd2udq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPD2UDQ,operand1,operand2,*operands,**kwargs)
         # Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPD2UQQ]
         # @example
@@ -6519,7 +6519,7 @@ module Ronin
         #   vcvtpd2uqq zmm0, zmm1
         #   vcvtpd2uqq opmask(zmm0, k1, zero: true), zmm1, er
         #   vcvtpd2uqq zmm0, zmm1, er
-        def vcvtpd2uqq(*operands,**kwargs) = add_instruction(Instructions::VCVTPD2UQQ,*operands,**kwargs)
+        def vcvtpd2uqq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPD2UQQ,operand1,operand2,*operands,**kwargs)
         # Convert Packed Half-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPH2DQ]
         # @example
@@ -6537,7 +6537,7 @@ module Ronin
         #   vcvtph2dq zmm0, ymm1
         #   vcvtph2dq opmask(zmm0, k1, zero: true), ymm1, er
         #   vcvtph2dq zmm0, ymm1, er
-        def vcvtph2dq(*operands,**kwargs) = add_instruction(Instructions::VCVTPH2DQ,*operands,**kwargs)
+        def vcvtph2dq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPH2DQ,operand1,operand2,*operands,**kwargs)
         # Convert Packed Half-Precision FP Values to Packed Double-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPH2PD]
         # @example
@@ -6555,7 +6555,7 @@ module Ronin
         #   vcvtph2pd zmm0, xmm1
         #   vcvtph2pd opmask(zmm0, k1, zero: true), xmm1, sae
         #   vcvtph2pd zmm0, xmm1, sae
-        def vcvtph2pd(*operands,**kwargs) = add_instruction(Instructions::VCVTPH2PD,*operands,**kwargs)
+        def vcvtph2pd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPH2PD,operand1,operand2,*operands,**kwargs)
         # Convert Half-Precision FP Values to Single-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPH2PS]
         # @example
@@ -6573,7 +6573,7 @@ module Ronin
         #   vcvtph2ps zmm0, [rbx]
         #   vcvtph2ps opmask(zmm0, k1, zero: true), ymm1, sae
         #   vcvtph2ps zmm0, ymm1, sae
-        def vcvtph2ps(*operands,**kwargs) = add_instruction(Instructions::VCVTPH2PS,*operands,**kwargs)
+        def vcvtph2ps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPH2PS,operand1,operand2,*operands,**kwargs)
         # Convert Half-Precision FP Values to Single-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPH2PSX]
         # @example
@@ -6591,7 +6591,7 @@ module Ronin
         #   vcvtph2psx zmm0, ymm1
         #   vcvtph2psx opmask(zmm0, k1, zero: true), ymm1, sae
         #   vcvtph2psx zmm0, ymm1, sae
-        def vcvtph2psx(*operands,**kwargs) = add_instruction(Instructions::VCVTPH2PSX,*operands,**kwargs)
+        def vcvtph2psx(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPH2PSX,operand1,operand2,*operands,**kwargs)
         # Convert Packed Half Precision Floating-Point Values to Packed Singed Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPH2QQ]
         # @example
@@ -6609,7 +6609,7 @@ module Ronin
         #   vcvtph2qq zmm0, xmm1
         #   vcvtph2qq opmask(zmm0, k1, zero: true), xmm1, er
         #   vcvtph2qq zmm0, xmm1, er
-        def vcvtph2qq(*operands,**kwargs) = add_instruction(Instructions::VCVTPH2QQ,*operands,**kwargs)
+        def vcvtph2qq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPH2QQ,operand1,operand2,*operands,**kwargs)
         # Convert Packed Half-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPH2UDQ]
         # @example
@@ -6627,7 +6627,7 @@ module Ronin
         #   vcvtph2udq zmm0, ymm1
         #   vcvtph2udq opmask(zmm0, k1, zero: true), ymm1, er
         #   vcvtph2udq zmm0, ymm1, er
-        def vcvtph2udq(*operands,**kwargs) = add_instruction(Instructions::VCVTPH2UDQ,*operands,**kwargs)
+        def vcvtph2udq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPH2UDQ,operand1,operand2,*operands,**kwargs)
         # Convert Packed Half Precision Floating-Point Values to Packed Unsigned Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPH2UQQ]
         # @example
@@ -6645,7 +6645,7 @@ module Ronin
         #   vcvtph2uqq zmm0, xmm1
         #   vcvtph2uqq opmask(zmm0, k1, zero: true), xmm1, er
         #   vcvtph2uqq zmm0, xmm1, er
-        def vcvtph2uqq(*operands,**kwargs) = add_instruction(Instructions::VCVTPH2UQQ,*operands,**kwargs)
+        def vcvtph2uqq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPH2UQQ,operand1,operand2,*operands,**kwargs)
         # Convert Packed Half-Precision Floating-Point Values to Packed Unsigned Word Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPH2UW]
         # @example
@@ -6663,7 +6663,7 @@ module Ronin
         #   vcvtph2uw zmm0, zmm1
         #   vcvtph2uw opmask(zmm0, k1, zero: true), zmm1, er
         #   vcvtph2uw zmm0, zmm1, er
-        def vcvtph2uw(*operands,**kwargs) = add_instruction(Instructions::VCVTPH2UW,*operands,**kwargs)
+        def vcvtph2uw(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPH2UW,operand1,operand2,*operands,**kwargs)
         # Convert Packed Half-Precision Floating-Point Values to Packed Word Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPH2W]
         # @example
@@ -6681,7 +6681,7 @@ module Ronin
         #   vcvtph2w zmm0, zmm1
         #   vcvtph2w opmask(zmm0, k1, zero: true), zmm1, er
         #   vcvtph2w zmm0, zmm1, er
-        def vcvtph2w(*operands,**kwargs) = add_instruction(Instructions::VCVTPH2W,*operands,**kwargs)
+        def vcvtph2w(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPH2W,operand1,operand2,*operands,**kwargs)
         # Convert Packed Single-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPS2DQ]
         # @example
@@ -6701,7 +6701,7 @@ module Ronin
         #   vcvtps2dq zmm0, zmm1
         #   vcvtps2dq opmask(zmm0, k1, zero: true), zmm1, er
         #   vcvtps2dq zmm0, zmm1, er
-        def vcvtps2dq(*operands,**kwargs) = add_instruction(Instructions::VCVTPS2DQ,*operands,**kwargs)
+        def vcvtps2dq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPS2DQ,operand1,operand2,*operands,**kwargs)
         # Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPS2PD]
         # @example
@@ -6721,7 +6721,7 @@ module Ronin
         #   vcvtps2pd zmm0, ymm1
         #   vcvtps2pd opmask(zmm0, k1, zero: true), ymm1, sae
         #   vcvtps2pd zmm0, ymm1, sae
-        def vcvtps2pd(*operands,**kwargs) = add_instruction(Instructions::VCVTPS2PD,*operands,**kwargs)
+        def vcvtps2pd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPS2PD,operand1,operand2,*operands,**kwargs)
         # Convert Single-Precision FP value to Half-Precision FP value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPS2PH]
         # @example
@@ -6739,7 +6739,7 @@ module Ronin
         #   vcvtps2ph [rax], zmm1, 0x03
         #   vcvtps2ph opmask(ymm0, k1, zero: true), zmm1, sae, 0x04
         #   vcvtps2ph ymm0, zmm1, sae, 0x04
-        def vcvtps2ph(*operands,**kwargs) = add_instruction(Instructions::VCVTPS2PH,*operands,**kwargs)
+        def vcvtps2ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTPS2PH,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Single-Precision FP value to Half-Precision FP value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPS2PHX]
         # @example
@@ -6757,7 +6757,7 @@ module Ronin
         #   vcvtps2phx ymm0, zmm1
         #   vcvtps2phx opmask(ymm0, k1, zero: true), zmm1, er
         #   vcvtps2phx ymm0, zmm1, er
-        def vcvtps2phx(*operands,**kwargs) = add_instruction(Instructions::VCVTPS2PHX,*operands,**kwargs)
+        def vcvtps2phx(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPS2PHX,operand1,operand2,*operands,**kwargs)
         # Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPS2QQ]
         # @example
@@ -6775,7 +6775,7 @@ module Ronin
         #   vcvtps2qq zmm0, ymm1
         #   vcvtps2qq opmask(zmm0, k1, zero: true), ymm1, er
         #   vcvtps2qq zmm0, ymm1, er
-        def vcvtps2qq(*operands,**kwargs) = add_instruction(Instructions::VCVTPS2QQ,*operands,**kwargs)
+        def vcvtps2qq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPS2QQ,operand1,operand2,*operands,**kwargs)
         # Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPS2UDQ]
         # @example
@@ -6793,7 +6793,7 @@ module Ronin
         #   vcvtps2udq zmm0, zmm1
         #   vcvtps2udq opmask(zmm0, k1, zero: true), zmm1, er
         #   vcvtps2udq zmm0, zmm1, er
-        def vcvtps2udq(*operands,**kwargs) = add_instruction(Instructions::VCVTPS2UDQ,*operands,**kwargs)
+        def vcvtps2udq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPS2UDQ,operand1,operand2,*operands,**kwargs)
         # Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTPS2UQQ]
         # @example
@@ -6811,7 +6811,7 @@ module Ronin
         #   vcvtps2uqq zmm0, ymm1
         #   vcvtps2uqq opmask(zmm0, k1, zero: true), ymm1, er
         #   vcvtps2uqq zmm0, ymm1, er
-        def vcvtps2uqq(*operands,**kwargs) = add_instruction(Instructions::VCVTPS2UQQ,*operands,**kwargs)
+        def vcvtps2uqq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTPS2UQQ,operand1,operand2,*operands,**kwargs)
         # Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTQQ2PD]
         # @example
@@ -6829,7 +6829,7 @@ module Ronin
         #   vcvtqq2pd zmm0, zmm1
         #   vcvtqq2pd opmask(zmm0, k1, zero: true), zmm1, er
         #   vcvtqq2pd zmm0, zmm1, er
-        def vcvtqq2pd(*operands,**kwargs) = add_instruction(Instructions::VCVTQQ2PD,*operands,**kwargs)
+        def vcvtqq2pd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTQQ2PD,operand1,operand2,*operands,**kwargs)
         # Convert Packed Quadword Integers to Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTQQ2PH]
         # @example
@@ -6847,7 +6847,7 @@ module Ronin
         #   vcvtqq2ph xmm0, zmm1
         #   vcvtqq2ph opmask(xmm0, k1, zero: true), zmm1, er
         #   vcvtqq2ph xmm0, zmm1, er
-        def vcvtqq2ph(*operands,**kwargs) = add_instruction(Instructions::VCVTQQ2PH,*operands,**kwargs)
+        def vcvtqq2ph(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTQQ2PH,operand1,operand2,*operands,**kwargs)
         # Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTQQ2PS]
         # @example
@@ -6865,7 +6865,7 @@ module Ronin
         #   vcvtqq2ps ymm0, zmm1
         #   vcvtqq2ps opmask(ymm0, k1, zero: true), zmm1, er
         #   vcvtqq2ps ymm0, zmm1, er
-        def vcvtqq2ps(*operands,**kwargs) = add_instruction(Instructions::VCVTQQ2PS,*operands,**kwargs)
+        def vcvtqq2ps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTQQ2PS,operand1,operand2,*operands,**kwargs)
         # Convert Scalar Double-Precision FP Value to Scalar Half-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSD2SH]
         # @example
@@ -6875,7 +6875,7 @@ module Ronin
         #   vcvtsd2sh xmm0, xmm1, [rcx]
         #   vcvtsd2sh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vcvtsd2sh xmm0, xmm1, xmm2, er
-        def vcvtsd2sh(*operands,**kwargs) = add_instruction(Instructions::VCVTSD2SH,*operands,**kwargs)
+        def vcvtsd2sh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTSD2SH,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Scalar Double-Precision FP Value to Integer
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSD2SI]
         # @example
@@ -6885,7 +6885,7 @@ module Ronin
         #   vcvtsd2si rax, [rbx]
         #   vcvtsd2si eax, xmm1, er
         #   vcvtsd2si rax, xmm1, er
-        def vcvtsd2si(*operands,**kwargs) = add_instruction(Instructions::VCVTSD2SI,*operands,**kwargs)
+        def vcvtsd2si(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTSD2SI,operand1,operand2,*operands,**kwargs)
         # Convert Scalar Double-Precision FP Value to Scalar Single-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSD2SS]
         # @example
@@ -6895,7 +6895,7 @@ module Ronin
         #   vcvtsd2ss xmm0, xmm1, [rcx]
         #   vcvtsd2ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vcvtsd2ss xmm0, xmm1, xmm2, er
-        def vcvtsd2ss(*operands,**kwargs) = add_instruction(Instructions::VCVTSD2SS,*operands,**kwargs)
+        def vcvtsd2ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTSD2SS,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Scalar Double-Precision Floating-Point Value to Unsigned Doubleword Integer
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSD2USI]
         # @example
@@ -6905,7 +6905,7 @@ module Ronin
         #   vcvtsd2usi rax, [rbx]
         #   vcvtsd2usi eax, xmm1, er
         #   vcvtsd2usi rax, xmm1, er
-        def vcvtsd2usi(*operands,**kwargs) = add_instruction(Instructions::VCVTSD2USI,*operands,**kwargs)
+        def vcvtsd2usi(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTSD2USI,operand1,operand2,*operands,**kwargs)
         # Convert Scalar Half-Precision FP Value to Scalar Double-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSH2SD]
         # @example
@@ -6915,7 +6915,7 @@ module Ronin
         #   vcvtsh2sd xmm0, xmm1, [rcx]
         #   vcvtsh2sd opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vcvtsh2sd xmm0, xmm1, xmm2, sae
-        def vcvtsh2sd(*operands,**kwargs) = add_instruction(Instructions::VCVTSH2SD,*operands,**kwargs)
+        def vcvtsh2sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTSH2SD,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Scalar Half-Precision FP Value to Dword Integer
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSH2SI]
         # @example
@@ -6925,7 +6925,7 @@ module Ronin
         #   vcvtsh2si rax, [rbx]
         #   vcvtsh2si eax, xmm1, er
         #   vcvtsh2si rax, xmm1, er
-        def vcvtsh2si(*operands,**kwargs) = add_instruction(Instructions::VCVTSH2SI,*operands,**kwargs)
+        def vcvtsh2si(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTSH2SI,operand1,operand2,*operands,**kwargs)
         # Convert Scalar Half-Precision FP Value to Scalar Double-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSH2SS]
         # @example
@@ -6935,7 +6935,7 @@ module Ronin
         #   vcvtsh2ss xmm0, xmm1, [rcx]
         #   vcvtsh2ss opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vcvtsh2ss xmm0, xmm1, xmm2, sae
-        def vcvtsh2ss(*operands,**kwargs) = add_instruction(Instructions::VCVTSH2SS,*operands,**kwargs)
+        def vcvtsh2ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTSH2SS,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Scalar Half-Precision Floating-Point Value to Unsigned Doubleword Integer
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSH2USI]
         # @example
@@ -6945,7 +6945,7 @@ module Ronin
         #   vcvtsh2usi rax, [rbx]
         #   vcvtsh2usi eax, xmm1, er
         #   vcvtsh2usi rax, xmm1, er
-        def vcvtsh2usi(*operands,**kwargs) = add_instruction(Instructions::VCVTSH2USI,*operands,**kwargs)
+        def vcvtsh2usi(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTSH2USI,operand1,operand2,*operands,**kwargs)
         # Convert Dword Integer to Scalar Double-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSI2SD]
         # @example
@@ -6953,7 +6953,7 @@ module Ronin
         #   vcvtsi2sd xmm0, xmm1, rcx
         #   vcvtsi2sd xmm0, xmm1, [rcx]
         #   vcvtsi2sd xmm0, xmm1, er, rdx
-        def vcvtsi2sd(*operands,**kwargs) = add_instruction(Instructions::VCVTSI2SD,*operands,**kwargs)
+        def vcvtsi2sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTSI2SD,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Dword Integer to Scalar Half-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSI2SH]
         # @example
@@ -6962,7 +6962,7 @@ module Ronin
         #   vcvtsi2sh xmm0, xmm1, [rcx]
         #   vcvtsi2sh xmm0, xmm1, er, edx
         #   vcvtsi2sh xmm0, xmm1, er, rdx
-        def vcvtsi2sh(*operands,**kwargs) = add_instruction(Instructions::VCVTSI2SH,*operands,**kwargs)
+        def vcvtsi2sh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTSI2SH,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Dword Integer to Scalar Single-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSI2SS]
         # @example
@@ -6971,7 +6971,7 @@ module Ronin
         #   vcvtsi2ss xmm0, xmm1, [rcx]
         #   vcvtsi2ss xmm0, xmm1, er, edx
         #   vcvtsi2ss xmm0, xmm1, er, rdx
-        def vcvtsi2ss(*operands,**kwargs) = add_instruction(Instructions::VCVTSI2SS,*operands,**kwargs)
+        def vcvtsi2ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTSI2SS,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSS2SD]
         # @example
@@ -6981,7 +6981,7 @@ module Ronin
         #   vcvtss2sd xmm0, xmm1, [rcx]
         #   vcvtss2sd opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vcvtss2sd xmm0, xmm1, xmm2, sae
-        def vcvtss2sd(*operands,**kwargs) = add_instruction(Instructions::VCVTSS2SD,*operands,**kwargs)
+        def vcvtss2sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTSS2SD,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Scalar Single-Precision FP Value to Scalar Half-Precision FP Value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSS2SH]
         # @example
@@ -6991,7 +6991,7 @@ module Ronin
         #   vcvtss2sh xmm0, xmm1, [rcx]
         #   vcvtss2sh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vcvtss2sh xmm0, xmm1, xmm2, er
-        def vcvtss2sh(*operands,**kwargs) = add_instruction(Instructions::VCVTSS2SH,*operands,**kwargs)
+        def vcvtss2sh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTSS2SH,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Scalar Single-Precision FP Value to Dword Integer
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSS2SI]
         # @example
@@ -7001,7 +7001,7 @@ module Ronin
         #   vcvtss2si rax, [rbx]
         #   vcvtss2si eax, xmm1, er
         #   vcvtss2si rax, xmm1, er
-        def vcvtss2si(*operands,**kwargs) = add_instruction(Instructions::VCVTSS2SI,*operands,**kwargs)
+        def vcvtss2si(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTSS2SI,operand1,operand2,*operands,**kwargs)
         # Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer
         # @return [Ronin::ASM::X86_64::Instructions::VCVTSS2USI]
         # @example
@@ -7011,7 +7011,7 @@ module Ronin
         #   vcvtss2usi rax, [rbx]
         #   vcvtss2usi eax, xmm1, er
         #   vcvtss2usi rax, xmm1, er
-        def vcvtss2usi(*operands,**kwargs) = add_instruction(Instructions::VCVTSS2USI,*operands,**kwargs)
+        def vcvtss2usi(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTSS2USI,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPD2DQ]
         # @example
@@ -7030,7 +7030,7 @@ module Ronin
         #   vcvttpd2dq ymm0, zmm1
         #   vcvttpd2dq opmask(ymm0, k1, zero: true), zmm1, sae
         #   vcvttpd2dq ymm0, zmm1, sae
-        def vcvttpd2dq(*operands,**kwargs) = add_instruction(Instructions::VCVTTPD2DQ,*operands,**kwargs)
+        def vcvttpd2dq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPD2DQ,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPD2QQ]
         # @example
@@ -7048,7 +7048,7 @@ module Ronin
         #   vcvttpd2qq zmm0, zmm1
         #   vcvttpd2qq opmask(zmm0, k1, zero: true), zmm1, sae
         #   vcvttpd2qq zmm0, zmm1, sae
-        def vcvttpd2qq(*operands,**kwargs) = add_instruction(Instructions::VCVTTPD2QQ,*operands,**kwargs)
+        def vcvttpd2qq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPD2QQ,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPD2UDQ]
         # @example
@@ -7066,7 +7066,7 @@ module Ronin
         #   vcvttpd2udq ymm0, zmm1
         #   vcvttpd2udq opmask(ymm0, k1, zero: true), zmm1, sae
         #   vcvttpd2udq ymm0, zmm1, sae
-        def vcvttpd2udq(*operands,**kwargs) = add_instruction(Instructions::VCVTTPD2UDQ,*operands,**kwargs)
+        def vcvttpd2udq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPD2UDQ,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPD2UQQ]
         # @example
@@ -7084,7 +7084,7 @@ module Ronin
         #   vcvttpd2uqq zmm0, zmm1
         #   vcvttpd2uqq opmask(zmm0, k1, zero: true), zmm1, sae
         #   vcvttpd2uqq zmm0, zmm1, sae
-        def vcvttpd2uqq(*operands,**kwargs) = add_instruction(Instructions::VCVTTPD2UQQ,*operands,**kwargs)
+        def vcvttpd2uqq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPD2UQQ,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Half-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPH2DQ]
         # @example
@@ -7102,7 +7102,7 @@ module Ronin
         #   vcvttph2dq zmm0, ymm1
         #   vcvttph2dq opmask(zmm0, k1, zero: true), ymm1, sae
         #   vcvttph2dq zmm0, ymm1, sae
-        def vcvttph2dq(*operands,**kwargs) = add_instruction(Instructions::VCVTTPH2DQ,*operands,**kwargs)
+        def vcvttph2dq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPH2DQ,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Half Precision Floating-Point Values to Packed Singed Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPH2QQ]
         # @example
@@ -7120,7 +7120,7 @@ module Ronin
         #   vcvttph2qq zmm0, xmm1
         #   vcvttph2qq opmask(zmm0, k1, zero: true), xmm1, sae
         #   vcvttph2qq zmm0, xmm1, sae
-        def vcvttph2qq(*operands,**kwargs) = add_instruction(Instructions::VCVTTPH2QQ,*operands,**kwargs)
+        def vcvttph2qq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPH2QQ,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Half-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPH2UDQ]
         # @example
@@ -7138,7 +7138,7 @@ module Ronin
         #   vcvttph2udq zmm0, ymm1
         #   vcvttph2udq opmask(zmm0, k1, zero: true), ymm1, sae
         #   vcvttph2udq zmm0, ymm1, sae
-        def vcvttph2udq(*operands,**kwargs) = add_instruction(Instructions::VCVTTPH2UDQ,*operands,**kwargs)
+        def vcvttph2udq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPH2UDQ,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Half Precision Floating-Point Values to Packed Unsigned Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPH2UQQ]
         # @example
@@ -7156,7 +7156,7 @@ module Ronin
         #   vcvttph2uqq zmm0, xmm1
         #   vcvttph2uqq opmask(zmm0, k1, zero: true), xmm1, sae
         #   vcvttph2uqq zmm0, xmm1, sae
-        def vcvttph2uqq(*operands,**kwargs) = add_instruction(Instructions::VCVTTPH2UQQ,*operands,**kwargs)
+        def vcvttph2uqq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPH2UQQ,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Half-Precision Floating-Point Values to Packed Unsigned Word Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPH2UW]
         # @example
@@ -7174,7 +7174,7 @@ module Ronin
         #   vcvttph2uw zmm0, zmm1
         #   vcvttph2uw opmask(zmm0, k1, zero: true), zmm1, sae
         #   vcvttph2uw zmm0, zmm1, sae
-        def vcvttph2uw(*operands,**kwargs) = add_instruction(Instructions::VCVTTPH2UW,*operands,**kwargs)
+        def vcvttph2uw(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPH2UW,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Half-Precision Floating-Point Values to Packed Word Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPH2W]
         # @example
@@ -7192,7 +7192,7 @@ module Ronin
         #   vcvttph2w zmm0, zmm1
         #   vcvttph2w opmask(zmm0, k1, zero: true), zmm1, sae
         #   vcvttph2w zmm0, zmm1, sae
-        def vcvttph2w(*operands,**kwargs) = add_instruction(Instructions::VCVTTPH2W,*operands,**kwargs)
+        def vcvttph2w(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPH2W,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPS2DQ]
         # @example
@@ -7212,7 +7212,7 @@ module Ronin
         #   vcvttps2dq zmm0, zmm1
         #   vcvttps2dq opmask(zmm0, k1, zero: true), zmm1, sae
         #   vcvttps2dq zmm0, zmm1, sae
-        def vcvttps2dq(*operands,**kwargs) = add_instruction(Instructions::VCVTTPS2DQ,*operands,**kwargs)
+        def vcvttps2dq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPS2DQ,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPS2QQ]
         # @example
@@ -7230,7 +7230,7 @@ module Ronin
         #   vcvttps2qq zmm0, ymm1
         #   vcvttps2qq opmask(zmm0, k1, zero: true), ymm1, sae
         #   vcvttps2qq zmm0, ymm1, sae
-        def vcvttps2qq(*operands,**kwargs) = add_instruction(Instructions::VCVTTPS2QQ,*operands,**kwargs)
+        def vcvttps2qq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPS2QQ,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPS2UDQ]
         # @example
@@ -7248,7 +7248,7 @@ module Ronin
         #   vcvttps2udq zmm0, zmm1
         #   vcvttps2udq opmask(zmm0, k1, zero: true), zmm1, sae
         #   vcvttps2udq zmm0, zmm1, sae
-        def vcvttps2udq(*operands,**kwargs) = add_instruction(Instructions::VCVTTPS2UDQ,*operands,**kwargs)
+        def vcvttps2udq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPS2UDQ,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTPS2UQQ]
         # @example
@@ -7266,7 +7266,7 @@ module Ronin
         #   vcvttps2uqq zmm0, ymm1
         #   vcvttps2uqq opmask(zmm0, k1, zero: true), ymm1, sae
         #   vcvttps2uqq zmm0, ymm1, sae
-        def vcvttps2uqq(*operands,**kwargs) = add_instruction(Instructions::VCVTTPS2UQQ,*operands,**kwargs)
+        def vcvttps2uqq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTPS2UQQ,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Scalar Double-Precision FP Value to Signed Integer
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTSD2SI]
         # @example
@@ -7276,7 +7276,7 @@ module Ronin
         #   vcvttsd2si rax, [rbx]
         #   vcvttsd2si eax, xmm1, sae
         #   vcvttsd2si rax, xmm1, sae
-        def vcvttsd2si(*operands,**kwargs) = add_instruction(Instructions::VCVTTSD2SI,*operands,**kwargs)
+        def vcvttsd2si(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTSD2SI,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Scalar Double-Precision Floating-Point Value to Unsigned Integer
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTSD2USI]
         # @example
@@ -7286,7 +7286,7 @@ module Ronin
         #   vcvttsd2usi rax, [rbx]
         #   vcvttsd2usi eax, xmm1, sae
         #   vcvttsd2usi rax, xmm1, sae
-        def vcvttsd2usi(*operands,**kwargs) = add_instruction(Instructions::VCVTTSD2USI,*operands,**kwargs)
+        def vcvttsd2usi(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTSD2USI,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Scalar Half-Precision FP Value to Dword Integer
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTSH2SI]
         # @example
@@ -7296,7 +7296,7 @@ module Ronin
         #   vcvttsh2si rax, [rbx]
         #   vcvttsh2si eax, xmm1, sae
         #   vcvttsh2si rax, xmm1, sae
-        def vcvttsh2si(*operands,**kwargs) = add_instruction(Instructions::VCVTTSH2SI,*operands,**kwargs)
+        def vcvttsh2si(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTSH2SI,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Scalar Half-Precision Floating-Point Value to Unsigned Integer
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTSH2USI]
         # @example
@@ -7306,7 +7306,7 @@ module Ronin
         #   vcvttsh2usi rax, [rbx]
         #   vcvttsh2usi eax, xmm1, sae
         #   vcvttsh2usi rax, xmm1, sae
-        def vcvttsh2usi(*operands,**kwargs) = add_instruction(Instructions::VCVTTSH2USI,*operands,**kwargs)
+        def vcvttsh2usi(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTSH2USI,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Scalar Single-Precision FP Value to Dword Integer
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTSS2SI]
         # @example
@@ -7316,7 +7316,7 @@ module Ronin
         #   vcvttss2si rax, [rbx]
         #   vcvttss2si eax, xmm1, sae
         #   vcvttss2si rax, xmm1, sae
-        def vcvttss2si(*operands,**kwargs) = add_instruction(Instructions::VCVTTSS2SI,*operands,**kwargs)
+        def vcvttss2si(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTSS2SI,operand1,operand2,*operands,**kwargs)
         # Convert with Truncation Scalar Single-Precision Floating-Point Value to Unsigned Integer
         # @return [Ronin::ASM::X86_64::Instructions::VCVTTSS2USI]
         # @example
@@ -7326,7 +7326,7 @@ module Ronin
         #   vcvttss2usi rax, [rbx]
         #   vcvttss2usi eax, xmm1, sae
         #   vcvttss2usi rax, xmm1, sae
-        def vcvttss2usi(*operands,**kwargs) = add_instruction(Instructions::VCVTTSS2USI,*operands,**kwargs)
+        def vcvttss2usi(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTTSS2USI,operand1,operand2,*operands,**kwargs)
         # Convert Packed Unsigned Doubleword Integers to Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTUDQ2PD]
         # @example
@@ -7342,7 +7342,7 @@ module Ronin
         #   vcvtudq2pd ymm0, xmm1
         #   vcvtudq2pd zmm0, bcst([rbx], {1=>8})
         #   vcvtudq2pd zmm0, ymm1
-        def vcvtudq2pd(*operands,**kwargs) = add_instruction(Instructions::VCVTUDQ2PD,*operands,**kwargs)
+        def vcvtudq2pd(operand1,operand2,**kwargs) = add_instruction(Instructions::VCVTUDQ2PD,operand1,operand2,**kwargs)
         # Convert Packed Unsigned Doubleword Integers to Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTUDQ2PH]
         # @example
@@ -7360,7 +7360,7 @@ module Ronin
         #   vcvtudq2ph ymm0, zmm1
         #   vcvtudq2ph opmask(ymm0, k1, zero: true), zmm1, er
         #   vcvtudq2ph ymm0, zmm1, er
-        def vcvtudq2ph(*operands,**kwargs) = add_instruction(Instructions::VCVTUDQ2PH,*operands,**kwargs)
+        def vcvtudq2ph(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTUDQ2PH,operand1,operand2,*operands,**kwargs)
         # Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTUDQ2PS]
         # @example
@@ -7378,7 +7378,7 @@ module Ronin
         #   vcvtudq2ps zmm0, zmm1
         #   vcvtudq2ps opmask(zmm0, k1, zero: true), zmm1, er
         #   vcvtudq2ps zmm0, zmm1, er
-        def vcvtudq2ps(*operands,**kwargs) = add_instruction(Instructions::VCVTUDQ2PS,*operands,**kwargs)
+        def vcvtudq2ps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTUDQ2PS,operand1,operand2,*operands,**kwargs)
         # Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTUQQ2PD]
         # @example
@@ -7396,7 +7396,7 @@ module Ronin
         #   vcvtuqq2pd zmm0, zmm1
         #   vcvtuqq2pd opmask(zmm0, k1, zero: true), zmm1, er
         #   vcvtuqq2pd zmm0, zmm1, er
-        def vcvtuqq2pd(*operands,**kwargs) = add_instruction(Instructions::VCVTUQQ2PD,*operands,**kwargs)
+        def vcvtuqq2pd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTUQQ2PD,operand1,operand2,*operands,**kwargs)
         # Convert Packed Unsigned Quadword Integers to Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTUQQ2PH]
         # @example
@@ -7414,7 +7414,7 @@ module Ronin
         #   vcvtuqq2ph xmm0, zmm1
         #   vcvtuqq2ph opmask(xmm0, k1, zero: true), zmm1, er
         #   vcvtuqq2ph xmm0, zmm1, er
-        def vcvtuqq2ph(*operands,**kwargs) = add_instruction(Instructions::VCVTUQQ2PH,*operands,**kwargs)
+        def vcvtuqq2ph(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTUQQ2PH,operand1,operand2,*operands,**kwargs)
         # Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTUQQ2PS]
         # @example
@@ -7432,7 +7432,7 @@ module Ronin
         #   vcvtuqq2ps ymm0, zmm1
         #   vcvtuqq2ps opmask(ymm0, k1, zero: true), zmm1, er
         #   vcvtuqq2ps ymm0, zmm1, er
-        def vcvtuqq2ps(*operands,**kwargs) = add_instruction(Instructions::VCVTUQQ2PS,*operands,**kwargs)
+        def vcvtuqq2ps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTUQQ2PS,operand1,operand2,*operands,**kwargs)
         # Convert Unsigned Integer to Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTUSI2SD]
         # @example
@@ -7440,7 +7440,7 @@ module Ronin
         #   vcvtusi2sd xmm0, xmm1, rcx
         #   vcvtusi2sd xmm0, xmm1, [rcx]
         #   vcvtusi2sd xmm0, xmm1, er, rdx
-        def vcvtusi2sd(*operands,**kwargs) = add_instruction(Instructions::VCVTUSI2SD,*operands,**kwargs)
+        def vcvtusi2sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTUSI2SD,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Unsigned Integer to Scalar Half-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTUSI2SH]
         # @example
@@ -7449,7 +7449,7 @@ module Ronin
         #   vcvtusi2sh xmm0, xmm1, [rcx]
         #   vcvtusi2sh xmm0, xmm1, er, edx
         #   vcvtusi2sh xmm0, xmm1, er, rdx
-        def vcvtusi2sh(*operands,**kwargs) = add_instruction(Instructions::VCVTUSI2SH,*operands,**kwargs)
+        def vcvtusi2sh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTUSI2SH,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Unsigned Integer to Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VCVTUSI2SS]
         # @example
@@ -7458,7 +7458,7 @@ module Ronin
         #   vcvtusi2ss xmm0, xmm1, [rcx]
         #   vcvtusi2ss xmm0, xmm1, er, edx
         #   vcvtusi2ss xmm0, xmm1, er, rdx
-        def vcvtusi2ss(*operands,**kwargs) = add_instruction(Instructions::VCVTUSI2SS,*operands,**kwargs)
+        def vcvtusi2ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VCVTUSI2SS,operand1,operand2,operand3,*operands,**kwargs)
         # Convert Packed Unsigned Word Integers to Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTUW2PH]
         # @example
@@ -7476,7 +7476,7 @@ module Ronin
         #   vcvtuw2ph zmm0, zmm1
         #   vcvtuw2ph opmask(zmm0, k1, zero: true), zmm1, er
         #   vcvtuw2ph zmm0, zmm1, er
-        def vcvtuw2ph(*operands,**kwargs) = add_instruction(Instructions::VCVTUW2PH,*operands,**kwargs)
+        def vcvtuw2ph(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTUW2PH,operand1,operand2,*operands,**kwargs)
         # Convert Packed Word Integers to Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VCVTW2PH]
         # @example
@@ -7494,7 +7494,7 @@ module Ronin
         #   vcvtw2ph zmm0, zmm1
         #   vcvtw2ph opmask(zmm0, k1, zero: true), zmm1, er
         #   vcvtw2ph zmm0, zmm1, er
-        def vcvtw2ph(*operands,**kwargs) = add_instruction(Instructions::VCVTW2PH,*operands,**kwargs)
+        def vcvtw2ph(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VCVTW2PH,operand1,operand2,*operands,**kwargs)
         # Double Block Packed Sum-Absolute-Differences on Unsigned Bytes
         # @return [Ronin::ASM::X86_64::Instructions::VDBPSADBW]
         # @example
@@ -7510,7 +7510,7 @@ module Ronin
         #   vdbpsadbw ymm0, ymm1, [rcx], 0x04
         #   vdbpsadbw zmm0, zmm1, zmm2, 0x04
         #   vdbpsadbw zmm0, zmm1, [rcx], 0x04
-        def vdbpsadbw(*operands,**kwargs) = add_instruction(Instructions::VDBPSADBW,*operands,**kwargs)
+        def vdbpsadbw(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VDBPSADBW,operand1,operand2,operand3,operand4,**kwargs)
         # Divide Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VDIVPD]
         # @example
@@ -7530,7 +7530,7 @@ module Ronin
         #   vdivpd zmm0, zmm1, zmm2
         #   vdivpd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vdivpd zmm0, zmm1, zmm2, er
-        def vdivpd(*operands,**kwargs) = add_instruction(Instructions::VDIVPD,*operands,**kwargs)
+        def vdivpd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VDIVPD,operand1,operand2,operand3,*operands,**kwargs)
         # Divide Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VDIVPH]
         # @example
@@ -7548,7 +7548,7 @@ module Ronin
         #   vdivph zmm0, zmm1, zmm2
         #   vdivph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vdivph zmm0, zmm1, zmm2, er
-        def vdivph(*operands,**kwargs) = add_instruction(Instructions::VDIVPH,*operands,**kwargs)
+        def vdivph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VDIVPH,operand1,operand2,operand3,*operands,**kwargs)
         # Divide Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VDIVPS]
         # @example
@@ -7568,7 +7568,7 @@ module Ronin
         #   vdivps zmm0, zmm1, zmm2
         #   vdivps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vdivps zmm0, zmm1, zmm2, er
-        def vdivps(*operands,**kwargs) = add_instruction(Instructions::VDIVPS,*operands,**kwargs)
+        def vdivps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VDIVPS,operand1,operand2,operand3,*operands,**kwargs)
         # Divide Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VDIVSD]
         # @example
@@ -7578,7 +7578,7 @@ module Ronin
         #   vdivsd xmm0, xmm1, [rcx]
         #   vdivsd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vdivsd xmm0, xmm1, xmm2, er
-        def vdivsd(*operands,**kwargs) = add_instruction(Instructions::VDIVSD,*operands,**kwargs)
+        def vdivsd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VDIVSD,operand1,operand2,operand3,*operands,**kwargs)
         # Divide Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VDIVSH]
         # @example
@@ -7588,7 +7588,7 @@ module Ronin
         #   vdivsh xmm0, xmm1, [rcx]
         #   vdivsh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vdivsh xmm0, xmm1, xmm2, er
-        def vdivsh(*operands,**kwargs) = add_instruction(Instructions::VDIVSH,*operands,**kwargs)
+        def vdivsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VDIVSH,operand1,operand2,operand3,*operands,**kwargs)
         # Divide Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VDIVSS]
         # @example
@@ -7598,7 +7598,7 @@ module Ronin
         #   vdivss xmm0, xmm1, [rcx]
         #   vdivss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vdivss xmm0, xmm1, xmm2, er
-        def vdivss(*operands,**kwargs) = add_instruction(Instructions::VDIVSS,*operands,**kwargs)
+        def vdivss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VDIVSS,operand1,operand2,operand3,*operands,**kwargs)
         # Packed Dot Product of BFloat16 FP subvectors into Single-Precision FP values
         # @return [Ronin::ASM::X86_64::Instructions::VDPBF16PS]
         # @example
@@ -7614,13 +7614,13 @@ module Ronin
         #   vdpbf16ps ymm0, ymm1, ymm2
         #   vdpbf16ps zmm0, zmm1, bcst([rcx], {1=>16})
         #   vdpbf16ps zmm0, zmm1, zmm2
-        def vdpbf16ps(*operands,**kwargs) = add_instruction(Instructions::VDPBF16PS,*operands,**kwargs)
+        def vdpbf16ps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VDPBF16PS,operand1,operand2,operand3,**kwargs)
         # Dot Product of Packed Double Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VDPPD]
         # @example
         #   vdppd xmm0, xmm1, xmm2, 0x04
         #   vdppd xmm0, xmm1, [rcx], 0x04
-        def vdppd(*operands,**kwargs) = add_instruction(Instructions::VDPPD,*operands,**kwargs)
+        def vdppd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VDPPD,operand1,operand2,operand3,operand4,**kwargs)
         # Dot Product of Packed Single Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VDPPS]
         # @example
@@ -7628,7 +7628,7 @@ module Ronin
         #   vdpps xmm0, xmm1, [rcx], 0x04
         #   vdpps ymm0, ymm1, ymm2, 0x04
         #   vdpps ymm0, ymm1, [rcx], 0x04
-        def vdpps(*operands,**kwargs) = add_instruction(Instructions::VDPPS,*operands,**kwargs)
+        def vdpps(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VDPPS,operand1,operand2,operand3,operand4,**kwargs)
         # Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error
         # @return [Ronin::ASM::X86_64::Instructions::VEXP2PD]
         # @example
@@ -7638,7 +7638,7 @@ module Ronin
         #   vexp2pd zmm0, zmm1
         #   vexp2pd opmask(zmm0, k1, zero: true), zmm1, sae
         #   vexp2pd zmm0, zmm1, sae
-        def vexp2pd(*operands,**kwargs) = add_instruction(Instructions::VEXP2PD,*operands,**kwargs)
+        def vexp2pd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VEXP2PD,operand1,operand2,*operands,**kwargs)
         # Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error
         # @return [Ronin::ASM::X86_64::Instructions::VEXP2PS]
         # @example
@@ -7648,7 +7648,7 @@ module Ronin
         #   vexp2ps zmm0, zmm1
         #   vexp2ps opmask(zmm0, k1, zero: true), zmm1, sae
         #   vexp2ps zmm0, zmm1, sae
-        def vexp2ps(*operands,**kwargs) = add_instruction(Instructions::VEXP2PS,*operands,**kwargs)
+        def vexp2ps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VEXP2PS,operand1,operand2,*operands,**kwargs)
         # Load Sparse Packed Double-Precision Floating-Point Values from Dense Memory
         # @return [Ronin::ASM::X86_64::Instructions::VEXPANDPD]
         # @example
@@ -7664,7 +7664,7 @@ module Ronin
         #   vexpandpd ymm0, [rbx]
         #   vexpandpd zmm0, zmm1
         #   vexpandpd zmm0, [rbx]
-        def vexpandpd(*operands,**kwargs) = add_instruction(Instructions::VEXPANDPD,*operands,**kwargs)
+        def vexpandpd(operand1,operand2,**kwargs) = add_instruction(Instructions::VEXPANDPD,operand1,operand2,**kwargs)
         # Load Sparse Packed Single-Precision Floating-Point Values from Dense Memory
         # @return [Ronin::ASM::X86_64::Instructions::VEXPANDPS]
         # @example
@@ -7680,13 +7680,13 @@ module Ronin
         #   vexpandps ymm0, [rbx]
         #   vexpandps zmm0, zmm1
         #   vexpandps zmm0, [rbx]
-        def vexpandps(*operands,**kwargs) = add_instruction(Instructions::VEXPANDPS,*operands,**kwargs)
+        def vexpandps(operand1,operand2,**kwargs) = add_instruction(Instructions::VEXPANDPS,operand1,operand2,**kwargs)
         # Extract Packed Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VEXTRACTF128]
         # @example
         #   vextractf128 xmm0, ymm1, 0x03
         #   vextractf128 [rax], ymm1, 0x03
-        def vextractf128(*operands,**kwargs) = add_instruction(Instructions::VEXTRACTF128,*operands,**kwargs)
+        def vextractf128(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VEXTRACTF128,operand1,operand2,operand3,**kwargs)
         # Extract 128 Bits of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VEXTRACTF32X4]
         # @example
@@ -7698,7 +7698,7 @@ module Ronin
         #   vextractf32x4 xmm0, zmm1, 0x03
         #   vextractf32x4 [rax], ymm1, 0x03
         #   vextractf32x4 [rax], zmm1, 0x03
-        def vextractf32x4(*operands,**kwargs) = add_instruction(Instructions::VEXTRACTF32X4,*operands,**kwargs)
+        def vextractf32x4(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VEXTRACTF32X4,operand1,operand2,operand3,**kwargs)
         # Extract 256 Bits of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VEXTRACTF32X8]
         # @example
@@ -7706,7 +7706,7 @@ module Ronin
         #   vextractf32x8 opmask([rax], k1), zmm1, 0x03
         #   vextractf32x8 ymm0, zmm1, 0x03
         #   vextractf32x8 [rax], zmm1, 0x03
-        def vextractf32x8(*operands,**kwargs) = add_instruction(Instructions::VEXTRACTF32X8,*operands,**kwargs)
+        def vextractf32x8(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VEXTRACTF32X8,operand1,operand2,operand3,**kwargs)
         # Extract 128 Bits of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VEXTRACTF64X2]
         # @example
@@ -7718,7 +7718,7 @@ module Ronin
         #   vextractf64x2 xmm0, zmm1, 0x03
         #   vextractf64x2 [rax], ymm1, 0x03
         #   vextractf64x2 [rax], zmm1, 0x03
-        def vextractf64x2(*operands,**kwargs) = add_instruction(Instructions::VEXTRACTF64X2,*operands,**kwargs)
+        def vextractf64x2(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VEXTRACTF64X2,operand1,operand2,operand3,**kwargs)
         # Extract 256 Bits of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VEXTRACTF64X4]
         # @example
@@ -7726,13 +7726,13 @@ module Ronin
         #   vextractf64x4 opmask([rax], k1), zmm1, 0x03
         #   vextractf64x4 ymm0, zmm1, 0x03
         #   vextractf64x4 [rax], zmm1, 0x03
-        def vextractf64x4(*operands,**kwargs) = add_instruction(Instructions::VEXTRACTF64X4,*operands,**kwargs)
+        def vextractf64x4(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VEXTRACTF64X4,operand1,operand2,operand3,**kwargs)
         # Extract Packed Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VEXTRACTI128]
         # @example
         #   vextracti128 xmm0, ymm1, 0x03
         #   vextracti128 [rax], ymm1, 0x03
-        def vextracti128(*operands,**kwargs) = add_instruction(Instructions::VEXTRACTI128,*operands,**kwargs)
+        def vextracti128(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VEXTRACTI128,operand1,operand2,operand3,**kwargs)
         # Extract 128 Bits of Packed Doubleword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VEXTRACTI32X4]
         # @example
@@ -7744,7 +7744,7 @@ module Ronin
         #   vextracti32x4 xmm0, zmm1, 0x03
         #   vextracti32x4 [rax], ymm1, 0x03
         #   vextracti32x4 [rax], zmm1, 0x03
-        def vextracti32x4(*operands,**kwargs) = add_instruction(Instructions::VEXTRACTI32X4,*operands,**kwargs)
+        def vextracti32x4(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VEXTRACTI32X4,operand1,operand2,operand3,**kwargs)
         # Extract 256 Bits of Packed Doubleword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VEXTRACTI32X8]
         # @example
@@ -7752,7 +7752,7 @@ module Ronin
         #   vextracti32x8 opmask([rax], k1), zmm1, 0x03
         #   vextracti32x8 ymm0, zmm1, 0x03
         #   vextracti32x8 [rax], zmm1, 0x03
-        def vextracti32x8(*operands,**kwargs) = add_instruction(Instructions::VEXTRACTI32X8,*operands,**kwargs)
+        def vextracti32x8(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VEXTRACTI32X8,operand1,operand2,operand3,**kwargs)
         # Extract 128 Bits of Packed Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VEXTRACTI64X2]
         # @example
@@ -7764,7 +7764,7 @@ module Ronin
         #   vextracti64x2 xmm0, zmm1, 0x03
         #   vextracti64x2 [rax], ymm1, 0x03
         #   vextracti64x2 [rax], zmm1, 0x03
-        def vextracti64x2(*operands,**kwargs) = add_instruction(Instructions::VEXTRACTI64X2,*operands,**kwargs)
+        def vextracti64x2(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VEXTRACTI64X2,operand1,operand2,operand3,**kwargs)
         # Extract 256 Bits of Packed Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VEXTRACTI64X4]
         # @example
@@ -7772,13 +7772,13 @@ module Ronin
         #   vextracti64x4 opmask([rax], k1), zmm1, 0x03
         #   vextracti64x4 ymm0, zmm1, 0x03
         #   vextracti64x4 [rax], zmm1, 0x03
-        def vextracti64x4(*operands,**kwargs) = add_instruction(Instructions::VEXTRACTI64X4,*operands,**kwargs)
+        def vextracti64x4(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VEXTRACTI64X4,operand1,operand2,operand3,**kwargs)
         # Extract Packed Single Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VEXTRACTPS]
         # @example
         #   vextractps eax, xmm1, 0x03
         #   vextractps [rax], xmm1, 0x03
-        def vextractps(*operands,**kwargs) = add_instruction(Instructions::VEXTRACTPS,*operands,**kwargs)
+        def vextractps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VEXTRACTPS,operand1,operand2,operand3,**kwargs)
         # Fused Conjugate Multiply-Add of Complex Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFCMADDCPH]
         # @example
@@ -7796,7 +7796,7 @@ module Ronin
         #   vfcmaddcph zmm0, zmm1, zmm2
         #   vfcmaddcph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfcmaddcph zmm0, zmm1, zmm2, er
-        def vfcmaddcph(*operands,**kwargs) = add_instruction(Instructions::VFCMADDCPH,*operands,**kwargs)
+        def vfcmaddcph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFCMADDCPH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Conjugate Multiply-Add of Complex Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFCMADDCSH]
         # @example
@@ -7806,7 +7806,7 @@ module Ronin
         #   vfcmaddcsh xmm0, xmm1, [rcx]
         #   vfcmaddcsh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfcmaddcsh xmm0, xmm1, xmm2, er
-        def vfcmaddcsh(*operands,**kwargs) = add_instruction(Instructions::VFCMADDCSH,*operands,**kwargs)
+        def vfcmaddcsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFCMADDCSH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Conjugate Multiply of Complex Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFCMULCPH]
         # @example
@@ -7824,7 +7824,7 @@ module Ronin
         #   vfcmulcph zmm0, zmm1, zmm2
         #   vfcmulcph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfcmulcph zmm0, zmm1, zmm2, er
-        def vfcmulcph(*operands,**kwargs) = add_instruction(Instructions::VFCMULCPH,*operands,**kwargs)
+        def vfcmulcph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFCMULCPH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Conjugate Multiply of Complex Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFCMULCSH]
         # @example
@@ -7834,7 +7834,7 @@ module Ronin
         #   vfcmulcsh xmm0, xmm1, [rcx]
         #   vfcmulcsh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfcmulcsh xmm0, xmm1, xmm2, er
-        def vfcmulcsh(*operands,**kwargs) = add_instruction(Instructions::VFCMULCSH,*operands,**kwargs)
+        def vfcmulcsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFCMULCSH,operand1,operand2,operand3,*operands,**kwargs)
         # Fix Up Special Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFIXUPIMMPD]
         # @example
@@ -7852,7 +7852,7 @@ module Ronin
         #   vfixupimmpd zmm0, zmm1, zmm2, 0x04
         #   vfixupimmpd opmask(zmm0, k1, zero: true), zmm1, zmm2, sae, 0x05
         #   vfixupimmpd zmm0, zmm1, zmm2, sae, 0x05
-        def vfixupimmpd(*operands,**kwargs) = add_instruction(Instructions::VFIXUPIMMPD,*operands,**kwargs)
+        def vfixupimmpd(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VFIXUPIMMPD,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Fix Up Special Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFIXUPIMMPS]
         # @example
@@ -7870,7 +7870,7 @@ module Ronin
         #   vfixupimmps zmm0, zmm1, zmm2, 0x04
         #   vfixupimmps opmask(zmm0, k1, zero: true), zmm1, zmm2, sae, 0x05
         #   vfixupimmps zmm0, zmm1, zmm2, sae, 0x05
-        def vfixupimmps(*operands,**kwargs) = add_instruction(Instructions::VFIXUPIMMPS,*operands,**kwargs)
+        def vfixupimmps(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VFIXUPIMMPS,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Fix Up Special Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VFIXUPIMMSD]
         # @example
@@ -7880,7 +7880,7 @@ module Ronin
         #   vfixupimmsd xmm0, xmm1, [rcx], 0x04
         #   vfixupimmsd opmask(xmm0, k1, zero: true), xmm1, xmm2, sae, 0x05
         #   vfixupimmsd xmm0, xmm1, xmm2, sae, 0x05
-        def vfixupimmsd(*operands,**kwargs) = add_instruction(Instructions::VFIXUPIMMSD,*operands,**kwargs)
+        def vfixupimmsd(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VFIXUPIMMSD,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Fix Up Special Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VFIXUPIMMSS]
         # @example
@@ -7890,7 +7890,7 @@ module Ronin
         #   vfixupimmss xmm0, xmm1, [rcx], 0x04
         #   vfixupimmss opmask(xmm0, k1, zero: true), xmm1, xmm2, sae, 0x05
         #   vfixupimmss xmm0, xmm1, xmm2, sae, 0x05
-        def vfixupimmss(*operands,**kwargs) = add_instruction(Instructions::VFIXUPIMMSS,*operands,**kwargs)
+        def vfixupimmss(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VFIXUPIMMSS,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Fused Multiply-Add of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD132PD]
         # @example
@@ -7910,7 +7910,7 @@ module Ronin
         #   vfmadd132pd zmm0, zmm1, zmm2
         #   vfmadd132pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmadd132pd zmm0, zmm1, zmm2, er
-        def vfmadd132pd(*operands,**kwargs) = add_instruction(Instructions::VFMADD132PD,*operands,**kwargs)
+        def vfmadd132pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD132PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD132PH]
         # @example
@@ -7928,7 +7928,7 @@ module Ronin
         #   vfmadd132ph zmm0, zmm1, zmm2
         #   vfmadd132ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmadd132ph zmm0, zmm1, zmm2, er
-        def vfmadd132ph(*operands,**kwargs) = add_instruction(Instructions::VFMADD132PH,*operands,**kwargs)
+        def vfmadd132ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD132PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD132PS]
         # @example
@@ -7948,7 +7948,7 @@ module Ronin
         #   vfmadd132ps zmm0, zmm1, zmm2
         #   vfmadd132ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmadd132ps zmm0, zmm1, zmm2, er
-        def vfmadd132ps(*operands,**kwargs) = add_instruction(Instructions::VFMADD132PS,*operands,**kwargs)
+        def vfmadd132ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD132PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD132SD]
         # @example
@@ -7958,7 +7958,7 @@ module Ronin
         #   vfmadd132sd xmm0, xmm1, [rcx]
         #   vfmadd132sd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmadd132sd xmm0, xmm1, xmm2, er
-        def vfmadd132sd(*operands,**kwargs) = add_instruction(Instructions::VFMADD132SD,*operands,**kwargs)
+        def vfmadd132sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD132SD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD132SS]
         # @example
@@ -7968,7 +7968,7 @@ module Ronin
         #   vfmadd132ss xmm0, xmm1, [rcx]
         #   vfmadd132ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmadd132ss xmm0, xmm1, xmm2, er
-        def vfmadd132ss(*operands,**kwargs) = add_instruction(Instructions::VFMADD132SS,*operands,**kwargs)
+        def vfmadd132ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD132SS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD213PD]
         # @example
@@ -7988,7 +7988,7 @@ module Ronin
         #   vfmadd213pd zmm0, zmm1, zmm2
         #   vfmadd213pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmadd213pd zmm0, zmm1, zmm2, er
-        def vfmadd213pd(*operands,**kwargs) = add_instruction(Instructions::VFMADD213PD,*operands,**kwargs)
+        def vfmadd213pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD213PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD213PH]
         # @example
@@ -8006,7 +8006,7 @@ module Ronin
         #   vfmadd213ph zmm0, zmm1, zmm2
         #   vfmadd213ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmadd213ph zmm0, zmm1, zmm2, er
-        def vfmadd213ph(*operands,**kwargs) = add_instruction(Instructions::VFMADD213PH,*operands,**kwargs)
+        def vfmadd213ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD213PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD213PS]
         # @example
@@ -8026,7 +8026,7 @@ module Ronin
         #   vfmadd213ps zmm0, zmm1, zmm2
         #   vfmadd213ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmadd213ps zmm0, zmm1, zmm2, er
-        def vfmadd213ps(*operands,**kwargs) = add_instruction(Instructions::VFMADD213PS,*operands,**kwargs)
+        def vfmadd213ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD213PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD213SD]
         # @example
@@ -8036,7 +8036,7 @@ module Ronin
         #   vfmadd213sd xmm0, xmm1, [rcx]
         #   vfmadd213sd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmadd213sd xmm0, xmm1, xmm2, er
-        def vfmadd213sd(*operands,**kwargs) = add_instruction(Instructions::VFMADD213SD,*operands,**kwargs)
+        def vfmadd213sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD213SD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD213SS]
         # @example
@@ -8046,7 +8046,7 @@ module Ronin
         #   vfmadd213ss xmm0, xmm1, [rcx]
         #   vfmadd213ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmadd213ss xmm0, xmm1, xmm2, er
-        def vfmadd213ss(*operands,**kwargs) = add_instruction(Instructions::VFMADD213SS,*operands,**kwargs)
+        def vfmadd213ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD213SS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD231PD]
         # @example
@@ -8066,7 +8066,7 @@ module Ronin
         #   vfmadd231pd zmm0, zmm1, zmm2
         #   vfmadd231pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmadd231pd zmm0, zmm1, zmm2, er
-        def vfmadd231pd(*operands,**kwargs) = add_instruction(Instructions::VFMADD231PD,*operands,**kwargs)
+        def vfmadd231pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD231PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD231PH]
         # @example
@@ -8084,7 +8084,7 @@ module Ronin
         #   vfmadd231ph zmm0, zmm1, zmm2
         #   vfmadd231ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmadd231ph zmm0, zmm1, zmm2, er
-        def vfmadd231ph(*operands,**kwargs) = add_instruction(Instructions::VFMADD231PH,*operands,**kwargs)
+        def vfmadd231ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD231PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD231PS]
         # @example
@@ -8104,7 +8104,7 @@ module Ronin
         #   vfmadd231ps zmm0, zmm1, zmm2
         #   vfmadd231ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmadd231ps zmm0, zmm1, zmm2, er
-        def vfmadd231ps(*operands,**kwargs) = add_instruction(Instructions::VFMADD231PS,*operands,**kwargs)
+        def vfmadd231ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD231PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD231SD]
         # @example
@@ -8114,7 +8114,7 @@ module Ronin
         #   vfmadd231sd xmm0, xmm1, [rcx]
         #   vfmadd231sd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmadd231sd xmm0, xmm1, xmm2, er
-        def vfmadd231sd(*operands,**kwargs) = add_instruction(Instructions::VFMADD231SD,*operands,**kwargs)
+        def vfmadd231sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD231SD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADD231SS]
         # @example
@@ -8124,7 +8124,7 @@ module Ronin
         #   vfmadd231ss xmm0, xmm1, [rcx]
         #   vfmadd231ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmadd231ss xmm0, xmm1, xmm2, er
-        def vfmadd231ss(*operands,**kwargs) = add_instruction(Instructions::VFMADD231SS,*operands,**kwargs)
+        def vfmadd231ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADD231SS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Complex Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDCPH]
         # @example
@@ -8142,7 +8142,7 @@ module Ronin
         #   vfmaddcph zmm0, zmm1, zmm2
         #   vfmaddcph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmaddcph zmm0, zmm1, zmm2, er
-        def vfmaddcph(*operands,**kwargs) = add_instruction(Instructions::VFMADDCPH,*operands,**kwargs)
+        def vfmaddcph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADDCPH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Complex Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDCSH]
         # @example
@@ -8152,7 +8152,7 @@ module Ronin
         #   vfmaddcsh xmm0, xmm1, [rcx]
         #   vfmaddcsh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmaddcsh xmm0, xmm1, xmm2, er
-        def vfmaddcsh(*operands,**kwargs) = add_instruction(Instructions::VFMADDCSH,*operands,**kwargs)
+        def vfmaddcsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADDCSH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Add of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDPD]
         # @example
@@ -8162,7 +8162,7 @@ module Ronin
         #   vfmaddpd ymm0, ymm1, ymm2, ymm3
         #   vfmaddpd ymm0, ymm1, ymm2, [rdx]
         #   vfmaddpd ymm0, ymm1, [rcx], ymm3
-        def vfmaddpd(*operands,**kwargs) = add_instruction(Instructions::VFMADDPD,*operands,**kwargs)
+        def vfmaddpd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFMADDPD,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Multiply-Add of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDPS]
         # @example
@@ -8172,21 +8172,21 @@ module Ronin
         #   vfmaddps ymm0, ymm1, ymm2, ymm3
         #   vfmaddps ymm0, ymm1, ymm2, [rdx]
         #   vfmaddps ymm0, ymm1, [rcx], ymm3
-        def vfmaddps(*operands,**kwargs) = add_instruction(Instructions::VFMADDPS,*operands,**kwargs)
+        def vfmaddps(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFMADDPS,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Multiply-Add of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSD]
         # @example
         #   vfmaddsd xmm0, xmm1, xmm2, xmm3
         #   vfmaddsd xmm0, xmm1, xmm2, [rdx]
         #   vfmaddsd xmm0, xmm1, [rcx], xmm3
-        def vfmaddsd(*operands,**kwargs) = add_instruction(Instructions::VFMADDSD,*operands,**kwargs)
+        def vfmaddsd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFMADDSD,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Multiply-Add of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSS]
         # @example
         #   vfmaddss xmm0, xmm1, xmm2, xmm3
         #   vfmaddss xmm0, xmm1, xmm2, [rdx]
         #   vfmaddss xmm0, xmm1, [rcx], xmm3
-        def vfmaddss(*operands,**kwargs) = add_instruction(Instructions::VFMADDSS,*operands,**kwargs)
+        def vfmaddss(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFMADDSS,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSUB132PD]
         # @example
@@ -8206,7 +8206,7 @@ module Ronin
         #   vfmaddsub132pd zmm0, zmm1, zmm2
         #   vfmaddsub132pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmaddsub132pd zmm0, zmm1, zmm2, er
-        def vfmaddsub132pd(*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB132PD,*operands,**kwargs)
+        def vfmaddsub132pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB132PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Add/Subtract of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSUB132PH]
         # @example
@@ -8224,7 +8224,7 @@ module Ronin
         #   vfmaddsub132ph zmm0, zmm1, zmm2
         #   vfmaddsub132ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmaddsub132ph zmm0, zmm1, zmm2, er
-        def vfmaddsub132ph(*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB132PH,*operands,**kwargs)
+        def vfmaddsub132ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB132PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSUB132PS]
         # @example
@@ -8244,7 +8244,7 @@ module Ronin
         #   vfmaddsub132ps zmm0, zmm1, zmm2
         #   vfmaddsub132ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmaddsub132ps zmm0, zmm1, zmm2, er
-        def vfmaddsub132ps(*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB132PS,*operands,**kwargs)
+        def vfmaddsub132ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB132PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSUB213PD]
         # @example
@@ -8264,7 +8264,7 @@ module Ronin
         #   vfmaddsub213pd zmm0, zmm1, zmm2
         #   vfmaddsub213pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmaddsub213pd zmm0, zmm1, zmm2, er
-        def vfmaddsub213pd(*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB213PD,*operands,**kwargs)
+        def vfmaddsub213pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB213PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Add/Subtract of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSUB213PH]
         # @example
@@ -8282,7 +8282,7 @@ module Ronin
         #   vfmaddsub213ph zmm0, zmm1, zmm2
         #   vfmaddsub213ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmaddsub213ph zmm0, zmm1, zmm2, er
-        def vfmaddsub213ph(*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB213PH,*operands,**kwargs)
+        def vfmaddsub213ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB213PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSUB213PS]
         # @example
@@ -8302,7 +8302,7 @@ module Ronin
         #   vfmaddsub213ps zmm0, zmm1, zmm2
         #   vfmaddsub213ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmaddsub213ps zmm0, zmm1, zmm2, er
-        def vfmaddsub213ps(*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB213PS,*operands,**kwargs)
+        def vfmaddsub213ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB213PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSUB231PD]
         # @example
@@ -8322,7 +8322,7 @@ module Ronin
         #   vfmaddsub231pd zmm0, zmm1, zmm2
         #   vfmaddsub231pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmaddsub231pd zmm0, zmm1, zmm2, er
-        def vfmaddsub231pd(*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB231PD,*operands,**kwargs)
+        def vfmaddsub231pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB231PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Add/Subtract of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSUB231PH]
         # @example
@@ -8340,7 +8340,7 @@ module Ronin
         #   vfmaddsub231ph zmm0, zmm1, zmm2
         #   vfmaddsub231ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmaddsub231ph zmm0, zmm1, zmm2, er
-        def vfmaddsub231ph(*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB231PH,*operands,**kwargs)
+        def vfmaddsub231ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB231PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSUB231PS]
         # @example
@@ -8360,7 +8360,7 @@ module Ronin
         #   vfmaddsub231ps zmm0, zmm1, zmm2
         #   vfmaddsub231ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmaddsub231ps zmm0, zmm1, zmm2, er
-        def vfmaddsub231ps(*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB231PS,*operands,**kwargs)
+        def vfmaddsub231ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMADDSUB231PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSUBPD]
         # @example
@@ -8370,7 +8370,7 @@ module Ronin
         #   vfmaddsubpd ymm0, ymm1, ymm2, ymm3
         #   vfmaddsubpd ymm0, ymm1, ymm2, [rdx]
         #   vfmaddsubpd ymm0, ymm1, [rcx], ymm3
-        def vfmaddsubpd(*operands,**kwargs) = add_instruction(Instructions::VFMADDSUBPD,*operands,**kwargs)
+        def vfmaddsubpd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFMADDSUBPD,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Multiply-Alternating Add/Subtract of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMADDSUBPS]
         # @example
@@ -8380,7 +8380,7 @@ module Ronin
         #   vfmaddsubps ymm0, ymm1, ymm2, ymm3
         #   vfmaddsubps ymm0, ymm1, ymm2, [rdx]
         #   vfmaddsubps ymm0, ymm1, [rcx], ymm3
-        def vfmaddsubps(*operands,**kwargs) = add_instruction(Instructions::VFMADDSUBPS,*operands,**kwargs)
+        def vfmaddsubps(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFMADDSUBPS,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB132PD]
         # @example
@@ -8400,7 +8400,7 @@ module Ronin
         #   vfmsub132pd zmm0, zmm1, zmm2
         #   vfmsub132pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsub132pd zmm0, zmm1, zmm2, er
-        def vfmsub132pd(*operands,**kwargs) = add_instruction(Instructions::VFMSUB132PD,*operands,**kwargs)
+        def vfmsub132pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB132PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB132PH]
         # @example
@@ -8418,7 +8418,7 @@ module Ronin
         #   vfmsub132ph zmm0, zmm1, zmm2
         #   vfmsub132ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsub132ph zmm0, zmm1, zmm2, er
-        def vfmsub132ph(*operands,**kwargs) = add_instruction(Instructions::VFMSUB132PH,*operands,**kwargs)
+        def vfmsub132ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB132PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB132PS]
         # @example
@@ -8438,7 +8438,7 @@ module Ronin
         #   vfmsub132ps zmm0, zmm1, zmm2
         #   vfmsub132ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsub132ps zmm0, zmm1, zmm2, er
-        def vfmsub132ps(*operands,**kwargs) = add_instruction(Instructions::VFMSUB132PS,*operands,**kwargs)
+        def vfmsub132ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB132PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB132SD]
         # @example
@@ -8448,7 +8448,7 @@ module Ronin
         #   vfmsub132sd xmm0, xmm1, [rcx]
         #   vfmsub132sd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmsub132sd xmm0, xmm1, xmm2, er
-        def vfmsub132sd(*operands,**kwargs) = add_instruction(Instructions::VFMSUB132SD,*operands,**kwargs)
+        def vfmsub132sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB132SD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB132SH]
         # @example
@@ -8458,7 +8458,7 @@ module Ronin
         #   vfmsub132sh xmm0, xmm1, [rcx]
         #   vfmsub132sh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmsub132sh xmm0, xmm1, xmm2, er
-        def vfmsub132sh(*operands,**kwargs) = add_instruction(Instructions::VFMSUB132SH,*operands,**kwargs)
+        def vfmsub132sh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB132SH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB132SS]
         # @example
@@ -8468,7 +8468,7 @@ module Ronin
         #   vfmsub132ss xmm0, xmm1, [rcx]
         #   vfmsub132ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmsub132ss xmm0, xmm1, xmm2, er
-        def vfmsub132ss(*operands,**kwargs) = add_instruction(Instructions::VFMSUB132SS,*operands,**kwargs)
+        def vfmsub132ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB132SS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB213PD]
         # @example
@@ -8488,7 +8488,7 @@ module Ronin
         #   vfmsub213pd zmm0, zmm1, zmm2
         #   vfmsub213pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsub213pd zmm0, zmm1, zmm2, er
-        def vfmsub213pd(*operands,**kwargs) = add_instruction(Instructions::VFMSUB213PD,*operands,**kwargs)
+        def vfmsub213pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB213PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB213PH]
         # @example
@@ -8506,7 +8506,7 @@ module Ronin
         #   vfmsub213ph zmm0, zmm1, zmm2
         #   vfmsub213ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsub213ph zmm0, zmm1, zmm2, er
-        def vfmsub213ph(*operands,**kwargs) = add_instruction(Instructions::VFMSUB213PH,*operands,**kwargs)
+        def vfmsub213ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB213PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB213PS]
         # @example
@@ -8526,7 +8526,7 @@ module Ronin
         #   vfmsub213ps zmm0, zmm1, zmm2
         #   vfmsub213ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsub213ps zmm0, zmm1, zmm2, er
-        def vfmsub213ps(*operands,**kwargs) = add_instruction(Instructions::VFMSUB213PS,*operands,**kwargs)
+        def vfmsub213ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB213PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB213SD]
         # @example
@@ -8536,7 +8536,7 @@ module Ronin
         #   vfmsub213sd xmm0, xmm1, [rcx]
         #   vfmsub213sd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmsub213sd xmm0, xmm1, xmm2, er
-        def vfmsub213sd(*operands,**kwargs) = add_instruction(Instructions::VFMSUB213SD,*operands,**kwargs)
+        def vfmsub213sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB213SD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB213SH]
         # @example
@@ -8546,7 +8546,7 @@ module Ronin
         #   vfmsub213sh xmm0, xmm1, [rcx]
         #   vfmsub213sh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmsub213sh xmm0, xmm1, xmm2, er
-        def vfmsub213sh(*operands,**kwargs) = add_instruction(Instructions::VFMSUB213SH,*operands,**kwargs)
+        def vfmsub213sh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB213SH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB213SS]
         # @example
@@ -8556,7 +8556,7 @@ module Ronin
         #   vfmsub213ss xmm0, xmm1, [rcx]
         #   vfmsub213ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmsub213ss xmm0, xmm1, xmm2, er
-        def vfmsub213ss(*operands,**kwargs) = add_instruction(Instructions::VFMSUB213SS,*operands,**kwargs)
+        def vfmsub213ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB213SS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB231PD]
         # @example
@@ -8576,7 +8576,7 @@ module Ronin
         #   vfmsub231pd zmm0, zmm1, zmm2
         #   vfmsub231pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsub231pd zmm0, zmm1, zmm2, er
-        def vfmsub231pd(*operands,**kwargs) = add_instruction(Instructions::VFMSUB231PD,*operands,**kwargs)
+        def vfmsub231pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB231PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB231PH]
         # @example
@@ -8594,7 +8594,7 @@ module Ronin
         #   vfmsub231ph zmm0, zmm1, zmm2
         #   vfmsub231ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsub231ph zmm0, zmm1, zmm2, er
-        def vfmsub231ph(*operands,**kwargs) = add_instruction(Instructions::VFMSUB231PH,*operands,**kwargs)
+        def vfmsub231ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB231PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB231PS]
         # @example
@@ -8614,7 +8614,7 @@ module Ronin
         #   vfmsub231ps zmm0, zmm1, zmm2
         #   vfmsub231ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsub231ps zmm0, zmm1, zmm2, er
-        def vfmsub231ps(*operands,**kwargs) = add_instruction(Instructions::VFMSUB231PS,*operands,**kwargs)
+        def vfmsub231ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB231PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB231SD]
         # @example
@@ -8624,7 +8624,7 @@ module Ronin
         #   vfmsub231sd xmm0, xmm1, [rcx]
         #   vfmsub231sd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmsub231sd xmm0, xmm1, xmm2, er
-        def vfmsub231sd(*operands,**kwargs) = add_instruction(Instructions::VFMSUB231SD,*operands,**kwargs)
+        def vfmsub231sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB231SD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB231SH]
         # @example
@@ -8634,7 +8634,7 @@ module Ronin
         #   vfmsub231sh xmm0, xmm1, [rcx]
         #   vfmsub231sh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmsub231sh xmm0, xmm1, xmm2, er
-        def vfmsub231sh(*operands,**kwargs) = add_instruction(Instructions::VFMSUB231SH,*operands,**kwargs)
+        def vfmsub231sh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB231SH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUB231SS]
         # @example
@@ -8644,7 +8644,7 @@ module Ronin
         #   vfmsub231ss xmm0, xmm1, [rcx]
         #   vfmsub231ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmsub231ss xmm0, xmm1, xmm2, er
-        def vfmsub231ss(*operands,**kwargs) = add_instruction(Instructions::VFMSUB231SS,*operands,**kwargs)
+        def vfmsub231ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUB231SS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBADD132PD]
         # @example
@@ -8664,7 +8664,7 @@ module Ronin
         #   vfmsubadd132pd zmm0, zmm1, zmm2
         #   vfmsubadd132pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsubadd132pd zmm0, zmm1, zmm2, er
-        def vfmsubadd132pd(*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD132PD,*operands,**kwargs)
+        def vfmsubadd132pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD132PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Subtract/Add of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBADD132PH]
         # @example
@@ -8682,7 +8682,7 @@ module Ronin
         #   vfmsubadd132ph zmm0, zmm1, zmm2
         #   vfmsubadd132ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsubadd132ph zmm0, zmm1, zmm2, er
-        def vfmsubadd132ph(*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD132PH,*operands,**kwargs)
+        def vfmsubadd132ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD132PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBADD132PS]
         # @example
@@ -8702,7 +8702,7 @@ module Ronin
         #   vfmsubadd132ps zmm0, zmm1, zmm2
         #   vfmsubadd132ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsubadd132ps zmm0, zmm1, zmm2, er
-        def vfmsubadd132ps(*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD132PS,*operands,**kwargs)
+        def vfmsubadd132ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD132PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBADD213PD]
         # @example
@@ -8722,7 +8722,7 @@ module Ronin
         #   vfmsubadd213pd zmm0, zmm1, zmm2
         #   vfmsubadd213pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsubadd213pd zmm0, zmm1, zmm2, er
-        def vfmsubadd213pd(*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD213PD,*operands,**kwargs)
+        def vfmsubadd213pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD213PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Subtract/Add of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBADD213PH]
         # @example
@@ -8740,7 +8740,7 @@ module Ronin
         #   vfmsubadd213ph zmm0, zmm1, zmm2
         #   vfmsubadd213ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsubadd213ph zmm0, zmm1, zmm2, er
-        def vfmsubadd213ph(*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD213PH,*operands,**kwargs)
+        def vfmsubadd213ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD213PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBADD213PS]
         # @example
@@ -8760,7 +8760,7 @@ module Ronin
         #   vfmsubadd213ps zmm0, zmm1, zmm2
         #   vfmsubadd213ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsubadd213ps zmm0, zmm1, zmm2, er
-        def vfmsubadd213ps(*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD213PS,*operands,**kwargs)
+        def vfmsubadd213ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD213PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBADD231PD]
         # @example
@@ -8780,7 +8780,7 @@ module Ronin
         #   vfmsubadd231pd zmm0, zmm1, zmm2
         #   vfmsubadd231pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsubadd231pd zmm0, zmm1, zmm2, er
-        def vfmsubadd231pd(*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD231PD,*operands,**kwargs)
+        def vfmsubadd231pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD231PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Subtract/Add of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBADD231PH]
         # @example
@@ -8798,7 +8798,7 @@ module Ronin
         #   vfmsubadd231ph zmm0, zmm1, zmm2
         #   vfmsubadd231ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsubadd231ph zmm0, zmm1, zmm2, er
-        def vfmsubadd231ph(*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD231PH,*operands,**kwargs)
+        def vfmsubadd231ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD231PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBADD231PS]
         # @example
@@ -8818,7 +8818,7 @@ module Ronin
         #   vfmsubadd231ps zmm0, zmm1, zmm2
         #   vfmsubadd231ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmsubadd231ps zmm0, zmm1, zmm2, er
-        def vfmsubadd231ps(*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD231PS,*operands,**kwargs)
+        def vfmsubadd231ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMSUBADD231PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply-Alternating Subtract/Add of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBADDPD]
         # @example
@@ -8828,7 +8828,7 @@ module Ronin
         #   vfmsubaddpd ymm0, ymm1, ymm2, ymm3
         #   vfmsubaddpd ymm0, ymm1, ymm2, [rdx]
         #   vfmsubaddpd ymm0, ymm1, [rcx], ymm3
-        def vfmsubaddpd(*operands,**kwargs) = add_instruction(Instructions::VFMSUBADDPD,*operands,**kwargs)
+        def vfmsubaddpd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFMSUBADDPD,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Multiply-Alternating Subtract/Add of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBADDPS]
         # @example
@@ -8838,7 +8838,7 @@ module Ronin
         #   vfmsubaddps ymm0, ymm1, ymm2, ymm3
         #   vfmsubaddps ymm0, ymm1, ymm2, [rdx]
         #   vfmsubaddps ymm0, ymm1, [rcx], ymm3
-        def vfmsubaddps(*operands,**kwargs) = add_instruction(Instructions::VFMSUBADDPS,*operands,**kwargs)
+        def vfmsubaddps(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFMSUBADDPS,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Multiply-Subtract of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBPD]
         # @example
@@ -8848,7 +8848,7 @@ module Ronin
         #   vfmsubpd ymm0, ymm1, ymm2, ymm3
         #   vfmsubpd ymm0, ymm1, ymm2, [rdx]
         #   vfmsubpd ymm0, ymm1, [rcx], ymm3
-        def vfmsubpd(*operands,**kwargs) = add_instruction(Instructions::VFMSUBPD,*operands,**kwargs)
+        def vfmsubpd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFMSUBPD,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Multiply-Subtract of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBPS]
         # @example
@@ -8858,21 +8858,21 @@ module Ronin
         #   vfmsubps ymm0, ymm1, ymm2, ymm3
         #   vfmsubps ymm0, ymm1, ymm2, [rdx]
         #   vfmsubps ymm0, ymm1, [rcx], ymm3
-        def vfmsubps(*operands,**kwargs) = add_instruction(Instructions::VFMSUBPS,*operands,**kwargs)
+        def vfmsubps(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFMSUBPS,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Multiply-Subtract of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBSD]
         # @example
         #   vfmsubsd xmm0, xmm1, xmm2, xmm3
         #   vfmsubsd xmm0, xmm1, xmm2, [rdx]
         #   vfmsubsd xmm0, xmm1, [rcx], xmm3
-        def vfmsubsd(*operands,**kwargs) = add_instruction(Instructions::VFMSUBSD,*operands,**kwargs)
+        def vfmsubsd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFMSUBSD,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Multiply-Subtract of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMSUBSS]
         # @example
         #   vfmsubss xmm0, xmm1, xmm2, xmm3
         #   vfmsubss xmm0, xmm1, xmm2, [rdx]
         #   vfmsubss xmm0, xmm1, [rcx], xmm3
-        def vfmsubss(*operands,**kwargs) = add_instruction(Instructions::VFMSUBSS,*operands,**kwargs)
+        def vfmsubss(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFMSUBSS,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Fused Multiply of Complex Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMULCPH]
         # @example
@@ -8890,7 +8890,7 @@ module Ronin
         #   vfmulcph zmm0, zmm1, zmm2
         #   vfmulcph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfmulcph zmm0, zmm1, zmm2, er
-        def vfmulcph(*operands,**kwargs) = add_instruction(Instructions::VFMULCPH,*operands,**kwargs)
+        def vfmulcph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMULCPH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply of Complex Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFMULCSH]
         # @example
@@ -8900,7 +8900,7 @@ module Ronin
         #   vfmulcsh xmm0, xmm1, [rcx]
         #   vfmulcsh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfmulcsh xmm0, xmm1, xmm2, er
-        def vfmulcsh(*operands,**kwargs) = add_instruction(Instructions::VFMULCSH,*operands,**kwargs)
+        def vfmulcsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFMULCSH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD132PD]
         # @example
@@ -8920,7 +8920,7 @@ module Ronin
         #   vfnmadd132pd zmm0, zmm1, zmm2
         #   vfnmadd132pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmadd132pd zmm0, zmm1, zmm2, er
-        def vfnmadd132pd(*operands,**kwargs) = add_instruction(Instructions::VFNMADD132PD,*operands,**kwargs)
+        def vfnmadd132pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD132PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD132PH]
         # @example
@@ -8938,7 +8938,7 @@ module Ronin
         #   vfnmadd132ph zmm0, zmm1, zmm2
         #   vfnmadd132ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmadd132ph zmm0, zmm1, zmm2, er
-        def vfnmadd132ph(*operands,**kwargs) = add_instruction(Instructions::VFNMADD132PH,*operands,**kwargs)
+        def vfnmadd132ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD132PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD132PS]
         # @example
@@ -8958,7 +8958,7 @@ module Ronin
         #   vfnmadd132ps zmm0, zmm1, zmm2
         #   vfnmadd132ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmadd132ps zmm0, zmm1, zmm2, er
-        def vfnmadd132ps(*operands,**kwargs) = add_instruction(Instructions::VFNMADD132PS,*operands,**kwargs)
+        def vfnmadd132ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD132PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD132SD]
         # @example
@@ -8968,7 +8968,7 @@ module Ronin
         #   vfnmadd132sd xmm0, xmm1, [rcx]
         #   vfnmadd132sd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmadd132sd xmm0, xmm1, xmm2, er
-        def vfnmadd132sd(*operands,**kwargs) = add_instruction(Instructions::VFNMADD132SD,*operands,**kwargs)
+        def vfnmadd132sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD132SD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD132SS]
         # @example
@@ -8978,7 +8978,7 @@ module Ronin
         #   vfnmadd132ss xmm0, xmm1, [rcx]
         #   vfnmadd132ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmadd132ss xmm0, xmm1, xmm2, er
-        def vfnmadd132ss(*operands,**kwargs) = add_instruction(Instructions::VFNMADD132SS,*operands,**kwargs)
+        def vfnmadd132ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD132SS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD213PD]
         # @example
@@ -8998,7 +8998,7 @@ module Ronin
         #   vfnmadd213pd zmm0, zmm1, zmm2
         #   vfnmadd213pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmadd213pd zmm0, zmm1, zmm2, er
-        def vfnmadd213pd(*operands,**kwargs) = add_instruction(Instructions::VFNMADD213PD,*operands,**kwargs)
+        def vfnmadd213pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD213PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD213PH]
         # @example
@@ -9016,7 +9016,7 @@ module Ronin
         #   vfnmadd213ph zmm0, zmm1, zmm2
         #   vfnmadd213ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmadd213ph zmm0, zmm1, zmm2, er
-        def vfnmadd213ph(*operands,**kwargs) = add_instruction(Instructions::VFNMADD213PH,*operands,**kwargs)
+        def vfnmadd213ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD213PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD213PS]
         # @example
@@ -9036,7 +9036,7 @@ module Ronin
         #   vfnmadd213ps zmm0, zmm1, zmm2
         #   vfnmadd213ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmadd213ps zmm0, zmm1, zmm2, er
-        def vfnmadd213ps(*operands,**kwargs) = add_instruction(Instructions::VFNMADD213PS,*operands,**kwargs)
+        def vfnmadd213ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD213PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD213SD]
         # @example
@@ -9046,7 +9046,7 @@ module Ronin
         #   vfnmadd213sd xmm0, xmm1, [rcx]
         #   vfnmadd213sd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmadd213sd xmm0, xmm1, xmm2, er
-        def vfnmadd213sd(*operands,**kwargs) = add_instruction(Instructions::VFNMADD213SD,*operands,**kwargs)
+        def vfnmadd213sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD213SD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD213SS]
         # @example
@@ -9056,7 +9056,7 @@ module Ronin
         #   vfnmadd213ss xmm0, xmm1, [rcx]
         #   vfnmadd213ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmadd213ss xmm0, xmm1, xmm2, er
-        def vfnmadd213ss(*operands,**kwargs) = add_instruction(Instructions::VFNMADD213SS,*operands,**kwargs)
+        def vfnmadd213ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD213SS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD231PD]
         # @example
@@ -9076,7 +9076,7 @@ module Ronin
         #   vfnmadd231pd zmm0, zmm1, zmm2
         #   vfnmadd231pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmadd231pd zmm0, zmm1, zmm2, er
-        def vfnmadd231pd(*operands,**kwargs) = add_instruction(Instructions::VFNMADD231PD,*operands,**kwargs)
+        def vfnmadd231pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD231PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD231PH]
         # @example
@@ -9094,7 +9094,7 @@ module Ronin
         #   vfnmadd231ph zmm0, zmm1, zmm2
         #   vfnmadd231ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmadd231ph zmm0, zmm1, zmm2, er
-        def vfnmadd231ph(*operands,**kwargs) = add_instruction(Instructions::VFNMADD231PH,*operands,**kwargs)
+        def vfnmadd231ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD231PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD231PS]
         # @example
@@ -9114,7 +9114,7 @@ module Ronin
         #   vfnmadd231ps zmm0, zmm1, zmm2
         #   vfnmadd231ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmadd231ps zmm0, zmm1, zmm2, er
-        def vfnmadd231ps(*operands,**kwargs) = add_instruction(Instructions::VFNMADD231PS,*operands,**kwargs)
+        def vfnmadd231ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD231PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD231SD]
         # @example
@@ -9124,7 +9124,7 @@ module Ronin
         #   vfnmadd231sd xmm0, xmm1, [rcx]
         #   vfnmadd231sd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmadd231sd xmm0, xmm1, xmm2, er
-        def vfnmadd231sd(*operands,**kwargs) = add_instruction(Instructions::VFNMADD231SD,*operands,**kwargs)
+        def vfnmadd231sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD231SD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADD231SS]
         # @example
@@ -9134,7 +9134,7 @@ module Ronin
         #   vfnmadd231ss xmm0, xmm1, [rcx]
         #   vfnmadd231ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmadd231ss xmm0, xmm1, xmm2, er
-        def vfnmadd231ss(*operands,**kwargs) = add_instruction(Instructions::VFNMADD231SS,*operands,**kwargs)
+        def vfnmadd231ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMADD231SS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADDPD]
         # @example
@@ -9144,7 +9144,7 @@ module Ronin
         #   vfnmaddpd ymm0, ymm1, ymm2, ymm3
         #   vfnmaddpd ymm0, ymm1, ymm2, [rdx]
         #   vfnmaddpd ymm0, ymm1, [rcx], ymm3
-        def vfnmaddpd(*operands,**kwargs) = add_instruction(Instructions::VFNMADDPD,*operands,**kwargs)
+        def vfnmaddpd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFNMADDPD,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Negative Multiply-Add of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADDPS]
         # @example
@@ -9154,21 +9154,21 @@ module Ronin
         #   vfnmaddps ymm0, ymm1, ymm2, ymm3
         #   vfnmaddps ymm0, ymm1, ymm2, [rdx]
         #   vfnmaddps ymm0, ymm1, [rcx], ymm3
-        def vfnmaddps(*operands,**kwargs) = add_instruction(Instructions::VFNMADDPS,*operands,**kwargs)
+        def vfnmaddps(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFNMADDPS,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Negative Multiply-Add of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADDSD]
         # @example
         #   vfnmaddsd xmm0, xmm1, xmm2, xmm3
         #   vfnmaddsd xmm0, xmm1, xmm2, [rdx]
         #   vfnmaddsd xmm0, xmm1, [rcx], xmm3
-        def vfnmaddsd(*operands,**kwargs) = add_instruction(Instructions::VFNMADDSD,*operands,**kwargs)
+        def vfnmaddsd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFNMADDSD,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Negative Multiply-Add of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMADDSS]
         # @example
         #   vfnmaddss xmm0, xmm1, xmm2, xmm3
         #   vfnmaddss xmm0, xmm1, xmm2, [rdx]
         #   vfnmaddss xmm0, xmm1, [rcx], xmm3
-        def vfnmaddss(*operands,**kwargs) = add_instruction(Instructions::VFNMADDSS,*operands,**kwargs)
+        def vfnmaddss(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFNMADDSS,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB132PD]
         # @example
@@ -9188,7 +9188,7 @@ module Ronin
         #   vfnmsub132pd zmm0, zmm1, zmm2
         #   vfnmsub132pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmsub132pd zmm0, zmm1, zmm2, er
-        def vfnmsub132pd(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB132PD,*operands,**kwargs)
+        def vfnmsub132pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB132PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB132PH]
         # @example
@@ -9206,7 +9206,7 @@ module Ronin
         #   vfnmsub132ph zmm0, zmm1, zmm2
         #   vfnmsub132ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmsub132ph zmm0, zmm1, zmm2, er
-        def vfnmsub132ph(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB132PH,*operands,**kwargs)
+        def vfnmsub132ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB132PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB132PS]
         # @example
@@ -9226,7 +9226,7 @@ module Ronin
         #   vfnmsub132ps zmm0, zmm1, zmm2
         #   vfnmsub132ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmsub132ps zmm0, zmm1, zmm2, er
-        def vfnmsub132ps(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB132PS,*operands,**kwargs)
+        def vfnmsub132ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB132PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB132SD]
         # @example
@@ -9236,7 +9236,7 @@ module Ronin
         #   vfnmsub132sd xmm0, xmm1, [rcx]
         #   vfnmsub132sd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmsub132sd xmm0, xmm1, xmm2, er
-        def vfnmsub132sd(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB132SD,*operands,**kwargs)
+        def vfnmsub132sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB132SD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB132SH]
         # @example
@@ -9246,7 +9246,7 @@ module Ronin
         #   vfnmsub132sh xmm0, xmm1, [rcx]
         #   vfnmsub132sh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmsub132sh xmm0, xmm1, xmm2, er
-        def vfnmsub132sh(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB132SH,*operands,**kwargs)
+        def vfnmsub132sh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB132SH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB132SS]
         # @example
@@ -9256,7 +9256,7 @@ module Ronin
         #   vfnmsub132ss xmm0, xmm1, [rcx]
         #   vfnmsub132ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmsub132ss xmm0, xmm1, xmm2, er
-        def vfnmsub132ss(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB132SS,*operands,**kwargs)
+        def vfnmsub132ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB132SS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB213PD]
         # @example
@@ -9276,7 +9276,7 @@ module Ronin
         #   vfnmsub213pd zmm0, zmm1, zmm2
         #   vfnmsub213pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmsub213pd zmm0, zmm1, zmm2, er
-        def vfnmsub213pd(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB213PD,*operands,**kwargs)
+        def vfnmsub213pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB213PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB213PH]
         # @example
@@ -9294,7 +9294,7 @@ module Ronin
         #   vfnmsub213ph zmm0, zmm1, zmm2
         #   vfnmsub213ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmsub213ph zmm0, zmm1, zmm2, er
-        def vfnmsub213ph(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB213PH,*operands,**kwargs)
+        def vfnmsub213ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB213PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB213PS]
         # @example
@@ -9314,7 +9314,7 @@ module Ronin
         #   vfnmsub213ps zmm0, zmm1, zmm2
         #   vfnmsub213ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmsub213ps zmm0, zmm1, zmm2, er
-        def vfnmsub213ps(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB213PS,*operands,**kwargs)
+        def vfnmsub213ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB213PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB213SD]
         # @example
@@ -9324,7 +9324,7 @@ module Ronin
         #   vfnmsub213sd xmm0, xmm1, [rcx]
         #   vfnmsub213sd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmsub213sd xmm0, xmm1, xmm2, er
-        def vfnmsub213sd(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB213SD,*operands,**kwargs)
+        def vfnmsub213sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB213SD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB213SH]
         # @example
@@ -9334,7 +9334,7 @@ module Ronin
         #   vfnmsub213sh xmm0, xmm1, [rcx]
         #   vfnmsub213sh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmsub213sh xmm0, xmm1, xmm2, er
-        def vfnmsub213sh(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB213SH,*operands,**kwargs)
+        def vfnmsub213sh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB213SH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB213SS]
         # @example
@@ -9344,7 +9344,7 @@ module Ronin
         #   vfnmsub213ss xmm0, xmm1, [rcx]
         #   vfnmsub213ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmsub213ss xmm0, xmm1, xmm2, er
-        def vfnmsub213ss(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB213SS,*operands,**kwargs)
+        def vfnmsub213ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB213SS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB231PD]
         # @example
@@ -9364,7 +9364,7 @@ module Ronin
         #   vfnmsub231pd zmm0, zmm1, zmm2
         #   vfnmsub231pd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmsub231pd zmm0, zmm1, zmm2, er
-        def vfnmsub231pd(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB231PD,*operands,**kwargs)
+        def vfnmsub231pd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB231PD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB231PH]
         # @example
@@ -9382,7 +9382,7 @@ module Ronin
         #   vfnmsub231ph zmm0, zmm1, zmm2
         #   vfnmsub231ph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmsub231ph zmm0, zmm1, zmm2, er
-        def vfnmsub231ph(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB231PH,*operands,**kwargs)
+        def vfnmsub231ph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB231PH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB231PS]
         # @example
@@ -9402,7 +9402,7 @@ module Ronin
         #   vfnmsub231ps zmm0, zmm1, zmm2
         #   vfnmsub231ps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vfnmsub231ps zmm0, zmm1, zmm2, er
-        def vfnmsub231ps(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB231PS,*operands,**kwargs)
+        def vfnmsub231ps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB231PS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB231SD]
         # @example
@@ -9412,7 +9412,7 @@ module Ronin
         #   vfnmsub231sd xmm0, xmm1, [rcx]
         #   vfnmsub231sd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmsub231sd xmm0, xmm1, xmm2, er
-        def vfnmsub231sd(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB231SD,*operands,**kwargs)
+        def vfnmsub231sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB231SD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB231SH]
         # @example
@@ -9422,7 +9422,7 @@ module Ronin
         #   vfnmsub231sh xmm0, xmm1, [rcx]
         #   vfnmsub231sh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmsub231sh xmm0, xmm1, xmm2, er
-        def vfnmsub231sh(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB231SH,*operands,**kwargs)
+        def vfnmsub231sh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB231SH,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUB231SS]
         # @example
@@ -9432,7 +9432,7 @@ module Ronin
         #   vfnmsub231ss xmm0, xmm1, [rcx]
         #   vfnmsub231ss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vfnmsub231ss xmm0, xmm1, xmm2, er
-        def vfnmsub231ss(*operands,**kwargs) = add_instruction(Instructions::VFNMSUB231SS,*operands,**kwargs)
+        def vfnmsub231ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VFNMSUB231SS,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUBPD]
         # @example
@@ -9442,7 +9442,7 @@ module Ronin
         #   vfnmsubpd ymm0, ymm1, ymm2, ymm3
         #   vfnmsubpd ymm0, ymm1, ymm2, [rdx]
         #   vfnmsubpd ymm0, ymm1, [rcx], ymm3
-        def vfnmsubpd(*operands,**kwargs) = add_instruction(Instructions::VFNMSUBPD,*operands,**kwargs)
+        def vfnmsubpd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFNMSUBPD,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUBPS]
         # @example
@@ -9452,21 +9452,21 @@ module Ronin
         #   vfnmsubps ymm0, ymm1, ymm2, ymm3
         #   vfnmsubps ymm0, ymm1, ymm2, [rdx]
         #   vfnmsubps ymm0, ymm1, [rcx], ymm3
-        def vfnmsubps(*operands,**kwargs) = add_instruction(Instructions::VFNMSUBPS,*operands,**kwargs)
+        def vfnmsubps(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFNMSUBPS,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUBSD]
         # @example
         #   vfnmsubsd xmm0, xmm1, xmm2, xmm3
         #   vfnmsubsd xmm0, xmm1, xmm2, [rdx]
         #   vfnmsubsd xmm0, xmm1, [rcx], xmm3
-        def vfnmsubsd(*operands,**kwargs) = add_instruction(Instructions::VFNMSUBSD,*operands,**kwargs)
+        def vfnmsubsd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFNMSUBSD,operand1,operand2,operand3,operand4,**kwargs)
         # Fused Negative Multiply-Subtract of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFNMSUBSS]
         # @example
         #   vfnmsubss xmm0, xmm1, xmm2, xmm3
         #   vfnmsubss xmm0, xmm1, xmm2, [rdx]
         #   vfnmsubss xmm0, xmm1, [rcx], xmm3
-        def vfnmsubss(*operands,**kwargs) = add_instruction(Instructions::VFNMSUBSS,*operands,**kwargs)
+        def vfnmsubss(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VFNMSUBSS,operand1,operand2,operand3,operand4,**kwargs)
         # Test Class of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFPCLASSPD]
         # @example
@@ -9482,7 +9482,7 @@ module Ronin
         #   vfpclasspd k1, ymm1, 0x03
         #   vfpclasspd opmask(k1, k2), zmm1, 0x03
         #   vfpclasspd k1, zmm1, 0x03
-        def vfpclasspd(*operands,**kwargs) = add_instruction(Instructions::VFPCLASSPD,*operands,**kwargs)
+        def vfpclasspd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VFPCLASSPD,operand1,operand2,operand3,**kwargs)
         # Test Class of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFPCLASSPH]
         # @example
@@ -9498,7 +9498,7 @@ module Ronin
         #   vfpclassph k1, ymm1, 0x03
         #   vfpclassph opmask(k1, k2), zmm1, 0x03
         #   vfpclassph k1, zmm1, 0x03
-        def vfpclassph(*operands,**kwargs) = add_instruction(Instructions::VFPCLASSPH,*operands,**kwargs)
+        def vfpclassph(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VFPCLASSPH,operand1,operand2,operand3,**kwargs)
         # Test Class of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VFPCLASSPS]
         # @example
@@ -9514,7 +9514,7 @@ module Ronin
         #   vfpclassps k1, ymm1, 0x03
         #   vfpclassps opmask(k1, k2), zmm1, 0x03
         #   vfpclassps k1, zmm1, 0x03
-        def vfpclassps(*operands,**kwargs) = add_instruction(Instructions::VFPCLASSPS,*operands,**kwargs)
+        def vfpclassps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VFPCLASSPS,operand1,operand2,operand3,**kwargs)
         # Test Class of Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VFPCLASSSD]
         # @example
@@ -9522,7 +9522,7 @@ module Ronin
         #   vfpclasssd k1, xmm1, 0x03
         #   vfpclasssd opmask(k1, k2), [rbx], 0x03
         #   vfpclasssd k1, [rbx], 0x03
-        def vfpclasssd(*operands,**kwargs) = add_instruction(Instructions::VFPCLASSSD,*operands,**kwargs)
+        def vfpclasssd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VFPCLASSSD,operand1,operand2,operand3,**kwargs)
         # Test Class of Scalar Half-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VFPCLASSSH]
         # @example
@@ -9530,7 +9530,7 @@ module Ronin
         #   vfpclasssh k1, xmm1, 0x03
         #   vfpclasssh opmask(k1, k2), [rbx], 0x03
         #   vfpclasssh k1, [rbx], 0x03
-        def vfpclasssh(*operands,**kwargs) = add_instruction(Instructions::VFPCLASSSH,*operands,**kwargs)
+        def vfpclasssh(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VFPCLASSSH,operand1,operand2,operand3,**kwargs)
         # Test Class of Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VFPCLASSSS]
         # @example
@@ -9538,7 +9538,7 @@ module Ronin
         #   vfpclassss k1, xmm1, 0x03
         #   vfpclassss opmask(k1, k2), [rbx], 0x03
         #   vfpclassss k1, [rbx], 0x03
-        def vfpclassss(*operands,**kwargs) = add_instruction(Instructions::VFPCLASSSS,*operands,**kwargs)
+        def vfpclassss(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VFPCLASSSS,operand1,operand2,operand3,**kwargs)
         # Extract Fraction Packed Double-Precision Floating-Point
         # @return [Ronin::ASM::X86_64::Instructions::VFRCZPD]
         # @example
@@ -9546,7 +9546,7 @@ module Ronin
         #   vfrczpd xmm0, [rbx]
         #   vfrczpd ymm0, ymm1
         #   vfrczpd ymm0, [rbx]
-        def vfrczpd(*operands,**kwargs) = add_instruction(Instructions::VFRCZPD,*operands,**kwargs)
+        def vfrczpd(operand1,operand2,**kwargs) = add_instruction(Instructions::VFRCZPD,operand1,operand2,**kwargs)
         # Extract Fraction Packed Single-Precision Floating-Point
         # @return [Ronin::ASM::X86_64::Instructions::VFRCZPS]
         # @example
@@ -9554,19 +9554,19 @@ module Ronin
         #   vfrczps xmm0, [rbx]
         #   vfrczps ymm0, ymm1
         #   vfrczps ymm0, [rbx]
-        def vfrczps(*operands,**kwargs) = add_instruction(Instructions::VFRCZPS,*operands,**kwargs)
+        def vfrczps(operand1,operand2,**kwargs) = add_instruction(Instructions::VFRCZPS,operand1,operand2,**kwargs)
         # Extract Fraction Scalar Double-Precision Floating-Point
         # @return [Ronin::ASM::X86_64::Instructions::VFRCZSD]
         # @example
         #   vfrczsd xmm0, xmm1
         #   vfrczsd xmm0, [rbx]
-        def vfrczsd(*operands,**kwargs) = add_instruction(Instructions::VFRCZSD,*operands,**kwargs)
+        def vfrczsd(operand1,operand2,**kwargs) = add_instruction(Instructions::VFRCZSD,operand1,operand2,**kwargs)
         # Extract Fraction Scalar Single-Precision Floating Point
         # @return [Ronin::ASM::X86_64::Instructions::VFRCZSS]
         # @example
         #   vfrczss xmm0, xmm1
         #   vfrczss xmm0, [rbx]
-        def vfrczss(*operands,**kwargs) = add_instruction(Instructions::VFRCZSS,*operands,**kwargs)
+        def vfrczss(operand1,operand2,**kwargs) = add_instruction(Instructions::VFRCZSS,operand1,operand2,**kwargs)
         # Gather Packed Double-Precision Floating-Point Values Using Signed Doubleword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VGATHERDPD]
         # @example
@@ -9575,7 +9575,7 @@ module Ronin
         #   vgatherdpd opmask(zmm0, k1), [rbx+ymm1*4]
         #   vgatherdpd xmm0, [rbx+xmm1*4], xmm2
         #   vgatherdpd ymm0, [rbx+xmm1*4], ymm2
-        def vgatherdpd(*operands,**kwargs) = add_instruction(Instructions::VGATHERDPD,*operands,**kwargs)
+        def vgatherdpd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VGATHERDPD,operand1,operand2,*operands,**kwargs)
         # Gather Packed Single-Precision Floating-Point Values Using Signed Doubleword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VGATHERDPS]
         # @example
@@ -9584,47 +9584,47 @@ module Ronin
         #   vgatherdps opmask(zmm0, k1), [rbx+zmm1*4]
         #   vgatherdps xmm0, [rbx+xmm1*4], xmm2
         #   vgatherdps ymm0, [rbx+ymm1*4], ymm2
-        def vgatherdps(*operands,**kwargs) = add_instruction(Instructions::VGATHERDPS,*operands,**kwargs)
+        def vgatherdps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VGATHERDPS,operand1,operand2,*operands,**kwargs)
         # Sparse Prefetch Packed Double-Precision Floating-Point Data Values with Signed Doubleword Indices Using T0 Hint
         # @return [Ronin::ASM::X86_64::Instructions::VGATHERPF0DPD]
         # @example
         #   vgatherpf0dpd opmask([rax+ymm0*4], k1)
-        def vgatherpf0dpd(*operands,**kwargs) = add_instruction(Instructions::VGATHERPF0DPD,*operands,**kwargs)
+        def vgatherpf0dpd(operand,**kwargs) = add_instruction(Instructions::VGATHERPF0DPD,operand,**kwargs)
         # Sparse Prefetch Packed Single-Precision Floating-Point Data Values with Signed Doubleword Indices Using T0 Hint
         # @return [Ronin::ASM::X86_64::Instructions::VGATHERPF0DPS]
         # @example
         #   vgatherpf0dps opmask([rax+zmm0*4], k1)
-        def vgatherpf0dps(*operands,**kwargs) = add_instruction(Instructions::VGATHERPF0DPS,*operands,**kwargs)
+        def vgatherpf0dps(operand,**kwargs) = add_instruction(Instructions::VGATHERPF0DPS,operand,**kwargs)
         # Sparse Prefetch Packed Double-Precision Floating-Point Data Values with Signed Quadword Indices Using T0 Hint
         # @return [Ronin::ASM::X86_64::Instructions::VGATHERPF0QPD]
         # @example
         #   vgatherpf0qpd opmask([rax+zmm0*8], k1)
-        def vgatherpf0qpd(*operands,**kwargs) = add_instruction(Instructions::VGATHERPF0QPD,*operands,**kwargs)
+        def vgatherpf0qpd(operand,**kwargs) = add_instruction(Instructions::VGATHERPF0QPD,operand,**kwargs)
         # Sparse Prefetch Packed Single-Precision Floating-Point Data Values with Signed Quadword Indices Using T0 Hint
         # @return [Ronin::ASM::X86_64::Instructions::VGATHERPF0QPS]
         # @example
         #   vgatherpf0qps opmask([rax+zmm0*8], k1)
-        def vgatherpf0qps(*operands,**kwargs) = add_instruction(Instructions::VGATHERPF0QPS,*operands,**kwargs)
+        def vgatherpf0qps(operand,**kwargs) = add_instruction(Instructions::VGATHERPF0QPS,operand,**kwargs)
         # Sparse Prefetch Packed Double-Precision Floating-Point Data Values with Signed Doubleword Indices Using T1 Hint
         # @return [Ronin::ASM::X86_64::Instructions::VGATHERPF1DPD]
         # @example
         #   vgatherpf1dpd opmask([rax+ymm0*4], k1)
-        def vgatherpf1dpd(*operands,**kwargs) = add_instruction(Instructions::VGATHERPF1DPD,*operands,**kwargs)
+        def vgatherpf1dpd(operand,**kwargs) = add_instruction(Instructions::VGATHERPF1DPD,operand,**kwargs)
         # Sparse Prefetch Packed Single-Precision Floating-Point Data Values with Signed Doubleword Indices Using T1 Hint
         # @return [Ronin::ASM::X86_64::Instructions::VGATHERPF1DPS]
         # @example
         #   vgatherpf1dps opmask([rax+zmm0*4], k1)
-        def vgatherpf1dps(*operands,**kwargs) = add_instruction(Instructions::VGATHERPF1DPS,*operands,**kwargs)
+        def vgatherpf1dps(operand,**kwargs) = add_instruction(Instructions::VGATHERPF1DPS,operand,**kwargs)
         # Sparse Prefetch Packed Double-Precision Floating-Point Data Values with Signed Quadword Indices Using T1 Hint
         # @return [Ronin::ASM::X86_64::Instructions::VGATHERPF1QPD]
         # @example
         #   vgatherpf1qpd opmask([rax+zmm0*8], k1)
-        def vgatherpf1qpd(*operands,**kwargs) = add_instruction(Instructions::VGATHERPF1QPD,*operands,**kwargs)
+        def vgatherpf1qpd(operand,**kwargs) = add_instruction(Instructions::VGATHERPF1QPD,operand,**kwargs)
         # Sparse Prefetch Packed Single-Precision Floating-Point Data Values with Signed Quadword Indices Using T1 Hint
         # @return [Ronin::ASM::X86_64::Instructions::VGATHERPF1QPS]
         # @example
         #   vgatherpf1qps opmask([rax+zmm0*8], k1)
-        def vgatherpf1qps(*operands,**kwargs) = add_instruction(Instructions::VGATHERPF1QPS,*operands,**kwargs)
+        def vgatherpf1qps(operand,**kwargs) = add_instruction(Instructions::VGATHERPF1QPS,operand,**kwargs)
         # Gather Packed Double-Precision Floating-Point Values Using Signed Quadword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VGATHERQPD]
         # @example
@@ -9633,7 +9633,7 @@ module Ronin
         #   vgatherqpd opmask(zmm0, k1), [rbx+zmm1*8]
         #   vgatherqpd xmm0, [rbx+xmm1*8], xmm2
         #   vgatherqpd ymm0, [rbx+ymm1*8], ymm2
-        def vgatherqpd(*operands,**kwargs) = add_instruction(Instructions::VGATHERQPD,*operands,**kwargs)
+        def vgatherqpd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VGATHERQPD,operand1,operand2,*operands,**kwargs)
         # Gather Packed Single-Precision Floating-Point Values Using Signed Quadword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VGATHERQPS]
         # @example
@@ -9642,7 +9642,7 @@ module Ronin
         #   vgatherqps opmask(ymm0, k1), [rbx+zmm1*8]
         #   vgatherqps xmm0, [rbx+xmm1*8], xmm2
         #   vgatherqps xmm0, [rbx+ymm1*8], xmm2
-        def vgatherqps(*operands,**kwargs) = add_instruction(Instructions::VGATHERQPS,*operands,**kwargs)
+        def vgatherqps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VGATHERQPS,operand1,operand2,*operands,**kwargs)
         # Extract Exponents of Packed Double-Precision Floating-Point Values as Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VGETEXPPD]
         # @example
@@ -9660,7 +9660,7 @@ module Ronin
         #   vgetexppd zmm0, zmm1
         #   vgetexppd opmask(zmm0, k1, zero: true), zmm1, sae
         #   vgetexppd zmm0, zmm1, sae
-        def vgetexppd(*operands,**kwargs) = add_instruction(Instructions::VGETEXPPD,*operands,**kwargs)
+        def vgetexppd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VGETEXPPD,operand1,operand2,*operands,**kwargs)
         # Extract Exponents of Packed Half-Precision Floating-Point Values as Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VGETEXPPH]
         # @example
@@ -9678,7 +9678,7 @@ module Ronin
         #   vgetexpph zmm0, zmm1
         #   vgetexpph opmask(zmm0, k1, zero: true), zmm1, sae
         #   vgetexpph zmm0, zmm1, sae
-        def vgetexpph(*operands,**kwargs) = add_instruction(Instructions::VGETEXPPH,*operands,**kwargs)
+        def vgetexpph(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VGETEXPPH,operand1,operand2,*operands,**kwargs)
         # Extract Exponents of Packed Single-Precision Floating-Point Values as Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VGETEXPPS]
         # @example
@@ -9696,7 +9696,7 @@ module Ronin
         #   vgetexpps zmm0, zmm1
         #   vgetexpps opmask(zmm0, k1, zero: true), zmm1, sae
         #   vgetexpps zmm0, zmm1, sae
-        def vgetexpps(*operands,**kwargs) = add_instruction(Instructions::VGETEXPPS,*operands,**kwargs)
+        def vgetexpps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VGETEXPPS,operand1,operand2,*operands,**kwargs)
         # Extract Exponent of Scalar Double-Precision Floating-Point Value as Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VGETEXPSD]
         # @example
@@ -9706,7 +9706,7 @@ module Ronin
         #   vgetexpsd xmm0, xmm1, [rcx]
         #   vgetexpsd opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vgetexpsd xmm0, xmm1, xmm2, sae
-        def vgetexpsd(*operands,**kwargs) = add_instruction(Instructions::VGETEXPSD,*operands,**kwargs)
+        def vgetexpsd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VGETEXPSD,operand1,operand2,operand3,*operands,**kwargs)
         # Extract Exponent of Scalar Half-Precision Floating-Point Value as Half-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VGETEXPSH]
         # @example
@@ -9716,7 +9716,7 @@ module Ronin
         #   vgetexpsh xmm0, xmm1, [rcx]
         #   vgetexpsh opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vgetexpsh xmm0, xmm1, xmm2, sae
-        def vgetexpsh(*operands,**kwargs) = add_instruction(Instructions::VGETEXPSH,*operands,**kwargs)
+        def vgetexpsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VGETEXPSH,operand1,operand2,operand3,*operands,**kwargs)
         # Extract Exponent of Scalar Single-Precision Floating-Point Value as Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VGETEXPSS]
         # @example
@@ -9726,7 +9726,7 @@ module Ronin
         #   vgetexpss xmm0, xmm1, [rcx]
         #   vgetexpss opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vgetexpss xmm0, xmm1, xmm2, sae
-        def vgetexpss(*operands,**kwargs) = add_instruction(Instructions::VGETEXPSS,*operands,**kwargs)
+        def vgetexpss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VGETEXPSS,operand1,operand2,operand3,*operands,**kwargs)
         # Extract Normalized Mantissas from Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VGETMANTPD]
         # @example
@@ -9744,7 +9744,7 @@ module Ronin
         #   vgetmantpd zmm0, zmm1, 0x03
         #   vgetmantpd opmask(zmm0, k1, zero: true), zmm1, sae, 0x04
         #   vgetmantpd zmm0, zmm1, sae, 0x04
-        def vgetmantpd(*operands,**kwargs) = add_instruction(Instructions::VGETMANTPD,*operands,**kwargs)
+        def vgetmantpd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VGETMANTPD,operand1,operand2,operand3,*operands,**kwargs)
         # Extract Normalized Mantissas from Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VGETMANTPH]
         # @example
@@ -9762,7 +9762,7 @@ module Ronin
         #   vgetmantph zmm0, zmm1, 0x03
         #   vgetmantph opmask(zmm0, k1, zero: true), zmm1, sae, 0x04
         #   vgetmantph zmm0, zmm1, sae, 0x04
-        def vgetmantph(*operands,**kwargs) = add_instruction(Instructions::VGETMANTPH,*operands,**kwargs)
+        def vgetmantph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VGETMANTPH,operand1,operand2,operand3,*operands,**kwargs)
         # Extract Normalized Mantissas from Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VGETMANTPS]
         # @example
@@ -9780,7 +9780,7 @@ module Ronin
         #   vgetmantps zmm0, zmm1, 0x03
         #   vgetmantps opmask(zmm0, k1, zero: true), zmm1, sae, 0x04
         #   vgetmantps zmm0, zmm1, sae, 0x04
-        def vgetmantps(*operands,**kwargs) = add_instruction(Instructions::VGETMANTPS,*operands,**kwargs)
+        def vgetmantps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VGETMANTPS,operand1,operand2,operand3,*operands,**kwargs)
         # Extract Normalized Mantissa from Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VGETMANTSD]
         # @example
@@ -9790,7 +9790,7 @@ module Ronin
         #   vgetmantsd xmm0, xmm1, [rcx], 0x04
         #   vgetmantsd opmask(xmm0, k1, zero: true), xmm1, xmm2, sae, 0x05
         #   vgetmantsd xmm0, xmm1, xmm2, sae, 0x05
-        def vgetmantsd(*operands,**kwargs) = add_instruction(Instructions::VGETMANTSD,*operands,**kwargs)
+        def vgetmantsd(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VGETMANTSD,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Extract Normalized Mantissa from Scalar Half-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VGETMANTSH]
         # @example
@@ -9800,7 +9800,7 @@ module Ronin
         #   vgetmantsh xmm0, xmm1, [rcx], 0x04
         #   vgetmantsh opmask(xmm0, k1, zero: true), xmm1, xmm2, sae, 0x05
         #   vgetmantsh xmm0, xmm1, xmm2, sae, 0x05
-        def vgetmantsh(*operands,**kwargs) = add_instruction(Instructions::VGETMANTSH,*operands,**kwargs)
+        def vgetmantsh(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VGETMANTSH,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Extract Normalized Mantissa from Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VGETMANTSS]
         # @example
@@ -9810,7 +9810,7 @@ module Ronin
         #   vgetmantss xmm0, xmm1, [rcx], 0x04
         #   vgetmantss opmask(xmm0, k1, zero: true), xmm1, xmm2, sae, 0x05
         #   vgetmantss xmm0, xmm1, xmm2, sae, 0x05
-        def vgetmantss(*operands,**kwargs) = add_instruction(Instructions::VGETMANTSS,*operands,**kwargs)
+        def vgetmantss(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VGETMANTSS,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Galois Field (2^8) Affine Inverse Transformation
         # @return [Ronin::ASM::X86_64::Instructions::VGF2P8AFFINEINVQB]
         # @example
@@ -9828,7 +9828,7 @@ module Ronin
         #   vgf2p8affineinvqb ymm0, ymm1, [rcx], 0x04
         #   vgf2p8affineinvqb zmm0, zmm1, bcst([rcx], {1=>8}), 0x04
         #   vgf2p8affineinvqb zmm0, zmm1, zmm2, 0x04
-        def vgf2p8affineinvqb(*operands,**kwargs) = add_instruction(Instructions::VGF2P8AFFINEINVQB,*operands,**kwargs)
+        def vgf2p8affineinvqb(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VGF2P8AFFINEINVQB,operand1,operand2,operand3,operand4,**kwargs)
         # Galois Field (2^8) Affine Transformation
         # @return [Ronin::ASM::X86_64::Instructions::VGF2P8AFFINEQB]
         # @example
@@ -9846,7 +9846,7 @@ module Ronin
         #   vgf2p8affineqb ymm0, ymm1, [rcx], 0x04
         #   vgf2p8affineqb zmm0, zmm1, bcst([rcx], {1=>8}), 0x04
         #   vgf2p8affineqb zmm0, zmm1, zmm2, 0x04
-        def vgf2p8affineqb(*operands,**kwargs) = add_instruction(Instructions::VGF2P8AFFINEQB,*operands,**kwargs)
+        def vgf2p8affineqb(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VGF2P8AFFINEQB,operand1,operand2,operand3,operand4,**kwargs)
         # Galois Field Multiply Bytes
         # @return [Ronin::ASM::X86_64::Instructions::VGF2P8MULB]
         # @example
@@ -9862,7 +9862,7 @@ module Ronin
         #   vgf2p8mulb ymm0, ymm1, [rcx]
         #   vgf2p8mulb zmm0, zmm1, zmm2
         #   vgf2p8mulb zmm0, zmm1, [rcx]
-        def vgf2p8mulb(*operands,**kwargs) = add_instruction(Instructions::VGF2P8MULB,*operands,**kwargs)
+        def vgf2p8mulb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VGF2P8MULB,operand1,operand2,operand3,**kwargs)
         # Packed Double-FP Horizontal Add
         # @return [Ronin::ASM::X86_64::Instructions::VHADDPD]
         # @example
@@ -9870,7 +9870,7 @@ module Ronin
         #   vhaddpd xmm0, xmm1, [rcx]
         #   vhaddpd ymm0, ymm1, ymm2
         #   vhaddpd ymm0, ymm1, [rcx]
-        def vhaddpd(*operands,**kwargs) = add_instruction(Instructions::VHADDPD,*operands,**kwargs)
+        def vhaddpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VHADDPD,operand1,operand2,operand3,**kwargs)
         # Packed Single-FP Horizontal Add
         # @return [Ronin::ASM::X86_64::Instructions::VHADDPS]
         # @example
@@ -9878,7 +9878,7 @@ module Ronin
         #   vhaddps xmm0, xmm1, [rcx]
         #   vhaddps ymm0, ymm1, ymm2
         #   vhaddps ymm0, ymm1, [rcx]
-        def vhaddps(*operands,**kwargs) = add_instruction(Instructions::VHADDPS,*operands,**kwargs)
+        def vhaddps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VHADDPS,operand1,operand2,operand3,**kwargs)
         # Packed Double-FP Horizontal Subtract
         # @return [Ronin::ASM::X86_64::Instructions::VHSUBPD]
         # @example
@@ -9886,7 +9886,7 @@ module Ronin
         #   vhsubpd xmm0, xmm1, [rcx]
         #   vhsubpd ymm0, ymm1, ymm2
         #   vhsubpd ymm0, ymm1, [rcx]
-        def vhsubpd(*operands,**kwargs) = add_instruction(Instructions::VHSUBPD,*operands,**kwargs)
+        def vhsubpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VHSUBPD,operand1,operand2,operand3,**kwargs)
         # Packed Single-FP Horizontal Subtract
         # @return [Ronin::ASM::X86_64::Instructions::VHSUBPS]
         # @example
@@ -9894,13 +9894,13 @@ module Ronin
         #   vhsubps xmm0, xmm1, [rcx]
         #   vhsubps ymm0, ymm1, ymm2
         #   vhsubps ymm0, ymm1, [rcx]
-        def vhsubps(*operands,**kwargs) = add_instruction(Instructions::VHSUBPS,*operands,**kwargs)
+        def vhsubps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VHSUBPS,operand1,operand2,operand3,**kwargs)
         # Insert Packed Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VINSERTF128]
         # @example
         #   vinsertf128 ymm0, ymm1, xmm2, 0x04
         #   vinsertf128 ymm0, ymm1, [rcx], 0x04
-        def vinsertf128(*operands,**kwargs) = add_instruction(Instructions::VINSERTF128,*operands,**kwargs)
+        def vinsertf128(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VINSERTF128,operand1,operand2,operand3,operand4,**kwargs)
         # Insert 128 Bits of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VINSERTF32X4]
         # @example
@@ -9912,7 +9912,7 @@ module Ronin
         #   vinsertf32x4 ymm0, ymm1, [rcx], 0x04
         #   vinsertf32x4 zmm0, zmm1, xmm2, 0x04
         #   vinsertf32x4 zmm0, zmm1, [rcx], 0x04
-        def vinsertf32x4(*operands,**kwargs) = add_instruction(Instructions::VINSERTF32X4,*operands,**kwargs)
+        def vinsertf32x4(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VINSERTF32X4,operand1,operand2,operand3,operand4,**kwargs)
         # Insert 256 Bits of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VINSERTF32X8]
         # @example
@@ -9920,7 +9920,7 @@ module Ronin
         #   vinsertf32x8 opmask(zmm0, k1, zero: true), zmm1, [rcx], 0x04
         #   vinsertf32x8 zmm0, zmm1, ymm2, 0x04
         #   vinsertf32x8 zmm0, zmm1, [rcx], 0x04
-        def vinsertf32x8(*operands,**kwargs) = add_instruction(Instructions::VINSERTF32X8,*operands,**kwargs)
+        def vinsertf32x8(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VINSERTF32X8,operand1,operand2,operand3,operand4,**kwargs)
         # Insert 128 Bits of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VINSERTF64X2]
         # @example
@@ -9932,7 +9932,7 @@ module Ronin
         #   vinsertf64x2 ymm0, ymm1, [rcx], 0x04
         #   vinsertf64x2 zmm0, zmm1, xmm2, 0x04
         #   vinsertf64x2 zmm0, zmm1, [rcx], 0x04
-        def vinsertf64x2(*operands,**kwargs) = add_instruction(Instructions::VINSERTF64X2,*operands,**kwargs)
+        def vinsertf64x2(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VINSERTF64X2,operand1,operand2,operand3,operand4,**kwargs)
         # Insert 256 Bits of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VINSERTF64X4]
         # @example
@@ -9940,13 +9940,13 @@ module Ronin
         #   vinsertf64x4 opmask(zmm0, k1, zero: true), zmm1, [rcx], 0x04
         #   vinsertf64x4 zmm0, zmm1, ymm2, 0x04
         #   vinsertf64x4 zmm0, zmm1, [rcx], 0x04
-        def vinsertf64x4(*operands,**kwargs) = add_instruction(Instructions::VINSERTF64X4,*operands,**kwargs)
+        def vinsertf64x4(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VINSERTF64X4,operand1,operand2,operand3,operand4,**kwargs)
         # Insert Packed Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VINSERTI128]
         # @example
         #   vinserti128 ymm0, ymm1, xmm2, 0x04
         #   vinserti128 ymm0, ymm1, [rcx], 0x04
-        def vinserti128(*operands,**kwargs) = add_instruction(Instructions::VINSERTI128,*operands,**kwargs)
+        def vinserti128(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VINSERTI128,operand1,operand2,operand3,operand4,**kwargs)
         # Insert 128 Bits of Packed Doubleword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VINSERTI32X4]
         # @example
@@ -9958,7 +9958,7 @@ module Ronin
         #   vinserti32x4 ymm0, ymm1, [rcx], 0x04
         #   vinserti32x4 zmm0, zmm1, xmm2, 0x04
         #   vinserti32x4 zmm0, zmm1, [rcx], 0x04
-        def vinserti32x4(*operands,**kwargs) = add_instruction(Instructions::VINSERTI32X4,*operands,**kwargs)
+        def vinserti32x4(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VINSERTI32X4,operand1,operand2,operand3,operand4,**kwargs)
         # Insert 256 Bits of Packed Doubleword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VINSERTI32X8]
         # @example
@@ -9966,7 +9966,7 @@ module Ronin
         #   vinserti32x8 opmask(zmm0, k1, zero: true), zmm1, [rcx], 0x04
         #   vinserti32x8 zmm0, zmm1, ymm2, 0x04
         #   vinserti32x8 zmm0, zmm1, [rcx], 0x04
-        def vinserti32x8(*operands,**kwargs) = add_instruction(Instructions::VINSERTI32X8,*operands,**kwargs)
+        def vinserti32x8(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VINSERTI32X8,operand1,operand2,operand3,operand4,**kwargs)
         # Insert 128 Bits of Packed Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VINSERTI64X2]
         # @example
@@ -9978,7 +9978,7 @@ module Ronin
         #   vinserti64x2 ymm0, ymm1, [rcx], 0x04
         #   vinserti64x2 zmm0, zmm1, xmm2, 0x04
         #   vinserti64x2 zmm0, zmm1, [rcx], 0x04
-        def vinserti64x2(*operands,**kwargs) = add_instruction(Instructions::VINSERTI64X2,*operands,**kwargs)
+        def vinserti64x2(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VINSERTI64X2,operand1,operand2,operand3,operand4,**kwargs)
         # Insert 256 Bits of Packed Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VINSERTI64X4]
         # @example
@@ -9986,29 +9986,29 @@ module Ronin
         #   vinserti64x4 opmask(zmm0, k1, zero: true), zmm1, [rcx], 0x04
         #   vinserti64x4 zmm0, zmm1, ymm2, 0x04
         #   vinserti64x4 zmm0, zmm1, [rcx], 0x04
-        def vinserti64x4(*operands,**kwargs) = add_instruction(Instructions::VINSERTI64X4,*operands,**kwargs)
+        def vinserti64x4(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VINSERTI64X4,operand1,operand2,operand3,operand4,**kwargs)
         # Insert Packed Single Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VINSERTPS]
         # @example
         #   vinsertps xmm0, xmm1, xmm2, 0x04
         #   vinsertps xmm0, xmm1, [rcx], 0x04
-        def vinsertps(*operands,**kwargs) = add_instruction(Instructions::VINSERTPS,*operands,**kwargs)
+        def vinsertps(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VINSERTPS,operand1,operand2,operand3,operand4,**kwargs)
         # Load Unaligned Integer 128 Bits
         # @return [Ronin::ASM::X86_64::Instructions::VLDDQU]
         # @example
         #   vlddqu xmm0, [rbx]
         #   vlddqu ymm0, [rbx]
-        def vlddqu(*operands,**kwargs) = add_instruction(Instructions::VLDDQU,*operands,**kwargs)
+        def vlddqu(operand1,operand2,**kwargs) = add_instruction(Instructions::VLDDQU,operand1,operand2,**kwargs)
         # Load MXCSR Register
         # @return [Ronin::ASM::X86_64::Instructions::VLDMXCSR]
         # @example
         #   vldmxcsr [rax]
-        def vldmxcsr(*operands,**kwargs) = add_instruction(Instructions::VLDMXCSR,*operands,**kwargs)
+        def vldmxcsr(operand,**kwargs) = add_instruction(Instructions::VLDMXCSR,operand,**kwargs)
         # Store Selected Bytes of Double Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VMASKMOVDQU]
         # @example
         #   vmaskmovdqu xmm0, xmm1
-        def vmaskmovdqu(*operands,**kwargs) = add_instruction(Instructions::VMASKMOVDQU,*operands,**kwargs)
+        def vmaskmovdqu(operand1,operand2,**kwargs) = add_instruction(Instructions::VMASKMOVDQU,operand1,operand2,**kwargs)
         # Conditional Move Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMASKMOVPD]
         # @example
@@ -10016,7 +10016,7 @@ module Ronin
         #   vmaskmovpd ymm0, ymm1, [rcx]
         #   vmaskmovpd [rax], xmm1, xmm2
         #   vmaskmovpd [rax], ymm1, ymm2
-        def vmaskmovpd(*operands,**kwargs) = add_instruction(Instructions::VMASKMOVPD,*operands,**kwargs)
+        def vmaskmovpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VMASKMOVPD,operand1,operand2,operand3,**kwargs)
         # Conditional Move Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMASKMOVPS]
         # @example
@@ -10024,7 +10024,7 @@ module Ronin
         #   vmaskmovps ymm0, ymm1, [rcx]
         #   vmaskmovps [rax], xmm1, xmm2
         #   vmaskmovps [rax], ymm1, ymm2
-        def vmaskmovps(*operands,**kwargs) = add_instruction(Instructions::VMASKMOVPS,*operands,**kwargs)
+        def vmaskmovps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VMASKMOVPS,operand1,operand2,operand3,**kwargs)
         # Return Maximum Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMAXPD]
         # @example
@@ -10044,7 +10044,7 @@ module Ronin
         #   vmaxpd zmm0, zmm1, zmm2
         #   vmaxpd opmask(zmm0, k1, zero: true), zmm1, zmm2, sae
         #   vmaxpd zmm0, zmm1, zmm2, sae
-        def vmaxpd(*operands,**kwargs) = add_instruction(Instructions::VMAXPD,*operands,**kwargs)
+        def vmaxpd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMAXPD,operand1,operand2,operand3,*operands,**kwargs)
         # Return Maximum Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMAXPH]
         # @example
@@ -10062,7 +10062,7 @@ module Ronin
         #   vmaxph zmm0, zmm1, zmm2
         #   vmaxph opmask(zmm0, k1, zero: true), zmm1, zmm2, sae
         #   vmaxph zmm0, zmm1, zmm2, sae
-        def vmaxph(*operands,**kwargs) = add_instruction(Instructions::VMAXPH,*operands,**kwargs)
+        def vmaxph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMAXPH,operand1,operand2,operand3,*operands,**kwargs)
         # Return Maximum Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMAXPS]
         # @example
@@ -10082,7 +10082,7 @@ module Ronin
         #   vmaxps zmm0, zmm1, zmm2
         #   vmaxps opmask(zmm0, k1, zero: true), zmm1, zmm2, sae
         #   vmaxps zmm0, zmm1, zmm2, sae
-        def vmaxps(*operands,**kwargs) = add_instruction(Instructions::VMAXPS,*operands,**kwargs)
+        def vmaxps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMAXPS,operand1,operand2,operand3,*operands,**kwargs)
         # Return Maximum Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VMAXSD]
         # @example
@@ -10092,7 +10092,7 @@ module Ronin
         #   vmaxsd xmm0, xmm1, [rcx]
         #   vmaxsd opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vmaxsd xmm0, xmm1, xmm2, sae
-        def vmaxsd(*operands,**kwargs) = add_instruction(Instructions::VMAXSD,*operands,**kwargs)
+        def vmaxsd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMAXSD,operand1,operand2,operand3,*operands,**kwargs)
         # Return Maximum Scalar Half-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VMAXSH]
         # @example
@@ -10102,7 +10102,7 @@ module Ronin
         #   vmaxsh xmm0, xmm1, [rcx]
         #   vmaxsh opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vmaxsh xmm0, xmm1, xmm2, sae
-        def vmaxsh(*operands,**kwargs) = add_instruction(Instructions::VMAXSH,*operands,**kwargs)
+        def vmaxsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMAXSH,operand1,operand2,operand3,*operands,**kwargs)
         # Return Maximum Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VMAXSS]
         # @example
@@ -10112,7 +10112,7 @@ module Ronin
         #   vmaxss xmm0, xmm1, [rcx]
         #   vmaxss opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vmaxss xmm0, xmm1, xmm2, sae
-        def vmaxss(*operands,**kwargs) = add_instruction(Instructions::VMAXSS,*operands,**kwargs)
+        def vmaxss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMAXSS,operand1,operand2,operand3,*operands,**kwargs)
         # Return Minimum Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMINPD]
         # @example
@@ -10132,7 +10132,7 @@ module Ronin
         #   vminpd zmm0, zmm1, zmm2
         #   vminpd opmask(zmm0, k1, zero: true), zmm1, zmm2, sae
         #   vminpd zmm0, zmm1, zmm2, sae
-        def vminpd(*operands,**kwargs) = add_instruction(Instructions::VMINPD,*operands,**kwargs)
+        def vminpd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMINPD,operand1,operand2,operand3,*operands,**kwargs)
         # Return Minimum Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMINPH]
         # @example
@@ -10150,7 +10150,7 @@ module Ronin
         #   vminph zmm0, zmm1, zmm2
         #   vminph opmask(zmm0, k1, zero: true), zmm1, zmm2, sae
         #   vminph zmm0, zmm1, zmm2, sae
-        def vminph(*operands,**kwargs) = add_instruction(Instructions::VMINPH,*operands,**kwargs)
+        def vminph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMINPH,operand1,operand2,operand3,*operands,**kwargs)
         # Return Minimum Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMINPS]
         # @example
@@ -10170,7 +10170,7 @@ module Ronin
         #   vminps zmm0, zmm1, zmm2
         #   vminps opmask(zmm0, k1, zero: true), zmm1, zmm2, sae
         #   vminps zmm0, zmm1, zmm2, sae
-        def vminps(*operands,**kwargs) = add_instruction(Instructions::VMINPS,*operands,**kwargs)
+        def vminps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMINPS,operand1,operand2,operand3,*operands,**kwargs)
         # Return Minimum Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VMINSD]
         # @example
@@ -10180,7 +10180,7 @@ module Ronin
         #   vminsd xmm0, xmm1, [rcx]
         #   vminsd opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vminsd xmm0, xmm1, xmm2, sae
-        def vminsd(*operands,**kwargs) = add_instruction(Instructions::VMINSD,*operands,**kwargs)
+        def vminsd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMINSD,operand1,operand2,operand3,*operands,**kwargs)
         # Return Minimum Scalar Half-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VMINSH]
         # @example
@@ -10190,7 +10190,7 @@ module Ronin
         #   vminsh xmm0, xmm1, [rcx]
         #   vminsh opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vminsh xmm0, xmm1, xmm2, sae
-        def vminsh(*operands,**kwargs) = add_instruction(Instructions::VMINSH,*operands,**kwargs)
+        def vminsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMINSH,operand1,operand2,operand3,*operands,**kwargs)
         # Return Minimum Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VMINSS]
         # @example
@@ -10200,7 +10200,7 @@ module Ronin
         #   vminss xmm0, xmm1, [rcx]
         #   vminss opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vminss xmm0, xmm1, xmm2, sae
-        def vminss(*operands,**kwargs) = add_instruction(Instructions::VMINSS,*operands,**kwargs)
+        def vminss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMINSS,operand1,operand2,operand3,*operands,**kwargs)
         # Move Aligned Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVAPD]
         # @example
@@ -10222,7 +10222,7 @@ module Ronin
         #   vmovapd [rax], xmm1
         #   vmovapd [rax], ymm1
         #   vmovapd [rax], zmm1
-        def vmovapd(*operands,**kwargs) = add_instruction(Instructions::VMOVAPD,*operands,**kwargs)
+        def vmovapd(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVAPD,operand1,operand2,**kwargs)
         # Move Aligned Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVAPS]
         # @example
@@ -10244,7 +10244,7 @@ module Ronin
         #   vmovaps [rax], xmm1
         #   vmovaps [rax], ymm1
         #   vmovaps [rax], zmm1
-        def vmovaps(*operands,**kwargs) = add_instruction(Instructions::VMOVAPS,*operands,**kwargs)
+        def vmovaps(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVAPS,operand1,operand2,**kwargs)
         # Move Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VMOVD]
         # @example
@@ -10252,7 +10252,7 @@ module Ronin
         #   vmovd xmm0, ebx
         #   vmovd xmm0, [rbx]
         #   vmovd [rax], xmm1
-        def vmovd(*operands,**kwargs) = add_instruction(Instructions::VMOVD,*operands,**kwargs)
+        def vmovd(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVD,operand1,operand2,**kwargs)
         # Move One Double-FP and Duplicate
         # @return [Ronin::ASM::X86_64::Instructions::VMOVDDUP]
         # @example
@@ -10268,7 +10268,7 @@ module Ronin
         #   vmovddup ymm0, [rbx]
         #   vmovddup zmm0, zmm1
         #   vmovddup zmm0, [rbx]
-        def vmovddup(*operands,**kwargs) = add_instruction(Instructions::VMOVDDUP,*operands,**kwargs)
+        def vmovddup(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVDDUP,operand1,operand2,**kwargs)
         # Move Aligned Double Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VMOVDQA]
         # @example
@@ -10278,7 +10278,7 @@ module Ronin
         #   vmovdqa ymm0, [rbx]
         #   vmovdqa [rax], xmm1
         #   vmovdqa [rax], ymm1
-        def vmovdqa(*operands,**kwargs) = add_instruction(Instructions::VMOVDQA,*operands,**kwargs)
+        def vmovdqa(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVDQA,operand1,operand2,**kwargs)
         # Move Aligned Doubleword Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVDQA32]
         # @example
@@ -10300,7 +10300,7 @@ module Ronin
         #   vmovdqa32 [rax], xmm1
         #   vmovdqa32 [rax], ymm1
         #   vmovdqa32 [rax], zmm1
-        def vmovdqa32(*operands,**kwargs) = add_instruction(Instructions::VMOVDQA32,*operands,**kwargs)
+        def vmovdqa32(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVDQA32,operand1,operand2,**kwargs)
         # Move Aligned Quadword Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVDQA64]
         # @example
@@ -10322,7 +10322,7 @@ module Ronin
         #   vmovdqa64 [rax], xmm1
         #   vmovdqa64 [rax], ymm1
         #   vmovdqa64 [rax], zmm1
-        def vmovdqa64(*operands,**kwargs) = add_instruction(Instructions::VMOVDQA64,*operands,**kwargs)
+        def vmovdqa64(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVDQA64,operand1,operand2,**kwargs)
         # Move Unaligned Double Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VMOVDQU]
         # @example
@@ -10332,7 +10332,7 @@ module Ronin
         #   vmovdqu ymm0, [rbx]
         #   vmovdqu [rax], xmm1
         #   vmovdqu [rax], ymm1
-        def vmovdqu(*operands,**kwargs) = add_instruction(Instructions::VMOVDQU,*operands,**kwargs)
+        def vmovdqu(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVDQU,operand1,operand2,**kwargs)
         # Move Unaligned Word Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVDQU16]
         # @example
@@ -10354,7 +10354,7 @@ module Ronin
         #   vmovdqu16 [rax], xmm1
         #   vmovdqu16 [rax], ymm1
         #   vmovdqu16 [rax], zmm1
-        def vmovdqu16(*operands,**kwargs) = add_instruction(Instructions::VMOVDQU16,*operands,**kwargs)
+        def vmovdqu16(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVDQU16,operand1,operand2,**kwargs)
         # Move Unaligned Doubleword Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVDQU32]
         # @example
@@ -10376,7 +10376,7 @@ module Ronin
         #   vmovdqu32 [rax], xmm1
         #   vmovdqu32 [rax], ymm1
         #   vmovdqu32 [rax], zmm1
-        def vmovdqu32(*operands,**kwargs) = add_instruction(Instructions::VMOVDQU32,*operands,**kwargs)
+        def vmovdqu32(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVDQU32,operand1,operand2,**kwargs)
         # Move Unaligned Quadword Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVDQU64]
         # @example
@@ -10398,7 +10398,7 @@ module Ronin
         #   vmovdqu64 [rax], xmm1
         #   vmovdqu64 [rax], ymm1
         #   vmovdqu64 [rax], zmm1
-        def vmovdqu64(*operands,**kwargs) = add_instruction(Instructions::VMOVDQU64,*operands,**kwargs)
+        def vmovdqu64(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVDQU64,operand1,operand2,**kwargs)
         # Move Unaligned Byte Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVDQU8]
         # @example
@@ -10420,81 +10420,81 @@ module Ronin
         #   vmovdqu8 [rax], xmm1
         #   vmovdqu8 [rax], ymm1
         #   vmovdqu8 [rax], zmm1
-        def vmovdqu8(*operands,**kwargs) = add_instruction(Instructions::VMOVDQU8,*operands,**kwargs)
+        def vmovdqu8(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVDQU8,operand1,operand2,**kwargs)
         # Move Packed Single-Precision Floating-Point Values High to Low
         # @return [Ronin::ASM::X86_64::Instructions::VMOVHLPS]
         # @example
         #   vmovhlps xmm0, xmm1, xmm2
-        def vmovhlps(*operands,**kwargs) = add_instruction(Instructions::VMOVHLPS,*operands,**kwargs)
+        def vmovhlps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VMOVHLPS,operand1,operand2,operand3,**kwargs)
         # Move High Packed Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VMOVHPD]
         # @example
         #   vmovhpd [rax], xmm1
         #   vmovhpd xmm0, xmm1, [rcx]
-        def vmovhpd(*operands,**kwargs) = add_instruction(Instructions::VMOVHPD,*operands,**kwargs)
+        def vmovhpd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VMOVHPD,operand1,operand2,*operands,**kwargs)
         # Move High Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVHPS]
         # @example
         #   vmovhps [rax], xmm1
         #   vmovhps xmm0, xmm1, [rcx]
-        def vmovhps(*operands,**kwargs) = add_instruction(Instructions::VMOVHPS,*operands,**kwargs)
+        def vmovhps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VMOVHPS,operand1,operand2,*operands,**kwargs)
         # Move Packed Single-Precision Floating-Point Values Low to High
         # @return [Ronin::ASM::X86_64::Instructions::VMOVLHPS]
         # @example
         #   vmovlhps xmm0, xmm1, xmm2
-        def vmovlhps(*operands,**kwargs) = add_instruction(Instructions::VMOVLHPS,*operands,**kwargs)
+        def vmovlhps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VMOVLHPS,operand1,operand2,operand3,**kwargs)
         # Move Low Packed Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VMOVLPD]
         # @example
         #   vmovlpd [rax], xmm1
         #   vmovlpd xmm0, xmm1, [rcx]
-        def vmovlpd(*operands,**kwargs) = add_instruction(Instructions::VMOVLPD,*operands,**kwargs)
+        def vmovlpd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VMOVLPD,operand1,operand2,*operands,**kwargs)
         # Move Low Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVLPS]
         # @example
         #   vmovlps [rax], xmm1
         #   vmovlps xmm0, xmm1, [rcx]
-        def vmovlps(*operands,**kwargs) = add_instruction(Instructions::VMOVLPS,*operands,**kwargs)
+        def vmovlps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VMOVLPS,operand1,operand2,*operands,**kwargs)
         # Extract Packed Double-Precision Floating-Point Sign Mask
         # @return [Ronin::ASM::X86_64::Instructions::VMOVMSKPD]
         # @example
         #   vmovmskpd eax, xmm1
         #   vmovmskpd eax, ymm1
-        def vmovmskpd(*operands,**kwargs) = add_instruction(Instructions::VMOVMSKPD,*operands,**kwargs)
+        def vmovmskpd(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVMSKPD,operand1,operand2,**kwargs)
         # Extract Packed Single-Precision Floating-Point Sign Mask
         # @return [Ronin::ASM::X86_64::Instructions::VMOVMSKPS]
         # @example
         #   vmovmskps eax, xmm1
         #   vmovmskps eax, ymm1
-        def vmovmskps(*operands,**kwargs) = add_instruction(Instructions::VMOVMSKPS,*operands,**kwargs)
+        def vmovmskps(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVMSKPS,operand1,operand2,**kwargs)
         # Store Double Quadword Using Non-Temporal Hint
         # @return [Ronin::ASM::X86_64::Instructions::VMOVNTDQ]
         # @example
         #   vmovntdq [rax], xmm1
         #   vmovntdq [rax], ymm1
         #   vmovntdq [rax], zmm1
-        def vmovntdq(*operands,**kwargs) = add_instruction(Instructions::VMOVNTDQ,*operands,**kwargs)
+        def vmovntdq(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVNTDQ,operand1,operand2,**kwargs)
         # Load Double Quadword Non-Temporal Aligned Hint
         # @return [Ronin::ASM::X86_64::Instructions::VMOVNTDQA]
         # @example
         #   vmovntdqa xmm0, [rbx]
         #   vmovntdqa ymm0, [rbx]
         #   vmovntdqa zmm0, [rbx]
-        def vmovntdqa(*operands,**kwargs) = add_instruction(Instructions::VMOVNTDQA,*operands,**kwargs)
+        def vmovntdqa(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVNTDQA,operand1,operand2,**kwargs)
         # Store Packed Double-Precision Floating-Point Values Using Non-Temporal Hint
         # @return [Ronin::ASM::X86_64::Instructions::VMOVNTPD]
         # @example
         #   vmovntpd [rax], xmm1
         #   vmovntpd [rax], ymm1
         #   vmovntpd [rax], zmm1
-        def vmovntpd(*operands,**kwargs) = add_instruction(Instructions::VMOVNTPD,*operands,**kwargs)
+        def vmovntpd(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVNTPD,operand1,operand2,**kwargs)
         # Store Packed Single-Precision Floating-Point Values Using Non-Temporal Hint
         # @return [Ronin::ASM::X86_64::Instructions::VMOVNTPS]
         # @example
         #   vmovntps [rax], xmm1
         #   vmovntps [rax], ymm1
         #   vmovntps [rax], zmm1
-        def vmovntps(*operands,**kwargs) = add_instruction(Instructions::VMOVNTPS,*operands,**kwargs)
+        def vmovntps(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVNTPS,operand1,operand2,**kwargs)
         # Move Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VMOVQ]
         # @example
@@ -10503,7 +10503,7 @@ module Ronin
         #   vmovq xmm0, xmm1
         #   vmovq xmm0, [rbx]
         #   vmovq [rax], xmm1
-        def vmovq(*operands,**kwargs) = add_instruction(Instructions::VMOVQ,*operands,**kwargs)
+        def vmovq(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVQ,operand1,operand2,**kwargs)
         # Move Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VMOVSD]
         # @example
@@ -10513,7 +10513,7 @@ module Ronin
         #   vmovsd [rax], xmm1
         #   vmovsd opmask(xmm0, k1, zero: true), xmm1, xmm2
         #   vmovsd xmm0, xmm1, xmm2
-        def vmovsd(*operands,**kwargs) = add_instruction(Instructions::VMOVSD,*operands,**kwargs)
+        def vmovsd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VMOVSD,operand1,operand2,*operands,**kwargs)
         # Move Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVSH]
         # @example
@@ -10523,7 +10523,7 @@ module Ronin
         #   vmovsh [rax], xmm1
         #   vmovsh opmask(xmm0, k1, zero: true), xmm1, xmm2
         #   vmovsh xmm0, xmm1, xmm2
-        def vmovsh(*operands,**kwargs) = add_instruction(Instructions::VMOVSH,*operands,**kwargs)
+        def vmovsh(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VMOVSH,operand1,operand2,*operands,**kwargs)
         # Move Packed Single-FP High and Duplicate
         # @return [Ronin::ASM::X86_64::Instructions::VMOVSHDUP]
         # @example
@@ -10539,7 +10539,7 @@ module Ronin
         #   vmovshdup ymm0, [rbx]
         #   vmovshdup zmm0, zmm1
         #   vmovshdup zmm0, [rbx]
-        def vmovshdup(*operands,**kwargs) = add_instruction(Instructions::VMOVSHDUP,*operands,**kwargs)
+        def vmovshdup(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVSHDUP,operand1,operand2,**kwargs)
         # Move Packed Single-FP Low and Duplicate
         # @return [Ronin::ASM::X86_64::Instructions::VMOVSLDUP]
         # @example
@@ -10555,7 +10555,7 @@ module Ronin
         #   vmovsldup ymm0, [rbx]
         #   vmovsldup zmm0, zmm1
         #   vmovsldup zmm0, [rbx]
-        def vmovsldup(*operands,**kwargs) = add_instruction(Instructions::VMOVSLDUP,*operands,**kwargs)
+        def vmovsldup(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVSLDUP,operand1,operand2,**kwargs)
         # Move Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVSS]
         # @example
@@ -10565,7 +10565,7 @@ module Ronin
         #   vmovss [rax], xmm1
         #   vmovss opmask(xmm0, k1, zero: true), xmm1, xmm2
         #   vmovss xmm0, xmm1, xmm2
-        def vmovss(*operands,**kwargs) = add_instruction(Instructions::VMOVSS,*operands,**kwargs)
+        def vmovss(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VMOVSS,operand1,operand2,*operands,**kwargs)
         # Move Unaligned Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVUPD]
         # @example
@@ -10587,7 +10587,7 @@ module Ronin
         #   vmovupd [rax], xmm1
         #   vmovupd [rax], ymm1
         #   vmovupd [rax], zmm1
-        def vmovupd(*operands,**kwargs) = add_instruction(Instructions::VMOVUPD,*operands,**kwargs)
+        def vmovupd(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVUPD,operand1,operand2,**kwargs)
         # Move Unaligned Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMOVUPS]
         # @example
@@ -10609,7 +10609,7 @@ module Ronin
         #   vmovups [rax], xmm1
         #   vmovups [rax], ymm1
         #   vmovups [rax], zmm1
-        def vmovups(*operands,**kwargs) = add_instruction(Instructions::VMOVUPS,*operands,**kwargs)
+        def vmovups(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVUPS,operand1,operand2,**kwargs)
         # Move Word
         # @return [Ronin::ASM::X86_64::Instructions::VMOVW]
         # @example
@@ -10617,7 +10617,7 @@ module Ronin
         #   vmovw xmm0, ebx
         #   vmovw xmm0, [rbx]
         #   vmovw [rax], xmm1
-        def vmovw(*operands,**kwargs) = add_instruction(Instructions::VMOVW,*operands,**kwargs)
+        def vmovw(operand1,operand2,**kwargs) = add_instruction(Instructions::VMOVW,operand1,operand2,**kwargs)
         # Compute Multiple Packed Sums of Absolute Difference
         # @return [Ronin::ASM::X86_64::Instructions::VMPSADBW]
         # @example
@@ -10625,7 +10625,7 @@ module Ronin
         #   vmpsadbw xmm0, xmm1, [rcx], 0x04
         #   vmpsadbw ymm0, ymm1, ymm2, 0x04
         #   vmpsadbw ymm0, ymm1, [rcx], 0x04
-        def vmpsadbw(*operands,**kwargs) = add_instruction(Instructions::VMPSADBW,*operands,**kwargs)
+        def vmpsadbw(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VMPSADBW,operand1,operand2,operand3,operand4,**kwargs)
         # Multiply Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMULPD]
         # @example
@@ -10645,7 +10645,7 @@ module Ronin
         #   vmulpd zmm0, zmm1, zmm2
         #   vmulpd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vmulpd zmm0, zmm1, zmm2, er
-        def vmulpd(*operands,**kwargs) = add_instruction(Instructions::VMULPD,*operands,**kwargs)
+        def vmulpd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMULPD,operand1,operand2,operand3,*operands,**kwargs)
         # Multiply Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMULPH]
         # @example
@@ -10663,7 +10663,7 @@ module Ronin
         #   vmulph zmm0, zmm1, zmm2
         #   vmulph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vmulph zmm0, zmm1, zmm2, er
-        def vmulph(*operands,**kwargs) = add_instruction(Instructions::VMULPH,*operands,**kwargs)
+        def vmulph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMULPH,operand1,operand2,operand3,*operands,**kwargs)
         # Multiply Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMULPS]
         # @example
@@ -10683,7 +10683,7 @@ module Ronin
         #   vmulps zmm0, zmm1, zmm2
         #   vmulps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vmulps zmm0, zmm1, zmm2, er
-        def vmulps(*operands,**kwargs) = add_instruction(Instructions::VMULPS,*operands,**kwargs)
+        def vmulps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMULPS,operand1,operand2,operand3,*operands,**kwargs)
         # Multiply Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMULSD]
         # @example
@@ -10693,7 +10693,7 @@ module Ronin
         #   vmulsd xmm0, xmm1, [rcx]
         #   vmulsd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vmulsd xmm0, xmm1, xmm2, er
-        def vmulsd(*operands,**kwargs) = add_instruction(Instructions::VMULSD,*operands,**kwargs)
+        def vmulsd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMULSD,operand1,operand2,operand3,*operands,**kwargs)
         # Fused Multiply Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMULSH]
         # @example
@@ -10703,7 +10703,7 @@ module Ronin
         #   vmulsh xmm0, xmm1, [rcx]
         #   vmulsh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vmulsh xmm0, xmm1, xmm2, er
-        def vmulsh(*operands,**kwargs) = add_instruction(Instructions::VMULSH,*operands,**kwargs)
+        def vmulsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMULSH,operand1,operand2,operand3,*operands,**kwargs)
         # Multiply Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VMULSS]
         # @example
@@ -10713,7 +10713,7 @@ module Ronin
         #   vmulss xmm0, xmm1, [rcx]
         #   vmulss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vmulss xmm0, xmm1, xmm2, er
-        def vmulss(*operands,**kwargs) = add_instruction(Instructions::VMULSS,*operands,**kwargs)
+        def vmulss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VMULSS,operand1,operand2,operand3,*operands,**kwargs)
         # Bitwise Logical OR of Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VORPD]
         # @example
@@ -10731,7 +10731,7 @@ module Ronin
         #   vorpd ymm0, ymm1, [rcx]
         #   vorpd zmm0, zmm1, bcst([rcx], {1=>8})
         #   vorpd zmm0, zmm1, zmm2
-        def vorpd(*operands,**kwargs) = add_instruction(Instructions::VORPD,*operands,**kwargs)
+        def vorpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VORPD,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical OR of Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VORPS]
         # @example
@@ -10749,7 +10749,7 @@ module Ronin
         #   vorps ymm0, ymm1, [rcx]
         #   vorps zmm0, zmm1, bcst([rcx], {1=>16})
         #   vorps zmm0, zmm1, zmm2
-        def vorps(*operands,**kwargs) = add_instruction(Instructions::VORPS,*operands,**kwargs)
+        def vorps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VORPS,operand1,operand2,operand3,**kwargs)
         # Packed Absolute Value of Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPABSB]
         # @example
@@ -10765,7 +10765,7 @@ module Ronin
         #   vpabsb ymm0, [rbx]
         #   vpabsb zmm0, zmm1
         #   vpabsb zmm0, [rbx]
-        def vpabsb(*operands,**kwargs) = add_instruction(Instructions::VPABSB,*operands,**kwargs)
+        def vpabsb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPABSB,operand1,operand2,**kwargs)
         # Packed Absolute Value of Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPABSD]
         # @example
@@ -10783,7 +10783,7 @@ module Ronin
         #   vpabsd ymm0, [rbx]
         #   vpabsd zmm0, bcst([rbx], {1=>16})
         #   vpabsd zmm0, zmm1
-        def vpabsd(*operands,**kwargs) = add_instruction(Instructions::VPABSD,*operands,**kwargs)
+        def vpabsd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPABSD,operand1,operand2,**kwargs)
         # Packed Absolute Value of Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPABSQ]
         # @example
@@ -10799,7 +10799,7 @@ module Ronin
         #   vpabsq ymm0, ymm1
         #   vpabsq zmm0, bcst([rbx], {1=>8})
         #   vpabsq zmm0, zmm1
-        def vpabsq(*operands,**kwargs) = add_instruction(Instructions::VPABSQ,*operands,**kwargs)
+        def vpabsq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPABSQ,operand1,operand2,**kwargs)
         # Packed Absolute Value of Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPABSW]
         # @example
@@ -10815,7 +10815,7 @@ module Ronin
         #   vpabsw ymm0, [rbx]
         #   vpabsw zmm0, zmm1
         #   vpabsw zmm0, [rbx]
-        def vpabsw(*operands,**kwargs) = add_instruction(Instructions::VPABSW,*operands,**kwargs)
+        def vpabsw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPABSW,operand1,operand2,**kwargs)
         # Pack Doublewords into Words with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPACKSSDW]
         # @example
@@ -10833,7 +10833,7 @@ module Ronin
         #   vpackssdw ymm0, ymm1, [rcx]
         #   vpackssdw zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpackssdw zmm0, zmm1, zmm2
-        def vpackssdw(*operands,**kwargs) = add_instruction(Instructions::VPACKSSDW,*operands,**kwargs)
+        def vpackssdw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPACKSSDW,operand1,operand2,operand3,**kwargs)
         # Pack Words into Bytes with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPACKSSWB]
         # @example
@@ -10849,7 +10849,7 @@ module Ronin
         #   vpacksswb ymm0, ymm1, [rcx]
         #   vpacksswb zmm0, zmm1, zmm2
         #   vpacksswb zmm0, zmm1, [rcx]
-        def vpacksswb(*operands,**kwargs) = add_instruction(Instructions::VPACKSSWB,*operands,**kwargs)
+        def vpacksswb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPACKSSWB,operand1,operand2,operand3,**kwargs)
         # Pack Doublewords into Words with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPACKUSDW]
         # @example
@@ -10867,7 +10867,7 @@ module Ronin
         #   vpackusdw ymm0, ymm1, [rcx]
         #   vpackusdw zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpackusdw zmm0, zmm1, zmm2
-        def vpackusdw(*operands,**kwargs) = add_instruction(Instructions::VPACKUSDW,*operands,**kwargs)
+        def vpackusdw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPACKUSDW,operand1,operand2,operand3,**kwargs)
         # Pack Words into Bytes with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPACKUSWB]
         # @example
@@ -10883,7 +10883,7 @@ module Ronin
         #   vpackuswb ymm0, ymm1, [rcx]
         #   vpackuswb zmm0, zmm1, zmm2
         #   vpackuswb zmm0, zmm1, [rcx]
-        def vpackuswb(*operands,**kwargs) = add_instruction(Instructions::VPACKUSWB,*operands,**kwargs)
+        def vpackuswb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPACKUSWB,operand1,operand2,operand3,**kwargs)
         # Add Packed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPADDB]
         # @example
@@ -10899,7 +10899,7 @@ module Ronin
         #   vpaddb ymm0, ymm1, [rcx]
         #   vpaddb zmm0, zmm1, zmm2
         #   vpaddb zmm0, zmm1, [rcx]
-        def vpaddb(*operands,**kwargs) = add_instruction(Instructions::VPADDB,*operands,**kwargs)
+        def vpaddb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPADDB,operand1,operand2,operand3,**kwargs)
         # Add Packed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPADDD]
         # @example
@@ -10917,7 +10917,7 @@ module Ronin
         #   vpaddd ymm0, ymm1, [rcx]
         #   vpaddd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpaddd zmm0, zmm1, zmm2
-        def vpaddd(*operands,**kwargs) = add_instruction(Instructions::VPADDD,*operands,**kwargs)
+        def vpaddd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPADDD,operand1,operand2,operand3,**kwargs)
         # Add Packed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPADDQ]
         # @example
@@ -10935,7 +10935,7 @@ module Ronin
         #   vpaddq ymm0, ymm1, [rcx]
         #   vpaddq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpaddq zmm0, zmm1, zmm2
-        def vpaddq(*operands,**kwargs) = add_instruction(Instructions::VPADDQ,*operands,**kwargs)
+        def vpaddq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPADDQ,operand1,operand2,operand3,**kwargs)
         # Add Packed Signed Byte Integers with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPADDSB]
         # @example
@@ -10951,7 +10951,7 @@ module Ronin
         #   vpaddsb ymm0, ymm1, [rcx]
         #   vpaddsb zmm0, zmm1, zmm2
         #   vpaddsb zmm0, zmm1, [rcx]
-        def vpaddsb(*operands,**kwargs) = add_instruction(Instructions::VPADDSB,*operands,**kwargs)
+        def vpaddsb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPADDSB,operand1,operand2,operand3,**kwargs)
         # Add Packed Signed Word Integers with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPADDSW]
         # @example
@@ -10967,7 +10967,7 @@ module Ronin
         #   vpaddsw ymm0, ymm1, [rcx]
         #   vpaddsw zmm0, zmm1, zmm2
         #   vpaddsw zmm0, zmm1, [rcx]
-        def vpaddsw(*operands,**kwargs) = add_instruction(Instructions::VPADDSW,*operands,**kwargs)
+        def vpaddsw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPADDSW,operand1,operand2,operand3,**kwargs)
         # Add Packed Unsigned Byte Integers with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPADDUSB]
         # @example
@@ -10983,7 +10983,7 @@ module Ronin
         #   vpaddusb ymm0, ymm1, [rcx]
         #   vpaddusb zmm0, zmm1, zmm2
         #   vpaddusb zmm0, zmm1, [rcx]
-        def vpaddusb(*operands,**kwargs) = add_instruction(Instructions::VPADDUSB,*operands,**kwargs)
+        def vpaddusb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPADDUSB,operand1,operand2,operand3,**kwargs)
         # Add Packed Unsigned Word Integers with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPADDUSW]
         # @example
@@ -10999,7 +10999,7 @@ module Ronin
         #   vpaddusw ymm0, ymm1, [rcx]
         #   vpaddusw zmm0, zmm1, zmm2
         #   vpaddusw zmm0, zmm1, [rcx]
-        def vpaddusw(*operands,**kwargs) = add_instruction(Instructions::VPADDUSW,*operands,**kwargs)
+        def vpaddusw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPADDUSW,operand1,operand2,operand3,**kwargs)
         # Add Packed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPADDW]
         # @example
@@ -11015,7 +11015,7 @@ module Ronin
         #   vpaddw ymm0, ymm1, [rcx]
         #   vpaddw zmm0, zmm1, zmm2
         #   vpaddw zmm0, zmm1, [rcx]
-        def vpaddw(*operands,**kwargs) = add_instruction(Instructions::VPADDW,*operands,**kwargs)
+        def vpaddw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPADDW,operand1,operand2,operand3,**kwargs)
         # Packed Align Right
         # @return [Ronin::ASM::X86_64::Instructions::VPALIGNR]
         # @example
@@ -11031,7 +11031,7 @@ module Ronin
         #   vpalignr ymm0, ymm1, [rcx], 0x04
         #   vpalignr zmm0, zmm1, zmm2, 0x04
         #   vpalignr zmm0, zmm1, [rcx], 0x04
-        def vpalignr(*operands,**kwargs) = add_instruction(Instructions::VPALIGNR,*operands,**kwargs)
+        def vpalignr(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPALIGNR,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Bitwise Logical AND
         # @return [Ronin::ASM::X86_64::Instructions::VPAND]
         # @example
@@ -11039,7 +11039,7 @@ module Ronin
         #   vpand xmm0, xmm1, [rcx]
         #   vpand ymm0, ymm1, ymm2
         #   vpand ymm0, ymm1, [rcx]
-        def vpand(*operands,**kwargs) = add_instruction(Instructions::VPAND,*operands,**kwargs)
+        def vpand(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPAND,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND of Packed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPANDD]
         # @example
@@ -11055,7 +11055,7 @@ module Ronin
         #   vpandd ymm0, ymm1, ymm2
         #   vpandd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpandd zmm0, zmm1, zmm2
-        def vpandd(*operands,**kwargs) = add_instruction(Instructions::VPANDD,*operands,**kwargs)
+        def vpandd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPANDD,operand1,operand2,operand3,**kwargs)
         # Packed Bitwise Logical AND NOT
         # @return [Ronin::ASM::X86_64::Instructions::VPANDN]
         # @example
@@ -11063,7 +11063,7 @@ module Ronin
         #   vpandn xmm0, xmm1, [rcx]
         #   vpandn ymm0, ymm1, ymm2
         #   vpandn ymm0, ymm1, [rcx]
-        def vpandn(*operands,**kwargs) = add_instruction(Instructions::VPANDN,*operands,**kwargs)
+        def vpandn(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPANDN,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND NOT of Packed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPANDND]
         # @example
@@ -11079,7 +11079,7 @@ module Ronin
         #   vpandnd ymm0, ymm1, ymm2
         #   vpandnd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpandnd zmm0, zmm1, zmm2
-        def vpandnd(*operands,**kwargs) = add_instruction(Instructions::VPANDND,*operands,**kwargs)
+        def vpandnd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPANDND,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND NOT of Packed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPANDNQ]
         # @example
@@ -11095,7 +11095,7 @@ module Ronin
         #   vpandnq ymm0, ymm1, ymm2
         #   vpandnq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpandnq zmm0, zmm1, zmm2
-        def vpandnq(*operands,**kwargs) = add_instruction(Instructions::VPANDNQ,*operands,**kwargs)
+        def vpandnq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPANDNQ,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical AND of Packed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPANDQ]
         # @example
@@ -11111,7 +11111,7 @@ module Ronin
         #   vpandq ymm0, ymm1, ymm2
         #   vpandq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpandq zmm0, zmm1, zmm2
-        def vpandq(*operands,**kwargs) = add_instruction(Instructions::VPANDQ,*operands,**kwargs)
+        def vpandq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPANDQ,operand1,operand2,operand3,**kwargs)
         # Average Packed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPAVGB]
         # @example
@@ -11127,7 +11127,7 @@ module Ronin
         #   vpavgb ymm0, ymm1, [rcx]
         #   vpavgb zmm0, zmm1, zmm2
         #   vpavgb zmm0, zmm1, [rcx]
-        def vpavgb(*operands,**kwargs) = add_instruction(Instructions::VPAVGB,*operands,**kwargs)
+        def vpavgb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPAVGB,operand1,operand2,operand3,**kwargs)
         # Average Packed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPAVGW]
         # @example
@@ -11143,7 +11143,7 @@ module Ronin
         #   vpavgw ymm0, ymm1, [rcx]
         #   vpavgw zmm0, zmm1, zmm2
         #   vpavgw zmm0, zmm1, [rcx]
-        def vpavgw(*operands,**kwargs) = add_instruction(Instructions::VPAVGW,*operands,**kwargs)
+        def vpavgw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPAVGW,operand1,operand2,operand3,**kwargs)
         # Blend Packed Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::VPBLENDD]
         # @example
@@ -11151,7 +11151,7 @@ module Ronin
         #   vpblendd xmm0, xmm1, [rcx], 0x04
         #   vpblendd ymm0, ymm1, ymm2, 0x04
         #   vpblendd ymm0, ymm1, [rcx], 0x04
-        def vpblendd(*operands,**kwargs) = add_instruction(Instructions::VPBLENDD,*operands,**kwargs)
+        def vpblendd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPBLENDD,operand1,operand2,operand3,operand4,**kwargs)
         # Blend Byte Vectors Using an OpMask Control
         # @return [Ronin::ASM::X86_64::Instructions::VPBLENDMB]
         # @example
@@ -11167,7 +11167,7 @@ module Ronin
         #   vpblendmb ymm0, ymm1, [rcx]
         #   vpblendmb zmm0, zmm1, zmm2
         #   vpblendmb zmm0, zmm1, [rcx]
-        def vpblendmb(*operands,**kwargs) = add_instruction(Instructions::VPBLENDMB,*operands,**kwargs)
+        def vpblendmb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPBLENDMB,operand1,operand2,operand3,**kwargs)
         # Blend Doubleword Vectors Using an OpMask Control
         # @return [Ronin::ASM::X86_64::Instructions::VPBLENDMD]
         # @example
@@ -11183,7 +11183,7 @@ module Ronin
         #   vpblendmd ymm0, ymm1, ymm2
         #   vpblendmd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpblendmd zmm0, zmm1, zmm2
-        def vpblendmd(*operands,**kwargs) = add_instruction(Instructions::VPBLENDMD,*operands,**kwargs)
+        def vpblendmd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPBLENDMD,operand1,operand2,operand3,**kwargs)
         # Blend Quadword Vectors Using an OpMask Control
         # @return [Ronin::ASM::X86_64::Instructions::VPBLENDMQ]
         # @example
@@ -11199,7 +11199,7 @@ module Ronin
         #   vpblendmq ymm0, ymm1, ymm2
         #   vpblendmq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpblendmq zmm0, zmm1, zmm2
-        def vpblendmq(*operands,**kwargs) = add_instruction(Instructions::VPBLENDMQ,*operands,**kwargs)
+        def vpblendmq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPBLENDMQ,operand1,operand2,operand3,**kwargs)
         # Blend Word Vectors Using an OpMask Control
         # @return [Ronin::ASM::X86_64::Instructions::VPBLENDMW]
         # @example
@@ -11215,7 +11215,7 @@ module Ronin
         #   vpblendmw ymm0, ymm1, [rcx]
         #   vpblendmw zmm0, zmm1, zmm2
         #   vpblendmw zmm0, zmm1, [rcx]
-        def vpblendmw(*operands,**kwargs) = add_instruction(Instructions::VPBLENDMW,*operands,**kwargs)
+        def vpblendmw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPBLENDMW,operand1,operand2,operand3,**kwargs)
         # Variable Blend Packed Bytes
         # @return [Ronin::ASM::X86_64::Instructions::VPBLENDVB]
         # @example
@@ -11223,7 +11223,7 @@ module Ronin
         #   vpblendvb xmm0, xmm1, [rcx], xmm3
         #   vpblendvb ymm0, ymm1, ymm2, ymm3
         #   vpblendvb ymm0, ymm1, [rcx], ymm3
-        def vpblendvb(*operands,**kwargs) = add_instruction(Instructions::VPBLENDVB,*operands,**kwargs)
+        def vpblendvb(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPBLENDVB,operand1,operand2,operand3,operand4,**kwargs)
         # Blend Packed Words
         # @return [Ronin::ASM::X86_64::Instructions::VPBLENDW]
         # @example
@@ -11231,7 +11231,7 @@ module Ronin
         #   vpblendw xmm0, xmm1, [rcx], 0x04
         #   vpblendw ymm0, ymm1, ymm2, 0x04
         #   vpblendw ymm0, ymm1, [rcx], 0x04
-        def vpblendw(*operands,**kwargs) = add_instruction(Instructions::VPBLENDW,*operands,**kwargs)
+        def vpblendw(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPBLENDW,operand1,operand2,operand3,operand4,**kwargs)
         # Broadcast Byte Integer
         # @return [Ronin::ASM::X86_64::Instructions::VPBROADCASTB]
         # @example
@@ -11253,7 +11253,7 @@ module Ronin
         #   vpbroadcastb zmm0, ebx
         #   vpbroadcastb zmm0, xmm1
         #   vpbroadcastb zmm0, [rbx]
-        def vpbroadcastb(*operands,**kwargs) = add_instruction(Instructions::VPBROADCASTB,*operands,**kwargs)
+        def vpbroadcastb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPBROADCASTB,operand1,operand2,**kwargs)
         # Broadcast Doubleword Integer
         # @return [Ronin::ASM::X86_64::Instructions::VPBROADCASTD]
         # @example
@@ -11275,21 +11275,21 @@ module Ronin
         #   vpbroadcastd zmm0, ebx
         #   vpbroadcastd zmm0, xmm1
         #   vpbroadcastd zmm0, [rbx]
-        def vpbroadcastd(*operands,**kwargs) = add_instruction(Instructions::VPBROADCASTD,*operands,**kwargs)
+        def vpbroadcastd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPBROADCASTD,operand1,operand2,**kwargs)
         # Broadcast Low Byte of Mask Register to Packed Quadword Values
         # @return [Ronin::ASM::X86_64::Instructions::VPBROADCASTMB2Q]
         # @example
         #   vpbroadcastmb2q xmm0, k2
         #   vpbroadcastmb2q ymm0, k2
         #   vpbroadcastmb2q zmm0, k2
-        def vpbroadcastmb2q(*operands,**kwargs) = add_instruction(Instructions::VPBROADCASTMB2Q,*operands,**kwargs)
+        def vpbroadcastmb2q(operand1,operand2,**kwargs) = add_instruction(Instructions::VPBROADCASTMB2Q,operand1,operand2,**kwargs)
         # Broadcast Low Word of Mask Register to Packed Doubleword Values
         # @return [Ronin::ASM::X86_64::Instructions::VPBROADCASTMW2D]
         # @example
         #   vpbroadcastmw2d xmm0, k2
         #   vpbroadcastmw2d ymm0, k2
         #   vpbroadcastmw2d zmm0, k2
-        def vpbroadcastmw2d(*operands,**kwargs) = add_instruction(Instructions::VPBROADCASTMW2D,*operands,**kwargs)
+        def vpbroadcastmw2d(operand1,operand2,**kwargs) = add_instruction(Instructions::VPBROADCASTMW2D,operand1,operand2,**kwargs)
         # Broadcast Quadword Integer
         # @return [Ronin::ASM::X86_64::Instructions::VPBROADCASTQ]
         # @example
@@ -11311,7 +11311,7 @@ module Ronin
         #   vpbroadcastq zmm0, rbx
         #   vpbroadcastq zmm0, xmm1
         #   vpbroadcastq zmm0, [rbx]
-        def vpbroadcastq(*operands,**kwargs) = add_instruction(Instructions::VPBROADCASTQ,*operands,**kwargs)
+        def vpbroadcastq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPBROADCASTQ,operand1,operand2,**kwargs)
         # Broadcast Word Integer
         # @return [Ronin::ASM::X86_64::Instructions::VPBROADCASTW]
         # @example
@@ -11333,7 +11333,7 @@ module Ronin
         #   vpbroadcastw zmm0, ebx
         #   vpbroadcastw zmm0, xmm1
         #   vpbroadcastw zmm0, [rbx]
-        def vpbroadcastw(*operands,**kwargs) = add_instruction(Instructions::VPBROADCASTW,*operands,**kwargs)
+        def vpbroadcastw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPBROADCASTW,operand1,operand2,**kwargs)
         # Carry-Less Quadword Multiplication
         # @return [Ronin::ASM::X86_64::Instructions::VPCLMULQDQ]
         # @example
@@ -11343,7 +11343,7 @@ module Ronin
         #   vpclmulqdq ymm0, ymm1, [rcx], 0x04
         #   vpclmulqdq zmm0, zmm1, zmm2, 0x04
         #   vpclmulqdq zmm0, zmm1, [rcx], 0x04
-        def vpclmulqdq(*operands,**kwargs) = add_instruction(Instructions::VPCLMULQDQ,*operands,**kwargs)
+        def vpclmulqdq(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCLMULQDQ,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Conditional Move
         # @return [Ronin::ASM::X86_64::Instructions::VPCMOV]
         # @example
@@ -11353,7 +11353,7 @@ module Ronin
         #   vpcmov ymm0, ymm1, ymm2, ymm3
         #   vpcmov ymm0, ymm1, ymm2, [rdx]
         #   vpcmov ymm0, ymm1, [rcx], ymm3
-        def vpcmov(*operands,**kwargs) = add_instruction(Instructions::VPCMOV,*operands,**kwargs)
+        def vpcmov(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCMOV,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Signed Byte Values
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPB]
         # @example
@@ -11369,7 +11369,7 @@ module Ronin
         #   vpcmpb k1, zmm1, zmm2, 0x04
         #   vpcmpb opmask(k1, k2), zmm1, [rcx], 0x04
         #   vpcmpb k1, zmm1, [rcx], 0x04
-        def vpcmpb(*operands,**kwargs) = add_instruction(Instructions::VPCMPB,*operands,**kwargs)
+        def vpcmpb(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCMPB,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Signed Doubleword Values
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPD]
         # @example
@@ -11385,7 +11385,7 @@ module Ronin
         #   vpcmpd k1, zmm1, bcst([rcx], {1=>16}), 0x04
         #   vpcmpd opmask(k1, k2), zmm1, zmm2, 0x04
         #   vpcmpd k1, zmm1, zmm2, 0x04
-        def vpcmpd(*operands,**kwargs) = add_instruction(Instructions::VPCMPD,*operands,**kwargs)
+        def vpcmpd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCMPD,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Byte Data for Equality
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPEQB]
         # @example
@@ -11405,7 +11405,7 @@ module Ronin
         #   vpcmpeqb xmm0, xmm1, [rcx]
         #   vpcmpeqb ymm0, ymm1, ymm2
         #   vpcmpeqb ymm0, ymm1, [rcx]
-        def vpcmpeqb(*operands,**kwargs) = add_instruction(Instructions::VPCMPEQB,*operands,**kwargs)
+        def vpcmpeqb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPCMPEQB,operand1,operand2,operand3,**kwargs)
         # Compare Packed Doubleword Data for Equality
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPEQD]
         # @example
@@ -11425,7 +11425,7 @@ module Ronin
         #   vpcmpeqd xmm0, xmm1, [rcx]
         #   vpcmpeqd ymm0, ymm1, ymm2
         #   vpcmpeqd ymm0, ymm1, [rcx]
-        def vpcmpeqd(*operands,**kwargs) = add_instruction(Instructions::VPCMPEQD,*operands,**kwargs)
+        def vpcmpeqd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPCMPEQD,operand1,operand2,operand3,**kwargs)
         # Compare Packed Quadword Data for Equality
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPEQQ]
         # @example
@@ -11445,7 +11445,7 @@ module Ronin
         #   vpcmpeqq xmm0, xmm1, [rcx]
         #   vpcmpeqq ymm0, ymm1, ymm2
         #   vpcmpeqq ymm0, ymm1, [rcx]
-        def vpcmpeqq(*operands,**kwargs) = add_instruction(Instructions::VPCMPEQQ,*operands,**kwargs)
+        def vpcmpeqq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPCMPEQQ,operand1,operand2,operand3,**kwargs)
         # Compare Packed Word Data for Equality
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPEQW]
         # @example
@@ -11465,19 +11465,19 @@ module Ronin
         #   vpcmpeqw xmm0, xmm1, [rcx]
         #   vpcmpeqw ymm0, ymm1, ymm2
         #   vpcmpeqw ymm0, ymm1, [rcx]
-        def vpcmpeqw(*operands,**kwargs) = add_instruction(Instructions::VPCMPEQW,*operands,**kwargs)
+        def vpcmpeqw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPCMPEQW,operand1,operand2,operand3,**kwargs)
         # Packed Compare Explicit Length Strings, Return Index
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPESTRI]
         # @example
         #   vpcmpestri xmm0, xmm1, 0x03
         #   vpcmpestri xmm0, [rbx], 0x03
-        def vpcmpestri(*operands,**kwargs) = add_instruction(Instructions::VPCMPESTRI,*operands,**kwargs)
+        def vpcmpestri(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPCMPESTRI,operand1,operand2,operand3,**kwargs)
         # Packed Compare Explicit Length Strings, Return Mask
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPESTRM]
         # @example
         #   vpcmpestrm xmm0, xmm1, 0x03
         #   vpcmpestrm xmm0, [rbx], 0x03
-        def vpcmpestrm(*operands,**kwargs) = add_instruction(Instructions::VPCMPESTRM,*operands,**kwargs)
+        def vpcmpestrm(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPCMPESTRM,operand1,operand2,operand3,**kwargs)
         # Compare Packed Signed Byte Integers for Greater Than
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPGTB]
         # @example
@@ -11497,7 +11497,7 @@ module Ronin
         #   vpcmpgtb xmm0, xmm1, [rcx]
         #   vpcmpgtb ymm0, ymm1, ymm2
         #   vpcmpgtb ymm0, ymm1, [rcx]
-        def vpcmpgtb(*operands,**kwargs) = add_instruction(Instructions::VPCMPGTB,*operands,**kwargs)
+        def vpcmpgtb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPCMPGTB,operand1,operand2,operand3,**kwargs)
         # Compare Packed Signed Doubleword Integers for Greater Than
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPGTD]
         # @example
@@ -11517,7 +11517,7 @@ module Ronin
         #   vpcmpgtd xmm0, xmm1, [rcx]
         #   vpcmpgtd ymm0, ymm1, ymm2
         #   vpcmpgtd ymm0, ymm1, [rcx]
-        def vpcmpgtd(*operands,**kwargs) = add_instruction(Instructions::VPCMPGTD,*operands,**kwargs)
+        def vpcmpgtd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPCMPGTD,operand1,operand2,operand3,**kwargs)
         # Compare Packed Data for Greater Than
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPGTQ]
         # @example
@@ -11537,7 +11537,7 @@ module Ronin
         #   vpcmpgtq xmm0, xmm1, [rcx]
         #   vpcmpgtq ymm0, ymm1, ymm2
         #   vpcmpgtq ymm0, ymm1, [rcx]
-        def vpcmpgtq(*operands,**kwargs) = add_instruction(Instructions::VPCMPGTQ,*operands,**kwargs)
+        def vpcmpgtq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPCMPGTQ,operand1,operand2,operand3,**kwargs)
         # Compare Packed Signed Word Integers for Greater Than
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPGTW]
         # @example
@@ -11557,19 +11557,19 @@ module Ronin
         #   vpcmpgtw xmm0, xmm1, [rcx]
         #   vpcmpgtw ymm0, ymm1, ymm2
         #   vpcmpgtw ymm0, ymm1, [rcx]
-        def vpcmpgtw(*operands,**kwargs) = add_instruction(Instructions::VPCMPGTW,*operands,**kwargs)
+        def vpcmpgtw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPCMPGTW,operand1,operand2,operand3,**kwargs)
         # Packed Compare Implicit Length Strings, Return Index
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPISTRI]
         # @example
         #   vpcmpistri xmm0, xmm1, 0x03
         #   vpcmpistri xmm0, [rbx], 0x03
-        def vpcmpistri(*operands,**kwargs) = add_instruction(Instructions::VPCMPISTRI,*operands,**kwargs)
+        def vpcmpistri(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPCMPISTRI,operand1,operand2,operand3,**kwargs)
         # Packed Compare Implicit Length Strings, Return Mask
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPISTRM]
         # @example
         #   vpcmpistrm xmm0, xmm1, 0x03
         #   vpcmpistrm xmm0, [rbx], 0x03
-        def vpcmpistrm(*operands,**kwargs) = add_instruction(Instructions::VPCMPISTRM,*operands,**kwargs)
+        def vpcmpistrm(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPCMPISTRM,operand1,operand2,operand3,**kwargs)
         # Compare Packed Signed Quadword Values
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPQ]
         # @example
@@ -11585,7 +11585,7 @@ module Ronin
         #   vpcmpq k1, zmm1, bcst([rcx], {1=>8}), 0x04
         #   vpcmpq opmask(k1, k2), zmm1, zmm2, 0x04
         #   vpcmpq k1, zmm1, zmm2, 0x04
-        def vpcmpq(*operands,**kwargs) = add_instruction(Instructions::VPCMPQ,*operands,**kwargs)
+        def vpcmpq(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCMPQ,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Unsigned Byte Values
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPUB]
         # @example
@@ -11601,7 +11601,7 @@ module Ronin
         #   vpcmpub k1, zmm1, zmm2, 0x04
         #   vpcmpub opmask(k1, k2), zmm1, [rcx], 0x04
         #   vpcmpub k1, zmm1, [rcx], 0x04
-        def vpcmpub(*operands,**kwargs) = add_instruction(Instructions::VPCMPUB,*operands,**kwargs)
+        def vpcmpub(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCMPUB,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Unsigned Doubleword Values
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPUD]
         # @example
@@ -11617,7 +11617,7 @@ module Ronin
         #   vpcmpud k1, zmm1, bcst([rcx], {1=>16}), 0x04
         #   vpcmpud opmask(k1, k2), zmm1, zmm2, 0x04
         #   vpcmpud k1, zmm1, zmm2, 0x04
-        def vpcmpud(*operands,**kwargs) = add_instruction(Instructions::VPCMPUD,*operands,**kwargs)
+        def vpcmpud(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCMPUD,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Unsigned Quadword Values
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPUQ]
         # @example
@@ -11633,7 +11633,7 @@ module Ronin
         #   vpcmpuq k1, zmm1, bcst([rcx], {1=>8}), 0x04
         #   vpcmpuq opmask(k1, k2), zmm1, zmm2, 0x04
         #   vpcmpuq k1, zmm1, zmm2, 0x04
-        def vpcmpuq(*operands,**kwargs) = add_instruction(Instructions::VPCMPUQ,*operands,**kwargs)
+        def vpcmpuq(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCMPUQ,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Unsigned Word Values
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPUW]
         # @example
@@ -11649,7 +11649,7 @@ module Ronin
         #   vpcmpuw k1, zmm1, zmm2, 0x04
         #   vpcmpuw opmask(k1, k2), zmm1, [rcx], 0x04
         #   vpcmpuw k1, zmm1, [rcx], 0x04
-        def vpcmpuw(*operands,**kwargs) = add_instruction(Instructions::VPCMPUW,*operands,**kwargs)
+        def vpcmpuw(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCMPUW,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Signed Word Values
         # @return [Ronin::ASM::X86_64::Instructions::VPCMPW]
         # @example
@@ -11665,19 +11665,19 @@ module Ronin
         #   vpcmpw k1, zmm1, zmm2, 0x04
         #   vpcmpw opmask(k1, k2), zmm1, [rcx], 0x04
         #   vpcmpw k1, zmm1, [rcx], 0x04
-        def vpcmpw(*operands,**kwargs) = add_instruction(Instructions::VPCMPW,*operands,**kwargs)
+        def vpcmpw(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCMPW,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Signed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPCOMB]
         # @example
         #   vpcomb xmm0, xmm1, xmm2, 0x04
         #   vpcomb xmm0, xmm1, [rcx], 0x04
-        def vpcomb(*operands,**kwargs) = add_instruction(Instructions::VPCOMB,*operands,**kwargs)
+        def vpcomb(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCOMB,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Signed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPCOMD]
         # @example
         #   vpcomd xmm0, xmm1, xmm2, 0x04
         #   vpcomd xmm0, xmm1, [rcx], 0x04
-        def vpcomd(*operands,**kwargs) = add_instruction(Instructions::VPCOMD,*operands,**kwargs)
+        def vpcomd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCOMD,operand1,operand2,operand3,operand4,**kwargs)
         # Store Sparse Packed Byte Integer Values into Dense Memory/Register
         # @return [Ronin::ASM::X86_64::Instructions::VPCOMPRESSB]
         # @example
@@ -11693,7 +11693,7 @@ module Ronin
         #   vpcompressb [rax], xmm1
         #   vpcompressb [rax], ymm1
         #   vpcompressb [rax], zmm1
-        def vpcompressb(*operands,**kwargs) = add_instruction(Instructions::VPCOMPRESSB,*operands,**kwargs)
+        def vpcompressb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPCOMPRESSB,operand1,operand2,**kwargs)
         # Store Sparse Packed Doubleword Integer Values into Dense Memory/Register
         # @return [Ronin::ASM::X86_64::Instructions::VPCOMPRESSD]
         # @example
@@ -11709,7 +11709,7 @@ module Ronin
         #   vpcompressd [rax], xmm1
         #   vpcompressd [rax], ymm1
         #   vpcompressd [rax], zmm1
-        def vpcompressd(*operands,**kwargs) = add_instruction(Instructions::VPCOMPRESSD,*operands,**kwargs)
+        def vpcompressd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPCOMPRESSD,operand1,operand2,**kwargs)
         # Store Sparse Packed Quadword Integer Values into Dense Memory/Register
         # @return [Ronin::ASM::X86_64::Instructions::VPCOMPRESSQ]
         # @example
@@ -11725,7 +11725,7 @@ module Ronin
         #   vpcompressq [rax], xmm1
         #   vpcompressq [rax], ymm1
         #   vpcompressq [rax], zmm1
-        def vpcompressq(*operands,**kwargs) = add_instruction(Instructions::VPCOMPRESSQ,*operands,**kwargs)
+        def vpcompressq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPCOMPRESSQ,operand1,operand2,**kwargs)
         # Store Sparse Packed Word Integer Values into Dense Memory/Register
         # @return [Ronin::ASM::X86_64::Instructions::VPCOMPRESSW]
         # @example
@@ -11741,43 +11741,43 @@ module Ronin
         #   vpcompressw [rax], xmm1
         #   vpcompressw [rax], ymm1
         #   vpcompressw [rax], zmm1
-        def vpcompressw(*operands,**kwargs) = add_instruction(Instructions::VPCOMPRESSW,*operands,**kwargs)
+        def vpcompressw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPCOMPRESSW,operand1,operand2,**kwargs)
         # Compare Packed Signed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPCOMQ]
         # @example
         #   vpcomq xmm0, xmm1, xmm2, 0x04
         #   vpcomq xmm0, xmm1, [rcx], 0x04
-        def vpcomq(*operands,**kwargs) = add_instruction(Instructions::VPCOMQ,*operands,**kwargs)
+        def vpcomq(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCOMQ,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Unsigned Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPCOMUB]
         # @example
         #   vpcomub xmm0, xmm1, xmm2, 0x04
         #   vpcomub xmm0, xmm1, [rcx], 0x04
-        def vpcomub(*operands,**kwargs) = add_instruction(Instructions::VPCOMUB,*operands,**kwargs)
+        def vpcomub(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCOMUB,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Unsigned Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPCOMUD]
         # @example
         #   vpcomud xmm0, xmm1, xmm2, 0x04
         #   vpcomud xmm0, xmm1, [rcx], 0x04
-        def vpcomud(*operands,**kwargs) = add_instruction(Instructions::VPCOMUD,*operands,**kwargs)
+        def vpcomud(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCOMUD,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Unsigned Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPCOMUQ]
         # @example
         #   vpcomuq xmm0, xmm1, xmm2, 0x04
         #   vpcomuq xmm0, xmm1, [rcx], 0x04
-        def vpcomuq(*operands,**kwargs) = add_instruction(Instructions::VPCOMUQ,*operands,**kwargs)
+        def vpcomuq(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCOMUQ,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Unsigned Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPCOMUW]
         # @example
         #   vpcomuw xmm0, xmm1, xmm2, 0x04
         #   vpcomuw xmm0, xmm1, [rcx], 0x04
-        def vpcomuw(*operands,**kwargs) = add_instruction(Instructions::VPCOMUW,*operands,**kwargs)
+        def vpcomuw(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCOMUW,operand1,operand2,operand3,operand4,**kwargs)
         # Compare Packed Signed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPCOMW]
         # @example
         #   vpcomw xmm0, xmm1, xmm2, 0x04
         #   vpcomw xmm0, xmm1, [rcx], 0x04
-        def vpcomw(*operands,**kwargs) = add_instruction(Instructions::VPCOMW,*operands,**kwargs)
+        def vpcomw(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPCOMW,operand1,operand2,operand3,operand4,**kwargs)
         # Detect Conflicts Within a Vector of Packed Doubleword Values into Dense Memory/Register
         # @return [Ronin::ASM::X86_64::Instructions::VPCONFLICTD]
         # @example
@@ -11793,7 +11793,7 @@ module Ronin
         #   vpconflictd ymm0, ymm1
         #   vpconflictd zmm0, bcst([rbx], {1=>16})
         #   vpconflictd zmm0, zmm1
-        def vpconflictd(*operands,**kwargs) = add_instruction(Instructions::VPCONFLICTD,*operands,**kwargs)
+        def vpconflictd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPCONFLICTD,operand1,operand2,**kwargs)
         # Detect Conflicts Within a Vector of Packed Quadword Values into Dense Memory/Register
         # @return [Ronin::ASM::X86_64::Instructions::VPCONFLICTQ]
         # @example
@@ -11809,7 +11809,7 @@ module Ronin
         #   vpconflictq ymm0, ymm1
         #   vpconflictq zmm0, bcst([rbx], {1=>8})
         #   vpconflictq zmm0, zmm1
-        def vpconflictq(*operands,**kwargs) = add_instruction(Instructions::VPCONFLICTQ,*operands,**kwargs)
+        def vpconflictq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPCONFLICTQ,operand1,operand2,**kwargs)
         # Packed Dot Product of Signed-by-Singed Byte subvectors into Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPDPBSSD]
         # @example
@@ -11817,7 +11817,7 @@ module Ronin
         #   vpdpbssd xmm0, xmm1, [rcx]
         #   vpdpbssd ymm0, ymm1, ymm2
         #   vpdpbssd ymm0, ymm1, [rcx]
-        def vpdpbssd(*operands,**kwargs) = add_instruction(Instructions::VPDPBSSD,*operands,**kwargs)
+        def vpdpbssd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPBSSD,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Signed-by-Singed Byte subvectors into Doubleword with Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPDPBSSDS]
         # @example
@@ -11825,7 +11825,7 @@ module Ronin
         #   vpdpbssds xmm0, xmm1, [rcx]
         #   vpdpbssds ymm0, ymm1, ymm2
         #   vpdpbssds ymm0, ymm1, [rcx]
-        def vpdpbssds(*operands,**kwargs) = add_instruction(Instructions::VPDPBSSDS,*operands,**kwargs)
+        def vpdpbssds(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPBSSDS,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Signed-by-Unsinged Byte subvectors into Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPDPBSUD]
         # @example
@@ -11833,7 +11833,7 @@ module Ronin
         #   vpdpbsud xmm0, xmm1, [rcx]
         #   vpdpbsud ymm0, ymm1, ymm2
         #   vpdpbsud ymm0, ymm1, [rcx]
-        def vpdpbsud(*operands,**kwargs) = add_instruction(Instructions::VPDPBSUD,*operands,**kwargs)
+        def vpdpbsud(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPBSUD,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Signed-by-Unsinged Byte subvectors into Doubleword with Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPDPBSUDS]
         # @example
@@ -11841,7 +11841,7 @@ module Ronin
         #   vpdpbsuds xmm0, xmm1, [rcx]
         #   vpdpbsuds ymm0, ymm1, ymm2
         #   vpdpbsuds ymm0, ymm1, [rcx]
-        def vpdpbsuds(*operands,**kwargs) = add_instruction(Instructions::VPDPBSUDS,*operands,**kwargs)
+        def vpdpbsuds(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPBSUDS,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Unsigned-by-Singed Byte subvectors into Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPDPBUSD]
         # @example
@@ -11859,7 +11859,7 @@ module Ronin
         #   vpdpbusd ymm0, ymm1, [rcx]
         #   vpdpbusd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpdpbusd zmm0, zmm1, zmm2
-        def vpdpbusd(*operands,**kwargs) = add_instruction(Instructions::VPDPBUSD,*operands,**kwargs)
+        def vpdpbusd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPBUSD,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Unsigned-by-Singed Byte subvectors into Doubleword with Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPDPBUSDS]
         # @example
@@ -11877,7 +11877,7 @@ module Ronin
         #   vpdpbusds ymm0, ymm1, [rcx]
         #   vpdpbusds zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpdpbusds zmm0, zmm1, zmm2
-        def vpdpbusds(*operands,**kwargs) = add_instruction(Instructions::VPDPBUSDS,*operands,**kwargs)
+        def vpdpbusds(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPBUSDS,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Unsigned-by-Unsinged Byte subvectors into Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPDPBUUD]
         # @example
@@ -11885,7 +11885,7 @@ module Ronin
         #   vpdpbuud xmm0, xmm1, [rcx]
         #   vpdpbuud ymm0, ymm1, ymm2
         #   vpdpbuud ymm0, ymm1, [rcx]
-        def vpdpbuud(*operands,**kwargs) = add_instruction(Instructions::VPDPBUUD,*operands,**kwargs)
+        def vpdpbuud(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPBUUD,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Unsigned-by-Unsinged Byte subvectors into Doubleword with Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPDPBUUDS]
         # @example
@@ -11893,7 +11893,7 @@ module Ronin
         #   vpdpbuuds xmm0, xmm1, [rcx]
         #   vpdpbuuds ymm0, ymm1, ymm2
         #   vpdpbuuds ymm0, ymm1, [rcx]
-        def vpdpbuuds(*operands,**kwargs) = add_instruction(Instructions::VPDPBUUDS,*operands,**kwargs)
+        def vpdpbuuds(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPBUUDS,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Signed-by-Signed Word subvectors into Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPDPWSSD]
         # @example
@@ -11911,7 +11911,7 @@ module Ronin
         #   vpdpwssd ymm0, ymm1, [rcx]
         #   vpdpwssd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpdpwssd zmm0, zmm1, zmm2
-        def vpdpwssd(*operands,**kwargs) = add_instruction(Instructions::VPDPWSSD,*operands,**kwargs)
+        def vpdpwssd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPWSSD,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Signed-by-Signed Word subvectors into Doubleword with Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPDPWSSDS]
         # @example
@@ -11929,7 +11929,7 @@ module Ronin
         #   vpdpwssds ymm0, ymm1, [rcx]
         #   vpdpwssds zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpdpwssds zmm0, zmm1, zmm2
-        def vpdpwssds(*operands,**kwargs) = add_instruction(Instructions::VPDPWSSDS,*operands,**kwargs)
+        def vpdpwssds(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPWSSDS,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Signed-by-Unsigned Word subvectors into Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPDPWSUD]
         # @example
@@ -11937,7 +11937,7 @@ module Ronin
         #   vpdpwsud xmm0, xmm1, [rcx]
         #   vpdpwsud ymm0, ymm1, ymm2
         #   vpdpwsud ymm0, ymm1, [rcx]
-        def vpdpwsud(*operands,**kwargs) = add_instruction(Instructions::VPDPWSUD,*operands,**kwargs)
+        def vpdpwsud(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPWSUD,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Signed-by-Unsigned Word subvectors into Doubleword with Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPDPWSUDS]
         # @example
@@ -11945,7 +11945,7 @@ module Ronin
         #   vpdpwsuds xmm0, xmm1, [rcx]
         #   vpdpwsuds ymm0, ymm1, ymm2
         #   vpdpwsuds ymm0, ymm1, [rcx]
-        def vpdpwsuds(*operands,**kwargs) = add_instruction(Instructions::VPDPWSUDS,*operands,**kwargs)
+        def vpdpwsuds(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPWSUDS,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Unsigned-by-Signed Word subvectors into Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPDPWUSD]
         # @example
@@ -11953,7 +11953,7 @@ module Ronin
         #   vpdpwusd xmm0, xmm1, [rcx]
         #   vpdpwusd ymm0, ymm1, ymm2
         #   vpdpwusd ymm0, ymm1, [rcx]
-        def vpdpwusd(*operands,**kwargs) = add_instruction(Instructions::VPDPWUSD,*operands,**kwargs)
+        def vpdpwusd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPWUSD,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Unsigned-by-Signed Word subvectors into Doubleword with Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPDPWUSDS]
         # @example
@@ -11961,7 +11961,7 @@ module Ronin
         #   vpdpwusds xmm0, xmm1, [rcx]
         #   vpdpwusds ymm0, ymm1, ymm2
         #   vpdpwusds ymm0, ymm1, [rcx]
-        def vpdpwusds(*operands,**kwargs) = add_instruction(Instructions::VPDPWUSDS,*operands,**kwargs)
+        def vpdpwusds(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPWUSDS,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Unsigned-by-Unsigned Word subvectors into Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPDPWUUD]
         # @example
@@ -11969,7 +11969,7 @@ module Ronin
         #   vpdpwuud xmm0, xmm1, [rcx]
         #   vpdpwuud ymm0, ymm1, ymm2
         #   vpdpwuud ymm0, ymm1, [rcx]
-        def vpdpwuud(*operands,**kwargs) = add_instruction(Instructions::VPDPWUUD,*operands,**kwargs)
+        def vpdpwuud(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPWUUD,operand1,operand2,operand3,**kwargs)
         # Packed Dot Product of Unsigned-by-Unsigned Word subvectors into Doubleword with Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPDPWUUDS]
         # @example
@@ -11977,19 +11977,19 @@ module Ronin
         #   vpdpwuuds xmm0, xmm1, [rcx]
         #   vpdpwuuds ymm0, ymm1, ymm2
         #   vpdpwuuds ymm0, ymm1, [rcx]
-        def vpdpwuuds(*operands,**kwargs) = add_instruction(Instructions::VPDPWUUDS,*operands,**kwargs)
+        def vpdpwuuds(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPDPWUUDS,operand1,operand2,operand3,**kwargs)
         # Permute Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VPERM2F128]
         # @example
         #   vperm2f128 ymm0, ymm1, ymm2, 0x04
         #   vperm2f128 ymm0, ymm1, [rcx], 0x04
-        def vperm2f128(*operands,**kwargs) = add_instruction(Instructions::VPERM2F128,*operands,**kwargs)
+        def vperm2f128(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPERM2F128,operand1,operand2,operand3,operand4,**kwargs)
         # Permute 128-Bit Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VPERM2I128]
         # @example
         #   vperm2i128 ymm0, ymm1, ymm2, 0x04
         #   vperm2i128 ymm0, ymm1, [rcx], 0x04
-        def vperm2i128(*operands,**kwargs) = add_instruction(Instructions::VPERM2I128,*operands,**kwargs)
+        def vperm2i128(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPERM2I128,operand1,operand2,operand3,operand4,**kwargs)
         # Permute Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPERMB]
         # @example
@@ -12005,7 +12005,7 @@ module Ronin
         #   vpermb ymm0, ymm1, [rcx]
         #   vpermb zmm0, zmm1, zmm2
         #   vpermb zmm0, zmm1, [rcx]
-        def vpermb(*operands,**kwargs) = add_instruction(Instructions::VPERMB,*operands,**kwargs)
+        def vpermb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMB,operand1,operand2,operand3,**kwargs)
         # Permute Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPERMD]
         # @example
@@ -12018,7 +12018,7 @@ module Ronin
         #   vpermd ymm0, ymm1, [rcx]
         #   vpermd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpermd zmm0, zmm1, zmm2
-        def vpermd(*operands,**kwargs) = add_instruction(Instructions::VPERMD,*operands,**kwargs)
+        def vpermd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMD,operand1,operand2,operand3,**kwargs)
         # Full Permute of Bytes From Two Tables Overwriting the Index
         # @return [Ronin::ASM::X86_64::Instructions::VPERMI2B]
         # @example
@@ -12034,7 +12034,7 @@ module Ronin
         #   vpermi2b ymm0, ymm1, [rcx]
         #   vpermi2b zmm0, zmm1, zmm2
         #   vpermi2b zmm0, zmm1, [rcx]
-        def vpermi2b(*operands,**kwargs) = add_instruction(Instructions::VPERMI2B,*operands,**kwargs)
+        def vpermi2b(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMI2B,operand1,operand2,operand3,**kwargs)
         # Full Permute of Doublewords From Two Tables Overwriting the Index
         # @return [Ronin::ASM::X86_64::Instructions::VPERMI2D]
         # @example
@@ -12050,7 +12050,7 @@ module Ronin
         #   vpermi2d ymm0, ymm1, ymm2
         #   vpermi2d zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpermi2d zmm0, zmm1, zmm2
-        def vpermi2d(*operands,**kwargs) = add_instruction(Instructions::VPERMI2D,*operands,**kwargs)
+        def vpermi2d(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMI2D,operand1,operand2,operand3,**kwargs)
         # Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting the Index
         # @return [Ronin::ASM::X86_64::Instructions::VPERMI2PD]
         # @example
@@ -12066,7 +12066,7 @@ module Ronin
         #   vpermi2pd ymm0, ymm1, ymm2
         #   vpermi2pd zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpermi2pd zmm0, zmm1, zmm2
-        def vpermi2pd(*operands,**kwargs) = add_instruction(Instructions::VPERMI2PD,*operands,**kwargs)
+        def vpermi2pd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMI2PD,operand1,operand2,operand3,**kwargs)
         # Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting the Index
         # @return [Ronin::ASM::X86_64::Instructions::VPERMI2PS]
         # @example
@@ -12082,7 +12082,7 @@ module Ronin
         #   vpermi2ps ymm0, ymm1, ymm2
         #   vpermi2ps zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpermi2ps zmm0, zmm1, zmm2
-        def vpermi2ps(*operands,**kwargs) = add_instruction(Instructions::VPERMI2PS,*operands,**kwargs)
+        def vpermi2ps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMI2PS,operand1,operand2,operand3,**kwargs)
         # Full Permute of Quadwords From Two Tables Overwriting the Index
         # @return [Ronin::ASM::X86_64::Instructions::VPERMI2Q]
         # @example
@@ -12098,7 +12098,7 @@ module Ronin
         #   vpermi2q ymm0, ymm1, ymm2
         #   vpermi2q zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpermi2q zmm0, zmm1, zmm2
-        def vpermi2q(*operands,**kwargs) = add_instruction(Instructions::VPERMI2Q,*operands,**kwargs)
+        def vpermi2q(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMI2Q,operand1,operand2,operand3,**kwargs)
         # Full Permute of Words From Two Tables Overwriting the Index
         # @return [Ronin::ASM::X86_64::Instructions::VPERMI2W]
         # @example
@@ -12114,7 +12114,7 @@ module Ronin
         #   vpermi2w ymm0, ymm1, [rcx]
         #   vpermi2w zmm0, zmm1, zmm2
         #   vpermi2w zmm0, zmm1, [rcx]
-        def vpermi2w(*operands,**kwargs) = add_instruction(Instructions::VPERMI2W,*operands,**kwargs)
+        def vpermi2w(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMI2W,operand1,operand2,operand3,**kwargs)
         # Permute Two-Source Double-Precision Floating-Point Vectors
         # @return [Ronin::ASM::X86_64::Instructions::VPERMIL2PD]
         # @example
@@ -12124,7 +12124,7 @@ module Ronin
         #   vpermil2pd ymm0, ymm1, ymm2, ymm3, 0b1111
         #   vpermil2pd ymm0, ymm1, ymm2, [rdx], 0b1111
         #   vpermil2pd ymm0, ymm1, [rcx], ymm3, 0b1111
-        def vpermil2pd(*operands,**kwargs) = add_instruction(Instructions::VPERMIL2PD,*operands,**kwargs)
+        def vpermil2pd(operand1,operand2,operand3,operand4,operand5,**kwargs) = add_instruction(Instructions::VPERMIL2PD,operand1,operand2,operand3,operand4,operand5,**kwargs)
         # Permute Two-Source Single-Precision Floating-Point Vectors
         # @return [Ronin::ASM::X86_64::Instructions::VPERMIL2PS]
         # @example
@@ -12134,7 +12134,7 @@ module Ronin
         #   vpermil2ps ymm0, ymm1, ymm2, ymm3, 0b1111
         #   vpermil2ps ymm0, ymm1, ymm2, [rdx], 0b1111
         #   vpermil2ps ymm0, ymm1, [rcx], ymm3, 0b1111
-        def vpermil2ps(*operands,**kwargs) = add_instruction(Instructions::VPERMIL2PS,*operands,**kwargs)
+        def vpermil2ps(operand1,operand2,operand3,operand4,operand5,**kwargs) = add_instruction(Instructions::VPERMIL2PS,operand1,operand2,operand3,operand4,operand5,**kwargs)
         # Permute Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VPERMILPD]
         # @example
@@ -12166,7 +12166,7 @@ module Ronin
         #   vpermilpd zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpermilpd zmm0, zmm1, 0x03
         #   vpermilpd zmm0, zmm1, zmm2
-        def vpermilpd(*operands,**kwargs) = add_instruction(Instructions::VPERMILPD,*operands,**kwargs)
+        def vpermilpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMILPD,operand1,operand2,operand3,**kwargs)
         # Permute Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VPERMILPS]
         # @example
@@ -12198,7 +12198,7 @@ module Ronin
         #   vpermilps zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpermilps zmm0, zmm1, 0x03
         #   vpermilps zmm0, zmm1, zmm2
-        def vpermilps(*operands,**kwargs) = add_instruction(Instructions::VPERMILPS,*operands,**kwargs)
+        def vpermilps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMILPS,operand1,operand2,operand3,**kwargs)
         # Permute Double-Precision Floating-Point Elements
         # @return [Ronin::ASM::X86_64::Instructions::VPERMPD]
         # @example
@@ -12219,7 +12219,7 @@ module Ronin
         #   vpermpd zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpermpd zmm0, zmm1, 0x03
         #   vpermpd zmm0, zmm1, zmm2
-        def vpermpd(*operands,**kwargs) = add_instruction(Instructions::VPERMPD,*operands,**kwargs)
+        def vpermpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMPD,operand1,operand2,operand3,**kwargs)
         # Permute Single-Precision Floating-Point Elements
         # @return [Ronin::ASM::X86_64::Instructions::VPERMPS]
         # @example
@@ -12232,7 +12232,7 @@ module Ronin
         #   vpermps ymm0, ymm1, [rcx]
         #   vpermps zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpermps zmm0, zmm1, zmm2
-        def vpermps(*operands,**kwargs) = add_instruction(Instructions::VPERMPS,*operands,**kwargs)
+        def vpermps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMPS,operand1,operand2,operand3,**kwargs)
         # Permute Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPERMQ]
         # @example
@@ -12253,7 +12253,7 @@ module Ronin
         #   vpermq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpermq zmm0, zmm1, 0x03
         #   vpermq zmm0, zmm1, zmm2
-        def vpermq(*operands,**kwargs) = add_instruction(Instructions::VPERMQ,*operands,**kwargs)
+        def vpermq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMQ,operand1,operand2,operand3,**kwargs)
         # Full Permute of Bytes From Two Tables Overwriting a Table
         # @return [Ronin::ASM::X86_64::Instructions::VPERMT2B]
         # @example
@@ -12269,7 +12269,7 @@ module Ronin
         #   vpermt2b ymm0, ymm1, [rcx]
         #   vpermt2b zmm0, zmm1, zmm2
         #   vpermt2b zmm0, zmm1, [rcx]
-        def vpermt2b(*operands,**kwargs) = add_instruction(Instructions::VPERMT2B,*operands,**kwargs)
+        def vpermt2b(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMT2B,operand1,operand2,operand3,**kwargs)
         # Full Permute of Doublewords From Two Tables Overwriting a Table
         # @return [Ronin::ASM::X86_64::Instructions::VPERMT2D]
         # @example
@@ -12285,7 +12285,7 @@ module Ronin
         #   vpermt2d ymm0, ymm1, ymm2
         #   vpermt2d zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpermt2d zmm0, zmm1, zmm2
-        def vpermt2d(*operands,**kwargs) = add_instruction(Instructions::VPERMT2D,*operands,**kwargs)
+        def vpermt2d(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMT2D,operand1,operand2,operand3,**kwargs)
         # Full Permute of Double-Precision Floating-Point Values From Two Tables Overwriting a Table
         # @return [Ronin::ASM::X86_64::Instructions::VPERMT2PD]
         # @example
@@ -12301,7 +12301,7 @@ module Ronin
         #   vpermt2pd ymm0, ymm1, ymm2
         #   vpermt2pd zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpermt2pd zmm0, zmm1, zmm2
-        def vpermt2pd(*operands,**kwargs) = add_instruction(Instructions::VPERMT2PD,*operands,**kwargs)
+        def vpermt2pd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMT2PD,operand1,operand2,operand3,**kwargs)
         # Full Permute of Single-Precision Floating-Point Values From Two Tables Overwriting a Table
         # @return [Ronin::ASM::X86_64::Instructions::VPERMT2PS]
         # @example
@@ -12317,7 +12317,7 @@ module Ronin
         #   vpermt2ps ymm0, ymm1, ymm2
         #   vpermt2ps zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpermt2ps zmm0, zmm1, zmm2
-        def vpermt2ps(*operands,**kwargs) = add_instruction(Instructions::VPERMT2PS,*operands,**kwargs)
+        def vpermt2ps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMT2PS,operand1,operand2,operand3,**kwargs)
         # Full Permute of Quadwords From Two Tables Overwriting a Table
         # @return [Ronin::ASM::X86_64::Instructions::VPERMT2Q]
         # @example
@@ -12333,7 +12333,7 @@ module Ronin
         #   vpermt2q ymm0, ymm1, ymm2
         #   vpermt2q zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpermt2q zmm0, zmm1, zmm2
-        def vpermt2q(*operands,**kwargs) = add_instruction(Instructions::VPERMT2Q,*operands,**kwargs)
+        def vpermt2q(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMT2Q,operand1,operand2,operand3,**kwargs)
         # Full Permute of Words From Two Tables Overwriting a Table
         # @return [Ronin::ASM::X86_64::Instructions::VPERMT2W]
         # @example
@@ -12349,7 +12349,7 @@ module Ronin
         #   vpermt2w ymm0, ymm1, [rcx]
         #   vpermt2w zmm0, zmm1, zmm2
         #   vpermt2w zmm0, zmm1, [rcx]
-        def vpermt2w(*operands,**kwargs) = add_instruction(Instructions::VPERMT2W,*operands,**kwargs)
+        def vpermt2w(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMT2W,operand1,operand2,operand3,**kwargs)
         # Permute Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPERMW]
         # @example
@@ -12365,7 +12365,7 @@ module Ronin
         #   vpermw ymm0, ymm1, [rcx]
         #   vpermw zmm0, zmm1, zmm2
         #   vpermw zmm0, zmm1, [rcx]
-        def vpermw(*operands,**kwargs) = add_instruction(Instructions::VPERMW,*operands,**kwargs)
+        def vpermw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPERMW,operand1,operand2,operand3,**kwargs)
         # Load Sparse Packed Byte Integer Values from Dense Memory/Register
         # @return [Ronin::ASM::X86_64::Instructions::VPEXPANDB]
         # @example
@@ -12381,7 +12381,7 @@ module Ronin
         #   vpexpandb ymm0, [rbx]
         #   vpexpandb zmm0, zmm1
         #   vpexpandb zmm0, [rbx]
-        def vpexpandb(*operands,**kwargs) = add_instruction(Instructions::VPEXPANDB,*operands,**kwargs)
+        def vpexpandb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPEXPANDB,operand1,operand2,**kwargs)
         # Load Sparse Packed Doubleword Integer Values from Dense Memory/Register
         # @return [Ronin::ASM::X86_64::Instructions::VPEXPANDD]
         # @example
@@ -12397,7 +12397,7 @@ module Ronin
         #   vpexpandd ymm0, [rbx]
         #   vpexpandd zmm0, zmm1
         #   vpexpandd zmm0, [rbx]
-        def vpexpandd(*operands,**kwargs) = add_instruction(Instructions::VPEXPANDD,*operands,**kwargs)
+        def vpexpandd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPEXPANDD,operand1,operand2,**kwargs)
         # Load Sparse Packed Quadword Integer Values from Dense Memory/Register
         # @return [Ronin::ASM::X86_64::Instructions::VPEXPANDQ]
         # @example
@@ -12413,7 +12413,7 @@ module Ronin
         #   vpexpandq ymm0, [rbx]
         #   vpexpandq zmm0, zmm1
         #   vpexpandq zmm0, [rbx]
-        def vpexpandq(*operands,**kwargs) = add_instruction(Instructions::VPEXPANDQ,*operands,**kwargs)
+        def vpexpandq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPEXPANDQ,operand1,operand2,**kwargs)
         # Load Sparse Packed Word Integer Values from Dense Memory/Register
         # @return [Ronin::ASM::X86_64::Instructions::VPEXPANDW]
         # @example
@@ -12429,31 +12429,31 @@ module Ronin
         #   vpexpandw ymm0, [rbx]
         #   vpexpandw zmm0, zmm1
         #   vpexpandw zmm0, [rbx]
-        def vpexpandw(*operands,**kwargs) = add_instruction(Instructions::VPEXPANDW,*operands,**kwargs)
+        def vpexpandw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPEXPANDW,operand1,operand2,**kwargs)
         # Extract Byte
         # @return [Ronin::ASM::X86_64::Instructions::VPEXTRB]
         # @example
         #   vpextrb eax, xmm1, 0x03
         #   vpextrb [rax], xmm1, 0x03
-        def vpextrb(*operands,**kwargs) = add_instruction(Instructions::VPEXTRB,*operands,**kwargs)
+        def vpextrb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPEXTRB,operand1,operand2,operand3,**kwargs)
         # Extract Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPEXTRD]
         # @example
         #   vpextrd eax, xmm1, 0x03
         #   vpextrd [rax], xmm1, 0x03
-        def vpextrd(*operands,**kwargs) = add_instruction(Instructions::VPEXTRD,*operands,**kwargs)
+        def vpextrd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPEXTRD,operand1,operand2,operand3,**kwargs)
         # Extract Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPEXTRQ]
         # @example
         #   vpextrq rax, xmm1, 0x03
         #   vpextrq [rax], xmm1, 0x03
-        def vpextrq(*operands,**kwargs) = add_instruction(Instructions::VPEXTRQ,*operands,**kwargs)
+        def vpextrq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPEXTRQ,operand1,operand2,operand3,**kwargs)
         # Extract Word
         # @return [Ronin::ASM::X86_64::Instructions::VPEXTRW]
         # @example
         #   vpextrw eax, xmm1, 0x03
         #   vpextrw [rax], xmm1, 0x03
-        def vpextrw(*operands,**kwargs) = add_instruction(Instructions::VPEXTRW,*operands,**kwargs)
+        def vpextrw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPEXTRW,operand1,operand2,operand3,**kwargs)
         # Gather Packed Doubleword Values Using Signed Doubleword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VPGATHERDD]
         # @example
@@ -12462,7 +12462,7 @@ module Ronin
         #   vpgatherdd opmask(zmm0, k1), [rbx+zmm1*4]
         #   vpgatherdd xmm0, [rbx+xmm1*4], xmm2
         #   vpgatherdd ymm0, [rbx+ymm1*4], ymm2
-        def vpgatherdd(*operands,**kwargs) = add_instruction(Instructions::VPGATHERDD,*operands,**kwargs)
+        def vpgatherdd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VPGATHERDD,operand1,operand2,*operands,**kwargs)
         # Gather Packed Quadword Values Using Signed Doubleword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VPGATHERDQ]
         # @example
@@ -12471,7 +12471,7 @@ module Ronin
         #   vpgatherdq opmask(zmm0, k1), [rbx+ymm1*4]
         #   vpgatherdq xmm0, [rbx+xmm1*4], xmm2
         #   vpgatherdq ymm0, [rbx+xmm1*4], ymm2
-        def vpgatherdq(*operands,**kwargs) = add_instruction(Instructions::VPGATHERDQ,*operands,**kwargs)
+        def vpgatherdq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VPGATHERDQ,operand1,operand2,*operands,**kwargs)
         # Gather Packed Doubleword Values Using Signed Quadword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VPGATHERQD]
         # @example
@@ -12480,7 +12480,7 @@ module Ronin
         #   vpgatherqd opmask(ymm0, k1), [rbx+zmm1*8]
         #   vpgatherqd xmm0, [rbx+xmm1*8], xmm2
         #   vpgatherqd xmm0, [rbx+ymm1*8], xmm2
-        def vpgatherqd(*operands,**kwargs) = add_instruction(Instructions::VPGATHERQD,*operands,**kwargs)
+        def vpgatherqd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VPGATHERQD,operand1,operand2,*operands,**kwargs)
         # Gather Packed Quadword Values Using Signed Quadword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VPGATHERQQ]
         # @example
@@ -12489,25 +12489,25 @@ module Ronin
         #   vpgatherqq opmask(zmm0, k1), [rbx+zmm1*8]
         #   vpgatherqq xmm0, [rbx+xmm1*8], xmm2
         #   vpgatherqq ymm0, [rbx+ymm1*8], ymm2
-        def vpgatherqq(*operands,**kwargs) = add_instruction(Instructions::VPGATHERQQ,*operands,**kwargs)
+        def vpgatherqq(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VPGATHERQQ,operand1,operand2,*operands,**kwargs)
         # Packed Horizontal Add Signed Byte to Signed Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDBD]
         # @example
         #   vphaddbd xmm0, xmm1
         #   vphaddbd xmm0, [rbx]
-        def vphaddbd(*operands,**kwargs) = add_instruction(Instructions::VPHADDBD,*operands,**kwargs)
+        def vphaddbd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHADDBD,operand1,operand2,**kwargs)
         # Packed Horizontal Add Signed Byte to Signed Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDBQ]
         # @example
         #   vphaddbq xmm0, xmm1
         #   vphaddbq xmm0, [rbx]
-        def vphaddbq(*operands,**kwargs) = add_instruction(Instructions::VPHADDBQ,*operands,**kwargs)
+        def vphaddbq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHADDBQ,operand1,operand2,**kwargs)
         # Packed Horizontal Add Signed Byte to Signed Word
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDBW]
         # @example
         #   vphaddbw xmm0, xmm1
         #   vphaddbw xmm0, [rbx]
-        def vphaddbw(*operands,**kwargs) = add_instruction(Instructions::VPHADDBW,*operands,**kwargs)
+        def vphaddbw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHADDBW,operand1,operand2,**kwargs)
         # Packed Horizontal Add Doubleword Integer
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDD]
         # @example
@@ -12515,13 +12515,13 @@ module Ronin
         #   vphaddd xmm0, xmm1, [rcx]
         #   vphaddd ymm0, ymm1, ymm2
         #   vphaddd ymm0, ymm1, [rcx]
-        def vphaddd(*operands,**kwargs) = add_instruction(Instructions::VPHADDD,*operands,**kwargs)
+        def vphaddd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPHADDD,operand1,operand2,operand3,**kwargs)
         # Packed Horizontal Add Signed Doubleword to Signed Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDDQ]
         # @example
         #   vphadddq xmm0, xmm1
         #   vphadddq xmm0, [rbx]
-        def vphadddq(*operands,**kwargs) = add_instruction(Instructions::VPHADDDQ,*operands,**kwargs)
+        def vphadddq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHADDDQ,operand1,operand2,**kwargs)
         # Packed Horizontal Add Signed Word Integers with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDSW]
         # @example
@@ -12529,43 +12529,43 @@ module Ronin
         #   vphaddsw xmm0, xmm1, [rcx]
         #   vphaddsw ymm0, ymm1, ymm2
         #   vphaddsw ymm0, ymm1, [rcx]
-        def vphaddsw(*operands,**kwargs) = add_instruction(Instructions::VPHADDSW,*operands,**kwargs)
+        def vphaddsw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPHADDSW,operand1,operand2,operand3,**kwargs)
         # Packed Horizontal Add Unsigned Byte to Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDUBD]
         # @example
         #   vphaddubd xmm0, xmm1
         #   vphaddubd xmm0, [rbx]
-        def vphaddubd(*operands,**kwargs) = add_instruction(Instructions::VPHADDUBD,*operands,**kwargs)
+        def vphaddubd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHADDUBD,operand1,operand2,**kwargs)
         # Packed Horizontal Add Unsigned Byte to Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDUBQ]
         # @example
         #   vphaddubq xmm0, xmm1
         #   vphaddubq xmm0, [rbx]
-        def vphaddubq(*operands,**kwargs) = add_instruction(Instructions::VPHADDUBQ,*operands,**kwargs)
+        def vphaddubq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHADDUBQ,operand1,operand2,**kwargs)
         # Packed Horizontal Add Unsigned Byte to Word
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDUBW]
         # @example
         #   vphaddubw xmm0, xmm1
         #   vphaddubw xmm0, [rbx]
-        def vphaddubw(*operands,**kwargs) = add_instruction(Instructions::VPHADDUBW,*operands,**kwargs)
+        def vphaddubw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHADDUBW,operand1,operand2,**kwargs)
         # Packed Horizontal Add Unsigned Doubleword to Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDUDQ]
         # @example
         #   vphaddudq xmm0, xmm1
         #   vphaddudq xmm0, [rbx]
-        def vphaddudq(*operands,**kwargs) = add_instruction(Instructions::VPHADDUDQ,*operands,**kwargs)
+        def vphaddudq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHADDUDQ,operand1,operand2,**kwargs)
         # Packed Horizontal Add Unsigned Word to Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDUWD]
         # @example
         #   vphadduwd xmm0, xmm1
         #   vphadduwd xmm0, [rbx]
-        def vphadduwd(*operands,**kwargs) = add_instruction(Instructions::VPHADDUWD,*operands,**kwargs)
+        def vphadduwd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHADDUWD,operand1,operand2,**kwargs)
         # Packed Horizontal Add Unsigned Word to Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDUWQ]
         # @example
         #   vphadduwq xmm0, xmm1
         #   vphadduwq xmm0, [rbx]
-        def vphadduwq(*operands,**kwargs) = add_instruction(Instructions::VPHADDUWQ,*operands,**kwargs)
+        def vphadduwq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHADDUWQ,operand1,operand2,**kwargs)
         # Packed Horizontal Add Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDW]
         # @example
@@ -12573,31 +12573,31 @@ module Ronin
         #   vphaddw xmm0, xmm1, [rcx]
         #   vphaddw ymm0, ymm1, ymm2
         #   vphaddw ymm0, ymm1, [rcx]
-        def vphaddw(*operands,**kwargs) = add_instruction(Instructions::VPHADDW,*operands,**kwargs)
+        def vphaddw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPHADDW,operand1,operand2,operand3,**kwargs)
         # Packed Horizontal Add Signed Word to Signed Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDWD]
         # @example
         #   vphaddwd xmm0, xmm1
         #   vphaddwd xmm0, [rbx]
-        def vphaddwd(*operands,**kwargs) = add_instruction(Instructions::VPHADDWD,*operands,**kwargs)
+        def vphaddwd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHADDWD,operand1,operand2,**kwargs)
         # Packed Horizontal Add Signed Word to Signed Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPHADDWQ]
         # @example
         #   vphaddwq xmm0, xmm1
         #   vphaddwq xmm0, [rbx]
-        def vphaddwq(*operands,**kwargs) = add_instruction(Instructions::VPHADDWQ,*operands,**kwargs)
+        def vphaddwq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHADDWQ,operand1,operand2,**kwargs)
         # Packed Horizontal Minimum of Unsigned Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPHMINPOSUW]
         # @example
         #   vphminposuw xmm0, xmm1
         #   vphminposuw xmm0, [rbx]
-        def vphminposuw(*operands,**kwargs) = add_instruction(Instructions::VPHMINPOSUW,*operands,**kwargs)
+        def vphminposuw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHMINPOSUW,operand1,operand2,**kwargs)
         # Packed Horizontal Subtract Signed Byte to Signed Word
         # @return [Ronin::ASM::X86_64::Instructions::VPHSUBBW]
         # @example
         #   vphsubbw xmm0, xmm1
         #   vphsubbw xmm0, [rbx]
-        def vphsubbw(*operands,**kwargs) = add_instruction(Instructions::VPHSUBBW,*operands,**kwargs)
+        def vphsubbw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHSUBBW,operand1,operand2,**kwargs)
         # Packed Horizontal Subtract Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPHSUBD]
         # @example
@@ -12605,13 +12605,13 @@ module Ronin
         #   vphsubd xmm0, xmm1, [rcx]
         #   vphsubd ymm0, ymm1, ymm2
         #   vphsubd ymm0, ymm1, [rcx]
-        def vphsubd(*operands,**kwargs) = add_instruction(Instructions::VPHSUBD,*operands,**kwargs)
+        def vphsubd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPHSUBD,operand1,operand2,operand3,**kwargs)
         # Packed Horizontal Subtract Signed Doubleword to Signed Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPHSUBDQ]
         # @example
         #   vphsubdq xmm0, xmm1
         #   vphsubdq xmm0, [rbx]
-        def vphsubdq(*operands,**kwargs) = add_instruction(Instructions::VPHSUBDQ,*operands,**kwargs)
+        def vphsubdq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHSUBDQ,operand1,operand2,**kwargs)
         # Packed Horizontal Subtract Signed Word Integers with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPHSUBSW]
         # @example
@@ -12619,7 +12619,7 @@ module Ronin
         #   vphsubsw xmm0, xmm1, [rcx]
         #   vphsubsw ymm0, ymm1, ymm2
         #   vphsubsw ymm0, ymm1, [rcx]
-        def vphsubsw(*operands,**kwargs) = add_instruction(Instructions::VPHSUBSW,*operands,**kwargs)
+        def vphsubsw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPHSUBSW,operand1,operand2,operand3,**kwargs)
         # Packed Horizontal Subtract Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPHSUBW]
         # @example
@@ -12627,37 +12627,37 @@ module Ronin
         #   vphsubw xmm0, xmm1, [rcx]
         #   vphsubw ymm0, ymm1, ymm2
         #   vphsubw ymm0, ymm1, [rcx]
-        def vphsubw(*operands,**kwargs) = add_instruction(Instructions::VPHSUBW,*operands,**kwargs)
+        def vphsubw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPHSUBW,operand1,operand2,operand3,**kwargs)
         # Packed Horizontal Subtract Signed Word to Signed Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPHSUBWD]
         # @example
         #   vphsubwd xmm0, xmm1
         #   vphsubwd xmm0, [rbx]
-        def vphsubwd(*operands,**kwargs) = add_instruction(Instructions::VPHSUBWD,*operands,**kwargs)
+        def vphsubwd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPHSUBWD,operand1,operand2,**kwargs)
         # Insert Byte
         # @return [Ronin::ASM::X86_64::Instructions::VPINSRB]
         # @example
         #   vpinsrb xmm0, xmm1, ecx, 0x04
         #   vpinsrb xmm0, xmm1, [rcx], 0x04
-        def vpinsrb(*operands,**kwargs) = add_instruction(Instructions::VPINSRB,*operands,**kwargs)
+        def vpinsrb(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPINSRB,operand1,operand2,operand3,operand4,**kwargs)
         # Insert Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPINSRD]
         # @example
         #   vpinsrd xmm0, xmm1, ecx, 0x04
         #   vpinsrd xmm0, xmm1, [rcx], 0x04
-        def vpinsrd(*operands,**kwargs) = add_instruction(Instructions::VPINSRD,*operands,**kwargs)
+        def vpinsrd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPINSRD,operand1,operand2,operand3,operand4,**kwargs)
         # Insert Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPINSRQ]
         # @example
         #   vpinsrq xmm0, xmm1, rcx, 0x04
         #   vpinsrq xmm0, xmm1, [rcx], 0x04
-        def vpinsrq(*operands,**kwargs) = add_instruction(Instructions::VPINSRQ,*operands,**kwargs)
+        def vpinsrq(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPINSRQ,operand1,operand2,operand3,operand4,**kwargs)
         # Insert Word
         # @return [Ronin::ASM::X86_64::Instructions::VPINSRW]
         # @example
         #   vpinsrw xmm0, xmm1, ecx, 0x04
         #   vpinsrw xmm0, xmm1, [rcx], 0x04
-        def vpinsrw(*operands,**kwargs) = add_instruction(Instructions::VPINSRW,*operands,**kwargs)
+        def vpinsrw(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPINSRW,operand1,operand2,operand3,operand4,**kwargs)
         # Count the Number of Leading Zero Bits for Packed Doubleword Values
         # @return [Ronin::ASM::X86_64::Instructions::VPLZCNTD]
         # @example
@@ -12673,7 +12673,7 @@ module Ronin
         #   vplzcntd ymm0, ymm1
         #   vplzcntd zmm0, bcst([rbx], {1=>16})
         #   vplzcntd zmm0, zmm1
-        def vplzcntd(*operands,**kwargs) = add_instruction(Instructions::VPLZCNTD,*operands,**kwargs)
+        def vplzcntd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPLZCNTD,operand1,operand2,**kwargs)
         # Count the Number of Leading Zero Bits for Packed Quadword Values
         # @return [Ronin::ASM::X86_64::Instructions::VPLZCNTQ]
         # @example
@@ -12689,79 +12689,79 @@ module Ronin
         #   vplzcntq ymm0, ymm1
         #   vplzcntq zmm0, bcst([rbx], {1=>8})
         #   vplzcntq zmm0, zmm1
-        def vplzcntq(*operands,**kwargs) = add_instruction(Instructions::VPLZCNTQ,*operands,**kwargs)
+        def vplzcntq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPLZCNTQ,operand1,operand2,**kwargs)
         # Packed Multiply Accumulate Signed Doubleword to Signed Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPMACSDD]
         # @example
         #   vpmacsdd xmm0, xmm1, xmm2, xmm3
         #   vpmacsdd xmm0, xmm1, [rcx], xmm3
-        def vpmacsdd(*operands,**kwargs) = add_instruction(Instructions::VPMACSDD,*operands,**kwargs)
+        def vpmacsdd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPMACSDD,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Multiply Accumulate Signed High Doubleword to Signed Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPMACSDQH]
         # @example
         #   vpmacsdqh xmm0, xmm1, xmm2, xmm3
         #   vpmacsdqh xmm0, xmm1, [rcx], xmm3
-        def vpmacsdqh(*operands,**kwargs) = add_instruction(Instructions::VPMACSDQH,*operands,**kwargs)
+        def vpmacsdqh(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPMACSDQH,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Multiply Accumulate Signed Low Doubleword to Signed Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPMACSDQL]
         # @example
         #   vpmacsdql xmm0, xmm1, xmm2, xmm3
         #   vpmacsdql xmm0, xmm1, [rcx], xmm3
-        def vpmacsdql(*operands,**kwargs) = add_instruction(Instructions::VPMACSDQL,*operands,**kwargs)
+        def vpmacsdql(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPMACSDQL,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Multiply Accumulate with Saturation Signed Doubleword to Signed Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPMACSSDD]
         # @example
         #   vpmacssdd xmm0, xmm1, xmm2, xmm3
         #   vpmacssdd xmm0, xmm1, [rcx], xmm3
-        def vpmacssdd(*operands,**kwargs) = add_instruction(Instructions::VPMACSSDD,*operands,**kwargs)
+        def vpmacssdd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPMACSSDD,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Multiply Accumulate with Saturation Signed High Doubleword to Signed Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPMACSSDQH]
         # @example
         #   vpmacssdqh xmm0, xmm1, xmm2, xmm3
         #   vpmacssdqh xmm0, xmm1, [rcx], xmm3
-        def vpmacssdqh(*operands,**kwargs) = add_instruction(Instructions::VPMACSSDQH,*operands,**kwargs)
+        def vpmacssdqh(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPMACSSDQH,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Multiply Accumulate with Saturation Signed Low Doubleword to Signed Quadword
         # @return [Ronin::ASM::X86_64::Instructions::VPMACSSDQL]
         # @example
         #   vpmacssdql xmm0, xmm1, xmm2, xmm3
         #   vpmacssdql xmm0, xmm1, [rcx], xmm3
-        def vpmacssdql(*operands,**kwargs) = add_instruction(Instructions::VPMACSSDQL,*operands,**kwargs)
+        def vpmacssdql(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPMACSSDQL,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Multiply Accumulate with Saturation Signed Word to Signed Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPMACSSWD]
         # @example
         #   vpmacsswd xmm0, xmm1, xmm2, xmm3
         #   vpmacsswd xmm0, xmm1, [rcx], xmm3
-        def vpmacsswd(*operands,**kwargs) = add_instruction(Instructions::VPMACSSWD,*operands,**kwargs)
+        def vpmacsswd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPMACSSWD,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Multiply Accumulate with Saturation Signed Word to Signed Word
         # @return [Ronin::ASM::X86_64::Instructions::VPMACSSWW]
         # @example
         #   vpmacssww xmm0, xmm1, xmm2, xmm3
         #   vpmacssww xmm0, xmm1, [rcx], xmm3
-        def vpmacssww(*operands,**kwargs) = add_instruction(Instructions::VPMACSSWW,*operands,**kwargs)
+        def vpmacssww(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPMACSSWW,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Multiply Accumulate Signed Word to Signed Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPMACSWD]
         # @example
         #   vpmacswd xmm0, xmm1, xmm2, xmm3
         #   vpmacswd xmm0, xmm1, [rcx], xmm3
-        def vpmacswd(*operands,**kwargs) = add_instruction(Instructions::VPMACSWD,*operands,**kwargs)
+        def vpmacswd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPMACSWD,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Multiply Accumulate Signed Word to Signed Word
         # @return [Ronin::ASM::X86_64::Instructions::VPMACSWW]
         # @example
         #   vpmacsww xmm0, xmm1, xmm2, xmm3
         #   vpmacsww xmm0, xmm1, [rcx], xmm3
-        def vpmacsww(*operands,**kwargs) = add_instruction(Instructions::VPMACSWW,*operands,**kwargs)
+        def vpmacsww(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPMACSWW,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Multiply Add Accumulate with Saturation Signed Word to Signed Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPMADCSSWD]
         # @example
         #   vpmadcsswd xmm0, xmm1, xmm2, xmm3
         #   vpmadcsswd xmm0, xmm1, [rcx], xmm3
-        def vpmadcsswd(*operands,**kwargs) = add_instruction(Instructions::VPMADCSSWD,*operands,**kwargs)
+        def vpmadcsswd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPMADCSSWD,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Multiply Add Accumulate Signed Word to Signed Doubleword
         # @return [Ronin::ASM::X86_64::Instructions::VPMADCSWD]
         # @example
         #   vpmadcswd xmm0, xmm1, xmm2, xmm3
         #   vpmadcswd xmm0, xmm1, [rcx], xmm3
-        def vpmadcswd(*operands,**kwargs) = add_instruction(Instructions::VPMADCSWD,*operands,**kwargs)
+        def vpmadcswd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPMADCSWD,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Multiply of Unsigned 52-bit Unsigned Integers and Add High 52-bit Products to Quadword Accumulators
         # @return [Ronin::ASM::X86_64::Instructions::VPMADD52HUQ]
         # @example
@@ -12779,7 +12779,7 @@ module Ronin
         #   vpmadd52huq ymm0, ymm1, [rcx]
         #   vpmadd52huq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpmadd52huq zmm0, zmm1, zmm2
-        def vpmadd52huq(*operands,**kwargs) = add_instruction(Instructions::VPMADD52HUQ,*operands,**kwargs)
+        def vpmadd52huq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMADD52HUQ,operand1,operand2,operand3,**kwargs)
         # Packed Multiply of Unsigned 52-bit Integers and Add the Low 52-bit Products to Quadword Accumulators
         # @return [Ronin::ASM::X86_64::Instructions::VPMADD52LUQ]
         # @example
@@ -12797,7 +12797,7 @@ module Ronin
         #   vpmadd52luq ymm0, ymm1, [rcx]
         #   vpmadd52luq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpmadd52luq zmm0, zmm1, zmm2
-        def vpmadd52luq(*operands,**kwargs) = add_instruction(Instructions::VPMADD52LUQ,*operands,**kwargs)
+        def vpmadd52luq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMADD52LUQ,operand1,operand2,operand3,**kwargs)
         # Multiply and Add Packed Signed and Unsigned Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMADDUBSW]
         # @example
@@ -12813,7 +12813,7 @@ module Ronin
         #   vpmaddubsw ymm0, ymm1, [rcx]
         #   vpmaddubsw zmm0, zmm1, zmm2
         #   vpmaddubsw zmm0, zmm1, [rcx]
-        def vpmaddubsw(*operands,**kwargs) = add_instruction(Instructions::VPMADDUBSW,*operands,**kwargs)
+        def vpmaddubsw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMADDUBSW,operand1,operand2,operand3,**kwargs)
         # Multiply and Add Packed Signed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMADDWD]
         # @example
@@ -12829,7 +12829,7 @@ module Ronin
         #   vpmaddwd ymm0, ymm1, [rcx]
         #   vpmaddwd zmm0, zmm1, zmm2
         #   vpmaddwd zmm0, zmm1, [rcx]
-        def vpmaddwd(*operands,**kwargs) = add_instruction(Instructions::VPMADDWD,*operands,**kwargs)
+        def vpmaddwd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMADDWD,operand1,operand2,operand3,**kwargs)
         # Conditional Move Packed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMASKMOVD]
         # @example
@@ -12837,7 +12837,7 @@ module Ronin
         #   vpmaskmovd ymm0, ymm1, [rcx]
         #   vpmaskmovd [rax], xmm1, xmm2
         #   vpmaskmovd [rax], ymm1, ymm2
-        def vpmaskmovd(*operands,**kwargs) = add_instruction(Instructions::VPMASKMOVD,*operands,**kwargs)
+        def vpmaskmovd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMASKMOVD,operand1,operand2,operand3,**kwargs)
         # Conditional Move Packed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMASKMOVQ]
         # @example
@@ -12845,7 +12845,7 @@ module Ronin
         #   vpmaskmovq ymm0, ymm1, [rcx]
         #   vpmaskmovq [rax], xmm1, xmm2
         #   vpmaskmovq [rax], ymm1, ymm2
-        def vpmaskmovq(*operands,**kwargs) = add_instruction(Instructions::VPMASKMOVQ,*operands,**kwargs)
+        def vpmaskmovq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMASKMOVQ,operand1,operand2,operand3,**kwargs)
         # Maximum of Packed Signed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMAXSB]
         # @example
@@ -12861,7 +12861,7 @@ module Ronin
         #   vpmaxsb ymm0, ymm1, [rcx]
         #   vpmaxsb zmm0, zmm1, zmm2
         #   vpmaxsb zmm0, zmm1, [rcx]
-        def vpmaxsb(*operands,**kwargs) = add_instruction(Instructions::VPMAXSB,*operands,**kwargs)
+        def vpmaxsb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMAXSB,operand1,operand2,operand3,**kwargs)
         # Maximum of Packed Signed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMAXSD]
         # @example
@@ -12879,7 +12879,7 @@ module Ronin
         #   vpmaxsd ymm0, ymm1, [rcx]
         #   vpmaxsd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpmaxsd zmm0, zmm1, zmm2
-        def vpmaxsd(*operands,**kwargs) = add_instruction(Instructions::VPMAXSD,*operands,**kwargs)
+        def vpmaxsd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMAXSD,operand1,operand2,operand3,**kwargs)
         # Maximum of Packed Signed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMAXSQ]
         # @example
@@ -12895,7 +12895,7 @@ module Ronin
         #   vpmaxsq ymm0, ymm1, ymm2
         #   vpmaxsq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpmaxsq zmm0, zmm1, zmm2
-        def vpmaxsq(*operands,**kwargs) = add_instruction(Instructions::VPMAXSQ,*operands,**kwargs)
+        def vpmaxsq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMAXSQ,operand1,operand2,operand3,**kwargs)
         # Maximum of Packed Signed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMAXSW]
         # @example
@@ -12911,7 +12911,7 @@ module Ronin
         #   vpmaxsw ymm0, ymm1, [rcx]
         #   vpmaxsw zmm0, zmm1, zmm2
         #   vpmaxsw zmm0, zmm1, [rcx]
-        def vpmaxsw(*operands,**kwargs) = add_instruction(Instructions::VPMAXSW,*operands,**kwargs)
+        def vpmaxsw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMAXSW,operand1,operand2,operand3,**kwargs)
         # Maximum of Packed Unsigned Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMAXUB]
         # @example
@@ -12927,7 +12927,7 @@ module Ronin
         #   vpmaxub ymm0, ymm1, [rcx]
         #   vpmaxub zmm0, zmm1, zmm2
         #   vpmaxub zmm0, zmm1, [rcx]
-        def vpmaxub(*operands,**kwargs) = add_instruction(Instructions::VPMAXUB,*operands,**kwargs)
+        def vpmaxub(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMAXUB,operand1,operand2,operand3,**kwargs)
         # Maximum of Packed Unsigned Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMAXUD]
         # @example
@@ -12945,7 +12945,7 @@ module Ronin
         #   vpmaxud ymm0, ymm1, [rcx]
         #   vpmaxud zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpmaxud zmm0, zmm1, zmm2
-        def vpmaxud(*operands,**kwargs) = add_instruction(Instructions::VPMAXUD,*operands,**kwargs)
+        def vpmaxud(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMAXUD,operand1,operand2,operand3,**kwargs)
         # Maximum of Packed Unsigned Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMAXUQ]
         # @example
@@ -12961,7 +12961,7 @@ module Ronin
         #   vpmaxuq ymm0, ymm1, ymm2
         #   vpmaxuq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpmaxuq zmm0, zmm1, zmm2
-        def vpmaxuq(*operands,**kwargs) = add_instruction(Instructions::VPMAXUQ,*operands,**kwargs)
+        def vpmaxuq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMAXUQ,operand1,operand2,operand3,**kwargs)
         # Maximum of Packed Unsigned Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMAXUW]
         # @example
@@ -12977,7 +12977,7 @@ module Ronin
         #   vpmaxuw ymm0, ymm1, [rcx]
         #   vpmaxuw zmm0, zmm1, zmm2
         #   vpmaxuw zmm0, zmm1, [rcx]
-        def vpmaxuw(*operands,**kwargs) = add_instruction(Instructions::VPMAXUW,*operands,**kwargs)
+        def vpmaxuw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMAXUW,operand1,operand2,operand3,**kwargs)
         # Minimum of Packed Signed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMINSB]
         # @example
@@ -12993,7 +12993,7 @@ module Ronin
         #   vpminsb ymm0, ymm1, [rcx]
         #   vpminsb zmm0, zmm1, zmm2
         #   vpminsb zmm0, zmm1, [rcx]
-        def vpminsb(*operands,**kwargs) = add_instruction(Instructions::VPMINSB,*operands,**kwargs)
+        def vpminsb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMINSB,operand1,operand2,operand3,**kwargs)
         # Minimum of Packed Signed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMINSD]
         # @example
@@ -13011,7 +13011,7 @@ module Ronin
         #   vpminsd ymm0, ymm1, [rcx]
         #   vpminsd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpminsd zmm0, zmm1, zmm2
-        def vpminsd(*operands,**kwargs) = add_instruction(Instructions::VPMINSD,*operands,**kwargs)
+        def vpminsd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMINSD,operand1,operand2,operand3,**kwargs)
         # Minimum of Packed Signed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMINSQ]
         # @example
@@ -13027,7 +13027,7 @@ module Ronin
         #   vpminsq ymm0, ymm1, ymm2
         #   vpminsq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpminsq zmm0, zmm1, zmm2
-        def vpminsq(*operands,**kwargs) = add_instruction(Instructions::VPMINSQ,*operands,**kwargs)
+        def vpminsq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMINSQ,operand1,operand2,operand3,**kwargs)
         # Minimum of Packed Signed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMINSW]
         # @example
@@ -13043,7 +13043,7 @@ module Ronin
         #   vpminsw ymm0, ymm1, [rcx]
         #   vpminsw zmm0, zmm1, zmm2
         #   vpminsw zmm0, zmm1, [rcx]
-        def vpminsw(*operands,**kwargs) = add_instruction(Instructions::VPMINSW,*operands,**kwargs)
+        def vpminsw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMINSW,operand1,operand2,operand3,**kwargs)
         # Minimum of Packed Unsigned Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMINUB]
         # @example
@@ -13059,7 +13059,7 @@ module Ronin
         #   vpminub ymm0, ymm1, [rcx]
         #   vpminub zmm0, zmm1, zmm2
         #   vpminub zmm0, zmm1, [rcx]
-        def vpminub(*operands,**kwargs) = add_instruction(Instructions::VPMINUB,*operands,**kwargs)
+        def vpminub(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMINUB,operand1,operand2,operand3,**kwargs)
         # Minimum of Packed Unsigned Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMINUD]
         # @example
@@ -13077,7 +13077,7 @@ module Ronin
         #   vpminud ymm0, ymm1, [rcx]
         #   vpminud zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpminud zmm0, zmm1, zmm2
-        def vpminud(*operands,**kwargs) = add_instruction(Instructions::VPMINUD,*operands,**kwargs)
+        def vpminud(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMINUD,operand1,operand2,operand3,**kwargs)
         # Minimum of Packed Unsigned Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMINUQ]
         # @example
@@ -13093,7 +13093,7 @@ module Ronin
         #   vpminuq ymm0, ymm1, ymm2
         #   vpminuq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpminuq zmm0, zmm1, zmm2
-        def vpminuq(*operands,**kwargs) = add_instruction(Instructions::VPMINUQ,*operands,**kwargs)
+        def vpminuq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMINUQ,operand1,operand2,operand3,**kwargs)
         # Minimum of Packed Unsigned Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMINUW]
         # @example
@@ -13109,21 +13109,21 @@ module Ronin
         #   vpminuw ymm0, ymm1, [rcx]
         #   vpminuw zmm0, zmm1, zmm2
         #   vpminuw zmm0, zmm1, [rcx]
-        def vpminuw(*operands,**kwargs) = add_instruction(Instructions::VPMINUW,*operands,**kwargs)
+        def vpminuw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMINUW,operand1,operand2,operand3,**kwargs)
         # Move Signs of Packed Byte Integers to Mask Register
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVB2M]
         # @example
         #   vpmovb2m k1, xmm1
         #   vpmovb2m k1, ymm1
         #   vpmovb2m k1, zmm1
-        def vpmovb2m(*operands,**kwargs) = add_instruction(Instructions::VPMOVB2M,*operands,**kwargs)
+        def vpmovb2m(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVB2M,operand1,operand2,**kwargs)
         # Move Signs of Packed Doubleword Integers to Mask Register
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVD2M]
         # @example
         #   vpmovd2m k1, xmm1
         #   vpmovd2m k1, ymm1
         #   vpmovd2m k1, zmm1
-        def vpmovd2m(*operands,**kwargs) = add_instruction(Instructions::VPMOVD2M,*operands,**kwargs)
+        def vpmovd2m(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVD2M,operand1,operand2,**kwargs)
         # Down Convert Packed Doubleword Values to Byte Values with Truncation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVDB]
         # @example
@@ -13139,7 +13139,7 @@ module Ronin
         #   vpmovdb [rax], xmm1
         #   vpmovdb [rax], ymm1
         #   vpmovdb [rax], zmm1
-        def vpmovdb(*operands,**kwargs) = add_instruction(Instructions::VPMOVDB,*operands,**kwargs)
+        def vpmovdb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVDB,operand1,operand2,**kwargs)
         # Down Convert Packed Doubleword Values to Word Values with Truncation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVDW]
         # @example
@@ -13155,48 +13155,48 @@ module Ronin
         #   vpmovdw [rax], xmm1
         #   vpmovdw [rax], ymm1
         #   vpmovdw [rax], zmm1
-        def vpmovdw(*operands,**kwargs) = add_instruction(Instructions::VPMOVDW,*operands,**kwargs)
+        def vpmovdw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVDW,operand1,operand2,**kwargs)
         # Expand Bits of Mask Register to Packed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVM2B]
         # @example
         #   vpmovm2b xmm0, k2
         #   vpmovm2b ymm0, k2
         #   vpmovm2b zmm0, k2
-        def vpmovm2b(*operands,**kwargs) = add_instruction(Instructions::VPMOVM2B,*operands,**kwargs)
+        def vpmovm2b(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVM2B,operand1,operand2,**kwargs)
         # Expand Bits of Mask Register to Packed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVM2D]
         # @example
         #   vpmovm2d xmm0, k2
         #   vpmovm2d ymm0, k2
         #   vpmovm2d zmm0, k2
-        def vpmovm2d(*operands,**kwargs) = add_instruction(Instructions::VPMOVM2D,*operands,**kwargs)
+        def vpmovm2d(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVM2D,operand1,operand2,**kwargs)
         # Expand Bits of Mask Register to Packed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVM2Q]
         # @example
         #   vpmovm2q xmm0, k2
         #   vpmovm2q ymm0, k2
         #   vpmovm2q zmm0, k2
-        def vpmovm2q(*operands,**kwargs) = add_instruction(Instructions::VPMOVM2Q,*operands,**kwargs)
+        def vpmovm2q(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVM2Q,operand1,operand2,**kwargs)
         # Expand Bits of Mask Register to Packed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVM2W]
         # @example
         #   vpmovm2w xmm0, k2
         #   vpmovm2w ymm0, k2
         #   vpmovm2w zmm0, k2
-        def vpmovm2w(*operands,**kwargs) = add_instruction(Instructions::VPMOVM2W,*operands,**kwargs)
+        def vpmovm2w(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVM2W,operand1,operand2,**kwargs)
         # Move Byte Mask
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVMSKB]
         # @example
         #   vpmovmskb eax, xmm1
         #   vpmovmskb eax, ymm1
-        def vpmovmskb(*operands,**kwargs) = add_instruction(Instructions::VPMOVMSKB,*operands,**kwargs)
+        def vpmovmskb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVMSKB,operand1,operand2,**kwargs)
         # Move Signs of Packed Quadword Integers to Mask Register
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVQ2M]
         # @example
         #   vpmovq2m k1, xmm1
         #   vpmovq2m k1, ymm1
         #   vpmovq2m k1, zmm1
-        def vpmovq2m(*operands,**kwargs) = add_instruction(Instructions::VPMOVQ2M,*operands,**kwargs)
+        def vpmovq2m(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVQ2M,operand1,operand2,**kwargs)
         # Down Convert Packed Quadword Values to Byte Values with Truncation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVQB]
         # @example
@@ -13212,7 +13212,7 @@ module Ronin
         #   vpmovqb [rax], xmm1
         #   vpmovqb [rax], ymm1
         #   vpmovqb [rax], zmm1
-        def vpmovqb(*operands,**kwargs) = add_instruction(Instructions::VPMOVQB,*operands,**kwargs)
+        def vpmovqb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVQB,operand1,operand2,**kwargs)
         # Down Convert Packed Quadword Values to Doubleword Values with Truncation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVQD]
         # @example
@@ -13228,7 +13228,7 @@ module Ronin
         #   vpmovqd [rax], xmm1
         #   vpmovqd [rax], ymm1
         #   vpmovqd [rax], zmm1
-        def vpmovqd(*operands,**kwargs) = add_instruction(Instructions::VPMOVQD,*operands,**kwargs)
+        def vpmovqd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVQD,operand1,operand2,**kwargs)
         # Down Convert Packed Quadword Values to Word Values with Truncation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVQW]
         # @example
@@ -13244,7 +13244,7 @@ module Ronin
         #   vpmovqw [rax], xmm1
         #   vpmovqw [rax], ymm1
         #   vpmovqw [rax], zmm1
-        def vpmovqw(*operands,**kwargs) = add_instruction(Instructions::VPMOVQW,*operands,**kwargs)
+        def vpmovqw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVQW,operand1,operand2,**kwargs)
         # Down Convert Packed Doubleword Values to Byte Values with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVSDB]
         # @example
@@ -13260,7 +13260,7 @@ module Ronin
         #   vpmovsdb [rax], xmm1
         #   vpmovsdb [rax], ymm1
         #   vpmovsdb [rax], zmm1
-        def vpmovsdb(*operands,**kwargs) = add_instruction(Instructions::VPMOVSDB,*operands,**kwargs)
+        def vpmovsdb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVSDB,operand1,operand2,**kwargs)
         # Down Convert Packed Doubleword Values to Word Values with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVSDW]
         # @example
@@ -13276,7 +13276,7 @@ module Ronin
         #   vpmovsdw [rax], xmm1
         #   vpmovsdw [rax], ymm1
         #   vpmovsdw [rax], zmm1
-        def vpmovsdw(*operands,**kwargs) = add_instruction(Instructions::VPMOVSDW,*operands,**kwargs)
+        def vpmovsdw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVSDW,operand1,operand2,**kwargs)
         # Down Convert Packed Quadword Values to Byte Values with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVSQB]
         # @example
@@ -13292,7 +13292,7 @@ module Ronin
         #   vpmovsqb [rax], xmm1
         #   vpmovsqb [rax], ymm1
         #   vpmovsqb [rax], zmm1
-        def vpmovsqb(*operands,**kwargs) = add_instruction(Instructions::VPMOVSQB,*operands,**kwargs)
+        def vpmovsqb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVSQB,operand1,operand2,**kwargs)
         # Down Convert Packed Quadword Values to Doubleword Values with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVSQD]
         # @example
@@ -13308,7 +13308,7 @@ module Ronin
         #   vpmovsqd [rax], xmm1
         #   vpmovsqd [rax], ymm1
         #   vpmovsqd [rax], zmm1
-        def vpmovsqd(*operands,**kwargs) = add_instruction(Instructions::VPMOVSQD,*operands,**kwargs)
+        def vpmovsqd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVSQD,operand1,operand2,**kwargs)
         # Down Convert Packed Quadword Values to Word Values with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVSQW]
         # @example
@@ -13324,7 +13324,7 @@ module Ronin
         #   vpmovsqw [rax], xmm1
         #   vpmovsqw [rax], ymm1
         #   vpmovsqw [rax], zmm1
-        def vpmovsqw(*operands,**kwargs) = add_instruction(Instructions::VPMOVSQW,*operands,**kwargs)
+        def vpmovsqw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVSQW,operand1,operand2,**kwargs)
         # Down Convert Packed Word Values to Byte Values with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVSWB]
         # @example
@@ -13340,7 +13340,7 @@ module Ronin
         #   vpmovswb [rax], xmm1
         #   vpmovswb [rax], ymm1
         #   vpmovswb [rax], zmm1
-        def vpmovswb(*operands,**kwargs) = add_instruction(Instructions::VPMOVSWB,*operands,**kwargs)
+        def vpmovswb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVSWB,operand1,operand2,**kwargs)
         # Move Packed Byte Integers to Doubleword Integers with Sign Extension
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVSXBD]
         # @example
@@ -13356,7 +13356,7 @@ module Ronin
         #   vpmovsxbd ymm0, [rbx]
         #   vpmovsxbd zmm0, xmm1
         #   vpmovsxbd zmm0, [rbx]
-        def vpmovsxbd(*operands,**kwargs) = add_instruction(Instructions::VPMOVSXBD,*operands,**kwargs)
+        def vpmovsxbd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVSXBD,operand1,operand2,**kwargs)
         # Move Packed Byte Integers to Quadword Integers with Sign Extension
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVSXBQ]
         # @example
@@ -13372,7 +13372,7 @@ module Ronin
         #   vpmovsxbq ymm0, [rbx]
         #   vpmovsxbq zmm0, xmm1
         #   vpmovsxbq zmm0, [rbx]
-        def vpmovsxbq(*operands,**kwargs) = add_instruction(Instructions::VPMOVSXBQ,*operands,**kwargs)
+        def vpmovsxbq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVSXBQ,operand1,operand2,**kwargs)
         # Move Packed Byte Integers to Word Integers with Sign Extension
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVSXBW]
         # @example
@@ -13388,7 +13388,7 @@ module Ronin
         #   vpmovsxbw ymm0, [rbx]
         #   vpmovsxbw zmm0, ymm1
         #   vpmovsxbw zmm0, [rbx]
-        def vpmovsxbw(*operands,**kwargs) = add_instruction(Instructions::VPMOVSXBW,*operands,**kwargs)
+        def vpmovsxbw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVSXBW,operand1,operand2,**kwargs)
         # Move Packed Doubleword Integers to Quadword Integers with Sign Extension
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVSXDQ]
         # @example
@@ -13404,7 +13404,7 @@ module Ronin
         #   vpmovsxdq ymm0, [rbx]
         #   vpmovsxdq zmm0, ymm1
         #   vpmovsxdq zmm0, [rbx]
-        def vpmovsxdq(*operands,**kwargs) = add_instruction(Instructions::VPMOVSXDQ,*operands,**kwargs)
+        def vpmovsxdq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVSXDQ,operand1,operand2,**kwargs)
         # Move Packed Word Integers to Doubleword Integers with Sign Extension
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVSXWD]
         # @example
@@ -13420,7 +13420,7 @@ module Ronin
         #   vpmovsxwd ymm0, [rbx]
         #   vpmovsxwd zmm0, ymm1
         #   vpmovsxwd zmm0, [rbx]
-        def vpmovsxwd(*operands,**kwargs) = add_instruction(Instructions::VPMOVSXWD,*operands,**kwargs)
+        def vpmovsxwd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVSXWD,operand1,operand2,**kwargs)
         # Move Packed Word Integers to Quadword Integers with Sign Extension
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVSXWQ]
         # @example
@@ -13436,7 +13436,7 @@ module Ronin
         #   vpmovsxwq ymm0, [rbx]
         #   vpmovsxwq zmm0, xmm1
         #   vpmovsxwq zmm0, [rbx]
-        def vpmovsxwq(*operands,**kwargs) = add_instruction(Instructions::VPMOVSXWQ,*operands,**kwargs)
+        def vpmovsxwq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVSXWQ,operand1,operand2,**kwargs)
         # Down Convert Packed Doubleword Values to Byte Values with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVUSDB]
         # @example
@@ -13452,7 +13452,7 @@ module Ronin
         #   vpmovusdb [rax], xmm1
         #   vpmovusdb [rax], ymm1
         #   vpmovusdb [rax], zmm1
-        def vpmovusdb(*operands,**kwargs) = add_instruction(Instructions::VPMOVUSDB,*operands,**kwargs)
+        def vpmovusdb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVUSDB,operand1,operand2,**kwargs)
         # Down Convert Packed Doubleword Values to Word Values with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVUSDW]
         # @example
@@ -13468,7 +13468,7 @@ module Ronin
         #   vpmovusdw [rax], xmm1
         #   vpmovusdw [rax], ymm1
         #   vpmovusdw [rax], zmm1
-        def vpmovusdw(*operands,**kwargs) = add_instruction(Instructions::VPMOVUSDW,*operands,**kwargs)
+        def vpmovusdw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVUSDW,operand1,operand2,**kwargs)
         # Down Convert Packed Quadword Values to Byte Values with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVUSQB]
         # @example
@@ -13484,7 +13484,7 @@ module Ronin
         #   vpmovusqb [rax], xmm1
         #   vpmovusqb [rax], ymm1
         #   vpmovusqb [rax], zmm1
-        def vpmovusqb(*operands,**kwargs) = add_instruction(Instructions::VPMOVUSQB,*operands,**kwargs)
+        def vpmovusqb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVUSQB,operand1,operand2,**kwargs)
         # Down Convert Packed Quadword Values to Doubleword Values with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVUSQD]
         # @example
@@ -13500,7 +13500,7 @@ module Ronin
         #   vpmovusqd [rax], xmm1
         #   vpmovusqd [rax], ymm1
         #   vpmovusqd [rax], zmm1
-        def vpmovusqd(*operands,**kwargs) = add_instruction(Instructions::VPMOVUSQD,*operands,**kwargs)
+        def vpmovusqd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVUSQD,operand1,operand2,**kwargs)
         # Down Convert Packed Quadword Values to Word Values with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVUSQW]
         # @example
@@ -13516,7 +13516,7 @@ module Ronin
         #   vpmovusqw [rax], xmm1
         #   vpmovusqw [rax], ymm1
         #   vpmovusqw [rax], zmm1
-        def vpmovusqw(*operands,**kwargs) = add_instruction(Instructions::VPMOVUSQW,*operands,**kwargs)
+        def vpmovusqw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVUSQW,operand1,operand2,**kwargs)
         # Down Convert Packed Word Values to Byte Values with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVUSWB]
         # @example
@@ -13532,14 +13532,14 @@ module Ronin
         #   vpmovuswb [rax], xmm1
         #   vpmovuswb [rax], ymm1
         #   vpmovuswb [rax], zmm1
-        def vpmovuswb(*operands,**kwargs) = add_instruction(Instructions::VPMOVUSWB,*operands,**kwargs)
+        def vpmovuswb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVUSWB,operand1,operand2,**kwargs)
         # Move Signs of Packed Word Integers to Mask Register
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVW2M]
         # @example
         #   vpmovw2m k1, xmm1
         #   vpmovw2m k1, ymm1
         #   vpmovw2m k1, zmm1
-        def vpmovw2m(*operands,**kwargs) = add_instruction(Instructions::VPMOVW2M,*operands,**kwargs)
+        def vpmovw2m(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVW2M,operand1,operand2,**kwargs)
         # Down Convert Packed Word Values to Byte Values with Truncation
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVWB]
         # @example
@@ -13555,7 +13555,7 @@ module Ronin
         #   vpmovwb [rax], xmm1
         #   vpmovwb [rax], ymm1
         #   vpmovwb [rax], zmm1
-        def vpmovwb(*operands,**kwargs) = add_instruction(Instructions::VPMOVWB,*operands,**kwargs)
+        def vpmovwb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVWB,operand1,operand2,**kwargs)
         # Move Packed Byte Integers to Doubleword Integers with Zero Extension
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVZXBD]
         # @example
@@ -13571,7 +13571,7 @@ module Ronin
         #   vpmovzxbd ymm0, [rbx]
         #   vpmovzxbd zmm0, xmm1
         #   vpmovzxbd zmm0, [rbx]
-        def vpmovzxbd(*operands,**kwargs) = add_instruction(Instructions::VPMOVZXBD,*operands,**kwargs)
+        def vpmovzxbd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVZXBD,operand1,operand2,**kwargs)
         # Move Packed Byte Integers to Quadword Integers with Zero Extension
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVZXBQ]
         # @example
@@ -13587,7 +13587,7 @@ module Ronin
         #   vpmovzxbq ymm0, [rbx]
         #   vpmovzxbq zmm0, xmm1
         #   vpmovzxbq zmm0, [rbx]
-        def vpmovzxbq(*operands,**kwargs) = add_instruction(Instructions::VPMOVZXBQ,*operands,**kwargs)
+        def vpmovzxbq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVZXBQ,operand1,operand2,**kwargs)
         # Move Packed Byte Integers to Word Integers with Zero Extension
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVZXBW]
         # @example
@@ -13603,7 +13603,7 @@ module Ronin
         #   vpmovzxbw ymm0, [rbx]
         #   vpmovzxbw zmm0, ymm1
         #   vpmovzxbw zmm0, [rbx]
-        def vpmovzxbw(*operands,**kwargs) = add_instruction(Instructions::VPMOVZXBW,*operands,**kwargs)
+        def vpmovzxbw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVZXBW,operand1,operand2,**kwargs)
         # Move Packed Doubleword Integers to Quadword Integers with Zero Extension
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVZXDQ]
         # @example
@@ -13619,7 +13619,7 @@ module Ronin
         #   vpmovzxdq ymm0, [rbx]
         #   vpmovzxdq zmm0, ymm1
         #   vpmovzxdq zmm0, [rbx]
-        def vpmovzxdq(*operands,**kwargs) = add_instruction(Instructions::VPMOVZXDQ,*operands,**kwargs)
+        def vpmovzxdq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVZXDQ,operand1,operand2,**kwargs)
         # Move Packed Word Integers to Doubleword Integers with Zero Extension
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVZXWD]
         # @example
@@ -13635,7 +13635,7 @@ module Ronin
         #   vpmovzxwd ymm0, [rbx]
         #   vpmovzxwd zmm0, ymm1
         #   vpmovzxwd zmm0, [rbx]
-        def vpmovzxwd(*operands,**kwargs) = add_instruction(Instructions::VPMOVZXWD,*operands,**kwargs)
+        def vpmovzxwd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVZXWD,operand1,operand2,**kwargs)
         # Move Packed Word Integers to Quadword Integers with Zero Extension
         # @return [Ronin::ASM::X86_64::Instructions::VPMOVZXWQ]
         # @example
@@ -13651,7 +13651,7 @@ module Ronin
         #   vpmovzxwq ymm0, [rbx]
         #   vpmovzxwq zmm0, xmm1
         #   vpmovzxwq zmm0, [rbx]
-        def vpmovzxwq(*operands,**kwargs) = add_instruction(Instructions::VPMOVZXWQ,*operands,**kwargs)
+        def vpmovzxwq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPMOVZXWQ,operand1,operand2,**kwargs)
         # Multiply Packed Signed Doubleword Integers and Store Quadword Result
         # @return [Ronin::ASM::X86_64::Instructions::VPMULDQ]
         # @example
@@ -13669,7 +13669,7 @@ module Ronin
         #   vpmuldq ymm0, ymm1, [rcx]
         #   vpmuldq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpmuldq zmm0, zmm1, zmm2
-        def vpmuldq(*operands,**kwargs) = add_instruction(Instructions::VPMULDQ,*operands,**kwargs)
+        def vpmuldq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMULDQ,operand1,operand2,operand3,**kwargs)
         # Packed Multiply Signed Word Integers and Store High Result with Round and Scale
         # @return [Ronin::ASM::X86_64::Instructions::VPMULHRSW]
         # @example
@@ -13685,7 +13685,7 @@ module Ronin
         #   vpmulhrsw ymm0, ymm1, [rcx]
         #   vpmulhrsw zmm0, zmm1, zmm2
         #   vpmulhrsw zmm0, zmm1, [rcx]
-        def vpmulhrsw(*operands,**kwargs) = add_instruction(Instructions::VPMULHRSW,*operands,**kwargs)
+        def vpmulhrsw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMULHRSW,operand1,operand2,operand3,**kwargs)
         # Multiply Packed Unsigned Word Integers and Store High Result
         # @return [Ronin::ASM::X86_64::Instructions::VPMULHUW]
         # @example
@@ -13701,7 +13701,7 @@ module Ronin
         #   vpmulhuw ymm0, ymm1, [rcx]
         #   vpmulhuw zmm0, zmm1, zmm2
         #   vpmulhuw zmm0, zmm1, [rcx]
-        def vpmulhuw(*operands,**kwargs) = add_instruction(Instructions::VPMULHUW,*operands,**kwargs)
+        def vpmulhuw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMULHUW,operand1,operand2,operand3,**kwargs)
         # Multiply Packed Signed Word Integers and Store High Result
         # @return [Ronin::ASM::X86_64::Instructions::VPMULHW]
         # @example
@@ -13717,7 +13717,7 @@ module Ronin
         #   vpmulhw ymm0, ymm1, [rcx]
         #   vpmulhw zmm0, zmm1, zmm2
         #   vpmulhw zmm0, zmm1, [rcx]
-        def vpmulhw(*operands,**kwargs) = add_instruction(Instructions::VPMULHW,*operands,**kwargs)
+        def vpmulhw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMULHW,operand1,operand2,operand3,**kwargs)
         # Multiply Packed Signed Doubleword Integers and Store Low Result
         # @return [Ronin::ASM::X86_64::Instructions::VPMULLD]
         # @example
@@ -13735,7 +13735,7 @@ module Ronin
         #   vpmulld ymm0, ymm1, [rcx]
         #   vpmulld zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpmulld zmm0, zmm1, zmm2
-        def vpmulld(*operands,**kwargs) = add_instruction(Instructions::VPMULLD,*operands,**kwargs)
+        def vpmulld(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMULLD,operand1,operand2,operand3,**kwargs)
         # Multiply Packed Signed Quadword Integers and Store Low Result
         # @return [Ronin::ASM::X86_64::Instructions::VPMULLQ]
         # @example
@@ -13751,7 +13751,7 @@ module Ronin
         #   vpmullq ymm0, ymm1, ymm2
         #   vpmullq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpmullq zmm0, zmm1, zmm2
-        def vpmullq(*operands,**kwargs) = add_instruction(Instructions::VPMULLQ,*operands,**kwargs)
+        def vpmullq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMULLQ,operand1,operand2,operand3,**kwargs)
         # Multiply Packed Signed Word Integers and Store Low Result
         # @return [Ronin::ASM::X86_64::Instructions::VPMULLW]
         # @example
@@ -13767,7 +13767,7 @@ module Ronin
         #   vpmullw ymm0, ymm1, [rcx]
         #   vpmullw zmm0, zmm1, zmm2
         #   vpmullw zmm0, zmm1, [rcx]
-        def vpmullw(*operands,**kwargs) = add_instruction(Instructions::VPMULLW,*operands,**kwargs)
+        def vpmullw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMULLW,operand1,operand2,operand3,**kwargs)
         # Select Packed Unaligned Bytes from Quadword Sources
         # @return [Ronin::ASM::X86_64::Instructions::VPMULTISHIFTQB]
         # @example
@@ -13783,7 +13783,7 @@ module Ronin
         #   vpmultishiftqb ymm0, ymm1, ymm2
         #   vpmultishiftqb zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpmultishiftqb zmm0, zmm1, zmm2
-        def vpmultishiftqb(*operands,**kwargs) = add_instruction(Instructions::VPMULTISHIFTQB,*operands,**kwargs)
+        def vpmultishiftqb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMULTISHIFTQB,operand1,operand2,operand3,**kwargs)
         # Multiply Packed Unsigned Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPMULUDQ]
         # @example
@@ -13801,7 +13801,7 @@ module Ronin
         #   vpmuludq ymm0, ymm1, [rcx]
         #   vpmuludq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpmuludq zmm0, zmm1, zmm2
-        def vpmuludq(*operands,**kwargs) = add_instruction(Instructions::VPMULUDQ,*operands,**kwargs)
+        def vpmuludq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPMULUDQ,operand1,operand2,operand3,**kwargs)
         # Packed Population Count for Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPOPCNTB]
         # @example
@@ -13817,7 +13817,7 @@ module Ronin
         #   vpopcntb ymm0, [rbx]
         #   vpopcntb zmm0, zmm1
         #   vpopcntb zmm0, [rbx]
-        def vpopcntb(*operands,**kwargs) = add_instruction(Instructions::VPOPCNTB,*operands,**kwargs)
+        def vpopcntb(operand1,operand2,**kwargs) = add_instruction(Instructions::VPOPCNTB,operand1,operand2,**kwargs)
         # Packed Population Count for Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPOPCNTD]
         # @example
@@ -13833,7 +13833,7 @@ module Ronin
         #   vpopcntd ymm0, ymm1
         #   vpopcntd zmm0, bcst([rbx], {1=>16})
         #   vpopcntd zmm0, zmm1
-        def vpopcntd(*operands,**kwargs) = add_instruction(Instructions::VPOPCNTD,*operands,**kwargs)
+        def vpopcntd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPOPCNTD,operand1,operand2,**kwargs)
         # Packed Population Count for Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPOPCNTQ]
         # @example
@@ -13849,7 +13849,7 @@ module Ronin
         #   vpopcntq ymm0, ymm1
         #   vpopcntq zmm0, bcst([rbx], {1=>8})
         #   vpopcntq zmm0, zmm1
-        def vpopcntq(*operands,**kwargs) = add_instruction(Instructions::VPOPCNTQ,*operands,**kwargs)
+        def vpopcntq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPOPCNTQ,operand1,operand2,**kwargs)
         # Packed Population Count for Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPOPCNTW]
         # @example
@@ -13865,7 +13865,7 @@ module Ronin
         #   vpopcntw ymm0, [rbx]
         #   vpopcntw zmm0, zmm1
         #   vpopcntw zmm0, [rbx]
-        def vpopcntw(*operands,**kwargs) = add_instruction(Instructions::VPOPCNTW,*operands,**kwargs)
+        def vpopcntw(operand1,operand2,**kwargs) = add_instruction(Instructions::VPOPCNTW,operand1,operand2,**kwargs)
         # Packed Bitwise Logical OR
         # @return [Ronin::ASM::X86_64::Instructions::VPOR]
         # @example
@@ -13873,7 +13873,7 @@ module Ronin
         #   vpor xmm0, xmm1, [rcx]
         #   vpor ymm0, ymm1, ymm2
         #   vpor ymm0, ymm1, [rcx]
-        def vpor(*operands,**kwargs) = add_instruction(Instructions::VPOR,*operands,**kwargs)
+        def vpor(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPOR,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical OR of Packed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPORD]
         # @example
@@ -13889,7 +13889,7 @@ module Ronin
         #   vpord ymm0, ymm1, ymm2
         #   vpord zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpord zmm0, zmm1, zmm2
-        def vpord(*operands,**kwargs) = add_instruction(Instructions::VPORD,*operands,**kwargs)
+        def vpord(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPORD,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical OR of Packed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPORQ]
         # @example
@@ -13905,14 +13905,14 @@ module Ronin
         #   vporq ymm0, ymm1, ymm2
         #   vporq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vporq zmm0, zmm1, zmm2
-        def vporq(*operands,**kwargs) = add_instruction(Instructions::VPORQ,*operands,**kwargs)
+        def vporq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPORQ,operand1,operand2,operand3,**kwargs)
         # Packed Permute Bytes
         # @return [Ronin::ASM::X86_64::Instructions::VPPERM]
         # @example
         #   vpperm xmm0, xmm1, xmm2, xmm3
         #   vpperm xmm0, xmm1, xmm2, [rdx]
         #   vpperm xmm0, xmm1, [rcx], xmm3
-        def vpperm(*operands,**kwargs) = add_instruction(Instructions::VPPERM,*operands,**kwargs)
+        def vpperm(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPPERM,operand1,operand2,operand3,operand4,**kwargs)
         # Rotate Packed Doubleword Left
         # @return [Ronin::ASM::X86_64::Instructions::VPROLD]
         # @example
@@ -13928,7 +13928,7 @@ module Ronin
         #   vprold ymm0, ymm1, 0x03
         #   vprold zmm0, bcst([rbx], {1=>16}), 0x03
         #   vprold zmm0, zmm1, 0x03
-        def vprold(*operands,**kwargs) = add_instruction(Instructions::VPROLD,*operands,**kwargs)
+        def vprold(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPROLD,operand1,operand2,operand3,**kwargs)
         # Rotate Packed Quadword Left
         # @return [Ronin::ASM::X86_64::Instructions::VPROLQ]
         # @example
@@ -13944,7 +13944,7 @@ module Ronin
         #   vprolq ymm0, ymm1, 0x03
         #   vprolq zmm0, bcst([rbx], {1=>8}), 0x03
         #   vprolq zmm0, zmm1, 0x03
-        def vprolq(*operands,**kwargs) = add_instruction(Instructions::VPROLQ,*operands,**kwargs)
+        def vprolq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPROLQ,operand1,operand2,operand3,**kwargs)
         # Variable Rotate Packed Doubleword Left
         # @return [Ronin::ASM::X86_64::Instructions::VPROLVD]
         # @example
@@ -13960,7 +13960,7 @@ module Ronin
         #   vprolvd ymm0, ymm1, ymm2
         #   vprolvd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vprolvd zmm0, zmm1, zmm2
-        def vprolvd(*operands,**kwargs) = add_instruction(Instructions::VPROLVD,*operands,**kwargs)
+        def vprolvd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPROLVD,operand1,operand2,operand3,**kwargs)
         # Variable Rotate Packed Quadword Left
         # @return [Ronin::ASM::X86_64::Instructions::VPROLVQ]
         # @example
@@ -13976,7 +13976,7 @@ module Ronin
         #   vprolvq ymm0, ymm1, ymm2
         #   vprolvq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vprolvq zmm0, zmm1, zmm2
-        def vprolvq(*operands,**kwargs) = add_instruction(Instructions::VPROLVQ,*operands,**kwargs)
+        def vprolvq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPROLVQ,operand1,operand2,operand3,**kwargs)
         # Rotate Packed Doubleword Right
         # @return [Ronin::ASM::X86_64::Instructions::VPRORD]
         # @example
@@ -13992,7 +13992,7 @@ module Ronin
         #   vprord ymm0, ymm1, 0x03
         #   vprord zmm0, bcst([rbx], {1=>16}), 0x03
         #   vprord zmm0, zmm1, 0x03
-        def vprord(*operands,**kwargs) = add_instruction(Instructions::VPRORD,*operands,**kwargs)
+        def vprord(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPRORD,operand1,operand2,operand3,**kwargs)
         # Rotate Packed Quadword Right
         # @return [Ronin::ASM::X86_64::Instructions::VPRORQ]
         # @example
@@ -14008,7 +14008,7 @@ module Ronin
         #   vprorq ymm0, ymm1, 0x03
         #   vprorq zmm0, bcst([rbx], {1=>8}), 0x03
         #   vprorq zmm0, zmm1, 0x03
-        def vprorq(*operands,**kwargs) = add_instruction(Instructions::VPRORQ,*operands,**kwargs)
+        def vprorq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPRORQ,operand1,operand2,operand3,**kwargs)
         # Variable Rotate Packed Doubleword Right
         # @return [Ronin::ASM::X86_64::Instructions::VPRORVD]
         # @example
@@ -14024,7 +14024,7 @@ module Ronin
         #   vprorvd ymm0, ymm1, ymm2
         #   vprorvd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vprorvd zmm0, zmm1, zmm2
-        def vprorvd(*operands,**kwargs) = add_instruction(Instructions::VPRORVD,*operands,**kwargs)
+        def vprorvd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPRORVD,operand1,operand2,operand3,**kwargs)
         # Variable Rotate Packed Quadword Right
         # @return [Ronin::ASM::X86_64::Instructions::VPRORVQ]
         # @example
@@ -14040,7 +14040,7 @@ module Ronin
         #   vprorvq ymm0, ymm1, ymm2
         #   vprorvq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vprorvq zmm0, zmm1, zmm2
-        def vprorvq(*operands,**kwargs) = add_instruction(Instructions::VPRORVQ,*operands,**kwargs)
+        def vprorvq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPRORVQ,operand1,operand2,operand3,**kwargs)
         # Packed Rotate Bytes
         # @return [Ronin::ASM::X86_64::Instructions::VPROTB]
         # @example
@@ -14049,7 +14049,7 @@ module Ronin
         #   vprotb xmm0, xmm1, [rcx]
         #   vprotb xmm0, [rbx], 0x03
         #   vprotb xmm0, [rbx], xmm2
-        def vprotb(*operands,**kwargs) = add_instruction(Instructions::VPROTB,*operands,**kwargs)
+        def vprotb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPROTB,operand1,operand2,operand3,**kwargs)
         # Packed Rotate Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::VPROTD]
         # @example
@@ -14058,7 +14058,7 @@ module Ronin
         #   vprotd xmm0, xmm1, [rcx]
         #   vprotd xmm0, [rbx], 0x03
         #   vprotd xmm0, [rbx], xmm2
-        def vprotd(*operands,**kwargs) = add_instruction(Instructions::VPROTD,*operands,**kwargs)
+        def vprotd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPROTD,operand1,operand2,operand3,**kwargs)
         # Packed Rotate Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::VPROTQ]
         # @example
@@ -14067,7 +14067,7 @@ module Ronin
         #   vprotq xmm0, xmm1, [rcx]
         #   vprotq xmm0, [rbx], 0x03
         #   vprotq xmm0, [rbx], xmm2
-        def vprotq(*operands,**kwargs) = add_instruction(Instructions::VPROTQ,*operands,**kwargs)
+        def vprotq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPROTQ,operand1,operand2,operand3,**kwargs)
         # Packed Rotate Words
         # @return [Ronin::ASM::X86_64::Instructions::VPROTW]
         # @example
@@ -14076,7 +14076,7 @@ module Ronin
         #   vprotw xmm0, xmm1, [rcx]
         #   vprotw xmm0, [rbx], 0x03
         #   vprotw xmm0, [rbx], xmm2
-        def vprotw(*operands,**kwargs) = add_instruction(Instructions::VPROTW,*operands,**kwargs)
+        def vprotw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPROTW,operand1,operand2,operand3,**kwargs)
         # Compute Sum of Absolute Differences
         # @return [Ronin::ASM::X86_64::Instructions::VPSADBW]
         # @example
@@ -14086,77 +14086,77 @@ module Ronin
         #   vpsadbw ymm0, ymm1, [rcx]
         #   vpsadbw zmm0, zmm1, zmm2
         #   vpsadbw zmm0, zmm1, [rcx]
-        def vpsadbw(*operands,**kwargs) = add_instruction(Instructions::VPSADBW,*operands,**kwargs)
+        def vpsadbw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSADBW,operand1,operand2,operand3,**kwargs)
         # Scatter Packed Doubleword Values with Signed Doubleword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VPSCATTERDD]
         # @example
         #   vpscatterdd opmask([rax+xmm0*4], k1), xmm1
         #   vpscatterdd opmask([rax+ymm0*4], k1), ymm1
         #   vpscatterdd opmask([rax+zmm0*4], k1), zmm1
-        def vpscatterdd(*operands,**kwargs) = add_instruction(Instructions::VPSCATTERDD,*operands,**kwargs)
+        def vpscatterdd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPSCATTERDD,operand1,operand2,**kwargs)
         # Scatter Packed Quadword Values with Signed Doubleword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VPSCATTERDQ]
         # @example
         #   vpscatterdq opmask([rax+xmm0*4], k1), xmm1
         #   vpscatterdq opmask([rax+xmm0*4], k1), ymm1
         #   vpscatterdq opmask([rax+ymm0*4], k1), zmm1
-        def vpscatterdq(*operands,**kwargs) = add_instruction(Instructions::VPSCATTERDQ,*operands,**kwargs)
+        def vpscatterdq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPSCATTERDQ,operand1,operand2,**kwargs)
         # Scatter Packed Doubleword Values with Signed Quadword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VPSCATTERQD]
         # @example
         #   vpscatterqd opmask([rax+xmm0*8], k1), xmm1
         #   vpscatterqd opmask([rax+ymm0*8], k1), xmm1
         #   vpscatterqd opmask([rax+zmm0*8], k1), ymm1
-        def vpscatterqd(*operands,**kwargs) = add_instruction(Instructions::VPSCATTERQD,*operands,**kwargs)
+        def vpscatterqd(operand1,operand2,**kwargs) = add_instruction(Instructions::VPSCATTERQD,operand1,operand2,**kwargs)
         # Scatter Packed Quadword Values with Signed Quadword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VPSCATTERQQ]
         # @example
         #   vpscatterqq opmask([rax+xmm0*8], k1), xmm1
         #   vpscatterqq opmask([rax+ymm0*8], k1), ymm1
         #   vpscatterqq opmask([rax+zmm0*8], k1), zmm1
-        def vpscatterqq(*operands,**kwargs) = add_instruction(Instructions::VPSCATTERQQ,*operands,**kwargs)
+        def vpscatterqq(operand1,operand2,**kwargs) = add_instruction(Instructions::VPSCATTERQQ,operand1,operand2,**kwargs)
         # Packed Shift Arithmetic Bytes
         # @return [Ronin::ASM::X86_64::Instructions::VPSHAB]
         # @example
         #   vpshab xmm0, xmm1, xmm2
         #   vpshab xmm0, xmm1, [rcx]
         #   vpshab xmm0, [rbx], xmm2
-        def vpshab(*operands,**kwargs) = add_instruction(Instructions::VPSHAB,*operands,**kwargs)
+        def vpshab(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHAB,operand1,operand2,operand3,**kwargs)
         # Packed Shift Arithmetic Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::VPSHAD]
         # @example
         #   vpshad xmm0, xmm1, xmm2
         #   vpshad xmm0, xmm1, [rcx]
         #   vpshad xmm0, [rbx], xmm2
-        def vpshad(*operands,**kwargs) = add_instruction(Instructions::VPSHAD,*operands,**kwargs)
+        def vpshad(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHAD,operand1,operand2,operand3,**kwargs)
         # Packed Shift Arithmetic Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::VPSHAQ]
         # @example
         #   vpshaq xmm0, xmm1, xmm2
         #   vpshaq xmm0, xmm1, [rcx]
         #   vpshaq xmm0, [rbx], xmm2
-        def vpshaq(*operands,**kwargs) = add_instruction(Instructions::VPSHAQ,*operands,**kwargs)
+        def vpshaq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHAQ,operand1,operand2,operand3,**kwargs)
         # Packed Shift Arithmetic Words
         # @return [Ronin::ASM::X86_64::Instructions::VPSHAW]
         # @example
         #   vpshaw xmm0, xmm1, xmm2
         #   vpshaw xmm0, xmm1, [rcx]
         #   vpshaw xmm0, [rbx], xmm2
-        def vpshaw(*operands,**kwargs) = add_instruction(Instructions::VPSHAW,*operands,**kwargs)
+        def vpshaw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHAW,operand1,operand2,operand3,**kwargs)
         # Packed Shift Logical Bytes
         # @return [Ronin::ASM::X86_64::Instructions::VPSHLB]
         # @example
         #   vpshlb xmm0, xmm1, xmm2
         #   vpshlb xmm0, xmm1, [rcx]
         #   vpshlb xmm0, [rbx], xmm2
-        def vpshlb(*operands,**kwargs) = add_instruction(Instructions::VPSHLB,*operands,**kwargs)
+        def vpshlb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHLB,operand1,operand2,operand3,**kwargs)
         # Packed Shift Logical Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::VPSHLD]
         # @example
         #   vpshld xmm0, xmm1, xmm2
         #   vpshld xmm0, xmm1, [rcx]
         #   vpshld xmm0, [rbx], xmm2
-        def vpshld(*operands,**kwargs) = add_instruction(Instructions::VPSHLD,*operands,**kwargs)
+        def vpshld(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHLD,operand1,operand2,operand3,**kwargs)
         # Concatenate and Shift Packed Doubleword Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSHLDD]
         # @example
@@ -14172,7 +14172,7 @@ module Ronin
         #   vpshldd ymm0, ymm1, ymm2, 0x04
         #   vpshldd zmm0, zmm1, bcst([rcx], {1=>16}), 0x04
         #   vpshldd zmm0, zmm1, zmm2, 0x04
-        def vpshldd(*operands,**kwargs) = add_instruction(Instructions::VPSHLDD,*operands,**kwargs)
+        def vpshldd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPSHLDD,operand1,operand2,operand3,operand4,**kwargs)
         # Concatenate and Shift Packed Quadword Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSHLDQ]
         # @example
@@ -14188,7 +14188,7 @@ module Ronin
         #   vpshldq ymm0, ymm1, ymm2, 0x04
         #   vpshldq zmm0, zmm1, bcst([rcx], {1=>8}), 0x04
         #   vpshldq zmm0, zmm1, zmm2, 0x04
-        def vpshldq(*operands,**kwargs) = add_instruction(Instructions::VPSHLDQ,*operands,**kwargs)
+        def vpshldq(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPSHLDQ,operand1,operand2,operand3,operand4,**kwargs)
         # Concatenate and Variable Shift Packed Doubleword Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSHLDVD]
         # @example
@@ -14204,7 +14204,7 @@ module Ronin
         #   vpshldvd ymm0, ymm1, ymm2
         #   vpshldvd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpshldvd zmm0, zmm1, zmm2
-        def vpshldvd(*operands,**kwargs) = add_instruction(Instructions::VPSHLDVD,*operands,**kwargs)
+        def vpshldvd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHLDVD,operand1,operand2,operand3,**kwargs)
         # Concatenate and Variable Shift Packed Quadword Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSHLDVQ]
         # @example
@@ -14220,7 +14220,7 @@ module Ronin
         #   vpshldvq ymm0, ymm1, ymm2
         #   vpshldvq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpshldvq zmm0, zmm1, zmm2
-        def vpshldvq(*operands,**kwargs) = add_instruction(Instructions::VPSHLDVQ,*operands,**kwargs)
+        def vpshldvq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHLDVQ,operand1,operand2,operand3,**kwargs)
         # Concatenate and Variable Shift Packed Word Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSHLDVW]
         # @example
@@ -14236,7 +14236,7 @@ module Ronin
         #   vpshldvw ymm0, ymm1, [rcx]
         #   vpshldvw zmm0, zmm1, zmm2
         #   vpshldvw zmm0, zmm1, [rcx]
-        def vpshldvw(*operands,**kwargs) = add_instruction(Instructions::VPSHLDVW,*operands,**kwargs)
+        def vpshldvw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHLDVW,operand1,operand2,operand3,**kwargs)
         # Concatenate and Shift Packed Word Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSHLDW]
         # @example
@@ -14252,21 +14252,21 @@ module Ronin
         #   vpshldw ymm0, ymm1, [rcx], 0x04
         #   vpshldw zmm0, zmm1, zmm2, 0x04
         #   vpshldw zmm0, zmm1, [rcx], 0x04
-        def vpshldw(*operands,**kwargs) = add_instruction(Instructions::VPSHLDW,*operands,**kwargs)
+        def vpshldw(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPSHLDW,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Shift Logical Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::VPSHLQ]
         # @example
         #   vpshlq xmm0, xmm1, xmm2
         #   vpshlq xmm0, xmm1, [rcx]
         #   vpshlq xmm0, [rbx], xmm2
-        def vpshlq(*operands,**kwargs) = add_instruction(Instructions::VPSHLQ,*operands,**kwargs)
+        def vpshlq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHLQ,operand1,operand2,operand3,**kwargs)
         # Packed Shift Logical Words
         # @return [Ronin::ASM::X86_64::Instructions::VPSHLW]
         # @example
         #   vpshlw xmm0, xmm1, xmm2
         #   vpshlw xmm0, xmm1, [rcx]
         #   vpshlw xmm0, [rbx], xmm2
-        def vpshlw(*operands,**kwargs) = add_instruction(Instructions::VPSHLW,*operands,**kwargs)
+        def vpshlw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHLW,operand1,operand2,operand3,**kwargs)
         # Concatenate and Shift Packed Doubleword Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSHRDD]
         # @example
@@ -14282,7 +14282,7 @@ module Ronin
         #   vpshrdd ymm0, ymm1, ymm2, 0x04
         #   vpshrdd zmm0, zmm1, bcst([rcx], {1=>16}), 0x04
         #   vpshrdd zmm0, zmm1, zmm2, 0x04
-        def vpshrdd(*operands,**kwargs) = add_instruction(Instructions::VPSHRDD,*operands,**kwargs)
+        def vpshrdd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPSHRDD,operand1,operand2,operand3,operand4,**kwargs)
         # Concatenate and Shift Packed Quadword Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSHRDQ]
         # @example
@@ -14298,7 +14298,7 @@ module Ronin
         #   vpshrdq ymm0, ymm1, ymm2, 0x04
         #   vpshrdq zmm0, zmm1, bcst([rcx], {1=>8}), 0x04
         #   vpshrdq zmm0, zmm1, zmm2, 0x04
-        def vpshrdq(*operands,**kwargs) = add_instruction(Instructions::VPSHRDQ,*operands,**kwargs)
+        def vpshrdq(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPSHRDQ,operand1,operand2,operand3,operand4,**kwargs)
         # Concatenate and Variable Shift Packed Doubleword Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSHRDVD]
         # @example
@@ -14314,7 +14314,7 @@ module Ronin
         #   vpshrdvd ymm0, ymm1, ymm2
         #   vpshrdvd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpshrdvd zmm0, zmm1, zmm2
-        def vpshrdvd(*operands,**kwargs) = add_instruction(Instructions::VPSHRDVD,*operands,**kwargs)
+        def vpshrdvd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHRDVD,operand1,operand2,operand3,**kwargs)
         # Concatenate and Variable Shift Packed Quadword Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSHRDVQ]
         # @example
@@ -14330,7 +14330,7 @@ module Ronin
         #   vpshrdvq ymm0, ymm1, ymm2
         #   vpshrdvq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpshrdvq zmm0, zmm1, zmm2
-        def vpshrdvq(*operands,**kwargs) = add_instruction(Instructions::VPSHRDVQ,*operands,**kwargs)
+        def vpshrdvq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHRDVQ,operand1,operand2,operand3,**kwargs)
         # Concatenate and Variable Shift Packed Word Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSHRDVW]
         # @example
@@ -14346,7 +14346,7 @@ module Ronin
         #   vpshrdvw ymm0, ymm1, [rcx]
         #   vpshrdvw zmm0, zmm1, zmm2
         #   vpshrdvw zmm0, zmm1, [rcx]
-        def vpshrdvw(*operands,**kwargs) = add_instruction(Instructions::VPSHRDVW,*operands,**kwargs)
+        def vpshrdvw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHRDVW,operand1,operand2,operand3,**kwargs)
         # Concatenate and Shift Packed Word Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSHRDW]
         # @example
@@ -14362,7 +14362,7 @@ module Ronin
         #   vpshrdw ymm0, ymm1, [rcx], 0x04
         #   vpshrdw zmm0, zmm1, zmm2, 0x04
         #   vpshrdw zmm0, zmm1, [rcx], 0x04
-        def vpshrdw(*operands,**kwargs) = add_instruction(Instructions::VPSHRDW,*operands,**kwargs)
+        def vpshrdw(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPSHRDW,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Shuffle Bytes
         # @return [Ronin::ASM::X86_64::Instructions::VPSHUFB]
         # @example
@@ -14378,7 +14378,7 @@ module Ronin
         #   vpshufb ymm0, ymm1, [rcx]
         #   vpshufb zmm0, zmm1, zmm2
         #   vpshufb zmm0, zmm1, [rcx]
-        def vpshufb(*operands,**kwargs) = add_instruction(Instructions::VPSHUFB,*operands,**kwargs)
+        def vpshufb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHUFB,operand1,operand2,operand3,**kwargs)
         # Shuffle Bits From Quadword Elements Using Byte Indexes Into Mask
         # @return [Ronin::ASM::X86_64::Instructions::VPSHUFBITQMB]
         # @example
@@ -14394,7 +14394,7 @@ module Ronin
         #   vpshufbitqmb k1, zmm1, zmm2
         #   vpshufbitqmb opmask(k1, k2), zmm1, [rcx]
         #   vpshufbitqmb k1, zmm1, [rcx]
-        def vpshufbitqmb(*operands,**kwargs) = add_instruction(Instructions::VPSHUFBITQMB,*operands,**kwargs)
+        def vpshufbitqmb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHUFBITQMB,operand1,operand2,operand3,**kwargs)
         # Shuffle Packed Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::VPSHUFD]
         # @example
@@ -14412,7 +14412,7 @@ module Ronin
         #   vpshufd ymm0, [rbx], 0x03
         #   vpshufd zmm0, bcst([rbx], {1=>16}), 0x03
         #   vpshufd zmm0, zmm1, 0x03
-        def vpshufd(*operands,**kwargs) = add_instruction(Instructions::VPSHUFD,*operands,**kwargs)
+        def vpshufd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHUFD,operand1,operand2,operand3,**kwargs)
         # Shuffle Packed High Words
         # @return [Ronin::ASM::X86_64::Instructions::VPSHUFHW]
         # @example
@@ -14428,7 +14428,7 @@ module Ronin
         #   vpshufhw ymm0, [rbx], 0x03
         #   vpshufhw zmm0, zmm1, 0x03
         #   vpshufhw zmm0, [rbx], 0x03
-        def vpshufhw(*operands,**kwargs) = add_instruction(Instructions::VPSHUFHW,*operands,**kwargs)
+        def vpshufhw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHUFHW,operand1,operand2,operand3,**kwargs)
         # Shuffle Packed Low Words
         # @return [Ronin::ASM::X86_64::Instructions::VPSHUFLW]
         # @example
@@ -14444,7 +14444,7 @@ module Ronin
         #   vpshuflw ymm0, [rbx], 0x03
         #   vpshuflw zmm0, zmm1, 0x03
         #   vpshuflw zmm0, [rbx], 0x03
-        def vpshuflw(*operands,**kwargs) = add_instruction(Instructions::VPSHUFLW,*operands,**kwargs)
+        def vpshuflw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSHUFLW,operand1,operand2,operand3,**kwargs)
         # Packed Sign of Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPSIGNB]
         # @example
@@ -14452,7 +14452,7 @@ module Ronin
         #   vpsignb xmm0, xmm1, [rcx]
         #   vpsignb ymm0, ymm1, ymm2
         #   vpsignb ymm0, ymm1, [rcx]
-        def vpsignb(*operands,**kwargs) = add_instruction(Instructions::VPSIGNB,*operands,**kwargs)
+        def vpsignb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSIGNB,operand1,operand2,operand3,**kwargs)
         # Packed Sign of Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPSIGND]
         # @example
@@ -14460,7 +14460,7 @@ module Ronin
         #   vpsignd xmm0, xmm1, [rcx]
         #   vpsignd ymm0, ymm1, ymm2
         #   vpsignd ymm0, ymm1, [rcx]
-        def vpsignd(*operands,**kwargs) = add_instruction(Instructions::VPSIGND,*operands,**kwargs)
+        def vpsignd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSIGND,operand1,operand2,operand3,**kwargs)
         # Packed Sign of Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPSIGNW]
         # @example
@@ -14468,7 +14468,7 @@ module Ronin
         #   vpsignw xmm0, xmm1, [rcx]
         #   vpsignw ymm0, ymm1, ymm2
         #   vpsignw ymm0, ymm1, [rcx]
-        def vpsignw(*operands,**kwargs) = add_instruction(Instructions::VPSIGNW,*operands,**kwargs)
+        def vpsignw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSIGNW,operand1,operand2,operand3,**kwargs)
         # Shift Packed Doubleword Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSLLD]
         # @example
@@ -14496,7 +14496,7 @@ module Ronin
         #   vpslld zmm0, zmm1, 0x03
         #   vpslld zmm0, zmm1, xmm2
         #   vpslld zmm0, zmm1, [rcx]
-        def vpslld(*operands,**kwargs) = add_instruction(Instructions::VPSLLD,*operands,**kwargs)
+        def vpslld(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSLLD,operand1,operand2,operand3,**kwargs)
         # Shift Packed Double Quadword Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSLLDQ]
         # @example
@@ -14506,7 +14506,7 @@ module Ronin
         #   vpslldq ymm0, [rbx], 0x03
         #   vpslldq zmm0, zmm1, 0x03
         #   vpslldq zmm0, [rbx], 0x03
-        def vpslldq(*operands,**kwargs) = add_instruction(Instructions::VPSLLDQ,*operands,**kwargs)
+        def vpslldq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSLLDQ,operand1,operand2,operand3,**kwargs)
         # Shift Packed Quadword Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSLLQ]
         # @example
@@ -14534,7 +14534,7 @@ module Ronin
         #   vpsllq zmm0, zmm1, 0x03
         #   vpsllq zmm0, zmm1, xmm2
         #   vpsllq zmm0, zmm1, [rcx]
-        def vpsllq(*operands,**kwargs) = add_instruction(Instructions::VPSLLQ,*operands,**kwargs)
+        def vpsllq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSLLQ,operand1,operand2,operand3,**kwargs)
         # Variable Shift Packed Doubleword Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSLLVD]
         # @example
@@ -14552,7 +14552,7 @@ module Ronin
         #   vpsllvd ymm0, ymm1, [rcx]
         #   vpsllvd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpsllvd zmm0, zmm1, zmm2
-        def vpsllvd(*operands,**kwargs) = add_instruction(Instructions::VPSLLVD,*operands,**kwargs)
+        def vpsllvd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSLLVD,operand1,operand2,operand3,**kwargs)
         # Variable Shift Packed Quadword Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSLLVQ]
         # @example
@@ -14570,7 +14570,7 @@ module Ronin
         #   vpsllvq ymm0, ymm1, [rcx]
         #   vpsllvq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpsllvq zmm0, zmm1, zmm2
-        def vpsllvq(*operands,**kwargs) = add_instruction(Instructions::VPSLLVQ,*operands,**kwargs)
+        def vpsllvq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSLLVQ,operand1,operand2,operand3,**kwargs)
         # Variable Shift Packed Word Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSLLVW]
         # @example
@@ -14586,7 +14586,7 @@ module Ronin
         #   vpsllvw ymm0, ymm1, [rcx]
         #   vpsllvw zmm0, zmm1, zmm2
         #   vpsllvw zmm0, zmm1, [rcx]
-        def vpsllvw(*operands,**kwargs) = add_instruction(Instructions::VPSLLVW,*operands,**kwargs)
+        def vpsllvw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSLLVW,operand1,operand2,operand3,**kwargs)
         # Shift Packed Word Data Left Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSLLW]
         # @example
@@ -14614,7 +14614,7 @@ module Ronin
         #   vpsllw zmm0, zmm1, xmm2
         #   vpsllw zmm0, zmm1, [rcx]
         #   vpsllw zmm0, [rbx], 0x03
-        def vpsllw(*operands,**kwargs) = add_instruction(Instructions::VPSLLW,*operands,**kwargs)
+        def vpsllw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSLLW,operand1,operand2,operand3,**kwargs)
         # Shift Packed Doubleword Data Right Arithmetic
         # @return [Ronin::ASM::X86_64::Instructions::VPSRAD]
         # @example
@@ -14642,7 +14642,7 @@ module Ronin
         #   vpsrad zmm0, zmm1, 0x03
         #   vpsrad zmm0, zmm1, xmm2
         #   vpsrad zmm0, zmm1, [rcx]
-        def vpsrad(*operands,**kwargs) = add_instruction(Instructions::VPSRAD,*operands,**kwargs)
+        def vpsrad(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRAD,operand1,operand2,operand3,**kwargs)
         # Shift Packed Quadword Data Right Arithmetic
         # @return [Ronin::ASM::X86_64::Instructions::VPSRAQ]
         # @example
@@ -14670,7 +14670,7 @@ module Ronin
         #   vpsraq zmm0, zmm1, 0x03
         #   vpsraq zmm0, zmm1, xmm2
         #   vpsraq zmm0, zmm1, [rcx]
-        def vpsraq(*operands,**kwargs) = add_instruction(Instructions::VPSRAQ,*operands,**kwargs)
+        def vpsraq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRAQ,operand1,operand2,operand3,**kwargs)
         # Variable Shift Packed Doubleword Data Right Arithmetic
         # @return [Ronin::ASM::X86_64::Instructions::VPSRAVD]
         # @example
@@ -14688,7 +14688,7 @@ module Ronin
         #   vpsravd ymm0, ymm1, [rcx]
         #   vpsravd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpsravd zmm0, zmm1, zmm2
-        def vpsravd(*operands,**kwargs) = add_instruction(Instructions::VPSRAVD,*operands,**kwargs)
+        def vpsravd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRAVD,operand1,operand2,operand3,**kwargs)
         # Variable Shift Packed Quadword Data Right Arithmetic
         # @return [Ronin::ASM::X86_64::Instructions::VPSRAVQ]
         # @example
@@ -14704,7 +14704,7 @@ module Ronin
         #   vpsravq ymm0, ymm1, ymm2
         #   vpsravq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpsravq zmm0, zmm1, zmm2
-        def vpsravq(*operands,**kwargs) = add_instruction(Instructions::VPSRAVQ,*operands,**kwargs)
+        def vpsravq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRAVQ,operand1,operand2,operand3,**kwargs)
         # Variable Shift Packed Word Data Right Arithmetic
         # @return [Ronin::ASM::X86_64::Instructions::VPSRAVW]
         # @example
@@ -14720,7 +14720,7 @@ module Ronin
         #   vpsravw ymm0, ymm1, [rcx]
         #   vpsravw zmm0, zmm1, zmm2
         #   vpsravw zmm0, zmm1, [rcx]
-        def vpsravw(*operands,**kwargs) = add_instruction(Instructions::VPSRAVW,*operands,**kwargs)
+        def vpsravw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRAVW,operand1,operand2,operand3,**kwargs)
         # Shift Packed Word Data Right Arithmetic
         # @return [Ronin::ASM::X86_64::Instructions::VPSRAW]
         # @example
@@ -14748,7 +14748,7 @@ module Ronin
         #   vpsraw zmm0, zmm1, xmm2
         #   vpsraw zmm0, zmm1, [rcx]
         #   vpsraw zmm0, [rbx], 0x03
-        def vpsraw(*operands,**kwargs) = add_instruction(Instructions::VPSRAW,*operands,**kwargs)
+        def vpsraw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRAW,operand1,operand2,operand3,**kwargs)
         # Shift Packed Doubleword Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSRLD]
         # @example
@@ -14776,7 +14776,7 @@ module Ronin
         #   vpsrld zmm0, zmm1, 0x03
         #   vpsrld zmm0, zmm1, xmm2
         #   vpsrld zmm0, zmm1, [rcx]
-        def vpsrld(*operands,**kwargs) = add_instruction(Instructions::VPSRLD,*operands,**kwargs)
+        def vpsrld(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRLD,operand1,operand2,operand3,**kwargs)
         # Shift Packed Double Quadword Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSRLDQ]
         # @example
@@ -14786,7 +14786,7 @@ module Ronin
         #   vpsrldq ymm0, [rbx], 0x03
         #   vpsrldq zmm0, zmm1, 0x03
         #   vpsrldq zmm0, [rbx], 0x03
-        def vpsrldq(*operands,**kwargs) = add_instruction(Instructions::VPSRLDQ,*operands,**kwargs)
+        def vpsrldq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRLDQ,operand1,operand2,operand3,**kwargs)
         # Shift Packed Quadword Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSRLQ]
         # @example
@@ -14814,7 +14814,7 @@ module Ronin
         #   vpsrlq zmm0, zmm1, 0x03
         #   vpsrlq zmm0, zmm1, xmm2
         #   vpsrlq zmm0, zmm1, [rcx]
-        def vpsrlq(*operands,**kwargs) = add_instruction(Instructions::VPSRLQ,*operands,**kwargs)
+        def vpsrlq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRLQ,operand1,operand2,operand3,**kwargs)
         # Variable Shift Packed Doubleword Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSRLVD]
         # @example
@@ -14832,7 +14832,7 @@ module Ronin
         #   vpsrlvd ymm0, ymm1, [rcx]
         #   vpsrlvd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpsrlvd zmm0, zmm1, zmm2
-        def vpsrlvd(*operands,**kwargs) = add_instruction(Instructions::VPSRLVD,*operands,**kwargs)
+        def vpsrlvd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRLVD,operand1,operand2,operand3,**kwargs)
         # Variable Shift Packed Quadword Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSRLVQ]
         # @example
@@ -14850,7 +14850,7 @@ module Ronin
         #   vpsrlvq ymm0, ymm1, [rcx]
         #   vpsrlvq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpsrlvq zmm0, zmm1, zmm2
-        def vpsrlvq(*operands,**kwargs) = add_instruction(Instructions::VPSRLVQ,*operands,**kwargs)
+        def vpsrlvq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRLVQ,operand1,operand2,operand3,**kwargs)
         # Variable Shift Packed Word Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSRLVW]
         # @example
@@ -14866,7 +14866,7 @@ module Ronin
         #   vpsrlvw ymm0, ymm1, [rcx]
         #   vpsrlvw zmm0, zmm1, zmm2
         #   vpsrlvw zmm0, zmm1, [rcx]
-        def vpsrlvw(*operands,**kwargs) = add_instruction(Instructions::VPSRLVW,*operands,**kwargs)
+        def vpsrlvw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRLVW,operand1,operand2,operand3,**kwargs)
         # Shift Packed Word Data Right Logical
         # @return [Ronin::ASM::X86_64::Instructions::VPSRLW]
         # @example
@@ -14894,7 +14894,7 @@ module Ronin
         #   vpsrlw zmm0, zmm1, xmm2
         #   vpsrlw zmm0, zmm1, [rcx]
         #   vpsrlw zmm0, [rbx], 0x03
-        def vpsrlw(*operands,**kwargs) = add_instruction(Instructions::VPSRLW,*operands,**kwargs)
+        def vpsrlw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSRLW,operand1,operand2,operand3,**kwargs)
         # Subtract Packed Byte Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPSUBB]
         # @example
@@ -14910,7 +14910,7 @@ module Ronin
         #   vpsubb ymm0, ymm1, [rcx]
         #   vpsubb zmm0, zmm1, zmm2
         #   vpsubb zmm0, zmm1, [rcx]
-        def vpsubb(*operands,**kwargs) = add_instruction(Instructions::VPSUBB,*operands,**kwargs)
+        def vpsubb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSUBB,operand1,operand2,operand3,**kwargs)
         # Subtract Packed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPSUBD]
         # @example
@@ -14928,7 +14928,7 @@ module Ronin
         #   vpsubd ymm0, ymm1, [rcx]
         #   vpsubd zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpsubd zmm0, zmm1, zmm2
-        def vpsubd(*operands,**kwargs) = add_instruction(Instructions::VPSUBD,*operands,**kwargs)
+        def vpsubd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSUBD,operand1,operand2,operand3,**kwargs)
         # Subtract Packed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPSUBQ]
         # @example
@@ -14946,7 +14946,7 @@ module Ronin
         #   vpsubq ymm0, ymm1, [rcx]
         #   vpsubq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpsubq zmm0, zmm1, zmm2
-        def vpsubq(*operands,**kwargs) = add_instruction(Instructions::VPSUBQ,*operands,**kwargs)
+        def vpsubq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSUBQ,operand1,operand2,operand3,**kwargs)
         # Subtract Packed Signed Byte Integers with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPSUBSB]
         # @example
@@ -14962,7 +14962,7 @@ module Ronin
         #   vpsubsb ymm0, ymm1, [rcx]
         #   vpsubsb zmm0, zmm1, zmm2
         #   vpsubsb zmm0, zmm1, [rcx]
-        def vpsubsb(*operands,**kwargs) = add_instruction(Instructions::VPSUBSB,*operands,**kwargs)
+        def vpsubsb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSUBSB,operand1,operand2,operand3,**kwargs)
         # Subtract Packed Signed Word Integers with Signed Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPSUBSW]
         # @example
@@ -14978,7 +14978,7 @@ module Ronin
         #   vpsubsw ymm0, ymm1, [rcx]
         #   vpsubsw zmm0, zmm1, zmm2
         #   vpsubsw zmm0, zmm1, [rcx]
-        def vpsubsw(*operands,**kwargs) = add_instruction(Instructions::VPSUBSW,*operands,**kwargs)
+        def vpsubsw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSUBSW,operand1,operand2,operand3,**kwargs)
         # Subtract Packed Unsigned Byte Integers with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPSUBUSB]
         # @example
@@ -14994,7 +14994,7 @@ module Ronin
         #   vpsubusb ymm0, ymm1, [rcx]
         #   vpsubusb zmm0, zmm1, zmm2
         #   vpsubusb zmm0, zmm1, [rcx]
-        def vpsubusb(*operands,**kwargs) = add_instruction(Instructions::VPSUBUSB,*operands,**kwargs)
+        def vpsubusb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSUBUSB,operand1,operand2,operand3,**kwargs)
         # Subtract Packed Unsigned Word Integers with Unsigned Saturation
         # @return [Ronin::ASM::X86_64::Instructions::VPSUBUSW]
         # @example
@@ -15010,7 +15010,7 @@ module Ronin
         #   vpsubusw ymm0, ymm1, [rcx]
         #   vpsubusw zmm0, zmm1, zmm2
         #   vpsubusw zmm0, zmm1, [rcx]
-        def vpsubusw(*operands,**kwargs) = add_instruction(Instructions::VPSUBUSW,*operands,**kwargs)
+        def vpsubusw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSUBUSW,operand1,operand2,operand3,**kwargs)
         # Subtract Packed Word Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPSUBW]
         # @example
@@ -15026,7 +15026,7 @@ module Ronin
         #   vpsubw ymm0, ymm1, [rcx]
         #   vpsubw zmm0, zmm1, zmm2
         #   vpsubw zmm0, zmm1, [rcx]
-        def vpsubw(*operands,**kwargs) = add_instruction(Instructions::VPSUBW,*operands,**kwargs)
+        def vpsubw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPSUBW,operand1,operand2,operand3,**kwargs)
         # Bitwise Ternary Logical Operation on Doubleword Values
         # @return [Ronin::ASM::X86_64::Instructions::VPTERNLOGD]
         # @example
@@ -15042,7 +15042,7 @@ module Ronin
         #   vpternlogd ymm0, ymm1, ymm2, 0x04
         #   vpternlogd zmm0, zmm1, bcst([rcx], {1=>16}), 0x04
         #   vpternlogd zmm0, zmm1, zmm2, 0x04
-        def vpternlogd(*operands,**kwargs) = add_instruction(Instructions::VPTERNLOGD,*operands,**kwargs)
+        def vpternlogd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPTERNLOGD,operand1,operand2,operand3,operand4,**kwargs)
         # Bitwise Ternary Logical Operation on Quadword Values
         # @return [Ronin::ASM::X86_64::Instructions::VPTERNLOGQ]
         # @example
@@ -15058,7 +15058,7 @@ module Ronin
         #   vpternlogq ymm0, ymm1, ymm2, 0x04
         #   vpternlogq zmm0, zmm1, bcst([rcx], {1=>8}), 0x04
         #   vpternlogq zmm0, zmm1, zmm2, 0x04
-        def vpternlogq(*operands,**kwargs) = add_instruction(Instructions::VPTERNLOGQ,*operands,**kwargs)
+        def vpternlogq(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VPTERNLOGQ,operand1,operand2,operand3,operand4,**kwargs)
         # Packed Logical Compare
         # @return [Ronin::ASM::X86_64::Instructions::VPTEST]
         # @example
@@ -15066,7 +15066,7 @@ module Ronin
         #   vptest xmm0, [rbx]
         #   vptest ymm0, ymm1
         #   vptest ymm0, [rbx]
-        def vptest(*operands,**kwargs) = add_instruction(Instructions::VPTEST,*operands,**kwargs)
+        def vptest(operand1,operand2,**kwargs) = add_instruction(Instructions::VPTEST,operand1,operand2,**kwargs)
         # Logical AND of Packed Byte Integer Values and Set Mask
         # @return [Ronin::ASM::X86_64::Instructions::VPTESTMB]
         # @example
@@ -15082,7 +15082,7 @@ module Ronin
         #   vptestmb k1, zmm1, zmm2
         #   vptestmb opmask(k1, k2), zmm1, [rcx]
         #   vptestmb k1, zmm1, [rcx]
-        def vptestmb(*operands,**kwargs) = add_instruction(Instructions::VPTESTMB,*operands,**kwargs)
+        def vptestmb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPTESTMB,operand1,operand2,operand3,**kwargs)
         # Logical AND of Packed Doubleword Integer Values and Set Mask
         # @return [Ronin::ASM::X86_64::Instructions::VPTESTMD]
         # @example
@@ -15098,7 +15098,7 @@ module Ronin
         #   vptestmd k1, zmm1, bcst([rcx], {1=>16})
         #   vptestmd opmask(k1, k2), zmm1, zmm2
         #   vptestmd k1, zmm1, zmm2
-        def vptestmd(*operands,**kwargs) = add_instruction(Instructions::VPTESTMD,*operands,**kwargs)
+        def vptestmd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPTESTMD,operand1,operand2,operand3,**kwargs)
         # Logical AND of Packed Quadword Integer Values and Set Mask
         # @return [Ronin::ASM::X86_64::Instructions::VPTESTMQ]
         # @example
@@ -15114,7 +15114,7 @@ module Ronin
         #   vptestmq k1, zmm1, bcst([rcx], {1=>8})
         #   vptestmq opmask(k1, k2), zmm1, zmm2
         #   vptestmq k1, zmm1, zmm2
-        def vptestmq(*operands,**kwargs) = add_instruction(Instructions::VPTESTMQ,*operands,**kwargs)
+        def vptestmq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPTESTMQ,operand1,operand2,operand3,**kwargs)
         # Logical AND of Packed Word Integer Values and Set Mask
         # @return [Ronin::ASM::X86_64::Instructions::VPTESTMW]
         # @example
@@ -15130,7 +15130,7 @@ module Ronin
         #   vptestmw k1, zmm1, zmm2
         #   vptestmw opmask(k1, k2), zmm1, [rcx]
         #   vptestmw k1, zmm1, [rcx]
-        def vptestmw(*operands,**kwargs) = add_instruction(Instructions::VPTESTMW,*operands,**kwargs)
+        def vptestmw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPTESTMW,operand1,operand2,operand3,**kwargs)
         # Logical NAND of Packed Byte Integer Values and Set Mask
         # @return [Ronin::ASM::X86_64::Instructions::VPTESTNMB]
         # @example
@@ -15146,7 +15146,7 @@ module Ronin
         #   vptestnmb k1, zmm1, zmm2
         #   vptestnmb opmask(k1, k2), zmm1, [rcx]
         #   vptestnmb k1, zmm1, [rcx]
-        def vptestnmb(*operands,**kwargs) = add_instruction(Instructions::VPTESTNMB,*operands,**kwargs)
+        def vptestnmb(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPTESTNMB,operand1,operand2,operand3,**kwargs)
         # Logical NAND of Packed Doubleword Integer Values and Set Mask
         # @return [Ronin::ASM::X86_64::Instructions::VPTESTNMD]
         # @example
@@ -15162,7 +15162,7 @@ module Ronin
         #   vptestnmd k1, zmm1, bcst([rcx], {1=>16})
         #   vptestnmd opmask(k1, k2), zmm1, zmm2
         #   vptestnmd k1, zmm1, zmm2
-        def vptestnmd(*operands,**kwargs) = add_instruction(Instructions::VPTESTNMD,*operands,**kwargs)
+        def vptestnmd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPTESTNMD,operand1,operand2,operand3,**kwargs)
         # Logical NAND of Packed Quadword Integer Values and Set Mask
         # @return [Ronin::ASM::X86_64::Instructions::VPTESTNMQ]
         # @example
@@ -15178,7 +15178,7 @@ module Ronin
         #   vptestnmq k1, zmm1, bcst([rcx], {1=>8})
         #   vptestnmq opmask(k1, k2), zmm1, zmm2
         #   vptestnmq k1, zmm1, zmm2
-        def vptestnmq(*operands,**kwargs) = add_instruction(Instructions::VPTESTNMQ,*operands,**kwargs)
+        def vptestnmq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPTESTNMQ,operand1,operand2,operand3,**kwargs)
         # Logical NAND of Packed Word Integer Values and Set Mask
         # @return [Ronin::ASM::X86_64::Instructions::VPTESTNMW]
         # @example
@@ -15194,7 +15194,7 @@ module Ronin
         #   vptestnmw k1, zmm1, zmm2
         #   vptestnmw opmask(k1, k2), zmm1, [rcx]
         #   vptestnmw k1, zmm1, [rcx]
-        def vptestnmw(*operands,**kwargs) = add_instruction(Instructions::VPTESTNMW,*operands,**kwargs)
+        def vptestnmw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPTESTNMW,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave High-Order Bytes into Words
         # @return [Ronin::ASM::X86_64::Instructions::VPUNPCKHBW]
         # @example
@@ -15210,7 +15210,7 @@ module Ronin
         #   vpunpckhbw ymm0, ymm1, [rcx]
         #   vpunpckhbw zmm0, zmm1, zmm2
         #   vpunpckhbw zmm0, zmm1, [rcx]
-        def vpunpckhbw(*operands,**kwargs) = add_instruction(Instructions::VPUNPCKHBW,*operands,**kwargs)
+        def vpunpckhbw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPUNPCKHBW,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave High-Order Doublewords into Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::VPUNPCKHDQ]
         # @example
@@ -15228,7 +15228,7 @@ module Ronin
         #   vpunpckhdq ymm0, ymm1, [rcx]
         #   vpunpckhdq zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpunpckhdq zmm0, zmm1, zmm2
-        def vpunpckhdq(*operands,**kwargs) = add_instruction(Instructions::VPUNPCKHDQ,*operands,**kwargs)
+        def vpunpckhdq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPUNPCKHDQ,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave High-Order Quadwords into Double Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::VPUNPCKHQDQ]
         # @example
@@ -15246,7 +15246,7 @@ module Ronin
         #   vpunpckhqdq ymm0, ymm1, [rcx]
         #   vpunpckhqdq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpunpckhqdq zmm0, zmm1, zmm2
-        def vpunpckhqdq(*operands,**kwargs) = add_instruction(Instructions::VPUNPCKHQDQ,*operands,**kwargs)
+        def vpunpckhqdq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPUNPCKHQDQ,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave High-Order Words into Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::VPUNPCKHWD]
         # @example
@@ -15262,7 +15262,7 @@ module Ronin
         #   vpunpckhwd ymm0, ymm1, [rcx]
         #   vpunpckhwd zmm0, zmm1, zmm2
         #   vpunpckhwd zmm0, zmm1, [rcx]
-        def vpunpckhwd(*operands,**kwargs) = add_instruction(Instructions::VPUNPCKHWD,*operands,**kwargs)
+        def vpunpckhwd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPUNPCKHWD,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave Low-Order Bytes into Words
         # @return [Ronin::ASM::X86_64::Instructions::VPUNPCKLBW]
         # @example
@@ -15278,7 +15278,7 @@ module Ronin
         #   vpunpcklbw ymm0, ymm1, [rcx]
         #   vpunpcklbw zmm0, zmm1, zmm2
         #   vpunpcklbw zmm0, zmm1, [rcx]
-        def vpunpcklbw(*operands,**kwargs) = add_instruction(Instructions::VPUNPCKLBW,*operands,**kwargs)
+        def vpunpcklbw(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPUNPCKLBW,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave Low-Order Doublewords into Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::VPUNPCKLDQ]
         # @example
@@ -15296,7 +15296,7 @@ module Ronin
         #   vpunpckldq ymm0, ymm1, [rcx]
         #   vpunpckldq zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpunpckldq zmm0, zmm1, zmm2
-        def vpunpckldq(*operands,**kwargs) = add_instruction(Instructions::VPUNPCKLDQ,*operands,**kwargs)
+        def vpunpckldq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPUNPCKLDQ,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave Low-Order Quadwords into Double Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::VPUNPCKLQDQ]
         # @example
@@ -15314,7 +15314,7 @@ module Ronin
         #   vpunpcklqdq ymm0, ymm1, [rcx]
         #   vpunpcklqdq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpunpcklqdq zmm0, zmm1, zmm2
-        def vpunpcklqdq(*operands,**kwargs) = add_instruction(Instructions::VPUNPCKLQDQ,*operands,**kwargs)
+        def vpunpcklqdq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPUNPCKLQDQ,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave Low-Order Words into Doublewords
         # @return [Ronin::ASM::X86_64::Instructions::VPUNPCKLWD]
         # @example
@@ -15330,7 +15330,7 @@ module Ronin
         #   vpunpcklwd ymm0, ymm1, [rcx]
         #   vpunpcklwd zmm0, zmm1, zmm2
         #   vpunpcklwd zmm0, zmm1, [rcx]
-        def vpunpcklwd(*operands,**kwargs) = add_instruction(Instructions::VPUNPCKLWD,*operands,**kwargs)
+        def vpunpcklwd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPUNPCKLWD,operand1,operand2,operand3,**kwargs)
         # Packed Bitwise Logical Exclusive OR
         # @return [Ronin::ASM::X86_64::Instructions::VPXOR]
         # @example
@@ -15338,7 +15338,7 @@ module Ronin
         #   vpxor xmm0, xmm1, [rcx]
         #   vpxor ymm0, ymm1, ymm2
         #   vpxor ymm0, ymm1, [rcx]
-        def vpxor(*operands,**kwargs) = add_instruction(Instructions::VPXOR,*operands,**kwargs)
+        def vpxor(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPXOR,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical Exclusive OR of Packed Doubleword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPXORD]
         # @example
@@ -15354,7 +15354,7 @@ module Ronin
         #   vpxord ymm0, ymm1, ymm2
         #   vpxord zmm0, zmm1, bcst([rcx], {1=>16})
         #   vpxord zmm0, zmm1, zmm2
-        def vpxord(*operands,**kwargs) = add_instruction(Instructions::VPXORD,*operands,**kwargs)
+        def vpxord(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPXORD,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical Exclusive OR of Packed Quadword Integers
         # @return [Ronin::ASM::X86_64::Instructions::VPXORQ]
         # @example
@@ -15370,7 +15370,7 @@ module Ronin
         #   vpxorq ymm0, ymm1, ymm2
         #   vpxorq zmm0, zmm1, bcst([rcx], {1=>8})
         #   vpxorq zmm0, zmm1, zmm2
-        def vpxorq(*operands,**kwargs) = add_instruction(Instructions::VPXORQ,*operands,**kwargs)
+        def vpxorq(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VPXORQ,operand1,operand2,operand3,**kwargs)
         # Range Restriction Calculation For Packed Pairs of Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRANGEPD]
         # @example
@@ -15388,7 +15388,7 @@ module Ronin
         #   vrangepd zmm0, zmm1, zmm2, 0x04
         #   vrangepd opmask(zmm0, k1, zero: true), zmm1, zmm2, sae, 0x05
         #   vrangepd zmm0, zmm1, zmm2, sae, 0x05
-        def vrangepd(*operands,**kwargs) = add_instruction(Instructions::VRANGEPD,*operands,**kwargs)
+        def vrangepd(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VRANGEPD,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Range Restriction Calculation For Packed Pairs of Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRANGEPS]
         # @example
@@ -15406,7 +15406,7 @@ module Ronin
         #   vrangeps zmm0, zmm1, zmm2, 0x04
         #   vrangeps opmask(zmm0, k1, zero: true), zmm1, zmm2, sae, 0x05
         #   vrangeps zmm0, zmm1, zmm2, sae, 0x05
-        def vrangeps(*operands,**kwargs) = add_instruction(Instructions::VRANGEPS,*operands,**kwargs)
+        def vrangeps(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VRANGEPS,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Range Restriction Calculation For a pair of Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRANGESD]
         # @example
@@ -15416,7 +15416,7 @@ module Ronin
         #   vrangesd xmm0, xmm1, [rcx], 0x04
         #   vrangesd opmask(xmm0, k1, zero: true), xmm1, xmm2, sae, 0x05
         #   vrangesd xmm0, xmm1, xmm2, sae, 0x05
-        def vrangesd(*operands,**kwargs) = add_instruction(Instructions::VRANGESD,*operands,**kwargs)
+        def vrangesd(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VRANGESD,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Range Restriction Calculation For a pair of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRANGESS]
         # @example
@@ -15426,7 +15426,7 @@ module Ronin
         #   vrangess xmm0, xmm1, [rcx], 0x04
         #   vrangess opmask(xmm0, k1, zero: true), xmm1, xmm2, sae, 0x05
         #   vrangess xmm0, xmm1, xmm2, sae, 0x05
-        def vrangess(*operands,**kwargs) = add_instruction(Instructions::VRANGESS,*operands,**kwargs)
+        def vrangess(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VRANGESS,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Compute Approximate Reciprocals of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRCP14PD]
         # @example
@@ -15442,7 +15442,7 @@ module Ronin
         #   vrcp14pd ymm0, ymm1
         #   vrcp14pd zmm0, bcst([rbx], {1=>8})
         #   vrcp14pd zmm0, zmm1
-        def vrcp14pd(*operands,**kwargs) = add_instruction(Instructions::VRCP14PD,*operands,**kwargs)
+        def vrcp14pd(operand1,operand2,**kwargs) = add_instruction(Instructions::VRCP14PD,operand1,operand2,**kwargs)
         # Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRCP14PS]
         # @example
@@ -15458,7 +15458,7 @@ module Ronin
         #   vrcp14ps ymm0, ymm1
         #   vrcp14ps zmm0, bcst([rbx], {1=>16})
         #   vrcp14ps zmm0, zmm1
-        def vrcp14ps(*operands,**kwargs) = add_instruction(Instructions::VRCP14PS,*operands,**kwargs)
+        def vrcp14ps(operand1,operand2,**kwargs) = add_instruction(Instructions::VRCP14PS,operand1,operand2,**kwargs)
         # Compute Approximate Reciprocal of a Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VRCP14SD]
         # @example
@@ -15466,7 +15466,7 @@ module Ronin
         #   vrcp14sd opmask(xmm0, k1, zero: true), xmm1, [rcx]
         #   vrcp14sd xmm0, xmm1, xmm2
         #   vrcp14sd xmm0, xmm1, [rcx]
-        def vrcp14sd(*operands,**kwargs) = add_instruction(Instructions::VRCP14SD,*operands,**kwargs)
+        def vrcp14sd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VRCP14SD,operand1,operand2,operand3,**kwargs)
         # Compute Approximate Reciprocal of a Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VRCP14SS]
         # @example
@@ -15474,7 +15474,7 @@ module Ronin
         #   vrcp14ss opmask(xmm0, k1, zero: true), xmm1, [rcx]
         #   vrcp14ss xmm0, xmm1, xmm2
         #   vrcp14ss xmm0, xmm1, [rcx]
-        def vrcp14ss(*operands,**kwargs) = add_instruction(Instructions::VRCP14SS,*operands,**kwargs)
+        def vrcp14ss(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VRCP14SS,operand1,operand2,operand3,**kwargs)
         # Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error
         # @return [Ronin::ASM::X86_64::Instructions::VRCP28PD]
         # @example
@@ -15484,7 +15484,7 @@ module Ronin
         #   vrcp28pd zmm0, zmm1
         #   vrcp28pd opmask(zmm0, k1, zero: true), zmm1, sae
         #   vrcp28pd zmm0, zmm1, sae
-        def vrcp28pd(*operands,**kwargs) = add_instruction(Instructions::VRCP28PD,*operands,**kwargs)
+        def vrcp28pd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VRCP28PD,operand1,operand2,*operands,**kwargs)
         # Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error
         # @return [Ronin::ASM::X86_64::Instructions::VRCP28PS]
         # @example
@@ -15494,7 +15494,7 @@ module Ronin
         #   vrcp28ps zmm0, zmm1
         #   vrcp28ps opmask(zmm0, k1, zero: true), zmm1, sae
         #   vrcp28ps zmm0, zmm1, sae
-        def vrcp28ps(*operands,**kwargs) = add_instruction(Instructions::VRCP28PS,*operands,**kwargs)
+        def vrcp28ps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VRCP28PS,operand1,operand2,*operands,**kwargs)
         # Approximation to the Reciprocal of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error
         # @return [Ronin::ASM::X86_64::Instructions::VRCP28SD]
         # @example
@@ -15504,7 +15504,7 @@ module Ronin
         #   vrcp28sd xmm0, xmm1, [rcx]
         #   vrcp28sd opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vrcp28sd xmm0, xmm1, xmm2, sae
-        def vrcp28sd(*operands,**kwargs) = add_instruction(Instructions::VRCP28SD,*operands,**kwargs)
+        def vrcp28sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VRCP28SD,operand1,operand2,operand3,*operands,**kwargs)
         # Approximation to the Reciprocal of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error
         # @return [Ronin::ASM::X86_64::Instructions::VRCP28SS]
         # @example
@@ -15514,7 +15514,7 @@ module Ronin
         #   vrcp28ss xmm0, xmm1, [rcx]
         #   vrcp28ss opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vrcp28ss xmm0, xmm1, xmm2, sae
-        def vrcp28ss(*operands,**kwargs) = add_instruction(Instructions::VRCP28SS,*operands,**kwargs)
+        def vrcp28ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VRCP28SS,operand1,operand2,operand3,*operands,**kwargs)
         # Compute Approximate Reciprocals of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRCPPH]
         # @example
@@ -15530,7 +15530,7 @@ module Ronin
         #   vrcpph ymm0, ymm1
         #   vrcpph zmm0, bcst([rbx], {1=>32})
         #   vrcpph zmm0, zmm1
-        def vrcpph(*operands,**kwargs) = add_instruction(Instructions::VRCPPH,*operands,**kwargs)
+        def vrcpph(operand1,operand2,**kwargs) = add_instruction(Instructions::VRCPPH,operand1,operand2,**kwargs)
         # Compute Approximate Reciprocals of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRCPPS]
         # @example
@@ -15538,7 +15538,7 @@ module Ronin
         #   vrcpps xmm0, [rbx]
         #   vrcpps ymm0, ymm1
         #   vrcpps ymm0, [rbx]
-        def vrcpps(*operands,**kwargs) = add_instruction(Instructions::VRCPPS,*operands,**kwargs)
+        def vrcpps(operand1,operand2,**kwargs) = add_instruction(Instructions::VRCPPS,operand1,operand2,**kwargs)
         # Compute Approximate Reciprocal of Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRCPSH]
         # @example
@@ -15546,13 +15546,13 @@ module Ronin
         #   vrcpsh opmask(xmm0, k1, zero: true), xmm1, [rcx]
         #   vrcpsh xmm0, xmm1, xmm2
         #   vrcpsh xmm0, xmm1, [rcx]
-        def vrcpsh(*operands,**kwargs) = add_instruction(Instructions::VRCPSH,*operands,**kwargs)
+        def vrcpsh(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VRCPSH,operand1,operand2,operand3,**kwargs)
         # Compute Approximate Reciprocal of Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRCPSS]
         # @example
         #   vrcpss xmm0, xmm1, xmm2
         #   vrcpss xmm0, xmm1, [rcx]
-        def vrcpss(*operands,**kwargs) = add_instruction(Instructions::VRCPSS,*operands,**kwargs)
+        def vrcpss(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VRCPSS,operand1,operand2,operand3,**kwargs)
         # Perform Reduction Transformation on Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VREDUCEPD]
         # @example
@@ -15568,7 +15568,7 @@ module Ronin
         #   vreducepd ymm0, ymm1, 0x03
         #   vreducepd zmm0, bcst([rbx], {1=>8}), 0x03
         #   vreducepd zmm0, zmm1, 0x03
-        def vreducepd(*operands,**kwargs) = add_instruction(Instructions::VREDUCEPD,*operands,**kwargs)
+        def vreducepd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VREDUCEPD,operand1,operand2,operand3,**kwargs)
         # Perform Reduction Transformation on Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VREDUCEPH]
         # @example
@@ -15586,7 +15586,7 @@ module Ronin
         #   vreduceph zmm0, zmm1, 0x03
         #   vreduceph opmask(zmm0, k1, zero: true), zmm1, sae, 0x04
         #   vreduceph zmm0, zmm1, sae, 0x04
-        def vreduceph(*operands,**kwargs) = add_instruction(Instructions::VREDUCEPH,*operands,**kwargs)
+        def vreduceph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VREDUCEPH,operand1,operand2,operand3,*operands,**kwargs)
         # Perform Reduction Transformation on Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VREDUCEPS]
         # @example
@@ -15602,7 +15602,7 @@ module Ronin
         #   vreduceps ymm0, ymm1, 0x03
         #   vreduceps zmm0, bcst([rbx], {1=>16}), 0x03
         #   vreduceps zmm0, zmm1, 0x03
-        def vreduceps(*operands,**kwargs) = add_instruction(Instructions::VREDUCEPS,*operands,**kwargs)
+        def vreduceps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VREDUCEPS,operand1,operand2,operand3,**kwargs)
         # Perform Reduction Transformation on a Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VREDUCESD]
         # @example
@@ -15610,7 +15610,7 @@ module Ronin
         #   vreducesd opmask(xmm0, k1, zero: true), xmm1, [rcx], 0x04
         #   vreducesd xmm0, xmm1, xmm2, 0x04
         #   vreducesd xmm0, xmm1, [rcx], 0x04
-        def vreducesd(*operands,**kwargs) = add_instruction(Instructions::VREDUCESD,*operands,**kwargs)
+        def vreducesd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VREDUCESD,operand1,operand2,operand3,operand4,**kwargs)
         # Perform Reduction Transformation on a Scalar Half-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VREDUCESH]
         # @example
@@ -15620,7 +15620,7 @@ module Ronin
         #   vreducesh xmm0, xmm1, [rcx], 0x04
         #   vreducesh opmask(xmm0, k1, zero: true), xmm1, xmm2, sae, 0x05
         #   vreducesh xmm0, xmm1, xmm2, sae, 0x05
-        def vreducesh(*operands,**kwargs) = add_instruction(Instructions::VREDUCESH,*operands,**kwargs)
+        def vreducesh(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VREDUCESH,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Perform Reduction Transformation on a Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VREDUCESS]
         # @example
@@ -15628,7 +15628,7 @@ module Ronin
         #   vreducess opmask(xmm0, k1, zero: true), xmm1, [rcx], 0x04
         #   vreducess xmm0, xmm1, xmm2, 0x04
         #   vreducess xmm0, xmm1, [rcx], 0x04
-        def vreducess(*operands,**kwargs) = add_instruction(Instructions::VREDUCESS,*operands,**kwargs)
+        def vreducess(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VREDUCESS,operand1,operand2,operand3,operand4,**kwargs)
         # Round Packed Double-Precision Floating-Point Values To Include A Given Number Of Fraction Bits
         # @return [Ronin::ASM::X86_64::Instructions::VRNDSCALEPD]
         # @example
@@ -15646,7 +15646,7 @@ module Ronin
         #   vrndscalepd zmm0, zmm1, 0x03
         #   vrndscalepd opmask(zmm0, k1, zero: true), zmm1, sae, 0x04
         #   vrndscalepd zmm0, zmm1, sae, 0x04
-        def vrndscalepd(*operands,**kwargs) = add_instruction(Instructions::VRNDSCALEPD,*operands,**kwargs)
+        def vrndscalepd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VRNDSCALEPD,operand1,operand2,operand3,*operands,**kwargs)
         # Round Packed Half-Precision Floating-Point Values To Include A Given Number Of Fraction Bits
         # @return [Ronin::ASM::X86_64::Instructions::VRNDSCALEPH]
         # @example
@@ -15664,7 +15664,7 @@ module Ronin
         #   vrndscaleph zmm0, zmm1, 0x03
         #   vrndscaleph opmask(zmm0, k1, zero: true), zmm1, sae, 0x04
         #   vrndscaleph zmm0, zmm1, sae, 0x04
-        def vrndscaleph(*operands,**kwargs) = add_instruction(Instructions::VRNDSCALEPH,*operands,**kwargs)
+        def vrndscaleph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VRNDSCALEPH,operand1,operand2,operand3,*operands,**kwargs)
         # Round Packed Single-Precision Floating-Point Values To Include A Given Number Of Fraction Bits
         # @return [Ronin::ASM::X86_64::Instructions::VRNDSCALEPS]
         # @example
@@ -15682,7 +15682,7 @@ module Ronin
         #   vrndscaleps zmm0, zmm1, 0x03
         #   vrndscaleps opmask(zmm0, k1, zero: true), zmm1, sae, 0x04
         #   vrndscaleps zmm0, zmm1, sae, 0x04
-        def vrndscaleps(*operands,**kwargs) = add_instruction(Instructions::VRNDSCALEPS,*operands,**kwargs)
+        def vrndscaleps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VRNDSCALEPS,operand1,operand2,operand3,*operands,**kwargs)
         # Round Scalar Double-Precision Floating-Point Value To Include A Given Number Of Fraction Bits
         # @return [Ronin::ASM::X86_64::Instructions::VRNDSCALESD]
         # @example
@@ -15692,7 +15692,7 @@ module Ronin
         #   vrndscalesd xmm0, xmm1, [rcx], 0x04
         #   vrndscalesd opmask(xmm0, k1, zero: true), xmm1, xmm2, sae, 0x05
         #   vrndscalesd xmm0, xmm1, xmm2, sae, 0x05
-        def vrndscalesd(*operands,**kwargs) = add_instruction(Instructions::VRNDSCALESD,*operands,**kwargs)
+        def vrndscalesd(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VRNDSCALESD,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Round Scalar Half-Precision Floating-Point Value To Include A Given Number Of Fraction Bits
         # @return [Ronin::ASM::X86_64::Instructions::VRNDSCALESH]
         # @example
@@ -15702,7 +15702,7 @@ module Ronin
         #   vrndscalesh xmm0, xmm1, [rcx], 0x04
         #   vrndscalesh opmask(xmm0, k1, zero: true), xmm1, xmm2, sae, 0x05
         #   vrndscalesh xmm0, xmm1, xmm2, sae, 0x05
-        def vrndscalesh(*operands,**kwargs) = add_instruction(Instructions::VRNDSCALESH,*operands,**kwargs)
+        def vrndscalesh(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VRNDSCALESH,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Round Scalar Single-Precision Floating-Point Value To Include A Given Number Of Fraction Bits
         # @return [Ronin::ASM::X86_64::Instructions::VRNDSCALESS]
         # @example
@@ -15712,7 +15712,7 @@ module Ronin
         #   vrndscaless xmm0, xmm1, [rcx], 0x04
         #   vrndscaless opmask(xmm0, k1, zero: true), xmm1, xmm2, sae, 0x05
         #   vrndscaless xmm0, xmm1, xmm2, sae, 0x05
-        def vrndscaless(*operands,**kwargs) = add_instruction(Instructions::VRNDSCALESS,*operands,**kwargs)
+        def vrndscaless(operand1,operand2,operand3,operand4,*operands,**kwargs) = add_instruction(Instructions::VRNDSCALESS,operand1,operand2,operand3,operand4,*operands,**kwargs)
         # Round Packed Double Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VROUNDPD]
         # @example
@@ -15720,7 +15720,7 @@ module Ronin
         #   vroundpd xmm0, [rbx], 0x03
         #   vroundpd ymm0, ymm1, 0x03
         #   vroundpd ymm0, [rbx], 0x03
-        def vroundpd(*operands,**kwargs) = add_instruction(Instructions::VROUNDPD,*operands,**kwargs)
+        def vroundpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VROUNDPD,operand1,operand2,operand3,**kwargs)
         # Round Packed Single Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VROUNDPS]
         # @example
@@ -15728,19 +15728,19 @@ module Ronin
         #   vroundps xmm0, [rbx], 0x03
         #   vroundps ymm0, ymm1, 0x03
         #   vroundps ymm0, [rbx], 0x03
-        def vroundps(*operands,**kwargs) = add_instruction(Instructions::VROUNDPS,*operands,**kwargs)
+        def vroundps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VROUNDPS,operand1,operand2,operand3,**kwargs)
         # Round Scalar Double Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VROUNDSD]
         # @example
         #   vroundsd xmm0, xmm1, xmm2, 0x04
         #   vroundsd xmm0, xmm1, [rcx], 0x04
-        def vroundsd(*operands,**kwargs) = add_instruction(Instructions::VROUNDSD,*operands,**kwargs)
+        def vroundsd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VROUNDSD,operand1,operand2,operand3,operand4,**kwargs)
         # Round Scalar Single Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VROUNDSS]
         # @example
         #   vroundss xmm0, xmm1, xmm2, 0x04
         #   vroundss xmm0, xmm1, [rcx], 0x04
-        def vroundss(*operands,**kwargs) = add_instruction(Instructions::VROUNDSS,*operands,**kwargs)
+        def vroundss(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VROUNDSS,operand1,operand2,operand3,operand4,**kwargs)
         # Compute Approximate Reciprocals of Square Roots of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRSQRT14PD]
         # @example
@@ -15756,7 +15756,7 @@ module Ronin
         #   vrsqrt14pd ymm0, ymm1
         #   vrsqrt14pd zmm0, bcst([rbx], {1=>8})
         #   vrsqrt14pd zmm0, zmm1
-        def vrsqrt14pd(*operands,**kwargs) = add_instruction(Instructions::VRSQRT14PD,*operands,**kwargs)
+        def vrsqrt14pd(operand1,operand2,**kwargs) = add_instruction(Instructions::VRSQRT14PD,operand1,operand2,**kwargs)
         # Compute Approximate Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRSQRT14PS]
         # @example
@@ -15772,7 +15772,7 @@ module Ronin
         #   vrsqrt14ps ymm0, ymm1
         #   vrsqrt14ps zmm0, bcst([rbx], {1=>16})
         #   vrsqrt14ps zmm0, zmm1
-        def vrsqrt14ps(*operands,**kwargs) = add_instruction(Instructions::VRSQRT14PS,*operands,**kwargs)
+        def vrsqrt14ps(operand1,operand2,**kwargs) = add_instruction(Instructions::VRSQRT14PS,operand1,operand2,**kwargs)
         # Compute Approximate Reciprocal of a Square Root of a Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VRSQRT14SD]
         # @example
@@ -15780,7 +15780,7 @@ module Ronin
         #   vrsqrt14sd opmask(xmm0, k1, zero: true), xmm1, [rcx]
         #   vrsqrt14sd xmm0, xmm1, xmm2
         #   vrsqrt14sd xmm0, xmm1, [rcx]
-        def vrsqrt14sd(*operands,**kwargs) = add_instruction(Instructions::VRSQRT14SD,*operands,**kwargs)
+        def vrsqrt14sd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VRSQRT14SD,operand1,operand2,operand3,**kwargs)
         # Compute Approximate Reciprocal of a Square Root of a Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VRSQRT14SS]
         # @example
@@ -15788,7 +15788,7 @@ module Ronin
         #   vrsqrt14ss opmask(xmm0, k1, zero: true), xmm1, [rcx]
         #   vrsqrt14ss xmm0, xmm1, xmm2
         #   vrsqrt14ss xmm0, xmm1, [rcx]
-        def vrsqrt14ss(*operands,**kwargs) = add_instruction(Instructions::VRSQRT14SS,*operands,**kwargs)
+        def vrsqrt14ss(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VRSQRT14SS,operand1,operand2,operand3,**kwargs)
         # Approximation to the Reciprocal Square Root of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error
         # @return [Ronin::ASM::X86_64::Instructions::VRSQRT28PD]
         # @example
@@ -15798,7 +15798,7 @@ module Ronin
         #   vrsqrt28pd zmm0, zmm1
         #   vrsqrt28pd opmask(zmm0, k1, zero: true), zmm1, sae
         #   vrsqrt28pd zmm0, zmm1, sae
-        def vrsqrt28pd(*operands,**kwargs) = add_instruction(Instructions::VRSQRT28PD,*operands,**kwargs)
+        def vrsqrt28pd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VRSQRT28PD,operand1,operand2,*operands,**kwargs)
         # Approximation to the Reciprocal Square Root of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error
         # @return [Ronin::ASM::X86_64::Instructions::VRSQRT28PS]
         # @example
@@ -15808,7 +15808,7 @@ module Ronin
         #   vrsqrt28ps zmm0, zmm1
         #   vrsqrt28ps opmask(zmm0, k1, zero: true), zmm1, sae
         #   vrsqrt28ps zmm0, zmm1, sae
-        def vrsqrt28ps(*operands,**kwargs) = add_instruction(Instructions::VRSQRT28PS,*operands,**kwargs)
+        def vrsqrt28ps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VRSQRT28PS,operand1,operand2,*operands,**kwargs)
         # Approximation to the Reciprocal Square Root of a Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error
         # @return [Ronin::ASM::X86_64::Instructions::VRSQRT28SD]
         # @example
@@ -15818,7 +15818,7 @@ module Ronin
         #   vrsqrt28sd xmm0, xmm1, [rcx]
         #   vrsqrt28sd opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vrsqrt28sd xmm0, xmm1, xmm2, sae
-        def vrsqrt28sd(*operands,**kwargs) = add_instruction(Instructions::VRSQRT28SD,*operands,**kwargs)
+        def vrsqrt28sd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VRSQRT28SD,operand1,operand2,operand3,*operands,**kwargs)
         # Approximation to the Reciprocal Square Root of a Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error
         # @return [Ronin::ASM::X86_64::Instructions::VRSQRT28SS]
         # @example
@@ -15828,7 +15828,7 @@ module Ronin
         #   vrsqrt28ss xmm0, xmm1, [rcx]
         #   vrsqrt28ss opmask(xmm0, k1, zero: true), xmm1, xmm2, sae
         #   vrsqrt28ss xmm0, xmm1, xmm2, sae
-        def vrsqrt28ss(*operands,**kwargs) = add_instruction(Instructions::VRSQRT28SS,*operands,**kwargs)
+        def vrsqrt28ss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VRSQRT28SS,operand1,operand2,operand3,*operands,**kwargs)
         # Compute Reciprocals of Square Roots of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRSQRTPH]
         # @example
@@ -15844,7 +15844,7 @@ module Ronin
         #   vrsqrtph ymm0, ymm1
         #   vrsqrtph zmm0, bcst([rbx], {1=>32})
         #   vrsqrtph zmm0, zmm1
-        def vrsqrtph(*operands,**kwargs) = add_instruction(Instructions::VRSQRTPH,*operands,**kwargs)
+        def vrsqrtph(operand1,operand2,**kwargs) = add_instruction(Instructions::VRSQRTPH,operand1,operand2,**kwargs)
         # Compute Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VRSQRTPS]
         # @example
@@ -15852,7 +15852,7 @@ module Ronin
         #   vrsqrtps xmm0, [rbx]
         #   vrsqrtps ymm0, ymm1
         #   vrsqrtps ymm0, [rbx]
-        def vrsqrtps(*operands,**kwargs) = add_instruction(Instructions::VRSQRTPS,*operands,**kwargs)
+        def vrsqrtps(operand1,operand2,**kwargs) = add_instruction(Instructions::VRSQRTPS,operand1,operand2,**kwargs)
         # Compute Reciprocal of Square Root of Scalar Half-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VRSQRTSH]
         # @example
@@ -15860,13 +15860,13 @@ module Ronin
         #   vrsqrtsh opmask(xmm0, k1, zero: true), xmm1, [rcx]
         #   vrsqrtsh xmm0, xmm1, xmm2
         #   vrsqrtsh xmm0, xmm1, [rcx]
-        def vrsqrtsh(*operands,**kwargs) = add_instruction(Instructions::VRSQRTSH,*operands,**kwargs)
+        def vrsqrtsh(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VRSQRTSH,operand1,operand2,operand3,**kwargs)
         # Compute Reciprocal of Square Root of Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VRSQRTSS]
         # @example
         #   vrsqrtss xmm0, xmm1, xmm2
         #   vrsqrtss xmm0, xmm1, [rcx]
-        def vrsqrtss(*operands,**kwargs) = add_instruction(Instructions::VRSQRTSS,*operands,**kwargs)
+        def vrsqrtss(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VRSQRTSS,operand1,operand2,operand3,**kwargs)
         # Scale Packed Double-Precision Floating-Point Values With Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSCALEFPD]
         # @example
@@ -15884,7 +15884,7 @@ module Ronin
         #   vscalefpd zmm0, zmm1, zmm2
         #   vscalefpd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vscalefpd zmm0, zmm1, zmm2, er
-        def vscalefpd(*operands,**kwargs) = add_instruction(Instructions::VSCALEFPD,*operands,**kwargs)
+        def vscalefpd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSCALEFPD,operand1,operand2,operand3,*operands,**kwargs)
         # Scale Packed Half-Precision Floating-Point Values With Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSCALEFPH]
         # @example
@@ -15902,7 +15902,7 @@ module Ronin
         #   vscalefph zmm0, zmm1, zmm2
         #   vscalefph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vscalefph zmm0, zmm1, zmm2, er
-        def vscalefph(*operands,**kwargs) = add_instruction(Instructions::VSCALEFPH,*operands,**kwargs)
+        def vscalefph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSCALEFPH,operand1,operand2,operand3,*operands,**kwargs)
         # Scale Packed Single-Precision Floating-Point Values With Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSCALEFPS]
         # @example
@@ -15920,7 +15920,7 @@ module Ronin
         #   vscalefps zmm0, zmm1, zmm2
         #   vscalefps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vscalefps zmm0, zmm1, zmm2, er
-        def vscalefps(*operands,**kwargs) = add_instruction(Instructions::VSCALEFPS,*operands,**kwargs)
+        def vscalefps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSCALEFPS,operand1,operand2,operand3,*operands,**kwargs)
         # Scale Scalar Double-Precision Floating-Point Value With a Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VSCALEFSD]
         # @example
@@ -15930,7 +15930,7 @@ module Ronin
         #   vscalefsd xmm0, xmm1, [rcx]
         #   vscalefsd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vscalefsd xmm0, xmm1, xmm2, er
-        def vscalefsd(*operands,**kwargs) = add_instruction(Instructions::VSCALEFSD,*operands,**kwargs)
+        def vscalefsd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSCALEFSD,operand1,operand2,operand3,*operands,**kwargs)
         # Scale Scalar Half-Precision Floating-Point Value With a Half-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VSCALEFSH]
         # @example
@@ -15940,7 +15940,7 @@ module Ronin
         #   vscalefsh xmm0, xmm1, [rcx]
         #   vscalefsh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vscalefsh xmm0, xmm1, xmm2, er
-        def vscalefsh(*operands,**kwargs) = add_instruction(Instructions::VSCALEFSH,*operands,**kwargs)
+        def vscalefsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSCALEFSH,operand1,operand2,operand3,*operands,**kwargs)
         # Scale Scalar Single-Precision Floating-Point Value With a Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VSCALEFSS]
         # @example
@@ -15950,90 +15950,90 @@ module Ronin
         #   vscalefss xmm0, xmm1, [rcx]
         #   vscalefss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vscalefss xmm0, xmm1, xmm2, er
-        def vscalefss(*operands,**kwargs) = add_instruction(Instructions::VSCALEFSS,*operands,**kwargs)
+        def vscalefss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSCALEFSS,operand1,operand2,operand3,*operands,**kwargs)
         # Scatter Packed Double-Precision Floating-Point Values with Signed Doubleword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VSCATTERDPD]
         # @example
         #   vscatterdpd opmask([rax+xmm0*4], k1), xmm1
         #   vscatterdpd opmask([rax+xmm0*4], k1), ymm1
         #   vscatterdpd opmask([rax+ymm0*4], k1), zmm1
-        def vscatterdpd(*operands,**kwargs) = add_instruction(Instructions::VSCATTERDPD,*operands,**kwargs)
+        def vscatterdpd(operand1,operand2,**kwargs) = add_instruction(Instructions::VSCATTERDPD,operand1,operand2,**kwargs)
         # Scatter Packed Single-Precision Floating-Point Values with Signed Doubleword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VSCATTERDPS]
         # @example
         #   vscatterdps opmask([rax+xmm0*4], k1), xmm1
         #   vscatterdps opmask([rax+ymm0*4], k1), ymm1
         #   vscatterdps opmask([rax+zmm0*4], k1), zmm1
-        def vscatterdps(*operands,**kwargs) = add_instruction(Instructions::VSCATTERDPS,*operands,**kwargs)
+        def vscatterdps(operand1,operand2,**kwargs) = add_instruction(Instructions::VSCATTERDPS,operand1,operand2,**kwargs)
         # Sparse Prefetch Packed Double-Precision Floating-Point Data Values with Signed Doubleword Indices Using T0 Hint with Intent to Write
         # @return [Ronin::ASM::X86_64::Instructions::VSCATTERPF0DPD]
         # @example
         #   vscatterpf0dpd opmask([rax+ymm0*4], k1)
-        def vscatterpf0dpd(*operands,**kwargs) = add_instruction(Instructions::VSCATTERPF0DPD,*operands,**kwargs)
+        def vscatterpf0dpd(operand,**kwargs) = add_instruction(Instructions::VSCATTERPF0DPD,operand,**kwargs)
         # Sparse Prefetch Packed Single-Precision Floating-Point Data Values with Signed Doubleword Indices Using T0 Hint with Intent to Write
         # @return [Ronin::ASM::X86_64::Instructions::VSCATTERPF0DPS]
         # @example
         #   vscatterpf0dps opmask([rax+zmm0*4], k1)
-        def vscatterpf0dps(*operands,**kwargs) = add_instruction(Instructions::VSCATTERPF0DPS,*operands,**kwargs)
+        def vscatterpf0dps(operand,**kwargs) = add_instruction(Instructions::VSCATTERPF0DPS,operand,**kwargs)
         # Sparse Prefetch Packed Double-Precision Floating-Point Data Values with Signed Quadword Indices Using T0 Hint with Intent to Write
         # @return [Ronin::ASM::X86_64::Instructions::VSCATTERPF0QPD]
         # @example
         #   vscatterpf0qpd opmask([rax+zmm0*8], k1)
-        def vscatterpf0qpd(*operands,**kwargs) = add_instruction(Instructions::VSCATTERPF0QPD,*operands,**kwargs)
+        def vscatterpf0qpd(operand,**kwargs) = add_instruction(Instructions::VSCATTERPF0QPD,operand,**kwargs)
         # Sparse Prefetch Packed Single-Precision Floating-Point Data Values with Signed Quadword Indices Using T0 Hint with Intent to Write
         # @return [Ronin::ASM::X86_64::Instructions::VSCATTERPF0QPS]
         # @example
         #   vscatterpf0qps opmask([rax+zmm0*8], k1)
-        def vscatterpf0qps(*operands,**kwargs) = add_instruction(Instructions::VSCATTERPF0QPS,*operands,**kwargs)
+        def vscatterpf0qps(operand,**kwargs) = add_instruction(Instructions::VSCATTERPF0QPS,operand,**kwargs)
         # Sparse Prefetch Packed Double-Precision Floating-Point Data Values with Signed Doubleword Indices Using T1 Hint with Intent to Write
         # @return [Ronin::ASM::X86_64::Instructions::VSCATTERPF1DPD]
         # @example
         #   vscatterpf1dpd opmask([rax+ymm0*4], k1)
-        def vscatterpf1dpd(*operands,**kwargs) = add_instruction(Instructions::VSCATTERPF1DPD,*operands,**kwargs)
+        def vscatterpf1dpd(operand,**kwargs) = add_instruction(Instructions::VSCATTERPF1DPD,operand,**kwargs)
         # Sparse Prefetch Packed Single-Precision Floating-Point Data Values with Signed Doubleword Indices Using T1 Hint with Intent to Write
         # @return [Ronin::ASM::X86_64::Instructions::VSCATTERPF1DPS]
         # @example
         #   vscatterpf1dps opmask([rax+zmm0*4], k1)
-        def vscatterpf1dps(*operands,**kwargs) = add_instruction(Instructions::VSCATTERPF1DPS,*operands,**kwargs)
+        def vscatterpf1dps(operand,**kwargs) = add_instruction(Instructions::VSCATTERPF1DPS,operand,**kwargs)
         # Sparse Prefetch Packed Double-Precision Floating-Point Data Values with Signed Quadword Indices Using T1 Hint with Intent to Write
         # @return [Ronin::ASM::X86_64::Instructions::VSCATTERPF1QPD]
         # @example
         #   vscatterpf1qpd opmask([rax+zmm0*8], k1)
-        def vscatterpf1qpd(*operands,**kwargs) = add_instruction(Instructions::VSCATTERPF1QPD,*operands,**kwargs)
+        def vscatterpf1qpd(operand,**kwargs) = add_instruction(Instructions::VSCATTERPF1QPD,operand,**kwargs)
         # Sparse Prefetch Packed Single-Precision Floating-Point Data Values with Signed Quadword Indices Using T1 Hint with Intent to Write
         # @return [Ronin::ASM::X86_64::Instructions::VSCATTERPF1QPS]
         # @example
         #   vscatterpf1qps opmask([rax+zmm0*8], k1)
-        def vscatterpf1qps(*operands,**kwargs) = add_instruction(Instructions::VSCATTERPF1QPS,*operands,**kwargs)
+        def vscatterpf1qps(operand,**kwargs) = add_instruction(Instructions::VSCATTERPF1QPS,operand,**kwargs)
         # Scatter Packed Double-Precision Floating-Point Values with Signed Quadword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VSCATTERQPD]
         # @example
         #   vscatterqpd opmask([rax+xmm0*8], k1), xmm1
         #   vscatterqpd opmask([rax+ymm0*8], k1), ymm1
         #   vscatterqpd opmask([rax+zmm0*8], k1), zmm1
-        def vscatterqpd(*operands,**kwargs) = add_instruction(Instructions::VSCATTERQPD,*operands,**kwargs)
+        def vscatterqpd(operand1,operand2,**kwargs) = add_instruction(Instructions::VSCATTERQPD,operand1,operand2,**kwargs)
         # Scatter Packed Single-Precision Floating-Point Values with Signed Quadword Indices
         # @return [Ronin::ASM::X86_64::Instructions::VSCATTERQPS]
         # @example
         #   vscatterqps opmask([rax+xmm0*8], k1), xmm1
         #   vscatterqps opmask([rax+ymm0*8], k1), xmm1
         #   vscatterqps opmask([rax+zmm0*8], k1), ymm1
-        def vscatterqps(*operands,**kwargs) = add_instruction(Instructions::VSCATTERQPS,*operands,**kwargs)
+        def vscatterqps(operand1,operand2,**kwargs) = add_instruction(Instructions::VSCATTERQPS,operand1,operand2,**kwargs)
         # Perform an Intermediate Calculation for the Next Four SHA512 Message Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::VSHA512MSG1]
         # @example
         #   vsha512msg1 ymm0, xmm1
-        def vsha512msg1(*operands,**kwargs) = add_instruction(Instructions::VSHA512MSG1,*operands,**kwargs)
+        def vsha512msg1(operand1,operand2,**kwargs) = add_instruction(Instructions::VSHA512MSG1,operand1,operand2,**kwargs)
         # Perform a Final Calculation for the Next Four SHA512 Message Quadwords
         # @return [Ronin::ASM::X86_64::Instructions::VSHA512MSG2]
         # @example
         #   vsha512msg2 ymm0, ymm1
-        def vsha512msg2(*operands,**kwargs) = add_instruction(Instructions::VSHA512MSG2,*operands,**kwargs)
+        def vsha512msg2(operand1,operand2,**kwargs) = add_instruction(Instructions::VSHA512MSG2,operand1,operand2,**kwargs)
         # Perform Two Rounds of SHA512 Operation
         # @return [Ronin::ASM::X86_64::Instructions::VSHA512RNDS2]
         # @example
         #   vsha512rnds2 ymm0, ymm1, xmm2
-        def vsha512rnds2(*operands,**kwargs) = add_instruction(Instructions::VSHA512RNDS2,*operands,**kwargs)
+        def vsha512rnds2(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VSHA512RNDS2,operand1,operand2,operand3,**kwargs)
         # Shuffle 128-Bit Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSHUFF32X4]
         # @example
@@ -16045,7 +16045,7 @@ module Ronin
         #   vshuff32x4 ymm0, ymm1, ymm2, 0x04
         #   vshuff32x4 zmm0, zmm1, bcst([rcx], {1=>16}), 0x04
         #   vshuff32x4 zmm0, zmm1, zmm2, 0x04
-        def vshuff32x4(*operands,**kwargs) = add_instruction(Instructions::VSHUFF32X4,*operands,**kwargs)
+        def vshuff32x4(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VSHUFF32X4,operand1,operand2,operand3,operand4,**kwargs)
         # Shuffle 128-Bit Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSHUFF64X2]
         # @example
@@ -16057,7 +16057,7 @@ module Ronin
         #   vshuff64x2 ymm0, ymm1, ymm2, 0x04
         #   vshuff64x2 zmm0, zmm1, bcst([rcx], {1=>8}), 0x04
         #   vshuff64x2 zmm0, zmm1, zmm2, 0x04
-        def vshuff64x2(*operands,**kwargs) = add_instruction(Instructions::VSHUFF64X2,*operands,**kwargs)
+        def vshuff64x2(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VSHUFF64X2,operand1,operand2,operand3,operand4,**kwargs)
         # Shuffle 128-Bit Packed Doubleword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VSHUFI32X4]
         # @example
@@ -16069,7 +16069,7 @@ module Ronin
         #   vshufi32x4 ymm0, ymm1, ymm2, 0x04
         #   vshufi32x4 zmm0, zmm1, bcst([rcx], {1=>16}), 0x04
         #   vshufi32x4 zmm0, zmm1, zmm2, 0x04
-        def vshufi32x4(*operands,**kwargs) = add_instruction(Instructions::VSHUFI32X4,*operands,**kwargs)
+        def vshufi32x4(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VSHUFI32X4,operand1,operand2,operand3,operand4,**kwargs)
         # Shuffle 128-Bit Packed Quadword Integer Values
         # @return [Ronin::ASM::X86_64::Instructions::VSHUFI64X2]
         # @example
@@ -16081,7 +16081,7 @@ module Ronin
         #   vshufi64x2 ymm0, ymm1, ymm2, 0x04
         #   vshufi64x2 zmm0, zmm1, bcst([rcx], {1=>8}), 0x04
         #   vshufi64x2 zmm0, zmm1, zmm2, 0x04
-        def vshufi64x2(*operands,**kwargs) = add_instruction(Instructions::VSHUFI64X2,*operands,**kwargs)
+        def vshufi64x2(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VSHUFI64X2,operand1,operand2,operand3,operand4,**kwargs)
         # Shuffle Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSHUFPD]
         # @example
@@ -16099,7 +16099,7 @@ module Ronin
         #   vshufpd ymm0, ymm1, [rcx], 0x04
         #   vshufpd zmm0, zmm1, bcst([rcx], {1=>8}), 0x04
         #   vshufpd zmm0, zmm1, zmm2, 0x04
-        def vshufpd(*operands,**kwargs) = add_instruction(Instructions::VSHUFPD,*operands,**kwargs)
+        def vshufpd(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VSHUFPD,operand1,operand2,operand3,operand4,**kwargs)
         # Shuffle Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSHUFPS]
         # @example
@@ -16117,25 +16117,25 @@ module Ronin
         #   vshufps ymm0, ymm1, [rcx], 0x04
         #   vshufps zmm0, zmm1, bcst([rcx], {1=>16}), 0x04
         #   vshufps zmm0, zmm1, zmm2, 0x04
-        def vshufps(*operands,**kwargs) = add_instruction(Instructions::VSHUFPS,*operands,**kwargs)
+        def vshufps(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VSHUFPS,operand1,operand2,operand3,operand4,**kwargs)
         # Perform Initial Calculation for the Next Four SM3 Message Words
         # @return [Ronin::ASM::X86_64::Instructions::VSM3MSG1]
         # @example
         #   vsm3msg1 xmm0, xmm1, xmm2
         #   vsm3msg1 xmm0, xmm1, [rcx]
-        def vsm3msg1(*operands,**kwargs) = add_instruction(Instructions::VSM3MSG1,*operands,**kwargs)
+        def vsm3msg1(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VSM3MSG1,operand1,operand2,operand3,**kwargs)
         # Perform Final Calculation for the Next Four SM3 Message Words
         # @return [Ronin::ASM::X86_64::Instructions::VSM3MSG2]
         # @example
         #   vsm3msg2 xmm0, xmm1, xmm2
         #   vsm3msg2 xmm0, xmm1, [rcx]
-        def vsm3msg2(*operands,**kwargs) = add_instruction(Instructions::VSM3MSG2,*operands,**kwargs)
+        def vsm3msg2(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VSM3MSG2,operand1,operand2,operand3,**kwargs)
         # Perform Two Rounds of SM3 Operation
         # @return [Ronin::ASM::X86_64::Instructions::VSM3RNDS2]
         # @example
         #   vsm3rnds2 xmm0, xmm1, xmm2, 0x04
         #   vsm3rnds2 xmm0, xmm1, [rcx], 0x04
-        def vsm3rnds2(*operands,**kwargs) = add_instruction(Instructions::VSM3RNDS2,*operands,**kwargs)
+        def vsm3rnds2(operand1,operand2,operand3,operand4,**kwargs) = add_instruction(Instructions::VSM3RNDS2,operand1,operand2,operand3,operand4,**kwargs)
         # Perform Four Rounds of SM4 Key Expansion
         # @return [Ronin::ASM::X86_64::Instructions::VSM4KEY4]
         # @example
@@ -16143,7 +16143,7 @@ module Ronin
         #   vsm4key4 xmm0, xmm1, [rcx]
         #   vsm4key4 ymm0, ymm1, ymm2
         #   vsm4key4 ymm0, ymm1, [rcx]
-        def vsm4key4(*operands,**kwargs) = add_instruction(Instructions::VSM4KEY4,*operands,**kwargs)
+        def vsm4key4(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VSM4KEY4,operand1,operand2,operand3,**kwargs)
         # Performs Four Rounds of SM4 Encryption
         # @return [Ronin::ASM::X86_64::Instructions::VSM4RNDS4]
         # @example
@@ -16151,7 +16151,7 @@ module Ronin
         #   vsm4rnds4 xmm0, xmm1, [rcx]
         #   vsm4rnds4 ymm0, ymm1, ymm2
         #   vsm4rnds4 ymm0, ymm1, [rcx]
-        def vsm4rnds4(*operands,**kwargs) = add_instruction(Instructions::VSM4RNDS4,*operands,**kwargs)
+        def vsm4rnds4(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VSM4RNDS4,operand1,operand2,operand3,**kwargs)
         # Compute Square Roots of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSQRTPD]
         # @example
@@ -16171,7 +16171,7 @@ module Ronin
         #   vsqrtpd zmm0, zmm1
         #   vsqrtpd opmask(zmm0, k1, zero: true), zmm1, er
         #   vsqrtpd zmm0, zmm1, er
-        def vsqrtpd(*operands,**kwargs) = add_instruction(Instructions::VSQRTPD,*operands,**kwargs)
+        def vsqrtpd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VSQRTPD,operand1,operand2,*operands,**kwargs)
         # Compute Square Roots of Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSQRTPH]
         # @example
@@ -16189,7 +16189,7 @@ module Ronin
         #   vsqrtph zmm0, zmm1
         #   vsqrtph opmask(zmm0, k1, zero: true), zmm1, er
         #   vsqrtph zmm0, zmm1, er
-        def vsqrtph(*operands,**kwargs) = add_instruction(Instructions::VSQRTPH,*operands,**kwargs)
+        def vsqrtph(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VSQRTPH,operand1,operand2,*operands,**kwargs)
         # Compute Square Roots of Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSQRTPS]
         # @example
@@ -16209,7 +16209,7 @@ module Ronin
         #   vsqrtps zmm0, zmm1
         #   vsqrtps opmask(zmm0, k1, zero: true), zmm1, er
         #   vsqrtps zmm0, zmm1, er
-        def vsqrtps(*operands,**kwargs) = add_instruction(Instructions::VSQRTPS,*operands,**kwargs)
+        def vsqrtps(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VSQRTPS,operand1,operand2,*operands,**kwargs)
         # Compute Square Root of Scalar Double-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VSQRTSD]
         # @example
@@ -16219,7 +16219,7 @@ module Ronin
         #   vsqrtsd xmm0, xmm1, [rcx]
         #   vsqrtsd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vsqrtsd xmm0, xmm1, xmm2, er
-        def vsqrtsd(*operands,**kwargs) = add_instruction(Instructions::VSQRTSD,*operands,**kwargs)
+        def vsqrtsd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSQRTSD,operand1,operand2,operand3,*operands,**kwargs)
         # Compute Square Root of Scalar Half-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VSQRTSH]
         # @example
@@ -16229,7 +16229,7 @@ module Ronin
         #   vsqrtsh xmm0, xmm1, [rcx]
         #   vsqrtsh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vsqrtsh xmm0, xmm1, xmm2, er
-        def vsqrtsh(*operands,**kwargs) = add_instruction(Instructions::VSQRTSH,*operands,**kwargs)
+        def vsqrtsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSQRTSH,operand1,operand2,operand3,*operands,**kwargs)
         # Compute Square Root of Scalar Single-Precision Floating-Point Value
         # @return [Ronin::ASM::X86_64::Instructions::VSQRTSS]
         # @example
@@ -16239,12 +16239,12 @@ module Ronin
         #   vsqrtss xmm0, xmm1, [rcx]
         #   vsqrtss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vsqrtss xmm0, xmm1, xmm2, er
-        def vsqrtss(*operands,**kwargs) = add_instruction(Instructions::VSQRTSS,*operands,**kwargs)
+        def vsqrtss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSQRTSS,operand1,operand2,operand3,*operands,**kwargs)
         # Store MXCSR Register State
         # @return [Ronin::ASM::X86_64::Instructions::VSTMXCSR]
         # @example
         #   vstmxcsr [rax]
-        def vstmxcsr(*operands,**kwargs) = add_instruction(Instructions::VSTMXCSR,*operands,**kwargs)
+        def vstmxcsr(operand,**kwargs) = add_instruction(Instructions::VSTMXCSR,operand,**kwargs)
         # Subtract Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSUBPD]
         # @example
@@ -16264,7 +16264,7 @@ module Ronin
         #   vsubpd zmm0, zmm1, zmm2
         #   vsubpd opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vsubpd zmm0, zmm1, zmm2, er
-        def vsubpd(*operands,**kwargs) = add_instruction(Instructions::VSUBPD,*operands,**kwargs)
+        def vsubpd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSUBPD,operand1,operand2,operand3,*operands,**kwargs)
         # Subtract Packed Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSUBPH]
         # @example
@@ -16282,7 +16282,7 @@ module Ronin
         #   vsubph zmm0, zmm1, zmm2
         #   vsubph opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vsubph zmm0, zmm1, zmm2, er
-        def vsubph(*operands,**kwargs) = add_instruction(Instructions::VSUBPH,*operands,**kwargs)
+        def vsubph(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSUBPH,operand1,operand2,operand3,*operands,**kwargs)
         # Subtract Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSUBPS]
         # @example
@@ -16302,7 +16302,7 @@ module Ronin
         #   vsubps zmm0, zmm1, zmm2
         #   vsubps opmask(zmm0, k1, zero: true), zmm1, zmm2, er
         #   vsubps zmm0, zmm1, zmm2, er
-        def vsubps(*operands,**kwargs) = add_instruction(Instructions::VSUBPS,*operands,**kwargs)
+        def vsubps(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSUBPS,operand1,operand2,operand3,*operands,**kwargs)
         # Subtract Scalar Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSUBSD]
         # @example
@@ -16312,7 +16312,7 @@ module Ronin
         #   vsubsd xmm0, xmm1, [rcx]
         #   vsubsd opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vsubsd xmm0, xmm1, xmm2, er
-        def vsubsd(*operands,**kwargs) = add_instruction(Instructions::VSUBSD,*operands,**kwargs)
+        def vsubsd(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSUBSD,operand1,operand2,operand3,*operands,**kwargs)
         # Subtract Scalar Half-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSUBSH]
         # @example
@@ -16322,7 +16322,7 @@ module Ronin
         #   vsubsh xmm0, xmm1, [rcx]
         #   vsubsh opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vsubsh xmm0, xmm1, xmm2, er
-        def vsubsh(*operands,**kwargs) = add_instruction(Instructions::VSUBSH,*operands,**kwargs)
+        def vsubsh(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSUBSH,operand1,operand2,operand3,*operands,**kwargs)
         # Subtract Scalar Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSUBSS]
         # @example
@@ -16332,7 +16332,7 @@ module Ronin
         #   vsubss xmm0, xmm1, [rcx]
         #   vsubss opmask(xmm0, k1, zero: true), xmm1, xmm2, er
         #   vsubss xmm0, xmm1, xmm2, er
-        def vsubss(*operands,**kwargs) = add_instruction(Instructions::VSUBSS,*operands,**kwargs)
+        def vsubss(operand1,operand2,operand3,*operands,**kwargs) = add_instruction(Instructions::VSUBSS,operand1,operand2,operand3,*operands,**kwargs)
         # Packed Double-Precision Floating-Point Bit Test
         # @return [Ronin::ASM::X86_64::Instructions::VTESTPD]
         # @example
@@ -16340,7 +16340,7 @@ module Ronin
         #   vtestpd xmm0, [rbx]
         #   vtestpd ymm0, ymm1
         #   vtestpd ymm0, [rbx]
-        def vtestpd(*operands,**kwargs) = add_instruction(Instructions::VTESTPD,*operands,**kwargs)
+        def vtestpd(operand1,operand2,**kwargs) = add_instruction(Instructions::VTESTPD,operand1,operand2,**kwargs)
         # Packed Single-Precision Floating-Point Bit Test
         # @return [Ronin::ASM::X86_64::Instructions::VTESTPS]
         # @example
@@ -16348,28 +16348,28 @@ module Ronin
         #   vtestps xmm0, [rbx]
         #   vtestps ymm0, ymm1
         #   vtestps ymm0, [rbx]
-        def vtestps(*operands,**kwargs) = add_instruction(Instructions::VTESTPS,*operands,**kwargs)
+        def vtestps(operand1,operand2,**kwargs) = add_instruction(Instructions::VTESTPS,operand1,operand2,**kwargs)
         # Unordered Compare Scalar Double-Precision Floating-Point Values and Set EFLAGS
         # @return [Ronin::ASM::X86_64::Instructions::VUCOMISD]
         # @example
         #   vucomisd xmm0, xmm1
         #   vucomisd xmm0, [rbx]
         #   vucomisd xmm0, xmm1, sae
-        def vucomisd(*operands,**kwargs) = add_instruction(Instructions::VUCOMISD,*operands,**kwargs)
+        def vucomisd(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VUCOMISD,operand1,operand2,*operands,**kwargs)
         # Unordered Compare Scalar Half-Precision Floating-Point Values and Set EFLAGS
         # @return [Ronin::ASM::X86_64::Instructions::VUCOMISH]
         # @example
         #   vucomish xmm0, xmm1
         #   vucomish xmm0, [rbx]
         #   vucomish xmm0, xmm1, sae
-        def vucomish(*operands,**kwargs) = add_instruction(Instructions::VUCOMISH,*operands,**kwargs)
+        def vucomish(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VUCOMISH,operand1,operand2,*operands,**kwargs)
         # Unordered Compare Scalar Single-Precision Floating-Point Values and Set EFLAGS
         # @return [Ronin::ASM::X86_64::Instructions::VUCOMISS]
         # @example
         #   vucomiss xmm0, xmm1
         #   vucomiss xmm0, [rbx]
         #   vucomiss xmm0, xmm1, sae
-        def vucomiss(*operands,**kwargs) = add_instruction(Instructions::VUCOMISS,*operands,**kwargs)
+        def vucomiss(operand1,operand2,*operands,**kwargs) = add_instruction(Instructions::VUCOMISS,operand1,operand2,*operands,**kwargs)
         # Unpack and Interleave High Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VUNPCKHPD]
         # @example
@@ -16387,7 +16387,7 @@ module Ronin
         #   vunpckhpd ymm0, ymm1, [rcx]
         #   vunpckhpd zmm0, zmm1, bcst([rcx], {1=>8})
         #   vunpckhpd zmm0, zmm1, zmm2
-        def vunpckhpd(*operands,**kwargs) = add_instruction(Instructions::VUNPCKHPD,*operands,**kwargs)
+        def vunpckhpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VUNPCKHPD,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave High Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VUNPCKHPS]
         # @example
@@ -16405,7 +16405,7 @@ module Ronin
         #   vunpckhps ymm0, ymm1, [rcx]
         #   vunpckhps zmm0, zmm1, bcst([rcx], {1=>16})
         #   vunpckhps zmm0, zmm1, zmm2
-        def vunpckhps(*operands,**kwargs) = add_instruction(Instructions::VUNPCKHPS,*operands,**kwargs)
+        def vunpckhps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VUNPCKHPS,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave Low Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VUNPCKLPD]
         # @example
@@ -16423,7 +16423,7 @@ module Ronin
         #   vunpcklpd ymm0, ymm1, [rcx]
         #   vunpcklpd zmm0, zmm1, bcst([rcx], {1=>8})
         #   vunpcklpd zmm0, zmm1, zmm2
-        def vunpcklpd(*operands,**kwargs) = add_instruction(Instructions::VUNPCKLPD,*operands,**kwargs)
+        def vunpcklpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VUNPCKLPD,operand1,operand2,operand3,**kwargs)
         # Unpack and Interleave Low Packed Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VUNPCKLPS]
         # @example
@@ -16441,7 +16441,7 @@ module Ronin
         #   vunpcklps ymm0, ymm1, [rcx]
         #   vunpcklps zmm0, zmm1, bcst([rcx], {1=>16})
         #   vunpcklps zmm0, zmm1, zmm2
-        def vunpcklps(*operands,**kwargs) = add_instruction(Instructions::VUNPCKLPS,*operands,**kwargs)
+        def vunpcklps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VUNPCKLPS,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical XOR for Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VXORPD]
         # @example
@@ -16459,7 +16459,7 @@ module Ronin
         #   vxorpd ymm0, ymm1, [rcx]
         #   vxorpd zmm0, zmm1, bcst([rcx], {1=>8})
         #   vxorpd zmm0, zmm1, zmm2
-        def vxorpd(*operands,**kwargs) = add_instruction(Instructions::VXORPD,*operands,**kwargs)
+        def vxorpd(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VXORPD,operand1,operand2,operand3,**kwargs)
         # Bitwise Logical XOR for Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VXORPS]
         # @example
@@ -16477,25 +16477,25 @@ module Ronin
         #   vxorps ymm0, ymm1, [rcx]
         #   vxorps zmm0, zmm1, bcst([rcx], {1=>16})
         #   vxorps zmm0, zmm1, zmm2
-        def vxorps(*operands,**kwargs) = add_instruction(Instructions::VXORPS,*operands,**kwargs)
+        def vxorps(operand1,operand2,operand3,**kwargs) = add_instruction(Instructions::VXORPS,operand1,operand2,operand3,**kwargs)
         # Zero All YMM Registers
         # @return [Ronin::ASM::X86_64::Instructions::VZEROALL]
-        def vzeroall(*operands,**kwargs) = add_instruction(Instructions::VZEROALL,*operands,**kwargs)
+        def vzeroall(**kwargs) = add_instruction(Instructions::VZEROALL,**kwargs)
         # Zero Upper Bits of YMM Registers
         # @return [Ronin::ASM::X86_64::Instructions::VZEROUPPER]
-        def vzeroupper(*operands,**kwargs) = add_instruction(Instructions::VZEROUPPER,*operands,**kwargs)
+        def vzeroupper(**kwargs) = add_instruction(Instructions::VZEROUPPER,**kwargs)
         # WRite FS segment BASE
         # @return [Ronin::ASM::X86_64::Instructions::WRFSBASE]
         # @example
         #   wrfsbase eax
         #   wrfsbase rax
-        def wrfsbase(*operands,**kwargs) = add_instruction(Instructions::WRFSBASE,*operands,**kwargs)
+        def wrfsbase(operand,**kwargs) = add_instruction(Instructions::WRFSBASE,operand,**kwargs)
         # WRite GS segment BASE
         # @return [Ronin::ASM::X86_64::Instructions::WRGSBASE]
         # @example
         #   wrgsbase eax
         #   wrgsbase rax
-        def wrgsbase(*operands,**kwargs) = add_instruction(Instructions::WRGSBASE,*operands,**kwargs)
+        def wrgsbase(operand,**kwargs) = add_instruction(Instructions::WRGSBASE,operand,**kwargs)
         # Exchange and Add
         # @return [Ronin::ASM::X86_64::Instructions::XADD]
         # @example
@@ -16507,7 +16507,7 @@ module Ronin
         #   xadd [rax], bx
         #   xadd [rax], ebx
         #   xadd [rax], rbx
-        def xadd(*operands,**kwargs) = add_instruction(Instructions::XADD,*operands,**kwargs)
+        def xadd(operand1,operand2,**kwargs) = add_instruction(Instructions::XADD,operand1,operand2,**kwargs)
         # Exchange Register/Memory with Register
         # @return [Ronin::ASM::X86_64::Instructions::XCHG]
         # @example
@@ -16526,13 +16526,13 @@ module Ronin
         #   xchg [rax], bx
         #   xchg [rax], ebx
         #   xchg [rax], rbx
-        def xchg(*operands,**kwargs) = add_instruction(Instructions::XCHG,*operands,**kwargs)
+        def xchg(operand1,operand2,**kwargs) = add_instruction(Instructions::XCHG,operand1,operand2,**kwargs)
         # Get Value of Extended Control Register
         # @return [Ronin::ASM::X86_64::Instructions::XGETBV]
-        def xgetbv(*operands,**kwargs) = add_instruction(Instructions::XGETBV,*operands,**kwargs)
+        def xgetbv(**kwargs) = add_instruction(Instructions::XGETBV,**kwargs)
         # Table Look-up Translation
         # @return [Ronin::ASM::X86_64::Instructions::XLATB]
-        def xlatb(*operands,**kwargs) = add_instruction(Instructions::XLATB,*operands,**kwargs)
+        def xlatb(**kwargs) = add_instruction(Instructions::XLATB,**kwargs)
         # Logical Exclusive OR
         # @return [Ronin::ASM::X86_64::Instructions::XOR]
         # @example
@@ -16558,19 +16558,19 @@ module Ronin
         #   xor [rax], 0x00000002
         #   xor [rax], ebx
         #   xor [rax], rbx
-        def xor(*operands,**kwargs) = add_instruction(Instructions::XOR,*operands,**kwargs)
+        def xor(operand1,operand2,**kwargs) = add_instruction(Instructions::XOR,operand1,operand2,**kwargs)
         # Bitwise Logical XOR for Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::XORPD]
         # @example
         #   xorpd xmm0, xmm1
         #   xorpd xmm0, [rbx]
-        def xorpd(*operands,**kwargs) = add_instruction(Instructions::XORPD,*operands,**kwargs)
+        def xorpd(operand1,operand2,**kwargs) = add_instruction(Instructions::XORPD,operand1,operand2,**kwargs)
         # Bitwise Logical XOR for Single-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::XORPS]
         # @example
         #   xorps xmm0, xmm1
         #   xorps xmm0, [rbx]
-        def xorps(*operands,**kwargs) = add_instruction(Instructions::XORPS,*operands,**kwargs)
+        def xorps(operand1,operand2,**kwargs) = add_instruction(Instructions::XORPS,operand1,operand2,**kwargs)
       end
     end
   end

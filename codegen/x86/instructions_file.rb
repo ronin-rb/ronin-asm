@@ -35,6 +35,34 @@ module CodeGen
       #
 
       #
+      # Generates the list of arguments for the instruction method.
+      #
+      # @param [ISA::Instruction] instruction
+      # @return [String]
+      #
+      def instruction_method_args(instruction)
+        min_operands = instruction.min_operands
+        max_operands = instruction.max_operands
+
+        if (min_operands == 0 && max_operands == 0)
+          # no operands
+          '**kwargs'
+        elsif (min_operands == 1 && max_operands == 1)
+          # a single required operand
+          'operand,**kwargs'
+        elsif min_operands == max_operands
+          # all operands are required
+          [*max_operands.times.map { |i| "operand#{i+1}" }, '**kwargs'].join(',')
+        elsif (min_operands == 0 && max_operands > 0)
+          # all operands are optional
+          '*operands,**kwargs'
+        else
+          # some operands are required, some are optional
+          [*min_operands.times.map { |i| "operand#{i+1}" }, '*operands', '**kwargs'].join(',')
+        end
+      end
+
+      #
       # Builds examples for the instruction and all possible operand types it
       # can accept.
       #
