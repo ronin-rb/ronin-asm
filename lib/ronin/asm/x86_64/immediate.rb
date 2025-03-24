@@ -34,6 +34,41 @@ module Ronin
         include Operand
 
         #
+        # Initializes the x86-64 immediate value.
+        #
+        # @param [Integer, nil] value
+        #   The value.
+        #
+        # @param [nil, 1, 2, 4, 8] size
+        #   The size in bytes of the value.
+        #
+        # @raise [ArgumentError]
+        #   * A value greater than 64bits was given.
+        #   * An invalid size was given.
+        #
+        def initialize(value, size: nil)
+          check_value(value)
+
+          super(value, size: size)
+        end
+
+        private
+
+        #
+        # Checks if the given value is valid.
+        #
+        # @param [Integer, nil] value
+        # @raise [ArgumentError]
+        #
+        def check_value(value)
+          if (value && value.bit_length > 64)
+            raise(ArgumentError,"x86-64 does not support immediate values greater than 64bits: #{value.inspect}")
+          end
+        end
+
+        public
+
+        #
         # Infers the size of the immediate operand based on the bit length of
         # it's value.
         #
