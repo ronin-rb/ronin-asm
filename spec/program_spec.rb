@@ -678,13 +678,7 @@ describe Ronin::ASM::Program do
 
   describe "#method_missing" do
     context "when called without a block" do
-      it "must add a new instruction" do
-        subject.pop
-
-        expect(subject.instructions[-1].name).to eq(:pop)
-      end
-
-      context "and only one argument" do
+      context "and no arguments" do
         it "must return a SymbolRef object with the method name" do
           symbol_ref = subject._label
 
@@ -692,15 +686,33 @@ describe Ronin::ASM::Program do
           expect(symbol_ref.name).to eq('_label')
         end
       end
+
+      context "but arguments are given" do
+        it do
+          expect {
+            subject.foo(1,2,3)
+          }.to raise_error(NoMethodError)
+        end
+      end
     end
 
-    context "when called with one argument and a block" do
-      it "must add a new label" do
-        subject._loop { mov eax, ebx }
+    context "when called with a block" do
+      context "and no arguments" do
+        it "must add a new label" do
+          subject._loop { mov eax, ebx }
 
-        expect(subject.instructions[-2]).to      be_kind_of(Ronin::ASM::Label)
-        expect(subject.instructions[-2].name).to eq('_loop')
-        expect(subject.instructions[-1].name).to eq(:mov)
+          expect(subject.instructions[-2]).to      be_kind_of(Ronin::ASM::Label)
+          expect(subject.instructions[-2].name).to eq('_loop')
+          expect(subject.instructions[-1].name).to eq(:mov)
+        end
+      end
+
+      context "but arguments are given" do
+        it do
+          expect {
+            subject.foo(1,2,3) { }
+          }.to raise_error(NoMethodError)
+        end
       end
     end
   end
