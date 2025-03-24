@@ -56,6 +56,15 @@ module Ronin
         end
 
         #
+        # Determines if the operand is an 64bit immediate operand.
+        #
+        # @return [Boolean]
+        #
+        def imm64?
+          @size == 8
+        end
+
+        #
         # Determines if the immediate operand is equal to or compatible with the
         # given type.
         #
