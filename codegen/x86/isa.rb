@@ -152,9 +152,33 @@ module CodeGen
           )
         end
 
+        #
+        # Determines the minimum number of operands the instruction requires.
+        #
+        # @return [Integer]
+        #
         def min_operands = forms.map(&:operand_count).min
+
+        #
+        # Determines the maximum number of operands the instruction requires.
+        #
+        # @return [Integer]
+        #
         def max_operands = forms.map(&:operand_count).max
+
+        #
+        # Determines the minimum and maximum number of operands the instruction
+        # requires.
+        #
+        # @return [(Integer, Integer)]
+        #
         def min_max_operands = forms.map(&:operand_count).minmax
+
+        #
+        # Determines whether the instruction accepts no operands.
+        #
+        # @return [Boolean]
+        #
         def no_operands? = forms.all?(&:no_operands?)
 
       end
@@ -206,7 +230,18 @@ module CodeGen
         def xmm_mode? = !xmm_mode.nil?
         def cancelling_inputs? = cancelling_inputs
 
+        #
+        # The number of operands the instruction form requires.
+        #
+        # @return [Integer]
+        #
         def operand_count = operands.length
+
+        #
+        # Determines if the instruction form does not accept any operands.
+        #
+        # @return [Boolean]
+        #
         def no_operands? = operands.empty?
 
       end
