@@ -1,0 +1,46 @@
+#
+# NOTE: this file was automatically generated. Do not edit!
+#
+
+require 'spec_helper'
+require 'ronin/asm/x86_64/instructions'
+require 'ronin/asm/program'
+
+require_relative 'instructions/operand_examples'
+
+describe Ronin::ASM::X86_64::Instructions do
+  include_context "Ronin::ASM::X86_64 Operands"
+
+  subject { Ronin::ASM::Program.new(arch: :x86_64) }
+  <%- @instructions.each do |instruction| -%>
+
+  describe "#<%= instruction.name %>" do
+    <%- operands_grouped_by_count = instruction.forms.map(&:operands).group_by(&:count) -%>
+    <%- operands_grouped_by_count.each.with_index do |(operand_count,operands_by_count),index| -%>
+    <%- if operand_count > 0 -%>
+    context "when called with <%= operand_count %> operand<%- if operand_count > 1 -%>s<%- end -%>" do
+      let(:operands) { <%= operands_array(operands_by_count.last) %> }
+
+      it "must create a new Ronin::ASM::X86_64::Instructions::<%= instruction.name.upcase %> object with the given operands" do
+        new_instruction = subject.<%= instruction.name %>(*operands)
+
+        expect(new_instruction).to be_a(Ronin::ASM::X86_64::Instructions::<%= instruction.name.upcase %>)
+        expect(new_instruction.operands).to eq(operands)
+      end
+    end
+    <%- else -%>
+    context "when called with no operands" do
+      it "must create a Ronin::ASM::X86_64::Instructions::<%= instruction.name.upcase %> object with no operands" do
+        new_instruction = subject.<%= instruction.name %>
+
+        expect(new_instruction).to be_a(Ronin::ASM::X86_64::Instructions::<%= instruction.name.upcase %>)
+        expect(new_instruction.operands).to be_empty
+      end
+    end
+    <%- end -%>
+    <%- unless index == operands_grouped_by_count.length-1 %>
+    <%- end -%>
+    <%- end -%>
+  end
+  <%- end -%>
+end
