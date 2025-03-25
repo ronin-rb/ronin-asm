@@ -33,6 +33,16 @@ module CodeGen
       template File.join(__dir__,'templates','instruction_spec.rb.erb')
       output_dir 'spec/x86/instructions'
 
+      #
+      # Converts the operands to a Ruby Array of their ronin-asm types.
+      #
+      # @param [Array<ISA::Operand>] operands
+      # @return [String]
+      #
+      def instruction_form_array(operands)
+        "[#{operands.map { |operand| operand.ronin_type.inspect }.join(', ')}]"
+      end
+
     end
   end
 end
