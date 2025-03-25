@@ -69,6 +69,16 @@ module CodeGen
       end
 
       #
+      # Converts the operands to a Ruby Array of their ronin-asm types.
+      #
+      # @param [Array<ISA::Operand>] operands
+      # @return [String]
+      #
+      def instruction_form_array(operands)
+        "[#{operands.map { |operand| operand.ronin_type.inspect }.join(', ')}]"
+      end
+
+      #
       # Converts an operand index back into Ruby code.
       #
       # @param [ISA::OperandIndex] operand_index
