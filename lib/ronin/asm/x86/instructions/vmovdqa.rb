@@ -45,8 +45,27 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:vmovdqa,*operands,**kwargs)
+
+            @form = if @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm)
+                      [:xmm, :xmm]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:mem128)
+                      [:xmm, :mem128]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:ymm) && @operands[1].type_of?(:ymm)
+                      [:ymm, :ymm]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:ymm) && @operands[1].type_of?(:mem256)
+                      [:ymm, :mem256]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem128) && @operands[1].type_of?(:xmm)
+                      [:mem128, :xmm]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem256) && @operands[1].type_of?(:ymm)
+                      [:mem256, :ymm]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,32 +77,33 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm)
+            case @form
+            when [:xmm, :xmm]
               encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b01, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x6f) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:mem128)
+            when [:xmm, :mem128]
               encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b01, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x6f) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type_of?(:ymm) && @operands[1].type_of?(:ymm)
+            when [:ymm, :ymm]
               encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00001, pp: 0b01, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x6f) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type_of?(:ymm) && @operands[1].type_of?(:mem256)
+            when [:ymm, :mem256]
               encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00001, pp: 0b01, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x6f) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem128) && @operands[1].type_of?(:xmm)
+            when [:mem128, :xmm]
               encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b01, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x7f) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem256) && @operands[1].type_of?(:ymm)
+            when [:mem256, :ymm]
               encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00001, pp: 0b01, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x7f) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 

@@ -45,8 +45,21 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:vscatterdps,*operands,**kwargs)
+
+            @form = if @operands.length == 2 && @operands[0].type_of?(:"vm32x{k}") && @operands[1].type_of?(:xmm)
+                      [:"vm32x{k}", :xmm]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:"vm32y{k}") && @operands[1].type_of?(:ymm)
+                      [:"vm32y{k}", :ymm]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:"vm32z{k}") && @operands[1].type_of?(:zmm)
+                      [:"vm32z{k}", :zmm]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,20 +71,21 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type_of?(:"vm32x{k}") && @operands[1].type_of?(:xmm)
+            case @form
+            when [:"vm32x{k}", :xmm]
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b00, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 4) +
               encoder.write_opcode(0xa2) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:"vm32y{k}") && @operands[1].type_of?(:ymm)
+            when [:"vm32y{k}", :ymm]
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b01, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 4) +
               encoder.write_opcode(0xa2) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:"vm32z{k}") && @operands[1].type_of?(:zmm)
+            when [:"vm32z{k}", :zmm]
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b10, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 4) +
               encoder.write_opcode(0xa2) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 

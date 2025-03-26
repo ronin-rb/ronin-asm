@@ -25,6 +25,10 @@ describe Ronin::ASM::X86::Instructions::VBROADCASTI32X8 do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"zmm{k}{z}", :mem256]' do
+        expect(subject.form).to eq([:"zmm{k}{z}", :mem256])
+      end
     end
 
     context "when given operands of types zmm, mem256" do
@@ -32,6 +36,20 @@ describe Ronin::ASM::X86::Instructions::VBROADCASTI32X8 do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:zmm, :mem256]" do
+        expect(subject.form).to eq([:zmm, :mem256])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vbroadcasti32x8 #{operands.map(&:type).join(', ')}")
       end
     end
 
