@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::VFNMADD213SD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"xmm{k}{z}", :xmm, :xmm]' do
+        expect(subject.form).to eq([:"xmm{k}{z}", :xmm, :xmm])
+      end
     end
 
     context "when given operands of types xmm{k}{z}, xmm, mem64" do
@@ -33,13 +37,9 @@ describe Ronin::ASM::X86_64::Instructions::VFNMADD213SD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
-    end
 
-    context "when given operands of types xmm, xmm, xmm" do
-      let(:operands) { [xmm, xmm, xmm] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
+      it 'must set #form to [:"xmm{k}{z}", :xmm, :mem64]' do
+        expect(subject.form).to eq([:"xmm{k}{z}", :xmm, :mem64])
       end
     end
 
@@ -49,13 +49,21 @@ describe Ronin::ASM::X86_64::Instructions::VFNMADD213SD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :xmm, :xmm]" do
+        expect(subject.form).to eq([:xmm, :xmm, :xmm])
+      end
     end
 
-    context "when given operands of types xmm, xmm, mem64" do
-      let(:operands) { [xmm, xmm, mem64] }
+    context "when given operands of types xmm, xmm, xmm" do
+      let(:operands) { [xmm, xmm, xmm] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :xmm, :xmm]" do
+        expect(subject.form).to eq([:xmm, :xmm, :xmm])
       end
     end
 
@@ -64,6 +72,22 @@ describe Ronin::ASM::X86_64::Instructions::VFNMADD213SD do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :xmm, :mem64]" do
+        expect(subject.form).to eq([:xmm, :xmm, :mem64])
+      end
+    end
+
+    context "when given operands of types xmm, xmm, mem64" do
+      let(:operands) { [xmm, xmm, mem64] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :xmm, :mem64]" do
+        expect(subject.form).to eq([:xmm, :xmm, :mem64])
       end
     end
 
@@ -73,6 +97,10 @@ describe Ronin::ASM::X86_64::Instructions::VFNMADD213SD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"xmm{k}{z}", :xmm, :xmm, :"{er}"]' do
+        expect(subject.form).to eq([:"xmm{k}{z}", :xmm, :xmm, :"{er}"])
+      end
     end
 
     context "when given operands of types xmm, xmm, xmm, {er}" do
@@ -80,6 +108,20 @@ describe Ronin::ASM::X86_64::Instructions::VFNMADD213SD do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:xmm, :xmm, :xmm, :"{er}"]' do
+        expect(subject.form).to eq([:xmm, :xmm, :xmm, :"{er}"])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vfnmadd213sd #{operands.map(&:type).join(', ')}")
       end
     end
 

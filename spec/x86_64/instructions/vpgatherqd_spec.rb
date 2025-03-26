@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::VPGATHERQD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"xmm{k}", :vm64x]' do
+        expect(subject.form).to eq([:"xmm{k}", :vm64x])
+      end
     end
 
     context "when given operands of types xmm{k}, vm64y" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86_64::Instructions::VPGATHERQD do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:"xmm{k}", :vm64y]' do
+        expect(subject.form).to eq([:"xmm{k}", :vm64y])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86_64::Instructions::VPGATHERQD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"ymm{k}", :vm64z]' do
+        expect(subject.form).to eq([:"ymm{k}", :vm64z])
+      end
     end
 
     context "when given operands of types xmm, vm64x, xmm" do
@@ -49,6 +61,10 @@ describe Ronin::ASM::X86_64::Instructions::VPGATHERQD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :vm64x, :xmm]" do
+        expect(subject.form).to eq([:xmm, :vm64x, :xmm])
+      end
     end
 
     context "when given operands of types xmm, vm64y, xmm" do
@@ -56,6 +72,20 @@ describe Ronin::ASM::X86_64::Instructions::VPGATHERQD do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :vm64y, :xmm]" do
+        expect(subject.form).to eq([:xmm, :vm64y, :xmm])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vpgatherqd #{operands.map(&:type).join(', ')}")
       end
     end
 

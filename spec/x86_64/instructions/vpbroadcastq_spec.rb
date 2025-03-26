@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"xmm{k}{z}", :reg64]' do
+        expect(subject.form).to eq([:"xmm{k}{z}", :reg64])
+      end
     end
 
     context "when given operands of types ymm{k}{z}, reg64" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:"ymm{k}{z}", :reg64]' do
+        expect(subject.form).to eq([:"ymm{k}{z}", :reg64])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"zmm{k}{z}", :reg64]' do
+        expect(subject.form).to eq([:"zmm{k}{z}", :reg64])
+      end
     end
 
     context "when given operands of types xmm{k}{z}, xmm" do
@@ -48,6 +60,10 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:"xmm{k}{z}", :xmm]' do
+        expect(subject.form).to eq([:"xmm{k}{z}", :xmm])
       end
     end
 
@@ -57,6 +73,10 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"ymm{k}{z}", :xmm]' do
+        expect(subject.form).to eq([:"ymm{k}{z}", :xmm])
+      end
     end
 
     context "when given operands of types zmm{k}{z}, xmm" do
@@ -64,6 +84,10 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:"zmm{k}{z}", :xmm]' do
+        expect(subject.form).to eq([:"zmm{k}{z}", :xmm])
       end
     end
 
@@ -73,6 +97,10 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"xmm{k}{z}", :mem64]' do
+        expect(subject.form).to eq([:"xmm{k}{z}", :mem64])
+      end
     end
 
     context "when given operands of types ymm{k}{z}, mem64" do
@@ -80,6 +108,10 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:"ymm{k}{z}", :mem64]' do
+        expect(subject.form).to eq([:"ymm{k}{z}", :mem64])
       end
     end
 
@@ -89,6 +121,10 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"zmm{k}{z}", :mem64]' do
+        expect(subject.form).to eq([:"zmm{k}{z}", :mem64])
+      end
     end
 
     context "when given operands of types xmm, reg64" do
@@ -97,13 +133,9 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
-    end
 
-    context "when given operands of types xmm, xmm" do
-      let(:operands) { [xmm, xmm] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
+      it "must set #form to [:xmm, :reg64]" do
+        expect(subject.form).to eq([:xmm, :reg64])
       end
     end
 
@@ -113,13 +145,21 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :xmm]" do
+        expect(subject.form).to eq([:xmm, :xmm])
+      end
     end
 
-    context "when given operands of types xmm, mem64" do
-      let(:operands) { [xmm, mem64] }
+    context "when given operands of types xmm, xmm" do
+      let(:operands) { [xmm, xmm] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :xmm]" do
+        expect(subject.form).to eq([:xmm, :xmm])
       end
     end
 
@@ -128,6 +168,22 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :mem64]" do
+        expect(subject.form).to eq([:xmm, :mem64])
+      end
+    end
+
+    context "when given operands of types xmm, mem64" do
+      let(:operands) { [xmm, mem64] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :mem64]" do
+        expect(subject.form).to eq([:xmm, :mem64])
       end
     end
 
@@ -137,13 +193,9 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
-    end
 
-    context "when given operands of types ymm, xmm" do
-      let(:operands) { [ymm, xmm] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
+      it "must set #form to [:ymm, :reg64]" do
+        expect(subject.form).to eq([:ymm, :reg64])
       end
     end
 
@@ -153,13 +205,21 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:ymm, :xmm]" do
+        expect(subject.form).to eq([:ymm, :xmm])
+      end
     end
 
-    context "when given operands of types ymm, mem64" do
-      let(:operands) { [ymm, mem64] }
+    context "when given operands of types ymm, xmm" do
+      let(:operands) { [ymm, xmm] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:ymm, :xmm]" do
+        expect(subject.form).to eq([:ymm, :xmm])
       end
     end
 
@@ -168,6 +228,22 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:ymm, :mem64]" do
+        expect(subject.form).to eq([:ymm, :mem64])
+      end
+    end
+
+    context "when given operands of types ymm, mem64" do
+      let(:operands) { [ymm, mem64] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:ymm, :mem64]" do
+        expect(subject.form).to eq([:ymm, :mem64])
       end
     end
 
@@ -177,6 +253,10 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:zmm, :reg64]" do
+        expect(subject.form).to eq([:zmm, :reg64])
+      end
     end
 
     context "when given operands of types zmm, xmm" do
@@ -185,6 +265,10 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:zmm, :xmm]" do
+        expect(subject.form).to eq([:zmm, :xmm])
+      end
     end
 
     context "when given operands of types zmm, mem64" do
@@ -192,6 +276,20 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:zmm, :mem64]" do
+        expect(subject.form).to eq([:zmm, :mem64])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vpbroadcastq #{operands.map(&:type).join(', ')}")
       end
     end
 

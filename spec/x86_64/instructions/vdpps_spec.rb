@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::VDPPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :xmm, :xmm, :imm8]" do
+        expect(subject.form).to eq([:xmm, :xmm, :xmm, :imm8])
+      end
     end
 
     context "when given operands of types xmm, xmm, mem128, imm8" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86_64::Instructions::VDPPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :xmm, :mem128, :imm8]" do
+        expect(subject.form).to eq([:xmm, :xmm, :mem128, :imm8])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86_64::Instructions::VDPPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:ymm, :ymm, :ymm, :imm8]" do
+        expect(subject.form).to eq([:ymm, :ymm, :ymm, :imm8])
+      end
     end
 
     context "when given operands of types ymm, ymm, mem256, imm8" do
@@ -48,6 +60,20 @@ describe Ronin::ASM::X86_64::Instructions::VDPPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:ymm, :ymm, :mem256, :imm8]" do
+        expect(subject.form).to eq([:ymm, :ymm, :mem256, :imm8])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vdpps #{operands.map(&:type).join(', ')}")
       end
     end
 

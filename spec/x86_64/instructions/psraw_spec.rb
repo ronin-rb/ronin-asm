@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::PSRAW do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:mmx, :imm8]" do
+        expect(subject.form).to eq([:mmx, :imm8])
+      end
     end
 
     context "when given operands of types mmx, mmx" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86_64::Instructions::PSRAW do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mmx, :mmx]" do
+        expect(subject.form).to eq([:mmx, :mmx])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86_64::Instructions::PSRAW do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:mmx, :mem64]" do
+        expect(subject.form).to eq([:mmx, :mem64])
+      end
     end
 
     context "when given operands of types xmm, imm8" do
@@ -48,6 +60,10 @@ describe Ronin::ASM::X86_64::Instructions::PSRAW do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :imm8]" do
+        expect(subject.form).to eq([:xmm, :imm8])
       end
     end
 
@@ -57,6 +73,10 @@ describe Ronin::ASM::X86_64::Instructions::PSRAW do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :xmm]" do
+        expect(subject.form).to eq([:xmm, :xmm])
+      end
     end
 
     context "when given operands of types xmm, mem128" do
@@ -64,6 +84,20 @@ describe Ronin::ASM::X86_64::Instructions::PSRAW do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :mem128]" do
+        expect(subject.form).to eq([:xmm, :mem128])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: psraw #{operands.map(&:type).join(', ')}")
       end
     end
 
