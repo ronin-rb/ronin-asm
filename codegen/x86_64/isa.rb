@@ -282,7 +282,7 @@ module CodeGen
         #
         # Represents the `<REX>` XML element within `<Encoding>`.
         #
-        REX = Data.define(:mandatory, :w, :r, :x, :b) do
+        class REX < Data.define(:mandatory, :w, :r, :x, :b)
 
           extend XMLHelpers
 
@@ -323,15 +323,15 @@ module CodeGen
       class Operand < X86::ISA::Operand
 
         # Relative offset types
-        REL_TYPES = X86::ISA::REL_TYPES + Set[:rel32m]
+        REL_TYPES = X86::ISA::Operand::REL_TYPES + Set[:rel32m]
         def relative_offset? = REL_TYPES.include?(type)
 
         def rel32m? = type == :rel32m
 
-        IMM_TYPES = X86::ISA::IMM_TYPES + Set[:imm64]
+        IMM_TYPES = X86::ISA::Operand::IMM_TYPES + Set[:imm64]
         def immediate? = IMM_TYPES.include?(type)
 
-        MEM_TYPES = X86::ISA::MEM_TYPES + Set[:sibmem, :rel32m]
+        MEM_TYPES = X86::ISA::Operand::MEM_TYPES + Set[:sibmem, :rel32m]
         def memory? = MEM_TYPES.include?(type)
 
         def tmm_register? = type == :tmm
@@ -339,22 +339,22 @@ module CodeGen
         def sibmem? = type == :sibmem
 
         # Set of specific register types.
-        SPECIFIC_REGISTERS = X86::ISA::SPECIFIC_REGISTERS + Set[:rax]
+        SPECIFIC_REGISTERS = X86::ISA::Operand::SPECIFIC_REGISTERS + Set[:rax]
         def specific_register? = SPECIFIC_REGISTERS.include?(type)
 
         # Register types
-        REG_TYPES = X86::ISA::REG_TYPES + Set[:r64, :r8l, :r16l, :r32l, :tmm, :rax]
+        REG_TYPES = X86::ISA::Operand::REG_TYPES + Set[:r64, :r8l, :r16l, :r32l, :tmm, :rax]
         def register? = REG_TYPES.include?(type)
 
         # Mapping of types and their sub-types
-        SUB_TYPES = X86::ISA::SUB_TYPES.merge(
+        SUB_TYPES = X86::ISA::Operand::SUB_TYPES.merge(
           :sibmem => :m,
           :rel32m => :m8
         )
         def sub_type = SUB_TYPES[type]
 
         # Mapping of ISA operand types to renamed ronin-asm operand types.
-        TYPE_RENAMES = X86::ISA::TYPE_RENAMES.merge(
+        TYPE_RENAMES = X86::ISA::Operand::TYPE_RENAMES.merge(
           # NOTE: rel32m is only used in the `prefetchit0` and `prefetchit1`
           # instructions, but other x86-64 instruction set documentation sources
           # use `m8`/`mem8`, since the instructions take a pointer to a
