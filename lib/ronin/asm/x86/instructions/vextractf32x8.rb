@@ -45,8 +45,23 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:vextractf32x8,*operands,**kwargs)
+
+            @form = if @operands.length == 3 && @operands[0].type_of?(:"ymm{k}{z}") && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:imm8)
+                      [:"ymm{k}{z}", :zmm, :imm8]
+                    elsif @operands.length == 3 && @operands[0].type_of?(:"mem256{k}") && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:imm8)
+                      [:"mem256{k}", :zmm, :imm8]
+                    elsif @operands.length == 3 && @operands[0].type_of?(:ymm) && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:imm8)
+                      [:ymm, :zmm, :imm8]
+                    elsif @operands.length == 3 && @operands[0].type_of?(:mem256) && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:imm8)
+                      [:mem256, :zmm, :imm8]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,28 +73,29 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 3 && @operands[0].type_of?(:"ymm{k}{z}") && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:imm8)
+            case @form
+            when [:"ymm{k}{z}", :zmm, :imm8]
               encoder.write_evex(mmm: 0b011, pp: 0b01, ll: 0b10, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x1b) +
               encoder.write_modrm(0b11,@operands[1],@operands[0]) +
               encoder.write_immediate(@operands[2],1)
-            elsif @operands.length == 3 && @operands[0].type_of?(:"mem256{k}") && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:imm8)
+            when [:"mem256{k}", :zmm, :imm8]
               encoder.write_evex(mmm: 0b011, pp: 0b01, ll: 0b10, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 32) +
               encoder.write_opcode(0x1b) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0]) +
               encoder.write_immediate(@operands[2],1)
-            elsif @operands.length == 3 && @operands[0].type_of?(:ymm) && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:imm8)
+            when [:ymm, :zmm, :imm8]
               encoder.write_evex(mmm: 0b011, pp: 0b01, ll: 0b10, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x1b) +
               encoder.write_modrm(0b11,@operands[1],@operands[0]) +
               encoder.write_immediate(@operands[2],1)
-            elsif @operands.length == 3 && @operands[0].type_of?(:mem256) && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:imm8)
+            when [:mem256, :zmm, :imm8]
               encoder.write_evex(mmm: 0b011, pp: 0b01, ll: 0b10, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 32) +
               encoder.write_opcode(0x1b) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0]) +
               encoder.write_immediate(@operands[2],1)
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 

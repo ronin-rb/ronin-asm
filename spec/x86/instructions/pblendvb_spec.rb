@@ -25,6 +25,10 @@ describe Ronin::ASM::X86::Instructions::PBLENDVB do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :xmm, :xmm0]" do
+        expect(subject.form).to eq([:xmm, :xmm, :xmm0])
+      end
     end
 
     context "when given operands of types xmm, mem128, xmm0" do
@@ -32,6 +36,20 @@ describe Ronin::ASM::X86::Instructions::PBLENDVB do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :mem128, :xmm0]" do
+        expect(subject.form).to eq([:xmm, :mem128, :xmm0])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: pblendvb #{operands.map(&:type).join(', ')}")
       end
     end
 
