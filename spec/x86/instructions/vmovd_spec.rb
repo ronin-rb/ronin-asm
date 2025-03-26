@@ -25,6 +25,10 @@ describe Ronin::ASM::X86::Instructions::VMOVD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg32, :xmm]" do
+        expect(subject.form).to eq([:reg32, :xmm])
+      end
     end
 
     context "when given operands of types reg32, xmm" do
@@ -33,13 +37,9 @@ describe Ronin::ASM::X86::Instructions::VMOVD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
-    end
 
-    context "when given operands of types xmm, reg32" do
-      let(:operands) { [xmm, reg32] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
+      it "must set #form to [:reg32, :xmm]" do
+        expect(subject.form).to eq([:reg32, :xmm])
       end
     end
 
@@ -49,13 +49,21 @@ describe Ronin::ASM::X86::Instructions::VMOVD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :reg32]" do
+        expect(subject.form).to eq([:xmm, :reg32])
+      end
     end
 
-    context "when given operands of types xmm, mem32" do
-      let(:operands) { [xmm, mem32] }
+    context "when given operands of types xmm, reg32" do
+      let(:operands) { [xmm, reg32] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :reg32]" do
+        expect(subject.form).to eq([:xmm, :reg32])
       end
     end
 
@@ -65,13 +73,21 @@ describe Ronin::ASM::X86::Instructions::VMOVD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :mem32]" do
+        expect(subject.form).to eq([:xmm, :mem32])
+      end
     end
 
-    context "when given operands of types mem32, xmm" do
-      let(:operands) { [mem32, xmm] }
+    context "when given operands of types xmm, mem32" do
+      let(:operands) { [xmm, mem32] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :mem32]" do
+        expect(subject.form).to eq([:xmm, :mem32])
       end
     end
 
@@ -80,6 +96,32 @@ describe Ronin::ASM::X86::Instructions::VMOVD do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem32, :xmm]" do
+        expect(subject.form).to eq([:mem32, :xmm])
+      end
+    end
+
+    context "when given operands of types mem32, xmm" do
+      let(:operands) { [mem32, xmm] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem32, :xmm]" do
+        expect(subject.form).to eq([:mem32, :xmm])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vmovd #{operands.map(&:type).join(', ')}")
       end
     end
 

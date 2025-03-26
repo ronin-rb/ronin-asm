@@ -25,6 +25,10 @@ describe Ronin::ASM::X86::Instructions::VSCATTERQPD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"vm64x{k}", :xmm]' do
+        expect(subject.form).to eq([:"vm64x{k}", :xmm])
+      end
     end
 
     context "when given operands of types vm64y{k}, ymm" do
@@ -33,6 +37,10 @@ describe Ronin::ASM::X86::Instructions::VSCATTERQPD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"vm64y{k}", :ymm]' do
+        expect(subject.form).to eq([:"vm64y{k}", :ymm])
+      end
     end
 
     context "when given operands of types vm64z{k}, zmm" do
@@ -40,6 +48,20 @@ describe Ronin::ASM::X86::Instructions::VSCATTERQPD do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:"vm64z{k}", :zmm]' do
+        expect(subject.form).to eq([:"vm64z{k}", :zmm])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vscatterqpd #{operands.map(&:type).join(', ')}")
       end
     end
 

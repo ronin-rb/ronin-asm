@@ -25,6 +25,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"k{k}", :xmm, :"mem128/mem32bcst", :imm8]' do
+        expect(subject.form).to eq([:"k{k}", :xmm, :"mem128/mem32bcst", :imm8])
+      end
     end
 
     context "when given operands of types k, xmm, mem128/mem32bcst, imm8" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:k, :xmm, :"mem128/mem32bcst", :imm8]' do
+        expect(subject.form).to eq([:k, :xmm, :"mem128/mem32bcst", :imm8])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"k{k}", :xmm, :xmm, :imm8]' do
+        expect(subject.form).to eq([:"k{k}", :xmm, :xmm, :imm8])
+      end
     end
 
     context "when given operands of types k, xmm, xmm, imm8" do
@@ -48,6 +60,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:k, :xmm, :xmm, :imm8]" do
+        expect(subject.form).to eq([:k, :xmm, :xmm, :imm8])
       end
     end
 
@@ -57,6 +73,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"k{k}", :ymm, :"mem256/mem32bcst", :imm8]' do
+        expect(subject.form).to eq([:"k{k}", :ymm, :"mem256/mem32bcst", :imm8])
+      end
     end
 
     context "when given operands of types k, ymm, mem256/mem32bcst, imm8" do
@@ -64,6 +84,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:k, :ymm, :"mem256/mem32bcst", :imm8]' do
+        expect(subject.form).to eq([:k, :ymm, :"mem256/mem32bcst", :imm8])
       end
     end
 
@@ -73,6 +97,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"k{k}", :ymm, :ymm, :imm8]' do
+        expect(subject.form).to eq([:"k{k}", :ymm, :ymm, :imm8])
+      end
     end
 
     context "when given operands of types k, ymm, ymm, imm8" do
@@ -80,6 +108,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:k, :ymm, :ymm, :imm8]" do
+        expect(subject.form).to eq([:k, :ymm, :ymm, :imm8])
       end
     end
 
@@ -89,6 +121,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"k{k}", :zmm, :"mem512/mem32bcst", :imm8]' do
+        expect(subject.form).to eq([:"k{k}", :zmm, :"mem512/mem32bcst", :imm8])
+      end
     end
 
     context "when given operands of types k, zmm, mem512/mem32bcst, imm8" do
@@ -96,6 +132,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:k, :zmm, :"mem512/mem32bcst", :imm8]' do
+        expect(subject.form).to eq([:k, :zmm, :"mem512/mem32bcst", :imm8])
       end
     end
 
@@ -105,6 +145,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"k{k}", :zmm, :zmm, :imm8]' do
+        expect(subject.form).to eq([:"k{k}", :zmm, :zmm, :imm8])
+      end
     end
 
     context "when given operands of types k, zmm, zmm, imm8" do
@@ -112,6 +156,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:k, :zmm, :zmm, :imm8]" do
+        expect(subject.form).to eq([:k, :zmm, :zmm, :imm8])
       end
     end
 
@@ -121,6 +169,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :xmm, :xmm, :imm8]" do
+        expect(subject.form).to eq([:xmm, :xmm, :xmm, :imm8])
+      end
     end
 
     context "when given operands of types xmm, xmm, mem128, imm8" do
@@ -128,6 +180,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :xmm, :mem128, :imm8]" do
+        expect(subject.form).to eq([:xmm, :xmm, :mem128, :imm8])
       end
     end
 
@@ -137,6 +193,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:ymm, :ymm, :ymm, :imm8]" do
+        expect(subject.form).to eq([:ymm, :ymm, :ymm, :imm8])
+      end
     end
 
     context "when given operands of types ymm, ymm, mem256, imm8" do
@@ -144,6 +204,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:ymm, :ymm, :mem256, :imm8]" do
+        expect(subject.form).to eq([:ymm, :ymm, :mem256, :imm8])
       end
     end
 
@@ -153,6 +217,10 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"k{k}", :zmm, :zmm, :"{sae}", :imm8]' do
+        expect(subject.form).to eq([:"k{k}", :zmm, :zmm, :"{sae}", :imm8])
+      end
     end
 
     context "when given operands of types k, zmm, zmm, {sae}, imm8" do
@@ -160,6 +228,20 @@ describe Ronin::ASM::X86::Instructions::VCMPPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:k, :zmm, :zmm, :"{sae}", :imm8]' do
+        expect(subject.form).to eq([:k, :zmm, :zmm, :"{sae}", :imm8])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vcmpps #{operands.map(&:type).join(', ')}")
       end
     end
 
