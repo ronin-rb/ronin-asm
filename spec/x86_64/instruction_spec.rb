@@ -6,8 +6,12 @@ require 'ronin/asm/x86_64/immediate'
 require 'ronin/asm/x86_64/memory'
 
 describe Ronin::ASM::X86_64::Instruction do
-  it "must inherit from Ronin::ASM::Instruction" do
-    expect(described_class).to be < Ronin::ASM::Instruction
+  it "must inherit from Ronin::ASM::X86::Instruction" do
+    expect(described_class).to be < Ronin::ASM::X86::Instruction
+  end
+
+  it "must include Ronin::ASM::X86_64::Operand" do
+    expect(described_class).to include(Ronin::ASM::X86_64::Operand)
   end
 
   let(:register)  { Ronin::ASM::X86_64::Registers::EAX }
