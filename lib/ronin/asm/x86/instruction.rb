@@ -30,6 +30,11 @@ module Ronin
       #
       class Instruction < ASM::Instruction
 
+        # The instruction form based on the operand types.
+        #
+        # @return [Array<Symbol>]
+        attr_reader :form
+
         #
         # Converts the instruction into a String.
         #
