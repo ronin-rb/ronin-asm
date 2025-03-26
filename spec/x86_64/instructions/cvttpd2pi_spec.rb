@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::CVTTPD2PI do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:mmx, :xmm]" do
+        expect(subject.form).to eq([:mmx, :xmm])
+      end
     end
 
     context "when given operands of types mmx, mem128" do
@@ -32,6 +36,20 @@ describe Ronin::ASM::X86_64::Instructions::CVTTPD2PI do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mmx, :mem128]" do
+        expect(subject.form).to eq([:mmx, :mem128])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: cvttpd2pi #{operands.map(&:type).join(', ')}")
       end
     end
 
