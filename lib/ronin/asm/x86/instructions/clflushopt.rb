@@ -45,8 +45,17 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:clflushopt,*operands,**kwargs)
+
+            @form = if @operands.length == 1 && @operands[0].type_of?(:mem8)
+                      [:mem8]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,13 +67,14 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 1 && @operands[0].type_of?(:mem8)
+            case @form
+            when [:mem8]
               encoder.write_prefix(0x66, mandatory: true) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xae) +
               encoder.write_modrm(@operands[0],7,@operands[0])
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 
