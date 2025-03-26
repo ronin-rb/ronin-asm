@@ -25,6 +25,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVB2M do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:k, :xmm]" do
+        expect(subject.form).to eq([:k, :xmm])
+      end
     end
 
     context "when given operands of types k, ymm" do
@@ -33,6 +37,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVB2M do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:k, :ymm]" do
+        expect(subject.form).to eq([:k, :ymm])
+      end
     end
 
     context "when given operands of types k, zmm" do
@@ -40,6 +48,20 @@ describe Ronin::ASM::X86::Instructions::VPMOVB2M do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:k, :zmm]" do
+        expect(subject.form).to eq([:k, :zmm])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vpmovb2m #{operands.map(&:type).join(', ')}")
       end
     end
 

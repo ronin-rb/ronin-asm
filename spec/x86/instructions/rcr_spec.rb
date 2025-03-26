@@ -25,6 +25,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:reg8, :"1"]' do
+        expect(subject.form).to eq([:reg8, :"1"])
+      end
     end
 
     context "when given operands of types reg8, imm8" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg8, :imm8]" do
+        expect(subject.form).to eq([:reg8, :imm8])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg8, :cl]" do
+        expect(subject.form).to eq([:reg8, :cl])
+      end
     end
 
     context "when given operands of types reg16, 1" do
@@ -48,6 +60,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:reg16, :"1"]' do
+        expect(subject.form).to eq([:reg16, :"1"])
       end
     end
 
@@ -57,6 +73,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg16, :imm8]" do
+        expect(subject.form).to eq([:reg16, :imm8])
+      end
     end
 
     context "when given operands of types reg16, cl" do
@@ -64,6 +84,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg16, :cl]" do
+        expect(subject.form).to eq([:reg16, :cl])
       end
     end
 
@@ -73,6 +97,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:reg32, :"1"]' do
+        expect(subject.form).to eq([:reg32, :"1"])
+      end
     end
 
     context "when given operands of types reg32, imm8" do
@@ -80,6 +108,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg32, :imm8]" do
+        expect(subject.form).to eq([:reg32, :imm8])
       end
     end
 
@@ -89,6 +121,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg32, :cl]" do
+        expect(subject.form).to eq([:reg32, :cl])
+      end
     end
 
     context "when given operands of types mem8, 1" do
@@ -96,6 +132,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:mem8, :"1"]' do
+        expect(subject.form).to eq([:mem8, :"1"])
       end
     end
 
@@ -105,6 +145,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:mem8, :imm8]" do
+        expect(subject.form).to eq([:mem8, :imm8])
+      end
     end
 
     context "when given operands of types mem8, cl" do
@@ -112,6 +156,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem8, :cl]" do
+        expect(subject.form).to eq([:mem8, :cl])
       end
     end
 
@@ -121,6 +169,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:mem16, :"1"]' do
+        expect(subject.form).to eq([:mem16, :"1"])
+      end
     end
 
     context "when given operands of types mem16, imm8" do
@@ -128,6 +180,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem16, :imm8]" do
+        expect(subject.form).to eq([:mem16, :imm8])
       end
     end
 
@@ -137,6 +193,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:mem16, :cl]" do
+        expect(subject.form).to eq([:mem16, :cl])
+      end
     end
 
     context "when given operands of types mem32, 1" do
@@ -144,6 +204,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:mem32, :"1"]' do
+        expect(subject.form).to eq([:mem32, :"1"])
       end
     end
 
@@ -153,6 +217,10 @@ describe Ronin::ASM::X86::Instructions::RCR do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:mem32, :imm8]" do
+        expect(subject.form).to eq([:mem32, :imm8])
+      end
     end
 
     context "when given operands of types mem32, cl" do
@@ -160,6 +228,20 @@ describe Ronin::ASM::X86::Instructions::RCR do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem32, :cl]" do
+        expect(subject.form).to eq([:mem32, :cl])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: rcr #{operands.map(&:type).join(', ')}")
       end
     end
 

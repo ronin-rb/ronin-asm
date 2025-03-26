@@ -25,6 +25,10 @@ describe Ronin::ASM::X86::Instructions::VPERM2F128 do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:ymm, :ymm, :ymm, :imm8]" do
+        expect(subject.form).to eq([:ymm, :ymm, :ymm, :imm8])
+      end
     end
 
     context "when given operands of types ymm, ymm, mem256, imm8" do
@@ -32,6 +36,20 @@ describe Ronin::ASM::X86::Instructions::VPERM2F128 do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:ymm, :ymm, :mem256, :imm8]" do
+        expect(subject.form).to eq([:ymm, :ymm, :mem256, :imm8])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vperm2f128 #{operands.map(&:type).join(', ')}")
       end
     end
 
