@@ -45,8 +45,17 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:int,*operands,**kwargs)
+
+            @form = if @operands.length == 1 && @operands[0].type_of?(:imm8)
+                      [:imm8]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,11 +67,12 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 1 && @operands[0].type_of?(:imm8)
+            case @form
+            when [:imm8]
               encoder.write_opcode(0xcd) +
               encoder.write_immediate(@operands[0],1)
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 

@@ -45,8 +45,17 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:cdqe,*operands,**kwargs)
+
+            @form = if @operands.empty?
+                      []
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,11 +67,12 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.empty?
+            case @form
+            when []
               encoder.write_rex(mandatory: true, w: 1) +
               encoder.write_opcode(0x98)
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 

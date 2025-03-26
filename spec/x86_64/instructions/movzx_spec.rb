@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::MOVZX do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg16, :reg8]" do
+        expect(subject.form).to eq([:reg16, :reg8])
+      end
     end
 
     context "when given operands of types reg16, mem8" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86_64::Instructions::MOVZX do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg16, :mem8]" do
+        expect(subject.form).to eq([:reg16, :mem8])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86_64::Instructions::MOVZX do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg32, :reg8]" do
+        expect(subject.form).to eq([:reg32, :reg8])
+      end
     end
 
     context "when given operands of types reg32, reg16" do
@@ -48,6 +60,10 @@ describe Ronin::ASM::X86_64::Instructions::MOVZX do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg32, :reg16]" do
+        expect(subject.form).to eq([:reg32, :reg16])
       end
     end
 
@@ -57,6 +73,10 @@ describe Ronin::ASM::X86_64::Instructions::MOVZX do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg32, :mem8]" do
+        expect(subject.form).to eq([:reg32, :mem8])
+      end
     end
 
     context "when given operands of types reg32, mem16" do
@@ -64,6 +84,10 @@ describe Ronin::ASM::X86_64::Instructions::MOVZX do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg32, :mem16]" do
+        expect(subject.form).to eq([:reg32, :mem16])
       end
     end
 
@@ -73,6 +97,10 @@ describe Ronin::ASM::X86_64::Instructions::MOVZX do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg64, :reg8]" do
+        expect(subject.form).to eq([:reg64, :reg8])
+      end
     end
 
     context "when given operands of types reg64, reg16" do
@@ -80,6 +108,10 @@ describe Ronin::ASM::X86_64::Instructions::MOVZX do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg64, :reg16]" do
+        expect(subject.form).to eq([:reg64, :reg16])
       end
     end
 
@@ -89,6 +121,10 @@ describe Ronin::ASM::X86_64::Instructions::MOVZX do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg64, :mem8]" do
+        expect(subject.form).to eq([:reg64, :mem8])
+      end
     end
 
     context "when given operands of types reg64, mem16" do
@@ -96,6 +132,20 @@ describe Ronin::ASM::X86_64::Instructions::MOVZX do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg64, :mem16]" do
+        expect(subject.form).to eq([:reg64, :mem16])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: movzx #{operands.map(&:type).join(', ')}")
       end
     end
 
