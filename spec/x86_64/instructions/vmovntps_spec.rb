@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::VMOVNTPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:mem128, :xmm]" do
+        expect(subject.form).to eq([:mem128, :xmm])
+      end
     end
 
     context "when given operands of types mem128, xmm" do
@@ -33,13 +37,9 @@ describe Ronin::ASM::X86_64::Instructions::VMOVNTPS do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
-    end
 
-    context "when given operands of types mem256, ymm" do
-      let(:operands) { [mem256, ymm] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
+      it "must set #form to [:mem128, :xmm]" do
+        expect(subject.form).to eq([:mem128, :xmm])
       end
     end
 
@@ -48,6 +48,22 @@ describe Ronin::ASM::X86_64::Instructions::VMOVNTPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem256, :ymm]" do
+        expect(subject.form).to eq([:mem256, :ymm])
+      end
+    end
+
+    context "when given operands of types mem256, ymm" do
+      let(:operands) { [mem256, ymm] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem256, :ymm]" do
+        expect(subject.form).to eq([:mem256, :ymm])
       end
     end
 
@@ -56,6 +72,20 @@ describe Ronin::ASM::X86_64::Instructions::VMOVNTPS do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem512, :zmm]" do
+        expect(subject.form).to eq([:mem512, :zmm])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vmovntps #{operands.map(&:type).join(', ')}")
       end
     end
 
