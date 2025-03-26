@@ -45,8 +45,27 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:movzx,*operands,**kwargs)
+
+            @form = if @operands.length == 2 && @operands[0].type_of?(:reg16) && @operands[1].type_of?(:reg8)
+                      [:reg16, :reg8]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg16) && @operands[1].type_of?(:mem8)
+                      [:reg16, :mem8]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:reg8)
+                      [:reg32, :reg8]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:reg16)
+                      [:reg32, :reg16]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:mem8)
+                      [:reg32, :mem8]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:mem16)
+                      [:reg32, :mem16]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,34 +77,35 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type_of?(:reg16) && @operands[1].type_of?(:reg8)
+            case @form
+            when [:reg16, :reg8]
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xb6) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg16) && @operands[1].type_of?(:mem8)
+            when [:reg16, :mem8]
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xb6) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:reg8)
+            when [:reg32, :reg8]
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xb6) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:reg16)
+            when [:reg32, :reg16]
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xb7) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:mem8)
+            when [:reg32, :mem8]
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xb6) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:mem16)
+            when [:reg32, :mem16]
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xb7) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 

@@ -45,8 +45,27 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:vcmpsh,*operands,**kwargs)
+
+            @form = if @operands.length == 4 && @operands[0].type_of?(:"k{k}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm) && @operands[3].type_of?(:imm8)
+                      [:"k{k}", :xmm, :xmm, :imm8]
+                    elsif @operands.length == 4 && @operands[0].type_of?(:k) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm) && @operands[3].type_of?(:imm8)
+                      [:k, :xmm, :xmm, :imm8]
+                    elsif @operands.length == 4 && @operands[0].type_of?(:"k{k}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem16) && @operands[3].type_of?(:imm8)
+                      [:"k{k}", :xmm, :mem16, :imm8]
+                    elsif @operands.length == 4 && @operands[0].type_of?(:k) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem16) && @operands[3].type_of?(:imm8)
+                      [:k, :xmm, :mem16, :imm8]
+                    elsif @operands.length == 5 && @operands[0].type_of?(:"k{k}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm) && @operands[3].type_of?(:"{sae}") && @operands[4].type_of?(:imm8)
+                      [:"k{k}", :xmm, :xmm, :"{sae}", :imm8]
+                    elsif @operands.length == 5 && @operands[0].type_of?(:k) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm) && @operands[3].type_of?(:"{sae}") && @operands[4].type_of?(:imm8)
+                      [:k, :xmm, :xmm, :"{sae}", :imm8]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,38 +77,39 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 4 && @operands[0].type_of?(:"k{k}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm) && @operands[3].type_of?(:imm8)
+            case @form
+            when [:"k{k}", :xmm, :xmm, :imm8]
               encoder.write_evex(mmm: 0b011, pp: 0b10, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(0b11,@operands[0],@operands[2]) +
               encoder.write_immediate(@operands[3],1)
-            elsif @operands.length == 4 && @operands[0].type_of?(:k) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm) && @operands[3].type_of?(:imm8)
+            when [:k, :xmm, :xmm, :imm8]
               encoder.write_evex(mmm: 0b011, pp: 0b10, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(0b11,@operands[0],@operands[2]) +
               encoder.write_immediate(@operands[3],1)
-            elsif @operands.length == 4 && @operands[0].type_of?(:"k{k}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem16) && @operands[3].type_of?(:imm8)
+            when [:"k{k}", :xmm, :mem16, :imm8]
               encoder.write_evex(mmm: 0b011, pp: 0b10, ll: 0b00, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: 0, disp8xN: 4) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2]) +
               encoder.write_immediate(@operands[3],1)
-            elsif @operands.length == 4 && @operands[0].type_of?(:k) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem16) && @operands[3].type_of?(:imm8)
+            when [:k, :xmm, :mem16, :imm8]
               encoder.write_evex(mmm: 0b011, pp: 0b10, ll: 0b00, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 4) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2]) +
               encoder.write_immediate(@operands[3],1)
-            elsif @operands.length == 5 && @operands[0].type_of?(:"k{k}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm) && @operands[3].type_of?(:"{sae}") && @operands[4].type_of?(:imm8)
+            when [:"k{k}", :xmm, :xmm, :"{sae}", :imm8]
               encoder.write_evex(mmm: 0b011, pp: 0b10, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 1, aaa: @operands[0], z: 0) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(0b11,@operands[0],@operands[2]) +
               encoder.write_immediate(@operands[4],1)
-            elsif @operands.length == 5 && @operands[0].type_of?(:k) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm) && @operands[3].type_of?(:"{sae}") && @operands[4].type_of?(:imm8)
+            when [:k, :xmm, :xmm, :"{sae}", :imm8]
               encoder.write_evex(mmm: 0b011, pp: 0b10, w: 0, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 1, aaa: 0, z: 0) +
               encoder.write_opcode(0xc2) +
               encoder.write_modrm(0b11,@operands[0],@operands[2]) +
               encoder.write_immediate(@operands[4],1)
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 
