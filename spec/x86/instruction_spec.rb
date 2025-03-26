@@ -17,6 +17,12 @@ describe Ronin::ASM::X86::Instruction do
 
   subject { described_class.new(name, *operands) }
 
+  describe "#initialize" do
+    it "must not set #form by default" do
+      expect(subject.form).to be(nil)
+    end
+  end
+
   describe "#to_s" do
     it "must call Ronin::ASM::X86::Syntax::Intel.format_instruction" do
       expect(subject.to_s).to eq(
