@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::KMOVQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:k, :k]" do
+        expect(subject.form).to eq([:k, :k])
+      end
     end
 
     context "when given operands of types k, reg64" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86_64::Instructions::KMOVQ do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:k, :reg64]" do
+        expect(subject.form).to eq([:k, :reg64])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86_64::Instructions::KMOVQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:k, :mem64]" do
+        expect(subject.form).to eq([:k, :mem64])
+      end
     end
 
     context "when given operands of types reg64, k" do
@@ -49,6 +61,10 @@ describe Ronin::ASM::X86_64::Instructions::KMOVQ do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg64, :k]" do
+        expect(subject.form).to eq([:reg64, :k])
+      end
     end
 
     context "when given operands of types mem64, k" do
@@ -56,6 +72,20 @@ describe Ronin::ASM::X86_64::Instructions::KMOVQ do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem64, :k]" do
+        expect(subject.form).to eq([:mem64, :k])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: kmovq #{operands.map(&:type).join(', ')}")
       end
     end
 

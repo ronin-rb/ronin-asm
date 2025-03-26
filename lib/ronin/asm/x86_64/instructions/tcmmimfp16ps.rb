@@ -45,8 +45,17 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:tcmmimfp16ps,*operands,**kwargs)
+
+            @form = if @operands.length == 3 && @operands[0].type_of?(:tmm) && @operands[1].type_of?(:tmm) && @operands[2].type_of?(:tmm)
+                      [:tmm, :tmm, :tmm]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,12 +67,13 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 3 && @operands[0].type_of?(:tmm) && @operands[1].type_of?(:tmm) && @operands[2].type_of?(:tmm)
+            case @form
+            when [:tmm, :tmm, :tmm]
               encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00010, pp: 0b01, r: @operands[0], b: @operands[1], vvvv: @operands[2]) +
               encoder.write_opcode(0x6c) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 

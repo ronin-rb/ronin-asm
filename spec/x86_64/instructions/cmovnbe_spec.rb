@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNBE do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg16, :reg16]" do
+        expect(subject.form).to eq([:reg16, :reg16])
+      end
     end
 
     context "when given operands of types reg16, mem16" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNBE do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg16, :mem16]" do
+        expect(subject.form).to eq([:reg16, :mem16])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNBE do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg32, :reg32]" do
+        expect(subject.form).to eq([:reg32, :reg32])
+      end
     end
 
     context "when given operands of types reg32, mem32" do
@@ -48,6 +60,10 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNBE do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg32, :mem32]" do
+        expect(subject.form).to eq([:reg32, :mem32])
       end
     end
 
@@ -57,6 +73,10 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNBE do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg64, :reg64]" do
+        expect(subject.form).to eq([:reg64, :reg64])
+      end
     end
 
     context "when given operands of types reg64, mem64" do
@@ -64,6 +84,20 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNBE do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg64, :mem64]" do
+        expect(subject.form).to eq([:reg64, :mem64])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: cmovnbe #{operands.map(&:type).join(', ')}")
       end
     end
 

@@ -45,8 +45,63 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:shl,*operands,**kwargs)
+
+            @form = if @operands.length == 2 && @operands[0].type_of?(:reg8) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+                      [:reg8, :"1"]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg8) && @operands[1].type_of?(:imm8)
+                      [:reg8, :imm8]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg8) && @operands[1] == Registers::CL
+                      [:reg8, :cl]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg16) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+                      [:reg16, :"1"]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg16) && @operands[1].type_of?(:imm8)
+                      [:reg16, :imm8]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg16) && @operands[1] == Registers::CL
+                      [:reg16, :cl]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+                      [:reg32, :"1"]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:imm8)
+                      [:reg32, :imm8]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1] == Registers::CL
+                      [:reg32, :cl]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg64) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+                      [:reg64, :"1"]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg64) && @operands[1].type_of?(:imm8)
+                      [:reg64, :imm8]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:reg64) && @operands[1] == Registers::CL
+                      [:reg64, :cl]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem8) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+                      [:mem8, :"1"]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem8) && @operands[1].type_of?(:imm8)
+                      [:mem8, :imm8]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem8) && @operands[1] == Registers::CL
+                      [:mem8, :cl]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem16) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+                      [:mem16, :"1"]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem16) && @operands[1].type_of?(:imm8)
+                      [:mem16, :imm8]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem16) && @operands[1] == Registers::CL
+                      [:mem16, :cl]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+                      [:mem32, :"1"]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:imm8)
+                      [:mem32, :imm8]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1] == Registers::CL
+                      [:mem32, :cl]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem64) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+                      [:mem64, :"1"]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem64) && @operands[1].type_of?(:imm8)
+                      [:mem64, :imm8]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mem64) && @operands[1] == Registers::CL
+                      [:mem64, :cl]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,118 +113,119 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type_of?(:reg8) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+            case @form
+            when [:reg8, :"1"]
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0xd0) +
               encoder.write_modrm(0b11,4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg8) && @operands[1].type_of?(:imm8)
+            when [:reg8, :imm8]
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0xc0) +
               encoder.write_modrm(0b11,4,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg8) && @operands[1] == Registers::CL
+            when [:reg8, :cl]
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0xd2) +
               encoder.write_modrm(0b11,4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg16) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+            when [:reg16, :"1"]
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0xd1) +
               encoder.write_modrm(0b11,4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg16) && @operands[1].type_of?(:imm8)
+            when [:reg16, :imm8]
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0xc1) +
               encoder.write_modrm(0b11,4,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg16) && @operands[1] == Registers::CL
+            when [:reg16, :cl]
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0xd3) +
               encoder.write_modrm(0b11,4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+            when [:reg32, :"1"]
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0xd1) +
               encoder.write_modrm(0b11,4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:imm8)
+            when [:reg32, :imm8]
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0xc1) +
               encoder.write_modrm(0b11,4,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg32) && @operands[1] == Registers::CL
+            when [:reg32, :cl]
               encoder.write_rex(mandatory: false, w: 0, b: @operands[0]) +
               encoder.write_opcode(0xd3) +
               encoder.write_modrm(0b11,4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg64) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+            when [:reg64, :"1"]
               encoder.write_rex(mandatory: true, w: 1, b: @operands[0]) +
               encoder.write_opcode(0xd1) +
               encoder.write_modrm(0b11,4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg64) && @operands[1].type_of?(:imm8)
+            when [:reg64, :imm8]
               encoder.write_rex(mandatory: true, w: 1, b: @operands[0]) +
               encoder.write_opcode(0xc1) +
               encoder.write_modrm(0b11,4,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type_of?(:reg64) && @operands[1] == Registers::CL
+            when [:reg64, :cl]
               encoder.write_rex(mandatory: true, w: 1, b: @operands[0]) +
               encoder.write_opcode(0xd3) +
               encoder.write_modrm(0b11,4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem8) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+            when [:mem8, :"1"]
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xd0) +
               encoder.write_modrm(@operands[0],4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem8) && @operands[1].type_of?(:imm8)
+            when [:mem8, :imm8]
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xc0) +
               encoder.write_modrm(@operands[0],4,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem8) && @operands[1] == Registers::CL
+            when [:mem8, :cl]
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xd2) +
               encoder.write_modrm(@operands[0],4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem16) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+            when [:mem16, :"1"]
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xd1) +
               encoder.write_modrm(@operands[0],4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem16) && @operands[1].type_of?(:imm8)
+            when [:mem16, :imm8]
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xc1) +
               encoder.write_modrm(@operands[0],4,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem16) && @operands[1] == Registers::CL
+            when [:mem16, :cl]
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xd3) +
               encoder.write_modrm(@operands[0],4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+            when [:mem32, :"1"]
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xd1) +
               encoder.write_modrm(@operands[0],4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:imm8)
+            when [:mem32, :imm8]
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xc1) +
               encoder.write_modrm(@operands[0],4,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1] == Registers::CL
+            when [:mem32, :cl]
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xd3) +
               encoder.write_modrm(@operands[0],4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem64) && (@operands[1].kind_of?(Immediate) && @operands[1].value == 1)
+            when [:mem64, :"1"]
               encoder.write_rex(mandatory: true, w: 1, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xd1) +
               encoder.write_modrm(@operands[0],4,@operands[0])
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem64) && @operands[1].type_of?(:imm8)
+            when [:mem64, :imm8]
               encoder.write_rex(mandatory: true, w: 1, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xc1) +
               encoder.write_modrm(@operands[0],4,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
-            elsif @operands.length == 2 && @operands[0].type_of?(:mem64) && @operands[1] == Registers::CL
+            when [:mem64, :cl]
               encoder.write_rex(mandatory: true, w: 1, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xd3) +
               encoder.write_modrm(@operands[0],4,@operands[0])
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 
