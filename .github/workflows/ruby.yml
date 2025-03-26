@@ -15,7 +15,8 @@ jobs:
           - '3.3'
           - '3.4'
           - jruby
-          - truffleruby
+          # BUG: temporarily disable truffleruby due to multiple bugs (#249)
+          # - truffleruby
     name: Ruby ${{ matrix.ruby }}
     steps:
       - uses: actions/checkout@v4
