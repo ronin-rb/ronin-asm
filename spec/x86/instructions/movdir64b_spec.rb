@@ -25,6 +25,20 @@ describe Ronin::ASM::X86::Instructions::MOVDIR64B do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg32, :mem512]" do
+        expect(subject.form).to eq([:reg32, :mem512])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: movdir64b #{operands.map(&:type).join(', ')}")
+      end
     end
 
     context "when given additional keyword arguments" do

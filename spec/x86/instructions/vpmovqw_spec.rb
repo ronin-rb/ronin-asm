@@ -25,6 +25,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVQW do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"xmm{k}{z}", :xmm]' do
+        expect(subject.form).to eq([:"xmm{k}{z}", :xmm])
+      end
     end
 
     context "when given operands of types mem32{k}, xmm" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVQW do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:"mem32{k}", :xmm]' do
+        expect(subject.form).to eq([:"mem32{k}", :xmm])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVQW do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"xmm{k}{z}", :ymm]' do
+        expect(subject.form).to eq([:"xmm{k}{z}", :ymm])
+      end
     end
 
     context "when given operands of types mem64{k}, ymm" do
@@ -48,6 +60,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVQW do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:"mem64{k}", :ymm]' do
+        expect(subject.form).to eq([:"mem64{k}", :ymm])
       end
     end
 
@@ -57,6 +73,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVQW do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"xmm{k}{z}", :zmm]' do
+        expect(subject.form).to eq([:"xmm{k}{z}", :zmm])
+      end
     end
 
     context "when given operands of types mem128{k}, zmm" do
@@ -64,6 +84,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVQW do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:"mem128{k}", :zmm]' do
+        expect(subject.form).to eq([:"mem128{k}", :zmm])
       end
     end
 
@@ -73,6 +97,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVQW do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :xmm]" do
+        expect(subject.form).to eq([:xmm, :xmm])
+      end
     end
 
     context "when given operands of types xmm, ymm" do
@@ -80,6 +108,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVQW do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :ymm]" do
+        expect(subject.form).to eq([:xmm, :ymm])
       end
     end
 
@@ -89,6 +121,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVQW do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :zmm]" do
+        expect(subject.form).to eq([:xmm, :zmm])
+      end
     end
 
     context "when given operands of types mem32, xmm" do
@@ -96,6 +132,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVQW do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem32, :xmm]" do
+        expect(subject.form).to eq([:mem32, :xmm])
       end
     end
 
@@ -105,6 +145,10 @@ describe Ronin::ASM::X86::Instructions::VPMOVQW do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:mem64, :ymm]" do
+        expect(subject.form).to eq([:mem64, :ymm])
+      end
     end
 
     context "when given operands of types mem128, zmm" do
@@ -112,6 +156,20 @@ describe Ronin::ASM::X86::Instructions::VPMOVQW do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem128, :zmm]" do
+        expect(subject.form).to eq([:mem128, :zmm])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vpmovqw #{operands.map(&:type).join(', ')}")
       end
     end
 

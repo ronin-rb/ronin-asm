@@ -25,6 +25,10 @@ describe Ronin::ASM::X86::Instructions::VPROTB do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :xmm, :imm8]" do
+        expect(subject.form).to eq([:xmm, :xmm, :imm8])
+      end
     end
 
     context "when given operands of types xmm, xmm, xmm" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86::Instructions::VPROTB do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :xmm, :xmm]" do
+        expect(subject.form).to eq([:xmm, :xmm, :xmm])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86::Instructions::VPROTB do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :xmm, :mem128]" do
+        expect(subject.form).to eq([:xmm, :xmm, :mem128])
+      end
     end
 
     context "when given operands of types xmm, mem128, imm8" do
@@ -49,6 +61,10 @@ describe Ronin::ASM::X86::Instructions::VPROTB do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:xmm, :mem128, :imm8]" do
+        expect(subject.form).to eq([:xmm, :mem128, :imm8])
+      end
     end
 
     context "when given operands of types xmm, mem128, xmm" do
@@ -56,6 +72,20 @@ describe Ronin::ASM::X86::Instructions::VPROTB do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:xmm, :mem128, :xmm]" do
+        expect(subject.form).to eq([:xmm, :mem128, :xmm])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vprotb #{operands.map(&:type).join(', ')}")
       end
     end
 
