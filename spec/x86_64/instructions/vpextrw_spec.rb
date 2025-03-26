@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::VPEXTRW do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg32, :xmm, :imm8]" do
+        expect(subject.form).to eq([:reg32, :xmm, :imm8])
+      end
     end
 
     context "when given operands of types reg32, xmm, imm8" do
@@ -33,13 +37,9 @@ describe Ronin::ASM::X86_64::Instructions::VPEXTRW do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
-    end
 
-    context "when given operands of types mem16, xmm, imm8" do
-      let(:operands) { [mem16, xmm, imm8] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
+      it "must set #form to [:reg32, :xmm, :imm8]" do
+        expect(subject.form).to eq([:reg32, :xmm, :imm8])
       end
     end
 
@@ -48,6 +48,32 @@ describe Ronin::ASM::X86_64::Instructions::VPEXTRW do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem16, :xmm, :imm8]" do
+        expect(subject.form).to eq([:mem16, :xmm, :imm8])
+      end
+    end
+
+    context "when given operands of types mem16, xmm, imm8" do
+      let(:operands) { [mem16, xmm, imm8] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem16, :xmm, :imm8]" do
+        expect(subject.form).to eq([:mem16, :xmm, :imm8])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vpextrw #{operands.map(&:type).join(', ')}")
       end
     end
 

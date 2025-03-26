@@ -45,8 +45,19 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:pi2fd,*operands,**kwargs)
+
+            @form = if @operands.length == 2 && @operands[0].type_of?(:mmx) && @operands[1].type_of?(:mmx)
+                      [:mmx, :mmx]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:mmx) && @operands[1].type_of?(:mem64)
+                      [:mmx, :mem64]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,20 +69,21 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type_of?(:mmx) && @operands[1].type_of?(:mmx)
+            case @form
+            when [:mmx, :mmx]
               encoder.write_rex(mandatory: false, w: 0, r: @operands[0], b: @operands[1]) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x0f) +
               encoder.write_modrm(0b11,@operands[0],@operands[1]) +
               encoder.write_opcode(0x0d)
-            elsif @operands.length == 2 && @operands[0].type_of?(:mmx) && @operands[1].type_of?(:mem64)
+            when [:mmx, :mem64]
               encoder.write_rex(mandatory: false, w: 0, r: @operands[0], x: @operands[1], b: @operands[1]) +
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0x0f) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1]) +
               encoder.write_opcode(0x0d)
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 

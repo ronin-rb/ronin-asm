@@ -45,8 +45,25 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:vgatherdpd,*operands,**kwargs)
+
+            @form = if @operands.length == 2 && @operands[0].type_of?(:"xmm{k}") && @operands[1].type_of?(:vm32x)
+                      [:"xmm{k}", :vm32x]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:"ymm{k}") && @operands[1].type_of?(:vm32x)
+                      [:"ymm{k}", :vm32x]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:"zmm{k}") && @operands[1].type_of?(:vm32y)
+                      [:"zmm{k}", :vm32y]
+                    elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:vm32x) && @operands[2].type_of?(:xmm)
+                      [:xmm, :vm32x, :xmm]
+                    elsif @operands.length == 3 && @operands[0].type_of?(:ymm) && @operands[1].type_of?(:vm32x) && @operands[2].type_of?(:ymm)
+                      [:ymm, :vm32x, :ymm]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,28 +75,29 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 2 && @operands[0].type_of?(:"xmm{k}") && @operands[1].type_of?(:vm32x)
+            case @form
+            when [:"xmm{k}", :vm32x]
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b00, w: 1, vvvv: 0, v: @operands[1], rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: @operands[0], z: 0, disp8xN: 8) +
               encoder.write_opcode(0x92) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type_of?(:"ymm{k}") && @operands[1].type_of?(:vm32x)
+            when [:"ymm{k}", :vm32x]
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b01, w: 1, vvvv: 0, v: @operands[1], rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: @operands[0], z: 0, disp8xN: 8) +
               encoder.write_opcode(0x92) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 2 && @operands[0].type_of?(:"zmm{k}") && @operands[1].type_of?(:vm32y)
+            when [:"zmm{k}", :vm32y]
               encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b10, w: 1, vvvv: 0, v: @operands[1], rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: @operands[0], z: 0, disp8xN: 8) +
               encoder.write_opcode(0x92) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:vm32x) && @operands[2].type_of?(:xmm)
+            when [:xmm, :vm32x, :xmm]
               encoder.write_vex(type: :vex, w: 1, l: 0, m_mmmm: 0b00010, pp: 0b01, r: @operands[0], x: @operands[1], b: @operands[1], vvvv: @operands[2]) +
               encoder.write_opcode(0x92) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            elsif @operands.length == 3 && @operands[0].type_of?(:ymm) && @operands[1].type_of?(:vm32x) && @operands[2].type_of?(:ymm)
+            when [:ymm, :vm32x, :ymm]
               encoder.write_vex(type: :vex, w: 1, l: 1, m_mmmm: 0b00010, pp: 0b01, r: @operands[0], x: @operands[1], b: @operands[1], vvvv: @operands[2]) +
               encoder.write_opcode(0x92) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 

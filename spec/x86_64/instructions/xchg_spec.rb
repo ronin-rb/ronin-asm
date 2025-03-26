@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg8, :reg8]" do
+        expect(subject.form).to eq([:reg8, :reg8])
+      end
     end
 
     context "when given operands of types reg8, mem8" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg8, :mem8]" do
+        expect(subject.form).to eq([:reg8, :mem8])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:ax, :reg16]" do
+        expect(subject.form).to eq([:ax, :reg16])
+      end
     end
 
     context "when given operands of types reg16, ax" do
@@ -48,6 +60,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg16, :ax]" do
+        expect(subject.form).to eq([:reg16, :ax])
       end
     end
 
@@ -57,6 +73,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg16, :reg16]" do
+        expect(subject.form).to eq([:reg16, :reg16])
+      end
     end
 
     context "when given operands of types reg16, mem16" do
@@ -64,6 +84,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg16, :mem16]" do
+        expect(subject.form).to eq([:reg16, :mem16])
       end
     end
 
@@ -73,6 +97,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:eax, :reg32]" do
+        expect(subject.form).to eq([:eax, :reg32])
+      end
     end
 
     context "when given operands of types reg32, eax" do
@@ -80,6 +108,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg32, :eax]" do
+        expect(subject.form).to eq([:reg32, :eax])
       end
     end
 
@@ -89,6 +121,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg32, :reg32]" do
+        expect(subject.form).to eq([:reg32, :reg32])
+      end
     end
 
     context "when given operands of types reg32, mem32" do
@@ -96,6 +132,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg32, :mem32]" do
+        expect(subject.form).to eq([:reg32, :mem32])
       end
     end
 
@@ -105,6 +145,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:rax, :reg64]" do
+        expect(subject.form).to eq([:rax, :reg64])
+      end
     end
 
     context "when given operands of types reg64, rax" do
@@ -112,6 +156,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg64, :rax]" do
+        expect(subject.form).to eq([:reg64, :rax])
       end
     end
 
@@ -121,6 +169,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg64, :reg64]" do
+        expect(subject.form).to eq([:reg64, :reg64])
+      end
     end
 
     context "when given operands of types reg64, mem64" do
@@ -128,6 +180,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:reg64, :mem64]" do
+        expect(subject.form).to eq([:reg64, :mem64])
       end
     end
 
@@ -137,6 +193,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:mem8, :reg8]" do
+        expect(subject.form).to eq([:mem8, :reg8])
+      end
     end
 
     context "when given operands of types mem16, reg16" do
@@ -144,6 +204,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem16, :reg16]" do
+        expect(subject.form).to eq([:mem16, :reg16])
       end
     end
 
@@ -153,6 +217,10 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:mem32, :reg32]" do
+        expect(subject.form).to eq([:mem32, :reg32])
+      end
     end
 
     context "when given operands of types mem64, reg64" do
@@ -160,6 +228,20 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem64, :reg64]" do
+        expect(subject.form).to eq([:mem64, :reg64])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: xchg #{operands.map(&:type).join(', ')}")
       end
     end
 

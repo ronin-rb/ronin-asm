@@ -45,8 +45,27 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:vcvtsi2sh,*operands,**kwargs)
+
+            @form = if @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:reg32)
+                      [:xmm, :xmm, :reg32]
+                    elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:reg64)
+                      [:xmm, :xmm, :reg64]
+                    elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem32)
+                      [:xmm, :xmm, :mem32]
+                    elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem64)
+                      [:xmm, :xmm, :mem64]
+                    elsif @operands.length == 4 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:"{er}") && @operands[3].type_of?(:reg32)
+                      [:xmm, :xmm, :"{er}", :reg32]
+                    elsif @operands.length == 4 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:"{er}") && @operands[3].type_of?(:reg64)
+                      [:xmm, :xmm, :"{er}", :reg64]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,32 +77,33 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:reg32)
+            case @form
+            when [:xmm, :xmm, :reg32]
               encoder.write_evex(mmm: 0b101, pp: 0b10, w: 0, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[2], x: @operands[2], b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:reg64)
+            when [:xmm, :xmm, :reg64]
               encoder.write_evex(mmm: 0b101, pp: 0b10, w: 1, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[2], x: @operands[2], b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem32)
+            when [:xmm, :xmm, :mem32]
               encoder.write_evex(mmm: 0b101, pp: 0b10, ll: 0b00, w: 0, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[2], x: @operands[2], b: 0, aaa: 0, z: 0, disp8xN: 4) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem64)
+            when [:xmm, :xmm, :mem64]
               encoder.write_evex(mmm: 0b101, pp: 0b10, ll: 0b00, w: 1, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[2], x: @operands[2], b: 0, aaa: 0, z: 0, disp8xN: 8) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            elsif @operands.length == 4 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:"{er}") && @operands[3].type_of?(:reg32)
+            when [:xmm, :xmm, :"{er}", :reg32]
               encoder.write_evex(mmm: 0b101, pp: 0b10, ll: @operands[2], w: 0, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[3], x: @operands[3], b: 1, aaa: 0, z: 0) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(0b11,@operands[0],@operands[3])
-            elsif @operands.length == 4 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:"{er}") && @operands[3].type_of?(:reg64)
+            when [:xmm, :xmm, :"{er}", :reg64]
               encoder.write_evex(mmm: 0b101, pp: 0b10, ll: @operands[2], w: 1, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[3], x: @operands[3], b: 1, aaa: 0, z: 0) +
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(0b11,@operands[0],@operands[3])
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 
