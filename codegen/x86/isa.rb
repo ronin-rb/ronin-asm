@@ -131,7 +131,7 @@ module CodeGen
       #
       # Represents a x86 assembly instruction.
       #
-      Instruction = Data.define(:name, :summary, :forms) do
+      class Instruction < Data.define(:name, :summary, :forms)
 
         #
         # Parses the instruction metadata from the `<Instruction>` XML element.
@@ -186,7 +186,7 @@ module CodeGen
       #
       # Represents a specific "form" of an instruction.
       #
-      InstructionForm = Data.define(:gas_name, :isa_extensions, :mmx_mode, :xmm_mode, :cancelling_inputs, :operands, :encodings) do
+      class InstructionForm < Data.define(:gas_name, :isa_extensions, :mmx_mode, :xmm_mode, :cancelling_inputs, :operands, :encodings)
 
         extend XMLHelpers
 
@@ -247,7 +247,7 @@ module CodeGen
       #
       # Represents an operand index (ex: `#2`).
       #
-      OperandIndex = Data.define(:index) do
+      class OperandIndex < Data.define(:index)
 
         @operand_indexes = Hash.new do |hash,index|
           hash[index] = OperandIndex.new(index)
@@ -273,7 +273,7 @@ module CodeGen
       #
       # Represents the type of operand that an instruction can accept.
       #
-      Operand = Data.define(:type, :input, :output, :extended_size) do
+      class Operand < Data.define(:type, :input, :output, :extended_size)
 
         extend XMLHelpers
 
@@ -532,7 +532,7 @@ module CodeGen
         #
         # Represents the `<Prefix>` XML element within `<Encoding>`.
         #
-        Prefix = Data.define(:byte, :mandatory) do
+        class Prefix < Data.define(:byte, :mandatory)
 
           extend XMLHelpers
 
@@ -559,7 +559,7 @@ module CodeGen
         #
         # Represents the `<Opcode>` XML element within `<Encoding>`.
         #
-        Opcode = Data.define(:byte, :addend) do
+        class Opcode < Data.define(:byte, :addend)
 
           extend XMLHelpers
 
@@ -586,7 +586,7 @@ module CodeGen
         #
         # Represents the `<RegisterByte>` XML element within `<Encoding>`.
         #
-        RegisterByte = Data.define(:register, :payload) do
+        class RegisterByte < Data.define(:register, :payload)
 
           extend XMLHelpers
 
@@ -614,7 +614,7 @@ module CodeGen
         #
         # Represents the `<CodeOffset>` XML element within `<Encoding>`.
         #
-        CodeOffset = Data.define(:size, :value) do
+        class CodeOffset < Data.define(:size, :value)
 
           extend XMLHelpers
 
@@ -639,7 +639,7 @@ module CodeGen
         #
         # Represents the `<DataOffset>` XML element within `<Encoding>`.
         #
-        DataOffset = Data.define(:size, :value) do
+        class DataOffset < Data.define(:size, :value)
 
           extend XMLHelpers
 
@@ -664,7 +664,7 @@ module CodeGen
         #
         # Represents the `<Immediate>` XML element within `<Encoding>`.
         #
-        Immediate = Data.define(:size, :value) do
+        class Immediate < Data.define(:size, :value)
 
           extend XMLHelpers
 
@@ -689,7 +689,7 @@ module CodeGen
         #
         # Represents the `<ModRM>` XML element within `<Encoding>`.
         #
-        ModRM = Data.define(:mode, :reg, :rm) do
+        class ModRM < Data.define(:mode, :reg, :rm)
 
           extend XMLHelpers
 
@@ -715,7 +715,7 @@ module CodeGen
         #
         # Represents the `<VEX>` XML element within `<Encoding>`.
         #
-        VEX = Data.define(:type, :w, :l, :m_mmmm, :pp, :r, :x, :b, :vvvv) do
+        class VEX < Data.define(:type, :w, :l, :m_mmmm, :pp, :r, :x, :b, :vvvv)
 
           extend XMLHelpers
 
@@ -763,7 +763,7 @@ module CodeGen
         #
         # Represents the `<EVEX>` XML element within `<Encoding>`.
         #
-        EVEX = Data.define(:mmm, :pp, :w, :ll, :vvvv, :v, :rr, :B, :x, :b, :aaa, :z, :disp8xN) do
+        class EVEX < Data.define(:mmm, :pp, :w, :ll, :vvvv, :v, :rr, :B, :x, :b, :aaa, :z, :disp8xN)
 
           extend XMLHelpers
 
