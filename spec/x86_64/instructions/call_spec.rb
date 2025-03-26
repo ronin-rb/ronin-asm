@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::CALL do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:rel32]" do
+        expect(subject.form).to eq([:rel32])
+      end
     end
 
     context "when given operands of types reg64" do
@@ -33,6 +37,10 @@ describe Ronin::ASM::X86_64::Instructions::CALL do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it "must set #form to [:reg64]" do
+        expect(subject.form).to eq([:reg64])
+      end
     end
 
     context "when given operands of types mem64" do
@@ -40,6 +48,20 @@ describe Ronin::ASM::X86_64::Instructions::CALL do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:mem64]" do
+        expect(subject.form).to eq([:mem64])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: call #{operands.map(&:type).join(', ')}")
       end
     end
 

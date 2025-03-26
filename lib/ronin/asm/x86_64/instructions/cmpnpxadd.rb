@@ -45,8 +45,19 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:cmpnpxadd,*operands,**kwargs)
+
+            @form = if @operands.length == 3 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:reg32) && @operands[2].type_of?(:reg32)
+                      [:mem32, :reg32, :reg32]
+                    elsif @operands.length == 3 && @operands[0].type_of?(:mem64) && @operands[1].type_of?(:reg64) && @operands[2].type_of?(:reg64)
+                      [:mem64, :reg64, :reg64]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,16 +69,17 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 3 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:reg32) && @operands[2].type_of?(:reg32)
+            case @form
+            when [:mem32, :reg32, :reg32]
               encoder.write_vex(type: :vex, w: 0, l: 0, m_mmmm: 0b00010, pp: 0b01, r: @operands[1], x: @operands[0], b: @operands[0], vvvv: @operands[2]) +
               encoder.write_opcode(0xeb) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            elsif @operands.length == 3 && @operands[0].type_of?(:mem64) && @operands[1].type_of?(:reg64) && @operands[2].type_of?(:reg64)
+            when [:mem64, :reg64, :reg64]
               encoder.write_vex(type: :vex, w: 1, l: 0, m_mmmm: 0b00010, pp: 0b01, r: @operands[1], x: @operands[0], b: @operands[0], vvvv: @operands[2]) +
               encoder.write_opcode(0xeb) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 

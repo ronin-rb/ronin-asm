@@ -25,6 +25,10 @@ describe Ronin::ASM::X86_64::Instructions::VRCP28PD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"zmm{k}{z}", :"mem512/mem64bcst"]' do
+        expect(subject.form).to eq([:"zmm{k}{z}", :"mem512/mem64bcst"])
+      end
     end
 
     context "when given operands of types zmm{k}{z}, zmm" do
@@ -32,6 +36,10 @@ describe Ronin::ASM::X86_64::Instructions::VRCP28PD do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:"zmm{k}{z}", :zmm]' do
+        expect(subject.form).to eq([:"zmm{k}{z}", :zmm])
       end
     end
 
@@ -41,6 +49,10 @@ describe Ronin::ASM::X86_64::Instructions::VRCP28PD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:zmm, :"mem512/mem64bcst"]' do
+        expect(subject.form).to eq([:zmm, :"mem512/mem64bcst"])
+      end
     end
 
     context "when given operands of types zmm, zmm" do
@@ -48,6 +60,10 @@ describe Ronin::ASM::X86_64::Instructions::VRCP28PD do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:zmm, :zmm]" do
+        expect(subject.form).to eq([:zmm, :zmm])
       end
     end
 
@@ -57,6 +73,10 @@ describe Ronin::ASM::X86_64::Instructions::VRCP28PD do
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
+
+      it 'must set #form to [:"zmm{k}{z}", :zmm, :"{sae}"]' do
+        expect(subject.form).to eq([:"zmm{k}{z}", :zmm, :"{sae}"])
+      end
     end
 
     context "when given operands of types zmm, zmm, {sae}" do
@@ -64,6 +84,20 @@ describe Ronin::ASM::X86_64::Instructions::VRCP28PD do
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
+      end
+
+      it 'must set #form to [:zmm, :zmm, :"{sae}"]' do
+        expect(subject.form).to eq([:zmm, :zmm, :"{sae}"])
+      end
+    end
+
+    context "when given operands that do not match any of the instruction's forms" do
+      let(:operands) { [reg32, imm8, xmm] }
+
+      it do
+        expect {
+          described_class.new(*operands)
+        }.to raise_error(ArgumentError,"incompatible operands given for instruction: vrcp28pd #{operands.map(&:type).join(', ')}")
       end
     end
 

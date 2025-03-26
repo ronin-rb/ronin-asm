@@ -45,8 +45,19 @@ module Ronin
           # @option kwargs [String, nil] :comment
           #   Optional comment for the instruction.
           #
+          # @raise [ArgumentError]
+          #   Incompatible operand types were given.
+          #
           def initialize(*operands,**kwargs)
             super(:pinsrq,*operands,**kwargs)
+
+            @form = if @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:reg64) && @operands[2].type_of?(:imm8)
+                      [:xmm, :reg64, :imm8]
+                    elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:mem64) && @operands[2].type_of?(:imm8)
+                      [:xmm, :mem64, :imm8]
+                    else
+                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                    end
           end
 
           #
@@ -58,7 +69,8 @@ module Ronin
           # @api private
           #
           def encode(encoder)
-            if @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:reg64) && @operands[2].type_of?(:imm8)
+            case @form
+            when [:xmm, :reg64, :imm8]
               encoder.write_prefix(0x66, mandatory: true) +
               encoder.write_rex(mandatory: true, w: 1, r: @operands[0], b: @operands[1]) +
               encoder.write_opcode(0x0f) +
@@ -66,7 +78,7 @@ module Ronin
               encoder.write_opcode(0x22) +
               encoder.write_modrm(0b11,@operands[0],@operands[1]) +
               encoder.write_immediate(@operands[2],1)
-            elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:mem64) && @operands[2].type_of?(:imm8)
+            when [:xmm, :mem64, :imm8]
               encoder.write_prefix(0x66, mandatory: true) +
               encoder.write_rex(mandatory: true, w: 1, r: @operands[0], x: @operands[1], b: @operands[1]) +
               encoder.write_opcode(0x0f) +
@@ -75,7 +87,7 @@ module Ronin
               encoder.write_modrm(@operands[1],@operands[0],@operands[1]) +
               encoder.write_immediate(@operands[2],1)
             else
-              raise(ArgumentError,"invalid operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
           end
 
