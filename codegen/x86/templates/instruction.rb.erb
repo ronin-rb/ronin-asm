@@ -77,9 +77,9 @@ module Ronin
             case @form
             <%- @instruction.forms.each do |instruction_form| -%>
             when <%= instruction_form_array(instruction_form.operands) %>
-            <%-   primary_encoding = instruction_form.encodings.first -%>
-            <%-   primary_encoding.each.with_index do |encoding,encoding_index| -%>
-            <%-     if encoding_index < primary_encoding.length-1 -%>
+            <%-   preferred_encoding = instruction_form.preferred_encoding -%>
+            <%-   preferred_encoding.each.with_index do |encoding,encoding_index| -%>
+            <%-     if encoding_index < preferred_encoding.length-1 -%>
               <%=     encoder_method_call(encoding) %> +
             <%-     else -%>
               <%=     encoder_method_call(encoding) %>
