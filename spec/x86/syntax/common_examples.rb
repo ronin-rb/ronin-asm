@@ -1,5 +1,6 @@
 require 'rspec'
 require 'ronin/asm/x86/registers'
+require 'ronin/asm/x86/operands'
 require 'ronin/asm/x86/memory'
 require 'ronin/asm/x86/broadcast'
 
@@ -97,6 +98,18 @@ shared_examples_for "Ronin::ASM::X86::Syntax::Common methods" do
     end
   end
 
+  describe ".format_special_operand" do
+    subject { described_class }
+
+    let(:special_operand) { Ronin::ASM::X86::Operands::ER }
+
+    it "must return the String form of the special operand" do
+      expect(subject.format_special_operand(special_operand)).to eq(
+        special_operand.to_s
+      )
+    end
+  end
+
   describe ".format_operand" do
     subject { described_class }
 
@@ -132,6 +145,16 @@ shared_examples_for "Ronin::ASM::X86::Syntax::Common methods" do
       it "must call .format_opmask with the operand" do
         expect(subject.format_operand(opmask)).to eq(
           subject.format_opmask(opmask)
+        )
+      end
+    end
+
+    context "when given a Ronin::ASM::X86::SpecialOperand object" do
+      let(:operand) { Ronin::ASM::X86::Operands::ER }
+
+      it "must call .format_special_operand with the special operand" do
+        expect(subject.format_operand(operand)).to eq(
+          subject.format_special_operand(operand)
         )
       end
     end

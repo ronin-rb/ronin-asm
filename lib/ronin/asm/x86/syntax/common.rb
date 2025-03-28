@@ -66,9 +66,17 @@ module Ronin
           end
 
           #
+          # Forms a special operand.
+          #
+          # @param [SpecialOperand] operand
+          # @return [String]
+          #
+          def self.format_special_operand(operand) = operand.to_s
+
+          #
           # Formats an operand.
           #
-          # @param [Immediate, Memory, Register, LabelRef, Broadcast] operand
+          # @param [Immediate, Memory, Register, LabelRef, Broadcast, SpecialOperand] operand
           #   The operand.
           #
           # @return [String]
@@ -76,9 +84,10 @@ module Ronin
           #
           def self.format_operand(operand)
             case operand
-            when Broadcast then format_broadcast(operand)
-            when Opmask    then format_opmask(operand)
-            else                super(operand)
+            when Broadcast      then format_broadcast(operand)
+            when Opmask         then format_opmask(operand)
+            when SpecialOperand then format_special_operand(operand)
+            else                     super(operand)
             end
           end
 
@@ -90,3 +99,4 @@ end
 
 require_relative '../broadcast'
 require_relative '../opmask'
+require_relative '../special_operand'
