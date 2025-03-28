@@ -80,11 +80,10 @@ module Ronin
               encoder.write_immediate(@operands[2],1)
             when [:reg32, :xmm, :imm8]
               encoder.write_prefix(0x66, mandatory: true) +
-              encoder.write_rex(mandatory: false, w: 0, r: @operands[1], b: @operands[0]) +
+              encoder.write_rex(mandatory: false, w: 0, r: @operands[0], b: @operands[1]) +
               encoder.write_opcode(0x0f) +
-              encoder.write_opcode(0x3a) +
-              encoder.write_opcode(0x15) +
-              encoder.write_modrm(0b11,@operands[1],@operands[0]) +
+              encoder.write_opcode(0xc5) +
+              encoder.write_modrm(0b11,@operands[0],@operands[1]) +
               encoder.write_immediate(@operands[2],1)
             when [:mem16, :xmm, :imm8]
               encoder.write_prefix(0x66, mandatory: true) +
