@@ -97,9 +97,8 @@ module Ronin
           #
           def self.format_operands(operands)
             if operands.length > 1
-              dest_operand = operands[0]
-              src_operands = operands[1..]
-              att_operands = [*src_operands, dest_operand]
+              # NOTE: ATT operands are listed in reverse order
+              att_operands = operands.reverse
 
               att_operands.map(&method(:format_operand)).join(",\t")
             else

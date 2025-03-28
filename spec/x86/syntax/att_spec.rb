@@ -90,7 +90,18 @@ describe Ronin::ASM::X86::Syntax::ATT do
   end
 
   describe ".format_operands" do
-    context "when given more than one operand" do
+    context "when only given one operand" do
+      let(:operand)  { Ronin::ASM::X86::Immediate.new(255) }
+      let(:operands) { [operand] }
+
+      it "must format the single operand" do
+        expect(subject.format_operands(operands)).to eq(
+          "#{subject.format_operand(operand)}"
+        )
+      end
+    end
+
+    context "when given two operands" do
       let(:operand1) { Ronin::ASM::X86::Registers::EAX }
       let(:operand2) { Ronin::ASM::X86::Immediate.new(255) }
       let(:operands) { [operand1, operand2] }
@@ -102,13 +113,15 @@ describe Ronin::ASM::X86::Syntax::ATT do
       end
     end
 
-    context "when only given one operand" do
-      let(:operand)  { Ronin::ASM::X86::Immediate.new(255) }
-      let(:operands) { [operand] }
+    context "when given more than two operands" do
+      let(:operand1) { Ronin::ASM::X86::Registers::XMM1 }
+      let(:operand2) { Ronin::ASM::X86::Registers::XMM2 }
+      let(:operand3) { Ronin::ASM::X86::Immediate.new(1) }
+      let(:operands) { [operand1, operand2, operand3] }
 
-      it "must format the single operand" do
+      it "must format the operands as a tab and comma separated list, but in reverse order" do
         expect(subject.format_operands(operands)).to eq(
-          "#{subject.format_operand(operand)}"
+          "#{subject.format_operand(operand3)},\t#{subject.format_operand(operand2)},\t#{subject.format_operand(operand1)}"
         )
       end
     end
