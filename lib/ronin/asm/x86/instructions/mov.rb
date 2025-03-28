@@ -101,8 +101,7 @@ module Ronin
           def encode(encoder)
             case @form
             when [:reg8, :imm8]
-              encoder.write_opcode(0xc6) +
-              encoder.write_modrm(0b11,0,@operands[0]) +
+              encoder.write_opcode(0xb0,@operands[0]) +
               encoder.write_immediate(@operands[1],1)
             when [:reg8, :reg8]
               encoder.write_opcode(0x88) +
@@ -112,8 +111,7 @@ module Ronin
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             when [:reg16, :imm16]
               encoder.write_prefix(0x66, mandatory: false) +
-              encoder.write_opcode(0xc7) +
-              encoder.write_modrm(0b11,0,@operands[0]) +
+              encoder.write_opcode(0xb8,@operands[0]) +
               encoder.write_immediate(@operands[1],2)
             when [:reg16, :reg16]
               encoder.write_prefix(0x66, mandatory: false) +
@@ -127,8 +125,7 @@ module Ronin
               encoder.write_opcode(0xa1) +
               encoder.write_data_offset(@operands[1],4)
             when [:reg32, :imm32]
-              encoder.write_opcode(0xc7) +
-              encoder.write_modrm(0b11,0,@operands[0]) +
+              encoder.write_opcode(0xb8,@operands[0]) +
               encoder.write_immediate(@operands[1],4)
             when [:reg32, :reg32]
               encoder.write_opcode(0x89) +
