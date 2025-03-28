@@ -242,6 +242,22 @@ module CodeGen
         #
         def no_operands? = operands.empty?
 
+        #
+        # Selects the preferred encoding based on the operand types.
+        #
+        # @return [Array<CodeOffset, DataOffset, Immediate, ModRM, Opcode, Prefix, RegisterByte, VEX, EVEX>]
+        #
+        def preferred_encoding
+          # NOTE: for some reason other assemblers prefer the first encoding if
+          # all operands are registers, otherwise the last encoding is
+          # preferred.
+          if !operands.empty? && operands.all?(&:register?)
+            encodings.first
+          else
+            encodings.last
+          end
+        end
+
       end
 
       #
