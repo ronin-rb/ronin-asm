@@ -27,6 +27,25 @@ describe Ronin::ASM::X86::Encoder do
       end
     end
 
+    context "when mode is a Broadcast operand" do
+      let(:mem) do
+        Ronin::ASM::X86::Memory.new(base: Ronin::ASM::X86::Registers::ECX)
+      end
+      let(:broadcast) { Ronin::ASM::X86::Broadcast.new(mem, {1=>2}) }
+
+      let(:mode) { broadcast }
+      let(:reg)  { Ronin::ASM::X86::Registers::EBX }
+      let(:rm)   { broadcast }
+
+      let(:bytes_written) { 2 }
+
+      it "must call #write_modrm_mem with the Broadcast decorator's operand and return the number of bytes written" do
+        expect(subject).to receive(:write_modrm_mem).with(mode,reg,rm).and_return(bytes_written)
+
+        expect(subject.write_modrm(mode,reg,rm)).to eq(bytes_written)
+      end
+    end
+
     context "when mode is 0b11" do
       let(:mode) { 0b11 }
       let(:reg)  { Ronin::ASM::X86::Registers::EBX }
