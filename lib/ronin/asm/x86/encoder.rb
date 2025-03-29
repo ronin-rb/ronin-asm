@@ -36,19 +36,19 @@ module Ronin
         #
         # Writes a ModRM encoding to the output stream.
         #
-        # @param [Memory, 0b11] mode
+        # @param [Memory, Broadcast, 0b11] mode
         # @param [Register, Integer] reg
-        # @param [Memory] rm
+        # @param [Memory, Broadcast] rm
         #
         # @return [Integer]
         #   The number of bytes written.
         #
         def write_modrm(mode,reg,rm)
           case mode
-          when Memory then write_modrm_mem(mode,reg,rm)
-          when 0b11   then write_modrm_byte(mode,reg,rm)
+          when Memory, Broadcast then write_modrm_mem(mode,reg,rm)
+          when 0b11              then write_modrm_byte(mode,reg,rm)
           else
-            raise(ArgumentError,"#{self.class}#write_modrm can only accept Memory and 0b11 values for mode: #{mode.inspect}")
+            raise(ArgumentError,"#{self.class}#write_modrm can only accept Memory, Broadcast, and 0b11 values for mode: #{mode.inspect}")
           end
         end
 
