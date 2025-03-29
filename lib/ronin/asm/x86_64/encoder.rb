@@ -373,14 +373,10 @@ module Ronin
           end
 
           # write out the four EVEX bytes
-          count = write_byte(byte1) +
-                  write_byte(byte2) +
-                  write_byte(byte3) +
-                  write_byte(byte4)
-
-          # add the optional disp8xN byte
-          count += write_byte(disp8xN) if disp8xN
-          return count
+          return write_byte(byte1) +
+                 write_byte(byte2) +
+                 write_byte(byte3) +
+                 write_byte(byte4)
         end
 
       end
