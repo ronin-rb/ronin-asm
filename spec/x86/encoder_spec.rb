@@ -1531,9 +1531,10 @@ describe Ronin::ASM::X86::Encoder do
       let(:memory)   { Ronin::ASM::X86::Memory.new(base: register) }
 
       let(:b) { Ronin::ASM::X86::Broadcast.new(memory, 1=>4) }
+      let(:disp8xN) { 32 }
 
       it "must set bit 5 to 1 in the fourth byte" do
-        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z, disp8xN: disp8xN)
 
         byte4 = output.string.getbyte(3)
 
@@ -1600,26 +1601,6 @@ describe Ronin::ASM::X86::Encoder do
         byte4 = output.string.getbyte(3)
 
         expect(byte4 & 0b00000111).to eq(0)
-      end
-    end
-
-    context "when the disp8xN: keyword argument is given" do
-      [1, 2, 4, 8, 16, 32, 64].each do |size|
-        context "and it's value is #{size}" do
-          let(:disp8xN) { size }
-
-          it "must write an additional fifth byte of #{size} to the output stream" do
-            subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z, disp8xN: disp8xN)
-
-            expect(output.string.getbyte(4)).to eq(disp8xN)
-          end
-
-          it "must return 5" do
-            expect(
-              subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z, disp8xN: disp8xN)
-            ).to eq(5)
-          end
-        end
       end
     end
   end
