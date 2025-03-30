@@ -117,6 +117,79 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:al, :imm8]
+              :xorb
+            when [:reg8, :imm8]
+              :xorb
+            when [:reg8, :reg8]
+              :xorb
+            when [:reg8, :mem8]
+              :xorb
+            when [:ax, :imm16]
+              :xorw
+            when [:reg16, :imm8]
+              :xorw
+            when [:reg16, :imm16]
+              :xorw
+            when [:reg16, :reg16]
+              :xorw
+            when [:reg16, :mem16]
+              :xorw
+            when [:eax, :imm32]
+              :xorl
+            when [:reg32, :imm8]
+              :xorl
+            when [:reg32, :imm32]
+              :xorl
+            when [:reg32, :reg32]
+              :xorl
+            when [:reg32, :mem32]
+              :xorl
+            when [:rax, :imm32]
+              :xorq
+            when [:reg64, :imm8]
+              :xorq
+            when [:reg64, :imm32]
+              :xorq
+            when [:reg64, :reg64]
+              :xorq
+            when [:reg64, :mem64]
+              :xorq
+            when [:mem8, :imm8]
+              :xorb
+            when [:mem8, :reg8]
+              :xorb
+            when [:mem16, :imm8]
+              :xorw
+            when [:mem16, :imm16]
+              :xorw
+            when [:mem16, :reg16]
+              :xorw
+            when [:mem32, :imm8]
+              :xorl
+            when [:mem32, :imm32]
+              :xorl
+            when [:mem32, :reg32]
+              :xorl
+            when [:mem64, :imm8]
+              :xorq
+            when [:mem64, :imm32]
+              :xorq
+            when [:mem64, :reg64]
+              :xorq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `xor` instruction.
           #
           # @param [Encoder] encoder

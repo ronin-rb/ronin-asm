@@ -59,6 +59,21 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when []
+              :cqto
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `cqo` instruction.
           #
           # @param [Encoder] encoder
