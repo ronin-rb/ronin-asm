@@ -127,89 +127,26 @@ describe Ronin::ASM::X86::Syntax::ATT do
     end
   end
 
-  describe ".format_instruction_name" do
-    context "when the instruction has no operands" do
-      let(:instruction) { Ronin::ASM::X86::Instruction.new(:ret) }
-
-      it "must return the instruction name" do
-        expect(subject.format_instruction_name(instruction)).to eq(
-          instruction.name.to_s
-        )
-      end
-    end
-
-    context "when the instruction has operands" do
-      let(:immediate)   { Ronin::ASM::X86::Immediate.new(0x80) }
-      let(:instruction) { Ronin::ASM::X86::Instruction.new(:int,immediate) }
-
-      it "must return the instruction name" do
-        expect(subject.format_instruction_name(instruction)).to eq(
-          instruction.name.to_s
-        )
-      end
-
-      context "but the instruction's first operand is of type :mem and the second operand is of type :imm" do
-        let(:register)    { Ronin::ASM::X86::Registers::EAX }
-        let(:memory)      { Ronin::ASM::X86::Memory.new(base: register) }
-        let(:immediate)   { Ronin::ASM::X86::Immediate.new(value) }
-        let(:operands)    { [memory, immediate] }
-        let(:instruction) { Ronin::ASM::X86::Instruction.new(:mov, *operands) }
-
-        context "and the immediate's value fits within 8 bits" do
-          let(:value) { 0xff }
-
-          it "must return the instruction name plus a 'b' size suffix to disambiguate desired instruction operand sizes" do
-            expect(subject.format_instruction_name(instruction)).to eq(
-              "#{instruction.name}b"
-            )
-          end
-        end
-
-        context "and the immediate's value fits within 16 bits" do
-          let(:value) { 0xffff }
-
-          it "must return the instruction name plus a 'w' size suffix to disambiguate desired instruction operand sizes" do
-            expect(subject.format_instruction_name(instruction)).to eq(
-              "#{instruction.name}w"
-            )
-          end
-        end
-
-        context "and the immediate's value fits within 32 bits" do
-          let(:value) { 0xffffffff }
-
-          it "must return the instruction name plus a 'l' size suffix to disambiguate desired instruction operand sizes" do
-            expect(subject.format_instruction_name(instruction)).to eq(
-              "#{instruction.name}l"
-            )
-          end
-        end
-      end
-    end
-  end
-
   describe ".format_instruction" do
     context "when the instruction has no operands" do
       let(:instruction) { Ronin::ASM::X86::Instruction.new(:ret) }
 
-      it "must return the instruction name only" do
+      it "must return the instruction's GAS name only" do
         expect(subject.format_instruction(instruction)).to eq(
-          instruction.name.to_s
+          instruction.gas_name.to_s
         )
       end
     end
 
     context "when the instruction has one operand" do
-      context "and the operand has a size of 1" do
-        let(:operand)     { Ronin::ASM::X86::Immediate.new(0x80) }
-        let(:operands)    { [operand] }
-        let(:instruction) { Ronin::ASM::X86::Instruction.new(:int, *operands) }
+      let(:operand)     { Ronin::ASM::X86::Immediate.new(0x80) }
+      let(:operands)    { [operand] }
+      let(:instruction) { Ronin::ASM::X86::Instruction.new(:int, *operands) }
 
-        it "must omit the size suffix from the instruction name" do
-          expect(subject.format_instruction(instruction)).to eq(
-            "#{instruction.name}\t#{subject.format_operands(operands)}"
-          )
-        end
+      it "must return the instruction's GAS name, followed by a tab, and then the singular operand" do
+        expect(subject.format_instruction(instruction)).to eq(
+          "#{instruction.gas_name}\t#{subject.format_operands(operands)}"
+        )
       end
     end
 
@@ -219,60 +156,10 @@ describe Ronin::ASM::X86::Syntax::ATT do
       let(:operands)    { [operand1, operand2] }
       let(:instruction) { Ronin::ASM::X86::Instruction.new(:mov, *operands) }
 
-      it "must return the instruction name and the formatted operands, separated by a tab" do
+      it "must return the instruction's GAS name, followed by a tab, and the formatted operand list" do
         expect(subject.format_instruction(instruction)).to eq(
           "#{instruction.name}\t#{subject.format_operands(operands)}"
         )
-      end
-    end
-
-    context "when the instruction starts with a 'j' character (jump instruction)" do
-      context "and it's operand is a Ronin::ASM::X86::Register operand" do
-        let(:register)    { Ronin::ASM::X86::Registers::EAX }
-        let(:instruction) { Ronin::ASM::X86::Instruction.new(:jmp, register) }
-
-        it "must prepend a '*' character to the register" do
-          expect(subject.format_instruction(instruction)).to eq(
-            "#{instruction.name}\t*#{subject.format_register(register)}"
-          )
-        end
-      end
-
-      context "and it's operand is a Ronin::ASM::X86::Memory operand" do
-        let(:register)    { Ronin::ASM::X86::Registers::EAX }
-        let(:memory)      { Ronin::ASM::X86::Memory.new(base: register) }
-        let(:instruction) { Ronin::ASM::X86::Instruction.new(:jmp, memory) }
-
-        it "must prepend a '*' character to the register" do
-          expect(subject.format_instruction(instruction)).to eq(
-            "#{instruction.name}\t*#{subject.format_memory(memory)}"
-          )
-        end
-      end
-    end
-
-    context "when the instruction name is :call" do
-      context "and it's operand is a Ronin::ASM::X86::Register operand" do
-        let(:register)    { Ronin::ASM::X86::Registers::EAX }
-        let(:instruction) { Ronin::ASM::X86::Instruction.new(:call, register) }
-
-        it "must prepend a '*' character to the register" do
-          expect(subject.format_instruction(instruction)).to eq(
-            "#{instruction.name}\t*#{subject.format_register(register)}"
-          )
-        end
-      end
-
-      context "and it's operand is a Ronin::ASM::X86::Memory operand" do
-        let(:register)    { Ronin::ASM::X86::Registers::EAX }
-        let(:memory)      { Ronin::ASM::X86::Memory.new(base: register) }
-        let(:instruction) { Ronin::ASM::X86::Instruction.new(:call, memory) }
-
-        it "must prepend a '*' character to the register" do
-          expect(subject.format_instruction(instruction)).to eq(
-            "#{instruction.name}\t*#{subject.format_memory(memory)}"
-          )
-        end
       end
     end
   end

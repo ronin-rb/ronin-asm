@@ -31,15 +31,6 @@ module Ronin
         #
         class ATT < Common
 
-          # Data sizes and their instruction mnemonics
-          INSTRUCTION_SUFFIXES = {
-            8 => 'q',
-            4 => 'l',
-            2 => 'w',
-            1 => 'b',
-            nil => ''
-          }
-
           #
           # Emits a register.
           #
@@ -107,30 +98,6 @@ module Ronin
           end
 
           #
-          # Formats the instruction name for the given instruction and it's
-          # operands.
-          #
-          # @param [Instruction] insn
-          # @return [String]
-          #
-          def self.format_instruction_name(insn)
-            # handle when both the memory operand and immediate operand do not
-            # have a defined size.
-            if insn.operands.length == 2 && insn.operands[0].type == :mem && insn.operands[1].type == :imm
-              memory    = insn.operands[0]
-              immediate = insn.operands[1]
-
-              suffix = INSTRUCTION_SUFFIXES.fetch(immediate.infer_size)
-
-              # add an instruction size suffix to the instruction name when both
-              # operands have ambiguous sizes.
-              "#{insn.name}#{suffix}"
-            else
-              insn.name.to_s
-            end
-          end
-
-          #
           # Emits an instruction.
           #
           # @param [Instruction] insn
@@ -140,7 +107,7 @@ module Ronin
           #   The formatted instruction.
           #
           def self.format_instruction(insn)
-            line = format_instruction_name(insn)
+            line = insn.gas_name.to_s
 
             unless insn.operands.empty?
               line << "\t"

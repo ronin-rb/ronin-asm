@@ -841,27 +841,27 @@ describe Ronin::ASM::Program do
               .text
               _start:
               \tnop
-              \tinc\t%al
-              \tinc\t%ax
-              \tinc\t%eax
-              \tmov\t$0xff,\t%eax
-              \tmov\t$0xffff,\t%eax
-              \tmov\t$0xffffffff,\t%eax
-              \tmov\t$0xff,\t%al
-              \tmov\t$0xffff,\t%ax
-              \tmov\t$0xffffffff,\t%eax
-              \tmov\t(%ebx),\t%al
-              \tmov\t(%ebx),\t%ax
-              \tmov\t(%ebx),\t%eax
-              \tmov\t(%ebx),\t%al
-              \tmov\t(%ebx),\t%ax
-              \tmov\t(%ebx),\t%eax
+              \tincb\t%al
+              \tincw\t%ax
+              \tincl\t%eax
+              \tmovl\t$0xff,\t%eax
+              \tmovl\t$0xffff,\t%eax
+              \tmovl\t$0xffffffff,\t%eax
+              \tmovb\t$0xff,\t%al
+              \tmovw\t$0xffff,\t%ax
+              \tmovl\t$0xffffffff,\t%eax
+              \tmovb\t(%ebx),\t%al
+              \tmovw\t(%ebx),\t%ax
+              \tmovl\t(%ebx),\t%eax
+              \tmovb\t(%ebx),\t%al
+              \tmovw\t(%ebx),\t%ax
+              \tmovl\t(%ebx),\t%eax
               \tmovb\t$0xff,\t(%ebx)
-              \tmov\t(%ebx),\t%eax
-              \tmov\t10(%ebx),\t%eax
-              \tmov\t(%ebx,%esi),\t%eax
-              \tmov\t(%ebx,%esi,4),\t%eax
-              \tmov\t10(%ebx,%esi,4),\t%eax
+              \tmovl\t(%ebx),\t%eax
+              \tmovl\t10(%ebx),\t%eax
+              \tmovl\t(%ebx,%esi),\t%eax
+              \tmovl\t(%ebx,%esi,4),\t%eax
+              \tmovl\t10(%ebx,%esi,4),\t%eax
             ASM
           )
         end
@@ -1021,32 +1021,32 @@ describe Ronin::ASM::Program do
               .text
               _start:
               \tnop
-              \tinc\t%al
-              \tinc\t%ax
-              \tinc\t%eax
-              \tinc\t%rax
-              \tmov\t$0xff,\t%eax
-              \tmov\t$0xffff,\t%eax
-              \tmov\t$0xffffffff,\t%eax
-              \tmov\t$0xffffffffffffffff,\t%rax
-              \tmov\t$0xff,\t%al
-              \tmov\t$0xffff,\t%ax
-              \tmov\t$0xffffffff,\t%eax
-              \tmov\t$0xffffffffffffffff,\t%rax
-              \tmov\t(%ebx),\t%al
-              \tmov\t(%ebx),\t%ax
-              \tmov\t(%ebx),\t%eax
-              \tmov\t(%rbx),\t%rax
-              \tmov\t(%ebx),\t%al
-              \tmov\t(%ebx),\t%ax
-              \tmov\t(%ebx),\t%eax
-              \tmov\t(%rbx),\t%rax
+              \tincb\t%al
+              \tincw\t%ax
+              \tincl\t%eax
+              \tincq\t%rax
+              \tmovl\t$0xff,\t%eax
+              \tmovl\t$0xffff,\t%eax
+              \tmovl\t$0xffffffff,\t%eax
+              \tmovabsq\t$0xffffffffffffffff,\t%rax
+              \tmovb\t$0xff,\t%al
+              \tmovw\t$0xffff,\t%ax
+              \tmovl\t$0xffffffff,\t%eax
+              \tmovabsq\t$0xffffffffffffffff,\t%rax
+              \tmovb\t(%ebx),\t%al
+              \tmovw\t(%ebx),\t%ax
+              \tmovl\t(%ebx),\t%eax
+              \tmovq\t(%rbx),\t%rax
+              \tmovb\t(%ebx),\t%al
+              \tmovw\t(%ebx),\t%ax
+              \tmovl\t(%ebx),\t%eax
+              \tmovq\t(%rbx),\t%rax
               \tmovb\t$0xff,\t(%rbx)
-              \tmov\t(%rbx),\t%rax
-              \tmov\t10(%rbx),\t%rax
-              \tmov\t(%rbx,%rsi),\t%rax
-              \tmov\t(%rbx,%rsi,4),\t%rax
-              \tmov\t10(%rbx,%rsi,4),\t%rax
+              \tmovq\t(%rbx),\t%rax
+              \tmovq\t10(%rbx),\t%rax
+              \tmovq\t(%rbx,%rsi),\t%rax
+              \tmovq\t(%rbx,%rsi,4),\t%rax
+              \tmovq\t10(%rbx,%rsi,4),\t%rax
             ASM
           )
         end
