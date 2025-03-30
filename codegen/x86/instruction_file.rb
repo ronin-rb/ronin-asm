@@ -79,6 +79,24 @@ module CodeGen
       end
 
       #
+      # Creates a Hash table of operand type Arrays to the GNU Assembler (GAS)
+      # specific instruction name.
+      #
+      # @return [Hash{Array<Symbol> => Symbol}]
+      #
+      def build_gas_name_table
+        table = {}
+
+        @instruction.forms.each do |instruction_form|
+          if instruction_form.gas_name != @instruction.name
+            table[instruction_form.operands] = instruction_form.gas_name
+          end
+        end
+
+        return table
+      end
+
+      #
       # Converts an operand index back into Ruby code.
       #
       # @param [ISA::OperandIndex] operand_index
