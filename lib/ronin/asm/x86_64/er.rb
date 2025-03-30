@@ -18,18 +18,23 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../x86/special_operand'
+require_relative '../x86/er'
 require_relative 'operand'
 
 module Ronin
   module ASM
     module X86_64
       #
-      # Base class for all x86-64 special operands.
+      # Base class for all x86-64 `{er}` rounding control decorator operands.
+      #
+      # * `{rn-sae}` - round to nearest + Suppress All Exceptions (SAE).
+      # * `{rd-sae}` - round down + Suppress All Exceptions (SAE).
+      # * `{ru-sae}` - round up + Suppress All Exceptions (SAE).
+      # * `{rz-sae}` - round towards zero + Suppress All Exceptions (SAE).
       #
       # @since 1.0.0
       #
-      class SpecialOperand < X86::SpecialOperand
+      class ER < X86::ER
 
         include Operand
 

@@ -25,13 +25,35 @@ module Ronin
   module ASM
     module X86
       #
-      # Base class for all x86 special operands.
+      # Base class for the x86-64 `{sae}` Suppress All Exceptions (SAE)
+      # decorator operand.
       #
       # @since 1.0.0
       #
-      class SpecialOperand < ASM::SpecialOperand
+      class SAE < ASM::SpecialOperand
 
         include Operand
+
+        #
+        # Initializes the `{sae}` decorator.
+        #
+        def initialize
+          super(:"{sae}")
+        end
+
+        #
+        # Returns the name of the `{sae}` decorator operand.
+        #
+        # @return [Symbol]
+        #
+        def name = :"{sae}"
+
+        #
+        # Determines if the operand is of type `{sae}".
+        #
+        # @return [true]
+        #
+        def sae? = true
 
       end
     end
