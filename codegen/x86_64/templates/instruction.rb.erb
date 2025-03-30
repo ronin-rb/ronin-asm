@@ -64,6 +64,26 @@ module Ronin
                       raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+          <%- gas_name_table = build_gas_name_table -%>
+          <%- unless gas_name_table.empty? -%>
+
+          #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            <%- gas_name_table.each do |operands,gas_name| -%>
+            when <%= instruction_form_array(operands) %>
+              <%= gas_name.inspect %>
+            <%- end -%>
+            else
+              super
+            end
+          end
+          <%- end -%>
 
           #
           # Encodes the `<%= @instruction.name %>` instruction.
