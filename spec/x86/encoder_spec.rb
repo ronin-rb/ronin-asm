@@ -746,33 +746,33 @@ describe Ronin::ASM::X86::Encoder do
   describe "#write_register_byte" do
     let(:reg) { Ronin::ASM::X86::Registers::ECX }
 
-    it "must write a single byte with the register number encoded into the lower four bits" do
+    it "must write a single byte with the register number encoded into the high four bits" do
       subject.write_register_byte(reg)
 
       byte = output.string.getbyte(0)
 
-      expect(byte & 0b1111).to eq(reg.number)
+      expect((byte & 0b11110000) >> 4).to eq(reg.number)
     end
 
     context "when no payload argument is given" do
-      it "must not set the high four bits of the byte" do
+      it "must not set the lower four bits of the byte" do
         subject.write_register_byte(reg)
 
         byte = output.string.getbyte(0)
 
-        expect((byte & 0b11110000) >> 4).to eq(0)
+        expect(byte & 0b1111).to eq(0)
       end
     end
 
     context "when given the optional payload argument" do
       let(:immediate) { Ronin::ASM::X86::Immediate.new(3) }
 
-      it "must encode the Immediate's value into the high four bits of the byte" do
-        subject.write_register_byte(reg)
+      it "must encode the Immediate's value into the lower four bits of the byte" do
+        subject.write_register_byte(reg,immediate)
 
         byte = output.string.getbyte(0)
 
-        expect(byte & 0b1111).to eq(reg.number)
+        expect(byte & 0b1111).to eq(immediate.value)
       end
     end
   end
