@@ -73,6 +73,35 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg8]
+              :notb
+            when [:reg16]
+              :notw
+            when [:reg32]
+              :notl
+            when [:reg64]
+              :notq
+            when [:mem8]
+              :notb
+            when [:mem16]
+              :notw
+            when [:mem32]
+              :notl
+            when [:mem64]
+              :notq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `not` instruction.
           #
           # @param [Encoder] encoder

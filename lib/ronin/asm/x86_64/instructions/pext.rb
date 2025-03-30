@@ -65,6 +65,27 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg32, :reg32, :reg32]
+              :pextl
+            when [:reg32, :reg32, :mem32]
+              :pextl
+            when [:reg64, :reg64, :reg64]
+              :pextq
+            when [:reg64, :reg64, :mem64]
+              :pextq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `pext` instruction.
           #
           # @param [Encoder] encoder

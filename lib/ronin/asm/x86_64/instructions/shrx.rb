@@ -65,6 +65,27 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg32, :reg32, :reg32]
+              :shrxl
+            when [:reg32, :mem32, :reg32]
+              :shrxl
+            when [:reg64, :reg64, :reg64]
+              :shrxq
+            when [:reg64, :mem64, :reg64]
+              :shrxq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `shrx` instruction.
           #
           # @param [Encoder] encoder

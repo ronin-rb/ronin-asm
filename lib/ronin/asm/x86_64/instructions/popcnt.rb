@@ -69,6 +69,31 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg16, :reg16]
+              :popcntw
+            when [:reg16, :mem16]
+              :popcntw
+            when [:reg32, :reg32]
+              :popcntl
+            when [:reg32, :mem32]
+              :popcntl
+            when [:reg64, :reg64]
+              :popcntq
+            when [:reg64, :mem64]
+              :popcntq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `popcnt` instruction.
           #
           # @param [Encoder] encoder
