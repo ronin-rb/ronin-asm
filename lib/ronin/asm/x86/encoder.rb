@@ -459,7 +459,7 @@ module Ronin
           byte3 |= 0b10000000 if w == 1
 
           # VEX.vvvv is encoded as the inverted value of the extra operand
-          if vvvv.kind_of?(Operand)
+          if vvvv.kind_of?(Operand) || vvvv == 0
             byte3 |= ((~vvvv.to_i & 0b1111) << 3)
           end
 
