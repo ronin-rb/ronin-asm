@@ -38,6 +38,13 @@ module Ronin
         alias intel_name name
 
         #
+        # The GNU Assembler (GAS) name for the instruction.
+        #
+        # @return [Symbol]
+        #
+        def gas_name = @name
+
+        #
         # Converts the instruction into a String.
         #
         # @return [String]
