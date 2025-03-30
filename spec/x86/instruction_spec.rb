@@ -29,6 +29,12 @@ describe Ronin::ASM::X86::Instruction do
     end
   end
 
+  describe "#gas_name" do
+    it "must return the #name by default" do
+      expect(subject.gas_name).to eq(name)
+    end
+  end
+
   describe "#to_s" do
     it "must call Ronin::ASM::X86::Syntax::Intel.format_instruction" do
       expect(subject.to_s).to eq(
