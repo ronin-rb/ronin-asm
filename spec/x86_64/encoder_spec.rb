@@ -1541,7 +1541,7 @@ describe Ronin::ASM::X86_64::Encoder do
     context "when the ll: value is 0b01" do
       let(:ll) { 0b01 }
 
-      it "must encode the ll: value into bits 6 and 5 of the fourth byte" do
+      it "must encode the ll: value into bits 7 and 6 of the fourth byte" do
         subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
 
         byte4 = output.string.getbyte(3)
@@ -1550,10 +1550,58 @@ describe Ronin::ASM::X86_64::Encoder do
       end
     end
 
-    context "when the ll: value is Ronin::ASM::X86_64::Operands::ER" do
-      let(:ll) { Ronin::ASM::X86_64::Operands::ER }
+    context "when the ll: value is 0b10" do
+      let(:ll) { 0b10 }
 
-      it "must set bits 6 and 5 to 1 in the fourth byte" do
+      it "must encode the ll: value into bits 7 and 6 of the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b01100000) >> 5).to eq(ll)
+      end
+    end
+
+    context "when the ll: value is Ronin::ASM::X86::RN_SAE" do
+      let(:ll) { Ronin::ASM::X86_64::Operands::RN_SAE }
+
+      it "must not set bits 7 and 6 in the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b01100000) >> 5).to eq(0b00)
+      end
+    end
+
+    context "when the ll: value is Ronin::ASM::X86::RD_SAE" do
+      let(:ll) { Ronin::ASM::X86_64::Operands::RD_SAE }
+
+      it "must set bit 6 to 1 in the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b01100000) >> 5).to eq(0b01)
+      end
+    end
+
+    context "when the ll: value is Ronin::ASM::X86::RU_SAE" do
+      let(:ll) { Ronin::ASM::X86_64::Operands::RU_SAE }
+
+      it "must set bit 7 to 1 in the fourth byte" do
+        subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
+
+        byte4 = output.string.getbyte(3)
+
+        expect((byte4 & 0b01100000) >> 5).to eq(0b10)
+      end
+    end
+
+    context "when the ll: value is Ronin::ASM::X86::RZ_SAE" do
+      let(:ll) { Ronin::ASM::X86_64::Operands::RZ_SAE }
+
+      it "must set bits 7 and 6 to 1 in the fourth byte" do
         subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
 
         byte4 = output.string.getbyte(3)

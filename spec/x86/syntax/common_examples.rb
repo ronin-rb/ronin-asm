@@ -98,14 +98,14 @@ shared_examples_for "Ronin::ASM::X86::Syntax::Common methods" do
     end
   end
 
-  describe ".format_special_operand" do
+  describe ".format_decorator" do
     subject { described_class }
 
-    let(:special_operand) { Ronin::ASM::X86::Operands::ER }
+    let(:operand) { Ronin::ASM::X86::Operands::RD_SAE }
 
-    it "must return the String form of the special operand" do
-      expect(subject.format_special_operand(special_operand)).to eq(
-        special_operand.to_s
+    it "must return the String form of the decorator operand" do
+      expect(subject.format_decorator(operand)).to eq(
+        operand.to_s
       )
     end
   end
@@ -149,12 +149,22 @@ shared_examples_for "Ronin::ASM::X86::Syntax::Common methods" do
       end
     end
 
-    context "when given a Ronin::ASM::X86::SpecialOperand object" do
-      let(:operand) { Ronin::ASM::X86::Operands::ER }
+    context "when given a Ronin::ASM::X86::ER object" do
+      let(:operand) { Ronin::ASM::X86::Operands::RD_SAE }
 
-      it "must call .format_special_operand with the special operand" do
+      it "must call .format_decorator with the ER decorator operand" do
         expect(subject.format_operand(operand)).to eq(
-          subject.format_special_operand(operand)
+          subject.format_decorator(operand)
+        )
+      end
+    end
+
+    context "when given a Ronin::ASM::X86::SAE object" do
+      let(:operand) { Ronin::ASM::X86::Operands::SAE }
+
+      it "must call .format_decorator with the SAE decorator operand" do
+        expect(subject.format_operand(operand)).to eq(
+          subject.format_decorator(operand)
         )
       end
     end
