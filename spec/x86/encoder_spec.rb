@@ -840,6 +840,26 @@ describe Ronin::ASM::X86::Encoder do
       end
     end
 
+    context "when type: is :vex, x: is 0, b: is 0, w: is omitted, and m_mmmm: is 0b00001" do
+      let(:r)    { 0 }
+      let(:vvvv) { Ronin::ASM::X86::Registers::EAX }
+      let(:l)    { 0 }
+      let(:pp)   { 0b00 }
+
+      it "must write a two byte VEX escape prefix" do
+        expect(subject).to receive(:write_vex_two_byte).with(
+          r: r, vvvv: vvvv, l: l, pp: pp
+        ).and_return(2)
+
+        expect(
+          subject.write_vex(
+            type: :vex, x: 0, b: 0, m_mmmm: 0b00001, r: r, vvvv: vvvv,
+            l: l, pp: pp
+          )
+        ).to eq(2)
+      end
+    end
+
     context "otherwise" do
       let(:type) { :vex }
       let(:w)    { 0 }
