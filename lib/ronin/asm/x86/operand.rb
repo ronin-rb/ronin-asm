@@ -65,6 +65,20 @@ module Ronin
         # @return [Boolean]
         #
         def zmm? = false
+
+        #
+        # Determines if the operand is a `{er}` type operand.
+        #
+        # @return [Boolean]
+        #
+        def er? = false
+
+        #
+        # Determines if the operand is a `{sae}` type operand.
+        #
+        # @return [Boolean]
+        #
+        def sae? = false
       end
     end
   end
