@@ -200,12 +200,24 @@ module Ronin
       def zmm7 = Registers::ZMM7
 
       #
-      # Special Operand Methods
+      # Rounding Control Operand Methods
       #
 
-      # The `{er}` operand.
+      # The `{rn-sae}` decorator operand.
       # @since 1.0.0
-      def er = Operands::ER
+      def rn_sae = Operands::RN_SAE
+
+      # The `{rd-sae}` decorator operand.
+      # @since 1.0.0
+      def rd_sae = Operands::RD_SAE
+
+      # The `{ru-sae}` decorator operand.
+      # @since 1.0.0
+      def ru_sae = Operands::RU_SAE
+
+      # The `{rz-sae}` decorator operand.
+      # @since 1.0.0
+      def rz_sae = Operands::RZ_SAE
 
       # The `{sae}` operand.
       # @since 1.0.0

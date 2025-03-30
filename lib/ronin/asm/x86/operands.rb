@@ -18,7 +18,8 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'special_operand'
+require_relative 'er'
+require_relative 'sae'
 
 module Ronin
   module ASM
@@ -29,11 +30,20 @@ module Ronin
       # @since 1.0.0
       #
       module Operands
-        # Represents the `{er}` operand.
-        ER = SpecialOperand.new(:"{er}")
+        # Represents the `{rn-sae}` decorator operand.
+        RN_SAE = ER.new(:"{rn-sae}")
 
-        # Represents the `{sae}` operand.
-        SAE = SpecialOperand.new(:"{sae}")
+        # Represents the `{rd-sae}` decorator operand.
+        RD_SAE = ER.new(:"{rd-sae}")
+
+        # Represents the `{ru-sae}` decorator operand.
+        RU_SAE = ER.new(:"{ru-sae}")
+
+        # Represents the `{rz-sae}` decorator operand.
+        RZ_SAE = ER.new(:"{rz-sae}")
+
+        # Represents the `{sae}` decorator operand.
+        SAE = SAE.new
       end
     end
   end

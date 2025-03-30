@@ -45,4 +45,16 @@ describe Ronin::ASM::X86::Operand do
       expect(subject.zmm?).to be(false)
     end
   end
+
+  describe "#er?" do
+    it "must return false" do
+      expect(subject.er?).to be(false)
+    end
+  end
+
+  describe "#sae?" do
+    it "must return false" do
+      expect(subject.sae?).to be(false)
+    end
+  end
 end

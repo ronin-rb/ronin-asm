@@ -352,13 +352,27 @@ module Ronin
       def tmm6 = Registers::TMM6
       def tmm7 = Registers::TMM7
 
-      # The `{er}` operand.
       #
+      # Rounding Control Operand Methods
+      #
+
+      # The `{rn-sae}` decorator operand.
       # @since 1.0.0
-      def er = Operands::ER
+      def rn_sae = Operands::RN_SAE
+
+      # The `{rd-sae}` decorator operand.
+      # @since 1.0.0
+      def rd_sae = Operands::RD_SAE
+
+      # The `{ru-sae}` decorator operand.
+      # @since 1.0.0
+      def ru_sae = Operands::RU_SAE
+
+      # The `{rz-sae}` decorator operand.
+      # @since 1.0.0
+      def rz_sae = Operands::RZ_SAE
 
       # The `{sae}` operand.
-      #
       # @since 1.0.0
       def sae = Operands::SAE
 
