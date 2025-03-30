@@ -101,6 +101,63 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:al, :imm8]
+              :sbbb
+            when [:reg8, :imm8]
+              :sbbb
+            when [:reg8, :reg8]
+              :sbbb
+            when [:reg8, :mem8]
+              :sbbb
+            when [:ax, :imm16]
+              :sbbw
+            when [:reg16, :imm8]
+              :sbbw
+            when [:reg16, :imm16]
+              :sbbw
+            when [:reg16, :reg16]
+              :sbbw
+            when [:reg16, :mem16]
+              :sbbw
+            when [:eax, :imm32]
+              :sbbl
+            when [:reg32, :imm8]
+              :sbbl
+            when [:reg32, :imm32]
+              :sbbl
+            when [:reg32, :reg32]
+              :sbbl
+            when [:reg32, :mem32]
+              :sbbl
+            when [:mem8, :imm8]
+              :sbbb
+            when [:mem8, :reg8]
+              :sbbb
+            when [:mem16, :imm8]
+              :sbbw
+            when [:mem16, :imm16]
+              :sbbw
+            when [:mem16, :reg16]
+              :sbbw
+            when [:mem32, :imm8]
+              :sbbl
+            when [:mem32, :imm32]
+              :sbbl
+            when [:mem32, :reg32]
+              :sbbl
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `sbb` instruction.
           #
           # @param [Encoder] encoder

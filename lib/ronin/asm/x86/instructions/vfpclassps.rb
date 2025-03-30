@@ -81,6 +81,43 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:"k{k}", :"mem128/mem32bcst", :imm8]
+              :vfpclasspsx
+            when [:k, :"mem128/mem32bcst", :imm8]
+              :vfpclasspsx
+            when [:"k{k}", :"mem256/mem32bcst", :imm8]
+              :vfpclasspsy
+            when [:k, :"mem256/mem32bcst", :imm8]
+              :vfpclasspsy
+            when [:"k{k}", :"mem512/mem32bcst", :imm8]
+              :vfpclasspsz
+            when [:k, :"mem512/mem32bcst", :imm8]
+              :vfpclasspsz
+            when [:"k{k}", :xmm, :imm8]
+              :vfpclasspsx
+            when [:k, :xmm, :imm8]
+              :vfpclasspsx
+            when [:"k{k}", :ymm, :imm8]
+              :vfpclasspsy
+            when [:k, :ymm, :imm8]
+              :vfpclasspsy
+            when [:"k{k}", :zmm, :imm8]
+              :vfpclasspsz
+            when [:k, :zmm, :imm8]
+              :vfpclasspsz
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `vfpclassps` instruction.
           #
           # @param [Encoder] encoder

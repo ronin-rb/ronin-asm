@@ -101,6 +101,63 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:al, :imm8]
+              :andb
+            when [:reg8, :imm8]
+              :andb
+            when [:reg8, :reg8]
+              :andb
+            when [:reg8, :mem8]
+              :andb
+            when [:ax, :imm16]
+              :andw
+            when [:reg16, :imm8]
+              :andw
+            when [:reg16, :imm16]
+              :andw
+            when [:reg16, :reg16]
+              :andw
+            when [:reg16, :mem16]
+              :andw
+            when [:eax, :imm32]
+              :andl
+            when [:reg32, :imm8]
+              :andl
+            when [:reg32, :imm32]
+              :andl
+            when [:reg32, :reg32]
+              :andl
+            when [:reg32, :mem32]
+              :andl
+            when [:mem8, :imm8]
+              :andb
+            when [:mem8, :reg8]
+              :andb
+            when [:mem16, :imm8]
+              :andw
+            when [:mem16, :imm16]
+              :andw
+            when [:mem16, :reg16]
+              :andw
+            when [:mem32, :imm8]
+              :andl
+            when [:mem32, :imm32]
+              :andl
+            when [:mem32, :reg32]
+              :andl
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `and` instruction.
           #
           # @param [Encoder] encoder

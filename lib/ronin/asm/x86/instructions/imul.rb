@@ -93,6 +93,55 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg8]
+              :imulb
+            when [:reg16]
+              :imulw
+            when [:reg32]
+              :imull
+            when [:mem8]
+              :imulb
+            when [:mem16]
+              :imulw
+            when [:mem32]
+              :imull
+            when [:reg16, :reg16]
+              :imulw
+            when [:reg16, :mem16]
+              :imulw
+            when [:reg32, :reg32]
+              :imull
+            when [:reg32, :mem32]
+              :imull
+            when [:reg16, :reg16, :imm8]
+              :imulw
+            when [:reg16, :reg16, :imm16]
+              :imulw
+            when [:reg16, :mem16, :imm8]
+              :imulw
+            when [:reg16, :mem16, :imm16]
+              :imulw
+            when [:reg32, :reg32, :imm8]
+              :imull
+            when [:reg32, :reg32, :imm32]
+              :imull
+            when [:reg32, :mem32, :imm8]
+              :imull
+            when [:reg32, :mem32, :imm32]
+              :imull
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `imul` instruction.
           #
           # @param [Encoder] encoder

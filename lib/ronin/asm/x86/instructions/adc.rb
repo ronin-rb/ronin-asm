@@ -101,6 +101,63 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:al, :imm8]
+              :adcb
+            when [:reg8, :imm8]
+              :adcb
+            when [:reg8, :reg8]
+              :adcb
+            when [:reg8, :mem8]
+              :adcb
+            when [:ax, :imm16]
+              :adcw
+            when [:reg16, :imm8]
+              :adcw
+            when [:reg16, :imm16]
+              :adcw
+            when [:reg16, :reg16]
+              :adcw
+            when [:reg16, :mem16]
+              :adcw
+            when [:eax, :imm32]
+              :adcl
+            when [:reg32, :imm8]
+              :adcl
+            when [:reg32, :imm32]
+              :adcl
+            when [:reg32, :reg32]
+              :adcl
+            when [:reg32, :mem32]
+              :adcl
+            when [:mem8, :imm8]
+              :adcb
+            when [:mem8, :reg8]
+              :adcb
+            when [:mem16, :imm8]
+              :adcw
+            when [:mem16, :imm16]
+              :adcw
+            when [:mem16, :reg16]
+              :adcw
+            when [:mem32, :imm8]
+              :adcl
+            when [:mem32, :imm32]
+              :adcl
+            when [:mem32, :reg32]
+              :adcl
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `adc` instruction.
           #
           # @param [Encoder] encoder
