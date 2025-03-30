@@ -83,6 +83,45 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg8, :reg8]
+              :xchgb
+            when [:reg8, :mem8]
+              :xchgb
+            when [:ax, :reg16]
+              :xchgw
+            when [:reg16, :ax]
+              :xchgw
+            when [:reg16, :reg16]
+              :xchgw
+            when [:reg16, :mem16]
+              :xchgw
+            when [:eax, :reg32]
+              :xchgl
+            when [:reg32, :eax]
+              :xchgl
+            when [:reg32, :reg32]
+              :xchgl
+            when [:reg32, :mem32]
+              :xchgl
+            when [:mem8, :reg8]
+              :xchgb
+            when [:mem16, :reg16]
+              :xchgw
+            when [:mem32, :reg32]
+              :xchgl
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `xchg` instruction.
           #
           # @param [Encoder] encoder
