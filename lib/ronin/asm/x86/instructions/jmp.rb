@@ -65,6 +65,23 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg32]
+              :jmpl
+            when [:mem32]
+              :jmpl
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `jmp` instruction.
           #
           # @param [Encoder] encoder

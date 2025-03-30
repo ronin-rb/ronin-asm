@@ -93,6 +93,55 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg8, :"1"]
+              :rclb
+            when [:reg8, :imm8]
+              :rclb
+            when [:reg8, :cl]
+              :rclb
+            when [:reg16, :"1"]
+              :rclw
+            when [:reg16, :imm8]
+              :rclw
+            when [:reg16, :cl]
+              :rclw
+            when [:reg32, :"1"]
+              :rcll
+            when [:reg32, :imm8]
+              :rcll
+            when [:reg32, :cl]
+              :rcll
+            when [:mem8, :"1"]
+              :rclb
+            when [:mem8, :imm8]
+              :rclb
+            when [:mem8, :cl]
+              :rclb
+            when [:mem16, :"1"]
+              :rclw
+            when [:mem16, :imm8]
+              :rclw
+            when [:mem16, :cl]
+              :rclw
+            when [:mem32, :"1"]
+              :rcll
+            when [:mem32, :imm8]
+              :rcll
+            when [:mem32, :cl]
+              :rcll
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `rcl` instruction.
           #
           # @param [Encoder] encoder

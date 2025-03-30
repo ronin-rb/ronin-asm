@@ -101,6 +101,63 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:al, :imm8]
+              :subb
+            when [:reg8, :imm8]
+              :subb
+            when [:reg8, :reg8]
+              :subb
+            when [:reg8, :mem8]
+              :subb
+            when [:ax, :imm16]
+              :subw
+            when [:reg16, :imm8]
+              :subw
+            when [:reg16, :imm16]
+              :subw
+            when [:reg16, :reg16]
+              :subw
+            when [:reg16, :mem16]
+              :subw
+            when [:eax, :imm32]
+              :subl
+            when [:reg32, :imm8]
+              :subl
+            when [:reg32, :imm32]
+              :subl
+            when [:reg32, :reg32]
+              :subl
+            when [:reg32, :mem32]
+              :subl
+            when [:mem8, :imm8]
+              :subb
+            when [:mem8, :reg8]
+              :subb
+            when [:mem16, :imm8]
+              :subw
+            when [:mem16, :imm16]
+              :subw
+            when [:mem16, :reg16]
+              :subw
+            when [:mem32, :imm8]
+              :subl
+            when [:mem32, :imm32]
+              :subl
+            when [:mem32, :reg32]
+              :subl
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `sub` instruction.
           #
           # @param [Encoder] encoder
