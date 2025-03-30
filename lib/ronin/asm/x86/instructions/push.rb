@@ -77,9 +77,9 @@ module Ronin
           def gas_name
             case @form
             when [:imm8]
-              :pushq
+              :pushl
             when [:imm32]
-              :pushq
+              :pushl
             when [:reg16]
               :pushw
             when [:reg32]
