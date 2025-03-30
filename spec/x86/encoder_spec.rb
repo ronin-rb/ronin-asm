@@ -1388,12 +1388,12 @@ describe Ronin::ASM::X86::Encoder do
     context "when the vvvv: value is 0" do
       let(:vvvv) { 0 }
 
-      it "must not set bit 7, 6, 5, or 4 in the third byte" do
+      it "must set bit 7, 6, 5, or 4 in the third byte" do
         subject.write_evex(mmm: mmm, pp: pp, w: w, ll: ll, vvvv: vvvv, v: v, rr: rr, _B: _B, x: x, b: b, aaa: aaa, z: z)
 
         byte3 = output.string.getbyte(2)
 
-        expect((byte3 & 0b01111000) >> 3).to eq(0)
+        expect((byte3 & 0b01111000) >> 3).to eq(0b1111)
       end
     end
 
