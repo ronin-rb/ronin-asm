@@ -117,6 +117,79 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:al, :imm8]
+              :cmpb
+            when [:reg8, :imm8]
+              :cmpb
+            when [:reg8, :reg8]
+              :cmpb
+            when [:reg8, :mem8]
+              :cmpb
+            when [:ax, :imm16]
+              :cmpw
+            when [:reg16, :imm8]
+              :cmpw
+            when [:reg16, :imm16]
+              :cmpw
+            when [:reg16, :reg16]
+              :cmpw
+            when [:reg16, :mem16]
+              :cmpw
+            when [:eax, :imm32]
+              :cmpl
+            when [:reg32, :imm8]
+              :cmpl
+            when [:reg32, :imm32]
+              :cmpl
+            when [:reg32, :reg32]
+              :cmpl
+            when [:reg32, :mem32]
+              :cmpl
+            when [:rax, :imm32]
+              :cmpq
+            when [:reg64, :imm8]
+              :cmpq
+            when [:reg64, :imm32]
+              :cmpq
+            when [:reg64, :reg64]
+              :cmpq
+            when [:reg64, :mem64]
+              :cmpq
+            when [:mem8, :imm8]
+              :cmpb
+            when [:mem8, :reg8]
+              :cmpb
+            when [:mem16, :imm8]
+              :cmpw
+            when [:mem16, :imm16]
+              :cmpw
+            when [:mem16, :reg16]
+              :cmpw
+            when [:mem32, :imm8]
+              :cmpl
+            when [:mem32, :imm32]
+              :cmpl
+            when [:mem32, :reg32]
+              :cmpl
+            when [:mem64, :imm8]
+              :cmpq
+            when [:mem64, :imm32]
+              :cmpq
+            when [:mem64, :reg64]
+              :cmpq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `cmp` instruction.
           #
           # @param [Encoder] encoder

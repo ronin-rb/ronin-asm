@@ -73,6 +73,35 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg8]
+              :divb
+            when [:reg16]
+              :divw
+            when [:reg32]
+              :divl
+            when [:reg64]
+              :divq
+            when [:mem8]
+              :divb
+            when [:mem16]
+              :divw
+            when [:mem32]
+              :divl
+            when [:mem64]
+              :divq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `div` instruction.
           #
           # @param [Encoder] encoder
