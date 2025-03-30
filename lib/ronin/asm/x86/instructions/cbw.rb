@@ -59,6 +59,21 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when []
+              :cbtw
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `cbw` instruction.
           #
           # @param [Encoder] encoder

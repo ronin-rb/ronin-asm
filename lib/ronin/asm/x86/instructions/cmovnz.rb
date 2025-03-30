@@ -65,6 +65,27 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg16, :reg16]
+              :cmovnzw
+            when [:reg16, :mem16]
+              :cmovnzw
+            when [:reg32, :reg32]
+              :cmovnzl
+            when [:reg32, :mem32]
+              :cmovnzl
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `cmovnz` instruction.
           #
           # @param [Encoder] encoder

@@ -69,6 +69,31 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg8]
+              :negb
+            when [:reg16]
+              :negw
+            when [:reg32]
+              :negl
+            when [:mem8]
+              :negb
+            when [:mem16]
+              :negw
+            when [:mem32]
+              :negl
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `neg` instruction.
           #
           # @param [Encoder] encoder
