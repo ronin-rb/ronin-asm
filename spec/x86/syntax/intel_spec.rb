@@ -207,7 +207,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
 
       it "must return the instruction name only" do
         expect(subject.format_instruction(instruction)).to eq(
-          instruction.name.to_s
+          instruction.intel_name.to_s
         )
       end
     end
@@ -222,7 +222,7 @@ describe Ronin::ASM::X86::Syntax::Intel do
 
       it "must return the instruction name followed by the formatted operands, separated by tabs" do
         expect(subject.format_instruction(instruction)).to eq(
-          "#{instruction.name}\t#{subject.format_operands(operands)}"
+          "#{instruction.intel_name}\t#{subject.format_operands(operands)}"
         )
       end
     end
