@@ -248,11 +248,35 @@ describe Ronin::ASM::X86_64 do
     end
   end
 
-  describe "#er" do
-    subject { super().er }
+  describe "#rn_sae" do
+    subject { super().rn_sae }
 
-    it "must return #{described_class}::Operands::ER" do
-      expect(subject).to be(described_class::Operands::ER)
+    it "must return #{described_class}::Operands::RN_SAE" do
+      expect(subject).to be(described_class::Operands::RN_SAE)
+    end
+  end
+
+  describe "#rd_sae" do
+    subject { super().rd_sae }
+
+    it "must return #{described_class}::Operands::RD_SAE" do
+      expect(subject).to be(described_class::Operands::RD_SAE)
+    end
+  end
+
+  describe "#ru_sae" do
+    subject { super().ru_sae }
+
+    it "must return #{described_class}::Operands::RU_SAE" do
+      expect(subject).to be(described_class::Operands::RU_SAE)
+    end
+  end
+
+  describe "#rz_sae" do
+    subject { super().rz_sae }
+
+    it "must return #{described_class}::Operands::RZ_SAE" do
+      expect(subject).to be(described_class::Operands::RZ_SAE)
     end
   end
 

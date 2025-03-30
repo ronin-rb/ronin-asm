@@ -66,12 +66,12 @@ module Ronin
           end
 
           #
-          # Forms a special operand.
+          # Forms an instruction decorator operand.
           #
-          # @param [SpecialOperand] operand
+          # @param [ER, SAE] operand
           # @return [String]
           #
-          def self.format_special_operand(operand) = operand.to_s
+          def self.format_decorator(operand) = operand.to_s
 
           #
           # Formats an operand.
@@ -84,10 +84,10 @@ module Ronin
           #
           def self.format_operand(operand)
             case operand
-            when Broadcast      then format_broadcast(operand)
-            when Opmask         then format_opmask(operand)
-            when SpecialOperand then format_special_operand(operand)
-            else                     super(operand)
+            when Broadcast then format_broadcast(operand)
+            when Opmask    then format_opmask(operand)
+            when ER, SAE   then format_decorator(operand)
+            else                super(operand)
             end
           end
 
@@ -99,4 +99,4 @@ end
 
 require_relative '../broadcast'
 require_relative '../opmask'
-require_relative '../special_operand'
+require_relative '../sae'

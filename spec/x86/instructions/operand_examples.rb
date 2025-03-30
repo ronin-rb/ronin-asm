@@ -123,8 +123,8 @@ shared_examples_for "Ronin::ASM::X86 Operands" do
   let(:mem512_mem64_bcst) { Ronin::ASM::X86::Broadcast.new(mem64, {1=>8}) }
 
   #
-  # Special operands
+  # SAE decorator operands
   #
-  let(:er)  { Ronin::ASM::X86::Operands::ER }
+  let(:er)  { Ronin::ASM::X86::Operands::RN_SAE }
   let(:sae) { Ronin::ASM::X86::Operands::SAE }
 end

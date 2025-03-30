@@ -469,9 +469,12 @@ module Ronin
           byte4 |= 0b10000000 if z.kind_of?(Opmask)
 
           case ll
-          when 0b01         then byte4 |= 0b00100000
-          when 0b10         then byte4 |= 0b01000000
-          when Operands::ER then byte4 |= 0b01100000
+          when 0b01 then byte4 |= 0b00100000
+          when 0b10 then byte4 |= 0b01000000
+          when Operands::RN_SAE then # leave bits as 00
+          when Operands::RD_SAE then byte4 |= 0b00100000
+          when Operands::RU_SAE then byte4 |= 0b01000000
+          when Operands::RZ_SAE then byte4 |= 0b01100000
           when Operand
             case ll.size
             when 64 then byte4 |= 0b01000000
