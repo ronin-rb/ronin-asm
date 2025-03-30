@@ -273,7 +273,7 @@ module Ronin
         # @see https://wiki.osdev.org/X86-64_Instruction_Encoding#VEX/XOP_opcodes
         #
         def write_vex(type: , w: nil, l: nil, m_mmmm: , pp: , r: nil, x: nil, b: nil, vvvv: nil)
-          if (type == :vex && x == 0 && b == 0 && w == 0 && m_mmmm == 0b00001)
+          if (type == :vex && x == 0 && b == 0 && (w == 0 || w.nil?) && m_mmmm == 0b00001)
             write_vex_two_byte(r: r, vvvv: vvvv, l: l, pp: pp)
           else
             write_vex_three_byte(type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b, vvvv: vvvv)
