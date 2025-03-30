@@ -73,6 +73,35 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg32, :reg32, :imm32]
+              :bextrl
+            when [:reg32, :reg32, :reg32]
+              :bextrl
+            when [:reg32, :mem32, :imm32]
+              :bextrl
+            when [:reg32, :mem32, :reg32]
+              :bextrl
+            when [:reg64, :reg64, :imm32]
+              :bextrq
+            when [:reg64, :reg64, :reg64]
+              :bextrq
+            when [:reg64, :mem64, :imm32]
+              :bextrq
+            when [:reg64, :mem64, :reg64]
+              :bextrq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `bextr` instruction.
           #
           # @param [Encoder] encoder

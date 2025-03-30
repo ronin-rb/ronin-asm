@@ -65,6 +65,27 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:xmm, :reg32]
+              :cvtsi2sdl
+            when [:xmm, :reg64]
+              :cvtsi2sdq
+            when [:xmm, :mem32]
+              :cvtsi2sdl
+            when [:xmm, :mem64]
+              :cvtsi2sdq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `cvtsi2sd` instruction.
           #
           # @param [Encoder] encoder

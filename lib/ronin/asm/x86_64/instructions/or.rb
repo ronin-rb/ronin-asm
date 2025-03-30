@@ -117,6 +117,79 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:al, :imm8]
+              :orb
+            when [:reg8, :imm8]
+              :orb
+            when [:reg8, :reg8]
+              :orb
+            when [:reg8, :mem8]
+              :orb
+            when [:ax, :imm16]
+              :orw
+            when [:reg16, :imm8]
+              :orw
+            when [:reg16, :imm16]
+              :orw
+            when [:reg16, :reg16]
+              :orw
+            when [:reg16, :mem16]
+              :orw
+            when [:eax, :imm32]
+              :orl
+            when [:reg32, :imm8]
+              :orl
+            when [:reg32, :imm32]
+              :orl
+            when [:reg32, :reg32]
+              :orl
+            when [:reg32, :mem32]
+              :orl
+            when [:rax, :imm32]
+              :orq
+            when [:reg64, :imm8]
+              :orq
+            when [:reg64, :imm32]
+              :orq
+            when [:reg64, :reg64]
+              :orq
+            when [:reg64, :mem64]
+              :orq
+            when [:mem8, :imm8]
+              :orb
+            when [:mem8, :reg8]
+              :orb
+            when [:mem16, :imm8]
+              :orw
+            when [:mem16, :imm16]
+              :orw
+            when [:mem16, :reg16]
+              :orw
+            when [:mem32, :imm8]
+              :orl
+            when [:mem32, :imm32]
+              :orl
+            when [:mem32, :reg32]
+              :orl
+            when [:mem64, :imm8]
+              :orq
+            when [:mem64, :imm32]
+              :orq
+            when [:mem64, :reg64]
+              :orq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `or` instruction.
           #
           # @param [Encoder] encoder
