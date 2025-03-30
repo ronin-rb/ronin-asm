@@ -73,6 +73,35 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg8, :reg8]
+              :xaddb
+            when [:reg16, :reg16]
+              :xaddw
+            when [:reg32, :reg32]
+              :xaddl
+            when [:reg64, :reg64]
+              :xaddq
+            when [:mem8, :reg8]
+              :xaddb
+            when [:mem16, :reg16]
+              :xaddw
+            when [:mem32, :reg32]
+              :xaddl
+            when [:mem64, :reg64]
+              :xaddq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `xadd` instruction.
           #
           # @param [Encoder] encoder

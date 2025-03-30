@@ -77,6 +77,39 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg32, :reg8]
+              :crc32b
+            when [:reg32, :reg16]
+              :crc32w
+            when [:reg32, :reg32]
+              :crc32l
+            when [:reg32, :mem8]
+              :crc32b
+            when [:reg32, :mem16]
+              :crc32w
+            when [:reg32, :mem32]
+              :crc32l
+            when [:reg64, :reg8]
+              :crc32b
+            when [:reg64, :reg64]
+              :crc32q
+            when [:reg64, :mem8]
+              :crc32b
+            when [:reg64, :mem64]
+              :crc32q
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `crc32` instruction.
           #
           # @param [Encoder] encoder

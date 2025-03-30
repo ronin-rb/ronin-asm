@@ -81,6 +81,43 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg16, :reg16, :imm8]
+              :shldw
+            when [:reg16, :reg16, :cl]
+              :shldw
+            when [:reg32, :reg32, :imm8]
+              :shldl
+            when [:reg32, :reg32, :cl]
+              :shldl
+            when [:reg64, :reg64, :imm8]
+              :shldq
+            when [:reg64, :reg64, :cl]
+              :shldq
+            when [:mem16, :reg16, :imm8]
+              :shldw
+            when [:mem16, :reg16, :cl]
+              :shldw
+            when [:mem32, :reg32, :imm8]
+              :shldl
+            when [:mem32, :reg32, :cl]
+              :shldl
+            when [:mem64, :reg64, :imm8]
+              :shldq
+            when [:mem64, :reg64, :cl]
+              :shldq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `shld` instruction.
           #
           # @param [Encoder] encoder
