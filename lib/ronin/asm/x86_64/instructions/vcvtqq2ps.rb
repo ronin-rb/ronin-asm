@@ -85,6 +85,35 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:"xmm{k}{z}", :"mem128/mem64bcst"]
+              :vcvtqq2psx
+            when [:"xmm{k}{z}", :"mem256/mem64bcst"]
+              :vcvtqq2psy
+            when [:"xmm{k}{z}", :xmm]
+              :vcvtqq2psx
+            when [:"xmm{k}{z}", :ymm]
+              :vcvtqq2psy
+            when [:xmm, :"mem128/mem64bcst"]
+              :vcvtqq2psx
+            when [:xmm, :"mem256/mem64bcst"]
+              :vcvtqq2psy
+            when [:xmm, :xmm]
+              :vcvtqq2psx
+            when [:xmm, :ymm]
+              :vcvtqq2psy
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `vcvtqq2ps` instruction.
           #
           # @param [Encoder] encoder

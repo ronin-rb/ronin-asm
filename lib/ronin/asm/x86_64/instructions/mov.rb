@@ -107,6 +107,69 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg8, :imm8]
+              :movb
+            when [:reg8, :reg8]
+              :movb
+            when [:reg8, :mem8]
+              :movb
+            when [:reg16, :imm16]
+              :movw
+            when [:reg16, :reg16]
+              :movw
+            when [:reg16, :mem16]
+              :movw
+            when [:eax, :moffset32]
+              :movabsl
+            when [:reg32, :imm32]
+              :movl
+            when [:reg32, :reg32]
+              :movl
+            when [:reg32, :mem32]
+              :movl
+            when [:rax, :moffset64]
+              :movabsq
+            when [:reg64, :imm32]
+              :movq
+            when [:reg64, :imm64]
+              :movabsq
+            when [:reg64, :reg64]
+              :movq
+            when [:reg64, :mem64]
+              :movq
+            when [:mem8, :imm8]
+              :movb
+            when [:mem8, :reg8]
+              :movb
+            when [:mem16, :imm16]
+              :movw
+            when [:mem16, :reg16]
+              :movw
+            when [:mem32, :imm32]
+              :movl
+            when [:mem32, :reg32]
+              :movl
+            when [:mem64, :imm32]
+              :movq
+            when [:mem64, :reg64]
+              :movq
+            when [:moffset32, :eax]
+              :movabsl
+            when [:moffset64, :rax]
+              :movabsq
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `mov` instruction.
           #
           # @param [Encoder] encoder
