@@ -61,6 +61,23 @@ module Ronin
           end
 
           #
+          # Returns the GNU Assembler (GAS) name for the instruction based on
+          # it's operands.
+          #
+          # @return [Symbol]
+          #
+          def gas_name
+            case @form
+            when [:reg32, :reg32]
+              :adcxl
+            when [:reg32, :mem32]
+              :adcxl
+            else
+              super
+            end
+          end
+
+          #
           # Encodes the `adcx` instruction.
           #
           # @param [Encoder] encoder
