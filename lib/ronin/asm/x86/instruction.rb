@@ -35,6 +35,8 @@ module Ronin
         # @return [Array<Symbol>]
         attr_reader :form
 
+        alias intel_name name
+
         #
         # Converts the instruction into a String.
         #
