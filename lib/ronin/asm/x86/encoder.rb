@@ -159,10 +159,10 @@ module Ronin
         # @return [1]
         #
         def write_register_byte(register,payload=nil)
-          byte = register.number & 0b1111
+          byte = (register.number & 0b1111) << 4
 
           if payload
-            byte |= (payload.value & 0b1111) << 4
+            byte |= (payload.value & 0b1111)
           end
 
           write_byte(byte)
