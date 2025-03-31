@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/bextr'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::BEXTR do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [reg32, reg32, imm32] }
+  let(:operands) { [reg32(0), reg32(1), imm32(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::BEXTR do
     end
 
     context "when given operands of types reg32, reg32, imm32" do
-      let(:operands) { [reg32, reg32, imm32] }
+      let(:operands) { [reg32(0), reg32(1), imm32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::BEXTR do
     end
 
     context "when given operands of types reg32, reg32, reg32" do
-      let(:operands) { [reg32, reg32, reg32] }
+      let(:operands) { [reg32(0), reg32(1), reg32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86_64::Instructions::BEXTR do
     end
 
     context "when given operands of types reg32, mem32, imm32" do
-      let(:operands) { [reg32, mem32, imm32] }
+      let(:operands) { [reg32(0), mem32(1), imm32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86_64::Instructions::BEXTR do
     end
 
     context "when given operands of types reg32, mem32, reg32" do
-      let(:operands) { [reg32, mem32, reg32] }
+      let(:operands) { [reg32(0), mem32(1), reg32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86_64::Instructions::BEXTR do
     end
 
     context "when given operands of types reg64, reg64, imm32" do
-      let(:operands) { [reg64, reg64, imm32] }
+      let(:operands) { [reg64(0), reg64(1), imm32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -80,7 +80,7 @@ describe Ronin::ASM::X86_64::Instructions::BEXTR do
     end
 
     context "when given operands of types reg64, reg64, reg64" do
-      let(:operands) { [reg64, reg64, reg64] }
+      let(:operands) { [reg64(0), reg64(1), reg64(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -92,7 +92,7 @@ describe Ronin::ASM::X86_64::Instructions::BEXTR do
     end
 
     context "when given operands of types reg64, mem64, imm32" do
-      let(:operands) { [reg64, mem64, imm32] }
+      let(:operands) { [reg64(0), mem64(1), imm32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -104,7 +104,7 @@ describe Ronin::ASM::X86_64::Instructions::BEXTR do
     end
 
     context "when given operands of types reg64, mem64, reg64" do
-      let(:operands) { [reg64, mem64, reg64] }
+      let(:operands) { [reg64(0), mem64(1), reg64(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

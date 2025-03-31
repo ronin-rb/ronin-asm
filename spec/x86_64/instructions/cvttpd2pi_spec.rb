@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/cvttpd2pi'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::CVTTPD2PI do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [mmx, xmm] }
+  let(:operands) { [mmx(0), xmm(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::CVTTPD2PI do
     end
 
     context "when given operands of types mmx, xmm" do
-      let(:operands) { [mmx, xmm] }
+      let(:operands) { [mmx(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::CVTTPD2PI do
     end
 
     context "when given operands of types mmx, mem128" do
-      let(:operands) { [mmx, mem128] }
+      let(:operands) { [mmx(0), mem128(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
