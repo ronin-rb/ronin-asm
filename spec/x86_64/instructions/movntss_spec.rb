@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/movntss'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::MOVNTSS do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [mem32, xmm] }
+  let(:operands) { [mem32(0), xmm(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::MOVNTSS do
     end
 
     context "when given operands of types mem32, xmm" do
-      let(:operands) { [mem32, xmm] }
+      let(:operands) { [mem32(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

@@ -6,16 +6,16 @@ require 'spec_helper'
 require 'ronin/asm/x86_64/instructions'
 require 'ronin/asm/program'
 
-require_relative 'instructions/operand_examples'
+require_relative 'helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
   subject { Ronin::ASM::Program.new(arch: :x86_64) }
 
   describe "#aadd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::AADD object with the given operands" do
         new_instruction = subject.aadd(*operands)
@@ -28,7 +28,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#aand" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::AAND object with the given operands" do
         new_instruction = subject.aand(*operands)
@@ -41,7 +41,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#adc" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ADC object with the given operands" do
         new_instruction = subject.adc(*operands)
@@ -54,7 +54,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#adcx" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ADCX object with the given operands" do
         new_instruction = subject.adcx(*operands)
@@ -67,7 +67,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#add" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ADD object with the given operands" do
         new_instruction = subject.add(*operands)
@@ -80,7 +80,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#addpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ADDPD object with the given operands" do
         new_instruction = subject.addpd(*operands)
@@ -93,7 +93,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#addps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ADDPS object with the given operands" do
         new_instruction = subject.addps(*operands)
@@ -106,7 +106,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#addsd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ADDSD object with the given operands" do
         new_instruction = subject.addsd(*operands)
@@ -119,7 +119,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#addss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ADDSS object with the given operands" do
         new_instruction = subject.addss(*operands)
@@ -132,7 +132,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#addsubpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ADDSUBPD object with the given operands" do
         new_instruction = subject.addsubpd(*operands)
@@ -145,7 +145,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#addsubps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ADDSUBPS object with the given operands" do
         new_instruction = subject.addsubps(*operands)
@@ -158,7 +158,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#adox" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ADOX object with the given operands" do
         new_instruction = subject.adox(*operands)
@@ -171,7 +171,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#aesdec" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::AESDEC object with the given operands" do
         new_instruction = subject.aesdec(*operands)
@@ -184,7 +184,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#aesdeclast" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::AESDECLAST object with the given operands" do
         new_instruction = subject.aesdeclast(*operands)
@@ -197,7 +197,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#aesenc" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::AESENC object with the given operands" do
         new_instruction = subject.aesenc(*operands)
@@ -210,7 +210,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#aesenclast" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::AESENCLAST object with the given operands" do
         new_instruction = subject.aesenclast(*operands)
@@ -223,7 +223,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#aesimc" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::AESIMC object with the given operands" do
         new_instruction = subject.aesimc(*operands)
@@ -236,7 +236,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#aeskeygenassist" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::AESKEYGENASSIST object with the given operands" do
         new_instruction = subject.aeskeygenassist(*operands)
@@ -249,7 +249,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#and" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::AND object with the given operands" do
         new_instruction = subject.and(*operands)
@@ -262,7 +262,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#andn" do
     context "when called with 3 operands" do
-      let(:operands) { [reg64, reg64, mem64] }
+      let(:operands) { [reg64(0), reg64(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ANDN object with the given operands" do
         new_instruction = subject.andn(*operands)
@@ -275,7 +275,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#andnpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ANDNPD object with the given operands" do
         new_instruction = subject.andnpd(*operands)
@@ -288,7 +288,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#andnps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ANDNPS object with the given operands" do
         new_instruction = subject.andnps(*operands)
@@ -301,7 +301,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#andpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ANDPD object with the given operands" do
         new_instruction = subject.andpd(*operands)
@@ -314,7 +314,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#andps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ANDPS object with the given operands" do
         new_instruction = subject.andps(*operands)
@@ -327,7 +327,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#aor" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::AOR object with the given operands" do
         new_instruction = subject.aor(*operands)
@@ -340,7 +340,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#axor" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::AXOR object with the given operands" do
         new_instruction = subject.axor(*operands)
@@ -353,7 +353,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#bextr" do
     context "when called with 3 operands" do
-      let(:operands) { [reg64, mem64, reg64] }
+      let(:operands) { [reg64(0), mem64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BEXTR object with the given operands" do
         new_instruction = subject.bextr(*operands)
@@ -366,7 +366,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blcfill" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLCFILL object with the given operands" do
         new_instruction = subject.blcfill(*operands)
@@ -379,7 +379,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blci" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLCI object with the given operands" do
         new_instruction = subject.blci(*operands)
@@ -392,7 +392,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blcic" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLCIC object with the given operands" do
         new_instruction = subject.blcic(*operands)
@@ -405,7 +405,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blcmsk" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLCMSK object with the given operands" do
         new_instruction = subject.blcmsk(*operands)
@@ -418,7 +418,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blcs" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLCS object with the given operands" do
         new_instruction = subject.blcs(*operands)
@@ -431,7 +431,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blendpd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLENDPD object with the given operands" do
         new_instruction = subject.blendpd(*operands)
@@ -444,7 +444,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blendps" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLENDPS object with the given operands" do
         new_instruction = subject.blendps(*operands)
@@ -457,7 +457,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blendvpd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm0] }
+      let(:operands) { [xmm(0), mem128(1), xmm0(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLENDVPD object with the given operands" do
         new_instruction = subject.blendvpd(*operands)
@@ -470,7 +470,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blendvps" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm0] }
+      let(:operands) { [xmm(0), mem128(1), xmm0(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLENDVPS object with the given operands" do
         new_instruction = subject.blendvps(*operands)
@@ -483,7 +483,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blsfill" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLSFILL object with the given operands" do
         new_instruction = subject.blsfill(*operands)
@@ -496,7 +496,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blsi" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLSI object with the given operands" do
         new_instruction = subject.blsi(*operands)
@@ -509,7 +509,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blsic" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLSIC object with the given operands" do
         new_instruction = subject.blsic(*operands)
@@ -522,7 +522,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blsmsk" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLSMSK object with the given operands" do
         new_instruction = subject.blsmsk(*operands)
@@ -535,7 +535,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#blsr" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BLSR object with the given operands" do
         new_instruction = subject.blsr(*operands)
@@ -548,7 +548,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#bsf" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BSF object with the given operands" do
         new_instruction = subject.bsf(*operands)
@@ -561,7 +561,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#bsr" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BSR object with the given operands" do
         new_instruction = subject.bsr(*operands)
@@ -574,7 +574,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#bswap" do
     context "when called with 1 operand" do
-      let(:operands) { [reg64] }
+      let(:operands) { [reg64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BSWAP object with the given operands" do
         new_instruction = subject.bswap(*operands)
@@ -587,7 +587,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#bt" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BT object with the given operands" do
         new_instruction = subject.bt(*operands)
@@ -600,7 +600,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#btc" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BTC object with the given operands" do
         new_instruction = subject.btc(*operands)
@@ -613,7 +613,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#btr" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BTR object with the given operands" do
         new_instruction = subject.btr(*operands)
@@ -626,7 +626,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#bts" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BTS object with the given operands" do
         new_instruction = subject.bts(*operands)
@@ -639,7 +639,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#bzhi" do
     context "when called with 3 operands" do
-      let(:operands) { [reg64, mem64, reg64] }
+      let(:operands) { [reg64(0), mem64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::BZHI object with the given operands" do
         new_instruction = subject.bzhi(*operands)
@@ -652,7 +652,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#call" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CALL object with the given operands" do
         new_instruction = subject.call(*operands)
@@ -720,7 +720,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cldemote" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CLDEMOTE object with the given operands" do
         new_instruction = subject.cldemote(*operands)
@@ -733,7 +733,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#clflush" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CLFLUSH object with the given operands" do
         new_instruction = subject.clflush(*operands)
@@ -746,7 +746,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#clflushopt" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CLFLUSHOPT object with the given operands" do
         new_instruction = subject.clflushopt(*operands)
@@ -759,7 +759,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#clwb" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CLWB object with the given operands" do
         new_instruction = subject.clwb(*operands)
@@ -794,7 +794,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmova" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVA object with the given operands" do
         new_instruction = subject.cmova(*operands)
@@ -807,7 +807,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovae" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVAE object with the given operands" do
         new_instruction = subject.cmovae(*operands)
@@ -820,7 +820,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovb" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVB object with the given operands" do
         new_instruction = subject.cmovb(*operands)
@@ -833,7 +833,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovbe" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVBE object with the given operands" do
         new_instruction = subject.cmovbe(*operands)
@@ -846,7 +846,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovc" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVC object with the given operands" do
         new_instruction = subject.cmovc(*operands)
@@ -859,7 +859,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmove" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVE object with the given operands" do
         new_instruction = subject.cmove(*operands)
@@ -872,7 +872,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovg" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVG object with the given operands" do
         new_instruction = subject.cmovg(*operands)
@@ -885,7 +885,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovge" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVGE object with the given operands" do
         new_instruction = subject.cmovge(*operands)
@@ -898,7 +898,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovl" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVL object with the given operands" do
         new_instruction = subject.cmovl(*operands)
@@ -911,7 +911,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovle" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVLE object with the given operands" do
         new_instruction = subject.cmovle(*operands)
@@ -924,7 +924,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovna" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNA object with the given operands" do
         new_instruction = subject.cmovna(*operands)
@@ -937,7 +937,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovnae" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNAE object with the given operands" do
         new_instruction = subject.cmovnae(*operands)
@@ -950,7 +950,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovnb" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNB object with the given operands" do
         new_instruction = subject.cmovnb(*operands)
@@ -963,7 +963,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovnbe" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNBE object with the given operands" do
         new_instruction = subject.cmovnbe(*operands)
@@ -976,7 +976,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovnc" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNC object with the given operands" do
         new_instruction = subject.cmovnc(*operands)
@@ -989,7 +989,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovne" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNE object with the given operands" do
         new_instruction = subject.cmovne(*operands)
@@ -1002,7 +1002,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovng" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNG object with the given operands" do
         new_instruction = subject.cmovng(*operands)
@@ -1015,7 +1015,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovnge" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNGE object with the given operands" do
         new_instruction = subject.cmovnge(*operands)
@@ -1028,7 +1028,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovnl" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNL object with the given operands" do
         new_instruction = subject.cmovnl(*operands)
@@ -1041,7 +1041,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovnle" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNLE object with the given operands" do
         new_instruction = subject.cmovnle(*operands)
@@ -1054,7 +1054,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovno" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNO object with the given operands" do
         new_instruction = subject.cmovno(*operands)
@@ -1067,7 +1067,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovnp" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNP object with the given operands" do
         new_instruction = subject.cmovnp(*operands)
@@ -1080,7 +1080,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovns" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNS object with the given operands" do
         new_instruction = subject.cmovns(*operands)
@@ -1093,7 +1093,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovnz" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVNZ object with the given operands" do
         new_instruction = subject.cmovnz(*operands)
@@ -1106,7 +1106,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovo" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVO object with the given operands" do
         new_instruction = subject.cmovo(*operands)
@@ -1119,7 +1119,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovp" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVP object with the given operands" do
         new_instruction = subject.cmovp(*operands)
@@ -1132,7 +1132,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovpe" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVPE object with the given operands" do
         new_instruction = subject.cmovpe(*operands)
@@ -1145,7 +1145,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovpo" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVPO object with the given operands" do
         new_instruction = subject.cmovpo(*operands)
@@ -1158,7 +1158,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovs" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVS object with the given operands" do
         new_instruction = subject.cmovs(*operands)
@@ -1171,7 +1171,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmovz" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMOVZ object with the given operands" do
         new_instruction = subject.cmovz(*operands)
@@ -1184,7 +1184,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmp" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMP object with the given operands" do
         new_instruction = subject.cmp(*operands)
@@ -1197,7 +1197,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpbexadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPBEXADD object with the given operands" do
         new_instruction = subject.cmpbexadd(*operands)
@@ -1210,7 +1210,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpbxadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPBXADD object with the given operands" do
         new_instruction = subject.cmpbxadd(*operands)
@@ -1223,7 +1223,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmplexadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPLEXADD object with the given operands" do
         new_instruction = subject.cmplexadd(*operands)
@@ -1236,7 +1236,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmplxadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPLXADD object with the given operands" do
         new_instruction = subject.cmplxadd(*operands)
@@ -1249,7 +1249,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpnbexadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPNBEXADD object with the given operands" do
         new_instruction = subject.cmpnbexadd(*operands)
@@ -1262,7 +1262,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpnbxadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPNBXADD object with the given operands" do
         new_instruction = subject.cmpnbxadd(*operands)
@@ -1275,7 +1275,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpnlexadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPNLEXADD object with the given operands" do
         new_instruction = subject.cmpnlexadd(*operands)
@@ -1288,7 +1288,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpnlxadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPNLXADD object with the given operands" do
         new_instruction = subject.cmpnlxadd(*operands)
@@ -1301,7 +1301,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpnoxadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPNOXADD object with the given operands" do
         new_instruction = subject.cmpnoxadd(*operands)
@@ -1314,7 +1314,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpnpxadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPNPXADD object with the given operands" do
         new_instruction = subject.cmpnpxadd(*operands)
@@ -1327,7 +1327,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpnsxadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPNSXADD object with the given operands" do
         new_instruction = subject.cmpnsxadd(*operands)
@@ -1340,7 +1340,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpnzxadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPNZXADD object with the given operands" do
         new_instruction = subject.cmpnzxadd(*operands)
@@ -1353,7 +1353,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpoxadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPOXADD object with the given operands" do
         new_instruction = subject.cmpoxadd(*operands)
@@ -1366,7 +1366,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmppd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPPD object with the given operands" do
         new_instruction = subject.cmppd(*operands)
@@ -1379,7 +1379,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpps" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPPS object with the given operands" do
         new_instruction = subject.cmpps(*operands)
@@ -1392,7 +1392,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmppxadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPPXADD object with the given operands" do
         new_instruction = subject.cmppxadd(*operands)
@@ -1405,7 +1405,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpsd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem64, imm8] }
+      let(:operands) { [xmm(0), mem64(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPSD object with the given operands" do
         new_instruction = subject.cmpsd(*operands)
@@ -1418,7 +1418,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), mem32(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPSS object with the given operands" do
         new_instruction = subject.cmpss(*operands)
@@ -1431,7 +1431,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpsxadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPSXADD object with the given operands" do
         new_instruction = subject.cmpsxadd(*operands)
@@ -1444,7 +1444,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpxchg" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPXCHG object with the given operands" do
         new_instruction = subject.cmpxchg(*operands)
@@ -1457,7 +1457,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpxchg16b" do
     context "when called with 1 operand" do
-      let(:operands) { [mem128] }
+      let(:operands) { [mem128(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPXCHG16B object with the given operands" do
         new_instruction = subject.cmpxchg16b(*operands)
@@ -1470,7 +1470,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpxchg8b" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPXCHG8B object with the given operands" do
         new_instruction = subject.cmpxchg8b(*operands)
@@ -1483,7 +1483,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cmpzxadd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CMPZXADD object with the given operands" do
         new_instruction = subject.cmpzxadd(*operands)
@@ -1496,7 +1496,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#comisd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::COMISD object with the given operands" do
         new_instruction = subject.comisd(*operands)
@@ -1509,7 +1509,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#comiss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::COMISS object with the given operands" do
         new_instruction = subject.comiss(*operands)
@@ -1544,7 +1544,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#crc32" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CRC32 object with the given operands" do
         new_instruction = subject.crc32(*operands)
@@ -1557,7 +1557,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtdq2pd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTDQ2PD object with the given operands" do
         new_instruction = subject.cvtdq2pd(*operands)
@@ -1570,7 +1570,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtdq2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTDQ2PS object with the given operands" do
         new_instruction = subject.cvtdq2ps(*operands)
@@ -1583,7 +1583,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtpd2dq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTPD2DQ object with the given operands" do
         new_instruction = subject.cvtpd2dq(*operands)
@@ -1596,7 +1596,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtpd2pi" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem128] }
+      let(:operands) { [mmx(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTPD2PI object with the given operands" do
         new_instruction = subject.cvtpd2pi(*operands)
@@ -1609,7 +1609,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtpd2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTPD2PS object with the given operands" do
         new_instruction = subject.cvtpd2ps(*operands)
@@ -1622,7 +1622,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtpi2pd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTPI2PD object with the given operands" do
         new_instruction = subject.cvtpi2pd(*operands)
@@ -1635,7 +1635,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtpi2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTPI2PS object with the given operands" do
         new_instruction = subject.cvtpi2ps(*operands)
@@ -1648,7 +1648,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtps2dq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTPS2DQ object with the given operands" do
         new_instruction = subject.cvtps2dq(*operands)
@@ -1661,7 +1661,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtps2pd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTPS2PD object with the given operands" do
         new_instruction = subject.cvtps2pd(*operands)
@@ -1674,7 +1674,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtps2pi" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTPS2PI object with the given operands" do
         new_instruction = subject.cvtps2pi(*operands)
@@ -1687,7 +1687,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtsd2si" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTSD2SI object with the given operands" do
         new_instruction = subject.cvtsd2si(*operands)
@@ -1700,7 +1700,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtsd2ss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTSD2SS object with the given operands" do
         new_instruction = subject.cvtsd2ss(*operands)
@@ -1713,7 +1713,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtsi2sd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTSI2SD object with the given operands" do
         new_instruction = subject.cvtsi2sd(*operands)
@@ -1726,7 +1726,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtsi2ss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTSI2SS object with the given operands" do
         new_instruction = subject.cvtsi2ss(*operands)
@@ -1739,7 +1739,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtss2sd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTSS2SD object with the given operands" do
         new_instruction = subject.cvtss2sd(*operands)
@@ -1752,7 +1752,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvtss2si" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem32] }
+      let(:operands) { [reg64(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTSS2SI object with the given operands" do
         new_instruction = subject.cvtss2si(*operands)
@@ -1765,7 +1765,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvttpd2dq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTTPD2DQ object with the given operands" do
         new_instruction = subject.cvttpd2dq(*operands)
@@ -1778,7 +1778,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvttpd2pi" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem128] }
+      let(:operands) { [mmx(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTTPD2PI object with the given operands" do
         new_instruction = subject.cvttpd2pi(*operands)
@@ -1791,7 +1791,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvttps2dq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTTPS2DQ object with the given operands" do
         new_instruction = subject.cvttps2dq(*operands)
@@ -1804,7 +1804,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvttps2pi" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTTPS2PI object with the given operands" do
         new_instruction = subject.cvttps2pi(*operands)
@@ -1817,7 +1817,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvttsd2si" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTTSD2SI object with the given operands" do
         new_instruction = subject.cvttsd2si(*operands)
@@ -1830,7 +1830,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#cvttss2si" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem32] }
+      let(:operands) { [reg64(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::CVTTSS2SI object with the given operands" do
         new_instruction = subject.cvttss2si(*operands)
@@ -1865,7 +1865,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#dec" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::DEC object with the given operands" do
         new_instruction = subject.dec(*operands)
@@ -1878,7 +1878,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#div" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::DIV object with the given operands" do
         new_instruction = subject.div(*operands)
@@ -1891,7 +1891,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#divpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::DIVPD object with the given operands" do
         new_instruction = subject.divpd(*operands)
@@ -1904,7 +1904,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#divps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::DIVPS object with the given operands" do
         new_instruction = subject.divps(*operands)
@@ -1917,7 +1917,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#divsd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::DIVSD object with the given operands" do
         new_instruction = subject.divsd(*operands)
@@ -1930,7 +1930,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#divss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::DIVSS object with the given operands" do
         new_instruction = subject.divss(*operands)
@@ -1943,7 +1943,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#dppd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::DPPD object with the given operands" do
         new_instruction = subject.dppd(*operands)
@@ -1956,7 +1956,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#dpps" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::DPPS object with the given operands" do
         new_instruction = subject.dpps(*operands)
@@ -1991,7 +1991,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#extractps" do
     context "when called with 3 operands" do
-      let(:operands) { [mem32, xmm, imm8] }
+      let(:operands) { [mem32(0), xmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::EXTRACTPS object with the given operands" do
         new_instruction = subject.extractps(*operands)
@@ -2004,7 +2004,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#extrq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::EXTRQ object with the given operands" do
         new_instruction = subject.extrq(*operands)
@@ -2015,7 +2015,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, imm8, imm8] }
+      let(:operands) { [xmm(0), imm8(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::EXTRQ object with the given operands" do
         new_instruction = subject.extrq(*operands)
@@ -2039,7 +2039,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#gf2p8affineinvqb" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::GF2P8AFFINEINVQB object with the given operands" do
         new_instruction = subject.gf2p8affineinvqb(*operands)
@@ -2052,7 +2052,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#gf2p8affineqb" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::GF2P8AFFINEQB object with the given operands" do
         new_instruction = subject.gf2p8affineqb(*operands)
@@ -2065,7 +2065,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#gf2p8mulb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::GF2P8MULB object with the given operands" do
         new_instruction = subject.gf2p8mulb(*operands)
@@ -2078,7 +2078,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#haddpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::HADDPD object with the given operands" do
         new_instruction = subject.haddpd(*operands)
@@ -2091,7 +2091,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#haddps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::HADDPS object with the given operands" do
         new_instruction = subject.haddps(*operands)
@@ -2104,7 +2104,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#hsubpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::HSUBPD object with the given operands" do
         new_instruction = subject.hsubpd(*operands)
@@ -2117,7 +2117,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#hsubps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::HSUBPS object with the given operands" do
         new_instruction = subject.hsubps(*operands)
@@ -2130,7 +2130,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#idiv" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::IDIV object with the given operands" do
         new_instruction = subject.idiv(*operands)
@@ -2143,7 +2143,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#imul" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::IMUL object with the given operands" do
         new_instruction = subject.imul(*operands)
@@ -2154,7 +2154,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::IMUL object with the given operands" do
         new_instruction = subject.imul(*operands)
@@ -2165,7 +2165,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, mem64, imm32] }
+      let(:operands) { [reg64(0), mem64(1), imm32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::IMUL object with the given operands" do
         new_instruction = subject.imul(*operands)
@@ -2178,7 +2178,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#inc" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::INC object with the given operands" do
         new_instruction = subject.inc(*operands)
@@ -2191,7 +2191,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#insertps" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), mem32(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::INSERTPS object with the given operands" do
         new_instruction = subject.insertps(*operands)
@@ -2204,7 +2204,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#insertq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::INSERTQ object with the given operands" do
         new_instruction = subject.insertq(*operands)
@@ -2215,7 +2215,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, imm8, imm8] }
+      let(:operands) { [xmm(0), xmm(1), imm8(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::INSERTQ object with the given operands" do
         new_instruction = subject.insertq(*operands)
@@ -2228,7 +2228,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#int" do
     context "when called with 1 operand" do
-      let(:operands) { [imm8] }
+      let(:operands) { [imm8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::INT object with the given operands" do
         new_instruction = subject.int(*operands)
@@ -2252,7 +2252,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#ja" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JA object with the given operands" do
         new_instruction = subject.ja(*operands)
@@ -2265,7 +2265,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jae" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JAE object with the given operands" do
         new_instruction = subject.jae(*operands)
@@ -2278,7 +2278,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jb" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JB object with the given operands" do
         new_instruction = subject.jb(*operands)
@@ -2291,7 +2291,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jbe" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JBE object with the given operands" do
         new_instruction = subject.jbe(*operands)
@@ -2304,7 +2304,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jc" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JC object with the given operands" do
         new_instruction = subject.jc(*operands)
@@ -2317,7 +2317,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#je" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JE object with the given operands" do
         new_instruction = subject.je(*operands)
@@ -2330,7 +2330,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jecxz" do
     context "when called with 1 operand" do
-      let(:operands) { [rel8] }
+      let(:operands) { [rel8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JECXZ object with the given operands" do
         new_instruction = subject.jecxz(*operands)
@@ -2343,7 +2343,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jg" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JG object with the given operands" do
         new_instruction = subject.jg(*operands)
@@ -2356,7 +2356,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jge" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JGE object with the given operands" do
         new_instruction = subject.jge(*operands)
@@ -2369,7 +2369,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jl" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JL object with the given operands" do
         new_instruction = subject.jl(*operands)
@@ -2382,7 +2382,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jle" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JLE object with the given operands" do
         new_instruction = subject.jle(*operands)
@@ -2395,7 +2395,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jmp" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JMP object with the given operands" do
         new_instruction = subject.jmp(*operands)
@@ -2408,7 +2408,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jna" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNA object with the given operands" do
         new_instruction = subject.jna(*operands)
@@ -2421,7 +2421,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jnae" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNAE object with the given operands" do
         new_instruction = subject.jnae(*operands)
@@ -2434,7 +2434,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jnb" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNB object with the given operands" do
         new_instruction = subject.jnb(*operands)
@@ -2447,7 +2447,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jnbe" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNBE object with the given operands" do
         new_instruction = subject.jnbe(*operands)
@@ -2460,7 +2460,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jnc" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNC object with the given operands" do
         new_instruction = subject.jnc(*operands)
@@ -2473,7 +2473,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jne" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNE object with the given operands" do
         new_instruction = subject.jne(*operands)
@@ -2486,7 +2486,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jng" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNG object with the given operands" do
         new_instruction = subject.jng(*operands)
@@ -2499,7 +2499,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jnge" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNGE object with the given operands" do
         new_instruction = subject.jnge(*operands)
@@ -2512,7 +2512,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jnl" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNL object with the given operands" do
         new_instruction = subject.jnl(*operands)
@@ -2525,7 +2525,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jnle" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNLE object with the given operands" do
         new_instruction = subject.jnle(*operands)
@@ -2538,7 +2538,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jno" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNO object with the given operands" do
         new_instruction = subject.jno(*operands)
@@ -2551,7 +2551,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jnp" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNP object with the given operands" do
         new_instruction = subject.jnp(*operands)
@@ -2564,7 +2564,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jns" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNS object with the given operands" do
         new_instruction = subject.jns(*operands)
@@ -2577,7 +2577,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jnz" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JNZ object with the given operands" do
         new_instruction = subject.jnz(*operands)
@@ -2590,7 +2590,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jo" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JO object with the given operands" do
         new_instruction = subject.jo(*operands)
@@ -2603,7 +2603,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jp" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JP object with the given operands" do
         new_instruction = subject.jp(*operands)
@@ -2616,7 +2616,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jpe" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JPE object with the given operands" do
         new_instruction = subject.jpe(*operands)
@@ -2629,7 +2629,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jpo" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JPO object with the given operands" do
         new_instruction = subject.jpo(*operands)
@@ -2642,7 +2642,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jrcxz" do
     context "when called with 1 operand" do
-      let(:operands) { [rel8] }
+      let(:operands) { [rel8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JRCXZ object with the given operands" do
         new_instruction = subject.jrcxz(*operands)
@@ -2655,7 +2655,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#js" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JS object with the given operands" do
         new_instruction = subject.js(*operands)
@@ -2668,7 +2668,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#jz" do
     context "when called with 1 operand" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::JZ object with the given operands" do
         new_instruction = subject.jz(*operands)
@@ -2681,7 +2681,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kaddb" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KADDB object with the given operands" do
         new_instruction = subject.kaddb(*operands)
@@ -2694,7 +2694,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kaddd" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KADDD object with the given operands" do
         new_instruction = subject.kaddd(*operands)
@@ -2707,7 +2707,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kaddq" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KADDQ object with the given operands" do
         new_instruction = subject.kaddq(*operands)
@@ -2720,7 +2720,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kaddw" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KADDW object with the given operands" do
         new_instruction = subject.kaddw(*operands)
@@ -2733,7 +2733,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kandb" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KANDB object with the given operands" do
         new_instruction = subject.kandb(*operands)
@@ -2746,7 +2746,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kandd" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KANDD object with the given operands" do
         new_instruction = subject.kandd(*operands)
@@ -2759,7 +2759,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kandnb" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KANDNB object with the given operands" do
         new_instruction = subject.kandnb(*operands)
@@ -2772,7 +2772,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kandnd" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KANDND object with the given operands" do
         new_instruction = subject.kandnd(*operands)
@@ -2785,7 +2785,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kandnq" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KANDNQ object with the given operands" do
         new_instruction = subject.kandnq(*operands)
@@ -2798,7 +2798,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kandnw" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KANDNW object with the given operands" do
         new_instruction = subject.kandnw(*operands)
@@ -2811,7 +2811,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kandq" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KANDQ object with the given operands" do
         new_instruction = subject.kandq(*operands)
@@ -2824,7 +2824,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kandw" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KANDW object with the given operands" do
         new_instruction = subject.kandw(*operands)
@@ -2837,7 +2837,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kmovb" do
     context "when called with 2 operands" do
-      let(:operands) { [mem8, k] }
+      let(:operands) { [mem8(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KMOVB object with the given operands" do
         new_instruction = subject.kmovb(*operands)
@@ -2850,7 +2850,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kmovd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem32, k] }
+      let(:operands) { [mem32(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KMOVD object with the given operands" do
         new_instruction = subject.kmovd(*operands)
@@ -2863,7 +2863,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kmovq" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, k] }
+      let(:operands) { [mem64(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KMOVQ object with the given operands" do
         new_instruction = subject.kmovq(*operands)
@@ -2876,7 +2876,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kmovw" do
     context "when called with 2 operands" do
-      let(:operands) { [mem16, k] }
+      let(:operands) { [mem16(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KMOVW object with the given operands" do
         new_instruction = subject.kmovw(*operands)
@@ -2889,7 +2889,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#knotb" do
     context "when called with 2 operands" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KNOTB object with the given operands" do
         new_instruction = subject.knotb(*operands)
@@ -2902,7 +2902,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#knotd" do
     context "when called with 2 operands" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KNOTD object with the given operands" do
         new_instruction = subject.knotd(*operands)
@@ -2915,7 +2915,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#knotq" do
     context "when called with 2 operands" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KNOTQ object with the given operands" do
         new_instruction = subject.knotq(*operands)
@@ -2928,7 +2928,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#knotw" do
     context "when called with 2 operands" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KNOTW object with the given operands" do
         new_instruction = subject.knotw(*operands)
@@ -2941,7 +2941,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#korb" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KORB object with the given operands" do
         new_instruction = subject.korb(*operands)
@@ -2954,7 +2954,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kord" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KORD object with the given operands" do
         new_instruction = subject.kord(*operands)
@@ -2967,7 +2967,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#korq" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KORQ object with the given operands" do
         new_instruction = subject.korq(*operands)
@@ -2980,7 +2980,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kortestb" do
     context "when called with 2 operands" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KORTESTB object with the given operands" do
         new_instruction = subject.kortestb(*operands)
@@ -2993,7 +2993,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kortestd" do
     context "when called with 2 operands" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KORTESTD object with the given operands" do
         new_instruction = subject.kortestd(*operands)
@@ -3006,7 +3006,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kortestq" do
     context "when called with 2 operands" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KORTESTQ object with the given operands" do
         new_instruction = subject.kortestq(*operands)
@@ -3019,7 +3019,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kortestw" do
     context "when called with 2 operands" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KORTESTW object with the given operands" do
         new_instruction = subject.kortestw(*operands)
@@ -3032,7 +3032,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#korw" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KORW object with the given operands" do
         new_instruction = subject.korw(*operands)
@@ -3045,7 +3045,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kshiftlb" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, imm8] }
+      let(:operands) { [k(0), k(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KSHIFTLB object with the given operands" do
         new_instruction = subject.kshiftlb(*operands)
@@ -3058,7 +3058,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kshiftld" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, imm8] }
+      let(:operands) { [k(0), k(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KSHIFTLD object with the given operands" do
         new_instruction = subject.kshiftld(*operands)
@@ -3071,7 +3071,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kshiftlq" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, imm8] }
+      let(:operands) { [k(0), k(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KSHIFTLQ object with the given operands" do
         new_instruction = subject.kshiftlq(*operands)
@@ -3084,7 +3084,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kshiftlw" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, imm8] }
+      let(:operands) { [k(0), k(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KSHIFTLW object with the given operands" do
         new_instruction = subject.kshiftlw(*operands)
@@ -3097,7 +3097,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kshiftrb" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, imm8] }
+      let(:operands) { [k(0), k(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KSHIFTRB object with the given operands" do
         new_instruction = subject.kshiftrb(*operands)
@@ -3110,7 +3110,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kshiftrd" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, imm8] }
+      let(:operands) { [k(0), k(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KSHIFTRD object with the given operands" do
         new_instruction = subject.kshiftrd(*operands)
@@ -3123,7 +3123,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kshiftrq" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, imm8] }
+      let(:operands) { [k(0), k(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KSHIFTRQ object with the given operands" do
         new_instruction = subject.kshiftrq(*operands)
@@ -3136,7 +3136,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kshiftrw" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, imm8] }
+      let(:operands) { [k(0), k(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KSHIFTRW object with the given operands" do
         new_instruction = subject.kshiftrw(*operands)
@@ -3149,7 +3149,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#ktestb" do
     context "when called with 2 operands" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KTESTB object with the given operands" do
         new_instruction = subject.ktestb(*operands)
@@ -3162,7 +3162,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#ktestd" do
     context "when called with 2 operands" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KTESTD object with the given operands" do
         new_instruction = subject.ktestd(*operands)
@@ -3175,7 +3175,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#ktestq" do
     context "when called with 2 operands" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KTESTQ object with the given operands" do
         new_instruction = subject.ktestq(*operands)
@@ -3188,7 +3188,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#ktestw" do
     context "when called with 2 operands" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KTESTW object with the given operands" do
         new_instruction = subject.ktestw(*operands)
@@ -3201,7 +3201,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kunpckbw" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KUNPCKBW object with the given operands" do
         new_instruction = subject.kunpckbw(*operands)
@@ -3214,7 +3214,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kunpckdq" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KUNPCKDQ object with the given operands" do
         new_instruction = subject.kunpckdq(*operands)
@@ -3227,7 +3227,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kunpckwd" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KUNPCKWD object with the given operands" do
         new_instruction = subject.kunpckwd(*operands)
@@ -3240,7 +3240,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kxnorb" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KXNORB object with the given operands" do
         new_instruction = subject.kxnorb(*operands)
@@ -3253,7 +3253,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kxnord" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KXNORD object with the given operands" do
         new_instruction = subject.kxnord(*operands)
@@ -3266,7 +3266,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kxnorq" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KXNORQ object with the given operands" do
         new_instruction = subject.kxnorq(*operands)
@@ -3279,7 +3279,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kxnorw" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KXNORW object with the given operands" do
         new_instruction = subject.kxnorw(*operands)
@@ -3292,7 +3292,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kxorb" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KXORB object with the given operands" do
         new_instruction = subject.kxorb(*operands)
@@ -3305,7 +3305,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kxord" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KXORD object with the given operands" do
         new_instruction = subject.kxord(*operands)
@@ -3318,7 +3318,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kxorq" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KXORQ object with the given operands" do
         new_instruction = subject.kxorq(*operands)
@@ -3331,7 +3331,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#kxorw" do
     context "when called with 3 operands" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::KXORW object with the given operands" do
         new_instruction = subject.kxorw(*operands)
@@ -3355,7 +3355,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#lddqu" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::LDDQU object with the given operands" do
         new_instruction = subject.lddqu(*operands)
@@ -3368,7 +3368,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#ldmxcsr" do
     context "when called with 1 operand" do
-      let(:operands) { [mem32] }
+      let(:operands) { [mem32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::LDMXCSR object with the given operands" do
         new_instruction = subject.ldmxcsr(*operands)
@@ -3381,7 +3381,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#ldtilecfg" do
     context "when called with 1 operand" do
-      let(:operands) { [mem512] }
+      let(:operands) { [mem512(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::LDTILECFG object with the given operands" do
         new_instruction = subject.ldtilecfg(*operands)
@@ -3394,7 +3394,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#lea" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem] }
+      let(:operands) { [reg64(0), mem(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::LEA object with the given operands" do
         new_instruction = subject.lea(*operands)
@@ -3418,7 +3418,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#lzcnt" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::LZCNT object with the given operands" do
         new_instruction = subject.lzcnt(*operands)
@@ -3431,7 +3431,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#maskmovdqu" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MASKMOVDQU object with the given operands" do
         new_instruction = subject.maskmovdqu(*operands)
@@ -3444,7 +3444,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#maskmovq" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mmx] }
+      let(:operands) { [mmx(0), mmx(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MASKMOVQ object with the given operands" do
         new_instruction = subject.maskmovq(*operands)
@@ -3457,7 +3457,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#maxpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MAXPD object with the given operands" do
         new_instruction = subject.maxpd(*operands)
@@ -3470,7 +3470,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#maxps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MAXPS object with the given operands" do
         new_instruction = subject.maxps(*operands)
@@ -3483,7 +3483,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#maxsd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MAXSD object with the given operands" do
         new_instruction = subject.maxsd(*operands)
@@ -3496,7 +3496,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#maxss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MAXSS object with the given operands" do
         new_instruction = subject.maxss(*operands)
@@ -3531,7 +3531,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#minpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MINPD object with the given operands" do
         new_instruction = subject.minpd(*operands)
@@ -3544,7 +3544,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#minps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MINPS object with the given operands" do
         new_instruction = subject.minps(*operands)
@@ -3557,7 +3557,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#minsd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MINSD object with the given operands" do
         new_instruction = subject.minsd(*operands)
@@ -3570,7 +3570,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#minss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MINSS object with the given operands" do
         new_instruction = subject.minss(*operands)
@@ -3605,7 +3605,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#mov" do
     context "when called with 2 operands" do
-      let(:operands) { [moffset64, rax] }
+      let(:operands) { [moffset64(0), rax(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOV object with the given operands" do
         new_instruction = subject.mov(*operands)
@@ -3618,7 +3618,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movapd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, xmm] }
+      let(:operands) { [mem128(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVAPD object with the given operands" do
         new_instruction = subject.movapd(*operands)
@@ -3631,7 +3631,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movaps" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, xmm] }
+      let(:operands) { [mem128(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVAPS object with the given operands" do
         new_instruction = subject.movaps(*operands)
@@ -3644,7 +3644,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movbe" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVBE object with the given operands" do
         new_instruction = subject.movbe(*operands)
@@ -3657,7 +3657,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem32, xmm] }
+      let(:operands) { [mem32(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVD object with the given operands" do
         new_instruction = subject.movd(*operands)
@@ -3670,7 +3670,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movddup" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVDDUP object with the given operands" do
         new_instruction = subject.movddup(*operands)
@@ -3683,7 +3683,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movdir64b" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem512] }
+      let(:operands) { [reg64(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVDIR64B object with the given operands" do
         new_instruction = subject.movdir64b(*operands)
@@ -3696,7 +3696,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movdiri" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVDIRI object with the given operands" do
         new_instruction = subject.movdiri(*operands)
@@ -3709,7 +3709,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movdq2q" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, xmm] }
+      let(:operands) { [mmx(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVDQ2Q object with the given operands" do
         new_instruction = subject.movdq2q(*operands)
@@ -3722,7 +3722,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movdqa" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, xmm] }
+      let(:operands) { [mem128(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVDQA object with the given operands" do
         new_instruction = subject.movdqa(*operands)
@@ -3735,7 +3735,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movdqu" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, xmm] }
+      let(:operands) { [mem128(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVDQU object with the given operands" do
         new_instruction = subject.movdqu(*operands)
@@ -3748,7 +3748,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movhlps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVHLPS object with the given operands" do
         new_instruction = subject.movhlps(*operands)
@@ -3761,7 +3761,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movhpd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVHPD object with the given operands" do
         new_instruction = subject.movhpd(*operands)
@@ -3774,7 +3774,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movhps" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVHPS object with the given operands" do
         new_instruction = subject.movhps(*operands)
@@ -3787,7 +3787,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movlhps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVLHPS object with the given operands" do
         new_instruction = subject.movlhps(*operands)
@@ -3800,7 +3800,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movlpd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVLPD object with the given operands" do
         new_instruction = subject.movlpd(*operands)
@@ -3813,7 +3813,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movlps" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVLPS object with the given operands" do
         new_instruction = subject.movlps(*operands)
@@ -3826,7 +3826,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movmskpd" do
     context "when called with 2 operands" do
-      let(:operands) { [reg32, xmm] }
+      let(:operands) { [reg32(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVMSKPD object with the given operands" do
         new_instruction = subject.movmskpd(*operands)
@@ -3839,7 +3839,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movmskps" do
     context "when called with 2 operands" do
-      let(:operands) { [reg32, xmm] }
+      let(:operands) { [reg32(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVMSKPS object with the given operands" do
         new_instruction = subject.movmskps(*operands)
@@ -3852,7 +3852,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movntdq" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, xmm] }
+      let(:operands) { [mem128(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVNTDQ object with the given operands" do
         new_instruction = subject.movntdq(*operands)
@@ -3865,7 +3865,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movntdqa" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVNTDQA object with the given operands" do
         new_instruction = subject.movntdqa(*operands)
@@ -3878,7 +3878,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movnti" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVNTI object with the given operands" do
         new_instruction = subject.movnti(*operands)
@@ -3891,7 +3891,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movntpd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, xmm] }
+      let(:operands) { [mem128(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVNTPD object with the given operands" do
         new_instruction = subject.movntpd(*operands)
@@ -3904,7 +3904,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movntps" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, xmm] }
+      let(:operands) { [mem128(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVNTPS object with the given operands" do
         new_instruction = subject.movntps(*operands)
@@ -3917,7 +3917,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movntq" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, mmx] }
+      let(:operands) { [mem64(0), mmx(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVNTQ object with the given operands" do
         new_instruction = subject.movntq(*operands)
@@ -3930,7 +3930,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movntsd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVNTSD object with the given operands" do
         new_instruction = subject.movntsd(*operands)
@@ -3943,7 +3943,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movntss" do
     context "when called with 2 operands" do
-      let(:operands) { [mem32, xmm] }
+      let(:operands) { [mem32(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVNTSS object with the given operands" do
         new_instruction = subject.movntss(*operands)
@@ -3956,7 +3956,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movq" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVQ object with the given operands" do
         new_instruction = subject.movq(*operands)
@@ -3969,7 +3969,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movq2dq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mmx] }
+      let(:operands) { [xmm(0), mmx(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVQ2DQ object with the given operands" do
         new_instruction = subject.movq2dq(*operands)
@@ -3982,7 +3982,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movsd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVSD object with the given operands" do
         new_instruction = subject.movsd(*operands)
@@ -3995,7 +3995,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movshdup" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVSHDUP object with the given operands" do
         new_instruction = subject.movshdup(*operands)
@@ -4008,7 +4008,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movsldup" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVSLDUP object with the given operands" do
         new_instruction = subject.movsldup(*operands)
@@ -4021,7 +4021,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movss" do
     context "when called with 2 operands" do
-      let(:operands) { [mem32, xmm] }
+      let(:operands) { [mem32(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVSS object with the given operands" do
         new_instruction = subject.movss(*operands)
@@ -4034,7 +4034,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movsx" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem16] }
+      let(:operands) { [reg64(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVSX object with the given operands" do
         new_instruction = subject.movsx(*operands)
@@ -4047,7 +4047,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movsxd" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem32] }
+      let(:operands) { [reg64(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVSXD object with the given operands" do
         new_instruction = subject.movsxd(*operands)
@@ -4060,7 +4060,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movupd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, xmm] }
+      let(:operands) { [mem128(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVUPD object with the given operands" do
         new_instruction = subject.movupd(*operands)
@@ -4073,7 +4073,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movups" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, xmm] }
+      let(:operands) { [mem128(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVUPS object with the given operands" do
         new_instruction = subject.movups(*operands)
@@ -4086,7 +4086,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#movzx" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem16] }
+      let(:operands) { [reg64(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MOVZX object with the given operands" do
         new_instruction = subject.movzx(*operands)
@@ -4099,7 +4099,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#mpsadbw" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MPSADBW object with the given operands" do
         new_instruction = subject.mpsadbw(*operands)
@@ -4112,7 +4112,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#mul" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MUL object with the given operands" do
         new_instruction = subject.mul(*operands)
@@ -4125,7 +4125,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#mulpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MULPD object with the given operands" do
         new_instruction = subject.mulpd(*operands)
@@ -4138,7 +4138,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#mulps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MULPS object with the given operands" do
         new_instruction = subject.mulps(*operands)
@@ -4151,7 +4151,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#mulsd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MULSD object with the given operands" do
         new_instruction = subject.mulsd(*operands)
@@ -4164,7 +4164,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#mulss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MULSS object with the given operands" do
         new_instruction = subject.mulss(*operands)
@@ -4177,7 +4177,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#mulx" do
     context "when called with 3 operands" do
-      let(:operands) { [reg64, reg64, mem64] }
+      let(:operands) { [reg64(0), reg64(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::MULX object with the given operands" do
         new_instruction = subject.mulx(*operands)
@@ -4212,7 +4212,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#neg" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::NEG object with the given operands" do
         new_instruction = subject.neg(*operands)
@@ -4236,7 +4236,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#not" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::NOT object with the given operands" do
         new_instruction = subject.not(*operands)
@@ -4249,7 +4249,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#or" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::OR object with the given operands" do
         new_instruction = subject.or(*operands)
@@ -4262,7 +4262,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#orpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ORPD object with the given operands" do
         new_instruction = subject.orpd(*operands)
@@ -4275,7 +4275,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#orps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ORPS object with the given operands" do
         new_instruction = subject.orps(*operands)
@@ -4288,7 +4288,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pabsb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PABSB object with the given operands" do
         new_instruction = subject.pabsb(*operands)
@@ -4301,7 +4301,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pabsd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PABSD object with the given operands" do
         new_instruction = subject.pabsd(*operands)
@@ -4314,7 +4314,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pabsw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PABSW object with the given operands" do
         new_instruction = subject.pabsw(*operands)
@@ -4327,7 +4327,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#packssdw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PACKSSDW object with the given operands" do
         new_instruction = subject.packssdw(*operands)
@@ -4340,7 +4340,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#packsswb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PACKSSWB object with the given operands" do
         new_instruction = subject.packsswb(*operands)
@@ -4353,7 +4353,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#packusdw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PACKUSDW object with the given operands" do
         new_instruction = subject.packusdw(*operands)
@@ -4366,7 +4366,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#packuswb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PACKUSWB object with the given operands" do
         new_instruction = subject.packuswb(*operands)
@@ -4379,7 +4379,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#paddb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PADDB object with the given operands" do
         new_instruction = subject.paddb(*operands)
@@ -4392,7 +4392,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#paddd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PADDD object with the given operands" do
         new_instruction = subject.paddd(*operands)
@@ -4405,7 +4405,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#paddq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PADDQ object with the given operands" do
         new_instruction = subject.paddq(*operands)
@@ -4418,7 +4418,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#paddsb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PADDSB object with the given operands" do
         new_instruction = subject.paddsb(*operands)
@@ -4431,7 +4431,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#paddsw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PADDSW object with the given operands" do
         new_instruction = subject.paddsw(*operands)
@@ -4444,7 +4444,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#paddusb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PADDUSB object with the given operands" do
         new_instruction = subject.paddusb(*operands)
@@ -4457,7 +4457,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#paddusw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PADDUSW object with the given operands" do
         new_instruction = subject.paddusw(*operands)
@@ -4470,7 +4470,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#paddw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PADDW object with the given operands" do
         new_instruction = subject.paddw(*operands)
@@ -4483,7 +4483,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#palignr" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PALIGNR object with the given operands" do
         new_instruction = subject.palignr(*operands)
@@ -4496,7 +4496,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pand" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PAND object with the given operands" do
         new_instruction = subject.pand(*operands)
@@ -4509,7 +4509,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pandn" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PANDN object with the given operands" do
         new_instruction = subject.pandn(*operands)
@@ -4533,7 +4533,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pavgb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PAVGB object with the given operands" do
         new_instruction = subject.pavgb(*operands)
@@ -4546,7 +4546,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pavgusb" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PAVGUSB object with the given operands" do
         new_instruction = subject.pavgusb(*operands)
@@ -4559,7 +4559,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pavgw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PAVGW object with the given operands" do
         new_instruction = subject.pavgw(*operands)
@@ -4572,7 +4572,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pblendvb" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm0] }
+      let(:operands) { [xmm(0), mem128(1), xmm0(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PBLENDVB object with the given operands" do
         new_instruction = subject.pblendvb(*operands)
@@ -4585,7 +4585,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pblendw" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PBLENDW object with the given operands" do
         new_instruction = subject.pblendw(*operands)
@@ -4598,7 +4598,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pclmulqdq" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCLMULQDQ object with the given operands" do
         new_instruction = subject.pclmulqdq(*operands)
@@ -4611,7 +4611,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pcmpeqb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCMPEQB object with the given operands" do
         new_instruction = subject.pcmpeqb(*operands)
@@ -4624,7 +4624,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pcmpeqd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCMPEQD object with the given operands" do
         new_instruction = subject.pcmpeqd(*operands)
@@ -4637,7 +4637,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pcmpeqq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCMPEQQ object with the given operands" do
         new_instruction = subject.pcmpeqq(*operands)
@@ -4650,7 +4650,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pcmpeqw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCMPEQW object with the given operands" do
         new_instruction = subject.pcmpeqw(*operands)
@@ -4663,7 +4663,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pcmpestri" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCMPESTRI object with the given operands" do
         new_instruction = subject.pcmpestri(*operands)
@@ -4676,7 +4676,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pcmpestrm" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCMPESTRM object with the given operands" do
         new_instruction = subject.pcmpestrm(*operands)
@@ -4689,7 +4689,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pcmpgtb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCMPGTB object with the given operands" do
         new_instruction = subject.pcmpgtb(*operands)
@@ -4702,7 +4702,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pcmpgtd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCMPGTD object with the given operands" do
         new_instruction = subject.pcmpgtd(*operands)
@@ -4715,7 +4715,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pcmpgtq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCMPGTQ object with the given operands" do
         new_instruction = subject.pcmpgtq(*operands)
@@ -4728,7 +4728,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pcmpgtw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCMPGTW object with the given operands" do
         new_instruction = subject.pcmpgtw(*operands)
@@ -4741,7 +4741,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pcmpistri" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCMPISTRI object with the given operands" do
         new_instruction = subject.pcmpistri(*operands)
@@ -4754,7 +4754,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pcmpistrm" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PCMPISTRM object with the given operands" do
         new_instruction = subject.pcmpistrm(*operands)
@@ -4767,7 +4767,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pdep" do
     context "when called with 3 operands" do
-      let(:operands) { [reg64, reg64, mem64] }
+      let(:operands) { [reg64(0), reg64(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PDEP object with the given operands" do
         new_instruction = subject.pdep(*operands)
@@ -4780,7 +4780,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pext" do
     context "when called with 3 operands" do
-      let(:operands) { [reg64, reg64, mem64] }
+      let(:operands) { [reg64(0), reg64(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PEXT object with the given operands" do
         new_instruction = subject.pext(*operands)
@@ -4793,7 +4793,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pextrb" do
     context "when called with 3 operands" do
-      let(:operands) { [mem8, xmm, imm8] }
+      let(:operands) { [mem8(0), xmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PEXTRB object with the given operands" do
         new_instruction = subject.pextrb(*operands)
@@ -4806,7 +4806,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pextrd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem32, xmm, imm8] }
+      let(:operands) { [mem32(0), xmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PEXTRD object with the given operands" do
         new_instruction = subject.pextrd(*operands)
@@ -4819,7 +4819,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pextrq" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, xmm, imm8] }
+      let(:operands) { [mem64(0), xmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PEXTRQ object with the given operands" do
         new_instruction = subject.pextrq(*operands)
@@ -4832,7 +4832,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pextrw" do
     context "when called with 3 operands" do
-      let(:operands) { [mem16, xmm, imm8] }
+      let(:operands) { [mem16(0), xmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PEXTRW object with the given operands" do
         new_instruction = subject.pextrw(*operands)
@@ -4845,7 +4845,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pf2id" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PF2ID object with the given operands" do
         new_instruction = subject.pf2id(*operands)
@@ -4858,7 +4858,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pf2iw" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PF2IW object with the given operands" do
         new_instruction = subject.pf2iw(*operands)
@@ -4871,7 +4871,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfacc" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFACC object with the given operands" do
         new_instruction = subject.pfacc(*operands)
@@ -4884,7 +4884,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfadd" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFADD object with the given operands" do
         new_instruction = subject.pfadd(*operands)
@@ -4897,7 +4897,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfcmpeq" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFCMPEQ object with the given operands" do
         new_instruction = subject.pfcmpeq(*operands)
@@ -4910,7 +4910,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfcmpge" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFCMPGE object with the given operands" do
         new_instruction = subject.pfcmpge(*operands)
@@ -4923,7 +4923,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfcmpgt" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFCMPGT object with the given operands" do
         new_instruction = subject.pfcmpgt(*operands)
@@ -4936,7 +4936,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfmax" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFMAX object with the given operands" do
         new_instruction = subject.pfmax(*operands)
@@ -4949,7 +4949,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfmin" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFMIN object with the given operands" do
         new_instruction = subject.pfmin(*operands)
@@ -4962,7 +4962,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfmul" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFMUL object with the given operands" do
         new_instruction = subject.pfmul(*operands)
@@ -4975,7 +4975,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfnacc" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFNACC object with the given operands" do
         new_instruction = subject.pfnacc(*operands)
@@ -4988,7 +4988,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfpnacc" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFPNACC object with the given operands" do
         new_instruction = subject.pfpnacc(*operands)
@@ -5001,7 +5001,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfrcp" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFRCP object with the given operands" do
         new_instruction = subject.pfrcp(*operands)
@@ -5014,7 +5014,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfrcpit1" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFRCPIT1 object with the given operands" do
         new_instruction = subject.pfrcpit1(*operands)
@@ -5027,7 +5027,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfrcpit2" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFRCPIT2 object with the given operands" do
         new_instruction = subject.pfrcpit2(*operands)
@@ -5040,7 +5040,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfrsqit1" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFRSQIT1 object with the given operands" do
         new_instruction = subject.pfrsqit1(*operands)
@@ -5053,7 +5053,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfrsqrt" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFRSQRT object with the given operands" do
         new_instruction = subject.pfrsqrt(*operands)
@@ -5066,7 +5066,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfsub" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFSUB object with the given operands" do
         new_instruction = subject.pfsub(*operands)
@@ -5079,7 +5079,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pfsubr" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PFSUBR object with the given operands" do
         new_instruction = subject.pfsubr(*operands)
@@ -5092,7 +5092,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#phaddd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PHADDD object with the given operands" do
         new_instruction = subject.phaddd(*operands)
@@ -5105,7 +5105,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#phaddsw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PHADDSW object with the given operands" do
         new_instruction = subject.phaddsw(*operands)
@@ -5118,7 +5118,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#phaddw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PHADDW object with the given operands" do
         new_instruction = subject.phaddw(*operands)
@@ -5131,7 +5131,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#phminposuw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PHMINPOSUW object with the given operands" do
         new_instruction = subject.phminposuw(*operands)
@@ -5144,7 +5144,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#phsubd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PHSUBD object with the given operands" do
         new_instruction = subject.phsubd(*operands)
@@ -5157,7 +5157,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#phsubsw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PHSUBSW object with the given operands" do
         new_instruction = subject.phsubsw(*operands)
@@ -5170,7 +5170,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#phsubw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PHSUBW object with the given operands" do
         new_instruction = subject.phsubw(*operands)
@@ -5183,7 +5183,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pi2fd" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PI2FD object with the given operands" do
         new_instruction = subject.pi2fd(*operands)
@@ -5196,7 +5196,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pi2fw" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PI2FW object with the given operands" do
         new_instruction = subject.pi2fw(*operands)
@@ -5209,7 +5209,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pinsrb" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem8, imm8] }
+      let(:operands) { [xmm(0), mem8(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PINSRB object with the given operands" do
         new_instruction = subject.pinsrb(*operands)
@@ -5222,7 +5222,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pinsrd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), mem32(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PINSRD object with the given operands" do
         new_instruction = subject.pinsrd(*operands)
@@ -5235,7 +5235,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pinsrq" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem64, imm8] }
+      let(:operands) { [xmm(0), mem64(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PINSRQ object with the given operands" do
         new_instruction = subject.pinsrq(*operands)
@@ -5248,7 +5248,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pinsrw" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem16, imm8] }
+      let(:operands) { [xmm(0), mem16(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PINSRW object with the given operands" do
         new_instruction = subject.pinsrw(*operands)
@@ -5261,7 +5261,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmaddubsw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMADDUBSW object with the given operands" do
         new_instruction = subject.pmaddubsw(*operands)
@@ -5274,7 +5274,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmaddwd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMADDWD object with the given operands" do
         new_instruction = subject.pmaddwd(*operands)
@@ -5287,7 +5287,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmaxsb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMAXSB object with the given operands" do
         new_instruction = subject.pmaxsb(*operands)
@@ -5300,7 +5300,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmaxsd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMAXSD object with the given operands" do
         new_instruction = subject.pmaxsd(*operands)
@@ -5313,7 +5313,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmaxsw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMAXSW object with the given operands" do
         new_instruction = subject.pmaxsw(*operands)
@@ -5326,7 +5326,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmaxub" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMAXUB object with the given operands" do
         new_instruction = subject.pmaxub(*operands)
@@ -5339,7 +5339,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmaxud" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMAXUD object with the given operands" do
         new_instruction = subject.pmaxud(*operands)
@@ -5352,7 +5352,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmaxuw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMAXUW object with the given operands" do
         new_instruction = subject.pmaxuw(*operands)
@@ -5365,7 +5365,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pminsb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMINSB object with the given operands" do
         new_instruction = subject.pminsb(*operands)
@@ -5378,7 +5378,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pminsd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMINSD object with the given operands" do
         new_instruction = subject.pminsd(*operands)
@@ -5391,7 +5391,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pminsw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMINSW object with the given operands" do
         new_instruction = subject.pminsw(*operands)
@@ -5404,7 +5404,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pminub" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMINUB object with the given operands" do
         new_instruction = subject.pminub(*operands)
@@ -5417,7 +5417,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pminud" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMINUD object with the given operands" do
         new_instruction = subject.pminud(*operands)
@@ -5430,7 +5430,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pminuw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMINUW object with the given operands" do
         new_instruction = subject.pminuw(*operands)
@@ -5443,7 +5443,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovmskb" do
     context "when called with 2 operands" do
-      let(:operands) { [reg32, xmm] }
+      let(:operands) { [reg32(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVMSKB object with the given operands" do
         new_instruction = subject.pmovmskb(*operands)
@@ -5456,7 +5456,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovsxbd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVSXBD object with the given operands" do
         new_instruction = subject.pmovsxbd(*operands)
@@ -5469,7 +5469,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovsxbq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem16] }
+      let(:operands) { [xmm(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVSXBQ object with the given operands" do
         new_instruction = subject.pmovsxbq(*operands)
@@ -5482,7 +5482,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovsxbw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVSXBW object with the given operands" do
         new_instruction = subject.pmovsxbw(*operands)
@@ -5495,7 +5495,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovsxdq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVSXDQ object with the given operands" do
         new_instruction = subject.pmovsxdq(*operands)
@@ -5508,7 +5508,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovsxwd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVSXWD object with the given operands" do
         new_instruction = subject.pmovsxwd(*operands)
@@ -5521,7 +5521,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovsxwq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVSXWQ object with the given operands" do
         new_instruction = subject.pmovsxwq(*operands)
@@ -5534,7 +5534,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovzxbd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVZXBD object with the given operands" do
         new_instruction = subject.pmovzxbd(*operands)
@@ -5547,7 +5547,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovzxbq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem16] }
+      let(:operands) { [xmm(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVZXBQ object with the given operands" do
         new_instruction = subject.pmovzxbq(*operands)
@@ -5560,7 +5560,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovzxbw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVZXBW object with the given operands" do
         new_instruction = subject.pmovzxbw(*operands)
@@ -5573,7 +5573,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovzxdq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVZXDQ object with the given operands" do
         new_instruction = subject.pmovzxdq(*operands)
@@ -5586,7 +5586,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovzxwd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVZXWD object with the given operands" do
         new_instruction = subject.pmovzxwd(*operands)
@@ -5599,7 +5599,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmovzxwq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMOVZXWQ object with the given operands" do
         new_instruction = subject.pmovzxwq(*operands)
@@ -5612,7 +5612,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmuldq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMULDQ object with the given operands" do
         new_instruction = subject.pmuldq(*operands)
@@ -5625,7 +5625,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmulhrsw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMULHRSW object with the given operands" do
         new_instruction = subject.pmulhrsw(*operands)
@@ -5638,7 +5638,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmulhrw" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMULHRW object with the given operands" do
         new_instruction = subject.pmulhrw(*operands)
@@ -5651,7 +5651,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmulhuw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMULHUW object with the given operands" do
         new_instruction = subject.pmulhuw(*operands)
@@ -5664,7 +5664,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmulhw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMULHW object with the given operands" do
         new_instruction = subject.pmulhw(*operands)
@@ -5677,7 +5677,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmulld" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMULLD object with the given operands" do
         new_instruction = subject.pmulld(*operands)
@@ -5690,7 +5690,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmullw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMULLW object with the given operands" do
         new_instruction = subject.pmullw(*operands)
@@ -5703,7 +5703,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pmuludq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PMULUDQ object with the given operands" do
         new_instruction = subject.pmuludq(*operands)
@@ -5716,7 +5716,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pop" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::POP object with the given operands" do
         new_instruction = subject.pop(*operands)
@@ -5729,7 +5729,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#popcnt" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::POPCNT object with the given operands" do
         new_instruction = subject.popcnt(*operands)
@@ -5742,7 +5742,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#por" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::POR object with the given operands" do
         new_instruction = subject.por(*operands)
@@ -5755,7 +5755,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#prefetch" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PREFETCH object with the given operands" do
         new_instruction = subject.prefetch(*operands)
@@ -5768,7 +5768,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#prefetchit0" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PREFETCHIT0 object with the given operands" do
         new_instruction = subject.prefetchit0(*operands)
@@ -5781,7 +5781,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#prefetchit1" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PREFETCHIT1 object with the given operands" do
         new_instruction = subject.prefetchit1(*operands)
@@ -5794,7 +5794,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#prefetchnta" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PREFETCHNTA object with the given operands" do
         new_instruction = subject.prefetchnta(*operands)
@@ -5807,7 +5807,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#prefetcht0" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PREFETCHT0 object with the given operands" do
         new_instruction = subject.prefetcht0(*operands)
@@ -5820,7 +5820,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#prefetcht1" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PREFETCHT1 object with the given operands" do
         new_instruction = subject.prefetcht1(*operands)
@@ -5833,7 +5833,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#prefetcht2" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PREFETCHT2 object with the given operands" do
         new_instruction = subject.prefetcht2(*operands)
@@ -5846,7 +5846,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#prefetchw" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PREFETCHW object with the given operands" do
         new_instruction = subject.prefetchw(*operands)
@@ -5859,7 +5859,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#prefetchwt1" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PREFETCHWT1 object with the given operands" do
         new_instruction = subject.prefetchwt1(*operands)
@@ -5872,7 +5872,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psadbw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSADBW object with the given operands" do
         new_instruction = subject.psadbw(*operands)
@@ -5885,7 +5885,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pshufb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSHUFB object with the given operands" do
         new_instruction = subject.pshufb(*operands)
@@ -5898,7 +5898,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pshufd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSHUFD object with the given operands" do
         new_instruction = subject.pshufd(*operands)
@@ -5911,7 +5911,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pshufhw" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSHUFHW object with the given operands" do
         new_instruction = subject.pshufhw(*operands)
@@ -5924,7 +5924,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pshuflw" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSHUFLW object with the given operands" do
         new_instruction = subject.pshuflw(*operands)
@@ -5937,7 +5937,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pshufw" do
     context "when called with 3 operands" do
-      let(:operands) { [mmx, mem64, imm8] }
+      let(:operands) { [mmx(0), mem64(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSHUFW object with the given operands" do
         new_instruction = subject.pshufw(*operands)
@@ -5950,7 +5950,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psignb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSIGNB object with the given operands" do
         new_instruction = subject.psignb(*operands)
@@ -5963,7 +5963,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psignd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSIGND object with the given operands" do
         new_instruction = subject.psignd(*operands)
@@ -5976,7 +5976,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psignw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSIGNW object with the given operands" do
         new_instruction = subject.psignw(*operands)
@@ -5989,7 +5989,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pslld" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSLLD object with the given operands" do
         new_instruction = subject.pslld(*operands)
@@ -6002,7 +6002,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pslldq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, imm8] }
+      let(:operands) { [xmm(0), imm8(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSLLDQ object with the given operands" do
         new_instruction = subject.pslldq(*operands)
@@ -6015,7 +6015,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psllq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSLLQ object with the given operands" do
         new_instruction = subject.psllq(*operands)
@@ -6028,7 +6028,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psllw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSLLW object with the given operands" do
         new_instruction = subject.psllw(*operands)
@@ -6041,7 +6041,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psrad" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSRAD object with the given operands" do
         new_instruction = subject.psrad(*operands)
@@ -6054,7 +6054,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psraw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSRAW object with the given operands" do
         new_instruction = subject.psraw(*operands)
@@ -6067,7 +6067,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psrld" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSRLD object with the given operands" do
         new_instruction = subject.psrld(*operands)
@@ -6080,7 +6080,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psrldq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, imm8] }
+      let(:operands) { [xmm(0), imm8(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSRLDQ object with the given operands" do
         new_instruction = subject.psrldq(*operands)
@@ -6093,7 +6093,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psrlq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSRLQ object with the given operands" do
         new_instruction = subject.psrlq(*operands)
@@ -6106,7 +6106,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psrlw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSRLW object with the given operands" do
         new_instruction = subject.psrlw(*operands)
@@ -6119,7 +6119,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psubb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSUBB object with the given operands" do
         new_instruction = subject.psubb(*operands)
@@ -6132,7 +6132,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psubd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSUBD object with the given operands" do
         new_instruction = subject.psubd(*operands)
@@ -6145,7 +6145,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psubq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSUBQ object with the given operands" do
         new_instruction = subject.psubq(*operands)
@@ -6158,7 +6158,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psubsb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSUBSB object with the given operands" do
         new_instruction = subject.psubsb(*operands)
@@ -6171,7 +6171,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psubsw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSUBSW object with the given operands" do
         new_instruction = subject.psubsw(*operands)
@@ -6184,7 +6184,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psubusb" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSUBUSB object with the given operands" do
         new_instruction = subject.psubusb(*operands)
@@ -6197,7 +6197,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psubusw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSUBUSW object with the given operands" do
         new_instruction = subject.psubusw(*operands)
@@ -6210,7 +6210,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#psubw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSUBW object with the given operands" do
         new_instruction = subject.psubw(*operands)
@@ -6223,7 +6223,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pswapd" do
     context "when called with 2 operands" do
-      let(:operands) { [mmx, mem64] }
+      let(:operands) { [mmx(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PSWAPD object with the given operands" do
         new_instruction = subject.pswapd(*operands)
@@ -6236,7 +6236,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#ptest" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PTEST object with the given operands" do
         new_instruction = subject.ptest(*operands)
@@ -6249,7 +6249,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#punpckhbw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PUNPCKHBW object with the given operands" do
         new_instruction = subject.punpckhbw(*operands)
@@ -6262,7 +6262,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#punpckhdq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PUNPCKHDQ object with the given operands" do
         new_instruction = subject.punpckhdq(*operands)
@@ -6275,7 +6275,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#punpckhqdq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PUNPCKHQDQ object with the given operands" do
         new_instruction = subject.punpckhqdq(*operands)
@@ -6288,7 +6288,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#punpckhwd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PUNPCKHWD object with the given operands" do
         new_instruction = subject.punpckhwd(*operands)
@@ -6301,7 +6301,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#punpcklbw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PUNPCKLBW object with the given operands" do
         new_instruction = subject.punpcklbw(*operands)
@@ -6314,7 +6314,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#punpckldq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PUNPCKLDQ object with the given operands" do
         new_instruction = subject.punpckldq(*operands)
@@ -6327,7 +6327,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#punpcklqdq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PUNPCKLQDQ object with the given operands" do
         new_instruction = subject.punpcklqdq(*operands)
@@ -6340,7 +6340,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#punpcklwd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PUNPCKLWD object with the given operands" do
         new_instruction = subject.punpcklwd(*operands)
@@ -6353,7 +6353,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#push" do
     context "when called with 1 operand" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PUSH object with the given operands" do
         new_instruction = subject.push(*operands)
@@ -6366,7 +6366,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#pxor" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::PXOR object with the given operands" do
         new_instruction = subject.pxor(*operands)
@@ -6379,7 +6379,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rcl" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, cl] }
+      let(:operands) { [mem64(0), cl(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RCL object with the given operands" do
         new_instruction = subject.rcl(*operands)
@@ -6392,7 +6392,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rcpps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RCPPS object with the given operands" do
         new_instruction = subject.rcpps(*operands)
@@ -6405,7 +6405,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rcpss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RCPSS object with the given operands" do
         new_instruction = subject.rcpss(*operands)
@@ -6418,7 +6418,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rcr" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, cl] }
+      let(:operands) { [mem64(0), cl(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RCR object with the given operands" do
         new_instruction = subject.rcr(*operands)
@@ -6431,7 +6431,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rdfsbase" do
     context "when called with 1 operand" do
-      let(:operands) { [reg64] }
+      let(:operands) { [reg64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RDFSBASE object with the given operands" do
         new_instruction = subject.rdfsbase(*operands)
@@ -6444,7 +6444,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rdgsbase" do
     context "when called with 1 operand" do
-      let(:operands) { [reg64] }
+      let(:operands) { [reg64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RDGSBASE object with the given operands" do
         new_instruction = subject.rdgsbase(*operands)
@@ -6457,7 +6457,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rdpid" do
     context "when called with 1 operand" do
-      let(:operands) { [reg64] }
+      let(:operands) { [reg64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RDPID object with the given operands" do
         new_instruction = subject.rdpid(*operands)
@@ -6492,7 +6492,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rdrand" do
     context "when called with 1 operand" do
-      let(:operands) { [reg64] }
+      let(:operands) { [reg64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RDRAND object with the given operands" do
         new_instruction = subject.rdrand(*operands)
@@ -6505,7 +6505,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rdseed" do
     context "when called with 1 operand" do
-      let(:operands) { [reg64] }
+      let(:operands) { [reg64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RDSEED object with the given operands" do
         new_instruction = subject.rdseed(*operands)
@@ -6549,7 +6549,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 1 operand" do
-      let(:operands) { [imm16] }
+      let(:operands) { [imm16(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RET object with the given operands" do
         new_instruction = subject.ret(*operands)
@@ -6562,7 +6562,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rol" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, cl] }
+      let(:operands) { [mem64(0), cl(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ROL object with the given operands" do
         new_instruction = subject.rol(*operands)
@@ -6575,7 +6575,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#ror" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, cl] }
+      let(:operands) { [mem64(0), cl(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ROR object with the given operands" do
         new_instruction = subject.ror(*operands)
@@ -6588,7 +6588,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rorx" do
     context "when called with 3 operands" do
-      let(:operands) { [reg64, mem64, imm8] }
+      let(:operands) { [reg64(0), mem64(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RORX object with the given operands" do
         new_instruction = subject.rorx(*operands)
@@ -6601,7 +6601,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#roundpd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ROUNDPD object with the given operands" do
         new_instruction = subject.roundpd(*operands)
@@ -6614,7 +6614,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#roundps" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ROUNDPS object with the given operands" do
         new_instruction = subject.roundps(*operands)
@@ -6627,7 +6627,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#roundsd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem64, imm8] }
+      let(:operands) { [xmm(0), mem64(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ROUNDSD object with the given operands" do
         new_instruction = subject.roundsd(*operands)
@@ -6640,7 +6640,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#roundss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), mem32(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::ROUNDSS object with the given operands" do
         new_instruction = subject.roundss(*operands)
@@ -6653,7 +6653,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rsqrtps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RSQRTPS object with the given operands" do
         new_instruction = subject.rsqrtps(*operands)
@@ -6666,7 +6666,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#rsqrtss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::RSQRTSS object with the given operands" do
         new_instruction = subject.rsqrtss(*operands)
@@ -6690,7 +6690,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sal" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, cl] }
+      let(:operands) { [mem64(0), cl(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SAL object with the given operands" do
         new_instruction = subject.sal(*operands)
@@ -6703,7 +6703,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sar" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, cl] }
+      let(:operands) { [mem64(0), cl(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SAR object with the given operands" do
         new_instruction = subject.sar(*operands)
@@ -6716,7 +6716,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sarx" do
     context "when called with 3 operands" do
-      let(:operands) { [reg64, mem64, reg64] }
+      let(:operands) { [reg64(0), mem64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SARX object with the given operands" do
         new_instruction = subject.sarx(*operands)
@@ -6729,7 +6729,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sbb" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SBB object with the given operands" do
         new_instruction = subject.sbb(*operands)
@@ -6753,7 +6753,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#seta" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETA object with the given operands" do
         new_instruction = subject.seta(*operands)
@@ -6766,7 +6766,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setae" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETAE object with the given operands" do
         new_instruction = subject.setae(*operands)
@@ -6779,7 +6779,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setb" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETB object with the given operands" do
         new_instruction = subject.setb(*operands)
@@ -6792,7 +6792,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setbe" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETBE object with the given operands" do
         new_instruction = subject.setbe(*operands)
@@ -6805,7 +6805,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setc" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETC object with the given operands" do
         new_instruction = subject.setc(*operands)
@@ -6818,7 +6818,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sete" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETE object with the given operands" do
         new_instruction = subject.sete(*operands)
@@ -6831,7 +6831,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setg" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETG object with the given operands" do
         new_instruction = subject.setg(*operands)
@@ -6844,7 +6844,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setge" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETGE object with the given operands" do
         new_instruction = subject.setge(*operands)
@@ -6857,7 +6857,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setl" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETL object with the given operands" do
         new_instruction = subject.setl(*operands)
@@ -6870,7 +6870,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setle" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETLE object with the given operands" do
         new_instruction = subject.setle(*operands)
@@ -6883,7 +6883,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setna" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNA object with the given operands" do
         new_instruction = subject.setna(*operands)
@@ -6896,7 +6896,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setnae" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNAE object with the given operands" do
         new_instruction = subject.setnae(*operands)
@@ -6909,7 +6909,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setnb" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNB object with the given operands" do
         new_instruction = subject.setnb(*operands)
@@ -6922,7 +6922,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setnbe" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNBE object with the given operands" do
         new_instruction = subject.setnbe(*operands)
@@ -6935,7 +6935,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setnc" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNC object with the given operands" do
         new_instruction = subject.setnc(*operands)
@@ -6948,7 +6948,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setne" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNE object with the given operands" do
         new_instruction = subject.setne(*operands)
@@ -6961,7 +6961,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setng" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNG object with the given operands" do
         new_instruction = subject.setng(*operands)
@@ -6974,7 +6974,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setnge" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNGE object with the given operands" do
         new_instruction = subject.setnge(*operands)
@@ -6987,7 +6987,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setnl" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNL object with the given operands" do
         new_instruction = subject.setnl(*operands)
@@ -7000,7 +7000,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setnle" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNLE object with the given operands" do
         new_instruction = subject.setnle(*operands)
@@ -7013,7 +7013,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setno" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNO object with the given operands" do
         new_instruction = subject.setno(*operands)
@@ -7026,7 +7026,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setnp" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNP object with the given operands" do
         new_instruction = subject.setnp(*operands)
@@ -7039,7 +7039,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setns" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNS object with the given operands" do
         new_instruction = subject.setns(*operands)
@@ -7052,7 +7052,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setnz" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETNZ object with the given operands" do
         new_instruction = subject.setnz(*operands)
@@ -7065,7 +7065,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#seto" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETO object with the given operands" do
         new_instruction = subject.seto(*operands)
@@ -7078,7 +7078,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setp" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETP object with the given operands" do
         new_instruction = subject.setp(*operands)
@@ -7091,7 +7091,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setpe" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETPE object with the given operands" do
         new_instruction = subject.setpe(*operands)
@@ -7104,7 +7104,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setpo" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETPO object with the given operands" do
         new_instruction = subject.setpo(*operands)
@@ -7117,7 +7117,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sets" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETS object with the given operands" do
         new_instruction = subject.sets(*operands)
@@ -7130,7 +7130,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#setz" do
     context "when called with 1 operand" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SETZ object with the given operands" do
         new_instruction = subject.setz(*operands)
@@ -7154,7 +7154,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sha1msg1" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHA1MSG1 object with the given operands" do
         new_instruction = subject.sha1msg1(*operands)
@@ -7167,7 +7167,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sha1msg2" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHA1MSG2 object with the given operands" do
         new_instruction = subject.sha1msg2(*operands)
@@ -7180,7 +7180,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sha1nexte" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHA1NEXTE object with the given operands" do
         new_instruction = subject.sha1nexte(*operands)
@@ -7193,7 +7193,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sha1rnds4" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHA1RNDS4 object with the given operands" do
         new_instruction = subject.sha1rnds4(*operands)
@@ -7206,7 +7206,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sha256msg1" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHA256MSG1 object with the given operands" do
         new_instruction = subject.sha256msg1(*operands)
@@ -7219,7 +7219,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sha256msg2" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHA256MSG2 object with the given operands" do
         new_instruction = subject.sha256msg2(*operands)
@@ -7232,7 +7232,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sha256rnds2" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm0] }
+      let(:operands) { [xmm(0), mem128(1), xmm0(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHA256RNDS2 object with the given operands" do
         new_instruction = subject.sha256rnds2(*operands)
@@ -7245,7 +7245,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#shl" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, cl] }
+      let(:operands) { [mem64(0), cl(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHL object with the given operands" do
         new_instruction = subject.shl(*operands)
@@ -7258,7 +7258,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#shld" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, cl] }
+      let(:operands) { [mem64(0), reg64(1), cl(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHLD object with the given operands" do
         new_instruction = subject.shld(*operands)
@@ -7271,7 +7271,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#shlx" do
     context "when called with 3 operands" do
-      let(:operands) { [reg64, mem64, reg64] }
+      let(:operands) { [reg64(0), mem64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHLX object with the given operands" do
         new_instruction = subject.shlx(*operands)
@@ -7284,7 +7284,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#shr" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, cl] }
+      let(:operands) { [mem64(0), cl(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHR object with the given operands" do
         new_instruction = subject.shr(*operands)
@@ -7297,7 +7297,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#shrd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, reg64, cl] }
+      let(:operands) { [mem64(0), reg64(1), cl(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHRD object with the given operands" do
         new_instruction = subject.shrd(*operands)
@@ -7310,7 +7310,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#shrx" do
     context "when called with 3 operands" do
-      let(:operands) { [reg64, mem64, reg64] }
+      let(:operands) { [reg64(0), mem64(1), reg64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHRX object with the given operands" do
         new_instruction = subject.shrx(*operands)
@@ -7323,7 +7323,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#shufpd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHUFPD object with the given operands" do
         new_instruction = subject.shufpd(*operands)
@@ -7336,7 +7336,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#shufps" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SHUFPS object with the given operands" do
         new_instruction = subject.shufps(*operands)
@@ -7349,7 +7349,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sqrtpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SQRTPD object with the given operands" do
         new_instruction = subject.sqrtpd(*operands)
@@ -7362,7 +7362,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sqrtps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SQRTPS object with the given operands" do
         new_instruction = subject.sqrtps(*operands)
@@ -7375,7 +7375,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sqrtsd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SQRTSD object with the given operands" do
         new_instruction = subject.sqrtsd(*operands)
@@ -7388,7 +7388,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sqrtss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SQRTSS object with the given operands" do
         new_instruction = subject.sqrtss(*operands)
@@ -7423,7 +7423,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#stmxcsr" do
     context "when called with 1 operand" do
-      let(:operands) { [mem32] }
+      let(:operands) { [mem32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::STMXCSR object with the given operands" do
         new_instruction = subject.stmxcsr(*operands)
@@ -7436,7 +7436,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sttilecfg" do
     context "when called with 1 operand" do
-      let(:operands) { [mem512] }
+      let(:operands) { [mem512(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::STTILECFG object with the given operands" do
         new_instruction = subject.sttilecfg(*operands)
@@ -7449,7 +7449,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#sub" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SUB object with the given operands" do
         new_instruction = subject.sub(*operands)
@@ -7462,7 +7462,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#subpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SUBPD object with the given operands" do
         new_instruction = subject.subpd(*operands)
@@ -7475,7 +7475,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#subps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SUBPS object with the given operands" do
         new_instruction = subject.subps(*operands)
@@ -7488,7 +7488,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#subsd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SUBSD object with the given operands" do
         new_instruction = subject.subsd(*operands)
@@ -7501,7 +7501,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#subss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::SUBSS object with the given operands" do
         new_instruction = subject.subss(*operands)
@@ -7525,7 +7525,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#t1mskc" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::T1MSKC object with the given operands" do
         new_instruction = subject.t1mskc(*operands)
@@ -7538,7 +7538,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tcmmimfp16ps" do
     context "when called with 3 operands" do
-      let(:operands) { [tmm, tmm, tmm] }
+      let(:operands) { [tmm(0), tmm(1), tmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TCMMIMFP16PS object with the given operands" do
         new_instruction = subject.tcmmimfp16ps(*operands)
@@ -7551,7 +7551,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tcmmrlfp16ps" do
     context "when called with 3 operands" do
-      let(:operands) { [tmm, tmm, tmm] }
+      let(:operands) { [tmm(0), tmm(1), tmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TCMMRLFP16PS object with the given operands" do
         new_instruction = subject.tcmmrlfp16ps(*operands)
@@ -7564,7 +7564,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tdpbf16ps" do
     context "when called with 3 operands" do
-      let(:operands) { [tmm, tmm, tmm] }
+      let(:operands) { [tmm(0), tmm(1), tmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TDPBF16PS object with the given operands" do
         new_instruction = subject.tdpbf16ps(*operands)
@@ -7577,7 +7577,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tdpbssd" do
     context "when called with 3 operands" do
-      let(:operands) { [tmm, tmm, tmm] }
+      let(:operands) { [tmm(0), tmm(1), tmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TDPBSSD object with the given operands" do
         new_instruction = subject.tdpbssd(*operands)
@@ -7590,7 +7590,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tdpbsud" do
     context "when called with 3 operands" do
-      let(:operands) { [tmm, tmm, tmm] }
+      let(:operands) { [tmm(0), tmm(1), tmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TDPBSUD object with the given operands" do
         new_instruction = subject.tdpbsud(*operands)
@@ -7603,7 +7603,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tdpbusd" do
     context "when called with 3 operands" do
-      let(:operands) { [tmm, tmm, tmm] }
+      let(:operands) { [tmm(0), tmm(1), tmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TDPBUSD object with the given operands" do
         new_instruction = subject.tdpbusd(*operands)
@@ -7616,7 +7616,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tdpbuud" do
     context "when called with 3 operands" do
-      let(:operands) { [tmm, tmm, tmm] }
+      let(:operands) { [tmm(0), tmm(1), tmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TDPBUUD object with the given operands" do
         new_instruction = subject.tdpbuud(*operands)
@@ -7629,7 +7629,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tdpfp16ps" do
     context "when called with 3 operands" do
-      let(:operands) { [tmm, tmm, tmm] }
+      let(:operands) { [tmm(0), tmm(1), tmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TDPFP16PS object with the given operands" do
         new_instruction = subject.tdpfp16ps(*operands)
@@ -7642,7 +7642,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#test" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TEST object with the given operands" do
         new_instruction = subject.test(*operands)
@@ -7655,7 +7655,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tileloadd" do
     context "when called with 2 operands" do
-      let(:operands) { [tmm, sibmem] }
+      let(:operands) { [tmm(0), sibmem(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TILELOADD object with the given operands" do
         new_instruction = subject.tileloadd(*operands)
@@ -7668,7 +7668,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tileloaddt1" do
     context "when called with 2 operands" do
-      let(:operands) { [tmm, sibmem] }
+      let(:operands) { [tmm(0), sibmem(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TILELOADDT1 object with the given operands" do
         new_instruction = subject.tileloaddt1(*operands)
@@ -7692,7 +7692,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tilestored" do
     context "when called with 2 operands" do
-      let(:operands) { [sibmem, tmm] }
+      let(:operands) { [sibmem(0), tmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TILESTORED object with the given operands" do
         new_instruction = subject.tilestored(*operands)
@@ -7705,7 +7705,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tilezero" do
     context "when called with 1 operand" do
-      let(:operands) { [tmm] }
+      let(:operands) { [tmm(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TILEZERO object with the given operands" do
         new_instruction = subject.tilezero(*operands)
@@ -7718,7 +7718,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tpause" do
     context "when called with 1 operand" do
-      let(:operands) { [reg32] }
+      let(:operands) { [reg32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TPAUSE object with the given operands" do
         new_instruction = subject.tpause(*operands)
@@ -7731,7 +7731,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tzcnt" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TZCNT object with the given operands" do
         new_instruction = subject.tzcnt(*operands)
@@ -7744,7 +7744,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#tzmsk" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::TZMSK object with the given operands" do
         new_instruction = subject.tzmsk(*operands)
@@ -7757,7 +7757,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#ucomisd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::UCOMISD object with the given operands" do
         new_instruction = subject.ucomisd(*operands)
@@ -7770,7 +7770,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#ucomiss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::UCOMISS object with the given operands" do
         new_instruction = subject.ucomiss(*operands)
@@ -7794,7 +7794,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#umonitor" do
     context "when called with 1 operand" do
-      let(:operands) { [reg64] }
+      let(:operands) { [reg64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::UMONITOR object with the given operands" do
         new_instruction = subject.umonitor(*operands)
@@ -7807,7 +7807,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#umwait" do
     context "when called with 1 operand" do
-      let(:operands) { [reg32] }
+      let(:operands) { [reg32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::UMWAIT object with the given operands" do
         new_instruction = subject.umwait(*operands)
@@ -7820,7 +7820,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#unpckhpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::UNPCKHPD object with the given operands" do
         new_instruction = subject.unpckhpd(*operands)
@@ -7833,7 +7833,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#unpckhps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::UNPCKHPS object with the given operands" do
         new_instruction = subject.unpckhps(*operands)
@@ -7846,7 +7846,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#unpcklpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::UNPCKLPD object with the given operands" do
         new_instruction = subject.unpcklpd(*operands)
@@ -7859,7 +7859,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#unpcklps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::UNPCKLPS object with the given operands" do
         new_instruction = subject.unpcklps(*operands)
@@ -7872,7 +7872,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaddpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDPD object with the given operands" do
         new_instruction = subject.vaddpd(*operands)
@@ -7883,7 +7883,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDPD object with the given operands" do
         new_instruction = subject.vaddpd(*operands)
@@ -7896,7 +7896,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaddph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDPH object with the given operands" do
         new_instruction = subject.vaddph(*operands)
@@ -7907,7 +7907,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDPH object with the given operands" do
         new_instruction = subject.vaddph(*operands)
@@ -7920,7 +7920,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaddps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDPS object with the given operands" do
         new_instruction = subject.vaddps(*operands)
@@ -7931,7 +7931,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDPS object with the given operands" do
         new_instruction = subject.vaddps(*operands)
@@ -7944,7 +7944,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaddsd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDSD object with the given operands" do
         new_instruction = subject.vaddsd(*operands)
@@ -7955,7 +7955,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDSD object with the given operands" do
         new_instruction = subject.vaddsd(*operands)
@@ -7968,7 +7968,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaddsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDSH object with the given operands" do
         new_instruction = subject.vaddsh(*operands)
@@ -7979,7 +7979,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDSH object with the given operands" do
         new_instruction = subject.vaddsh(*operands)
@@ -7992,7 +7992,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaddss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDSS object with the given operands" do
         new_instruction = subject.vaddss(*operands)
@@ -8003,7 +8003,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDSS object with the given operands" do
         new_instruction = subject.vaddss(*operands)
@@ -8016,7 +8016,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaddsubpd" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDSUBPD object with the given operands" do
         new_instruction = subject.vaddsubpd(*operands)
@@ -8029,7 +8029,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaddsubps" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VADDSUBPS object with the given operands" do
         new_instruction = subject.vaddsubps(*operands)
@@ -8042,7 +8042,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaesdec" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VAESDEC object with the given operands" do
         new_instruction = subject.vaesdec(*operands)
@@ -8055,7 +8055,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaesdeclast" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VAESDECLAST object with the given operands" do
         new_instruction = subject.vaesdeclast(*operands)
@@ -8068,7 +8068,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaesenc" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VAESENC object with the given operands" do
         new_instruction = subject.vaesenc(*operands)
@@ -8081,7 +8081,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaesenclast" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VAESENCLAST object with the given operands" do
         new_instruction = subject.vaesenclast(*operands)
@@ -8094,7 +8094,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaesimc" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VAESIMC object with the given operands" do
         new_instruction = subject.vaesimc(*operands)
@@ -8107,7 +8107,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vaeskeygenassist" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VAESKEYGENASSIST object with the given operands" do
         new_instruction = subject.vaeskeygenassist(*operands)
@@ -8120,7 +8120,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#valignd" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VALIGND object with the given operands" do
         new_instruction = subject.valignd(*operands)
@@ -8133,7 +8133,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#valignq" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VALIGNQ object with the given operands" do
         new_instruction = subject.valignq(*operands)
@@ -8146,7 +8146,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vandnpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VANDNPD object with the given operands" do
         new_instruction = subject.vandnpd(*operands)
@@ -8159,7 +8159,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vandnps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VANDNPS object with the given operands" do
         new_instruction = subject.vandnps(*operands)
@@ -8172,7 +8172,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vandpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VANDPD object with the given operands" do
         new_instruction = subject.vandpd(*operands)
@@ -8185,7 +8185,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vandps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VANDPS object with the given operands" do
         new_instruction = subject.vandps(*operands)
@@ -8198,7 +8198,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbcstnebf162ps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem16] }
+      let(:operands) { [ymm(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBCSTNEBF162PS object with the given operands" do
         new_instruction = subject.vbcstnebf162ps(*operands)
@@ -8211,7 +8211,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbcstnesh2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem16] }
+      let(:operands) { [ymm(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBCSTNESH2PS object with the given operands" do
         new_instruction = subject.vbcstnesh2ps(*operands)
@@ -8224,7 +8224,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vblendmpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBLENDMPD object with the given operands" do
         new_instruction = subject.vblendmpd(*operands)
@@ -8237,7 +8237,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vblendmps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBLENDMPS object with the given operands" do
         new_instruction = subject.vblendmps(*operands)
@@ -8250,7 +8250,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vblendpd" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBLENDPD object with the given operands" do
         new_instruction = subject.vblendpd(*operands)
@@ -8263,7 +8263,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vblendps" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBLENDPS object with the given operands" do
         new_instruction = subject.vblendps(*operands)
@@ -8276,7 +8276,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vblendvpd" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBLENDVPD object with the given operands" do
         new_instruction = subject.vblendvpd(*operands)
@@ -8289,7 +8289,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vblendvps" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBLENDVPS object with the given operands" do
         new_instruction = subject.vblendvps(*operands)
@@ -8302,7 +8302,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcastf128" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem128] }
+      let(:operands) { [ymm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTF128 object with the given operands" do
         new_instruction = subject.vbroadcastf128(*operands)
@@ -8315,7 +8315,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcastf32x2" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem64] }
+      let(:operands) { [zmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTF32X2 object with the given operands" do
         new_instruction = subject.vbroadcastf32x2(*operands)
@@ -8328,7 +8328,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcastf32x4" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem128] }
+      let(:operands) { [zmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTF32X4 object with the given operands" do
         new_instruction = subject.vbroadcastf32x4(*operands)
@@ -8341,7 +8341,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcastf32x8" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem256] }
+      let(:operands) { [zmm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTF32X8 object with the given operands" do
         new_instruction = subject.vbroadcastf32x8(*operands)
@@ -8354,7 +8354,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcastf64x2" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem128] }
+      let(:operands) { [zmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTF64X2 object with the given operands" do
         new_instruction = subject.vbroadcastf64x2(*operands)
@@ -8367,7 +8367,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcastf64x4" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem256] }
+      let(:operands) { [zmm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTF64X4 object with the given operands" do
         new_instruction = subject.vbroadcastf64x4(*operands)
@@ -8380,7 +8380,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcasti128" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem128] }
+      let(:operands) { [ymm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTI128 object with the given operands" do
         new_instruction = subject.vbroadcasti128(*operands)
@@ -8393,7 +8393,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcasti32x2" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem64] }
+      let(:operands) { [zmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTI32X2 object with the given operands" do
         new_instruction = subject.vbroadcasti32x2(*operands)
@@ -8406,7 +8406,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcasti32x4" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem128] }
+      let(:operands) { [zmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTI32X4 object with the given operands" do
         new_instruction = subject.vbroadcasti32x4(*operands)
@@ -8419,7 +8419,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcasti32x8" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem256] }
+      let(:operands) { [zmm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTI32X8 object with the given operands" do
         new_instruction = subject.vbroadcasti32x8(*operands)
@@ -8432,7 +8432,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcasti64x2" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem128] }
+      let(:operands) { [zmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTI64X2 object with the given operands" do
         new_instruction = subject.vbroadcasti64x2(*operands)
@@ -8445,7 +8445,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcasti64x4" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem256] }
+      let(:operands) { [zmm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTI64X4 object with the given operands" do
         new_instruction = subject.vbroadcasti64x4(*operands)
@@ -8458,7 +8458,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcastsd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem64] }
+      let(:operands) { [zmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTSD object with the given operands" do
         new_instruction = subject.vbroadcastsd(*operands)
@@ -8471,7 +8471,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vbroadcastss" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem32] }
+      let(:operands) { [zmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VBROADCASTSS object with the given operands" do
         new_instruction = subject.vbroadcastss(*operands)
@@ -8484,7 +8484,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcmppd" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCMPPD object with the given operands" do
         new_instruction = subject.vcmppd(*operands)
@@ -8495,7 +8495,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [k, zmm, zmm, sae, imm8] }
+      let(:operands) { [k(0), zmm(1), zmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCMPPD object with the given operands" do
         new_instruction = subject.vcmppd(*operands)
@@ -8508,7 +8508,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcmpph" do
     context "when called with 4 operands" do
-      let(:operands) { [k, zmm, zmm, imm8] }
+      let(:operands) { [k(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCMPPH object with the given operands" do
         new_instruction = subject.vcmpph(*operands)
@@ -8519,7 +8519,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [k, zmm, zmm, sae, imm8] }
+      let(:operands) { [k(0), zmm(1), zmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCMPPH object with the given operands" do
         new_instruction = subject.vcmpph(*operands)
@@ -8532,7 +8532,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcmpps" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCMPPS object with the given operands" do
         new_instruction = subject.vcmpps(*operands)
@@ -8543,7 +8543,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [k, zmm, zmm, sae, imm8] }
+      let(:operands) { [k(0), zmm(1), zmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCMPPS object with the given operands" do
         new_instruction = subject.vcmpps(*operands)
@@ -8556,7 +8556,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcmpsd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem64, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCMPSD object with the given operands" do
         new_instruction = subject.vcmpsd(*operands)
@@ -8567,7 +8567,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [k, xmm, xmm, sae, imm8] }
+      let(:operands) { [k(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCMPSD object with the given operands" do
         new_instruction = subject.vcmpsd(*operands)
@@ -8580,7 +8580,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcmpsh" do
     context "when called with 4 operands" do
-      let(:operands) { [k, xmm, mem16, imm8] }
+      let(:operands) { [k(0), xmm(1), mem16(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCMPSH object with the given operands" do
         new_instruction = subject.vcmpsh(*operands)
@@ -8591,7 +8591,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [k, xmm, xmm, sae, imm8] }
+      let(:operands) { [k(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCMPSH object with the given operands" do
         new_instruction = subject.vcmpsh(*operands)
@@ -8604,7 +8604,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcmpss" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCMPSS object with the given operands" do
         new_instruction = subject.vcmpss(*operands)
@@ -8615,7 +8615,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [k, xmm, xmm, sae, imm8] }
+      let(:operands) { [k(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCMPSS object with the given operands" do
         new_instruction = subject.vcmpss(*operands)
@@ -8628,7 +8628,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcomisd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCOMISD object with the given operands" do
         new_instruction = subject.vcomisd(*operands)
@@ -8639,7 +8639,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCOMISD object with the given operands" do
         new_instruction = subject.vcomisd(*operands)
@@ -8652,7 +8652,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcomish" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem16] }
+      let(:operands) { [xmm(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCOMISH object with the given operands" do
         new_instruction = subject.vcomish(*operands)
@@ -8663,7 +8663,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCOMISH object with the given operands" do
         new_instruction = subject.vcomish(*operands)
@@ -8676,7 +8676,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcomiss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCOMISS object with the given operands" do
         new_instruction = subject.vcomiss(*operands)
@@ -8687,7 +8687,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCOMISS object with the given operands" do
         new_instruction = subject.vcomiss(*operands)
@@ -8700,7 +8700,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcompresspd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCOMPRESSPD object with the given operands" do
         new_instruction = subject.vcompresspd(*operands)
@@ -8713,7 +8713,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcompressps" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCOMPRESSPS object with the given operands" do
         new_instruction = subject.vcompressps(*operands)
@@ -8726,7 +8726,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtdq2pd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, ymm] }
+      let(:operands) { [zmm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTDQ2PD object with the given operands" do
         new_instruction = subject.vcvtdq2pd(*operands)
@@ -8739,7 +8739,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtdq2ph" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, zmm] }
+      let(:operands) { [ymm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTDQ2PH object with the given operands" do
         new_instruction = subject.vcvtdq2ph(*operands)
@@ -8750,7 +8750,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, zmm, er] }
+      let(:operands) { [ymm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTDQ2PH object with the given operands" do
         new_instruction = subject.vcvtdq2ph(*operands)
@@ -8763,7 +8763,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtdq2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTDQ2PS object with the given operands" do
         new_instruction = subject.vcvtdq2ps(*operands)
@@ -8774,7 +8774,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTDQ2PS object with the given operands" do
         new_instruction = subject.vcvtdq2ps(*operands)
@@ -8787,7 +8787,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtne2ps2bf16" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTNE2PS2BF16 object with the given operands" do
         new_instruction = subject.vcvtne2ps2bf16(*operands)
@@ -8800,7 +8800,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtneebf162ps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTNEEBF162PS object with the given operands" do
         new_instruction = subject.vcvtneebf162ps(*operands)
@@ -8813,7 +8813,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtneeph2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTNEEPH2PS object with the given operands" do
         new_instruction = subject.vcvtneeph2ps(*operands)
@@ -8826,7 +8826,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtneobf162ps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTNEOBF162PS object with the given operands" do
         new_instruction = subject.vcvtneobf162ps(*operands)
@@ -8839,7 +8839,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtneoph2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTNEOPH2PS object with the given operands" do
         new_instruction = subject.vcvtneoph2ps(*operands)
@@ -8852,7 +8852,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtneps2bf16" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, zmm] }
+      let(:operands) { [ymm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTNEPS2BF16 object with the given operands" do
         new_instruction = subject.vcvtneps2bf16(*operands)
@@ -8865,7 +8865,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtpd2dq" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, zmm] }
+      let(:operands) { [ymm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPD2DQ object with the given operands" do
         new_instruction = subject.vcvtpd2dq(*operands)
@@ -8876,7 +8876,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, zmm, er] }
+      let(:operands) { [ymm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPD2DQ object with the given operands" do
         new_instruction = subject.vcvtpd2dq(*operands)
@@ -8889,7 +8889,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtpd2ph" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, zmm] }
+      let(:operands) { [xmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPD2PH object with the given operands" do
         new_instruction = subject.vcvtpd2ph(*operands)
@@ -8900,7 +8900,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, zmm, er] }
+      let(:operands) { [xmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPD2PH object with the given operands" do
         new_instruction = subject.vcvtpd2ph(*operands)
@@ -8913,7 +8913,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtpd2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, zmm] }
+      let(:operands) { [ymm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPD2PS object with the given operands" do
         new_instruction = subject.vcvtpd2ps(*operands)
@@ -8924,7 +8924,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, zmm, er] }
+      let(:operands) { [ymm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPD2PS object with the given operands" do
         new_instruction = subject.vcvtpd2ps(*operands)
@@ -8937,7 +8937,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtpd2qq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPD2QQ object with the given operands" do
         new_instruction = subject.vcvtpd2qq(*operands)
@@ -8948,7 +8948,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPD2QQ object with the given operands" do
         new_instruction = subject.vcvtpd2qq(*operands)
@@ -8961,7 +8961,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtpd2udq" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, zmm] }
+      let(:operands) { [ymm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPD2UDQ object with the given operands" do
         new_instruction = subject.vcvtpd2udq(*operands)
@@ -8972,7 +8972,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, zmm, er] }
+      let(:operands) { [ymm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPD2UDQ object with the given operands" do
         new_instruction = subject.vcvtpd2udq(*operands)
@@ -8985,7 +8985,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtpd2uqq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPD2UQQ object with the given operands" do
         new_instruction = subject.vcvtpd2uqq(*operands)
@@ -8996,7 +8996,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPD2UQQ object with the given operands" do
         new_instruction = subject.vcvtpd2uqq(*operands)
@@ -9009,7 +9009,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtph2dq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, ymm] }
+      let(:operands) { [zmm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2DQ object with the given operands" do
         new_instruction = subject.vcvtph2dq(*operands)
@@ -9020,7 +9020,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, ymm, er] }
+      let(:operands) { [zmm(0), ymm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2DQ object with the given operands" do
         new_instruction = subject.vcvtph2dq(*operands)
@@ -9033,7 +9033,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtph2pd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, xmm] }
+      let(:operands) { [zmm(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2PD object with the given operands" do
         new_instruction = subject.vcvtph2pd(*operands)
@@ -9044,7 +9044,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, xmm, sae] }
+      let(:operands) { [zmm(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2PD object with the given operands" do
         new_instruction = subject.vcvtph2pd(*operands)
@@ -9057,7 +9057,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtph2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem256] }
+      let(:operands) { [zmm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2PS object with the given operands" do
         new_instruction = subject.vcvtph2ps(*operands)
@@ -9068,7 +9068,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, ymm, sae] }
+      let(:operands) { [zmm(0), ymm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2PS object with the given operands" do
         new_instruction = subject.vcvtph2ps(*operands)
@@ -9081,7 +9081,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtph2psx" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, ymm] }
+      let(:operands) { [zmm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2PSX object with the given operands" do
         new_instruction = subject.vcvtph2psx(*operands)
@@ -9092,7 +9092,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, ymm, sae] }
+      let(:operands) { [zmm(0), ymm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2PSX object with the given operands" do
         new_instruction = subject.vcvtph2psx(*operands)
@@ -9105,7 +9105,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtph2qq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, xmm] }
+      let(:operands) { [zmm(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2QQ object with the given operands" do
         new_instruction = subject.vcvtph2qq(*operands)
@@ -9116,7 +9116,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, xmm, er] }
+      let(:operands) { [zmm(0), xmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2QQ object with the given operands" do
         new_instruction = subject.vcvtph2qq(*operands)
@@ -9129,7 +9129,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtph2udq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, ymm] }
+      let(:operands) { [zmm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2UDQ object with the given operands" do
         new_instruction = subject.vcvtph2udq(*operands)
@@ -9140,7 +9140,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, ymm, er] }
+      let(:operands) { [zmm(0), ymm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2UDQ object with the given operands" do
         new_instruction = subject.vcvtph2udq(*operands)
@@ -9153,7 +9153,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtph2uqq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, xmm] }
+      let(:operands) { [zmm(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2UQQ object with the given operands" do
         new_instruction = subject.vcvtph2uqq(*operands)
@@ -9164,7 +9164,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, xmm, er] }
+      let(:operands) { [zmm(0), xmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2UQQ object with the given operands" do
         new_instruction = subject.vcvtph2uqq(*operands)
@@ -9177,7 +9177,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtph2uw" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2UW object with the given operands" do
         new_instruction = subject.vcvtph2uw(*operands)
@@ -9188,7 +9188,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2UW object with the given operands" do
         new_instruction = subject.vcvtph2uw(*operands)
@@ -9201,7 +9201,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtph2w" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2W object with the given operands" do
         new_instruction = subject.vcvtph2w(*operands)
@@ -9212,7 +9212,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPH2W object with the given operands" do
         new_instruction = subject.vcvtph2w(*operands)
@@ -9225,7 +9225,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtps2dq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2DQ object with the given operands" do
         new_instruction = subject.vcvtps2dq(*operands)
@@ -9236,7 +9236,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2DQ object with the given operands" do
         new_instruction = subject.vcvtps2dq(*operands)
@@ -9249,7 +9249,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtps2pd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, ymm] }
+      let(:operands) { [zmm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2PD object with the given operands" do
         new_instruction = subject.vcvtps2pd(*operands)
@@ -9260,7 +9260,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, ymm, sae] }
+      let(:operands) { [zmm(0), ymm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2PD object with the given operands" do
         new_instruction = subject.vcvtps2pd(*operands)
@@ -9273,7 +9273,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtps2ph" do
     context "when called with 3 operands" do
-      let(:operands) { [mem256, zmm, imm8] }
+      let(:operands) { [mem256(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2PH object with the given operands" do
         new_instruction = subject.vcvtps2ph(*operands)
@@ -9284,7 +9284,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [ymm, zmm, sae, imm8] }
+      let(:operands) { [ymm(0), zmm(1), sae(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2PH object with the given operands" do
         new_instruction = subject.vcvtps2ph(*operands)
@@ -9297,7 +9297,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtps2phx" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, zmm] }
+      let(:operands) { [ymm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2PHX object with the given operands" do
         new_instruction = subject.vcvtps2phx(*operands)
@@ -9308,7 +9308,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, zmm, er] }
+      let(:operands) { [ymm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2PHX object with the given operands" do
         new_instruction = subject.vcvtps2phx(*operands)
@@ -9321,7 +9321,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtps2qq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, ymm] }
+      let(:operands) { [zmm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2QQ object with the given operands" do
         new_instruction = subject.vcvtps2qq(*operands)
@@ -9332,7 +9332,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, ymm, er] }
+      let(:operands) { [zmm(0), ymm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2QQ object with the given operands" do
         new_instruction = subject.vcvtps2qq(*operands)
@@ -9345,7 +9345,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtps2udq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2UDQ object with the given operands" do
         new_instruction = subject.vcvtps2udq(*operands)
@@ -9356,7 +9356,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2UDQ object with the given operands" do
         new_instruction = subject.vcvtps2udq(*operands)
@@ -9369,7 +9369,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtps2uqq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, ymm] }
+      let(:operands) { [zmm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2UQQ object with the given operands" do
         new_instruction = subject.vcvtps2uqq(*operands)
@@ -9380,7 +9380,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, ymm, er] }
+      let(:operands) { [zmm(0), ymm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTPS2UQQ object with the given operands" do
         new_instruction = subject.vcvtps2uqq(*operands)
@@ -9393,7 +9393,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtqq2pd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTQQ2PD object with the given operands" do
         new_instruction = subject.vcvtqq2pd(*operands)
@@ -9404,7 +9404,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTQQ2PD object with the given operands" do
         new_instruction = subject.vcvtqq2pd(*operands)
@@ -9417,7 +9417,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtqq2ph" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, zmm] }
+      let(:operands) { [xmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTQQ2PH object with the given operands" do
         new_instruction = subject.vcvtqq2ph(*operands)
@@ -9428,7 +9428,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, zmm, er] }
+      let(:operands) { [xmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTQQ2PH object with the given operands" do
         new_instruction = subject.vcvtqq2ph(*operands)
@@ -9441,7 +9441,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtqq2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, zmm] }
+      let(:operands) { [ymm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTQQ2PS object with the given operands" do
         new_instruction = subject.vcvtqq2ps(*operands)
@@ -9452,7 +9452,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, zmm, er] }
+      let(:operands) { [ymm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTQQ2PS object with the given operands" do
         new_instruction = subject.vcvtqq2ps(*operands)
@@ -9465,7 +9465,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtsd2sh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSD2SH object with the given operands" do
         new_instruction = subject.vcvtsd2sh(*operands)
@@ -9476,7 +9476,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSD2SH object with the given operands" do
         new_instruction = subject.vcvtsd2sh(*operands)
@@ -9489,7 +9489,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtsd2si" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSD2SI object with the given operands" do
         new_instruction = subject.vcvtsd2si(*operands)
@@ -9500,7 +9500,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, xmm, er] }
+      let(:operands) { [reg64(0), xmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSD2SI object with the given operands" do
         new_instruction = subject.vcvtsd2si(*operands)
@@ -9513,7 +9513,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtsd2ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSD2SS object with the given operands" do
         new_instruction = subject.vcvtsd2ss(*operands)
@@ -9524,7 +9524,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSD2SS object with the given operands" do
         new_instruction = subject.vcvtsd2ss(*operands)
@@ -9537,7 +9537,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtsd2usi" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSD2USI object with the given operands" do
         new_instruction = subject.vcvtsd2usi(*operands)
@@ -9548,7 +9548,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, xmm, er] }
+      let(:operands) { [reg64(0), xmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSD2USI object with the given operands" do
         new_instruction = subject.vcvtsd2usi(*operands)
@@ -9561,7 +9561,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtsh2sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSH2SD object with the given operands" do
         new_instruction = subject.vcvtsh2sd(*operands)
@@ -9572,7 +9572,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSH2SD object with the given operands" do
         new_instruction = subject.vcvtsh2sd(*operands)
@@ -9585,7 +9585,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtsh2si" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem16] }
+      let(:operands) { [reg64(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSH2SI object with the given operands" do
         new_instruction = subject.vcvtsh2si(*operands)
@@ -9596,7 +9596,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, xmm, er] }
+      let(:operands) { [reg64(0), xmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSH2SI object with the given operands" do
         new_instruction = subject.vcvtsh2si(*operands)
@@ -9609,7 +9609,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtsh2ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSH2SS object with the given operands" do
         new_instruction = subject.vcvtsh2ss(*operands)
@@ -9620,7 +9620,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSH2SS object with the given operands" do
         new_instruction = subject.vcvtsh2ss(*operands)
@@ -9633,7 +9633,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtsh2usi" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem16] }
+      let(:operands) { [reg64(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSH2USI object with the given operands" do
         new_instruction = subject.vcvtsh2usi(*operands)
@@ -9644,7 +9644,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, xmm, er] }
+      let(:operands) { [reg64(0), xmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSH2USI object with the given operands" do
         new_instruction = subject.vcvtsh2usi(*operands)
@@ -9657,7 +9657,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtsi2sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSI2SD object with the given operands" do
         new_instruction = subject.vcvtsi2sd(*operands)
@@ -9668,7 +9668,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, er, reg64] }
+      let(:operands) { [xmm(0), xmm(1), er(2), reg64(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSI2SD object with the given operands" do
         new_instruction = subject.vcvtsi2sd(*operands)
@@ -9681,7 +9681,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtsi2sh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSI2SH object with the given operands" do
         new_instruction = subject.vcvtsi2sh(*operands)
@@ -9692,7 +9692,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, er, reg64] }
+      let(:operands) { [xmm(0), xmm(1), er(2), reg64(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSI2SH object with the given operands" do
         new_instruction = subject.vcvtsi2sh(*operands)
@@ -9705,7 +9705,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtsi2ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSI2SS object with the given operands" do
         new_instruction = subject.vcvtsi2ss(*operands)
@@ -9716,7 +9716,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, er, reg64] }
+      let(:operands) { [xmm(0), xmm(1), er(2), reg64(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSI2SS object with the given operands" do
         new_instruction = subject.vcvtsi2ss(*operands)
@@ -9729,7 +9729,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtss2sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSS2SD object with the given operands" do
         new_instruction = subject.vcvtss2sd(*operands)
@@ -9740,7 +9740,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSS2SD object with the given operands" do
         new_instruction = subject.vcvtss2sd(*operands)
@@ -9753,7 +9753,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtss2sh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSS2SH object with the given operands" do
         new_instruction = subject.vcvtss2sh(*operands)
@@ -9764,7 +9764,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSS2SH object with the given operands" do
         new_instruction = subject.vcvtss2sh(*operands)
@@ -9777,7 +9777,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtss2si" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem32] }
+      let(:operands) { [reg64(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSS2SI object with the given operands" do
         new_instruction = subject.vcvtss2si(*operands)
@@ -9788,7 +9788,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, xmm, er] }
+      let(:operands) { [reg64(0), xmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSS2SI object with the given operands" do
         new_instruction = subject.vcvtss2si(*operands)
@@ -9801,7 +9801,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtss2usi" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem32] }
+      let(:operands) { [reg64(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSS2USI object with the given operands" do
         new_instruction = subject.vcvtss2usi(*operands)
@@ -9812,7 +9812,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, xmm, er] }
+      let(:operands) { [reg64(0), xmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTSS2USI object with the given operands" do
         new_instruction = subject.vcvtss2usi(*operands)
@@ -9825,7 +9825,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttpd2dq" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, zmm] }
+      let(:operands) { [ymm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPD2DQ object with the given operands" do
         new_instruction = subject.vcvttpd2dq(*operands)
@@ -9836,7 +9836,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, zmm, sae] }
+      let(:operands) { [ymm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPD2DQ object with the given operands" do
         new_instruction = subject.vcvttpd2dq(*operands)
@@ -9849,7 +9849,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttpd2qq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPD2QQ object with the given operands" do
         new_instruction = subject.vcvttpd2qq(*operands)
@@ -9860,7 +9860,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPD2QQ object with the given operands" do
         new_instruction = subject.vcvttpd2qq(*operands)
@@ -9873,7 +9873,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttpd2udq" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, zmm] }
+      let(:operands) { [ymm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPD2UDQ object with the given operands" do
         new_instruction = subject.vcvttpd2udq(*operands)
@@ -9884,7 +9884,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, zmm, sae] }
+      let(:operands) { [ymm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPD2UDQ object with the given operands" do
         new_instruction = subject.vcvttpd2udq(*operands)
@@ -9897,7 +9897,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttpd2uqq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPD2UQQ object with the given operands" do
         new_instruction = subject.vcvttpd2uqq(*operands)
@@ -9908,7 +9908,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPD2UQQ object with the given operands" do
         new_instruction = subject.vcvttpd2uqq(*operands)
@@ -9921,7 +9921,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttph2dq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, ymm] }
+      let(:operands) { [zmm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPH2DQ object with the given operands" do
         new_instruction = subject.vcvttph2dq(*operands)
@@ -9932,7 +9932,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, ymm, sae] }
+      let(:operands) { [zmm(0), ymm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPH2DQ object with the given operands" do
         new_instruction = subject.vcvttph2dq(*operands)
@@ -9945,7 +9945,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttph2qq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, xmm] }
+      let(:operands) { [zmm(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPH2QQ object with the given operands" do
         new_instruction = subject.vcvttph2qq(*operands)
@@ -9956,7 +9956,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, xmm, sae] }
+      let(:operands) { [zmm(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPH2QQ object with the given operands" do
         new_instruction = subject.vcvttph2qq(*operands)
@@ -9969,7 +9969,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttph2udq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, ymm] }
+      let(:operands) { [zmm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPH2UDQ object with the given operands" do
         new_instruction = subject.vcvttph2udq(*operands)
@@ -9980,7 +9980,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, ymm, sae] }
+      let(:operands) { [zmm(0), ymm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPH2UDQ object with the given operands" do
         new_instruction = subject.vcvttph2udq(*operands)
@@ -9993,7 +9993,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttph2uqq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, xmm] }
+      let(:operands) { [zmm(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPH2UQQ object with the given operands" do
         new_instruction = subject.vcvttph2uqq(*operands)
@@ -10004,7 +10004,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, xmm, sae] }
+      let(:operands) { [zmm(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPH2UQQ object with the given operands" do
         new_instruction = subject.vcvttph2uqq(*operands)
@@ -10017,7 +10017,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttph2uw" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPH2UW object with the given operands" do
         new_instruction = subject.vcvttph2uw(*operands)
@@ -10028,7 +10028,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPH2UW object with the given operands" do
         new_instruction = subject.vcvttph2uw(*operands)
@@ -10041,7 +10041,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttph2w" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPH2W object with the given operands" do
         new_instruction = subject.vcvttph2w(*operands)
@@ -10052,7 +10052,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPH2W object with the given operands" do
         new_instruction = subject.vcvttph2w(*operands)
@@ -10065,7 +10065,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttps2dq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPS2DQ object with the given operands" do
         new_instruction = subject.vcvttps2dq(*operands)
@@ -10076,7 +10076,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPS2DQ object with the given operands" do
         new_instruction = subject.vcvttps2dq(*operands)
@@ -10089,7 +10089,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttps2qq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, ymm] }
+      let(:operands) { [zmm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPS2QQ object with the given operands" do
         new_instruction = subject.vcvttps2qq(*operands)
@@ -10100,7 +10100,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, ymm, sae] }
+      let(:operands) { [zmm(0), ymm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPS2QQ object with the given operands" do
         new_instruction = subject.vcvttps2qq(*operands)
@@ -10113,7 +10113,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttps2udq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPS2UDQ object with the given operands" do
         new_instruction = subject.vcvttps2udq(*operands)
@@ -10124,7 +10124,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPS2UDQ object with the given operands" do
         new_instruction = subject.vcvttps2udq(*operands)
@@ -10137,7 +10137,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttps2uqq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, ymm] }
+      let(:operands) { [zmm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPS2UQQ object with the given operands" do
         new_instruction = subject.vcvttps2uqq(*operands)
@@ -10148,7 +10148,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, ymm, sae] }
+      let(:operands) { [zmm(0), ymm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTPS2UQQ object with the given operands" do
         new_instruction = subject.vcvttps2uqq(*operands)
@@ -10161,7 +10161,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttsd2si" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTSD2SI object with the given operands" do
         new_instruction = subject.vcvttsd2si(*operands)
@@ -10172,7 +10172,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, xmm, sae] }
+      let(:operands) { [reg64(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTSD2SI object with the given operands" do
         new_instruction = subject.vcvttsd2si(*operands)
@@ -10185,7 +10185,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttsd2usi" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTSD2USI object with the given operands" do
         new_instruction = subject.vcvttsd2usi(*operands)
@@ -10196,7 +10196,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, xmm, sae] }
+      let(:operands) { [reg64(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTSD2USI object with the given operands" do
         new_instruction = subject.vcvttsd2usi(*operands)
@@ -10209,7 +10209,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttsh2si" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem16] }
+      let(:operands) { [reg64(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTSH2SI object with the given operands" do
         new_instruction = subject.vcvttsh2si(*operands)
@@ -10220,7 +10220,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, xmm, sae] }
+      let(:operands) { [reg64(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTSH2SI object with the given operands" do
         new_instruction = subject.vcvttsh2si(*operands)
@@ -10233,7 +10233,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttsh2usi" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem16] }
+      let(:operands) { [reg64(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTSH2USI object with the given operands" do
         new_instruction = subject.vcvttsh2usi(*operands)
@@ -10244,7 +10244,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, xmm, sae] }
+      let(:operands) { [reg64(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTSH2USI object with the given operands" do
         new_instruction = subject.vcvttsh2usi(*operands)
@@ -10257,7 +10257,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttss2si" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem32] }
+      let(:operands) { [reg64(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTSS2SI object with the given operands" do
         new_instruction = subject.vcvttss2si(*operands)
@@ -10268,7 +10268,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, xmm, sae] }
+      let(:operands) { [reg64(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTSS2SI object with the given operands" do
         new_instruction = subject.vcvttss2si(*operands)
@@ -10281,7 +10281,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvttss2usi" do
     context "when called with 2 operands" do
-      let(:operands) { [reg64, mem32] }
+      let(:operands) { [reg64(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTSS2USI object with the given operands" do
         new_instruction = subject.vcvttss2usi(*operands)
@@ -10292,7 +10292,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [reg64, xmm, sae] }
+      let(:operands) { [reg64(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTTSS2USI object with the given operands" do
         new_instruction = subject.vcvttss2usi(*operands)
@@ -10305,7 +10305,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtudq2pd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, ymm] }
+      let(:operands) { [zmm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUDQ2PD object with the given operands" do
         new_instruction = subject.vcvtudq2pd(*operands)
@@ -10318,7 +10318,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtudq2ph" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, zmm] }
+      let(:operands) { [ymm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUDQ2PH object with the given operands" do
         new_instruction = subject.vcvtudq2ph(*operands)
@@ -10329,7 +10329,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, zmm, er] }
+      let(:operands) { [ymm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUDQ2PH object with the given operands" do
         new_instruction = subject.vcvtudq2ph(*operands)
@@ -10342,7 +10342,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtudq2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUDQ2PS object with the given operands" do
         new_instruction = subject.vcvtudq2ps(*operands)
@@ -10353,7 +10353,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUDQ2PS object with the given operands" do
         new_instruction = subject.vcvtudq2ps(*operands)
@@ -10366,7 +10366,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtuqq2pd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUQQ2PD object with the given operands" do
         new_instruction = subject.vcvtuqq2pd(*operands)
@@ -10377,7 +10377,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUQQ2PD object with the given operands" do
         new_instruction = subject.vcvtuqq2pd(*operands)
@@ -10390,7 +10390,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtuqq2ph" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, zmm] }
+      let(:operands) { [xmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUQQ2PH object with the given operands" do
         new_instruction = subject.vcvtuqq2ph(*operands)
@@ -10401,7 +10401,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, zmm, er] }
+      let(:operands) { [xmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUQQ2PH object with the given operands" do
         new_instruction = subject.vcvtuqq2ph(*operands)
@@ -10414,7 +10414,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtuqq2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, zmm] }
+      let(:operands) { [ymm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUQQ2PS object with the given operands" do
         new_instruction = subject.vcvtuqq2ps(*operands)
@@ -10425,7 +10425,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, zmm, er] }
+      let(:operands) { [ymm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUQQ2PS object with the given operands" do
         new_instruction = subject.vcvtuqq2ps(*operands)
@@ -10438,7 +10438,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtusi2sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUSI2SD object with the given operands" do
         new_instruction = subject.vcvtusi2sd(*operands)
@@ -10449,7 +10449,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, er, reg64] }
+      let(:operands) { [xmm(0), xmm(1), er(2), reg64(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUSI2SD object with the given operands" do
         new_instruction = subject.vcvtusi2sd(*operands)
@@ -10462,7 +10462,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtusi2sh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUSI2SH object with the given operands" do
         new_instruction = subject.vcvtusi2sh(*operands)
@@ -10473,7 +10473,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, er, reg64] }
+      let(:operands) { [xmm(0), xmm(1), er(2), reg64(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUSI2SH object with the given operands" do
         new_instruction = subject.vcvtusi2sh(*operands)
@@ -10486,7 +10486,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtusi2ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUSI2SS object with the given operands" do
         new_instruction = subject.vcvtusi2ss(*operands)
@@ -10497,7 +10497,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, er, reg64] }
+      let(:operands) { [xmm(0), xmm(1), er(2), reg64(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUSI2SS object with the given operands" do
         new_instruction = subject.vcvtusi2ss(*operands)
@@ -10510,7 +10510,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtuw2ph" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUW2PH object with the given operands" do
         new_instruction = subject.vcvtuw2ph(*operands)
@@ -10521,7 +10521,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTUW2PH object with the given operands" do
         new_instruction = subject.vcvtuw2ph(*operands)
@@ -10534,7 +10534,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vcvtw2ph" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTW2PH object with the given operands" do
         new_instruction = subject.vcvtw2ph(*operands)
@@ -10545,7 +10545,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VCVTW2PH object with the given operands" do
         new_instruction = subject.vcvtw2ph(*operands)
@@ -10558,7 +10558,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vdbpsadbw" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDBPSADBW object with the given operands" do
         new_instruction = subject.vdbpsadbw(*operands)
@@ -10571,7 +10571,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vdivpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDIVPD object with the given operands" do
         new_instruction = subject.vdivpd(*operands)
@@ -10582,7 +10582,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDIVPD object with the given operands" do
         new_instruction = subject.vdivpd(*operands)
@@ -10595,7 +10595,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vdivph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDIVPH object with the given operands" do
         new_instruction = subject.vdivph(*operands)
@@ -10606,7 +10606,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDIVPH object with the given operands" do
         new_instruction = subject.vdivph(*operands)
@@ -10619,7 +10619,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vdivps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDIVPS object with the given operands" do
         new_instruction = subject.vdivps(*operands)
@@ -10630,7 +10630,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDIVPS object with the given operands" do
         new_instruction = subject.vdivps(*operands)
@@ -10643,7 +10643,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vdivsd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDIVSD object with the given operands" do
         new_instruction = subject.vdivsd(*operands)
@@ -10654,7 +10654,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDIVSD object with the given operands" do
         new_instruction = subject.vdivsd(*operands)
@@ -10667,7 +10667,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vdivsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDIVSH object with the given operands" do
         new_instruction = subject.vdivsh(*operands)
@@ -10678,7 +10678,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDIVSH object with the given operands" do
         new_instruction = subject.vdivsh(*operands)
@@ -10691,7 +10691,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vdivss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDIVSS object with the given operands" do
         new_instruction = subject.vdivss(*operands)
@@ -10702,7 +10702,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDIVSS object with the given operands" do
         new_instruction = subject.vdivss(*operands)
@@ -10715,7 +10715,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vdpbf16ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDPBF16PS object with the given operands" do
         new_instruction = subject.vdpbf16ps(*operands)
@@ -10728,7 +10728,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vdppd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDPPD object with the given operands" do
         new_instruction = subject.vdppd(*operands)
@@ -10741,7 +10741,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vdpps" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VDPPS object with the given operands" do
         new_instruction = subject.vdpps(*operands)
@@ -10754,7 +10754,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vexp2pd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXP2PD object with the given operands" do
         new_instruction = subject.vexp2pd(*operands)
@@ -10765,7 +10765,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXP2PD object with the given operands" do
         new_instruction = subject.vexp2pd(*operands)
@@ -10778,7 +10778,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vexp2ps" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXP2PS object with the given operands" do
         new_instruction = subject.vexp2ps(*operands)
@@ -10789,7 +10789,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXP2PS object with the given operands" do
         new_instruction = subject.vexp2ps(*operands)
@@ -10802,7 +10802,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vexpandpd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXPANDPD object with the given operands" do
         new_instruction = subject.vexpandpd(*operands)
@@ -10815,7 +10815,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vexpandps" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXPANDPS object with the given operands" do
         new_instruction = subject.vexpandps(*operands)
@@ -10828,7 +10828,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vextractf128" do
     context "when called with 3 operands" do
-      let(:operands) { [mem128, ymm, imm8] }
+      let(:operands) { [mem128(0), ymm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXTRACTF128 object with the given operands" do
         new_instruction = subject.vextractf128(*operands)
@@ -10841,7 +10841,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vextractf32x4" do
     context "when called with 3 operands" do
-      let(:operands) { [mem128, zmm, imm8] }
+      let(:operands) { [mem128(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXTRACTF32X4 object with the given operands" do
         new_instruction = subject.vextractf32x4(*operands)
@@ -10854,7 +10854,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vextractf32x8" do
     context "when called with 3 operands" do
-      let(:operands) { [mem256, zmm, imm8] }
+      let(:operands) { [mem256(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXTRACTF32X8 object with the given operands" do
         new_instruction = subject.vextractf32x8(*operands)
@@ -10867,7 +10867,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vextractf64x2" do
     context "when called with 3 operands" do
-      let(:operands) { [mem128, zmm, imm8] }
+      let(:operands) { [mem128(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXTRACTF64X2 object with the given operands" do
         new_instruction = subject.vextractf64x2(*operands)
@@ -10880,7 +10880,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vextractf64x4" do
     context "when called with 3 operands" do
-      let(:operands) { [mem256, zmm, imm8] }
+      let(:operands) { [mem256(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXTRACTF64X4 object with the given operands" do
         new_instruction = subject.vextractf64x4(*operands)
@@ -10893,7 +10893,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vextracti128" do
     context "when called with 3 operands" do
-      let(:operands) { [mem128, ymm, imm8] }
+      let(:operands) { [mem128(0), ymm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXTRACTI128 object with the given operands" do
         new_instruction = subject.vextracti128(*operands)
@@ -10906,7 +10906,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vextracti32x4" do
     context "when called with 3 operands" do
-      let(:operands) { [mem128, zmm, imm8] }
+      let(:operands) { [mem128(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXTRACTI32X4 object with the given operands" do
         new_instruction = subject.vextracti32x4(*operands)
@@ -10919,7 +10919,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vextracti32x8" do
     context "when called with 3 operands" do
-      let(:operands) { [mem256, zmm, imm8] }
+      let(:operands) { [mem256(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXTRACTI32X8 object with the given operands" do
         new_instruction = subject.vextracti32x8(*operands)
@@ -10932,7 +10932,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vextracti64x2" do
     context "when called with 3 operands" do
-      let(:operands) { [mem128, zmm, imm8] }
+      let(:operands) { [mem128(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXTRACTI64X2 object with the given operands" do
         new_instruction = subject.vextracti64x2(*operands)
@@ -10945,7 +10945,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vextracti64x4" do
     context "when called with 3 operands" do
-      let(:operands) { [mem256, zmm, imm8] }
+      let(:operands) { [mem256(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXTRACTI64X4 object with the given operands" do
         new_instruction = subject.vextracti64x4(*operands)
@@ -10958,7 +10958,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vextractps" do
     context "when called with 3 operands" do
-      let(:operands) { [mem32, xmm, imm8] }
+      let(:operands) { [mem32(0), xmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VEXTRACTPS object with the given operands" do
         new_instruction = subject.vextractps(*operands)
@@ -10971,7 +10971,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfcmaddcph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFCMADDCPH object with the given operands" do
         new_instruction = subject.vfcmaddcph(*operands)
@@ -10982,7 +10982,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFCMADDCPH object with the given operands" do
         new_instruction = subject.vfcmaddcph(*operands)
@@ -10995,7 +10995,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfcmaddcsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFCMADDCSH object with the given operands" do
         new_instruction = subject.vfcmaddcsh(*operands)
@@ -11006,7 +11006,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFCMADDCSH object with the given operands" do
         new_instruction = subject.vfcmaddcsh(*operands)
@@ -11019,7 +11019,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfcmulcph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFCMULCPH object with the given operands" do
         new_instruction = subject.vfcmulcph(*operands)
@@ -11030,7 +11030,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFCMULCPH object with the given operands" do
         new_instruction = subject.vfcmulcph(*operands)
@@ -11043,7 +11043,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfcmulcsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFCMULCSH object with the given operands" do
         new_instruction = subject.vfcmulcsh(*operands)
@@ -11054,7 +11054,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFCMULCSH object with the given operands" do
         new_instruction = subject.vfcmulcsh(*operands)
@@ -11067,7 +11067,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfixupimmpd" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFIXUPIMMPD object with the given operands" do
         new_instruction = subject.vfixupimmpd(*operands)
@@ -11078,7 +11078,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [zmm, zmm, zmm, sae, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFIXUPIMMPD object with the given operands" do
         new_instruction = subject.vfixupimmpd(*operands)
@@ -11091,7 +11091,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfixupimmps" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFIXUPIMMPS object with the given operands" do
         new_instruction = subject.vfixupimmps(*operands)
@@ -11102,7 +11102,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [zmm, zmm, zmm, sae, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFIXUPIMMPS object with the given operands" do
         new_instruction = subject.vfixupimmps(*operands)
@@ -11115,7 +11115,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfixupimmsd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem64, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFIXUPIMMSD object with the given operands" do
         new_instruction = subject.vfixupimmsd(*operands)
@@ -11126,7 +11126,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFIXUPIMMSD object with the given operands" do
         new_instruction = subject.vfixupimmsd(*operands)
@@ -11139,7 +11139,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfixupimmss" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFIXUPIMMSS object with the given operands" do
         new_instruction = subject.vfixupimmss(*operands)
@@ -11150,7 +11150,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFIXUPIMMSS object with the given operands" do
         new_instruction = subject.vfixupimmss(*operands)
@@ -11163,7 +11163,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd132pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD132PD object with the given operands" do
         new_instruction = subject.vfmadd132pd(*operands)
@@ -11174,7 +11174,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD132PD object with the given operands" do
         new_instruction = subject.vfmadd132pd(*operands)
@@ -11187,7 +11187,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd132ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD132PH object with the given operands" do
         new_instruction = subject.vfmadd132ph(*operands)
@@ -11198,7 +11198,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD132PH object with the given operands" do
         new_instruction = subject.vfmadd132ph(*operands)
@@ -11211,7 +11211,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd132ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD132PS object with the given operands" do
         new_instruction = subject.vfmadd132ps(*operands)
@@ -11222,7 +11222,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD132PS object with the given operands" do
         new_instruction = subject.vfmadd132ps(*operands)
@@ -11235,7 +11235,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd132sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD132SD object with the given operands" do
         new_instruction = subject.vfmadd132sd(*operands)
@@ -11246,7 +11246,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD132SD object with the given operands" do
         new_instruction = subject.vfmadd132sd(*operands)
@@ -11259,7 +11259,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd132ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD132SS object with the given operands" do
         new_instruction = subject.vfmadd132ss(*operands)
@@ -11270,7 +11270,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD132SS object with the given operands" do
         new_instruction = subject.vfmadd132ss(*operands)
@@ -11283,7 +11283,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd213pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD213PD object with the given operands" do
         new_instruction = subject.vfmadd213pd(*operands)
@@ -11294,7 +11294,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD213PD object with the given operands" do
         new_instruction = subject.vfmadd213pd(*operands)
@@ -11307,7 +11307,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd213ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD213PH object with the given operands" do
         new_instruction = subject.vfmadd213ph(*operands)
@@ -11318,7 +11318,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD213PH object with the given operands" do
         new_instruction = subject.vfmadd213ph(*operands)
@@ -11331,7 +11331,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd213ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD213PS object with the given operands" do
         new_instruction = subject.vfmadd213ps(*operands)
@@ -11342,7 +11342,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD213PS object with the given operands" do
         new_instruction = subject.vfmadd213ps(*operands)
@@ -11355,7 +11355,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd213sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD213SD object with the given operands" do
         new_instruction = subject.vfmadd213sd(*operands)
@@ -11366,7 +11366,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD213SD object with the given operands" do
         new_instruction = subject.vfmadd213sd(*operands)
@@ -11379,7 +11379,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd213ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD213SS object with the given operands" do
         new_instruction = subject.vfmadd213ss(*operands)
@@ -11390,7 +11390,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD213SS object with the given operands" do
         new_instruction = subject.vfmadd213ss(*operands)
@@ -11403,7 +11403,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd231pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD231PD object with the given operands" do
         new_instruction = subject.vfmadd231pd(*operands)
@@ -11414,7 +11414,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD231PD object with the given operands" do
         new_instruction = subject.vfmadd231pd(*operands)
@@ -11427,7 +11427,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd231ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD231PH object with the given operands" do
         new_instruction = subject.vfmadd231ph(*operands)
@@ -11438,7 +11438,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD231PH object with the given operands" do
         new_instruction = subject.vfmadd231ph(*operands)
@@ -11451,7 +11451,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd231ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD231PS object with the given operands" do
         new_instruction = subject.vfmadd231ps(*operands)
@@ -11462,7 +11462,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD231PS object with the given operands" do
         new_instruction = subject.vfmadd231ps(*operands)
@@ -11475,7 +11475,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd231sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD231SD object with the given operands" do
         new_instruction = subject.vfmadd231sd(*operands)
@@ -11486,7 +11486,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD231SD object with the given operands" do
         new_instruction = subject.vfmadd231sd(*operands)
@@ -11499,7 +11499,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmadd231ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD231SS object with the given operands" do
         new_instruction = subject.vfmadd231ss(*operands)
@@ -11510,7 +11510,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADD231SS object with the given operands" do
         new_instruction = subject.vfmadd231ss(*operands)
@@ -11523,7 +11523,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddcph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDCPH object with the given operands" do
         new_instruction = subject.vfmaddcph(*operands)
@@ -11534,7 +11534,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDCPH object with the given operands" do
         new_instruction = subject.vfmaddcph(*operands)
@@ -11547,7 +11547,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddcsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDCSH object with the given operands" do
         new_instruction = subject.vfmaddcsh(*operands)
@@ -11558,7 +11558,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDCSH object with the given operands" do
         new_instruction = subject.vfmaddcsh(*operands)
@@ -11571,7 +11571,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddpd" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDPD object with the given operands" do
         new_instruction = subject.vfmaddpd(*operands)
@@ -11584,7 +11584,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddps" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDPS object with the given operands" do
         new_instruction = subject.vfmaddps(*operands)
@@ -11597,7 +11597,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddsd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem64, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSD object with the given operands" do
         new_instruction = subject.vfmaddsd(*operands)
@@ -11610,7 +11610,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddss" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSS object with the given operands" do
         new_instruction = subject.vfmaddss(*operands)
@@ -11623,7 +11623,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddsub132pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB132PD object with the given operands" do
         new_instruction = subject.vfmaddsub132pd(*operands)
@@ -11634,7 +11634,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB132PD object with the given operands" do
         new_instruction = subject.vfmaddsub132pd(*operands)
@@ -11647,7 +11647,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddsub132ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB132PH object with the given operands" do
         new_instruction = subject.vfmaddsub132ph(*operands)
@@ -11658,7 +11658,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB132PH object with the given operands" do
         new_instruction = subject.vfmaddsub132ph(*operands)
@@ -11671,7 +11671,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddsub132ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB132PS object with the given operands" do
         new_instruction = subject.vfmaddsub132ps(*operands)
@@ -11682,7 +11682,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB132PS object with the given operands" do
         new_instruction = subject.vfmaddsub132ps(*operands)
@@ -11695,7 +11695,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddsub213pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB213PD object with the given operands" do
         new_instruction = subject.vfmaddsub213pd(*operands)
@@ -11706,7 +11706,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB213PD object with the given operands" do
         new_instruction = subject.vfmaddsub213pd(*operands)
@@ -11719,7 +11719,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddsub213ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB213PH object with the given operands" do
         new_instruction = subject.vfmaddsub213ph(*operands)
@@ -11730,7 +11730,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB213PH object with the given operands" do
         new_instruction = subject.vfmaddsub213ph(*operands)
@@ -11743,7 +11743,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddsub213ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB213PS object with the given operands" do
         new_instruction = subject.vfmaddsub213ps(*operands)
@@ -11754,7 +11754,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB213PS object with the given operands" do
         new_instruction = subject.vfmaddsub213ps(*operands)
@@ -11767,7 +11767,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddsub231pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB231PD object with the given operands" do
         new_instruction = subject.vfmaddsub231pd(*operands)
@@ -11778,7 +11778,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB231PD object with the given operands" do
         new_instruction = subject.vfmaddsub231pd(*operands)
@@ -11791,7 +11791,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddsub231ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB231PH object with the given operands" do
         new_instruction = subject.vfmaddsub231ph(*operands)
@@ -11802,7 +11802,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB231PH object with the given operands" do
         new_instruction = subject.vfmaddsub231ph(*operands)
@@ -11815,7 +11815,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddsub231ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB231PS object with the given operands" do
         new_instruction = subject.vfmaddsub231ps(*operands)
@@ -11826,7 +11826,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUB231PS object with the given operands" do
         new_instruction = subject.vfmaddsub231ps(*operands)
@@ -11839,7 +11839,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddsubpd" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUBPD object with the given operands" do
         new_instruction = subject.vfmaddsubpd(*operands)
@@ -11852,7 +11852,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmaddsubps" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMADDSUBPS object with the given operands" do
         new_instruction = subject.vfmaddsubps(*operands)
@@ -11865,7 +11865,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub132pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB132PD object with the given operands" do
         new_instruction = subject.vfmsub132pd(*operands)
@@ -11876,7 +11876,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB132PD object with the given operands" do
         new_instruction = subject.vfmsub132pd(*operands)
@@ -11889,7 +11889,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub132ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB132PH object with the given operands" do
         new_instruction = subject.vfmsub132ph(*operands)
@@ -11900,7 +11900,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB132PH object with the given operands" do
         new_instruction = subject.vfmsub132ph(*operands)
@@ -11913,7 +11913,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub132ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB132PS object with the given operands" do
         new_instruction = subject.vfmsub132ps(*operands)
@@ -11924,7 +11924,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB132PS object with the given operands" do
         new_instruction = subject.vfmsub132ps(*operands)
@@ -11937,7 +11937,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub132sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB132SD object with the given operands" do
         new_instruction = subject.vfmsub132sd(*operands)
@@ -11948,7 +11948,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB132SD object with the given operands" do
         new_instruction = subject.vfmsub132sd(*operands)
@@ -11961,7 +11961,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub132sh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB132SH object with the given operands" do
         new_instruction = subject.vfmsub132sh(*operands)
@@ -11972,7 +11972,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB132SH object with the given operands" do
         new_instruction = subject.vfmsub132sh(*operands)
@@ -11985,7 +11985,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub132ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB132SS object with the given operands" do
         new_instruction = subject.vfmsub132ss(*operands)
@@ -11996,7 +11996,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB132SS object with the given operands" do
         new_instruction = subject.vfmsub132ss(*operands)
@@ -12009,7 +12009,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub213pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB213PD object with the given operands" do
         new_instruction = subject.vfmsub213pd(*operands)
@@ -12020,7 +12020,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB213PD object with the given operands" do
         new_instruction = subject.vfmsub213pd(*operands)
@@ -12033,7 +12033,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub213ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB213PH object with the given operands" do
         new_instruction = subject.vfmsub213ph(*operands)
@@ -12044,7 +12044,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB213PH object with the given operands" do
         new_instruction = subject.vfmsub213ph(*operands)
@@ -12057,7 +12057,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub213ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB213PS object with the given operands" do
         new_instruction = subject.vfmsub213ps(*operands)
@@ -12068,7 +12068,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB213PS object with the given operands" do
         new_instruction = subject.vfmsub213ps(*operands)
@@ -12081,7 +12081,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub213sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB213SD object with the given operands" do
         new_instruction = subject.vfmsub213sd(*operands)
@@ -12092,7 +12092,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB213SD object with the given operands" do
         new_instruction = subject.vfmsub213sd(*operands)
@@ -12105,7 +12105,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub213sh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB213SH object with the given operands" do
         new_instruction = subject.vfmsub213sh(*operands)
@@ -12116,7 +12116,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB213SH object with the given operands" do
         new_instruction = subject.vfmsub213sh(*operands)
@@ -12129,7 +12129,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub213ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB213SS object with the given operands" do
         new_instruction = subject.vfmsub213ss(*operands)
@@ -12140,7 +12140,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB213SS object with the given operands" do
         new_instruction = subject.vfmsub213ss(*operands)
@@ -12153,7 +12153,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub231pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB231PD object with the given operands" do
         new_instruction = subject.vfmsub231pd(*operands)
@@ -12164,7 +12164,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB231PD object with the given operands" do
         new_instruction = subject.vfmsub231pd(*operands)
@@ -12177,7 +12177,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub231ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB231PH object with the given operands" do
         new_instruction = subject.vfmsub231ph(*operands)
@@ -12188,7 +12188,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB231PH object with the given operands" do
         new_instruction = subject.vfmsub231ph(*operands)
@@ -12201,7 +12201,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub231ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB231PS object with the given operands" do
         new_instruction = subject.vfmsub231ps(*operands)
@@ -12212,7 +12212,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB231PS object with the given operands" do
         new_instruction = subject.vfmsub231ps(*operands)
@@ -12225,7 +12225,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub231sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB231SD object with the given operands" do
         new_instruction = subject.vfmsub231sd(*operands)
@@ -12236,7 +12236,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB231SD object with the given operands" do
         new_instruction = subject.vfmsub231sd(*operands)
@@ -12249,7 +12249,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub231sh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB231SH object with the given operands" do
         new_instruction = subject.vfmsub231sh(*operands)
@@ -12260,7 +12260,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB231SH object with the given operands" do
         new_instruction = subject.vfmsub231sh(*operands)
@@ -12273,7 +12273,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsub231ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB231SS object with the given operands" do
         new_instruction = subject.vfmsub231ss(*operands)
@@ -12284,7 +12284,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUB231SS object with the given operands" do
         new_instruction = subject.vfmsub231ss(*operands)
@@ -12297,7 +12297,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubadd132pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD132PD object with the given operands" do
         new_instruction = subject.vfmsubadd132pd(*operands)
@@ -12308,7 +12308,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD132PD object with the given operands" do
         new_instruction = subject.vfmsubadd132pd(*operands)
@@ -12321,7 +12321,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubadd132ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD132PH object with the given operands" do
         new_instruction = subject.vfmsubadd132ph(*operands)
@@ -12332,7 +12332,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD132PH object with the given operands" do
         new_instruction = subject.vfmsubadd132ph(*operands)
@@ -12345,7 +12345,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubadd132ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD132PS object with the given operands" do
         new_instruction = subject.vfmsubadd132ps(*operands)
@@ -12356,7 +12356,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD132PS object with the given operands" do
         new_instruction = subject.vfmsubadd132ps(*operands)
@@ -12369,7 +12369,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubadd213pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD213PD object with the given operands" do
         new_instruction = subject.vfmsubadd213pd(*operands)
@@ -12380,7 +12380,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD213PD object with the given operands" do
         new_instruction = subject.vfmsubadd213pd(*operands)
@@ -12393,7 +12393,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubadd213ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD213PH object with the given operands" do
         new_instruction = subject.vfmsubadd213ph(*operands)
@@ -12404,7 +12404,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD213PH object with the given operands" do
         new_instruction = subject.vfmsubadd213ph(*operands)
@@ -12417,7 +12417,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubadd213ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD213PS object with the given operands" do
         new_instruction = subject.vfmsubadd213ps(*operands)
@@ -12428,7 +12428,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD213PS object with the given operands" do
         new_instruction = subject.vfmsubadd213ps(*operands)
@@ -12441,7 +12441,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubadd231pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD231PD object with the given operands" do
         new_instruction = subject.vfmsubadd231pd(*operands)
@@ -12452,7 +12452,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD231PD object with the given operands" do
         new_instruction = subject.vfmsubadd231pd(*operands)
@@ -12465,7 +12465,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubadd231ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD231PH object with the given operands" do
         new_instruction = subject.vfmsubadd231ph(*operands)
@@ -12476,7 +12476,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD231PH object with the given operands" do
         new_instruction = subject.vfmsubadd231ph(*operands)
@@ -12489,7 +12489,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubadd231ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD231PS object with the given operands" do
         new_instruction = subject.vfmsubadd231ps(*operands)
@@ -12500,7 +12500,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADD231PS object with the given operands" do
         new_instruction = subject.vfmsubadd231ps(*operands)
@@ -12513,7 +12513,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubaddpd" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADDPD object with the given operands" do
         new_instruction = subject.vfmsubaddpd(*operands)
@@ -12526,7 +12526,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubaddps" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBADDPS object with the given operands" do
         new_instruction = subject.vfmsubaddps(*operands)
@@ -12539,7 +12539,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubpd" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBPD object with the given operands" do
         new_instruction = subject.vfmsubpd(*operands)
@@ -12552,7 +12552,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubps" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBPS object with the given operands" do
         new_instruction = subject.vfmsubps(*operands)
@@ -12565,7 +12565,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubsd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem64, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBSD object with the given operands" do
         new_instruction = subject.vfmsubsd(*operands)
@@ -12578,7 +12578,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmsubss" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMSUBSS object with the given operands" do
         new_instruction = subject.vfmsubss(*operands)
@@ -12591,7 +12591,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmulcph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMULCPH object with the given operands" do
         new_instruction = subject.vfmulcph(*operands)
@@ -12602,7 +12602,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMULCPH object with the given operands" do
         new_instruction = subject.vfmulcph(*operands)
@@ -12615,7 +12615,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfmulcsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMULCSH object with the given operands" do
         new_instruction = subject.vfmulcsh(*operands)
@@ -12626,7 +12626,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFMULCSH object with the given operands" do
         new_instruction = subject.vfmulcsh(*operands)
@@ -12639,7 +12639,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd132pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD132PD object with the given operands" do
         new_instruction = subject.vfnmadd132pd(*operands)
@@ -12650,7 +12650,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD132PD object with the given operands" do
         new_instruction = subject.vfnmadd132pd(*operands)
@@ -12663,7 +12663,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd132ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD132PH object with the given operands" do
         new_instruction = subject.vfnmadd132ph(*operands)
@@ -12674,7 +12674,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD132PH object with the given operands" do
         new_instruction = subject.vfnmadd132ph(*operands)
@@ -12687,7 +12687,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd132ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD132PS object with the given operands" do
         new_instruction = subject.vfnmadd132ps(*operands)
@@ -12698,7 +12698,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD132PS object with the given operands" do
         new_instruction = subject.vfnmadd132ps(*operands)
@@ -12711,7 +12711,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd132sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD132SD object with the given operands" do
         new_instruction = subject.vfnmadd132sd(*operands)
@@ -12722,7 +12722,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD132SD object with the given operands" do
         new_instruction = subject.vfnmadd132sd(*operands)
@@ -12735,7 +12735,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd132ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD132SS object with the given operands" do
         new_instruction = subject.vfnmadd132ss(*operands)
@@ -12746,7 +12746,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD132SS object with the given operands" do
         new_instruction = subject.vfnmadd132ss(*operands)
@@ -12759,7 +12759,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd213pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD213PD object with the given operands" do
         new_instruction = subject.vfnmadd213pd(*operands)
@@ -12770,7 +12770,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD213PD object with the given operands" do
         new_instruction = subject.vfnmadd213pd(*operands)
@@ -12783,7 +12783,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd213ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD213PH object with the given operands" do
         new_instruction = subject.vfnmadd213ph(*operands)
@@ -12794,7 +12794,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD213PH object with the given operands" do
         new_instruction = subject.vfnmadd213ph(*operands)
@@ -12807,7 +12807,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd213ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD213PS object with the given operands" do
         new_instruction = subject.vfnmadd213ps(*operands)
@@ -12818,7 +12818,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD213PS object with the given operands" do
         new_instruction = subject.vfnmadd213ps(*operands)
@@ -12831,7 +12831,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd213sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD213SD object with the given operands" do
         new_instruction = subject.vfnmadd213sd(*operands)
@@ -12842,7 +12842,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD213SD object with the given operands" do
         new_instruction = subject.vfnmadd213sd(*operands)
@@ -12855,7 +12855,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd213ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD213SS object with the given operands" do
         new_instruction = subject.vfnmadd213ss(*operands)
@@ -12866,7 +12866,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD213SS object with the given operands" do
         new_instruction = subject.vfnmadd213ss(*operands)
@@ -12879,7 +12879,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd231pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD231PD object with the given operands" do
         new_instruction = subject.vfnmadd231pd(*operands)
@@ -12890,7 +12890,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD231PD object with the given operands" do
         new_instruction = subject.vfnmadd231pd(*operands)
@@ -12903,7 +12903,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd231ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD231PH object with the given operands" do
         new_instruction = subject.vfnmadd231ph(*operands)
@@ -12914,7 +12914,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD231PH object with the given operands" do
         new_instruction = subject.vfnmadd231ph(*operands)
@@ -12927,7 +12927,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd231ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD231PS object with the given operands" do
         new_instruction = subject.vfnmadd231ps(*operands)
@@ -12938,7 +12938,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD231PS object with the given operands" do
         new_instruction = subject.vfnmadd231ps(*operands)
@@ -12951,7 +12951,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd231sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD231SD object with the given operands" do
         new_instruction = subject.vfnmadd231sd(*operands)
@@ -12962,7 +12962,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD231SD object with the given operands" do
         new_instruction = subject.vfnmadd231sd(*operands)
@@ -12975,7 +12975,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmadd231ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD231SS object with the given operands" do
         new_instruction = subject.vfnmadd231ss(*operands)
@@ -12986,7 +12986,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADD231SS object with the given operands" do
         new_instruction = subject.vfnmadd231ss(*operands)
@@ -12999,7 +12999,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmaddpd" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADDPD object with the given operands" do
         new_instruction = subject.vfnmaddpd(*operands)
@@ -13012,7 +13012,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmaddps" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADDPS object with the given operands" do
         new_instruction = subject.vfnmaddps(*operands)
@@ -13025,7 +13025,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmaddsd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem64, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADDSD object with the given operands" do
         new_instruction = subject.vfnmaddsd(*operands)
@@ -13038,7 +13038,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmaddss" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMADDSS object with the given operands" do
         new_instruction = subject.vfnmaddss(*operands)
@@ -13051,7 +13051,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub132pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB132PD object with the given operands" do
         new_instruction = subject.vfnmsub132pd(*operands)
@@ -13062,7 +13062,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB132PD object with the given operands" do
         new_instruction = subject.vfnmsub132pd(*operands)
@@ -13075,7 +13075,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub132ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB132PH object with the given operands" do
         new_instruction = subject.vfnmsub132ph(*operands)
@@ -13086,7 +13086,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB132PH object with the given operands" do
         new_instruction = subject.vfnmsub132ph(*operands)
@@ -13099,7 +13099,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub132ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB132PS object with the given operands" do
         new_instruction = subject.vfnmsub132ps(*operands)
@@ -13110,7 +13110,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB132PS object with the given operands" do
         new_instruction = subject.vfnmsub132ps(*operands)
@@ -13123,7 +13123,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub132sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB132SD object with the given operands" do
         new_instruction = subject.vfnmsub132sd(*operands)
@@ -13134,7 +13134,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB132SD object with the given operands" do
         new_instruction = subject.vfnmsub132sd(*operands)
@@ -13147,7 +13147,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub132sh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB132SH object with the given operands" do
         new_instruction = subject.vfnmsub132sh(*operands)
@@ -13158,7 +13158,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB132SH object with the given operands" do
         new_instruction = subject.vfnmsub132sh(*operands)
@@ -13171,7 +13171,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub132ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB132SS object with the given operands" do
         new_instruction = subject.vfnmsub132ss(*operands)
@@ -13182,7 +13182,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB132SS object with the given operands" do
         new_instruction = subject.vfnmsub132ss(*operands)
@@ -13195,7 +13195,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub213pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB213PD object with the given operands" do
         new_instruction = subject.vfnmsub213pd(*operands)
@@ -13206,7 +13206,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB213PD object with the given operands" do
         new_instruction = subject.vfnmsub213pd(*operands)
@@ -13219,7 +13219,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub213ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB213PH object with the given operands" do
         new_instruction = subject.vfnmsub213ph(*operands)
@@ -13230,7 +13230,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB213PH object with the given operands" do
         new_instruction = subject.vfnmsub213ph(*operands)
@@ -13243,7 +13243,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub213ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB213PS object with the given operands" do
         new_instruction = subject.vfnmsub213ps(*operands)
@@ -13254,7 +13254,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB213PS object with the given operands" do
         new_instruction = subject.vfnmsub213ps(*operands)
@@ -13267,7 +13267,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub213sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB213SD object with the given operands" do
         new_instruction = subject.vfnmsub213sd(*operands)
@@ -13278,7 +13278,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB213SD object with the given operands" do
         new_instruction = subject.vfnmsub213sd(*operands)
@@ -13291,7 +13291,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub213sh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB213SH object with the given operands" do
         new_instruction = subject.vfnmsub213sh(*operands)
@@ -13302,7 +13302,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB213SH object with the given operands" do
         new_instruction = subject.vfnmsub213sh(*operands)
@@ -13315,7 +13315,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub213ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB213SS object with the given operands" do
         new_instruction = subject.vfnmsub213ss(*operands)
@@ -13326,7 +13326,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB213SS object with the given operands" do
         new_instruction = subject.vfnmsub213ss(*operands)
@@ -13339,7 +13339,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub231pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB231PD object with the given operands" do
         new_instruction = subject.vfnmsub231pd(*operands)
@@ -13350,7 +13350,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB231PD object with the given operands" do
         new_instruction = subject.vfnmsub231pd(*operands)
@@ -13363,7 +13363,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub231ph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB231PH object with the given operands" do
         new_instruction = subject.vfnmsub231ph(*operands)
@@ -13374,7 +13374,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB231PH object with the given operands" do
         new_instruction = subject.vfnmsub231ph(*operands)
@@ -13387,7 +13387,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub231ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB231PS object with the given operands" do
         new_instruction = subject.vfnmsub231ps(*operands)
@@ -13398,7 +13398,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB231PS object with the given operands" do
         new_instruction = subject.vfnmsub231ps(*operands)
@@ -13411,7 +13411,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub231sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB231SD object with the given operands" do
         new_instruction = subject.vfnmsub231sd(*operands)
@@ -13422,7 +13422,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB231SD object with the given operands" do
         new_instruction = subject.vfnmsub231sd(*operands)
@@ -13435,7 +13435,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub231sh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB231SH object with the given operands" do
         new_instruction = subject.vfnmsub231sh(*operands)
@@ -13446,7 +13446,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB231SH object with the given operands" do
         new_instruction = subject.vfnmsub231sh(*operands)
@@ -13459,7 +13459,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsub231ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB231SS object with the given operands" do
         new_instruction = subject.vfnmsub231ss(*operands)
@@ -13470,7 +13470,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUB231SS object with the given operands" do
         new_instruction = subject.vfnmsub231ss(*operands)
@@ -13483,7 +13483,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsubpd" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUBPD object with the given operands" do
         new_instruction = subject.vfnmsubpd(*operands)
@@ -13496,7 +13496,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsubps" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUBPS object with the given operands" do
         new_instruction = subject.vfnmsubps(*operands)
@@ -13509,7 +13509,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsubsd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem64, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUBSD object with the given operands" do
         new_instruction = subject.vfnmsubsd(*operands)
@@ -13522,7 +13522,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfnmsubss" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFNMSUBSS object with the given operands" do
         new_instruction = subject.vfnmsubss(*operands)
@@ -13535,7 +13535,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfpclasspd" do
     context "when called with 3 operands" do
-      let(:operands) { [k, zmm, imm8] }
+      let(:operands) { [k(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFPCLASSPD object with the given operands" do
         new_instruction = subject.vfpclasspd(*operands)
@@ -13548,7 +13548,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfpclassph" do
     context "when called with 3 operands" do
-      let(:operands) { [k, zmm, imm8] }
+      let(:operands) { [k(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFPCLASSPH object with the given operands" do
         new_instruction = subject.vfpclassph(*operands)
@@ -13561,7 +13561,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfpclassps" do
     context "when called with 3 operands" do
-      let(:operands) { [k, zmm, imm8] }
+      let(:operands) { [k(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFPCLASSPS object with the given operands" do
         new_instruction = subject.vfpclassps(*operands)
@@ -13574,7 +13574,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfpclasssd" do
     context "when called with 3 operands" do
-      let(:operands) { [k, mem64, imm8] }
+      let(:operands) { [k(0), mem64(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFPCLASSSD object with the given operands" do
         new_instruction = subject.vfpclasssd(*operands)
@@ -13587,7 +13587,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfpclasssh" do
     context "when called with 3 operands" do
-      let(:operands) { [k, mem16, imm8] }
+      let(:operands) { [k(0), mem16(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFPCLASSSH object with the given operands" do
         new_instruction = subject.vfpclasssh(*operands)
@@ -13600,7 +13600,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfpclassss" do
     context "when called with 3 operands" do
-      let(:operands) { [k, mem32, imm8] }
+      let(:operands) { [k(0), mem32(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFPCLASSSS object with the given operands" do
         new_instruction = subject.vfpclassss(*operands)
@@ -13613,7 +13613,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfrczpd" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFRCZPD object with the given operands" do
         new_instruction = subject.vfrczpd(*operands)
@@ -13626,7 +13626,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfrczps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFRCZPS object with the given operands" do
         new_instruction = subject.vfrczps(*operands)
@@ -13639,7 +13639,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfrczsd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFRCZSD object with the given operands" do
         new_instruction = subject.vfrczsd(*operands)
@@ -13652,7 +13652,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vfrczss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VFRCZSS object with the given operands" do
         new_instruction = subject.vfrczss(*operands)
@@ -13665,7 +13665,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgatherdpd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm_k, vm32y] }
+      let(:operands) { [zmm_k(0), vm32y(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERDPD object with the given operands" do
         new_instruction = subject.vgatherdpd(*operands)
@@ -13676,7 +13676,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, vm32x, ymm] }
+      let(:operands) { [ymm(0), vm32x(1), ymm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERDPD object with the given operands" do
         new_instruction = subject.vgatherdpd(*operands)
@@ -13689,7 +13689,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgatherdps" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm_k, vm32z] }
+      let(:operands) { [zmm_k(0), vm32z(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERDPS object with the given operands" do
         new_instruction = subject.vgatherdps(*operands)
@@ -13700,7 +13700,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, vm32y, ymm] }
+      let(:operands) { [ymm(0), vm32y(1), ymm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERDPS object with the given operands" do
         new_instruction = subject.vgatherdps(*operands)
@@ -13713,7 +13713,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgatherpf0dpd" do
     context "when called with 1 operand" do
-      let(:operands) { [vm32y_k] }
+      let(:operands) { [vm32y_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERPF0DPD object with the given operands" do
         new_instruction = subject.vgatherpf0dpd(*operands)
@@ -13726,7 +13726,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgatherpf0dps" do
     context "when called with 1 operand" do
-      let(:operands) { [vm32z_k] }
+      let(:operands) { [vm32z_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERPF0DPS object with the given operands" do
         new_instruction = subject.vgatherpf0dps(*operands)
@@ -13739,7 +13739,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgatherpf0qpd" do
     context "when called with 1 operand" do
-      let(:operands) { [vm64z_k] }
+      let(:operands) { [vm64z_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERPF0QPD object with the given operands" do
         new_instruction = subject.vgatherpf0qpd(*operands)
@@ -13752,7 +13752,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgatherpf0qps" do
     context "when called with 1 operand" do
-      let(:operands) { [vm64z_k] }
+      let(:operands) { [vm64z_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERPF0QPS object with the given operands" do
         new_instruction = subject.vgatherpf0qps(*operands)
@@ -13765,7 +13765,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgatherpf1dpd" do
     context "when called with 1 operand" do
-      let(:operands) { [vm32y_k] }
+      let(:operands) { [vm32y_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERPF1DPD object with the given operands" do
         new_instruction = subject.vgatherpf1dpd(*operands)
@@ -13778,7 +13778,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgatherpf1dps" do
     context "when called with 1 operand" do
-      let(:operands) { [vm32z_k] }
+      let(:operands) { [vm32z_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERPF1DPS object with the given operands" do
         new_instruction = subject.vgatherpf1dps(*operands)
@@ -13791,7 +13791,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgatherpf1qpd" do
     context "when called with 1 operand" do
-      let(:operands) { [vm64z_k] }
+      let(:operands) { [vm64z_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERPF1QPD object with the given operands" do
         new_instruction = subject.vgatherpf1qpd(*operands)
@@ -13804,7 +13804,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgatherpf1qps" do
     context "when called with 1 operand" do
-      let(:operands) { [vm64z_k] }
+      let(:operands) { [vm64z_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERPF1QPS object with the given operands" do
         new_instruction = subject.vgatherpf1qps(*operands)
@@ -13817,7 +13817,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgatherqpd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm_k, vm64z] }
+      let(:operands) { [zmm_k(0), vm64z(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERQPD object with the given operands" do
         new_instruction = subject.vgatherqpd(*operands)
@@ -13828,7 +13828,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, vm64y, ymm] }
+      let(:operands) { [ymm(0), vm64y(1), ymm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERQPD object with the given operands" do
         new_instruction = subject.vgatherqpd(*operands)
@@ -13841,7 +13841,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgatherqps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm_k, vm64z] }
+      let(:operands) { [ymm_k(0), vm64z(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERQPS object with the given operands" do
         new_instruction = subject.vgatherqps(*operands)
@@ -13852,7 +13852,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, vm64y, xmm] }
+      let(:operands) { [xmm(0), vm64y(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGATHERQPS object with the given operands" do
         new_instruction = subject.vgatherqps(*operands)
@@ -13865,7 +13865,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgetexppd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETEXPPD object with the given operands" do
         new_instruction = subject.vgetexppd(*operands)
@@ -13876,7 +13876,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETEXPPD object with the given operands" do
         new_instruction = subject.vgetexppd(*operands)
@@ -13889,7 +13889,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgetexpph" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETEXPPH object with the given operands" do
         new_instruction = subject.vgetexpph(*operands)
@@ -13900,7 +13900,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETEXPPH object with the given operands" do
         new_instruction = subject.vgetexpph(*operands)
@@ -13913,7 +13913,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgetexpps" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETEXPPS object with the given operands" do
         new_instruction = subject.vgetexpps(*operands)
@@ -13924,7 +13924,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETEXPPS object with the given operands" do
         new_instruction = subject.vgetexpps(*operands)
@@ -13937,7 +13937,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgetexpsd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETEXPSD object with the given operands" do
         new_instruction = subject.vgetexpsd(*operands)
@@ -13948,7 +13948,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETEXPSD object with the given operands" do
         new_instruction = subject.vgetexpsd(*operands)
@@ -13961,7 +13961,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgetexpsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETEXPSH object with the given operands" do
         new_instruction = subject.vgetexpsh(*operands)
@@ -13972,7 +13972,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETEXPSH object with the given operands" do
         new_instruction = subject.vgetexpsh(*operands)
@@ -13985,7 +13985,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgetexpss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETEXPSS object with the given operands" do
         new_instruction = subject.vgetexpss(*operands)
@@ -13996,7 +13996,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETEXPSS object with the given operands" do
         new_instruction = subject.vgetexpss(*operands)
@@ -14009,7 +14009,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgetmantpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETMANTPD object with the given operands" do
         new_instruction = subject.vgetmantpd(*operands)
@@ -14020,7 +14020,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, sae, imm8] }
+      let(:operands) { [zmm(0), zmm(1), sae(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETMANTPD object with the given operands" do
         new_instruction = subject.vgetmantpd(*operands)
@@ -14033,7 +14033,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgetmantph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETMANTPH object with the given operands" do
         new_instruction = subject.vgetmantph(*operands)
@@ -14044,7 +14044,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, sae, imm8] }
+      let(:operands) { [zmm(0), zmm(1), sae(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETMANTPH object with the given operands" do
         new_instruction = subject.vgetmantph(*operands)
@@ -14057,7 +14057,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgetmantps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETMANTPS object with the given operands" do
         new_instruction = subject.vgetmantps(*operands)
@@ -14068,7 +14068,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, sae, imm8] }
+      let(:operands) { [zmm(0), zmm(1), sae(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETMANTPS object with the given operands" do
         new_instruction = subject.vgetmantps(*operands)
@@ -14081,7 +14081,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgetmantsd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem64, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETMANTSD object with the given operands" do
         new_instruction = subject.vgetmantsd(*operands)
@@ -14092,7 +14092,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETMANTSD object with the given operands" do
         new_instruction = subject.vgetmantsd(*operands)
@@ -14105,7 +14105,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgetmantsh" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem16, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETMANTSH object with the given operands" do
         new_instruction = subject.vgetmantsh(*operands)
@@ -14116,7 +14116,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETMANTSH object with the given operands" do
         new_instruction = subject.vgetmantsh(*operands)
@@ -14129,7 +14129,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgetmantss" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETMANTSS object with the given operands" do
         new_instruction = subject.vgetmantss(*operands)
@@ -14140,7 +14140,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGETMANTSS object with the given operands" do
         new_instruction = subject.vgetmantss(*operands)
@@ -14153,7 +14153,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgf2p8affineinvqb" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGF2P8AFFINEINVQB object with the given operands" do
         new_instruction = subject.vgf2p8affineinvqb(*operands)
@@ -14166,7 +14166,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgf2p8affineqb" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGF2P8AFFINEQB object with the given operands" do
         new_instruction = subject.vgf2p8affineqb(*operands)
@@ -14179,7 +14179,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vgf2p8mulb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VGF2P8MULB object with the given operands" do
         new_instruction = subject.vgf2p8mulb(*operands)
@@ -14192,7 +14192,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vhaddpd" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VHADDPD object with the given operands" do
         new_instruction = subject.vhaddpd(*operands)
@@ -14205,7 +14205,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vhaddps" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VHADDPS object with the given operands" do
         new_instruction = subject.vhaddps(*operands)
@@ -14218,7 +14218,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vhsubpd" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VHSUBPD object with the given operands" do
         new_instruction = subject.vhsubpd(*operands)
@@ -14231,7 +14231,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vhsubps" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VHSUBPS object with the given operands" do
         new_instruction = subject.vhsubps(*operands)
@@ -14244,7 +14244,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vinsertf128" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem128, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VINSERTF128 object with the given operands" do
         new_instruction = subject.vinsertf128(*operands)
@@ -14257,7 +14257,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vinsertf32x4" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem128, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VINSERTF32X4 object with the given operands" do
         new_instruction = subject.vinsertf32x4(*operands)
@@ -14270,7 +14270,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vinsertf32x8" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem256, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VINSERTF32X8 object with the given operands" do
         new_instruction = subject.vinsertf32x8(*operands)
@@ -14283,7 +14283,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vinsertf64x2" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem128, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VINSERTF64X2 object with the given operands" do
         new_instruction = subject.vinsertf64x2(*operands)
@@ -14296,7 +14296,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vinsertf64x4" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem256, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VINSERTF64X4 object with the given operands" do
         new_instruction = subject.vinsertf64x4(*operands)
@@ -14309,7 +14309,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vinserti128" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem128, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VINSERTI128 object with the given operands" do
         new_instruction = subject.vinserti128(*operands)
@@ -14322,7 +14322,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vinserti32x4" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem128, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VINSERTI32X4 object with the given operands" do
         new_instruction = subject.vinserti32x4(*operands)
@@ -14335,7 +14335,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vinserti32x8" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem256, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VINSERTI32X8 object with the given operands" do
         new_instruction = subject.vinserti32x8(*operands)
@@ -14348,7 +14348,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vinserti64x2" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem128, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VINSERTI64X2 object with the given operands" do
         new_instruction = subject.vinserti64x2(*operands)
@@ -14361,7 +14361,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vinserti64x4" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem256, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VINSERTI64X4 object with the given operands" do
         new_instruction = subject.vinserti64x4(*operands)
@@ -14374,7 +14374,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vinsertps" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VINSERTPS object with the given operands" do
         new_instruction = subject.vinsertps(*operands)
@@ -14387,7 +14387,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vlddqu" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VLDDQU object with the given operands" do
         new_instruction = subject.vlddqu(*operands)
@@ -14400,7 +14400,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vldmxcsr" do
     context "when called with 1 operand" do
-      let(:operands) { [mem32] }
+      let(:operands) { [mem32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VLDMXCSR object with the given operands" do
         new_instruction = subject.vldmxcsr(*operands)
@@ -14413,7 +14413,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmaskmovdqu" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMASKMOVDQU object with the given operands" do
         new_instruction = subject.vmaskmovdqu(*operands)
@@ -14426,7 +14426,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmaskmovpd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem256, ymm, ymm] }
+      let(:operands) { [mem256(0), ymm(1), ymm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMASKMOVPD object with the given operands" do
         new_instruction = subject.vmaskmovpd(*operands)
@@ -14439,7 +14439,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmaskmovps" do
     context "when called with 3 operands" do
-      let(:operands) { [mem256, ymm, ymm] }
+      let(:operands) { [mem256(0), ymm(1), ymm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMASKMOVPS object with the given operands" do
         new_instruction = subject.vmaskmovps(*operands)
@@ -14452,7 +14452,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmaxpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMAXPD object with the given operands" do
         new_instruction = subject.vmaxpd(*operands)
@@ -14463,7 +14463,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMAXPD object with the given operands" do
         new_instruction = subject.vmaxpd(*operands)
@@ -14476,7 +14476,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmaxph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMAXPH object with the given operands" do
         new_instruction = subject.vmaxph(*operands)
@@ -14487,7 +14487,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMAXPH object with the given operands" do
         new_instruction = subject.vmaxph(*operands)
@@ -14500,7 +14500,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmaxps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMAXPS object with the given operands" do
         new_instruction = subject.vmaxps(*operands)
@@ -14511,7 +14511,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMAXPS object with the given operands" do
         new_instruction = subject.vmaxps(*operands)
@@ -14524,7 +14524,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmaxsd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMAXSD object with the given operands" do
         new_instruction = subject.vmaxsd(*operands)
@@ -14535,7 +14535,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMAXSD object with the given operands" do
         new_instruction = subject.vmaxsd(*operands)
@@ -14548,7 +14548,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmaxsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMAXSH object with the given operands" do
         new_instruction = subject.vmaxsh(*operands)
@@ -14559,7 +14559,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMAXSH object with the given operands" do
         new_instruction = subject.vmaxsh(*operands)
@@ -14572,7 +14572,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmaxss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMAXSS object with the given operands" do
         new_instruction = subject.vmaxss(*operands)
@@ -14583,7 +14583,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMAXSS object with the given operands" do
         new_instruction = subject.vmaxss(*operands)
@@ -14596,7 +14596,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vminpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMINPD object with the given operands" do
         new_instruction = subject.vminpd(*operands)
@@ -14607,7 +14607,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMINPD object with the given operands" do
         new_instruction = subject.vminpd(*operands)
@@ -14620,7 +14620,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vminph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMINPH object with the given operands" do
         new_instruction = subject.vminph(*operands)
@@ -14631,7 +14631,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMINPH object with the given operands" do
         new_instruction = subject.vminph(*operands)
@@ -14644,7 +14644,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vminps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMINPS object with the given operands" do
         new_instruction = subject.vminps(*operands)
@@ -14655,7 +14655,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMINPS object with the given operands" do
         new_instruction = subject.vminps(*operands)
@@ -14668,7 +14668,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vminsd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMINSD object with the given operands" do
         new_instruction = subject.vminsd(*operands)
@@ -14679,7 +14679,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMINSD object with the given operands" do
         new_instruction = subject.vminsd(*operands)
@@ -14692,7 +14692,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vminsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMINSH object with the given operands" do
         new_instruction = subject.vminsh(*operands)
@@ -14703,7 +14703,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMINSH object with the given operands" do
         new_instruction = subject.vminsh(*operands)
@@ -14716,7 +14716,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vminss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMINSS object with the given operands" do
         new_instruction = subject.vminss(*operands)
@@ -14727,7 +14727,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMINSS object with the given operands" do
         new_instruction = subject.vminss(*operands)
@@ -14740,7 +14740,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovapd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVAPD object with the given operands" do
         new_instruction = subject.vmovapd(*operands)
@@ -14753,7 +14753,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovaps" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVAPS object with the given operands" do
         new_instruction = subject.vmovaps(*operands)
@@ -14766,7 +14766,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem32, xmm] }
+      let(:operands) { [mem32(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVD object with the given operands" do
         new_instruction = subject.vmovd(*operands)
@@ -14779,7 +14779,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovddup" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVDDUP object with the given operands" do
         new_instruction = subject.vmovddup(*operands)
@@ -14792,7 +14792,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovdqa" do
     context "when called with 2 operands" do
-      let(:operands) { [mem256, ymm] }
+      let(:operands) { [mem256(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVDQA object with the given operands" do
         new_instruction = subject.vmovdqa(*operands)
@@ -14805,7 +14805,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovdqa32" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVDQA32 object with the given operands" do
         new_instruction = subject.vmovdqa32(*operands)
@@ -14818,7 +14818,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovdqa64" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVDQA64 object with the given operands" do
         new_instruction = subject.vmovdqa64(*operands)
@@ -14831,7 +14831,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovdqu" do
     context "when called with 2 operands" do
-      let(:operands) { [mem256, ymm] }
+      let(:operands) { [mem256(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVDQU object with the given operands" do
         new_instruction = subject.vmovdqu(*operands)
@@ -14844,7 +14844,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovdqu16" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVDQU16 object with the given operands" do
         new_instruction = subject.vmovdqu16(*operands)
@@ -14857,7 +14857,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovdqu32" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVDQU32 object with the given operands" do
         new_instruction = subject.vmovdqu32(*operands)
@@ -14870,7 +14870,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovdqu64" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVDQU64 object with the given operands" do
         new_instruction = subject.vmovdqu64(*operands)
@@ -14883,7 +14883,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovdqu8" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVDQU8 object with the given operands" do
         new_instruction = subject.vmovdqu8(*operands)
@@ -14896,7 +14896,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovhlps" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVHLPS object with the given operands" do
         new_instruction = subject.vmovhlps(*operands)
@@ -14909,7 +14909,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovhpd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVHPD object with the given operands" do
         new_instruction = subject.vmovhpd(*operands)
@@ -14920,7 +14920,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVHPD object with the given operands" do
         new_instruction = subject.vmovhpd(*operands)
@@ -14933,7 +14933,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovhps" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVHPS object with the given operands" do
         new_instruction = subject.vmovhps(*operands)
@@ -14944,7 +14944,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVHPS object with the given operands" do
         new_instruction = subject.vmovhps(*operands)
@@ -14957,7 +14957,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovlhps" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVLHPS object with the given operands" do
         new_instruction = subject.vmovlhps(*operands)
@@ -14970,7 +14970,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovlpd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVLPD object with the given operands" do
         new_instruction = subject.vmovlpd(*operands)
@@ -14981,7 +14981,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVLPD object with the given operands" do
         new_instruction = subject.vmovlpd(*operands)
@@ -14994,7 +14994,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovlps" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVLPS object with the given operands" do
         new_instruction = subject.vmovlps(*operands)
@@ -15005,7 +15005,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVLPS object with the given operands" do
         new_instruction = subject.vmovlps(*operands)
@@ -15018,7 +15018,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovmskpd" do
     context "when called with 2 operands" do
-      let(:operands) { [reg32, ymm] }
+      let(:operands) { [reg32(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVMSKPD object with the given operands" do
         new_instruction = subject.vmovmskpd(*operands)
@@ -15031,7 +15031,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovmskps" do
     context "when called with 2 operands" do
-      let(:operands) { [reg32, ymm] }
+      let(:operands) { [reg32(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVMSKPS object with the given operands" do
         new_instruction = subject.vmovmskps(*operands)
@@ -15044,7 +15044,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovntdq" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVNTDQ object with the given operands" do
         new_instruction = subject.vmovntdq(*operands)
@@ -15057,7 +15057,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovntdqa" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVNTDQA object with the given operands" do
         new_instruction = subject.vmovntdqa(*operands)
@@ -15070,7 +15070,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovntpd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVNTPD object with the given operands" do
         new_instruction = subject.vmovntpd(*operands)
@@ -15083,7 +15083,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovntps" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVNTPS object with the given operands" do
         new_instruction = subject.vmovntps(*operands)
@@ -15096,7 +15096,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovq" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVQ object with the given operands" do
         new_instruction = subject.vmovq(*operands)
@@ -15109,7 +15109,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovsd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVSD object with the given operands" do
         new_instruction = subject.vmovsd(*operands)
@@ -15120,7 +15120,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVSD object with the given operands" do
         new_instruction = subject.vmovsd(*operands)
@@ -15133,7 +15133,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovsh" do
     context "when called with 2 operands" do
-      let(:operands) { [mem16, xmm] }
+      let(:operands) { [mem16(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVSH object with the given operands" do
         new_instruction = subject.vmovsh(*operands)
@@ -15144,7 +15144,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVSH object with the given operands" do
         new_instruction = subject.vmovsh(*operands)
@@ -15157,7 +15157,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovshdup" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVSHDUP object with the given operands" do
         new_instruction = subject.vmovshdup(*operands)
@@ -15170,7 +15170,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovsldup" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVSLDUP object with the given operands" do
         new_instruction = subject.vmovsldup(*operands)
@@ -15183,7 +15183,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovss" do
     context "when called with 2 operands" do
-      let(:operands) { [mem32, xmm] }
+      let(:operands) { [mem32(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVSS object with the given operands" do
         new_instruction = subject.vmovss(*operands)
@@ -15194,7 +15194,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVSS object with the given operands" do
         new_instruction = subject.vmovss(*operands)
@@ -15207,7 +15207,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovupd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVUPD object with the given operands" do
         new_instruction = subject.vmovupd(*operands)
@@ -15220,7 +15220,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovups" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVUPS object with the given operands" do
         new_instruction = subject.vmovups(*operands)
@@ -15233,7 +15233,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmovw" do
     context "when called with 2 operands" do
-      let(:operands) { [mem16, xmm] }
+      let(:operands) { [mem16(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMOVW object with the given operands" do
         new_instruction = subject.vmovw(*operands)
@@ -15246,7 +15246,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmpsadbw" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMPSADBW object with the given operands" do
         new_instruction = subject.vmpsadbw(*operands)
@@ -15259,7 +15259,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmulpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMULPD object with the given operands" do
         new_instruction = subject.vmulpd(*operands)
@@ -15270,7 +15270,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMULPD object with the given operands" do
         new_instruction = subject.vmulpd(*operands)
@@ -15283,7 +15283,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmulph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMULPH object with the given operands" do
         new_instruction = subject.vmulph(*operands)
@@ -15294,7 +15294,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMULPH object with the given operands" do
         new_instruction = subject.vmulph(*operands)
@@ -15307,7 +15307,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmulps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMULPS object with the given operands" do
         new_instruction = subject.vmulps(*operands)
@@ -15318,7 +15318,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMULPS object with the given operands" do
         new_instruction = subject.vmulps(*operands)
@@ -15331,7 +15331,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmulsd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMULSD object with the given operands" do
         new_instruction = subject.vmulsd(*operands)
@@ -15342,7 +15342,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMULSD object with the given operands" do
         new_instruction = subject.vmulsd(*operands)
@@ -15355,7 +15355,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmulsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMULSH object with the given operands" do
         new_instruction = subject.vmulsh(*operands)
@@ -15366,7 +15366,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMULSH object with the given operands" do
         new_instruction = subject.vmulsh(*operands)
@@ -15379,7 +15379,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vmulss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMULSS object with the given operands" do
         new_instruction = subject.vmulss(*operands)
@@ -15390,7 +15390,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VMULSS object with the given operands" do
         new_instruction = subject.vmulss(*operands)
@@ -15403,7 +15403,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vorpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VORPD object with the given operands" do
         new_instruction = subject.vorpd(*operands)
@@ -15416,7 +15416,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vorps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VORPS object with the given operands" do
         new_instruction = subject.vorps(*operands)
@@ -15429,7 +15429,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpabsb" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPABSB object with the given operands" do
         new_instruction = subject.vpabsb(*operands)
@@ -15442,7 +15442,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpabsd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPABSD object with the given operands" do
         new_instruction = subject.vpabsd(*operands)
@@ -15455,7 +15455,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpabsq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPABSQ object with the given operands" do
         new_instruction = subject.vpabsq(*operands)
@@ -15468,7 +15468,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpabsw" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPABSW object with the given operands" do
         new_instruction = subject.vpabsw(*operands)
@@ -15481,7 +15481,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpackssdw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPACKSSDW object with the given operands" do
         new_instruction = subject.vpackssdw(*operands)
@@ -15494,7 +15494,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpacksswb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPACKSSWB object with the given operands" do
         new_instruction = subject.vpacksswb(*operands)
@@ -15507,7 +15507,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpackusdw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPACKUSDW object with the given operands" do
         new_instruction = subject.vpackusdw(*operands)
@@ -15520,7 +15520,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpackuswb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPACKUSWB object with the given operands" do
         new_instruction = subject.vpackuswb(*operands)
@@ -15533,7 +15533,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpaddb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPADDB object with the given operands" do
         new_instruction = subject.vpaddb(*operands)
@@ -15546,7 +15546,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpaddd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPADDD object with the given operands" do
         new_instruction = subject.vpaddd(*operands)
@@ -15559,7 +15559,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpaddq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPADDQ object with the given operands" do
         new_instruction = subject.vpaddq(*operands)
@@ -15572,7 +15572,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpaddsb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPADDSB object with the given operands" do
         new_instruction = subject.vpaddsb(*operands)
@@ -15585,7 +15585,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpaddsw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPADDSW object with the given operands" do
         new_instruction = subject.vpaddsw(*operands)
@@ -15598,7 +15598,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpaddusb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPADDUSB object with the given operands" do
         new_instruction = subject.vpaddusb(*operands)
@@ -15611,7 +15611,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpaddusw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPADDUSW object with the given operands" do
         new_instruction = subject.vpaddusw(*operands)
@@ -15624,7 +15624,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpaddw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPADDW object with the given operands" do
         new_instruction = subject.vpaddw(*operands)
@@ -15637,7 +15637,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpalignr" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPALIGNR object with the given operands" do
         new_instruction = subject.vpalignr(*operands)
@@ -15650,7 +15650,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpand" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPAND object with the given operands" do
         new_instruction = subject.vpand(*operands)
@@ -15663,7 +15663,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpandd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPANDD object with the given operands" do
         new_instruction = subject.vpandd(*operands)
@@ -15676,7 +15676,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpandn" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPANDN object with the given operands" do
         new_instruction = subject.vpandn(*operands)
@@ -15689,7 +15689,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpandnd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPANDND object with the given operands" do
         new_instruction = subject.vpandnd(*operands)
@@ -15702,7 +15702,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpandnq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPANDNQ object with the given operands" do
         new_instruction = subject.vpandnq(*operands)
@@ -15715,7 +15715,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpandq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPANDQ object with the given operands" do
         new_instruction = subject.vpandq(*operands)
@@ -15728,7 +15728,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpavgb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPAVGB object with the given operands" do
         new_instruction = subject.vpavgb(*operands)
@@ -15741,7 +15741,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpavgw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPAVGW object with the given operands" do
         new_instruction = subject.vpavgw(*operands)
@@ -15754,7 +15754,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpblendd" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBLENDD object with the given operands" do
         new_instruction = subject.vpblendd(*operands)
@@ -15767,7 +15767,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpblendmb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBLENDMB object with the given operands" do
         new_instruction = subject.vpblendmb(*operands)
@@ -15780,7 +15780,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpblendmd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBLENDMD object with the given operands" do
         new_instruction = subject.vpblendmd(*operands)
@@ -15793,7 +15793,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpblendmq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBLENDMQ object with the given operands" do
         new_instruction = subject.vpblendmq(*operands)
@@ -15806,7 +15806,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpblendmw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBLENDMW object with the given operands" do
         new_instruction = subject.vpblendmw(*operands)
@@ -15819,7 +15819,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpblendvb" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBLENDVB object with the given operands" do
         new_instruction = subject.vpblendvb(*operands)
@@ -15832,7 +15832,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpblendw" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBLENDW object with the given operands" do
         new_instruction = subject.vpblendw(*operands)
@@ -15845,7 +15845,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpbroadcastb" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem8] }
+      let(:operands) { [zmm(0), mem8(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBROADCASTB object with the given operands" do
         new_instruction = subject.vpbroadcastb(*operands)
@@ -15858,7 +15858,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpbroadcastd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem32] }
+      let(:operands) { [zmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBROADCASTD object with the given operands" do
         new_instruction = subject.vpbroadcastd(*operands)
@@ -15871,7 +15871,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpbroadcastmb2q" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, k] }
+      let(:operands) { [zmm(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBROADCASTMB2Q object with the given operands" do
         new_instruction = subject.vpbroadcastmb2q(*operands)
@@ -15884,7 +15884,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpbroadcastmw2d" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, k] }
+      let(:operands) { [zmm(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBROADCASTMW2D object with the given operands" do
         new_instruction = subject.vpbroadcastmw2d(*operands)
@@ -15897,7 +15897,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpbroadcastq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem64] }
+      let(:operands) { [zmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBROADCASTQ object with the given operands" do
         new_instruction = subject.vpbroadcastq(*operands)
@@ -15910,7 +15910,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpbroadcastw" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem16] }
+      let(:operands) { [zmm(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPBROADCASTW object with the given operands" do
         new_instruction = subject.vpbroadcastw(*operands)
@@ -15923,7 +15923,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpclmulqdq" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCLMULQDQ object with the given operands" do
         new_instruction = subject.vpclmulqdq(*operands)
@@ -15936,7 +15936,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmov" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMOV object with the given operands" do
         new_instruction = subject.vpcmov(*operands)
@@ -15949,7 +15949,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpb" do
     context "when called with 4 operands" do
-      let(:operands) { [k, zmm, mem512, imm8] }
+      let(:operands) { [k(0), zmm(1), mem512(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPB object with the given operands" do
         new_instruction = subject.vpcmpb(*operands)
@@ -15962,7 +15962,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpd" do
     context "when called with 4 operands" do
-      let(:operands) { [k, zmm, zmm, imm8] }
+      let(:operands) { [k(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPD object with the given operands" do
         new_instruction = subject.vpcmpd(*operands)
@@ -15975,7 +15975,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpeqb" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPEQB object with the given operands" do
         new_instruction = subject.vpcmpeqb(*operands)
@@ -15988,7 +15988,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpeqd" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPEQD object with the given operands" do
         new_instruction = subject.vpcmpeqd(*operands)
@@ -16001,7 +16001,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpeqq" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPEQQ object with the given operands" do
         new_instruction = subject.vpcmpeqq(*operands)
@@ -16014,7 +16014,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpeqw" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPEQW object with the given operands" do
         new_instruction = subject.vpcmpeqw(*operands)
@@ -16027,7 +16027,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpestri" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPESTRI object with the given operands" do
         new_instruction = subject.vpcmpestri(*operands)
@@ -16040,7 +16040,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpestrm" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPESTRM object with the given operands" do
         new_instruction = subject.vpcmpestrm(*operands)
@@ -16053,7 +16053,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpgtb" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPGTB object with the given operands" do
         new_instruction = subject.vpcmpgtb(*operands)
@@ -16066,7 +16066,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpgtd" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPGTD object with the given operands" do
         new_instruction = subject.vpcmpgtd(*operands)
@@ -16079,7 +16079,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpgtq" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPGTQ object with the given operands" do
         new_instruction = subject.vpcmpgtq(*operands)
@@ -16092,7 +16092,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpgtw" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPGTW object with the given operands" do
         new_instruction = subject.vpcmpgtw(*operands)
@@ -16105,7 +16105,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpistri" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPISTRI object with the given operands" do
         new_instruction = subject.vpcmpistri(*operands)
@@ -16118,7 +16118,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpistrm" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPISTRM object with the given operands" do
         new_instruction = subject.vpcmpistrm(*operands)
@@ -16131,7 +16131,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpq" do
     context "when called with 4 operands" do
-      let(:operands) { [k, zmm, zmm, imm8] }
+      let(:operands) { [k(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPQ object with the given operands" do
         new_instruction = subject.vpcmpq(*operands)
@@ -16144,7 +16144,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpub" do
     context "when called with 4 operands" do
-      let(:operands) { [k, zmm, mem512, imm8] }
+      let(:operands) { [k(0), zmm(1), mem512(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPUB object with the given operands" do
         new_instruction = subject.vpcmpub(*operands)
@@ -16157,7 +16157,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpud" do
     context "when called with 4 operands" do
-      let(:operands) { [k, zmm, zmm, imm8] }
+      let(:operands) { [k(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPUD object with the given operands" do
         new_instruction = subject.vpcmpud(*operands)
@@ -16170,7 +16170,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpuq" do
     context "when called with 4 operands" do
-      let(:operands) { [k, zmm, zmm, imm8] }
+      let(:operands) { [k(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPUQ object with the given operands" do
         new_instruction = subject.vpcmpuq(*operands)
@@ -16183,7 +16183,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpuw" do
     context "when called with 4 operands" do
-      let(:operands) { [k, zmm, mem512, imm8] }
+      let(:operands) { [k(0), zmm(1), mem512(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPUW object with the given operands" do
         new_instruction = subject.vpcmpuw(*operands)
@@ -16196,7 +16196,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcmpw" do
     context "when called with 4 operands" do
-      let(:operands) { [k, zmm, mem512, imm8] }
+      let(:operands) { [k(0), zmm(1), mem512(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCMPW object with the given operands" do
         new_instruction = subject.vpcmpw(*operands)
@@ -16209,7 +16209,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcomb" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCOMB object with the given operands" do
         new_instruction = subject.vpcomb(*operands)
@@ -16222,7 +16222,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcomd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCOMD object with the given operands" do
         new_instruction = subject.vpcomd(*operands)
@@ -16235,7 +16235,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcompressb" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCOMPRESSB object with the given operands" do
         new_instruction = subject.vpcompressb(*operands)
@@ -16248,7 +16248,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcompressd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCOMPRESSD object with the given operands" do
         new_instruction = subject.vpcompressd(*operands)
@@ -16261,7 +16261,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcompressq" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCOMPRESSQ object with the given operands" do
         new_instruction = subject.vpcompressq(*operands)
@@ -16274,7 +16274,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcompressw" do
     context "when called with 2 operands" do
-      let(:operands) { [mem512, zmm] }
+      let(:operands) { [mem512(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCOMPRESSW object with the given operands" do
         new_instruction = subject.vpcompressw(*operands)
@@ -16287,7 +16287,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcomq" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCOMQ object with the given operands" do
         new_instruction = subject.vpcomq(*operands)
@@ -16300,7 +16300,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcomub" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCOMUB object with the given operands" do
         new_instruction = subject.vpcomub(*operands)
@@ -16313,7 +16313,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcomud" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCOMUD object with the given operands" do
         new_instruction = subject.vpcomud(*operands)
@@ -16326,7 +16326,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcomuq" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCOMUQ object with the given operands" do
         new_instruction = subject.vpcomuq(*operands)
@@ -16339,7 +16339,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcomuw" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCOMUW object with the given operands" do
         new_instruction = subject.vpcomuw(*operands)
@@ -16352,7 +16352,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpcomw" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCOMW object with the given operands" do
         new_instruction = subject.vpcomw(*operands)
@@ -16365,7 +16365,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpconflictd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCONFLICTD object with the given operands" do
         new_instruction = subject.vpconflictd(*operands)
@@ -16378,7 +16378,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpconflictq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPCONFLICTQ object with the given operands" do
         new_instruction = subject.vpconflictq(*operands)
@@ -16391,7 +16391,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpbssd" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPBSSD object with the given operands" do
         new_instruction = subject.vpdpbssd(*operands)
@@ -16404,7 +16404,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpbssds" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPBSSDS object with the given operands" do
         new_instruction = subject.vpdpbssds(*operands)
@@ -16417,7 +16417,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpbsud" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPBSUD object with the given operands" do
         new_instruction = subject.vpdpbsud(*operands)
@@ -16430,7 +16430,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpbsuds" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPBSUDS object with the given operands" do
         new_instruction = subject.vpdpbsuds(*operands)
@@ -16443,7 +16443,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpbusd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPBUSD object with the given operands" do
         new_instruction = subject.vpdpbusd(*operands)
@@ -16456,7 +16456,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpbusds" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPBUSDS object with the given operands" do
         new_instruction = subject.vpdpbusds(*operands)
@@ -16469,7 +16469,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpbuud" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPBUUD object with the given operands" do
         new_instruction = subject.vpdpbuud(*operands)
@@ -16482,7 +16482,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpbuuds" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPBUUDS object with the given operands" do
         new_instruction = subject.vpdpbuuds(*operands)
@@ -16495,7 +16495,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpwssd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPWSSD object with the given operands" do
         new_instruction = subject.vpdpwssd(*operands)
@@ -16508,7 +16508,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpwssds" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPWSSDS object with the given operands" do
         new_instruction = subject.vpdpwssds(*operands)
@@ -16521,7 +16521,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpwsud" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPWSUD object with the given operands" do
         new_instruction = subject.vpdpwsud(*operands)
@@ -16534,7 +16534,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpwsuds" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPWSUDS object with the given operands" do
         new_instruction = subject.vpdpwsuds(*operands)
@@ -16547,7 +16547,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpwusd" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPWUSD object with the given operands" do
         new_instruction = subject.vpdpwusd(*operands)
@@ -16560,7 +16560,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpwusds" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPWUSDS object with the given operands" do
         new_instruction = subject.vpdpwusds(*operands)
@@ -16573,7 +16573,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpwuud" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPWUUD object with the given operands" do
         new_instruction = subject.vpdpwuud(*operands)
@@ -16586,7 +16586,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpdpwuuds" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPDPWUUDS object with the given operands" do
         new_instruction = subject.vpdpwuuds(*operands)
@@ -16599,7 +16599,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vperm2f128" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERM2F128 object with the given operands" do
         new_instruction = subject.vperm2f128(*operands)
@@ -16612,7 +16612,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vperm2i128" do
     context "when called with 4 operands" do
-      let(:operands) { [ymm, ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERM2I128 object with the given operands" do
         new_instruction = subject.vperm2i128(*operands)
@@ -16625,7 +16625,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMB object with the given operands" do
         new_instruction = subject.vpermb(*operands)
@@ -16638,7 +16638,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMD object with the given operands" do
         new_instruction = subject.vpermd(*operands)
@@ -16651,7 +16651,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermi2b" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMI2B object with the given operands" do
         new_instruction = subject.vpermi2b(*operands)
@@ -16664,7 +16664,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermi2d" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMI2D object with the given operands" do
         new_instruction = subject.vpermi2d(*operands)
@@ -16677,7 +16677,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermi2pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMI2PD object with the given operands" do
         new_instruction = subject.vpermi2pd(*operands)
@@ -16690,7 +16690,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermi2ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMI2PS object with the given operands" do
         new_instruction = subject.vpermi2ps(*operands)
@@ -16703,7 +16703,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermi2q" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMI2Q object with the given operands" do
         new_instruction = subject.vpermi2q(*operands)
@@ -16716,7 +16716,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermi2w" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMI2W object with the given operands" do
         new_instruction = subject.vpermi2w(*operands)
@@ -16729,7 +16729,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermil2pd" do
     context "when called with 5 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMIL2PD object with the given operands" do
         new_instruction = subject.vpermil2pd(*operands)
@@ -16742,7 +16742,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermil2ps" do
     context "when called with 5 operands" do
-      let(:operands) { [ymm, ymm, mem256, ymm, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMIL2PS object with the given operands" do
         new_instruction = subject.vpermil2ps(*operands)
@@ -16755,7 +16755,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermilpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMILPD object with the given operands" do
         new_instruction = subject.vpermilpd(*operands)
@@ -16768,7 +16768,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermilps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMILPS object with the given operands" do
         new_instruction = subject.vpermilps(*operands)
@@ -16781,7 +16781,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMPD object with the given operands" do
         new_instruction = subject.vpermpd(*operands)
@@ -16794,7 +16794,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMPS object with the given operands" do
         new_instruction = subject.vpermps(*operands)
@@ -16807,7 +16807,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMQ object with the given operands" do
         new_instruction = subject.vpermq(*operands)
@@ -16820,7 +16820,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermt2b" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMT2B object with the given operands" do
         new_instruction = subject.vpermt2b(*operands)
@@ -16833,7 +16833,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermt2d" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMT2D object with the given operands" do
         new_instruction = subject.vpermt2d(*operands)
@@ -16846,7 +16846,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermt2pd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMT2PD object with the given operands" do
         new_instruction = subject.vpermt2pd(*operands)
@@ -16859,7 +16859,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermt2ps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMT2PS object with the given operands" do
         new_instruction = subject.vpermt2ps(*operands)
@@ -16872,7 +16872,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermt2q" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMT2Q object with the given operands" do
         new_instruction = subject.vpermt2q(*operands)
@@ -16885,7 +16885,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermt2w" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMT2W object with the given operands" do
         new_instruction = subject.vpermt2w(*operands)
@@ -16898,7 +16898,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpermw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPERMW object with the given operands" do
         new_instruction = subject.vpermw(*operands)
@@ -16911,7 +16911,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpexpandb" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPEXPANDB object with the given operands" do
         new_instruction = subject.vpexpandb(*operands)
@@ -16924,7 +16924,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpexpandd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPEXPANDD object with the given operands" do
         new_instruction = subject.vpexpandd(*operands)
@@ -16937,7 +16937,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpexpandq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPEXPANDQ object with the given operands" do
         new_instruction = subject.vpexpandq(*operands)
@@ -16950,7 +16950,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpexpandw" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPEXPANDW object with the given operands" do
         new_instruction = subject.vpexpandw(*operands)
@@ -16963,7 +16963,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpextrb" do
     context "when called with 3 operands" do
-      let(:operands) { [mem8, xmm, imm8] }
+      let(:operands) { [mem8(0), xmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPEXTRB object with the given operands" do
         new_instruction = subject.vpextrb(*operands)
@@ -16976,7 +16976,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpextrd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem32, xmm, imm8] }
+      let(:operands) { [mem32(0), xmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPEXTRD object with the given operands" do
         new_instruction = subject.vpextrd(*operands)
@@ -16989,7 +16989,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpextrq" do
     context "when called with 3 operands" do
-      let(:operands) { [mem64, xmm, imm8] }
+      let(:operands) { [mem64(0), xmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPEXTRQ object with the given operands" do
         new_instruction = subject.vpextrq(*operands)
@@ -17002,7 +17002,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpextrw" do
     context "when called with 3 operands" do
-      let(:operands) { [mem16, xmm, imm8] }
+      let(:operands) { [mem16(0), xmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPEXTRW object with the given operands" do
         new_instruction = subject.vpextrw(*operands)
@@ -17015,7 +17015,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpgatherdd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm_k, vm32z] }
+      let(:operands) { [zmm_k(0), vm32z(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPGATHERDD object with the given operands" do
         new_instruction = subject.vpgatherdd(*operands)
@@ -17026,7 +17026,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, vm32y, ymm] }
+      let(:operands) { [ymm(0), vm32y(1), ymm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPGATHERDD object with the given operands" do
         new_instruction = subject.vpgatherdd(*operands)
@@ -17039,7 +17039,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpgatherdq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm_k, vm32y] }
+      let(:operands) { [zmm_k(0), vm32y(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPGATHERDQ object with the given operands" do
         new_instruction = subject.vpgatherdq(*operands)
@@ -17050,7 +17050,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, vm32x, ymm] }
+      let(:operands) { [ymm(0), vm32x(1), ymm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPGATHERDQ object with the given operands" do
         new_instruction = subject.vpgatherdq(*operands)
@@ -17063,7 +17063,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpgatherqd" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm_k, vm64z] }
+      let(:operands) { [ymm_k(0), vm64z(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPGATHERQD object with the given operands" do
         new_instruction = subject.vpgatherqd(*operands)
@@ -17074,7 +17074,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, vm64y, xmm] }
+      let(:operands) { [xmm(0), vm64y(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPGATHERQD object with the given operands" do
         new_instruction = subject.vpgatherqd(*operands)
@@ -17087,7 +17087,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpgatherqq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm_k, vm64z] }
+      let(:operands) { [zmm_k(0), vm64z(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPGATHERQQ object with the given operands" do
         new_instruction = subject.vpgatherqq(*operands)
@@ -17098,7 +17098,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [ymm, vm64y, ymm] }
+      let(:operands) { [ymm(0), vm64y(1), ymm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPGATHERQQ object with the given operands" do
         new_instruction = subject.vpgatherqq(*operands)
@@ -17111,7 +17111,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphaddbd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDBD object with the given operands" do
         new_instruction = subject.vphaddbd(*operands)
@@ -17124,7 +17124,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphaddbq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDBQ object with the given operands" do
         new_instruction = subject.vphaddbq(*operands)
@@ -17137,7 +17137,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphaddbw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDBW object with the given operands" do
         new_instruction = subject.vphaddbw(*operands)
@@ -17150,7 +17150,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphaddd" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDD object with the given operands" do
         new_instruction = subject.vphaddd(*operands)
@@ -17163,7 +17163,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphadddq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDDQ object with the given operands" do
         new_instruction = subject.vphadddq(*operands)
@@ -17176,7 +17176,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphaddsw" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDSW object with the given operands" do
         new_instruction = subject.vphaddsw(*operands)
@@ -17189,7 +17189,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphaddubd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDUBD object with the given operands" do
         new_instruction = subject.vphaddubd(*operands)
@@ -17202,7 +17202,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphaddubq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDUBQ object with the given operands" do
         new_instruction = subject.vphaddubq(*operands)
@@ -17215,7 +17215,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphaddubw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDUBW object with the given operands" do
         new_instruction = subject.vphaddubw(*operands)
@@ -17228,7 +17228,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphaddudq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDUDQ object with the given operands" do
         new_instruction = subject.vphaddudq(*operands)
@@ -17241,7 +17241,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphadduwd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDUWD object with the given operands" do
         new_instruction = subject.vphadduwd(*operands)
@@ -17254,7 +17254,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphadduwq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDUWQ object with the given operands" do
         new_instruction = subject.vphadduwq(*operands)
@@ -17267,7 +17267,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphaddw" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDW object with the given operands" do
         new_instruction = subject.vphaddw(*operands)
@@ -17280,7 +17280,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphaddwd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDWD object with the given operands" do
         new_instruction = subject.vphaddwd(*operands)
@@ -17293,7 +17293,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphaddwq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHADDWQ object with the given operands" do
         new_instruction = subject.vphaddwq(*operands)
@@ -17306,7 +17306,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphminposuw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHMINPOSUW object with the given operands" do
         new_instruction = subject.vphminposuw(*operands)
@@ -17319,7 +17319,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphsubbw" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHSUBBW object with the given operands" do
         new_instruction = subject.vphsubbw(*operands)
@@ -17332,7 +17332,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphsubd" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHSUBD object with the given operands" do
         new_instruction = subject.vphsubd(*operands)
@@ -17345,7 +17345,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphsubdq" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHSUBDQ object with the given operands" do
         new_instruction = subject.vphsubdq(*operands)
@@ -17358,7 +17358,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphsubsw" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHSUBSW object with the given operands" do
         new_instruction = subject.vphsubsw(*operands)
@@ -17371,7 +17371,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphsubw" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHSUBW object with the given operands" do
         new_instruction = subject.vphsubw(*operands)
@@ -17384,7 +17384,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vphsubwd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPHSUBWD object with the given operands" do
         new_instruction = subject.vphsubwd(*operands)
@@ -17397,7 +17397,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpinsrb" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem8, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem8(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPINSRB object with the given operands" do
         new_instruction = subject.vpinsrb(*operands)
@@ -17410,7 +17410,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpinsrd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPINSRD object with the given operands" do
         new_instruction = subject.vpinsrd(*operands)
@@ -17423,7 +17423,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpinsrq" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem64, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPINSRQ object with the given operands" do
         new_instruction = subject.vpinsrq(*operands)
@@ -17436,7 +17436,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpinsrw" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem16, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPINSRW object with the given operands" do
         new_instruction = subject.vpinsrw(*operands)
@@ -17449,7 +17449,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vplzcntd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPLZCNTD object with the given operands" do
         new_instruction = subject.vplzcntd(*operands)
@@ -17462,7 +17462,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vplzcntq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPLZCNTQ object with the given operands" do
         new_instruction = subject.vplzcntq(*operands)
@@ -17475,7 +17475,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmacsdd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMACSDD object with the given operands" do
         new_instruction = subject.vpmacsdd(*operands)
@@ -17488,7 +17488,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmacsdqh" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMACSDQH object with the given operands" do
         new_instruction = subject.vpmacsdqh(*operands)
@@ -17501,7 +17501,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmacsdql" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMACSDQL object with the given operands" do
         new_instruction = subject.vpmacsdql(*operands)
@@ -17514,7 +17514,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmacssdd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMACSSDD object with the given operands" do
         new_instruction = subject.vpmacssdd(*operands)
@@ -17527,7 +17527,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmacssdqh" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMACSSDQH object with the given operands" do
         new_instruction = subject.vpmacssdqh(*operands)
@@ -17540,7 +17540,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmacssdql" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMACSSDQL object with the given operands" do
         new_instruction = subject.vpmacssdql(*operands)
@@ -17553,7 +17553,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmacsswd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMACSSWD object with the given operands" do
         new_instruction = subject.vpmacsswd(*operands)
@@ -17566,7 +17566,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmacssww" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMACSSWW object with the given operands" do
         new_instruction = subject.vpmacssww(*operands)
@@ -17579,7 +17579,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmacswd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMACSWD object with the given operands" do
         new_instruction = subject.vpmacswd(*operands)
@@ -17592,7 +17592,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmacsww" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMACSWW object with the given operands" do
         new_instruction = subject.vpmacsww(*operands)
@@ -17605,7 +17605,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmadcsswd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMADCSSWD object with the given operands" do
         new_instruction = subject.vpmadcsswd(*operands)
@@ -17618,7 +17618,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmadcswd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMADCSWD object with the given operands" do
         new_instruction = subject.vpmadcswd(*operands)
@@ -17631,7 +17631,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmadd52huq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMADD52HUQ object with the given operands" do
         new_instruction = subject.vpmadd52huq(*operands)
@@ -17644,7 +17644,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmadd52luq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMADD52LUQ object with the given operands" do
         new_instruction = subject.vpmadd52luq(*operands)
@@ -17657,7 +17657,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmaddubsw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMADDUBSW object with the given operands" do
         new_instruction = subject.vpmaddubsw(*operands)
@@ -17670,7 +17670,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmaddwd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMADDWD object with the given operands" do
         new_instruction = subject.vpmaddwd(*operands)
@@ -17683,7 +17683,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmaskmovd" do
     context "when called with 3 operands" do
-      let(:operands) { [mem256, ymm, ymm] }
+      let(:operands) { [mem256(0), ymm(1), ymm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMASKMOVD object with the given operands" do
         new_instruction = subject.vpmaskmovd(*operands)
@@ -17696,7 +17696,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmaskmovq" do
     context "when called with 3 operands" do
-      let(:operands) { [mem256, ymm, ymm] }
+      let(:operands) { [mem256(0), ymm(1), ymm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMASKMOVQ object with the given operands" do
         new_instruction = subject.vpmaskmovq(*operands)
@@ -17709,7 +17709,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmaxsb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMAXSB object with the given operands" do
         new_instruction = subject.vpmaxsb(*operands)
@@ -17722,7 +17722,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmaxsd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMAXSD object with the given operands" do
         new_instruction = subject.vpmaxsd(*operands)
@@ -17735,7 +17735,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmaxsq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMAXSQ object with the given operands" do
         new_instruction = subject.vpmaxsq(*operands)
@@ -17748,7 +17748,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmaxsw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMAXSW object with the given operands" do
         new_instruction = subject.vpmaxsw(*operands)
@@ -17761,7 +17761,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmaxub" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMAXUB object with the given operands" do
         new_instruction = subject.vpmaxub(*operands)
@@ -17774,7 +17774,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmaxud" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMAXUD object with the given operands" do
         new_instruction = subject.vpmaxud(*operands)
@@ -17787,7 +17787,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmaxuq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMAXUQ object with the given operands" do
         new_instruction = subject.vpmaxuq(*operands)
@@ -17800,7 +17800,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmaxuw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMAXUW object with the given operands" do
         new_instruction = subject.vpmaxuw(*operands)
@@ -17813,7 +17813,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpminsb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMINSB object with the given operands" do
         new_instruction = subject.vpminsb(*operands)
@@ -17826,7 +17826,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpminsd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMINSD object with the given operands" do
         new_instruction = subject.vpminsd(*operands)
@@ -17839,7 +17839,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpminsq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMINSQ object with the given operands" do
         new_instruction = subject.vpminsq(*operands)
@@ -17852,7 +17852,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpminsw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMINSW object with the given operands" do
         new_instruction = subject.vpminsw(*operands)
@@ -17865,7 +17865,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpminub" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMINUB object with the given operands" do
         new_instruction = subject.vpminub(*operands)
@@ -17878,7 +17878,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpminud" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMINUD object with the given operands" do
         new_instruction = subject.vpminud(*operands)
@@ -17891,7 +17891,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpminuq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMINUQ object with the given operands" do
         new_instruction = subject.vpminuq(*operands)
@@ -17904,7 +17904,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpminuw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMINUW object with the given operands" do
         new_instruction = subject.vpminuw(*operands)
@@ -17917,7 +17917,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovb2m" do
     context "when called with 2 operands" do
-      let(:operands) { [k, zmm] }
+      let(:operands) { [k(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVB2M object with the given operands" do
         new_instruction = subject.vpmovb2m(*operands)
@@ -17930,7 +17930,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovd2m" do
     context "when called with 2 operands" do
-      let(:operands) { [k, zmm] }
+      let(:operands) { [k(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVD2M object with the given operands" do
         new_instruction = subject.vpmovd2m(*operands)
@@ -17943,7 +17943,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovdb" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, zmm] }
+      let(:operands) { [mem128(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVDB object with the given operands" do
         new_instruction = subject.vpmovdb(*operands)
@@ -17956,7 +17956,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovdw" do
     context "when called with 2 operands" do
-      let(:operands) { [mem256, zmm] }
+      let(:operands) { [mem256(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVDW object with the given operands" do
         new_instruction = subject.vpmovdw(*operands)
@@ -17969,7 +17969,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovm2b" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, k] }
+      let(:operands) { [zmm(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVM2B object with the given operands" do
         new_instruction = subject.vpmovm2b(*operands)
@@ -17982,7 +17982,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovm2d" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, k] }
+      let(:operands) { [zmm(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVM2D object with the given operands" do
         new_instruction = subject.vpmovm2d(*operands)
@@ -17995,7 +17995,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovm2q" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, k] }
+      let(:operands) { [zmm(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVM2Q object with the given operands" do
         new_instruction = subject.vpmovm2q(*operands)
@@ -18008,7 +18008,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovm2w" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, k] }
+      let(:operands) { [zmm(0), k(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVM2W object with the given operands" do
         new_instruction = subject.vpmovm2w(*operands)
@@ -18021,7 +18021,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovmskb" do
     context "when called with 2 operands" do
-      let(:operands) { [reg32, ymm] }
+      let(:operands) { [reg32(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVMSKB object with the given operands" do
         new_instruction = subject.vpmovmskb(*operands)
@@ -18034,7 +18034,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovq2m" do
     context "when called with 2 operands" do
-      let(:operands) { [k, zmm] }
+      let(:operands) { [k(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVQ2M object with the given operands" do
         new_instruction = subject.vpmovq2m(*operands)
@@ -18047,7 +18047,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovqb" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, zmm] }
+      let(:operands) { [mem64(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVQB object with the given operands" do
         new_instruction = subject.vpmovqb(*operands)
@@ -18060,7 +18060,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovqd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem256, zmm] }
+      let(:operands) { [mem256(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVQD object with the given operands" do
         new_instruction = subject.vpmovqd(*operands)
@@ -18073,7 +18073,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovqw" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, zmm] }
+      let(:operands) { [mem128(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVQW object with the given operands" do
         new_instruction = subject.vpmovqw(*operands)
@@ -18086,7 +18086,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovsdb" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, zmm] }
+      let(:operands) { [mem128(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVSDB object with the given operands" do
         new_instruction = subject.vpmovsdb(*operands)
@@ -18099,7 +18099,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovsdw" do
     context "when called with 2 operands" do
-      let(:operands) { [mem256, zmm] }
+      let(:operands) { [mem256(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVSDW object with the given operands" do
         new_instruction = subject.vpmovsdw(*operands)
@@ -18112,7 +18112,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovsqb" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, zmm] }
+      let(:operands) { [mem64(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVSQB object with the given operands" do
         new_instruction = subject.vpmovsqb(*operands)
@@ -18125,7 +18125,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovsqd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem256, zmm] }
+      let(:operands) { [mem256(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVSQD object with the given operands" do
         new_instruction = subject.vpmovsqd(*operands)
@@ -18138,7 +18138,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovsqw" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, zmm] }
+      let(:operands) { [mem128(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVSQW object with the given operands" do
         new_instruction = subject.vpmovsqw(*operands)
@@ -18151,7 +18151,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovswb" do
     context "when called with 2 operands" do
-      let(:operands) { [mem256, zmm] }
+      let(:operands) { [mem256(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVSWB object with the given operands" do
         new_instruction = subject.vpmovswb(*operands)
@@ -18164,7 +18164,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovsxbd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem128] }
+      let(:operands) { [zmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVSXBD object with the given operands" do
         new_instruction = subject.vpmovsxbd(*operands)
@@ -18177,7 +18177,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovsxbq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem64] }
+      let(:operands) { [zmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVSXBQ object with the given operands" do
         new_instruction = subject.vpmovsxbq(*operands)
@@ -18190,7 +18190,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovsxbw" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem256] }
+      let(:operands) { [zmm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVSXBW object with the given operands" do
         new_instruction = subject.vpmovsxbw(*operands)
@@ -18203,7 +18203,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovsxdq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem256] }
+      let(:operands) { [zmm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVSXDQ object with the given operands" do
         new_instruction = subject.vpmovsxdq(*operands)
@@ -18216,7 +18216,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovsxwd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem256] }
+      let(:operands) { [zmm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVSXWD object with the given operands" do
         new_instruction = subject.vpmovsxwd(*operands)
@@ -18229,7 +18229,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovsxwq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem128] }
+      let(:operands) { [zmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVSXWQ object with the given operands" do
         new_instruction = subject.vpmovsxwq(*operands)
@@ -18242,7 +18242,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovusdb" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, zmm] }
+      let(:operands) { [mem128(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVUSDB object with the given operands" do
         new_instruction = subject.vpmovusdb(*operands)
@@ -18255,7 +18255,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovusdw" do
     context "when called with 2 operands" do
-      let(:operands) { [mem256, zmm] }
+      let(:operands) { [mem256(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVUSDW object with the given operands" do
         new_instruction = subject.vpmovusdw(*operands)
@@ -18268,7 +18268,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovusqb" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, zmm] }
+      let(:operands) { [mem64(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVUSQB object with the given operands" do
         new_instruction = subject.vpmovusqb(*operands)
@@ -18281,7 +18281,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovusqd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem256, zmm] }
+      let(:operands) { [mem256(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVUSQD object with the given operands" do
         new_instruction = subject.vpmovusqd(*operands)
@@ -18294,7 +18294,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovusqw" do
     context "when called with 2 operands" do
-      let(:operands) { [mem128, zmm] }
+      let(:operands) { [mem128(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVUSQW object with the given operands" do
         new_instruction = subject.vpmovusqw(*operands)
@@ -18307,7 +18307,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovuswb" do
     context "when called with 2 operands" do
-      let(:operands) { [mem256, zmm] }
+      let(:operands) { [mem256(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVUSWB object with the given operands" do
         new_instruction = subject.vpmovuswb(*operands)
@@ -18320,7 +18320,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovw2m" do
     context "when called with 2 operands" do
-      let(:operands) { [k, zmm] }
+      let(:operands) { [k(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVW2M object with the given operands" do
         new_instruction = subject.vpmovw2m(*operands)
@@ -18333,7 +18333,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovwb" do
     context "when called with 2 operands" do
-      let(:operands) { [mem256, zmm] }
+      let(:operands) { [mem256(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVWB object with the given operands" do
         new_instruction = subject.vpmovwb(*operands)
@@ -18346,7 +18346,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovzxbd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem128] }
+      let(:operands) { [zmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVZXBD object with the given operands" do
         new_instruction = subject.vpmovzxbd(*operands)
@@ -18359,7 +18359,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovzxbq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem64] }
+      let(:operands) { [zmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVZXBQ object with the given operands" do
         new_instruction = subject.vpmovzxbq(*operands)
@@ -18372,7 +18372,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovzxbw" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem256] }
+      let(:operands) { [zmm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVZXBW object with the given operands" do
         new_instruction = subject.vpmovzxbw(*operands)
@@ -18385,7 +18385,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovzxdq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem256] }
+      let(:operands) { [zmm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVZXDQ object with the given operands" do
         new_instruction = subject.vpmovzxdq(*operands)
@@ -18398,7 +18398,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovzxwd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem256] }
+      let(:operands) { [zmm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVZXWD object with the given operands" do
         new_instruction = subject.vpmovzxwd(*operands)
@@ -18411,7 +18411,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmovzxwq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem128] }
+      let(:operands) { [zmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMOVZXWQ object with the given operands" do
         new_instruction = subject.vpmovzxwq(*operands)
@@ -18424,7 +18424,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmuldq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMULDQ object with the given operands" do
         new_instruction = subject.vpmuldq(*operands)
@@ -18437,7 +18437,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmulhrsw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMULHRSW object with the given operands" do
         new_instruction = subject.vpmulhrsw(*operands)
@@ -18450,7 +18450,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmulhuw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMULHUW object with the given operands" do
         new_instruction = subject.vpmulhuw(*operands)
@@ -18463,7 +18463,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmulhw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMULHW object with the given operands" do
         new_instruction = subject.vpmulhw(*operands)
@@ -18476,7 +18476,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmulld" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMULLD object with the given operands" do
         new_instruction = subject.vpmulld(*operands)
@@ -18489,7 +18489,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmullq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMULLQ object with the given operands" do
         new_instruction = subject.vpmullq(*operands)
@@ -18502,7 +18502,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmullw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMULLW object with the given operands" do
         new_instruction = subject.vpmullw(*operands)
@@ -18515,7 +18515,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmultishiftqb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMULTISHIFTQB object with the given operands" do
         new_instruction = subject.vpmultishiftqb(*operands)
@@ -18528,7 +18528,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpmuludq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPMULUDQ object with the given operands" do
         new_instruction = subject.vpmuludq(*operands)
@@ -18541,7 +18541,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpopcntb" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPOPCNTB object with the given operands" do
         new_instruction = subject.vpopcntb(*operands)
@@ -18554,7 +18554,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpopcntd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPOPCNTD object with the given operands" do
         new_instruction = subject.vpopcntd(*operands)
@@ -18567,7 +18567,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpopcntq" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPOPCNTQ object with the given operands" do
         new_instruction = subject.vpopcntq(*operands)
@@ -18580,7 +18580,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpopcntw" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, mem512] }
+      let(:operands) { [zmm(0), mem512(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPOPCNTW object with the given operands" do
         new_instruction = subject.vpopcntw(*operands)
@@ -18593,7 +18593,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpor" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPOR object with the given operands" do
         new_instruction = subject.vpor(*operands)
@@ -18606,7 +18606,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpord" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPORD object with the given operands" do
         new_instruction = subject.vpord(*operands)
@@ -18619,7 +18619,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vporq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPORQ object with the given operands" do
         new_instruction = subject.vporq(*operands)
@@ -18632,7 +18632,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpperm" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPPERM object with the given operands" do
         new_instruction = subject.vpperm(*operands)
@@ -18645,7 +18645,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vprold" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPROLD object with the given operands" do
         new_instruction = subject.vprold(*operands)
@@ -18658,7 +18658,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vprolq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPROLQ object with the given operands" do
         new_instruction = subject.vprolq(*operands)
@@ -18671,7 +18671,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vprolvd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPROLVD object with the given operands" do
         new_instruction = subject.vprolvd(*operands)
@@ -18684,7 +18684,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vprolvq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPROLVQ object with the given operands" do
         new_instruction = subject.vprolvq(*operands)
@@ -18697,7 +18697,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vprord" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPRORD object with the given operands" do
         new_instruction = subject.vprord(*operands)
@@ -18710,7 +18710,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vprorq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPRORQ object with the given operands" do
         new_instruction = subject.vprorq(*operands)
@@ -18723,7 +18723,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vprorvd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPRORVD object with the given operands" do
         new_instruction = subject.vprorvd(*operands)
@@ -18736,7 +18736,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vprorvq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPRORVQ object with the given operands" do
         new_instruction = subject.vprorvq(*operands)
@@ -18749,7 +18749,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vprotb" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), mem128(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPROTB object with the given operands" do
         new_instruction = subject.vprotb(*operands)
@@ -18762,7 +18762,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vprotd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), mem128(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPROTD object with the given operands" do
         new_instruction = subject.vprotd(*operands)
@@ -18775,7 +18775,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vprotq" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), mem128(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPROTQ object with the given operands" do
         new_instruction = subject.vprotq(*operands)
@@ -18788,7 +18788,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vprotw" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), mem128(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPROTW object with the given operands" do
         new_instruction = subject.vprotw(*operands)
@@ -18801,7 +18801,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsadbw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSADBW object with the given operands" do
         new_instruction = subject.vpsadbw(*operands)
@@ -18814,7 +18814,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpscatterdd" do
     context "when called with 2 operands" do
-      let(:operands) { [vm32z_k, zmm] }
+      let(:operands) { [vm32z_k(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSCATTERDD object with the given operands" do
         new_instruction = subject.vpscatterdd(*operands)
@@ -18827,7 +18827,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpscatterdq" do
     context "when called with 2 operands" do
-      let(:operands) { [vm32y_k, zmm] }
+      let(:operands) { [vm32y_k(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSCATTERDQ object with the given operands" do
         new_instruction = subject.vpscatterdq(*operands)
@@ -18840,7 +18840,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpscatterqd" do
     context "when called with 2 operands" do
-      let(:operands) { [vm64z_k, ymm] }
+      let(:operands) { [vm64z_k(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSCATTERQD object with the given operands" do
         new_instruction = subject.vpscatterqd(*operands)
@@ -18853,7 +18853,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpscatterqq" do
     context "when called with 2 operands" do
-      let(:operands) { [vm64z_k, zmm] }
+      let(:operands) { [vm64z_k(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSCATTERQQ object with the given operands" do
         new_instruction = subject.vpscatterqq(*operands)
@@ -18866,7 +18866,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshab" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), mem128(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHAB object with the given operands" do
         new_instruction = subject.vpshab(*operands)
@@ -18879,7 +18879,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshad" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), mem128(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHAD object with the given operands" do
         new_instruction = subject.vpshad(*operands)
@@ -18892,7 +18892,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshaq" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), mem128(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHAQ object with the given operands" do
         new_instruction = subject.vpshaq(*operands)
@@ -18905,7 +18905,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshaw" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), mem128(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHAW object with the given operands" do
         new_instruction = subject.vpshaw(*operands)
@@ -18918,7 +18918,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshlb" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), mem128(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHLB object with the given operands" do
         new_instruction = subject.vpshlb(*operands)
@@ -18931,7 +18931,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshld" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), mem128(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHLD object with the given operands" do
         new_instruction = subject.vpshld(*operands)
@@ -18944,7 +18944,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshldd" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHLDD object with the given operands" do
         new_instruction = subject.vpshldd(*operands)
@@ -18957,7 +18957,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshldq" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHLDQ object with the given operands" do
         new_instruction = subject.vpshldq(*operands)
@@ -18970,7 +18970,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshldvd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHLDVD object with the given operands" do
         new_instruction = subject.vpshldvd(*operands)
@@ -18983,7 +18983,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshldvq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHLDVQ object with the given operands" do
         new_instruction = subject.vpshldvq(*operands)
@@ -18996,7 +18996,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshldvw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHLDVW object with the given operands" do
         new_instruction = subject.vpshldvw(*operands)
@@ -19009,7 +19009,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshldw" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHLDW object with the given operands" do
         new_instruction = subject.vpshldw(*operands)
@@ -19022,7 +19022,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshlq" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), mem128(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHLQ object with the given operands" do
         new_instruction = subject.vpshlq(*operands)
@@ -19035,7 +19035,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshlw" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, mem128, xmm] }
+      let(:operands) { [xmm(0), mem128(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHLW object with the given operands" do
         new_instruction = subject.vpshlw(*operands)
@@ -19048,7 +19048,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshrdd" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHRDD object with the given operands" do
         new_instruction = subject.vpshrdd(*operands)
@@ -19061,7 +19061,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshrdq" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHRDQ object with the given operands" do
         new_instruction = subject.vpshrdq(*operands)
@@ -19074,7 +19074,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshrdvd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHRDVD object with the given operands" do
         new_instruction = subject.vpshrdvd(*operands)
@@ -19087,7 +19087,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshrdvq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHRDVQ object with the given operands" do
         new_instruction = subject.vpshrdvq(*operands)
@@ -19100,7 +19100,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshrdvw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHRDVW object with the given operands" do
         new_instruction = subject.vpshrdvw(*operands)
@@ -19113,7 +19113,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshrdw" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHRDW object with the given operands" do
         new_instruction = subject.vpshrdw(*operands)
@@ -19126,7 +19126,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshufb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHUFB object with the given operands" do
         new_instruction = subject.vpshufb(*operands)
@@ -19139,7 +19139,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshufbitqmb" do
     context "when called with 3 operands" do
-      let(:operands) { [k, zmm, mem512] }
+      let(:operands) { [k(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHUFBITQMB object with the given operands" do
         new_instruction = subject.vpshufbitqmb(*operands)
@@ -19152,7 +19152,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshufd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHUFD object with the given operands" do
         new_instruction = subject.vpshufd(*operands)
@@ -19165,7 +19165,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshufhw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), mem512(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHUFHW object with the given operands" do
         new_instruction = subject.vpshufhw(*operands)
@@ -19178,7 +19178,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpshuflw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), mem512(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSHUFLW object with the given operands" do
         new_instruction = subject.vpshuflw(*operands)
@@ -19191,7 +19191,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsignb" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSIGNB object with the given operands" do
         new_instruction = subject.vpsignb(*operands)
@@ -19204,7 +19204,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsignd" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSIGND object with the given operands" do
         new_instruction = subject.vpsignd(*operands)
@@ -19217,7 +19217,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsignw" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSIGNW object with the given operands" do
         new_instruction = subject.vpsignw(*operands)
@@ -19230,7 +19230,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpslld" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem128] }
+      let(:operands) { [zmm(0), zmm(1), mem128(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSLLD object with the given operands" do
         new_instruction = subject.vpslld(*operands)
@@ -19243,7 +19243,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpslldq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), mem512(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSLLDQ object with the given operands" do
         new_instruction = subject.vpslldq(*operands)
@@ -19256,7 +19256,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsllq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem128] }
+      let(:operands) { [zmm(0), zmm(1), mem128(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSLLQ object with the given operands" do
         new_instruction = subject.vpsllq(*operands)
@@ -19269,7 +19269,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsllvd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSLLVD object with the given operands" do
         new_instruction = subject.vpsllvd(*operands)
@@ -19282,7 +19282,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsllvq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSLLVQ object with the given operands" do
         new_instruction = subject.vpsllvq(*operands)
@@ -19295,7 +19295,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsllvw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSLLVW object with the given operands" do
         new_instruction = subject.vpsllvw(*operands)
@@ -19308,7 +19308,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsllw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), mem512(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSLLW object with the given operands" do
         new_instruction = subject.vpsllw(*operands)
@@ -19321,7 +19321,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsrad" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem128] }
+      let(:operands) { [zmm(0), zmm(1), mem128(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRAD object with the given operands" do
         new_instruction = subject.vpsrad(*operands)
@@ -19334,7 +19334,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsraq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem128] }
+      let(:operands) { [zmm(0), zmm(1), mem128(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRAQ object with the given operands" do
         new_instruction = subject.vpsraq(*operands)
@@ -19347,7 +19347,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsravd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRAVD object with the given operands" do
         new_instruction = subject.vpsravd(*operands)
@@ -19360,7 +19360,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsravq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRAVQ object with the given operands" do
         new_instruction = subject.vpsravq(*operands)
@@ -19373,7 +19373,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsravw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRAVW object with the given operands" do
         new_instruction = subject.vpsravw(*operands)
@@ -19386,7 +19386,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsraw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), mem512(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRAW object with the given operands" do
         new_instruction = subject.vpsraw(*operands)
@@ -19399,7 +19399,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsrld" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem128] }
+      let(:operands) { [zmm(0), zmm(1), mem128(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRLD object with the given operands" do
         new_instruction = subject.vpsrld(*operands)
@@ -19412,7 +19412,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsrldq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), mem512(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRLDQ object with the given operands" do
         new_instruction = subject.vpsrldq(*operands)
@@ -19425,7 +19425,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsrlq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem128] }
+      let(:operands) { [zmm(0), zmm(1), mem128(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRLQ object with the given operands" do
         new_instruction = subject.vpsrlq(*operands)
@@ -19438,7 +19438,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsrlvd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRLVD object with the given operands" do
         new_instruction = subject.vpsrlvd(*operands)
@@ -19451,7 +19451,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsrlvq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRLVQ object with the given operands" do
         new_instruction = subject.vpsrlvq(*operands)
@@ -19464,7 +19464,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsrlvw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRLVW object with the given operands" do
         new_instruction = subject.vpsrlvw(*operands)
@@ -19477,7 +19477,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsrlw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), mem512(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSRLW object with the given operands" do
         new_instruction = subject.vpsrlw(*operands)
@@ -19490,7 +19490,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsubb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSUBB object with the given operands" do
         new_instruction = subject.vpsubb(*operands)
@@ -19503,7 +19503,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsubd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSUBD object with the given operands" do
         new_instruction = subject.vpsubd(*operands)
@@ -19516,7 +19516,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsubq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSUBQ object with the given operands" do
         new_instruction = subject.vpsubq(*operands)
@@ -19529,7 +19529,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsubsb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSUBSB object with the given operands" do
         new_instruction = subject.vpsubsb(*operands)
@@ -19542,7 +19542,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsubsw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSUBSW object with the given operands" do
         new_instruction = subject.vpsubsw(*operands)
@@ -19555,7 +19555,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsubusb" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSUBUSB object with the given operands" do
         new_instruction = subject.vpsubusb(*operands)
@@ -19568,7 +19568,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsubusw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSUBUSW object with the given operands" do
         new_instruction = subject.vpsubusw(*operands)
@@ -19581,7 +19581,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpsubw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPSUBW object with the given operands" do
         new_instruction = subject.vpsubw(*operands)
@@ -19594,7 +19594,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpternlogd" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPTERNLOGD object with the given operands" do
         new_instruction = subject.vpternlogd(*operands)
@@ -19607,7 +19607,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpternlogq" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPTERNLOGQ object with the given operands" do
         new_instruction = subject.vpternlogq(*operands)
@@ -19620,7 +19620,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vptest" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPTEST object with the given operands" do
         new_instruction = subject.vptest(*operands)
@@ -19633,7 +19633,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vptestmb" do
     context "when called with 3 operands" do
-      let(:operands) { [k, zmm, mem512] }
+      let(:operands) { [k(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPTESTMB object with the given operands" do
         new_instruction = subject.vptestmb(*operands)
@@ -19646,7 +19646,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vptestmd" do
     context "when called with 3 operands" do
-      let(:operands) { [k, zmm, zmm] }
+      let(:operands) { [k(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPTESTMD object with the given operands" do
         new_instruction = subject.vptestmd(*operands)
@@ -19659,7 +19659,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vptestmq" do
     context "when called with 3 operands" do
-      let(:operands) { [k, zmm, zmm] }
+      let(:operands) { [k(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPTESTMQ object with the given operands" do
         new_instruction = subject.vptestmq(*operands)
@@ -19672,7 +19672,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vptestmw" do
     context "when called with 3 operands" do
-      let(:operands) { [k, zmm, mem512] }
+      let(:operands) { [k(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPTESTMW object with the given operands" do
         new_instruction = subject.vptestmw(*operands)
@@ -19685,7 +19685,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vptestnmb" do
     context "when called with 3 operands" do
-      let(:operands) { [k, zmm, mem512] }
+      let(:operands) { [k(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPTESTNMB object with the given operands" do
         new_instruction = subject.vptestnmb(*operands)
@@ -19698,7 +19698,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vptestnmd" do
     context "when called with 3 operands" do
-      let(:operands) { [k, zmm, zmm] }
+      let(:operands) { [k(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPTESTNMD object with the given operands" do
         new_instruction = subject.vptestnmd(*operands)
@@ -19711,7 +19711,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vptestnmq" do
     context "when called with 3 operands" do
-      let(:operands) { [k, zmm, zmm] }
+      let(:operands) { [k(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPTESTNMQ object with the given operands" do
         new_instruction = subject.vptestnmq(*operands)
@@ -19724,7 +19724,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vptestnmw" do
     context "when called with 3 operands" do
-      let(:operands) { [k, zmm, mem512] }
+      let(:operands) { [k(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPTESTNMW object with the given operands" do
         new_instruction = subject.vptestnmw(*operands)
@@ -19737,7 +19737,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpunpckhbw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPUNPCKHBW object with the given operands" do
         new_instruction = subject.vpunpckhbw(*operands)
@@ -19750,7 +19750,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpunpckhdq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPUNPCKHDQ object with the given operands" do
         new_instruction = subject.vpunpckhdq(*operands)
@@ -19763,7 +19763,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpunpckhqdq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPUNPCKHQDQ object with the given operands" do
         new_instruction = subject.vpunpckhqdq(*operands)
@@ -19776,7 +19776,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpunpckhwd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPUNPCKHWD object with the given operands" do
         new_instruction = subject.vpunpckhwd(*operands)
@@ -19789,7 +19789,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpunpcklbw" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPUNPCKLBW object with the given operands" do
         new_instruction = subject.vpunpcklbw(*operands)
@@ -19802,7 +19802,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpunpckldq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPUNPCKLDQ object with the given operands" do
         new_instruction = subject.vpunpckldq(*operands)
@@ -19815,7 +19815,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpunpcklqdq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPUNPCKLQDQ object with the given operands" do
         new_instruction = subject.vpunpcklqdq(*operands)
@@ -19828,7 +19828,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpunpcklwd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, mem512] }
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPUNPCKLWD object with the given operands" do
         new_instruction = subject.vpunpcklwd(*operands)
@@ -19841,7 +19841,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpxor" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPXOR object with the given operands" do
         new_instruction = subject.vpxor(*operands)
@@ -19854,7 +19854,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpxord" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPXORD object with the given operands" do
         new_instruction = subject.vpxord(*operands)
@@ -19867,7 +19867,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vpxorq" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VPXORQ object with the given operands" do
         new_instruction = subject.vpxorq(*operands)
@@ -19880,7 +19880,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrangepd" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRANGEPD object with the given operands" do
         new_instruction = subject.vrangepd(*operands)
@@ -19891,7 +19891,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [zmm, zmm, zmm, sae, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRANGEPD object with the given operands" do
         new_instruction = subject.vrangepd(*operands)
@@ -19904,7 +19904,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrangeps" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRANGEPS object with the given operands" do
         new_instruction = subject.vrangeps(*operands)
@@ -19915,7 +19915,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [zmm, zmm, zmm, sae, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRANGEPS object with the given operands" do
         new_instruction = subject.vrangeps(*operands)
@@ -19928,7 +19928,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrangesd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem64, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRANGESD object with the given operands" do
         new_instruction = subject.vrangesd(*operands)
@@ -19939,7 +19939,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRANGESD object with the given operands" do
         new_instruction = subject.vrangesd(*operands)
@@ -19952,7 +19952,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrangess" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRANGESS object with the given operands" do
         new_instruction = subject.vrangess(*operands)
@@ -19963,7 +19963,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRANGESS object with the given operands" do
         new_instruction = subject.vrangess(*operands)
@@ -19976,7 +19976,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrcp14pd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCP14PD object with the given operands" do
         new_instruction = subject.vrcp14pd(*operands)
@@ -19989,7 +19989,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrcp14ps" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCP14PS object with the given operands" do
         new_instruction = subject.vrcp14ps(*operands)
@@ -20002,7 +20002,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrcp14sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCP14SD object with the given operands" do
         new_instruction = subject.vrcp14sd(*operands)
@@ -20015,7 +20015,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrcp14ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCP14SS object with the given operands" do
         new_instruction = subject.vrcp14ss(*operands)
@@ -20028,7 +20028,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrcp28pd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCP28PD object with the given operands" do
         new_instruction = subject.vrcp28pd(*operands)
@@ -20039,7 +20039,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCP28PD object with the given operands" do
         new_instruction = subject.vrcp28pd(*operands)
@@ -20052,7 +20052,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrcp28ps" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCP28PS object with the given operands" do
         new_instruction = subject.vrcp28ps(*operands)
@@ -20063,7 +20063,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCP28PS object with the given operands" do
         new_instruction = subject.vrcp28ps(*operands)
@@ -20076,7 +20076,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrcp28sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCP28SD object with the given operands" do
         new_instruction = subject.vrcp28sd(*operands)
@@ -20087,7 +20087,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCP28SD object with the given operands" do
         new_instruction = subject.vrcp28sd(*operands)
@@ -20100,7 +20100,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrcp28ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCP28SS object with the given operands" do
         new_instruction = subject.vrcp28ss(*operands)
@@ -20111,7 +20111,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCP28SS object with the given operands" do
         new_instruction = subject.vrcp28ss(*operands)
@@ -20124,7 +20124,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrcpph" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCPPH object with the given operands" do
         new_instruction = subject.vrcpph(*operands)
@@ -20137,7 +20137,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrcpps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCPPS object with the given operands" do
         new_instruction = subject.vrcpps(*operands)
@@ -20150,7 +20150,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrcpsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCPSH object with the given operands" do
         new_instruction = subject.vrcpsh(*operands)
@@ -20163,7 +20163,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrcpss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRCPSS object with the given operands" do
         new_instruction = subject.vrcpss(*operands)
@@ -20176,7 +20176,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vreducepd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VREDUCEPD object with the given operands" do
         new_instruction = subject.vreducepd(*operands)
@@ -20189,7 +20189,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vreduceph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VREDUCEPH object with the given operands" do
         new_instruction = subject.vreduceph(*operands)
@@ -20200,7 +20200,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, sae, imm8] }
+      let(:operands) { [zmm(0), zmm(1), sae(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VREDUCEPH object with the given operands" do
         new_instruction = subject.vreduceph(*operands)
@@ -20213,7 +20213,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vreduceps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VREDUCEPS object with the given operands" do
         new_instruction = subject.vreduceps(*operands)
@@ -20226,7 +20226,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vreducesd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem64, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VREDUCESD object with the given operands" do
         new_instruction = subject.vreducesd(*operands)
@@ -20239,7 +20239,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vreducesh" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem16, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VREDUCESH object with the given operands" do
         new_instruction = subject.vreducesh(*operands)
@@ -20250,7 +20250,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VREDUCESH object with the given operands" do
         new_instruction = subject.vreducesh(*operands)
@@ -20263,7 +20263,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vreducess" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VREDUCESS object with the given operands" do
         new_instruction = subject.vreducess(*operands)
@@ -20276,7 +20276,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrndscalepd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRNDSCALEPD object with the given operands" do
         new_instruction = subject.vrndscalepd(*operands)
@@ -20287,7 +20287,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, sae, imm8] }
+      let(:operands) { [zmm(0), zmm(1), sae(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRNDSCALEPD object with the given operands" do
         new_instruction = subject.vrndscalepd(*operands)
@@ -20300,7 +20300,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrndscaleph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRNDSCALEPH object with the given operands" do
         new_instruction = subject.vrndscaleph(*operands)
@@ -20311,7 +20311,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, sae, imm8] }
+      let(:operands) { [zmm(0), zmm(1), sae(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRNDSCALEPH object with the given operands" do
         new_instruction = subject.vrndscaleph(*operands)
@@ -20324,7 +20324,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrndscaleps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRNDSCALEPS object with the given operands" do
         new_instruction = subject.vrndscaleps(*operands)
@@ -20335,7 +20335,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, sae, imm8] }
+      let(:operands) { [zmm(0), zmm(1), sae(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRNDSCALEPS object with the given operands" do
         new_instruction = subject.vrndscaleps(*operands)
@@ -20348,7 +20348,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrndscalesd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem64, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRNDSCALESD object with the given operands" do
         new_instruction = subject.vrndscalesd(*operands)
@@ -20359,7 +20359,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRNDSCALESD object with the given operands" do
         new_instruction = subject.vrndscalesd(*operands)
@@ -20372,7 +20372,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrndscalesh" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem16, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRNDSCALESH object with the given operands" do
         new_instruction = subject.vrndscalesh(*operands)
@@ -20383,7 +20383,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRNDSCALESH object with the given operands" do
         new_instruction = subject.vrndscalesh(*operands)
@@ -20396,7 +20396,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrndscaless" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRNDSCALESS object with the given operands" do
         new_instruction = subject.vrndscaless(*operands)
@@ -20407,7 +20407,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 5 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRNDSCALESS object with the given operands" do
         new_instruction = subject.vrndscaless(*operands)
@@ -20420,7 +20420,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vroundpd" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), mem256(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VROUNDPD object with the given operands" do
         new_instruction = subject.vroundpd(*operands)
@@ -20433,7 +20433,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vroundps" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), mem256(1), imm8(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VROUNDPS object with the given operands" do
         new_instruction = subject.vroundps(*operands)
@@ -20446,7 +20446,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vroundsd" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem64, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VROUNDSD object with the given operands" do
         new_instruction = subject.vroundsd(*operands)
@@ -20459,7 +20459,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vroundss" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VROUNDSS object with the given operands" do
         new_instruction = subject.vroundss(*operands)
@@ -20472,7 +20472,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrsqrt14pd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRT14PD object with the given operands" do
         new_instruction = subject.vrsqrt14pd(*operands)
@@ -20485,7 +20485,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrsqrt14ps" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRT14PS object with the given operands" do
         new_instruction = subject.vrsqrt14ps(*operands)
@@ -20498,7 +20498,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrsqrt14sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRT14SD object with the given operands" do
         new_instruction = subject.vrsqrt14sd(*operands)
@@ -20511,7 +20511,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrsqrt14ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRT14SS object with the given operands" do
         new_instruction = subject.vrsqrt14ss(*operands)
@@ -20524,7 +20524,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrsqrt28pd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRT28PD object with the given operands" do
         new_instruction = subject.vrsqrt28pd(*operands)
@@ -20535,7 +20535,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRT28PD object with the given operands" do
         new_instruction = subject.vrsqrt28pd(*operands)
@@ -20548,7 +20548,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrsqrt28ps" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRT28PS object with the given operands" do
         new_instruction = subject.vrsqrt28ps(*operands)
@@ -20559,7 +20559,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, sae] }
+      let(:operands) { [zmm(0), zmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRT28PS object with the given operands" do
         new_instruction = subject.vrsqrt28ps(*operands)
@@ -20572,7 +20572,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrsqrt28sd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRT28SD object with the given operands" do
         new_instruction = subject.vrsqrt28sd(*operands)
@@ -20583,7 +20583,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRT28SD object with the given operands" do
         new_instruction = subject.vrsqrt28sd(*operands)
@@ -20596,7 +20596,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrsqrt28ss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRT28SS object with the given operands" do
         new_instruction = subject.vrsqrt28ss(*operands)
@@ -20607,7 +20607,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRT28SS object with the given operands" do
         new_instruction = subject.vrsqrt28ss(*operands)
@@ -20620,7 +20620,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrsqrtph" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRTPH object with the given operands" do
         new_instruction = subject.vrsqrtph(*operands)
@@ -20633,7 +20633,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrsqrtps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRTPS object with the given operands" do
         new_instruction = subject.vrsqrtps(*operands)
@@ -20646,7 +20646,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrsqrtsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRTSH object with the given operands" do
         new_instruction = subject.vrsqrtsh(*operands)
@@ -20659,7 +20659,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vrsqrtss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VRSQRTSS object with the given operands" do
         new_instruction = subject.vrsqrtss(*operands)
@@ -20672,7 +20672,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscalefpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCALEFPD object with the given operands" do
         new_instruction = subject.vscalefpd(*operands)
@@ -20683,7 +20683,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCALEFPD object with the given operands" do
         new_instruction = subject.vscalefpd(*operands)
@@ -20696,7 +20696,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscalefph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCALEFPH object with the given operands" do
         new_instruction = subject.vscalefph(*operands)
@@ -20707,7 +20707,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCALEFPH object with the given operands" do
         new_instruction = subject.vscalefph(*operands)
@@ -20720,7 +20720,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscalefps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCALEFPS object with the given operands" do
         new_instruction = subject.vscalefps(*operands)
@@ -20731,7 +20731,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCALEFPS object with the given operands" do
         new_instruction = subject.vscalefps(*operands)
@@ -20744,7 +20744,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscalefsd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCALEFSD object with the given operands" do
         new_instruction = subject.vscalefsd(*operands)
@@ -20755,7 +20755,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCALEFSD object with the given operands" do
         new_instruction = subject.vscalefsd(*operands)
@@ -20768,7 +20768,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscalefsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCALEFSH object with the given operands" do
         new_instruction = subject.vscalefsh(*operands)
@@ -20779,7 +20779,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCALEFSH object with the given operands" do
         new_instruction = subject.vscalefsh(*operands)
@@ -20792,7 +20792,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscalefss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCALEFSS object with the given operands" do
         new_instruction = subject.vscalefss(*operands)
@@ -20803,7 +20803,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCALEFSS object with the given operands" do
         new_instruction = subject.vscalefss(*operands)
@@ -20816,7 +20816,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscatterdpd" do
     context "when called with 2 operands" do
-      let(:operands) { [vm32y_k, zmm] }
+      let(:operands) { [vm32y_k(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCATTERDPD object with the given operands" do
         new_instruction = subject.vscatterdpd(*operands)
@@ -20829,7 +20829,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscatterdps" do
     context "when called with 2 operands" do
-      let(:operands) { [vm32z_k, zmm] }
+      let(:operands) { [vm32z_k(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCATTERDPS object with the given operands" do
         new_instruction = subject.vscatterdps(*operands)
@@ -20842,7 +20842,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscatterpf0dpd" do
     context "when called with 1 operand" do
-      let(:operands) { [vm32y_k] }
+      let(:operands) { [vm32y_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCATTERPF0DPD object with the given operands" do
         new_instruction = subject.vscatterpf0dpd(*operands)
@@ -20855,7 +20855,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscatterpf0dps" do
     context "when called with 1 operand" do
-      let(:operands) { [vm32z_k] }
+      let(:operands) { [vm32z_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCATTERPF0DPS object with the given operands" do
         new_instruction = subject.vscatterpf0dps(*operands)
@@ -20868,7 +20868,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscatterpf0qpd" do
     context "when called with 1 operand" do
-      let(:operands) { [vm64z_k] }
+      let(:operands) { [vm64z_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCATTERPF0QPD object with the given operands" do
         new_instruction = subject.vscatterpf0qpd(*operands)
@@ -20881,7 +20881,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscatterpf0qps" do
     context "when called with 1 operand" do
-      let(:operands) { [vm64z_k] }
+      let(:operands) { [vm64z_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCATTERPF0QPS object with the given operands" do
         new_instruction = subject.vscatterpf0qps(*operands)
@@ -20894,7 +20894,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscatterpf1dpd" do
     context "when called with 1 operand" do
-      let(:operands) { [vm32y_k] }
+      let(:operands) { [vm32y_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCATTERPF1DPD object with the given operands" do
         new_instruction = subject.vscatterpf1dpd(*operands)
@@ -20907,7 +20907,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscatterpf1dps" do
     context "when called with 1 operand" do
-      let(:operands) { [vm32z_k] }
+      let(:operands) { [vm32z_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCATTERPF1DPS object with the given operands" do
         new_instruction = subject.vscatterpf1dps(*operands)
@@ -20920,7 +20920,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscatterpf1qpd" do
     context "when called with 1 operand" do
-      let(:operands) { [vm64z_k] }
+      let(:operands) { [vm64z_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCATTERPF1QPD object with the given operands" do
         new_instruction = subject.vscatterpf1qpd(*operands)
@@ -20933,7 +20933,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscatterpf1qps" do
     context "when called with 1 operand" do
-      let(:operands) { [vm64z_k] }
+      let(:operands) { [vm64z_k(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCATTERPF1QPS object with the given operands" do
         new_instruction = subject.vscatterpf1qps(*operands)
@@ -20946,7 +20946,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscatterqpd" do
     context "when called with 2 operands" do
-      let(:operands) { [vm64z_k, zmm] }
+      let(:operands) { [vm64z_k(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCATTERQPD object with the given operands" do
         new_instruction = subject.vscatterqpd(*operands)
@@ -20959,7 +20959,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vscatterqps" do
     context "when called with 2 operands" do
-      let(:operands) { [vm64z_k, ymm] }
+      let(:operands) { [vm64z_k(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSCATTERQPS object with the given operands" do
         new_instruction = subject.vscatterqps(*operands)
@@ -20972,7 +20972,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsha512msg1" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, xmm] }
+      let(:operands) { [ymm(0), xmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSHA512MSG1 object with the given operands" do
         new_instruction = subject.vsha512msg1(*operands)
@@ -20985,7 +20985,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsha512msg2" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, ymm] }
+      let(:operands) { [ymm(0), ymm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSHA512MSG2 object with the given operands" do
         new_instruction = subject.vsha512msg2(*operands)
@@ -20998,7 +20998,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsha512rnds2" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, xmm] }
+      let(:operands) { [ymm(0), ymm(1), xmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSHA512RNDS2 object with the given operands" do
         new_instruction = subject.vsha512rnds2(*operands)
@@ -21011,7 +21011,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vshuff32x4" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSHUFF32X4 object with the given operands" do
         new_instruction = subject.vshuff32x4(*operands)
@@ -21024,7 +21024,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vshuff64x2" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSHUFF64X2 object with the given operands" do
         new_instruction = subject.vshuff64x2(*operands)
@@ -21037,7 +21037,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vshufi32x4" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSHUFI32X4 object with the given operands" do
         new_instruction = subject.vshufi32x4(*operands)
@@ -21050,7 +21050,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vshufi64x2" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSHUFI64X2 object with the given operands" do
         new_instruction = subject.vshufi64x2(*operands)
@@ -21063,7 +21063,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vshufpd" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSHUFPD object with the given operands" do
         new_instruction = subject.vshufpd(*operands)
@@ -21076,7 +21076,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vshufps" do
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSHUFPS object with the given operands" do
         new_instruction = subject.vshufps(*operands)
@@ -21089,7 +21089,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsm3msg1" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem128] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSM3MSG1 object with the given operands" do
         new_instruction = subject.vsm3msg1(*operands)
@@ -21102,7 +21102,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsm3msg2" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem128] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSM3MSG2 object with the given operands" do
         new_instruction = subject.vsm3msg2(*operands)
@@ -21115,7 +21115,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsm3rnds2" do
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), imm8(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSM3RNDS2 object with the given operands" do
         new_instruction = subject.vsm3rnds2(*operands)
@@ -21128,7 +21128,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsm4key4" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSM4KEY4 object with the given operands" do
         new_instruction = subject.vsm4key4(*operands)
@@ -21141,7 +21141,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsm4rnds4" do
     context "when called with 3 operands" do
-      let(:operands) { [ymm, ymm, mem256] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSM4RNDS4 object with the given operands" do
         new_instruction = subject.vsm4rnds4(*operands)
@@ -21154,7 +21154,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsqrtpd" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSQRTPD object with the given operands" do
         new_instruction = subject.vsqrtpd(*operands)
@@ -21165,7 +21165,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSQRTPD object with the given operands" do
         new_instruction = subject.vsqrtpd(*operands)
@@ -21178,7 +21178,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsqrtph" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSQRTPH object with the given operands" do
         new_instruction = subject.vsqrtph(*operands)
@@ -21189,7 +21189,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSQRTPH object with the given operands" do
         new_instruction = subject.vsqrtph(*operands)
@@ -21202,7 +21202,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsqrtps" do
     context "when called with 2 operands" do
-      let(:operands) { [zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSQRTPS object with the given operands" do
         new_instruction = subject.vsqrtps(*operands)
@@ -21213,7 +21213,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), er(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSQRTPS object with the given operands" do
         new_instruction = subject.vsqrtps(*operands)
@@ -21226,7 +21226,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsqrtsd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSQRTSD object with the given operands" do
         new_instruction = subject.vsqrtsd(*operands)
@@ -21237,7 +21237,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSQRTSD object with the given operands" do
         new_instruction = subject.vsqrtsd(*operands)
@@ -21250,7 +21250,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsqrtsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSQRTSH object with the given operands" do
         new_instruction = subject.vsqrtsh(*operands)
@@ -21261,7 +21261,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSQRTSH object with the given operands" do
         new_instruction = subject.vsqrtsh(*operands)
@@ -21274,7 +21274,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsqrtss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSQRTSS object with the given operands" do
         new_instruction = subject.vsqrtss(*operands)
@@ -21285,7 +21285,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSQRTSS object with the given operands" do
         new_instruction = subject.vsqrtss(*operands)
@@ -21298,7 +21298,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vstmxcsr" do
     context "when called with 1 operand" do
-      let(:operands) { [mem32] }
+      let(:operands) { [mem32(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSTMXCSR object with the given operands" do
         new_instruction = subject.vstmxcsr(*operands)
@@ -21311,7 +21311,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsubpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSUBPD object with the given operands" do
         new_instruction = subject.vsubpd(*operands)
@@ -21322,7 +21322,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSUBPD object with the given operands" do
         new_instruction = subject.vsubpd(*operands)
@@ -21335,7 +21335,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsubph" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSUBPH object with the given operands" do
         new_instruction = subject.vsubph(*operands)
@@ -21346,7 +21346,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSUBPH object with the given operands" do
         new_instruction = subject.vsubph(*operands)
@@ -21359,7 +21359,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsubps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSUBPS object with the given operands" do
         new_instruction = subject.vsubps(*operands)
@@ -21370,7 +21370,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [zmm, zmm, zmm, er] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSUBPS object with the given operands" do
         new_instruction = subject.vsubps(*operands)
@@ -21383,7 +21383,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsubsd" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSUBSD object with the given operands" do
         new_instruction = subject.vsubsd(*operands)
@@ -21394,7 +21394,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSUBSD object with the given operands" do
         new_instruction = subject.vsubsd(*operands)
@@ -21407,7 +21407,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsubsh" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem16] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSUBSH object with the given operands" do
         new_instruction = subject.vsubsh(*operands)
@@ -21418,7 +21418,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSUBSH object with the given operands" do
         new_instruction = subject.vsubsh(*operands)
@@ -21431,7 +21431,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vsubss" do
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSUBSS object with the given operands" do
         new_instruction = subject.vsubss(*operands)
@@ -21442,7 +21442,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 4 operands" do
-      let(:operands) { [xmm, xmm, xmm, er] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), er(3)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VSUBSS object with the given operands" do
         new_instruction = subject.vsubss(*operands)
@@ -21455,7 +21455,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vtestpd" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VTESTPD object with the given operands" do
         new_instruction = subject.vtestpd(*operands)
@@ -21468,7 +21468,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vtestps" do
     context "when called with 2 operands" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VTESTPS object with the given operands" do
         new_instruction = subject.vtestps(*operands)
@@ -21481,7 +21481,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vucomisd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem64] }
+      let(:operands) { [xmm(0), mem64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VUCOMISD object with the given operands" do
         new_instruction = subject.vucomisd(*operands)
@@ -21492,7 +21492,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VUCOMISD object with the given operands" do
         new_instruction = subject.vucomisd(*operands)
@@ -21505,7 +21505,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vucomish" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem16] }
+      let(:operands) { [xmm(0), mem16(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VUCOMISH object with the given operands" do
         new_instruction = subject.vucomish(*operands)
@@ -21516,7 +21516,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VUCOMISH object with the given operands" do
         new_instruction = subject.vucomish(*operands)
@@ -21529,7 +21529,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vucomiss" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VUCOMISS object with the given operands" do
         new_instruction = subject.vucomiss(*operands)
@@ -21540,7 +21540,7 @@ describe Ronin::ASM::X86_64::Instructions do
     end
 
     context "when called with 3 operands" do
-      let(:operands) { [xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), sae(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VUCOMISS object with the given operands" do
         new_instruction = subject.vucomiss(*operands)
@@ -21553,7 +21553,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vunpckhpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VUNPCKHPD object with the given operands" do
         new_instruction = subject.vunpckhpd(*operands)
@@ -21566,7 +21566,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vunpckhps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VUNPCKHPS object with the given operands" do
         new_instruction = subject.vunpckhps(*operands)
@@ -21579,7 +21579,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vunpcklpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VUNPCKLPD object with the given operands" do
         new_instruction = subject.vunpcklpd(*operands)
@@ -21592,7 +21592,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vunpcklps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VUNPCKLPS object with the given operands" do
         new_instruction = subject.vunpcklps(*operands)
@@ -21605,7 +21605,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vxorpd" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VXORPD object with the given operands" do
         new_instruction = subject.vxorpd(*operands)
@@ -21618,7 +21618,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#vxorps" do
     context "when called with 3 operands" do
-      let(:operands) { [zmm, zmm, zmm] }
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::VXORPS object with the given operands" do
         new_instruction = subject.vxorps(*operands)
@@ -21653,7 +21653,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#wrfsbase" do
     context "when called with 1 operand" do
-      let(:operands) { [reg64] }
+      let(:operands) { [reg64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::WRFSBASE object with the given operands" do
         new_instruction = subject.wrfsbase(*operands)
@@ -21666,7 +21666,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#wrgsbase" do
     context "when called with 1 operand" do
-      let(:operands) { [reg64] }
+      let(:operands) { [reg64(0)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::WRGSBASE object with the given operands" do
         new_instruction = subject.wrgsbase(*operands)
@@ -21679,7 +21679,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#xadd" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::XADD object with the given operands" do
         new_instruction = subject.xadd(*operands)
@@ -21692,7 +21692,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#xchg" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::XCHG object with the given operands" do
         new_instruction = subject.xchg(*operands)
@@ -21727,7 +21727,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#xor" do
     context "when called with 2 operands" do
-      let(:operands) { [mem64, reg64] }
+      let(:operands) { [mem64(0), reg64(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::XOR object with the given operands" do
         new_instruction = subject.xor(*operands)
@@ -21740,7 +21740,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#xorpd" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::XORPD object with the given operands" do
         new_instruction = subject.xorpd(*operands)
@@ -21753,7 +21753,7 @@ describe Ronin::ASM::X86_64::Instructions do
 
   describe "#xorps" do
     context "when called with 2 operands" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must create a new Ronin::ASM::X86_64::Instructions::XORPS object with the given operands" do
         new_instruction = subject.xorps(*operands)

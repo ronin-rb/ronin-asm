@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/vcomish'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::VCOMISH do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [xmm, xmm] }
+  let(:operands) { [xmm(0), xmm(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::VCOMISH do
     end
 
     context "when given operands of types xmm, xmm" do
-      let(:operands) { [xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::VCOMISH do
     end
 
     context "when given operands of types xmm, mem16" do
-      let(:operands) { [xmm, mem16] }
+      let(:operands) { [xmm(0), mem16(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86_64::Instructions::VCOMISH do
     end
 
     context "when given operands of types xmm, xmm, {sae}" do
-      let(:operands) { [xmm, xmm, sae] }
+      let(:operands) { [xmm(0), xmm(1), sae(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

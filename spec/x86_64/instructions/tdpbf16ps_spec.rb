@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/tdpbf16ps'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::TDPBF16PS do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [tmm, tmm, tmm] }
+  let(:operands) { [tmm(0), tmm(1), tmm(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::TDPBF16PS do
     end
 
     context "when given operands of types tmm, tmm, tmm" do
-      let(:operands) { [tmm, tmm, tmm] }
+      let(:operands) { [tmm(0), tmm(1), tmm(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

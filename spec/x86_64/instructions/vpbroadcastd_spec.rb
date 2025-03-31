@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/vpbroadcastd'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [xmm_k_z, reg32] }
+  let(:operands) { [xmm_k_z(0), reg32(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types xmm{k}{z}, reg32" do
-      let(:operands) { [xmm_k_z, reg32] }
+      let(:operands) { [xmm_k_z(0), reg32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types ymm{k}{z}, reg32" do
-      let(:operands) { [ymm_k_z, reg32] }
+      let(:operands) { [ymm_k_z(0), reg32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types zmm{k}{z}, reg32" do
-      let(:operands) { [zmm_k_z, reg32] }
+      let(:operands) { [zmm_k_z(0), reg32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types xmm{k}{z}, xmm" do
-      let(:operands) { [xmm_k_z, xmm] }
+      let(:operands) { [xmm_k_z(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types ymm{k}{z}, xmm" do
-      let(:operands) { [ymm_k_z, xmm] }
+      let(:operands) { [ymm_k_z(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -80,7 +80,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types zmm{k}{z}, xmm" do
-      let(:operands) { [zmm_k_z, xmm] }
+      let(:operands) { [zmm_k_z(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -92,7 +92,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types xmm{k}{z}, mem32" do
-      let(:operands) { [xmm_k_z, mem32] }
+      let(:operands) { [xmm_k_z(0), mem32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -104,7 +104,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types ymm{k}{z}, mem32" do
-      let(:operands) { [ymm_k_z, mem32] }
+      let(:operands) { [ymm_k_z(0), mem32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -116,7 +116,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types zmm{k}{z}, mem32" do
-      let(:operands) { [zmm_k_z, mem32] }
+      let(:operands) { [zmm_k_z(0), mem32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -128,7 +128,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types xmm, reg32" do
-      let(:operands) { [xmm, reg32] }
+      let(:operands) { [xmm(0), reg32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -140,7 +140,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types xmm, xmm" do
-      let(:operands) { [xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -152,7 +152,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types xmm, xmm" do
-      let(:operands) { [xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -164,7 +164,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types xmm, mem32" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -176,7 +176,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types xmm, mem32" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -188,7 +188,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types ymm, reg32" do
-      let(:operands) { [ymm, reg32] }
+      let(:operands) { [ymm(0), reg32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -200,7 +200,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types ymm, xmm" do
-      let(:operands) { [ymm, xmm] }
+      let(:operands) { [ymm(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -212,7 +212,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types ymm, xmm" do
-      let(:operands) { [ymm, xmm] }
+      let(:operands) { [ymm(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -224,7 +224,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types ymm, mem32" do
-      let(:operands) { [ymm, mem32] }
+      let(:operands) { [ymm(0), mem32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -236,7 +236,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types ymm, mem32" do
-      let(:operands) { [ymm, mem32] }
+      let(:operands) { [ymm(0), mem32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -248,7 +248,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types zmm, reg32" do
-      let(:operands) { [zmm, reg32] }
+      let(:operands) { [zmm(0), reg32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -260,7 +260,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types zmm, xmm" do
-      let(:operands) { [zmm, xmm] }
+      let(:operands) { [zmm(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -272,7 +272,7 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTD do
     end
 
     context "when given operands of types zmm, mem32" do
-      let(:operands) { [zmm, mem32] }
+      let(:operands) { [zmm(0), mem32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

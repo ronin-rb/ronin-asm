@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/vsha512msg1'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::VSHA512MSG1 do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [ymm, xmm] }
+  let(:operands) { [ymm(0), xmm(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::VSHA512MSG1 do
     end
 
     context "when given operands of types ymm, xmm" do
-      let(:operands) { [ymm, xmm] }
+      let(:operands) { [ymm(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

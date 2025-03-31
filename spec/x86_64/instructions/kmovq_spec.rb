@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/kmovq'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::KMOVQ do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [k, k] }
+  let(:operands) { [k(0), k(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::KMOVQ do
     end
 
     context "when given operands of types k, k" do
-      let(:operands) { [k, k] }
+      let(:operands) { [k(0), k(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::KMOVQ do
     end
 
     context "when given operands of types k, reg64" do
-      let(:operands) { [k, reg64] }
+      let(:operands) { [k(0), reg64(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86_64::Instructions::KMOVQ do
     end
 
     context "when given operands of types k, mem64" do
-      let(:operands) { [k, mem64] }
+      let(:operands) { [k(0), mem64(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86_64::Instructions::KMOVQ do
     end
 
     context "when given operands of types reg64, k" do
-      let(:operands) { [reg64, k] }
+      let(:operands) { [reg64(0), k(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86_64::Instructions::KMOVQ do
     end
 
     context "when given operands of types mem64, k" do
-      let(:operands) { [mem64, k] }
+      let(:operands) { [mem64(0), k(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/vextractf64x2'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::VEXTRACTF64X2 do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [xmm_k_z, ymm, imm8] }
+  let(:operands) { [xmm_k_z(0), ymm(1), imm8(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::VEXTRACTF64X2 do
     end
 
     context "when given operands of types xmm{k}{z}, ymm, imm8" do
-      let(:operands) { [xmm_k_z, ymm, imm8] }
+      let(:operands) { [xmm_k_z(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::VEXTRACTF64X2 do
     end
 
     context "when given operands of types mem128{k}, ymm, imm8" do
-      let(:operands) { [mem128_k, ymm, imm8] }
+      let(:operands) { [mem128_k(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86_64::Instructions::VEXTRACTF64X2 do
     end
 
     context "when given operands of types xmm{k}{z}, zmm, imm8" do
-      let(:operands) { [xmm_k_z, zmm, imm8] }
+      let(:operands) { [xmm_k_z(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86_64::Instructions::VEXTRACTF64X2 do
     end
 
     context "when given operands of types mem128{k}, zmm, imm8" do
-      let(:operands) { [mem128_k, zmm, imm8] }
+      let(:operands) { [mem128_k(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86_64::Instructions::VEXTRACTF64X2 do
     end
 
     context "when given operands of types xmm, ymm, imm8" do
-      let(:operands) { [xmm, ymm, imm8] }
+      let(:operands) { [xmm(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -80,7 +80,7 @@ describe Ronin::ASM::X86_64::Instructions::VEXTRACTF64X2 do
     end
 
     context "when given operands of types xmm, zmm, imm8" do
-      let(:operands) { [xmm, zmm, imm8] }
+      let(:operands) { [xmm(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -92,7 +92,7 @@ describe Ronin::ASM::X86_64::Instructions::VEXTRACTF64X2 do
     end
 
     context "when given operands of types mem128, ymm, imm8" do
-      let(:operands) { [mem128, ymm, imm8] }
+      let(:operands) { [mem128(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -104,7 +104,7 @@ describe Ronin::ASM::X86_64::Instructions::VEXTRACTF64X2 do
     end
 
     context "when given operands of types mem128, zmm, imm8" do
-      let(:operands) { [mem128, zmm, imm8] }
+      let(:operands) { [mem128(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
