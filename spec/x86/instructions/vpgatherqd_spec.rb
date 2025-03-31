@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vpgatherqd'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VPGATHERQD do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm_k, vm64x] }
+  let(:operands) { [xmm_k(0), vm64x(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VPGATHERQD do
     end
 
     context "when given operands of types xmm{k}, vm64x" do
-      let(:operands) { [xmm_k, vm64x] }
+      let(:operands) { [xmm_k(0), vm64x(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VPGATHERQD do
     end
 
     context "when given operands of types xmm{k}, vm64y" do
-      let(:operands) { [xmm_k, vm64y] }
+      let(:operands) { [xmm_k(0), vm64y(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::VPGATHERQD do
     end
 
     context "when given operands of types ymm{k}, vm64z" do
-      let(:operands) { [ymm_k, vm64z] }
+      let(:operands) { [ymm_k(0), vm64z(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::VPGATHERQD do
     end
 
     context "when given operands of types xmm, vm64x, xmm" do
-      let(:operands) { [xmm, vm64x, xmm] }
+      let(:operands) { [xmm(0), vm64x(1), xmm(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86::Instructions::VPGATHERQD do
     end
 
     context "when given operands of types xmm, vm64y, xmm" do
-      let(:operands) { [xmm, vm64y, xmm] }
+      let(:operands) { [xmm(0), vm64y(1), xmm(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

@@ -5,10 +5,10 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/mcommit'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::MCOMMIT do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
   let(:operands) { [] }
 

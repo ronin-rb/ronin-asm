@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/cvtsi2sd'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::CVTSI2SD do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm, reg32] }
+  let(:operands) { [xmm(0), reg32(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::CVTSI2SD do
     end
 
     context "when given operands of types xmm, reg32" do
-      let(:operands) { [xmm, reg32] }
+      let(:operands) { [xmm(0), reg32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::CVTSI2SD do
     end
 
     context "when given operands of types xmm, mem32" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

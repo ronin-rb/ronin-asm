@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vbcstnesh2ps'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VBCSTNESH2PS do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm, mem16] }
+  let(:operands) { [xmm(0), mem16(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VBCSTNESH2PS do
     end
 
     context "when given operands of types xmm, mem16" do
-      let(:operands) { [xmm, mem16] }
+      let(:operands) { [xmm(0), mem16(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VBCSTNESH2PS do
     end
 
     context "when given operands of types ymm, mem16" do
-      let(:operands) { [ymm, mem16] }
+      let(:operands) { [ymm(0), mem16(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

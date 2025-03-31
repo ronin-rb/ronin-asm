@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/int'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::INT do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [imm8] }
+  let(:operands) { [imm8(0)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::INT do
     end
 
     context "when given operands of types imm8" do
-      let(:operands) { [imm8] }
+      let(:operands) { [imm8(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

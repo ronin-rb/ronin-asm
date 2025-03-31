@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vinsertf128'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VINSERTF128 do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [ymm, ymm, xmm, imm8] }
+  let(:operands) { [ymm(0), ymm(1), xmm(2), imm8(3)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VINSERTF128 do
     end
 
     context "when given operands of types ymm, ymm, xmm, imm8" do
-      let(:operands) { [ymm, ymm, xmm, imm8] }
+      let(:operands) { [ymm(0), ymm(1), xmm(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VINSERTF128 do
     end
 
     context "when given operands of types ymm, ymm, mem128, imm8" do
-      let(:operands) { [ymm, ymm, mem128, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem128(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

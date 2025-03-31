@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vcmpsh'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VCMPSH do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [k_k, xmm, xmm, imm8] }
+  let(:operands) { [k_k(0), xmm(1), xmm(2), imm8(3)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VCMPSH do
     end
 
     context "when given operands of types k{k}, xmm, xmm, imm8" do
-      let(:operands) { [k_k, xmm, xmm, imm8] }
+      let(:operands) { [k_k(0), xmm(1), xmm(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VCMPSH do
     end
 
     context "when given operands of types k, xmm, xmm, imm8" do
-      let(:operands) { [k, xmm, xmm, imm8] }
+      let(:operands) { [k(0), xmm(1), xmm(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::VCMPSH do
     end
 
     context "when given operands of types k{k}, xmm, mem16, imm8" do
-      let(:operands) { [k_k, xmm, mem16, imm8] }
+      let(:operands) { [k_k(0), xmm(1), mem16(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::VCMPSH do
     end
 
     context "when given operands of types k, xmm, mem16, imm8" do
-      let(:operands) { [k, xmm, mem16, imm8] }
+      let(:operands) { [k(0), xmm(1), mem16(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86::Instructions::VCMPSH do
     end
 
     context "when given operands of types k{k}, xmm, xmm, {sae}, imm8" do
-      let(:operands) { [k_k, xmm, xmm, sae, imm8] }
+      let(:operands) { [k_k(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -80,7 +80,7 @@ describe Ronin::ASM::X86::Instructions::VCMPSH do
     end
 
     context "when given operands of types k, xmm, xmm, {sae}, imm8" do
-      let(:operands) { [k, xmm, xmm, sae, imm8] }
+      let(:operands) { [k(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

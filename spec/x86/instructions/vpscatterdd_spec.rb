@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vpscatterdd'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VPSCATTERDD do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [vm32x_k, xmm] }
+  let(:operands) { [vm32x_k(0), xmm(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VPSCATTERDD do
     end
 
     context "when given operands of types vm32x{k}, xmm" do
-      let(:operands) { [vm32x_k, xmm] }
+      let(:operands) { [vm32x_k(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VPSCATTERDD do
     end
 
     context "when given operands of types vm32y{k}, ymm" do
-      let(:operands) { [vm32y_k, ymm] }
+      let(:operands) { [vm32y_k(0), ymm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::VPSCATTERDD do
     end
 
     context "when given operands of types vm32z{k}, zmm" do
-      let(:operands) { [vm32z_k, zmm] }
+      let(:operands) { [vm32z_k(0), zmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

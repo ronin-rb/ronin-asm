@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vsm3rnds2'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VSM3RNDS2 do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm, xmm, xmm, imm8] }
+  let(:operands) { [xmm(0), xmm(1), xmm(2), imm8(3)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VSM3RNDS2 do
     end
 
     context "when given operands of types xmm, xmm, xmm, imm8" do
-      let(:operands) { [xmm, xmm, xmm, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VSM3RNDS2 do
     end
 
     context "when given operands of types xmm, xmm, mem128, imm8" do
-      let(:operands) { [xmm, xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

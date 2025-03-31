@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vrndscalesh'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VRNDSCALESH do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm_k_z, xmm, xmm, imm8] }
+  let(:operands) { [xmm_k_z(0), xmm(1), xmm(2), imm8(3)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VRNDSCALESH do
     end
 
     context "when given operands of types xmm{k}{z}, xmm, xmm, imm8" do
-      let(:operands) { [xmm_k_z, xmm, xmm, imm8] }
+      let(:operands) { [xmm_k_z(0), xmm(1), xmm(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VRNDSCALESH do
     end
 
     context "when given operands of types xmm{k}{z}, xmm, mem16, imm8" do
-      let(:operands) { [xmm_k_z, xmm, mem16, imm8] }
+      let(:operands) { [xmm_k_z(0), xmm(1), mem16(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::VRNDSCALESH do
     end
 
     context "when given operands of types xmm, xmm, xmm, imm8" do
-      let(:operands) { [xmm, xmm, xmm, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::VRNDSCALESH do
     end
 
     context "when given operands of types xmm, xmm, mem16, imm8" do
-      let(:operands) { [xmm, xmm, mem16, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem16(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86::Instructions::VRNDSCALESH do
     end
 
     context "when given operands of types xmm{k}{z}, xmm, xmm, {sae}, imm8" do
-      let(:operands) { [xmm_k_z, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm_k_z(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -80,7 +80,7 @@ describe Ronin::ASM::X86::Instructions::VRNDSCALESH do
     end
 
     context "when given operands of types xmm, xmm, xmm, {sae}, imm8" do
-      let(:operands) { [xmm, xmm, xmm, sae, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), sae(3), imm8(4)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

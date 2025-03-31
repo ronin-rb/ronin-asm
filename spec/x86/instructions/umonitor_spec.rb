@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/umonitor'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::UMONITOR do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [reg32] }
+  let(:operands) { [reg32(0)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::UMONITOR do
     end
 
     context "when given operands of types reg32" do
-      let(:operands) { [reg32] }
+      let(:operands) { [reg32(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

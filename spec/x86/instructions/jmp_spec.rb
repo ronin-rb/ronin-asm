@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/jmp'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::JMP do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [rel8] }
+  let(:operands) { [rel8(0)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::JMP do
     end
 
     context "when given operands of types rel8" do
-      let(:operands) { [rel8] }
+      let(:operands) { [rel8(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::JMP do
     end
 
     context "when given operands of types rel32" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::JMP do
     end
 
     context "when given operands of types reg32" do
-      let(:operands) { [reg32] }
+      let(:operands) { [reg32(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::JMP do
     end
 
     context "when given operands of types mem32" do
-      let(:operands) { [mem32] }
+      let(:operands) { [mem32(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

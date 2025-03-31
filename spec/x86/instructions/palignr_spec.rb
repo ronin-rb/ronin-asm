@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/palignr'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::PALIGNR do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [mmx, mmx, imm8] }
+  let(:operands) { [mmx(0), mmx(1), imm8(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::PALIGNR do
     end
 
     context "when given operands of types mmx, mmx, imm8" do
-      let(:operands) { [mmx, mmx, imm8] }
+      let(:operands) { [mmx(0), mmx(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::PALIGNR do
     end
 
     context "when given operands of types mmx, mem64, imm8" do
-      let(:operands) { [mmx, mem64, imm8] }
+      let(:operands) { [mmx(0), mem64(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::PALIGNR do
     end
 
     context "when given operands of types xmm, xmm, imm8" do
-      let(:operands) { [xmm, xmm, imm8] }
+      let(:operands) { [xmm(0), xmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::PALIGNR do
     end
 
     context "when given operands of types xmm, mem128, imm8" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

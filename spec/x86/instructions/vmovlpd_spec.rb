@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vmovlpd'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VMOVLPD do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [mem64, xmm] }
+  let(:operands) { [mem64(0), xmm(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VMOVLPD do
     end
 
     context "when given operands of types mem64, xmm" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VMOVLPD do
     end
 
     context "when given operands of types mem64, xmm" do
-      let(:operands) { [mem64, xmm] }
+      let(:operands) { [mem64(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::VMOVLPD do
     end
 
     context "when given operands of types xmm, xmm, mem64" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::VMOVLPD do
     end
 
     context "when given operands of types xmm, xmm, mem64" do
-      let(:operands) { [xmm, xmm, mem64] }
+      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
