@@ -5,10 +5,10 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/<%= @instruction.name %>'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::<%= @instruction.name.upcase %> do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
   <%- unless (operands = @instruction.forms.first.operands).empty? -%>
   let(:operands) { <%= operands_array(operands) %> }
