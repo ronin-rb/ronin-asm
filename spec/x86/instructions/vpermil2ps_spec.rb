@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vpermil2ps'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VPERMIL2PS do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm, xmm, xmm, xmm, imm8] }
+  let(:operands) { [xmm(0), xmm(1), xmm(2), xmm(3), imm8(4)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VPERMIL2PS do
     end
 
     context "when given operands of types xmm, xmm, xmm, xmm, imm8" do
-      let(:operands) { [xmm, xmm, xmm, xmm, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), xmm(3), imm8(4)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VPERMIL2PS do
     end
 
     context "when given operands of types xmm, xmm, xmm, mem128, imm8" do
-      let(:operands) { [xmm, xmm, xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), mem128(3), imm8(4)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::VPERMIL2PS do
     end
 
     context "when given operands of types xmm, xmm, mem128, xmm, imm8" do
-      let(:operands) { [xmm, xmm, mem128, xmm, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem128(2), xmm(3), imm8(4)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::VPERMIL2PS do
     end
 
     context "when given operands of types ymm, ymm, ymm, ymm, imm8" do
-      let(:operands) { [ymm, ymm, ymm, ymm, imm8] }
+      let(:operands) { [ymm(0), ymm(1), ymm(2), ymm(3), imm8(4)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86::Instructions::VPERMIL2PS do
     end
 
     context "when given operands of types ymm, ymm, ymm, mem256, imm8" do
-      let(:operands) { [ymm, ymm, ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), ymm(1), ymm(2), mem256(3), imm8(4)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -80,7 +80,7 @@ describe Ronin::ASM::X86::Instructions::VPERMIL2PS do
     end
 
     context "when given operands of types ymm, ymm, mem256, ymm, imm8" do
-      let(:operands) { [ymm, ymm, mem256, ymm, imm8] }
+      let(:operands) { [ymm(0), ymm(1), mem256(2), ymm(3), imm8(4)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

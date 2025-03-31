@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/insertps'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::INSERTPS do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm, xmm, imm8] }
+  let(:operands) { [xmm(0), xmm(1), imm8(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::INSERTPS do
     end
 
     context "when given operands of types xmm, xmm, imm8" do
-      let(:operands) { [xmm, xmm, imm8] }
+      let(:operands) { [xmm(0), xmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::INSERTPS do
     end
 
     context "when given operands of types xmm, mem32, imm8" do
-      let(:operands) { [xmm, mem32, imm8] }
+      let(:operands) { [xmm(0), mem32(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

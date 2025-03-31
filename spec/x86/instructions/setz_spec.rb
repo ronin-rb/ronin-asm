@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/setz'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::SETZ do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [reg8] }
+  let(:operands) { [reg8(0)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::SETZ do
     end
 
     context "when given operands of types reg8" do
-      let(:operands) { [reg8] }
+      let(:operands) { [reg8(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::SETZ do
     end
 
     context "when given operands of types mem8" do
-      let(:operands) { [mem8] }
+      let(:operands) { [mem8(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

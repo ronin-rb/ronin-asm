@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vextracti64x4'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VEXTRACTI64X4 do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [ymm_k_z, zmm, imm8] }
+  let(:operands) { [ymm_k_z(0), zmm(1), imm8(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VEXTRACTI64X4 do
     end
 
     context "when given operands of types ymm{k}{z}, zmm, imm8" do
-      let(:operands) { [ymm_k_z, zmm, imm8] }
+      let(:operands) { [ymm_k_z(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VEXTRACTI64X4 do
     end
 
     context "when given operands of types mem256{k}, zmm, imm8" do
-      let(:operands) { [mem256_k, zmm, imm8] }
+      let(:operands) { [mem256_k(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::VEXTRACTI64X4 do
     end
 
     context "when given operands of types ymm, zmm, imm8" do
-      let(:operands) { [ymm, zmm, imm8] }
+      let(:operands) { [ymm(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::VEXTRACTI64X4 do
     end
 
     context "when given operands of types mem256, zmm, imm8" do
-      let(:operands) { [mem256, zmm, imm8] }
+      let(:operands) { [mem256(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

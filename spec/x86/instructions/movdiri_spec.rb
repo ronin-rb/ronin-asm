@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/movdiri'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::MOVDIRI do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [mem32, reg32] }
+  let(:operands) { [mem32(0), reg32(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::MOVDIRI do
     end
 
     context "when given operands of types mem32, reg32" do
-      let(:operands) { [mem32, reg32] }
+      let(:operands) { [mem32(0), reg32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

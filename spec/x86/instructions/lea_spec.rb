@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/lea'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::LEA do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [reg16, mem] }
+  let(:operands) { [reg16(0), mem(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::LEA do
     end
 
     context "when given operands of types reg16, mem" do
-      let(:operands) { [reg16, mem] }
+      let(:operands) { [reg16(0), mem(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::LEA do
     end
 
     context "when given operands of types reg32, mem" do
-      let(:operands) { [reg32, mem] }
+      let(:operands) { [reg32(0), mem(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
