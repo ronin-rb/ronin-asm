@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/pop'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::POP do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [reg16] }
+  let(:operands) { [reg16(0)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::POP do
     end
 
     context "when given operands of types reg16" do
-      let(:operands) { [reg16] }
+      let(:operands) { [reg16(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::POP do
     end
 
     context "when given operands of types reg32" do
-      let(:operands) { [reg32] }
+      let(:operands) { [reg32(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::POP do
     end
 
     context "when given operands of types mem16" do
-      let(:operands) { [mem16] }
+      let(:operands) { [mem16(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::POP do
     end
 
     context "when given operands of types mem32" do
-      let(:operands) { [mem32] }
+      let(:operands) { [mem32(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

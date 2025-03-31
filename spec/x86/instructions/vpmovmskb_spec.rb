@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vpmovmskb'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VPMOVMSKB do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [reg32, xmm] }
+  let(:operands) { [reg32(0), xmm(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VPMOVMSKB do
     end
 
     context "when given operands of types reg32, xmm" do
-      let(:operands) { [reg32, xmm] }
+      let(:operands) { [reg32(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VPMOVMSKB do
     end
 
     context "when given operands of types reg32, ymm" do
-      let(:operands) { [reg32, ymm] }
+      let(:operands) { [reg32(0), ymm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

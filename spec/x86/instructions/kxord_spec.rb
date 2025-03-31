@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/kxord'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::KXORD do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [k, k, k] }
+  let(:operands) { [k(0), k(1), k(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::KXORD do
     end
 
     context "when given operands of types k, k, k" do
-      let(:operands) { [k, k, k] }
+      let(:operands) { [k(0), k(1), k(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

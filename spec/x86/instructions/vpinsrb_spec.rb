@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vpinsrb'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VPINSRB do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm, xmm, reg32, imm8] }
+  let(:operands) { [xmm(0), xmm(1), reg32(2), imm8(3)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VPINSRB do
     end
 
     context "when given operands of types xmm, xmm, reg32, imm8" do
-      let(:operands) { [xmm, xmm, reg32, imm8] }
+      let(:operands) { [xmm(0), xmm(1), reg32(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VPINSRB do
     end
 
     context "when given operands of types xmm, xmm, reg32, imm8" do
-      let(:operands) { [xmm, xmm, reg32, imm8] }
+      let(:operands) { [xmm(0), xmm(1), reg32(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::VPINSRB do
     end
 
     context "when given operands of types xmm, xmm, mem8, imm8" do
-      let(:operands) { [xmm, xmm, mem8, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem8(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::VPINSRB do
     end
 
     context "when given operands of types xmm, xmm, mem8, imm8" do
-      let(:operands) { [xmm, xmm, mem8, imm8] }
+      let(:operands) { [xmm(0), xmm(1), mem8(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
