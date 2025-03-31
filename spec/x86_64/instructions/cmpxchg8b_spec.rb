@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/cmpxchg8b'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::CMPXCHG8B do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [mem64] }
+  let(:operands) { [mem64(0)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::CMPXCHG8B do
     end
 
     context "when given operands of types mem64" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

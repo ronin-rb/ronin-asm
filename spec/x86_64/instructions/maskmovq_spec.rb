@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/maskmovq'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::MASKMOVQ do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [mmx, mmx] }
+  let(:operands) { [mmx(0), mmx(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::MASKMOVQ do
     end
 
     context "when given operands of types mmx, mmx" do
-      let(:operands) { [mmx, mmx] }
+      let(:operands) { [mmx(0), mmx(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

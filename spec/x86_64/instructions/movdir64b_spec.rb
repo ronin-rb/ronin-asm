@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/movdir64b'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::MOVDIR64B do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [reg64, mem512] }
+  let(:operands) { [reg64(0), mem512(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::MOVDIR64B do
     end
 
     context "when given operands of types reg64, mem512" do
-      let(:operands) { [reg64, mem512] }
+      let(:operands) { [reg64(0), mem512(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
