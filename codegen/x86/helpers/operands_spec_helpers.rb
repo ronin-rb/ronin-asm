@@ -23,9 +23,9 @@ module CodeGen
     module Helpers
       #
       # Helper methods for generating specs that use
-      # `spec/x86/instructions/operand_examples.rb`.
+      # `spec/x86/helpers/operands.rb`.
       #
-      module OperandSpecExamples
+      module OperandsSpecHelpers
         #
         # Returns the operand type name used in documentation (ex: `reg32`).
         #
@@ -50,9 +50,9 @@ module CodeGen
           operands.map { |operand| operand_type_name(operand) }.join(', ')
         end
 
-        # Mapping of operand types to `let()` names in
-        # `spec/x86/instructions/operand_examples.rb`.
-        RONIN_ASM_OPERAND_TYPE_LET_NAMES = {
+        # Mapping of operand types to method names in
+        # `spec/x86/helpers/operands.rb`.
+        RONIN_ASM_OPERAND_TYPE_METHOD_NAMES = {
           :'1' => 'imm8_1',
           :'3' => 'imm8_3',
 
@@ -100,29 +100,41 @@ module CodeGen
         }
 
         #
-        # Maps the operand to the `let()` variable name defined in
-        # `spec/x86/instructions/operand_examples.rb`.
+        # Maps the operand to the method name defined in
+        # `spec/x86/helpers/operands.rb`.
         #
         # @param [ISA::Operand] operand
         # @return [String]
         #
-        def operand_let_name(operand)
+        def operand_method_name(operand)
           ronin_operand_type = operand.ronin_type
 
-          # use the ronin-asm operand type name to lookup the `let()` name.
-          RONIN_ASM_OPERAND_TYPE_LET_NAMES.fetch(ronin_operand_type) do
+          # use the ronin-asm operand type name to lookup the method name.
+          RONIN_ASM_OPERAND_TYPE_METHOD_NAMES.fetch(ronin_operand_type) do
             ronin_operand_type.to_s
           end
         end
 
         #
-        # Converts the operands into an Array of operand RSpec variables.
+        # Maps the operand and operand index to the method call defined in
+        # `spec/x86/helpers/operands.rb`.
+        #
+        # @param [ISA::Operand] operand
+        # @param [Integer] index
+        # @return [String]
+        #
+        def operand_method_call(operand,index=1)
+          "#{operand_method_name(operand)}(#{index})"
+        end
+
+        #
+        # Converts the operands into an Array of operand objects.
         #
         # @param [Array<ISA::Operand>] operands
         # @return [String]
         #
         def operands_array(operands)
-          "[#{operands.map(&method(:operand_let_name)).join(', ')}]"
+          "[#{operands.map.with_index.map(&method(:operand_method_call)).join(', ')}]"
         end
 
       end
