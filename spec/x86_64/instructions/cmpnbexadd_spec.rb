@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/cmpnbexadd'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::CMPNBEXADD do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [mem32, reg32, reg32] }
+  let(:operands) { [mem32(0), reg32(1), reg32(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::CMPNBEXADD do
     end
 
     context "when given operands of types mem32, reg32, reg32" do
-      let(:operands) { [mem32, reg32, reg32] }
+      let(:operands) { [mem32(0), reg32(1), reg32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::CMPNBEXADD do
     end
 
     context "when given operands of types mem64, reg64, reg64" do
-      let(:operands) { [mem64, reg64, reg64] }
+      let(:operands) { [mem64(0), reg64(1), reg64(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

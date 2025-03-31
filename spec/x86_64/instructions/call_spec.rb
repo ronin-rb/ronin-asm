@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/call'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::CALL do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [rel32] }
+  let(:operands) { [rel32(0)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::CALL do
     end
 
     context "when given operands of types rel32" do
-      let(:operands) { [rel32] }
+      let(:operands) { [rel32(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::CALL do
     end
 
     context "when given operands of types reg64" do
-      let(:operands) { [reg64] }
+      let(:operands) { [reg64(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86_64::Instructions::CALL do
     end
 
     context "when given operands of types mem64" do
-      let(:operands) { [mem64] }
+      let(:operands) { [mem64(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

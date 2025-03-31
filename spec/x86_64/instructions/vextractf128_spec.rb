@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/vextractf128'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::VEXTRACTF128 do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [xmm, ymm, imm8] }
+  let(:operands) { [xmm(0), ymm(1), imm8(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::VEXTRACTF128 do
     end
 
     context "when given operands of types xmm, ymm, imm8" do
-      let(:operands) { [xmm, ymm, imm8] }
+      let(:operands) { [xmm(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::VEXTRACTF128 do
     end
 
     context "when given operands of types mem128, ymm, imm8" do
-      let(:operands) { [mem128, ymm, imm8] }
+      let(:operands) { [mem128(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

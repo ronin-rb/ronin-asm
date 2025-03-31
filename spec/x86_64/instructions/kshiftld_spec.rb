@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/kshiftld'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::KSHIFTLD do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [k, k, imm8] }
+  let(:operands) { [k(0), k(1), imm8(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::KSHIFTLD do
     end
 
     context "when given operands of types k, k, imm8" do
-      let(:operands) { [k, k, imm8] }
+      let(:operands) { [k(0), k(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
