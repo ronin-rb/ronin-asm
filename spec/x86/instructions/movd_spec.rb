@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/movd'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::MOVD do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [reg32, mmx] }
+  let(:operands) { [reg32(0), mmx(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::MOVD do
     end
 
     context "when given operands of types reg32, mmx" do
-      let(:operands) { [reg32, mmx] }
+      let(:operands) { [reg32(0), mmx(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::MOVD do
     end
 
     context "when given operands of types reg32, xmm" do
-      let(:operands) { [reg32, xmm] }
+      let(:operands) { [reg32(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::MOVD do
     end
 
     context "when given operands of types mmx, reg32" do
-      let(:operands) { [mmx, reg32] }
+      let(:operands) { [mmx(0), reg32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::MOVD do
     end
 
     context "when given operands of types mmx, mem32" do
-      let(:operands) { [mmx, mem32] }
+      let(:operands) { [mmx(0), mem32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86::Instructions::MOVD do
     end
 
     context "when given operands of types xmm, reg32" do
-      let(:operands) { [xmm, reg32] }
+      let(:operands) { [xmm(0), reg32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -80,7 +80,7 @@ describe Ronin::ASM::X86::Instructions::MOVD do
     end
 
     context "when given operands of types xmm, mem32" do
-      let(:operands) { [xmm, mem32] }
+      let(:operands) { [xmm(0), mem32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -92,7 +92,7 @@ describe Ronin::ASM::X86::Instructions::MOVD do
     end
 
     context "when given operands of types mem32, mmx" do
-      let(:operands) { [mem32, mmx] }
+      let(:operands) { [mem32(0), mmx(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -104,7 +104,7 @@ describe Ronin::ASM::X86::Instructions::MOVD do
     end
 
     context "when given operands of types mem32, xmm" do
-      let(:operands) { [mem32, xmm] }
+      let(:operands) { [mem32(0), xmm(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

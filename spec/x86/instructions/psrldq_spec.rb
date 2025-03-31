@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/psrldq'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::PSRLDQ do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm, imm8] }
+  let(:operands) { [xmm(0), imm8(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::PSRLDQ do
     end
 
     context "when given operands of types xmm, imm8" do
-      let(:operands) { [xmm, imm8] }
+      let(:operands) { [xmm(0), imm8(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

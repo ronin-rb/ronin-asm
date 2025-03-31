@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vbroadcasti32x8'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VBROADCASTI32X8 do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [zmm_k_z, mem256] }
+  let(:operands) { [zmm_k_z(0), mem256(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VBROADCASTI32X8 do
     end
 
     context "when given operands of types zmm{k}{z}, mem256" do
-      let(:operands) { [zmm_k_z, mem256] }
+      let(:operands) { [zmm_k_z(0), mem256(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VBROADCASTI32X8 do
     end
 
     context "when given operands of types zmm, mem256" do
-      let(:operands) { [zmm, mem256] }
+      let(:operands) { [zmm(0), mem256(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

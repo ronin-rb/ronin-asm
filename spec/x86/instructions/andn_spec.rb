@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/andn'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::ANDN do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [reg32, reg32, reg32] }
+  let(:operands) { [reg32(0), reg32(1), reg32(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::ANDN do
     end
 
     context "when given operands of types reg32, reg32, reg32" do
-      let(:operands) { [reg32, reg32, reg32] }
+      let(:operands) { [reg32(0), reg32(1), reg32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::ANDN do
     end
 
     context "when given operands of types reg32, reg32, mem32" do
-      let(:operands) { [reg32, reg32, mem32] }
+      let(:operands) { [reg32(0), reg32(1), mem32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

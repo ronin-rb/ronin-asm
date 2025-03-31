@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vcvtneoph2ps'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VCVTNEOPH2PS do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm, mem128] }
+  let(:operands) { [xmm(0), mem128(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VCVTNEOPH2PS do
     end
 
     context "when given operands of types xmm, mem128" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VCVTNEOPH2PS do
     end
 
     context "when given operands of types ymm, mem256" do
-      let(:operands) { [ymm, mem256] }
+      let(:operands) { [ymm(0), mem256(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/lddqu'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::LDDQU do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm, mem128] }
+  let(:operands) { [xmm(0), mem128(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::LDDQU do
     end
 
     context "when given operands of types xmm, mem128" do
-      let(:operands) { [xmm, mem128] }
+      let(:operands) { [xmm(0), mem128(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
