@@ -19,7 +19,7 @@
 #
 
 require_relative '../instructions_spec_file'
-require_relative 'helpers/operand_spec_examples'
+require_relative 'helpers/operands_spec_helpers'
 
 module CodeGen
   module X86
@@ -28,7 +28,7 @@ module CodeGen
     #
     class InstructionsSpecFile < CodeGen::InstructionsSpecFile
 
-      include Helpers::OperandSpecExamples
+      include Helpers::OperandsSpecHelpers
 
       template File.join(__dir__,'templates','instructions_spec.rb.erb')
       output_dir 'spec/x86'

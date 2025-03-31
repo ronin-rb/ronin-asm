@@ -18,17 +18,17 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../x86/helpers/operand_spec_examples'
+require_relative '../../x86/helpers/operands_spec_helpers'
 
 module CodeGen
   module X86_64
     module Helpers
       #
       # Helper methods for generating specs that use
-      # `spec/x86_64/instructions/operand_examples.rb`.
+      # `spec/x86_64/helpers/operands.rb`.
       #
-      module OperandSpecExamples
-        include X86::Helpers::OperandSpecExamples
+      module OperandsSpecHelpers
+        include X86::Helpers::OperandsSpecHelpers
       end
     end
   end
