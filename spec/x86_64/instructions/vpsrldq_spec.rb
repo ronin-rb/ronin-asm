@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/vpsrldq'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::VPSRLDQ do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [xmm, xmm, imm8] }
+  let(:operands) { [xmm(0), xmm(1), imm8(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::VPSRLDQ do
     end
 
     context "when given operands of types xmm, xmm, imm8" do
-      let(:operands) { [xmm, xmm, imm8] }
+      let(:operands) { [xmm(0), xmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::VPSRLDQ do
     end
 
     context "when given operands of types xmm, xmm, imm8" do
-      let(:operands) { [xmm, xmm, imm8] }
+      let(:operands) { [xmm(0), xmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86_64::Instructions::VPSRLDQ do
     end
 
     context "when given operands of types xmm, mem128, imm8" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86_64::Instructions::VPSRLDQ do
     end
 
     context "when given operands of types ymm, ymm, imm8" do
-      let(:operands) { [ymm, ymm, imm8] }
+      let(:operands) { [ymm(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86_64::Instructions::VPSRLDQ do
     end
 
     context "when given operands of types ymm, ymm, imm8" do
-      let(:operands) { [ymm, ymm, imm8] }
+      let(:operands) { [ymm(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -80,7 +80,7 @@ describe Ronin::ASM::X86_64::Instructions::VPSRLDQ do
     end
 
     context "when given operands of types ymm, mem256, imm8" do
-      let(:operands) { [ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), mem256(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -92,7 +92,7 @@ describe Ronin::ASM::X86_64::Instructions::VPSRLDQ do
     end
 
     context "when given operands of types zmm, zmm, imm8" do
-      let(:operands) { [zmm, zmm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -104,7 +104,7 @@ describe Ronin::ASM::X86_64::Instructions::VPSRLDQ do
     end
 
     context "when given operands of types zmm, mem512, imm8" do
-      let(:operands) { [zmm, mem512, imm8] }
+      let(:operands) { [zmm(0), mem512(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

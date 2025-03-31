@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/mulx'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::MULX do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [reg32, reg32, reg32] }
+  let(:operands) { [reg32(0), reg32(1), reg32(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::MULX do
     end
 
     context "when given operands of types reg32, reg32, reg32" do
-      let(:operands) { [reg32, reg32, reg32] }
+      let(:operands) { [reg32(0), reg32(1), reg32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::MULX do
     end
 
     context "when given operands of types reg32, reg32, mem32" do
-      let(:operands) { [reg32, reg32, mem32] }
+      let(:operands) { [reg32(0), reg32(1), mem32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86_64::Instructions::MULX do
     end
 
     context "when given operands of types reg64, reg64, reg64" do
-      let(:operands) { [reg64, reg64, reg64] }
+      let(:operands) { [reg64(0), reg64(1), reg64(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86_64::Instructions::MULX do
     end
 
     context "when given operands of types reg64, reg64, mem64" do
-      let(:operands) { [reg64, reg64, mem64] }
+      let(:operands) { [reg64(0), reg64(1), mem64(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

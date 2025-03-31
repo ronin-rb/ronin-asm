@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/vgatherdps'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::VGATHERDPS do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [xmm_k, vm32x] }
+  let(:operands) { [xmm_k(0), vm32x(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::VGATHERDPS do
     end
 
     context "when given operands of types xmm{k}, vm32x" do
-      let(:operands) { [xmm_k, vm32x] }
+      let(:operands) { [xmm_k(0), vm32x(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::VGATHERDPS do
     end
 
     context "when given operands of types ymm{k}, vm32y" do
-      let(:operands) { [ymm_k, vm32y] }
+      let(:operands) { [ymm_k(0), vm32y(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86_64::Instructions::VGATHERDPS do
     end
 
     context "when given operands of types zmm{k}, vm32z" do
-      let(:operands) { [zmm_k, vm32z] }
+      let(:operands) { [zmm_k(0), vm32z(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86_64::Instructions::VGATHERDPS do
     end
 
     context "when given operands of types xmm, vm32x, xmm" do
-      let(:operands) { [xmm, vm32x, xmm] }
+      let(:operands) { [xmm(0), vm32x(1), xmm(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86_64::Instructions::VGATHERDPS do
     end
 
     context "when given operands of types ymm, vm32y, ymm" do
-      let(:operands) { [ymm, vm32y, ymm] }
+      let(:operands) { [ymm(0), vm32y(1), ymm(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

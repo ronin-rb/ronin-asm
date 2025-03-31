@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/vinserti32x8'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::VINSERTI32X8 do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [zmm_k_z, zmm, ymm, imm8] }
+  let(:operands) { [zmm_k_z(0), zmm(1), ymm(2), imm8(3)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::VINSERTI32X8 do
     end
 
     context "when given operands of types zmm{k}{z}, zmm, ymm, imm8" do
-      let(:operands) { [zmm_k_z, zmm, ymm, imm8] }
+      let(:operands) { [zmm_k_z(0), zmm(1), ymm(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::VINSERTI32X8 do
     end
 
     context "when given operands of types zmm{k}{z}, zmm, mem256, imm8" do
-      let(:operands) { [zmm_k_z, zmm, mem256, imm8] }
+      let(:operands) { [zmm_k_z(0), zmm(1), mem256(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86_64::Instructions::VINSERTI32X8 do
     end
 
     context "when given operands of types zmm, zmm, ymm, imm8" do
-      let(:operands) { [zmm, zmm, ymm, imm8] }
+      let(:operands) { [zmm(0), zmm(1), ymm(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86_64::Instructions::VINSERTI32X8 do
     end
 
     context "when given operands of types zmm, zmm, mem256, imm8" do
-      let(:operands) { [zmm, zmm, mem256, imm8] }
+      let(:operands) { [zmm(0), zmm(1), mem256(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

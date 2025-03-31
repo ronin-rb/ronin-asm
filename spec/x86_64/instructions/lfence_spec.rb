@@ -5,10 +5,10 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/lfence'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::LFENCE do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
   let(:operands) { [] }
 

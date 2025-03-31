@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/vfnmsubss'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::VFNMSUBSS do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [xmm, xmm, xmm, xmm] }
+  let(:operands) { [xmm(0), xmm(1), xmm(2), xmm(3)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::VFNMSUBSS do
     end
 
     context "when given operands of types xmm, xmm, xmm, xmm" do
-      let(:operands) { [xmm, xmm, xmm, xmm] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), xmm(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::VFNMSUBSS do
     end
 
     context "when given operands of types xmm, xmm, xmm, mem32" do
-      let(:operands) { [xmm, xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), xmm(2), mem32(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86_64::Instructions::VFNMSUBSS do
     end
 
     context "when given operands of types xmm, xmm, mem32, xmm" do
-      let(:operands) { [xmm, xmm, mem32, xmm] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2), xmm(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
