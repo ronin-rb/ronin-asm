@@ -12,10 +12,10 @@ describe Ronin::ASM::X86::Encoder do
   describe "#write_modrm" do
     context "when mode is a Memory operand" do
       let(:mem) do
-        Ronin::ASM::X86::Memory.new(base: Ronin::ASM::X86::Registers::ECX)
+        Ronin::ASM::X86::Memory.new(base: Ronin::ASM::X86::Registers::EBX)
       end
       let(:mode) { mem }
-      let(:reg)  { Ronin::ASM::X86::Registers::EBX }
+      let(:reg)  { Ronin::ASM::X86::Registers::EAX }
       let(:rm)   { mem }
 
       let(:bytes_written) { 2 }
@@ -25,24 +25,50 @@ describe Ronin::ASM::X86::Encoder do
 
         expect(subject.write_modrm(mode,reg,rm)).to eq(bytes_written)
       end
+
+      context "and reg is an Opmask operand" do
+        context "and the Opmask wraps around a Register operand" do
+          let(:opmask) { Ronin::ASM::X86::Opmask.new(Ronin::ASM::X86::Registers::YMM0, Ronin::ASM::X86::Registers::K1) }
+          let(:reg)    { opmask }
+
+          it "must call #write_modrm_mem with the mode argument, the Opmask decorator's operand, and the rm argument, and return the number of bytes written" do
+            expect(subject).to receive(:write_modrm_mem).with(mode,opmask.operand,rm).and_return(bytes_written)
+
+            expect(subject.write_modrm(mode,reg,rm)).to eq(bytes_written)
+          end
+        end
+      end
     end
 
-    context "when mode is a Broadcast operand" do
+    context "when mode and rm are a Broadcast operand" do
       let(:mem) do
-        Ronin::ASM::X86::Memory.new(base: Ronin::ASM::X86::Registers::ECX)
+        Ronin::ASM::X86::Memory.new(base: Ronin::ASM::X86::Registers::EBX)
       end
       let(:broadcast) { Ronin::ASM::X86::Broadcast.new(mem, {1=>2}) }
 
       let(:mode) { broadcast }
-      let(:reg)  { Ronin::ASM::X86::Registers::EBX }
+      let(:reg)  { Ronin::ASM::X86::Registers::YMM0 }
       let(:rm)   { broadcast }
 
       let(:bytes_written) { 2 }
 
       it "must call #write_modrm_mem with the Broadcast decorator's operand and return the number of bytes written" do
-        expect(subject).to receive(:write_modrm_mem).with(mode,reg,rm).and_return(bytes_written)
+        expect(subject).to receive(:write_modrm_mem).with(broadcast.operand,reg,broadcast.operand).and_return(bytes_written)
 
         expect(subject.write_modrm(mode,reg,rm)).to eq(bytes_written)
+      end
+
+      context "and reg is an Opmask operand" do
+        context "and the Opmask wraps around a Register operand" do
+          let(:opmask) { Ronin::ASM::X86::Opmask.new(Ronin::ASM::X86::Registers::YMM0, Ronin::ASM::X86::Registers::K1) }
+          let(:reg)    { opmask }
+
+          it "must call #write_modrm_mem with the Broadcast's operand, the Opmask decorator's operand, and the Broadcast's operand, and return the number of bytes written" do
+            expect(subject).to receive(:write_modrm_mem).with(broadcast.operand,opmask.operand,broadcast.operand).and_return(bytes_written)
+
+            expect(subject.write_modrm(mode,reg,rm)).to eq(bytes_written)
+          end
+        end
       end
     end
 
@@ -61,6 +87,38 @@ describe Ronin::ASM::X86::Encoder do
 
       it "must return 1" do
         expect(subject.write_modrm_byte(mode,reg,rm)).to eq(1)
+      end
+
+      context "but the reg argument is an Opmask object" do
+        context "and Opmask wraps around a Register object "do
+          let(:opmask) do
+            Ronin::ASM::X86::Opmask.new(Ronin::ASM::X86::Registers::YMM0, Ronin::ASM::X86::Registers::K1)
+          end
+
+          let(:mode) { 0b11 }
+          let(:reg)  { opmask }
+          let(:rm)   { Ronin::ASM::X86::Registers::XMM1 }
+
+          let(:bytes_written) { 2 }
+
+          it "must call #write_modrm_byte with the mode argument, Opmask decorator's operand, and rm argument, and return the number of bytes written" do
+            expect(subject).to receive(:write_modrm_byte).with(mode,opmask.operand,rm).and_return(bytes_written)
+
+            expect(subject.write_modrm(mode,reg,rm)).to eq(bytes_written)
+          end
+        end
+      end
+    end
+
+    context "but mode is not a Memory object, Broadcast object, Opmask, or 0b11" do
+      let(:mode) { Object.new }
+      let(:reg)  { Ronin::ASM::X86::Registers::EAX }
+      let(:rm)   { mode }
+
+      it do
+        expect {
+          subject.write_modrm(mode,reg,rm)
+        }.to raise_error(ArgumentError,"#{described_class}#write_modrm can only accept Memory, Broadcast, Opmask, or 0b11 values for mode: #{mode.inspect}")
       end
     end
   end
