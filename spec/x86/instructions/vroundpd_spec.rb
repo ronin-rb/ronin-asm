@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vroundpd'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VROUNDPD do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm, xmm, imm8] }
+  let(:operands) { [xmm(0), xmm(1), imm8(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VROUNDPD do
     end
 
     context "when given operands of types xmm, xmm, imm8" do
-      let(:operands) { [xmm, xmm, imm8] }
+      let(:operands) { [xmm(0), xmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VROUNDPD do
     end
 
     context "when given operands of types xmm, mem128, imm8" do
-      let(:operands) { [xmm, mem128, imm8] }
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::VROUNDPD do
     end
 
     context "when given operands of types ymm, ymm, imm8" do
-      let(:operands) { [ymm, ymm, imm8] }
+      let(:operands) { [ymm(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::VROUNDPD do
     end
 
     context "when given operands of types ymm, mem256, imm8" do
-      let(:operands) { [ymm, mem256, imm8] }
+      let(:operands) { [ymm(0), mem256(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
