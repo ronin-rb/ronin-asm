@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vcvtsi2sd'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VCVTSI2SD do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm, xmm, reg32] }
+  let(:operands) { [xmm(0), xmm(1), reg32(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VCVTSI2SD do
     end
 
     context "when given operands of types xmm, xmm, reg32" do
-      let(:operands) { [xmm, xmm, reg32] }
+      let(:operands) { [xmm(0), xmm(1), reg32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VCVTSI2SD do
     end
 
     context "when given operands of types xmm, xmm, reg32" do
-      let(:operands) { [xmm, xmm, reg32] }
+      let(:operands) { [xmm(0), xmm(1), reg32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::VCVTSI2SD do
     end
 
     context "when given operands of types xmm, xmm, mem32" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::VCVTSI2SD do
     end
 
     context "when given operands of types xmm, xmm, mem32" do
-      let(:operands) { [xmm, xmm, mem32] }
+      let(:operands) { [xmm(0), xmm(1), mem32(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

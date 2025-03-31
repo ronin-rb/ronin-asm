@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/vcvtps2ph'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
-  let(:operands) { [xmm_k_z, xmm, imm8] }
+  let(:operands) { [xmm_k_z(0), xmm(1), imm8(2)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types xmm{k}{z}, xmm, imm8" do
-      let(:operands) { [xmm_k_z, xmm, imm8] }
+      let(:operands) { [xmm_k_z(0), xmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types mem64{k}, xmm, imm8" do
-      let(:operands) { [mem64_k, xmm, imm8] }
+      let(:operands) { [mem64_k(0), xmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types xmm{k}{z}, ymm, imm8" do
-      let(:operands) { [xmm_k_z, ymm, imm8] }
+      let(:operands) { [xmm_k_z(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types mem128{k}, ymm, imm8" do
-      let(:operands) { [mem128_k, ymm, imm8] }
+      let(:operands) { [mem128_k(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types ymm{k}{z}, zmm, imm8" do
-      let(:operands) { [ymm_k_z, zmm, imm8] }
+      let(:operands) { [ymm_k_z(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -80,7 +80,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types mem256{k}, zmm, imm8" do
-      let(:operands) { [mem256_k, zmm, imm8] }
+      let(:operands) { [mem256_k(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -92,7 +92,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types xmm, xmm, imm8" do
-      let(:operands) { [xmm, xmm, imm8] }
+      let(:operands) { [xmm(0), xmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -104,7 +104,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types xmm, xmm, imm8" do
-      let(:operands) { [xmm, xmm, imm8] }
+      let(:operands) { [xmm(0), xmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -116,7 +116,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types xmm, ymm, imm8" do
-      let(:operands) { [xmm, ymm, imm8] }
+      let(:operands) { [xmm(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -128,7 +128,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types xmm, ymm, imm8" do
-      let(:operands) { [xmm, ymm, imm8] }
+      let(:operands) { [xmm(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -140,7 +140,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types ymm, zmm, imm8" do
-      let(:operands) { [ymm, zmm, imm8] }
+      let(:operands) { [ymm(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -152,7 +152,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types mem64, xmm, imm8" do
-      let(:operands) { [mem64, xmm, imm8] }
+      let(:operands) { [mem64(0), xmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -164,7 +164,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types mem64, xmm, imm8" do
-      let(:operands) { [mem64, xmm, imm8] }
+      let(:operands) { [mem64(0), xmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -176,7 +176,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types mem128, ymm, imm8" do
-      let(:operands) { [mem128, ymm, imm8] }
+      let(:operands) { [mem128(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -188,7 +188,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types mem128, ymm, imm8" do
-      let(:operands) { [mem128, ymm, imm8] }
+      let(:operands) { [mem128(0), ymm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -200,7 +200,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types mem256, zmm, imm8" do
-      let(:operands) { [mem256, zmm, imm8] }
+      let(:operands) { [mem256(0), zmm(1), imm8(2)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -212,7 +212,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types ymm{k}{z}, zmm, {sae}, imm8" do
-      let(:operands) { [ymm_k_z, zmm, sae, imm8] }
+      let(:operands) { [ymm_k_z(0), zmm(1), sae(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -224,7 +224,7 @@ describe Ronin::ASM::X86::Instructions::VCVTPS2PH do
     end
 
     context "when given operands of types ymm, zmm, {sae}, imm8" do
-      let(:operands) { [ymm, zmm, sae, imm8] }
+      let(:operands) { [ymm(0), zmm(1), sae(2), imm8(3)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

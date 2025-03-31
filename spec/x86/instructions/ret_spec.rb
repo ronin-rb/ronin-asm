@@ -5,10 +5,10 @@
 require 'spec_helper'
 require 'ronin/asm/x86/instructions/ret'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86::Instructions::RET do
-  include_context "Ronin::ASM::X86 Operands"
+  include Helpers::X86::Operands
 
   let(:operands) { [] }
 
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86::Instructions::RET do
     end
 
     context "when given operands of types imm16" do
-      let(:operands) { [imm16] }
+      let(:operands) { [imm16(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
