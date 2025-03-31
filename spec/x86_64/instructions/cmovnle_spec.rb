@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/cmovnle'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::CMOVNLE do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [reg16, reg16] }
+  let(:operands) { [reg16(0), reg16(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNLE do
     end
 
     context "when given operands of types reg16, reg16" do
-      let(:operands) { [reg16, reg16] }
+      let(:operands) { [reg16(0), reg16(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -32,7 +32,7 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNLE do
     end
 
     context "when given operands of types reg16, mem16" do
-      let(:operands) { [reg16, mem16] }
+      let(:operands) { [reg16(0), mem16(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -44,7 +44,7 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNLE do
     end
 
     context "when given operands of types reg32, reg32" do
-      let(:operands) { [reg32, reg32] }
+      let(:operands) { [reg32(0), reg32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -56,7 +56,7 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNLE do
     end
 
     context "when given operands of types reg32, mem32" do
-      let(:operands) { [reg32, mem32] }
+      let(:operands) { [reg32(0), mem32(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -68,7 +68,7 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNLE do
     end
 
     context "when given operands of types reg64, reg64" do
-      let(:operands) { [reg64, reg64] }
+      let(:operands) { [reg64(0), reg64(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
@@ -80,7 +80,7 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNLE do
     end
 
     context "when given operands of types reg64, mem64" do
-      let(:operands) { [reg64, mem64] }
+      let(:operands) { [reg64(0), mem64(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/ldtilecfg'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::LDTILECFG do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [mem512] }
+  let(:operands) { [mem512(0)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::LDTILECFG do
     end
 
     context "when given operands of types mem512" do
-      let(:operands) { [mem512] }
+      let(:operands) { [mem512(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)

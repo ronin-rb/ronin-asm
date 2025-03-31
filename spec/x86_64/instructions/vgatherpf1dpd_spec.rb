@@ -5,12 +5,12 @@
 require 'spec_helper'
 require 'ronin/asm/x86_64/instructions/vgatherpf1dpd'
 
-require_relative 'operand_examples'
+require_relative '../helpers/operands'
 
 describe Ronin::ASM::X86_64::Instructions::VGATHERPF1DPD do
-  include_context "Ronin::ASM::X86_64 Operands"
+  include Helpers::X86_64::Operands
 
-  let(:operands) { [vm32y_k] }
+  let(:operands) { [vm32y_k(0)] }
 
   subject { described_class.new(*operands) }
 
@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Instructions::VGATHERPF1DPD do
     end
 
     context "when given operands of types vm32y{k}" do
-      let(:operands) { [vm32y_k] }
+      let(:operands) { [vm32y_k(0)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
