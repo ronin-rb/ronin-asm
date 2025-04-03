@@ -1,0 +1,16 @@
+.code32
+.section .text
+  <%= format_instruction %>
+<%- if @instruction_form.operands.any? { |operand| operand.type == :rel8 } -%>
+<%- 42.times do -%>
+  nop
+<%- end -%>
+_rel8:
+  nop
+<%- elsif @instruction_form.operands.any? { |operand| operand.type == :rel32 } -%>
+<%- 128.times do -%>
+  nop
+<%- end -%>
+_rel32:
+  nop
+<%- end -%>

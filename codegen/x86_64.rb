@@ -21,6 +21,7 @@
 require_relative 'x86_64/isa'
 require_relative 'x86_64/instruction_file'
 require_relative 'x86_64/instructions_file'
+require_relative 'x86_64/instruction_fixture_file'
 require_relative 'x86_64/instruction_spec_file'
 require_relative 'x86_64/instructions_spec_file'
 
@@ -45,6 +46,10 @@ if $0 == __FILE__
   # spec files within it.
   mkdir_p CodeGen::X86_64::InstructionSpecFile.output_dir
   instructions.each do |instruction|
+    instruction.forms.each do |instruction_form|
+      CodeGen::X86_64::InstructionFixtureFile.generate(instruction,instruction_form)
+    end
+
     CodeGen::X86_64::InstructionSpecFile.generate(instruction)
   end
 
