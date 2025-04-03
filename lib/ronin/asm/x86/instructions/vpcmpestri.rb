@@ -61,23 +61,6 @@ module Ronin
           end
 
           #
-          # Returns the GNU Assembler (GAS) name for the instruction based on
-          # it's operands.
-          #
-          # @return [Symbol]
-          #
-          def gas_name
-            case @form
-            when [:xmm, :xmm, :imm8]
-              :vpcmpestril
-            when [:xmm, :mem128, :imm8]
-              :vpcmpestril
-            else
-              super
-            end
-          end
-
-          #
           # Encodes the `vpcmpestri` instruction.
           #
           # @param [Encoder] encoder
