@@ -111,7 +111,7 @@ module Ronin
             when [:reg16, :mem16]
               :movw
             when [:eax, :moffset32]
-              :movabsl
+              :movl
             when [:reg32, :imm32]
               :movl
             when [:reg32, :reg32]
@@ -131,7 +131,7 @@ module Ronin
             when [:mem32, :reg32]
               :movl
             when [:moffset32, :eax]
-              :movabsl
+              :movl
             else
               super
             end
