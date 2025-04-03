@@ -8,6 +8,8 @@
 /.bundle
 /.yardoc
 /.DS_Store
+a.out
+*.o
 *.db
 *.log
 *.swp

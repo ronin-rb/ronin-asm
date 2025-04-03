@@ -81,3 +81,21 @@ namespace :codegen do
   task(:x86    => 'vendor/isa/x86.xml')    { ruby 'codegen/x86.rb' }
   task(:x86_64 => 'vendor/isa/x86_64.xml') { ruby 'codegen/x86_64.rb' }
 end
+
+rule %r{\Aspec/x86/instructions/fixtures/[^.]+\.o\z} => [->(path) { path.sub(/\.o\z/,'.s') }] do |t|
+  sh 'as', '--32', '-o', t.name, t.source
+end
+
+rule %r{\Aspec/x86_64/instructions/fixtures/[^.]+\.o\z} => [->(path) { path.sub(/\.o\z/,'.s') }] do |t|
+  sh 'as', '--64', '-o', t.name, t.source
+end
+
+rule %r{\Aspec/(?:x86|x86_64)/instructions/fixtures/[^.]+\.bin\z} => [->(path) { path.sub(/\.bin\z/,'.o') }] do |t|
+  sh 'objcopy', '-O', 'binary', '--only-section=.text', t.source, t.name
+end
+
+multitask 'spec:fixtures:x86' => Dir.glob('spec/x86/instructions/fixtures/*.s').map { |path| path.sub(/\.s\z/,'.bin') }
+
+multitask 'spec:fixtures:x86_64' => Dir.glob('spec/x86_64/instructions/fixtures/*.s').map { |path| path.sub(/\.s\z/,'.bin') }
+
+task 'spec:fixtures' => %w[spec:fixtures:x86 spec:fixtures:x86_64]
