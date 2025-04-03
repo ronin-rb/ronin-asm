@@ -16155,16 +16155,16 @@ module Ronin
         # Compute Square Roots of Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86_64::Instructions::VSQRTPD]
         # @example
-        #   vsqrtpd opmask(xmm0, k1, zero: true), bcst([rbx], {1=>4})
-        #   vsqrtpd opmask(ymm0, k1, zero: true), bcst([rbx], {1=>8})
+        #   vsqrtpd opmask(xmm0, k1, zero: true), bcst([rbx], {1=>2})
+        #   vsqrtpd opmask(ymm0, k1, zero: true), bcst([rbx], {1=>4})
         #   vsqrtpd opmask(zmm0, k1, zero: true), bcst([rbx], {1=>8})
         #   vsqrtpd opmask(xmm0, k1, zero: true), xmm1
         #   vsqrtpd opmask(ymm0, k1, zero: true), ymm1
         #   vsqrtpd opmask(zmm0, k1, zero: true), zmm1
-        #   vsqrtpd xmm0, bcst([rbx], {1=>4})
+        #   vsqrtpd xmm0, bcst([rbx], {1=>2})
         #   vsqrtpd xmm0, xmm1
         #   vsqrtpd xmm0, [rbx]
-        #   vsqrtpd ymm0, bcst([rbx], {1=>8})
+        #   vsqrtpd ymm0, bcst([rbx], {1=>4})
         #   vsqrtpd ymm0, ymm1
         #   vsqrtpd ymm0, [rbx]
         #   vsqrtpd zmm0, bcst([rbx], {1=>8})
