@@ -30,6 +30,34 @@ module CodeGen
       template File.join(__dir__,'templates','instruction.rb.erb')
       output_dir 'lib/ronin/asm/x86/instructions'
 
+      # Instruction forms grouped by their operands.
+      #
+      # @return [Hash{Array<ISA::Operand> => Array<ISA::InstructionForm>}]
+      #
+      # @note
+      #   An instruction can have multiple instruction forms with the same
+      #   operands, but with different ISA extensions and encodings.
+      attr_reader :instruction_forms_by_operands
+
+      #
+      # Initializes the instruction file.
+      #
+      # @param [X86::ISA::Instruction, X86_64::ISA::Instruction] instruction
+      #   The x86/x86-64 instruction metadata object.
+      #
+      def initialize(instruction)
+        super(instruction)
+
+        @instruction_forms_by_operands = @instruction.forms.group_by(&:operands)
+      end
+
+      #
+      # Every unique group of operands that the instruction accepts.
+      #
+      # @return [Array<Array<ISA::Operand>>]
+      #
+      def unique_instruction_operands = @instruction_forms_by_operands.keys
+
       #
       # Returns a comparison expression for the desired operand type.
       #
