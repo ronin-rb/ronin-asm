@@ -34,6 +34,15 @@ module CodeGen
       output_dir 'spec/x86/instructions'
 
       #
+      # Every unique group of operands that the instruction accepts.
+      #
+      # @return [Array<Array<ISA::Operand>>]
+      #
+      def unique_instruction_operands
+        @instruction.forms.map(&:operands).uniq
+      end
+
+      #
       # Converts the operands to a Ruby Array of their ronin-asm types.
       #
       # @param [Array<ISA::Operand>] operands
