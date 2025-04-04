@@ -208,5 +208,183 @@ describe Ronin::ASM::X86_64::Instructions::VRNDSCALEPH do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types xmm{k}{z}, mem128/mem16bcst, imm8" do
+      let(:operands) { [xmm_k_z(0), mem128_mem16_bcst(1), imm8(2)] }
+
+      let(:bin_file_name) { "vrndscaleph_xmm{k}{z}_mem128mem16bcst_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}{z}, mem256/mem16bcst, imm8" do
+      let(:operands) { [ymm_k_z(0), mem256_mem16_bcst(1), imm8(2)] }
+
+      let(:bin_file_name) { "vrndscaleph_ymm{k}{z}_mem256mem16bcst_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, mem512/mem16bcst, imm8" do
+      let(:operands) { [zmm_k_z(0), mem512_mem16_bcst(1), imm8(2)] }
+
+      let(:bin_file_name) { "vrndscaleph_zmm{k}{z}_mem512mem16bcst_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm{k}{z}, xmm, imm8" do
+      let(:operands) { [xmm_k_z(0), xmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vrndscaleph_xmm{k}{z}_xmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}{z}, ymm, imm8" do
+      let(:operands) { [ymm_k_z(0), ymm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vrndscaleph_ymm{k}{z}_ymm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, zmm, imm8" do
+      let(:operands) { [zmm_k_z(0), zmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vrndscaleph_zmm{k}{z}_zmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm, mem128/mem16bcst, imm8" do
+      let(:operands) { [xmm(0), mem128_mem16_bcst(1), imm8(2)] }
+
+      let(:bin_file_name) { "vrndscaleph_xmm_mem128mem16bcst_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm, xmm, imm8" do
+      let(:operands) { [xmm(0), xmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vrndscaleph_xmm_xmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, mem256/mem16bcst, imm8" do
+      let(:operands) { [ymm(0), mem256_mem16_bcst(1), imm8(2)] }
+
+      let(:bin_file_name) { "vrndscaleph_ymm_mem256mem16bcst_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, ymm, imm8" do
+      let(:operands) { [ymm(0), ymm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vrndscaleph_ymm_ymm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, mem512/mem16bcst, imm8" do
+      let(:operands) { [zmm(0), mem512_mem16_bcst(1), imm8(2)] }
+
+      let(:bin_file_name) { "vrndscaleph_zmm_mem512mem16bcst_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, imm8" do
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vrndscaleph_zmm_zmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, zmm, {sae}, imm8" do
+      let(:operands) { [zmm_k_z(0), zmm(1), sae(2), imm8(3)] }
+
+      let(:bin_file_name) { "vrndscaleph_zmm{k}{z}_zmm_{sae}_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, {sae}, imm8" do
+      let(:operands) { [zmm(0), zmm(1), sae(2), imm8(3)] }
+
+      let(:bin_file_name) { "vrndscaleph_zmm_zmm_{sae}_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end

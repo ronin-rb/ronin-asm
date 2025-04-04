@@ -340,5 +340,323 @@ describe Ronin::ASM::X86_64::Instructions::MOV do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types reg8, imm8" do
+      let(:operands) { [reg8(0), imm8(1)] }
+
+      let(:bin_file_name) { "mov_reg8_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg8, reg8" do
+      let(:operands) { [reg8(0), reg8(1)] }
+
+      let(:bin_file_name) { "mov_reg8_reg8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg8, mem8" do
+      let(:operands) { [reg8(0), mem8(1)] }
+
+      let(:bin_file_name) { "mov_reg8_mem8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg16, imm16" do
+      let(:operands) { [reg16(0), imm16(1)] }
+
+      let(:bin_file_name) { "mov_reg16_imm16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg16, reg16" do
+      let(:operands) { [reg16(0), reg16(1)] }
+
+      let(:bin_file_name) { "mov_reg16_reg16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg16, mem16" do
+      let(:operands) { [reg16(0), mem16(1)] }
+
+      let(:bin_file_name) { "mov_reg16_mem16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types eax, moffset32" do
+      let(:operands) { [eax(0), moffset32(1)] }
+
+      let(:bin_file_name) { "mov_eax_moffset32.bin" }
+
+      it do
+        skip "currently cannot convert Ronin::ASM::X86_64::RelativeOffset or Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
+
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, imm32" do
+      let(:operands) { [reg32(0), imm32(1)] }
+
+      let(:bin_file_name) { "mov_reg32_imm32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, reg32" do
+      let(:operands) { [reg32(0), reg32(1)] }
+
+      let(:bin_file_name) { "mov_reg32_reg32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, mem32" do
+      let(:operands) { [reg32(0), mem32(1)] }
+
+      let(:bin_file_name) { "mov_reg32_mem32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types rax, moffset64" do
+      let(:operands) { [rax(0), moffset64(1)] }
+
+      let(:bin_file_name) { "mov_rax_moffset64.bin" }
+
+      it do
+        skip "currently cannot convert Ronin::ASM::X86_64::RelativeOffset or Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
+
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, imm32" do
+      let(:operands) { [reg64(0), imm32(1)] }
+
+      let(:bin_file_name) { "mov_reg64_imm32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, imm64" do
+      let(:operands) { [reg64(0), imm64(1)] }
+
+      let(:bin_file_name) { "mov_reg64_imm64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, reg64" do
+      let(:operands) { [reg64(0), reg64(1)] }
+
+      let(:bin_file_name) { "mov_reg64_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, mem64" do
+      let(:operands) { [reg64(0), mem64(1)] }
+
+      let(:bin_file_name) { "mov_reg64_mem64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem8, imm8" do
+      let(:operands) { [mem8(0), imm8(1)] }
+
+      let(:bin_file_name) { "mov_mem8_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem8, reg8" do
+      let(:operands) { [mem8(0), reg8(1)] }
+
+      let(:bin_file_name) { "mov_mem8_reg8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem16, imm16" do
+      let(:operands) { [mem16(0), imm16(1)] }
+
+      let(:bin_file_name) { "mov_mem16_imm16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem16, reg16" do
+      let(:operands) { [mem16(0), reg16(1)] }
+
+      let(:bin_file_name) { "mov_mem16_reg16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem32, imm32" do
+      let(:operands) { [mem32(0), imm32(1)] }
+
+      let(:bin_file_name) { "mov_mem32_imm32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem32, reg32" do
+      let(:operands) { [mem32(0), reg32(1)] }
+
+      let(:bin_file_name) { "mov_mem32_reg32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem64, imm32" do
+      let(:operands) { [mem64(0), imm32(1)] }
+
+      let(:bin_file_name) { "mov_mem64_imm32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem64, reg64" do
+      let(:operands) { [mem64(0), reg64(1)] }
+
+      let(:bin_file_name) { "mov_mem64_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types moffset32, eax" do
+      let(:operands) { [moffset32(0), eax(1)] }
+
+      let(:bin_file_name) { "mov_moffset32_eax.bin" }
+
+      it do
+        skip "currently cannot convert Ronin::ASM::X86_64::RelativeOffset or Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
+
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types moffset64, rax" do
+      let(:operands) { [moffset64(0), rax(1)] }
+
+      let(:bin_file_name) { "mov_moffset64_rax.bin" }
+
+      it do
+        skip "currently cannot convert Ronin::ASM::X86_64::RelativeOffset or Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
+
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end
