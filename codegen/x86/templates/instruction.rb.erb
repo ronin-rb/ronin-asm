@@ -51,13 +51,13 @@ module Ronin
           def initialize(*operands,**kwargs)
             super(:<%= @instruction.name %>,*operands,**kwargs)
 
-            <%- @instruction.forms.each.with_index do |instruction_form,if_index| -%>
+            <%- unique_instruction_operands.each.with_index do |operands,if_index| -%>
             <%-   if if_index == 0 -%>
-            @form = if <%= operands_match_expression(instruction_form.operands) %>
-                      <%= instruction_form_array(instruction_form.operands) %>
+            @form = if <%= operands_match_expression(operands) %>
+                      <%= instruction_form_array(operands) %>
             <%-   else -%>
-                    elsif <%= operands_match_expression(instruction_form.operands) %>
-                      <%= instruction_form_array(instruction_form.operands) %>
+                    elsif <%= operands_match_expression(operands) %>
+                      <%= instruction_form_array(operands) %>
             <%-   end -%>
             <%- end -%>
                     else
@@ -95,9 +95,10 @@ module Ronin
           #
           def encode(encoder)
             case @form
-            <%- @instruction.forms.each do |instruction_form| -%>
-            when <%= instruction_form_array(instruction_form.operands) %>
-            <%-   preferred_encoding = instruction_form.preferred_encoding -%>
+            <%- @instruction_forms_by_operands.each do |operands,instruction_forms| -%>
+            <%-   default_instruction_form = instruction_forms.first -%>
+            <%-   preferred_encoding = default_instruction_form.preferred_encoding -%>
+            when <%= instruction_form_array(operands) %>
             <%-   preferred_encoding.each.with_index do |encoding,encoding_index| -%>
             <%-     if encoding_index < preferred_encoding.length-1 -%>
               <%=     encoder_method_call(encoding) %> +
