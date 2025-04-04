@@ -115,7 +115,7 @@ module Ronin
               encoder.write_modrm(@operands[0],@operands[1],@operands[0]) +
               encoder.write_immediate(@operands[2],1)
             when [:"ymm{k}{z}", :zmm, :imm8]
-              encoder.write_evex(mmm: 0b011, pp: 0b01, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
+              encoder.write_evex(mmm: 0b011, pp: 0b01, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x1d) +
               encoder.write_modrm(0b11,@operands[1],@operands[0]) +
               encoder.write_immediate(@operands[2],1)
@@ -135,7 +135,7 @@ module Ronin
               encoder.write_modrm(0b11,@operands[1],@operands[0]) +
               encoder.write_immediate(@operands[2],1)
             when [:ymm, :zmm, :imm8]
-              encoder.write_evex(mmm: 0b011, pp: 0b01, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
+              encoder.write_evex(mmm: 0b011, pp: 0b01, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x1d) +
               encoder.write_modrm(0b11,@operands[1],@operands[0]) +
               encoder.write_immediate(@operands[2],1)
