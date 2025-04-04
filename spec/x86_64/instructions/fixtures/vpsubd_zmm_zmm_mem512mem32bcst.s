@@ -1,0 +1,3 @@
+.code64
+.section .text
+  vpsubd (%rdx){1to16}, %zmm1, %zmm0
