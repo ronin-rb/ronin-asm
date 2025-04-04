@@ -100,5 +100,75 @@ describe Ronin::ASM::X86_64::Instructions::VPGATHERQQ do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types xmm{k}, vm64x" do
+      let(:operands) { [xmm_k(0), vm64x(1)] }
+
+      let(:bin_file_name) { "vpgatherqq_xmm{k}_vm64x.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}, vm64y" do
+      let(:operands) { [ymm_k(0), vm64y(1)] }
+
+      let(:bin_file_name) { "vpgatherqq_ymm{k}_vm64y.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}, vm64z" do
+      let(:operands) { [zmm_k(0), vm64z(1)] }
+
+      let(:bin_file_name) { "vpgatherqq_zmm{k}_vm64z.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm, vm64x, xmm" do
+      let(:operands) { [xmm(0), vm64x(1), xmm(2)] }
+
+      let(:bin_file_name) { "vpgatherqq_xmm_vm64x_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, vm64y, ymm" do
+      let(:operands) { [ymm(0), vm64y(1), ymm(2)] }
+
+      let(:bin_file_name) { "vpgatherqq_ymm_vm64y_ymm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end

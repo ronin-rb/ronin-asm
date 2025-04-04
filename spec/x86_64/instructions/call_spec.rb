@@ -76,5 +76,53 @@ describe Ronin::ASM::X86_64::Instructions::CALL do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types rel32" do
+      let(:operands) { [rel32(0)] }
+
+      let(:bin_file_name) { "call_rel32.bin" }
+
+      it do
+        skip "currently cannot convert Ronin::ASM::X86_64::RelativeOffset or Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
+
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64" do
+      let(:operands) { [reg64(0)] }
+
+      let(:bin_file_name) { "call_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem64" do
+      let(:operands) { [mem64(0)] }
+
+      let(:bin_file_name) { "call_mem64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end
