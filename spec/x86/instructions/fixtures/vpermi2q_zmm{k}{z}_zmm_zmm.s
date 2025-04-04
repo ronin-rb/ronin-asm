@@ -1,0 +1,3 @@
+.code32
+.section .text
+  vpermi2q %zmm2, %zmm1, %zmm0{%k1}{z}
