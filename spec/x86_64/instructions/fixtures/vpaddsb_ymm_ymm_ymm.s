@@ -1,0 +1,3 @@
+.code64
+.section .text
+  vpaddsb %ymm2, %ymm1, %ymm0
