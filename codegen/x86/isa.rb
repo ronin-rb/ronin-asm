@@ -335,15 +335,15 @@ module CodeGen
         def mmx_register? = MMX_REG_TYPES.include?(type)
 
         # SSE registers
-        XMM_REG_TYPES = Set[:xmm, :xmm0, :"xmm{k}", :"xmm{k}{z}"]
+        XMM_REG_TYPES = Set[:xmm, :xmm0]
         def xmm_register? = XMM_REG_TYPES.include?(type)
 
         # AVX registers
-        YMM_REG_TYPES = Set[:ymm, :ymm0, :"ymm{k}", :"ymm{k}{z}"]
+        YMM_REG_TYPES = Set[:ymm, :ymm0]
         def ymm_register? = XMM_REG_TYPES.include?(type)
 
         # AVX512 registers
-        ZMM_REG_TYPES = Set[:zmm, :zmm0, :"zmm{k}", :"zmm{k}{z}"]
+        ZMM_REG_TYPES = Set[:zmm, :zmm0]
         def zmm_register? = XMM_REG_TYPES.include?(type)
 
         # Set of specific register types.
