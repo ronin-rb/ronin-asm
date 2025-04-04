@@ -143,11 +143,11 @@ module Ronin
               encoder.write_opcode(0x7a) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
             when [:"zmm{k}{z}", :xmm, :"{sae}"]
-              encoder.write_evex(mmm: 0b101, pp: 0b01, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 1, aaa: @operands[0], z: @operands[0]) +
+              encoder.write_evex(mmm: 0b101, pp: 0b01, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 1, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0x7a) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
             when [:zmm, :xmm, :"{sae}"]
-              encoder.write_evex(mmm: 0b101, pp: 0b01, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 1, aaa: 0, z: 0) +
+              encoder.write_evex(mmm: 0b101, pp: 0b01, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 1, aaa: 0, z: 0) +
               encoder.write_opcode(0x7a) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
             else
