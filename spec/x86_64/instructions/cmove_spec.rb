@@ -112,5 +112,87 @@ describe Ronin::ASM::X86_64::Instructions::CMOVE do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types reg16, reg16" do
+      let(:operands) { [reg16(0), reg16(1)] }
+
+      let(:bin_file_name) { "cmove_reg16_reg16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg16, mem16" do
+      let(:operands) { [reg16(0), mem16(1)] }
+
+      let(:bin_file_name) { "cmove_reg16_mem16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, reg32" do
+      let(:operands) { [reg32(0), reg32(1)] }
+
+      let(:bin_file_name) { "cmove_reg32_reg32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, mem32" do
+      let(:operands) { [reg32(0), mem32(1)] }
+
+      let(:bin_file_name) { "cmove_reg32_mem32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, reg64" do
+      let(:operands) { [reg64(0), reg64(1)] }
+
+      let(:bin_file_name) { "cmove_reg64_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, mem64" do
+      let(:operands) { [reg64(0), mem64(1)] }
+
+      let(:bin_file_name) { "cmove_reg64_mem64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end

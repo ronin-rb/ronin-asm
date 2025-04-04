@@ -136,5 +136,111 @@ describe Ronin::ASM::X86_64::Instructions::BEXTR do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types reg32, reg32, imm32" do
+      let(:operands) { [reg32(0), reg32(1), imm32(2)] }
+
+      let(:bin_file_name) { "bextr_reg32_reg32_imm32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, reg32, reg32" do
+      let(:operands) { [reg32(0), reg32(1), reg32(2)] }
+
+      let(:bin_file_name) { "bextr_reg32_reg32_reg32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, mem32, imm32" do
+      let(:operands) { [reg32(0), mem32(1), imm32(2)] }
+
+      let(:bin_file_name) { "bextr_reg32_mem32_imm32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, mem32, reg32" do
+      let(:operands) { [reg32(0), mem32(1), reg32(2)] }
+
+      let(:bin_file_name) { "bextr_reg32_mem32_reg32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, reg64, imm32" do
+      let(:operands) { [reg64(0), reg64(1), imm32(2)] }
+
+      let(:bin_file_name) { "bextr_reg64_reg64_imm32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, reg64, reg64" do
+      let(:operands) { [reg64(0), reg64(1), reg64(2)] }
+
+      let(:bin_file_name) { "bextr_reg64_reg64_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, mem64, imm32" do
+      let(:operands) { [reg64(0), mem64(1), imm32(2)] }
+
+      let(:bin_file_name) { "bextr_reg64_mem64_imm32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, mem64, reg64" do
+      let(:operands) { [reg64(0), mem64(1), reg64(2)] }
+
+      let(:bin_file_name) { "bextr_reg64_mem64_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end
