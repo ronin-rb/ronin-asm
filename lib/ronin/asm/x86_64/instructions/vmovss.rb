@@ -57,16 +57,10 @@ module Ronin
                       [:"xmm{k}{z}", :mem32]
                     elsif @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:mem32)
                       [:xmm, :mem32]
-                    elsif @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:mem32)
-                      [:xmm, :mem32]
-                    elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:xmm)
-                      [:mem32, :xmm]
                     elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:xmm)
                       [:mem32, :xmm]
                     elsif @operands.length == 3 && @operands[0].type_of?(:"xmm{k}{z}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm)
                       [:"xmm{k}{z}", :xmm, :xmm]
-                    elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm)
-                      [:xmm, :xmm, :xmm]
                     elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm)
                       [:xmm, :xmm, :xmm]
                     else
@@ -96,16 +90,8 @@ module Ronin
               encoder.write_vex(type: :vex, m_mmmm: 0b00001, pp: 0b10, r: @operands[0], x: @operands[1], b: @operands[1], vvvv: 0) +
               encoder.write_opcode(0x10) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
-            when [:xmm, :mem32]
-              encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: 0, z: 0, disp8xN: 4) +
-              encoder.write_opcode(0x10) +
-              encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             when [:mem32, :xmm]
               encoder.write_vex(type: :vex, m_mmmm: 0b00001, pp: 0b10, r: @operands[1], x: @operands[0], b: @operands[0], vvvv: 0) +
-              encoder.write_opcode(0x11) +
-              encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            when [:mem32, :xmm]
-              encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, vvvv: 0, v: 0, rr: @operands[1], _B: @operands[0], x: @operands[0], b: 0, aaa: 0, z: 0, disp8xN: 4) +
               encoder.write_opcode(0x11) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
             when [:"xmm{k}{z}", :xmm, :xmm]
@@ -114,10 +100,6 @@ module Ronin
               encoder.write_modrm(0b11,@operands[2],@operands[0])
             when [:xmm, :xmm, :xmm]
               encoder.write_vex(type: :vex, m_mmmm: 0b00001, pp: 0b10, r: @operands[0], b: @operands[2], vvvv: @operands[1]) +
-              encoder.write_opcode(0x10) +
-              encoder.write_modrm(0b11,@operands[0],@operands[2])
-            when [:xmm, :xmm, :xmm]
-              encoder.write_evex(mmm: 0b001, pp: 0b10, w: 0, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[2], x: @operands[2], b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x10) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
             else
