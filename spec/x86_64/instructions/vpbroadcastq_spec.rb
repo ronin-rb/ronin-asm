@@ -256,5 +256,231 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTQ do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types xmm{k}{z}, reg64" do
+      let(:operands) { [xmm_k_z(0), reg64(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_xmm{k}{z}_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}{z}, reg64" do
+      let(:operands) { [ymm_k_z(0), reg64(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_ymm{k}{z}_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, reg64" do
+      let(:operands) { [zmm_k_z(0), reg64(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_zmm{k}{z}_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm{k}{z}, xmm" do
+      let(:operands) { [xmm_k_z(0), xmm(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_xmm{k}{z}_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}{z}, xmm" do
+      let(:operands) { [ymm_k_z(0), xmm(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_ymm{k}{z}_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, xmm" do
+      let(:operands) { [zmm_k_z(0), xmm(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_zmm{k}{z}_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm{k}{z}, mem64" do
+      let(:operands) { [xmm_k_z(0), mem64(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_xmm{k}{z}_mem64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}{z}, mem64" do
+      let(:operands) { [ymm_k_z(0), mem64(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_ymm{k}{z}_mem64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, mem64" do
+      let(:operands) { [zmm_k_z(0), mem64(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_zmm{k}{z}_mem64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm, reg64" do
+      let(:operands) { [xmm(0), reg64(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_xmm_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm, xmm" do
+      let(:operands) { [xmm(0), xmm(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_xmm_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm, mem64" do
+      let(:operands) { [xmm(0), mem64(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_xmm_mem64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, reg64" do
+      let(:operands) { [ymm(0), reg64(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_ymm_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, xmm" do
+      let(:operands) { [ymm(0), xmm(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_ymm_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, mem64" do
+      let(:operands) { [ymm(0), mem64(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_ymm_mem64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, reg64" do
+      let(:operands) { [zmm(0), reg64(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_zmm_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, xmm" do
+      let(:operands) { [zmm(0), xmm(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_zmm_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, mem64" do
+      let(:operands) { [zmm(0), mem64(1)] }
+
+      let(:bin_file_name) { "vpbroadcastq_zmm_mem64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end

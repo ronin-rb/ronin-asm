@@ -256,5 +256,231 @@ describe Ronin::ASM::X86_64::Instructions::XCHG do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types reg8, reg8" do
+      let(:operands) { [reg8(0), reg8(1)] }
+
+      let(:bin_file_name) { "xchg_reg8_reg8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg8, mem8" do
+      let(:operands) { [reg8(0), mem8(1)] }
+
+      let(:bin_file_name) { "xchg_reg8_mem8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ax, reg16" do
+      let(:operands) { [ax(0), reg16(1)] }
+
+      let(:bin_file_name) { "xchg_ax_reg16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg16, ax" do
+      let(:operands) { [reg16(0), ax(1)] }
+
+      let(:bin_file_name) { "xchg_reg16_ax.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg16, reg16" do
+      let(:operands) { [reg16(0), reg16(1)] }
+
+      let(:bin_file_name) { "xchg_reg16_reg16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg16, mem16" do
+      let(:operands) { [reg16(0), mem16(1)] }
+
+      let(:bin_file_name) { "xchg_reg16_mem16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types eax, reg32" do
+      let(:operands) { [eax(0), reg32(1)] }
+
+      let(:bin_file_name) { "xchg_eax_reg32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, eax" do
+      let(:operands) { [reg32(0), eax(1)] }
+
+      let(:bin_file_name) { "xchg_reg32_eax.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, reg32" do
+      let(:operands) { [reg32(0), reg32(1)] }
+
+      let(:bin_file_name) { "xchg_reg32_reg32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, mem32" do
+      let(:operands) { [reg32(0), mem32(1)] }
+
+      let(:bin_file_name) { "xchg_reg32_mem32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types rax, reg64" do
+      let(:operands) { [rax(0), reg64(1)] }
+
+      let(:bin_file_name) { "xchg_rax_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, rax" do
+      let(:operands) { [reg64(0), rax(1)] }
+
+      let(:bin_file_name) { "xchg_reg64_rax.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, reg64" do
+      let(:operands) { [reg64(0), reg64(1)] }
+
+      let(:bin_file_name) { "xchg_reg64_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, mem64" do
+      let(:operands) { [reg64(0), mem64(1)] }
+
+      let(:bin_file_name) { "xchg_reg64_mem64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem8, reg8" do
+      let(:operands) { [mem8(0), reg8(1)] }
+
+      let(:bin_file_name) { "xchg_mem8_reg8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem16, reg16" do
+      let(:operands) { [mem16(0), reg16(1)] }
+
+      let(:bin_file_name) { "xchg_mem16_reg16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem32, reg32" do
+      let(:operands) { [mem32(0), reg32(1)] }
+
+      let(:bin_file_name) { "xchg_mem32_reg32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem64, reg64" do
+      let(:operands) { [mem64(0), reg64(1)] }
+
+      let(:bin_file_name) { "xchg_mem64_reg64.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end
