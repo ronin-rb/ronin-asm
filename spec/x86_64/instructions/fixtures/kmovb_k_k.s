@@ -1,0 +1,3 @@
+.code64
+.section .text
+  kmovb %k2, %k1
