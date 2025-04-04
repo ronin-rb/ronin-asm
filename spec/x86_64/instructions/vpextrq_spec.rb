@@ -64,5 +64,39 @@ describe Ronin::ASM::X86_64::Instructions::VPEXTRQ do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types reg64, xmm, imm8" do
+      let(:operands) { [reg64(0), xmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpextrq_reg64_xmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem64, xmm, imm8" do
+      let(:operands) { [mem64(0), xmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpextrq_mem64_xmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end

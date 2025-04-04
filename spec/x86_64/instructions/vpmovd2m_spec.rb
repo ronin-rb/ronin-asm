@@ -76,5 +76,51 @@ describe Ronin::ASM::X86_64::Instructions::VPMOVD2M do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types k, xmm" do
+      let(:operands) { [k(0), xmm(1)] }
+
+      let(:bin_file_name) { "vpmovd2m_k_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types k, ymm" do
+      let(:operands) { [k(0), ymm(1)] }
+
+      let(:bin_file_name) { "vpmovd2m_k_ymm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types k, zmm" do
+      let(:operands) { [k(0), zmm(1)] }
+
+      let(:bin_file_name) { "vpmovd2m_k_zmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end

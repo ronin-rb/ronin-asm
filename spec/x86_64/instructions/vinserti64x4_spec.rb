@@ -88,5 +88,63 @@ describe Ronin::ASM::X86_64::Instructions::VINSERTI64X4 do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types zmm{k}{z}, zmm, ymm, imm8" do
+      let(:operands) { [zmm_k_z(0), zmm(1), ymm(2), imm8(3)] }
+
+      let(:bin_file_name) { "vinserti64x4_zmm{k}{z}_zmm_ymm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, zmm, mem256, imm8" do
+      let(:operands) { [zmm_k_z(0), zmm(1), mem256(2), imm8(3)] }
+
+      let(:bin_file_name) { "vinserti64x4_zmm{k}{z}_zmm_mem256_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, ymm, imm8" do
+      let(:operands) { [zmm(0), zmm(1), ymm(2), imm8(3)] }
+
+      let(:bin_file_name) { "vinserti64x4_zmm_zmm_ymm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, mem256, imm8" do
+      let(:operands) { [zmm(0), zmm(1), mem256(2), imm8(3)] }
+
+      let(:bin_file_name) { "vinserti64x4_zmm_zmm_mem256_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end
