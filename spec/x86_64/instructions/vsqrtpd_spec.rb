@@ -10,7 +10,7 @@ require_relative '../helpers/operands'
 describe Ronin::ASM::X86_64::Instructions::VSQRTPD do
   include Helpers::X86_64::Operands
 
-  let(:operands) { [xmm_k_z(0), mem128_mem32_bcst(1)] }
+  let(:operands) { [xmm_k_z(0), mem128_mem64_bcst(1)] }
 
   subject { described_class.new(*operands) }
 
@@ -19,27 +19,27 @@ describe Ronin::ASM::X86_64::Instructions::VSQRTPD do
       expect(subject.name).to be(:vsqrtpd)
     end
 
-    context "when given operands of types xmm{k}{z}, mem128/mem32bcst" do
-      let(:operands) { [xmm_k_z(0), mem128_mem32_bcst(1)] }
+    context "when given operands of types xmm{k}{z}, mem128/mem64bcst" do
+      let(:operands) { [xmm_k_z(0), mem128_mem64_bcst(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
 
-      it 'must set #form to [:"xmm{k}{z}", :"mem128/mem32bcst"]' do
-        expect(subject.form).to eq([:"xmm{k}{z}", :"mem128/mem32bcst"])
+      it 'must set #form to [:"xmm{k}{z}", :"mem128/mem64bcst"]' do
+        expect(subject.form).to eq([:"xmm{k}{z}", :"mem128/mem64bcst"])
       end
     end
 
-    context "when given operands of types ymm{k}{z}, mem256/mem32bcst" do
-      let(:operands) { [ymm_k_z(0), mem256_mem32_bcst(1)] }
+    context "when given operands of types ymm{k}{z}, mem256/mem64bcst" do
+      let(:operands) { [ymm_k_z(0), mem256_mem64_bcst(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
 
-      it 'must set #form to [:"ymm{k}{z}", :"mem256/mem32bcst"]' do
-        expect(subject.form).to eq([:"ymm{k}{z}", :"mem256/mem32bcst"])
+      it 'must set #form to [:"ymm{k}{z}", :"mem256/mem64bcst"]' do
+        expect(subject.form).to eq([:"ymm{k}{z}", :"mem256/mem64bcst"])
       end
     end
 
@@ -91,15 +91,15 @@ describe Ronin::ASM::X86_64::Instructions::VSQRTPD do
       end
     end
 
-    context "when given operands of types xmm, mem128/mem32bcst" do
-      let(:operands) { [xmm(0), mem128_mem32_bcst(1)] }
+    context "when given operands of types xmm, mem128/mem64bcst" do
+      let(:operands) { [xmm(0), mem128_mem64_bcst(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
 
-      it 'must set #form to [:xmm, :"mem128/mem32bcst"]' do
-        expect(subject.form).to eq([:xmm, :"mem128/mem32bcst"])
+      it 'must set #form to [:xmm, :"mem128/mem64bcst"]' do
+        expect(subject.form).to eq([:xmm, :"mem128/mem64bcst"])
       end
     end
 
@@ -139,15 +139,15 @@ describe Ronin::ASM::X86_64::Instructions::VSQRTPD do
       end
     end
 
-    context "when given operands of types ymm, mem256/mem32bcst" do
-      let(:operands) { [ymm(0), mem256_mem32_bcst(1)] }
+    context "when given operands of types ymm, mem256/mem64bcst" do
+      let(:operands) { [ymm(0), mem256_mem64_bcst(1)] }
 
       it "must set #operands" do
         expect(subject.operands).to eq(operands)
       end
 
-      it 'must set #form to [:ymm, :"mem256/mem32bcst"]' do
-        expect(subject.form).to eq([:ymm, :"mem256/mem32bcst"])
+      it 'must set #form to [:ymm, :"mem256/mem64bcst"]' do
+        expect(subject.form).to eq([:ymm, :"mem256/mem64bcst"])
       end
     end
 
