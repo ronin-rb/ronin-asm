@@ -83,7 +83,7 @@ module Ronin
               encoder.write_opcode(0xc8) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             when [:"zmm{k}{z}", :zmm]
-              encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b10, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: @operands[0], z: @operands[0]) +
               encoder.write_opcode(0xc8) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
             when [:zmm, :"mem512/mem32bcst"]
@@ -91,7 +91,7 @@ module Ronin
               encoder.write_opcode(0xc8) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             when [:zmm, :zmm]
-              encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, ll: 0b10, w: 0, vvvv: 0, v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0xc8) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
             when [:"zmm{k}{z}", :zmm, :"{sae}"]
