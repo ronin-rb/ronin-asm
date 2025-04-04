@@ -76,5 +76,51 @@ describe Ronin::ASM::X86::Instructions::VSCATTERQPS do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types vm64x{k}, xmm" do
+      let(:operands) { [vm64x_k(0), xmm(1)] }
+
+      let(:bin_file_name) { "vscatterqps_vm64x{k}_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types vm64y{k}, xmm" do
+      let(:operands) { [vm64y_k(0), xmm(1)] }
+
+      let(:bin_file_name) { "vscatterqps_vm64y{k}_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types vm64z{k}, ymm" do
+      let(:operands) { [vm64z_k(0), ymm(1)] }
+
+      let(:bin_file_name) { "vscatterqps_vm64z{k}_ymm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end

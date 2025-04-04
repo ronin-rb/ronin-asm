@@ -88,5 +88,63 @@ describe Ronin::ASM::X86::Instructions::CMOVL do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types reg16, reg16" do
+      let(:operands) { [reg16(0), reg16(1)] }
+
+      let(:bin_file_name) { "cmovl_reg16_reg16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg16, mem16" do
+      let(:operands) { [reg16(0), mem16(1)] }
+
+      let(:bin_file_name) { "cmovl_reg16_mem16.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, reg32" do
+      let(:operands) { [reg32(0), reg32(1)] }
+
+      let(:bin_file_name) { "cmovl_reg32_reg32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, mem32" do
+      let(:operands) { [reg32(0), mem32(1)] }
+
+      let(:bin_file_name) { "cmovl_reg32_mem32.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end

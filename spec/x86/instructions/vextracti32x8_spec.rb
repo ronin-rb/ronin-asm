@@ -88,5 +88,63 @@ describe Ronin::ASM::X86::Instructions::VEXTRACTI32X8 do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types ymm{k}{z}, zmm, imm8" do
+      let(:operands) { [ymm_k_z(0), zmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vextracti32x8_ymm{k}{z}_zmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem256{k}, zmm, imm8" do
+      let(:operands) { [mem256_k(0), zmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vextracti32x8_mem256{k}_zmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, zmm, imm8" do
+      let(:operands) { [ymm(0), zmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vextracti32x8_ymm_zmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem256, zmm, imm8" do
+      let(:operands) { [mem256(0), zmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vextracti32x8_mem256_zmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end
