@@ -64,5 +64,43 @@ describe Ronin::ASM::X86::Instructions::JNS do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types rel8" do
+      let(:operands) { [rel8(0)] }
+
+      let(:bin_file_name) { "jns_rel8.bin" }
+
+      it do
+        skip "currently cannot convert Ronin::ASM::X86::RelativeOffset or Ronin::ASM::X86::MemoryOffset operands to ASM syntax"
+
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types rel32" do
+      let(:operands) { [rel32(0)] }
+
+      let(:bin_file_name) { "jns_rel32.bin" }
+
+      it do
+        skip "currently cannot convert Ronin::ASM::X86::RelativeOffset or Ronin::ASM::X86::MemoryOffset operands to ASM syntax"
+
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end
