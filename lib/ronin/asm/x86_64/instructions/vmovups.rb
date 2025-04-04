@@ -107,25 +107,25 @@ module Ronin
               encoder.write_opcode(0x11) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
             when [:"xmm{k}{z}", :xmm]
-              encoder.write_evex(mmm: 0b001, pp: 0b00, w: 0, ll: 0b00, vvvv: 0, v: 0, rr: @operands[1], _B: @operands[0], x: @operands[0], b: 0, aaa: @operands[0], z: @operands[0]) +
-              encoder.write_opcode(0x11) +
-              encoder.write_modrm(0b11,@operands[1],@operands[0])
+              encoder.write_evex(mmm: 0b001, pp: 0b00, w: 0, ll: 0b00, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: @operands[0], z: @operands[0]) +
+              encoder.write_opcode(0x10) +
+              encoder.write_modrm(0b11,@operands[0],@operands[1])
             when [:"mem256{k}", :ymm]
               encoder.write_evex(mmm: 0b001, pp: 0b00, w: 0, ll: 0b01, vvvv: 0, v: 0, rr: @operands[1], _B: @operands[0], x: @operands[0], b: 0, aaa: @operands[0], z: 0, disp8xN: 32) +
               encoder.write_opcode(0x11) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
             when [:"ymm{k}{z}", :ymm]
-              encoder.write_evex(mmm: 0b001, pp: 0b00, w: 0, ll: 0b01, vvvv: 0, v: 0, rr: @operands[1], _B: @operands[0], x: @operands[0], b: 0, aaa: @operands[0], z: @operands[0]) +
-              encoder.write_opcode(0x11) +
-              encoder.write_modrm(0b11,@operands[1],@operands[0])
+              encoder.write_evex(mmm: 0b001, pp: 0b00, w: 0, ll: 0b01, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: @operands[0], z: @operands[0]) +
+              encoder.write_opcode(0x10) +
+              encoder.write_modrm(0b11,@operands[0],@operands[1])
             when [:"mem512{k}", :zmm]
               encoder.write_evex(mmm: 0b001, pp: 0b00, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: @operands[1], _B: @operands[0], x: @operands[0], b: 0, aaa: @operands[0], z: 0, disp8xN: 64) +
               encoder.write_opcode(0x11) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
             when [:"zmm{k}{z}", :zmm]
-              encoder.write_evex(mmm: 0b001, pp: 0b00, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: @operands[1], _B: @operands[0], x: @operands[0], b: 0, aaa: @operands[0], z: @operands[0]) +
-              encoder.write_opcode(0x11) +
-              encoder.write_modrm(0b11,@operands[1],@operands[0])
+              encoder.write_evex(mmm: 0b001, pp: 0b00, w: 0, ll: 0b10, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: @operands[0], z: @operands[0]) +
+              encoder.write_opcode(0x10) +
+              encoder.write_modrm(0b11,@operands[0],@operands[1])
             when [:"xmm{k}{z}", :mem128]
               encoder.write_evex(mmm: 0b001, pp: 0b00, w: 0, ll: 0b00, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: @operands[0], z: @operands[0], disp8xN: 16) +
               encoder.write_opcode(0x10) +
