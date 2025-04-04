@@ -64,5 +64,39 @@ describe Ronin::ASM::X86::Instructions::VPINSRW do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types xmm, xmm, reg32, imm8" do
+      let(:operands) { [xmm(0), xmm(1), reg32(2), imm8(3)] }
+
+      let(:bin_file_name) { "vpinsrw_xmm_xmm_reg32_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm, xmm, mem16, imm8" do
+      let(:operands) { [xmm(0), xmm(1), mem16(2), imm8(3)] }
+
+      let(:bin_file_name) { "vpinsrw_xmm_xmm_mem16_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end

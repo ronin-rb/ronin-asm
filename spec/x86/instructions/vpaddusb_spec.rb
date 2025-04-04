@@ -184,5 +184,159 @@ describe Ronin::ASM::X86::Instructions::VPADDUSB do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types xmm{k}{z}, xmm, xmm" do
+      let(:operands) { [xmm_k_z(0), xmm(1), xmm(2)] }
+
+      let(:bin_file_name) { "vpaddusb_xmm{k}{z}_xmm_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm{k}{z}, xmm, mem128" do
+      let(:operands) { [xmm_k_z(0), xmm(1), mem128(2)] }
+
+      let(:bin_file_name) { "vpaddusb_xmm{k}{z}_xmm_mem128.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}{z}, ymm, ymm" do
+      let(:operands) { [ymm_k_z(0), ymm(1), ymm(2)] }
+
+      let(:bin_file_name) { "vpaddusb_ymm{k}{z}_ymm_ymm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}{z}, ymm, mem256" do
+      let(:operands) { [ymm_k_z(0), ymm(1), mem256(2)] }
+
+      let(:bin_file_name) { "vpaddusb_ymm{k}{z}_ymm_mem256.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, zmm, zmm" do
+      let(:operands) { [zmm_k_z(0), zmm(1), zmm(2)] }
+
+      let(:bin_file_name) { "vpaddusb_zmm{k}{z}_zmm_zmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, zmm, mem512" do
+      let(:operands) { [zmm_k_z(0), zmm(1), mem512(2)] }
+
+      let(:bin_file_name) { "vpaddusb_zmm{k}{z}_zmm_mem512.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm, xmm, xmm" do
+      let(:operands) { [xmm(0), xmm(1), xmm(2)] }
+
+      let(:bin_file_name) { "vpaddusb_xmm_xmm_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm, xmm, mem128" do
+      let(:operands) { [xmm(0), xmm(1), mem128(2)] }
+
+      let(:bin_file_name) { "vpaddusb_xmm_xmm_mem128.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, ymm, ymm" do
+      let(:operands) { [ymm(0), ymm(1), ymm(2)] }
+
+      let(:bin_file_name) { "vpaddusb_ymm_ymm_ymm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, ymm, mem256" do
+      let(:operands) { [ymm(0), ymm(1), mem256(2)] }
+
+      let(:bin_file_name) { "vpaddusb_ymm_ymm_mem256.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, zmm" do
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
+
+      let(:bin_file_name) { "vpaddusb_zmm_zmm_zmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, mem512" do
+      let(:operands) { [zmm(0), zmm(1), mem512(2)] }
+
+      let(:bin_file_name) { "vpaddusb_zmm_zmm_mem512.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end
