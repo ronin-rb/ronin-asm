@@ -383,6 +383,15 @@ module CodeGen
         def memory? = MEM_TYPES.include?(type)
         def any_memory_type? = type == :m
 
+        # Register with opmask types
+        REG_OPMASK_TYPES = Set[
+          :"k{k}",
+          :"xmm{k}", :"xmm{k}{z}",
+          :"ymm{k}", :"ymm{k}{z}",
+          :"zmm{k}", :"zmm{k}{z}",
+        ]
+        def register_with_opmask? = REG_OPMASK_TYPES.include?(type)
+
         OPMASK_TYPES = Set[
           :"k{k}",
           :"xmm{k}", :"xmm{k}{z}",
