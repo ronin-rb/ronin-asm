@@ -1,0 +1,3 @@
+.code64
+.section .text
+  vrndscalesh $0x55, {sae}, %xmm2, %xmm1, %xmm0
