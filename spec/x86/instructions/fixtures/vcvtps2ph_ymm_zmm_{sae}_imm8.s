@@ -1,0 +1,3 @@
+.code32
+.section .text
+  vcvtps2ph $0x44, {sae}, %zmm1, %ymm0
