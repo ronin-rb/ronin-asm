@@ -392,6 +392,18 @@ module CodeGen
         ]
         def register_with_opmask? = REG_OPMASK_TYPES.include?(type)
 
+        # Memory with opmask types
+        MEM_OPMASK_TYPES = Set[
+          :"m16{k}", :"m32{k}", :"m64{k}", :"m128{k}", :"m256{k}", :"m512{k}",
+          :"vm32x{k}",
+          :"vm64x{k}",
+          :"vm32y{k}",
+          :"vm64y{k}",
+          :"vm32z{k}",
+          :"vm64z{k}"
+        ]
+        def memory_with_opmask? = MEM_OPMASK_TYPES.include?(type)
+
         OPMASK_TYPES = Set[
           :"k{k}",
           :"xmm{k}", :"xmm{k}{z}",
