@@ -103,30 +103,6 @@ describe Ronin::ASM::X86::Instructions::VBROADCASTSS do
       end
     end
 
-    context "when given operands of types ymm, xmm" do
-      let(:operands) { [ymm(0), xmm(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:ymm, :xmm]" do
-        expect(subject.form).to eq([:ymm, :xmm])
-      end
-    end
-
-    context "when given operands of types ymm, mem32" do
-      let(:operands) { [ymm(0), mem32(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:ymm, :mem32]" do
-        expect(subject.form).to eq([:ymm, :mem32])
-      end
-    end
-
     context "when given operands of types ymm, mem32" do
       let(:operands) { [ymm(0), mem32(1)] }
 

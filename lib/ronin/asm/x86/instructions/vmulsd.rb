@@ -57,10 +57,6 @@ module Ronin
                       [:"xmm{k}{z}", :xmm, :mem64]
                     elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm)
                       [:xmm, :xmm, :xmm]
-                    elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm)
-                      [:xmm, :xmm, :xmm]
-                    elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem64)
-                      [:xmm, :xmm, :mem64]
                     elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:mem64)
                       [:xmm, :xmm, :mem64]
                     elsif @operands.length == 4 && @operands[0].type_of?(:"xmm{k}{z}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm) && @operands[3].type_of?(:"{er}")
@@ -94,16 +90,8 @@ module Ronin
               encoder.write_vex(type: :vex, m_mmmm: 0b00001, pp: 0b11, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0x59) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
-            when [:xmm, :xmm, :xmm]
-              encoder.write_evex(mmm: 0b001, pp: 0b11, w: 1, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0) +
-              encoder.write_opcode(0x59) +
-              encoder.write_modrm(0b11,@operands[0],@operands[2])
             when [:xmm, :xmm, :mem64]
               encoder.write_vex(type: :vex, m_mmmm: 0b00001, pp: 0b11, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
-              encoder.write_opcode(0x59) +
-              encoder.write_modrm(@operands[2],@operands[0],@operands[2])
-            when [:xmm, :xmm, :mem64]
-              encoder.write_evex(mmm: 0b001, pp: 0b11, ll: 0b00, w: 1, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: 0, aaa: 0, z: 0, disp8xN: 8) +
               encoder.write_opcode(0x59) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
             when [:"xmm{k}{z}", :xmm, :xmm, :"{er}"]
