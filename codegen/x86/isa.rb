@@ -251,7 +251,7 @@ module CodeGen
           # NOTE: for some reason other assemblers prefer the first encoding if
           # all operands are registers, otherwise the last encoding is
           # preferred.
-          if !operands.empty? && operands.all?(&:register?)
+          if !operands.empty? && operands.all? { |operand| operand.register? || operand.register_with_opmask? }
             encodings.first
           else
             encodings.last
