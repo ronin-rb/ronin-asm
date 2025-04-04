@@ -91,18 +91,6 @@ describe Ronin::ASM::X86::Instructions::VPERMPS do
       end
     end
 
-    context "when given operands of types ymm, ymm, ymm" do
-      let(:operands) { [ymm(0), ymm(1), ymm(2)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:ymm, :ymm, :ymm]" do
-        expect(subject.form).to eq([:ymm, :ymm, :ymm])
-      end
-    end
-
     context "when given operands of types ymm, ymm, mem256" do
       let(:operands) { [ymm(0), ymm(1), mem256(2)] }
 

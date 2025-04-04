@@ -31,18 +31,6 @@ describe Ronin::ASM::X86::Instructions::VMOVQ do
       end
     end
 
-    context "when given operands of types xmm, xmm" do
-      let(:operands) { [xmm(0), xmm(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :xmm]" do
-        expect(subject.form).to eq([:xmm, :xmm])
-      end
-    end
-
     context "when given operands of types xmm, mem64" do
       let(:operands) { [xmm(0), mem64(1)] }
 
@@ -52,30 +40,6 @@ describe Ronin::ASM::X86::Instructions::VMOVQ do
 
       it "must set #form to [:xmm, :mem64]" do
         expect(subject.form).to eq([:xmm, :mem64])
-      end
-    end
-
-    context "when given operands of types xmm, mem64" do
-      let(:operands) { [xmm(0), mem64(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :mem64]" do
-        expect(subject.form).to eq([:xmm, :mem64])
-      end
-    end
-
-    context "when given operands of types mem64, xmm" do
-      let(:operands) { [mem64(0), xmm(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:mem64, :xmm]" do
-        expect(subject.form).to eq([:mem64, :xmm])
       end
     end
 

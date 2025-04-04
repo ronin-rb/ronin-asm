@@ -31,30 +31,6 @@ describe Ronin::ASM::X86::Instructions::VCOMISS do
       end
     end
 
-    context "when given operands of types xmm, xmm" do
-      let(:operands) { [xmm(0), xmm(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :xmm]" do
-        expect(subject.form).to eq([:xmm, :xmm])
-      end
-    end
-
-    context "when given operands of types xmm, mem32" do
-      let(:operands) { [xmm(0), mem32(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :mem32]" do
-        expect(subject.form).to eq([:xmm, :mem32])
-      end
-    end
-
     context "when given operands of types xmm, mem32" do
       let(:operands) { [xmm(0), mem32(1)] }
 
