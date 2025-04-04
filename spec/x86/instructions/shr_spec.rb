@@ -256,5 +256,231 @@ describe Ronin::ASM::X86::Instructions::SHR do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types reg8, 1" do
+      let(:operands) { [reg8(0), imm8_1(1)] }
+
+      let(:bin_file_name) { "shr_reg8_1.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg8, imm8" do
+      let(:operands) { [reg8(0), imm8(1)] }
+
+      let(:bin_file_name) { "shr_reg8_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg8, cl" do
+      let(:operands) { [reg8(0), cl(1)] }
+
+      let(:bin_file_name) { "shr_reg8_cl.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg16, 1" do
+      let(:operands) { [reg16(0), imm8_1(1)] }
+
+      let(:bin_file_name) { "shr_reg16_1.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg16, imm8" do
+      let(:operands) { [reg16(0), imm8(1)] }
+
+      let(:bin_file_name) { "shr_reg16_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg16, cl" do
+      let(:operands) { [reg16(0), cl(1)] }
+
+      let(:bin_file_name) { "shr_reg16_cl.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, 1" do
+      let(:operands) { [reg32(0), imm8_1(1)] }
+
+      let(:bin_file_name) { "shr_reg32_1.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, imm8" do
+      let(:operands) { [reg32(0), imm8(1)] }
+
+      let(:bin_file_name) { "shr_reg32_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, cl" do
+      let(:operands) { [reg32(0), cl(1)] }
+
+      let(:bin_file_name) { "shr_reg32_cl.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem8, 1" do
+      let(:operands) { [mem8(0), imm8_1(1)] }
+
+      let(:bin_file_name) { "shr_mem8_1.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem8, imm8" do
+      let(:operands) { [mem8(0), imm8(1)] }
+
+      let(:bin_file_name) { "shr_mem8_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem8, cl" do
+      let(:operands) { [mem8(0), cl(1)] }
+
+      let(:bin_file_name) { "shr_mem8_cl.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem16, 1" do
+      let(:operands) { [mem16(0), imm8_1(1)] }
+
+      let(:bin_file_name) { "shr_mem16_1.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem16, imm8" do
+      let(:operands) { [mem16(0), imm8(1)] }
+
+      let(:bin_file_name) { "shr_mem16_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem16, cl" do
+      let(:operands) { [mem16(0), cl(1)] }
+
+      let(:bin_file_name) { "shr_mem16_cl.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem32, 1" do
+      let(:operands) { [mem32(0), imm8_1(1)] }
+
+      let(:bin_file_name) { "shr_mem32_1.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem32, imm8" do
+      let(:operands) { [mem32(0), imm8(1)] }
+
+      let(:bin_file_name) { "shr_mem32_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types mem32, cl" do
+      let(:operands) { [mem32(0), cl(1)] }
+
+      let(:bin_file_name) { "shr_mem32_cl.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end
