@@ -31,30 +31,6 @@ describe Ronin::ASM::X86_64::Instructions::VCVTTSS2SI do
       end
     end
 
-    context "when given operands of types reg32, xmm" do
-      let(:operands) { [reg32(0), xmm(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:reg32, :xmm]" do
-        expect(subject.form).to eq([:reg32, :xmm])
-      end
-    end
-
-    context "when given operands of types reg32, mem32" do
-      let(:operands) { [reg32(0), mem32(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:reg32, :mem32]" do
-        expect(subject.form).to eq([:reg32, :mem32])
-      end
-    end
-
     context "when given operands of types reg32, mem32" do
       let(:operands) { [reg32(0), mem32(1)] }
 
@@ -76,30 +52,6 @@ describe Ronin::ASM::X86_64::Instructions::VCVTTSS2SI do
 
       it "must set #form to [:reg64, :xmm]" do
         expect(subject.form).to eq([:reg64, :xmm])
-      end
-    end
-
-    context "when given operands of types reg64, xmm" do
-      let(:operands) { [reg64(0), xmm(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:reg64, :xmm]" do
-        expect(subject.form).to eq([:reg64, :xmm])
-      end
-    end
-
-    context "when given operands of types reg64, mem32" do
-      let(:operands) { [reg64(0), mem32(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:reg64, :mem32]" do
-        expect(subject.form).to eq([:reg64, :mem32])
       end
     end
 

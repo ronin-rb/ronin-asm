@@ -31,30 +31,6 @@ describe Ronin::ASM::X86_64::Instructions::VMOVNTDQA do
       end
     end
 
-    context "when given operands of types xmm, mem128" do
-      let(:operands) { [xmm(0), mem128(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :mem128]" do
-        expect(subject.form).to eq([:xmm, :mem128])
-      end
-    end
-
-    context "when given operands of types ymm, mem256" do
-      let(:operands) { [ymm(0), mem256(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:ymm, :mem256]" do
-        expect(subject.form).to eq([:ymm, :mem256])
-      end
-    end
-
     context "when given operands of types ymm, mem256" do
       let(:operands) { [ymm(0), mem256(1)] }
 

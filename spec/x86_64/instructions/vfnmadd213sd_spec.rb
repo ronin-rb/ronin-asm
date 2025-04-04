@@ -55,30 +55,6 @@ describe Ronin::ASM::X86_64::Instructions::VFNMADD213SD do
       end
     end
 
-    context "when given operands of types xmm, xmm, xmm" do
-      let(:operands) { [xmm(0), xmm(1), xmm(2)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :xmm, :xmm]" do
-        expect(subject.form).to eq([:xmm, :xmm, :xmm])
-      end
-    end
-
-    context "when given operands of types xmm, xmm, mem64" do
-      let(:operands) { [xmm(0), xmm(1), mem64(2)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :xmm, :mem64]" do
-        expect(subject.form).to eq([:xmm, :xmm, :mem64])
-      end
-    end
-
     context "when given operands of types xmm, xmm, mem64" do
       let(:operands) { [xmm(0), xmm(1), mem64(2)] }
 

@@ -31,18 +31,6 @@ describe Ronin::ASM::X86_64::Instructions::VMOVHLPS do
       end
     end
 
-    context "when given operands of types xmm, xmm, xmm" do
-      let(:operands) { [xmm(0), xmm(1), xmm(2)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :xmm, :xmm]" do
-        expect(subject.form).to eq([:xmm, :xmm, :xmm])
-      end
-    end
-
     context "when given operands that do not match any of the instruction's forms" do
       let(:operands) { [reg32, imm8, xmm] }
 
