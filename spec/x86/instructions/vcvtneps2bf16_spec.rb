@@ -127,30 +127,6 @@ describe Ronin::ASM::X86::Instructions::VCVTNEPS2BF16 do
       end
     end
 
-    context "when given operands of types xmm, xmm" do
-      let(:operands) { [xmm(0), xmm(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :xmm]" do
-        expect(subject.form).to eq([:xmm, :xmm])
-      end
-    end
-
-    context "when given operands of types xmm, ymm" do
-      let(:operands) { [xmm(0), ymm(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :ymm]" do
-        expect(subject.form).to eq([:xmm, :ymm])
-      end
-    end
-
     context "when given operands of types xmm, ymm" do
       let(:operands) { [xmm(0), ymm(1)] }
 
