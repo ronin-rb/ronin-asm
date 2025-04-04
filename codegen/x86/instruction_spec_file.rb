@@ -43,6 +43,19 @@ module CodeGen
         "[#{operands.map { |operand| operand.ronin_type.inspect }.join(', ')}]"
       end
 
+      #
+      # Returns the `.bin` fixture filename for the instruction and given
+      # operands.
+      #
+      # @param [Array<ISA::Operand>] operands
+      # @return [String]
+      #
+      def bin_file_name(operands)
+        [
+          @instruction.name, *operands.map(&:ronin_type)
+        ].join('_').gsub('/','').concat('.bin')
+      end
+
     end
   end
 end
