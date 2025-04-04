@@ -244,5 +244,219 @@ describe Ronin::ASM::X86_64::Instructions::VPERMPD do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types ymm{k}{z}, mem256/mem64bcst, imm8" do
+      let(:operands) { [ymm_k_z(0), mem256_mem64_bcst(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpermpd_ymm{k}{z}_mem256mem64bcst_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, mem512/mem64bcst, imm8" do
+      let(:operands) { [zmm_k_z(0), mem512_mem64_bcst(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpermpd_zmm{k}{z}_mem512mem64bcst_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}{z}, ymm, mem256/mem64bcst" do
+      let(:operands) { [ymm_k_z(0), ymm(1), mem256_mem64_bcst(2)] }
+
+      let(:bin_file_name) { "vpermpd_ymm{k}{z}_ymm_mem256mem64bcst.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}{z}, ymm, imm8" do
+      let(:operands) { [ymm_k_z(0), ymm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpermpd_ymm{k}{z}_ymm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}{z}, ymm, ymm" do
+      let(:operands) { [ymm_k_z(0), ymm(1), ymm(2)] }
+
+      let(:bin_file_name) { "vpermpd_ymm{k}{z}_ymm_ymm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, zmm, mem512/mem64bcst" do
+      let(:operands) { [zmm_k_z(0), zmm(1), mem512_mem64_bcst(2)] }
+
+      let(:bin_file_name) { "vpermpd_zmm{k}{z}_zmm_mem512mem64bcst.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, zmm, imm8" do
+      let(:operands) { [zmm_k_z(0), zmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpermpd_zmm{k}{z}_zmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, zmm, zmm" do
+      let(:operands) { [zmm_k_z(0), zmm(1), zmm(2)] }
+
+      let(:bin_file_name) { "vpermpd_zmm{k}{z}_zmm_zmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, mem256/mem64bcst, imm8" do
+      let(:operands) { [ymm(0), mem256_mem64_bcst(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpermpd_ymm_mem256mem64bcst_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, ymm, mem256/mem64bcst" do
+      let(:operands) { [ymm(0), ymm(1), mem256_mem64_bcst(2)] }
+
+      let(:bin_file_name) { "vpermpd_ymm_ymm_mem256mem64bcst.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, ymm, imm8" do
+      let(:operands) { [ymm(0), ymm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpermpd_ymm_ymm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, ymm, ymm" do
+      let(:operands) { [ymm(0), ymm(1), ymm(2)] }
+
+      let(:bin_file_name) { "vpermpd_ymm_ymm_ymm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, mem256, imm8" do
+      let(:operands) { [ymm(0), mem256(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpermpd_ymm_mem256_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, mem512/mem64bcst, imm8" do
+      let(:operands) { [zmm(0), mem512_mem64_bcst(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpermpd_zmm_mem512mem64bcst_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, mem512/mem64bcst" do
+      let(:operands) { [zmm(0), zmm(1), mem512_mem64_bcst(2)] }
+
+      let(:bin_file_name) { "vpermpd_zmm_zmm_mem512mem64bcst.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, imm8" do
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpermpd_zmm_zmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, zmm" do
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
+
+      let(:bin_file_name) { "vpermpd_zmm_zmm_zmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end

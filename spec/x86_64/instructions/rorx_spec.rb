@@ -88,5 +88,63 @@ describe Ronin::ASM::X86_64::Instructions::RORX do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types reg32, reg32, imm8" do
+      let(:operands) { [reg32(0), reg32(1), imm8(2)] }
+
+      let(:bin_file_name) { "rorx_reg32_reg32_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg32, mem32, imm8" do
+      let(:operands) { [reg32(0), mem32(1), imm8(2)] }
+
+      let(:bin_file_name) { "rorx_reg32_mem32_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, reg64, imm8" do
+      let(:operands) { [reg64(0), reg64(1), imm8(2)] }
+
+      let(:bin_file_name) { "rorx_reg64_reg64_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types reg64, mem64, imm8" do
+      let(:operands) { [reg64(0), mem64(1), imm8(2)] }
+
+      let(:bin_file_name) { "rorx_reg64_mem64_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end
