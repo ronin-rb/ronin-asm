@@ -1,0 +1,3 @@
+.code32
+.section .text
+  vcvtneps2bf16y %ymm1, %xmm0
