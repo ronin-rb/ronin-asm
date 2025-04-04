@@ -79,5 +79,47 @@ describe Ronin::ASM::X86_64::Instructions::<%= @instruction.name.upcase %> do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86_64/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86_64::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+    <%- @instruction.accepted_operands.each do |operands| -%>
+
+    <%- unless operands.empty? -%>
+    context "when #operands contains operands of types <%= operands_type_list(operands) %>" do
+      let(:operands) { <%= operands_array(operands) %> }
+
+      let(:bin_file_name) { <%= bin_file_name(operands).inspect %> }
+
+      it do
+        <%- if operands.any? { |operand| operand.relative_offset? || operand.memory_offset? } -%>
+        skip "currently cannot convert Ronin::ASM::X86_64::RelativeOffset or Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
+
+        <%- end -%>
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+    <%- else -%>
+    context "when #operands is empty" do
+      let(:operands) { [] }
+
+      let(:bin_file_name) { <%= bin_file_name(operands).inspect %> }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+    <%- end -%>
+    <%- end -%>
+  end
 end
