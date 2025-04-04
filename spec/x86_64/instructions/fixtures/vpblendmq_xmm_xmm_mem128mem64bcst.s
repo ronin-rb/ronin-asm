@@ -1,0 +1,3 @@
+.code64
+.section .text
+  vpblendmq (%rdx){1to2}, %xmm1, %xmm0
