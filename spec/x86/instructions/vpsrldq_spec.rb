@@ -112,5 +112,87 @@ describe Ronin::ASM::X86::Instructions::VPSRLDQ do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types xmm, xmm, imm8" do
+      let(:operands) { [xmm(0), xmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpsrldq_xmm_xmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm, mem128, imm8" do
+      let(:operands) { [xmm(0), mem128(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpsrldq_xmm_mem128_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, ymm, imm8" do
+      let(:operands) { [ymm(0), ymm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpsrldq_ymm_ymm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, mem256, imm8" do
+      let(:operands) { [ymm(0), mem256(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpsrldq_ymm_mem256_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, imm8" do
+      let(:operands) { [zmm(0), zmm(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpsrldq_zmm_zmm_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, mem512, imm8" do
+      let(:operands) { [zmm(0), mem512(1), imm8(2)] }
+
+      let(:bin_file_name) { "vpsrldq_zmm_mem512_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end

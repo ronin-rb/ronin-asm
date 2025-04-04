@@ -208,5 +208,183 @@ describe Ronin::ASM::X86::Instructions::VMAXPH do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types xmm{k}{z}, xmm, mem128/mem16bcst" do
+      let(:operands) { [xmm_k_z(0), xmm(1), mem128_mem16_bcst(2)] }
+
+      let(:bin_file_name) { "vmaxph_xmm{k}{z}_xmm_mem128mem16bcst.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm{k}{z}, xmm, xmm" do
+      let(:operands) { [xmm_k_z(0), xmm(1), xmm(2)] }
+
+      let(:bin_file_name) { "vmaxph_xmm{k}{z}_xmm_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}{z}, ymm, mem256/mem16bcst" do
+      let(:operands) { [ymm_k_z(0), ymm(1), mem256_mem16_bcst(2)] }
+
+      let(:bin_file_name) { "vmaxph_ymm{k}{z}_ymm_mem256mem16bcst.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm{k}{z}, ymm, ymm" do
+      let(:operands) { [ymm_k_z(0), ymm(1), ymm(2)] }
+
+      let(:bin_file_name) { "vmaxph_ymm{k}{z}_ymm_ymm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, zmm, mem512/mem16bcst" do
+      let(:operands) { [zmm_k_z(0), zmm(1), mem512_mem16_bcst(2)] }
+
+      let(:bin_file_name) { "vmaxph_zmm{k}{z}_zmm_mem512mem16bcst.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, zmm, zmm" do
+      let(:operands) { [zmm_k_z(0), zmm(1), zmm(2)] }
+
+      let(:bin_file_name) { "vmaxph_zmm{k}{z}_zmm_zmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm, xmm, mem128/mem16bcst" do
+      let(:operands) { [xmm(0), xmm(1), mem128_mem16_bcst(2)] }
+
+      let(:bin_file_name) { "vmaxph_xmm_xmm_mem128mem16bcst.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types xmm, xmm, xmm" do
+      let(:operands) { [xmm(0), xmm(1), xmm(2)] }
+
+      let(:bin_file_name) { "vmaxph_xmm_xmm_xmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, ymm, mem256/mem16bcst" do
+      let(:operands) { [ymm(0), ymm(1), mem256_mem16_bcst(2)] }
+
+      let(:bin_file_name) { "vmaxph_ymm_ymm_mem256mem16bcst.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types ymm, ymm, ymm" do
+      let(:operands) { [ymm(0), ymm(1), ymm(2)] }
+
+      let(:bin_file_name) { "vmaxph_ymm_ymm_ymm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, mem512/mem16bcst" do
+      let(:operands) { [zmm(0), zmm(1), mem512_mem16_bcst(2)] }
+
+      let(:bin_file_name) { "vmaxph_zmm_zmm_mem512mem16bcst.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, zmm" do
+      let(:operands) { [zmm(0), zmm(1), zmm(2)] }
+
+      let(:bin_file_name) { "vmaxph_zmm_zmm_zmm.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm{k}{z}, zmm, zmm, {sae}" do
+      let(:operands) { [zmm_k_z(0), zmm(1), zmm(2), sae(3)] }
+
+      let(:bin_file_name) { "vmaxph_zmm{k}{z}_zmm_zmm_{sae}.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
+    context "when #operands contains operands of types zmm, zmm, zmm, {sae}" do
+      let(:operands) { [zmm(0), zmm(1), zmm(2), sae(3)] }
+
+      let(:bin_file_name) { "vmaxph_zmm_zmm_zmm_{sae}.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end
