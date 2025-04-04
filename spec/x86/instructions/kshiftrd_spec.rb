@@ -52,5 +52,27 @@ describe Ronin::ASM::X86::Instructions::KSHIFTRD do
     end
   end
 
-  describe "#encode"
+  describe "#encode", :compatibility do
+    require 'ronin/asm/x86/encoder'
+    require 'stringio'
+
+    let(:output)  { StringIO.new(String.new(encoding: Encoding::ASCII_8BIT)) }
+    let(:encoder) { Ronin::ASM::X86::Encoder.new(output) }
+
+    let(:fixtures_dir)      { File.join(__dir__,'fixtures') }
+    let(:bin_file_path)     { File.join(fixtures_dir,bin_file_name) }
+    let(:expected_encoding) { File.binread(bin_file_path) }
+
+    context "when #operands contains operands of types k, k, imm8" do
+      let(:operands) { [k(0), k(1), imm8(2)] }
+
+      let(:bin_file_name) { "kshiftrd_k_k_imm8.bin" }
+
+      it do
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+  end
 end
