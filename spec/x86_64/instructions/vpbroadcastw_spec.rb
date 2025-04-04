@@ -151,30 +151,6 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTW do
       end
     end
 
-    context "when given operands of types xmm, xmm" do
-      let(:operands) { [xmm(0), xmm(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :xmm]" do
-        expect(subject.form).to eq([:xmm, :xmm])
-      end
-    end
-
-    context "when given operands of types xmm, mem16" do
-      let(:operands) { [xmm(0), mem16(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :mem16]" do
-        expect(subject.form).to eq([:xmm, :mem16])
-      end
-    end
-
     context "when given operands of types xmm, mem16" do
       let(:operands) { [xmm(0), mem16(1)] }
 
@@ -208,30 +184,6 @@ describe Ronin::ASM::X86_64::Instructions::VPBROADCASTW do
 
       it "must set #form to [:ymm, :xmm]" do
         expect(subject.form).to eq([:ymm, :xmm])
-      end
-    end
-
-    context "when given operands of types ymm, xmm" do
-      let(:operands) { [ymm(0), xmm(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:ymm, :xmm]" do
-        expect(subject.form).to eq([:ymm, :xmm])
-      end
-    end
-
-    context "when given operands of types ymm, mem16" do
-      let(:operands) { [ymm(0), mem16(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:ymm, :mem16]" do
-        expect(subject.form).to eq([:ymm, :mem16])
       end
     end
 

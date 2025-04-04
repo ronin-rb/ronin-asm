@@ -115,18 +115,6 @@ describe Ronin::ASM::X86_64::Instructions::VSHUFPS do
       end
     end
 
-    context "when given operands of types xmm, xmm, xmm, imm8" do
-      let(:operands) { [xmm(0), xmm(1), xmm(2), imm8(3)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :xmm, :xmm, :imm8]" do
-        expect(subject.form).to eq([:xmm, :xmm, :xmm, :imm8])
-      end
-    end
-
     context "when given operands of types xmm, xmm, mem128, imm8" do
       let(:operands) { [xmm(0), xmm(1), mem128(2), imm8(3)] }
 
@@ -148,18 +136,6 @@ describe Ronin::ASM::X86_64::Instructions::VSHUFPS do
 
       it 'must set #form to [:ymm, :ymm, :"mem256/mem32bcst", :imm8]' do
         expect(subject.form).to eq([:ymm, :ymm, :"mem256/mem32bcst", :imm8])
-      end
-    end
-
-    context "when given operands of types ymm, ymm, ymm, imm8" do
-      let(:operands) { [ymm(0), ymm(1), ymm(2), imm8(3)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:ymm, :ymm, :ymm, :imm8]" do
-        expect(subject.form).to eq([:ymm, :ymm, :ymm, :imm8])
       end
     end
 

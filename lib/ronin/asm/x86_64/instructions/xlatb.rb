@@ -53,8 +53,6 @@ module Ronin
 
             @form = if @operands.empty?
                       []
-                    elsif @operands.empty?
-                      []
                     else
                       raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
                     end
@@ -86,9 +84,6 @@ module Ronin
           def encode(encoder)
             case @form
             when []
-              encoder.write_opcode(0xd7)
-            when []
-              encoder.write_rex(mandatory: true, w: 1) +
               encoder.write_opcode(0xd7)
             else
               raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")

@@ -53,8 +53,6 @@ module Ronin
 
             @form = if @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm)
                       [:xmm, :xmm, :xmm]
-                    elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm)
-                      [:xmm, :xmm, :xmm]
                     else
                       raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
                     end
@@ -72,10 +70,6 @@ module Ronin
             case @form
             when [:xmm, :xmm, :xmm]
               encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b00, r: @operands[0], b: @operands[2], vvvv: @operands[1]) +
-              encoder.write_opcode(0x16) +
-              encoder.write_modrm(0b11,@operands[0],@operands[2])
-            when [:xmm, :xmm, :xmm]
-              encoder.write_evex(mmm: 0b001, pp: 0b00, ll: 0b00, w: 0, vvvv: @operands[1], v: @operands[1], rr: @operands[0], _B: @operands[2], x: @operands[2], b: 0, aaa: 0, z: 0) +
               encoder.write_opcode(0x16) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
             else

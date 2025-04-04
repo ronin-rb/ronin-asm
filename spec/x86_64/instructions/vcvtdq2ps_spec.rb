@@ -115,18 +115,6 @@ describe Ronin::ASM::X86_64::Instructions::VCVTDQ2PS do
       end
     end
 
-    context "when given operands of types xmm, xmm" do
-      let(:operands) { [xmm(0), xmm(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:xmm, :xmm]" do
-        expect(subject.form).to eq([:xmm, :xmm])
-      end
-    end
-
     context "when given operands of types xmm, mem128" do
       let(:operands) { [xmm(0), mem128(1)] }
 
@@ -148,18 +136,6 @@ describe Ronin::ASM::X86_64::Instructions::VCVTDQ2PS do
 
       it 'must set #form to [:ymm, :"mem256/mem32bcst"]' do
         expect(subject.form).to eq([:ymm, :"mem256/mem32bcst"])
-      end
-    end
-
-    context "when given operands of types ymm, ymm" do
-      let(:operands) { [ymm(0), ymm(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:ymm, :ymm]" do
-        expect(subject.form).to eq([:ymm, :ymm])
       end
     end
 

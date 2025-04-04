@@ -31,18 +31,6 @@ describe Ronin::ASM::X86_64::Instructions::XLATB do
       end
     end
 
-    context "when given no operands" do
-      let(:operands) { [] }
-
-      it "must set #operands to an empty Array" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to an empty Array" do
-        expect(subject.form).to eq([])
-      end
-    end
-
     context "when given operands that do not match any of the instruction's forms" do
       let(:operands) { [reg32, imm8, xmm] }
 

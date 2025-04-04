@@ -31,30 +31,6 @@ describe Ronin::ASM::X86_64::Instructions::VPEXTRQ do
       end
     end
 
-    context "when given operands of types reg64, xmm, imm8" do
-      let(:operands) { [reg64(0), xmm(1), imm8(2)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:reg64, :xmm, :imm8]" do
-        expect(subject.form).to eq([:reg64, :xmm, :imm8])
-      end
-    end
-
-    context "when given operands of types mem64, xmm, imm8" do
-      let(:operands) { [mem64(0), xmm(1), imm8(2)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:mem64, :xmm, :imm8]" do
-        expect(subject.form).to eq([:mem64, :xmm, :imm8])
-      end
-    end
-
     context "when given operands of types mem64, xmm, imm8" do
       let(:operands) { [mem64(0), xmm(1), imm8(2)] }
 
