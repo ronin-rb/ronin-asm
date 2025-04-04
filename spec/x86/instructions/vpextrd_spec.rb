@@ -31,30 +31,6 @@ describe Ronin::ASM::X86::Instructions::VPEXTRD do
       end
     end
 
-    context "when given operands of types reg32, xmm, imm8" do
-      let(:operands) { [reg32(0), xmm(1), imm8(2)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:reg32, :xmm, :imm8]" do
-        expect(subject.form).to eq([:reg32, :xmm, :imm8])
-      end
-    end
-
-    context "when given operands of types mem32, xmm, imm8" do
-      let(:operands) { [mem32(0), xmm(1), imm8(2)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:mem32, :xmm, :imm8]" do
-        expect(subject.form).to eq([:mem32, :xmm, :imm8])
-      end
-    end
-
     context "when given operands of types mem32, xmm, imm8" do
       let(:operands) { [mem32(0), xmm(1), imm8(2)] }
 
