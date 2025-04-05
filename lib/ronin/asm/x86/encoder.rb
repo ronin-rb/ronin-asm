@@ -287,7 +287,14 @@ module Ronin
         # @see https://wiki.osdev.org/X86-64_Instruction_Encoding#VEX/XOP_opcodes
         #
         def write_vex(type: , w: nil, l: nil, m_mmmm: , pp: , r: nil, x: nil, b: nil, vvvv: nil)
-          if (type == :vex && x == 0 && b == 0 && (w == 0 || w.nil?) && m_mmmm == 0b00001)
+          # pre-calculate whether certain VEX bits will be set.
+          x_bit = (x != 1)
+          b_bit = (b != 1)
+          w_bit = (w != 1)
+
+          # three-byte VEX encoding where the X bit, B bit, W bit, and M-MMMM
+          # bits are all set to 1 can be downgraded to a two-byte VEX encoding.
+          if (type == :vex && x_bit && b_bit && w_bit && m_mmmm == 0b00001)
             write_vex_two_byte(r: r, vvvv: vvvv, l: l, pp: pp)
           else
             write_vex_three_byte(type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b, vvvv: vvvv)
@@ -387,13 +394,13 @@ module Ronin
           byte3 = 0
 
           # VEX.R is encoded as the inverted version of REX.R
-          byte2 |= 0b10000000 if r == 0
+          byte2 |= 0b10000000 unless r == 1
 
           # VEX.X is encoded as the inverted version of REX.X
-          byte2 |= 0b01000000 if x == 0
+          byte2 |= 0b01000000 unless x == 1
 
           # VEX.B is encoded as the inverted version of REX.B
-          byte2 |= 0b00100000 if b == 0
+          byte2 |= 0b00100000 unless b == 1
 
           byte2 |= m_mmmm if m_mmmm > 0
 
