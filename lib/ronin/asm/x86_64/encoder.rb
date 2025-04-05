@@ -135,6 +135,66 @@ module Ronin
         end
 
         #
+        # Writes a VEX encoding to the output stream.
+        #
+        # @param [:vex, :xop] type
+        #   The VEX type.
+        #
+        # @param [1, 0, nil] w
+        #   When `1` indicates that 64bit operand size must be used, otherwise
+        #   the default operand sizes will be used.
+        #
+        # @param [1, 0, nil] l
+        #   When `1` indicates that 256bit vector size must be used, otherwise
+        #   128bit vector size must be used.
+        #
+        # @param [0b00001, 0b00010, 0b00011, 0b01000, 0b01001, 0b01010] m_mmmm
+        #   Specifies the opcode map to use.
+        #
+        # @param [0b00, 0b01, 0b10, 0b11] pp
+        #   Specifies the implied mandatory prefix for the opcode.
+        #
+        # @param [Register, 0, nil] r
+        #   The register operand.
+        #
+        # @param [Memory, 0, nil] x
+        #   The memory operand with {Memory#index index} set.
+        #
+        # @param [Memory, Register, 0, nil] b
+        #   The memory operand with {Memory#base base} set.
+        #
+        # @param [Register, Memory, 0, nil] vvvv
+        #   The additional operand.
+        #
+        # @return [3, 2]
+        #   The number of bytes written.
+        #
+        # @raise [ArgumentError]
+        #   An invalid type value was given.
+        #
+        # @see https://wiki.osdev.org/X86-64_Instruction_Encoding#VEX/XOP_opcodes
+        #
+        def write_vex(type: , w: nil, l: nil, m_mmmm: , pp: , r: nil, x: nil, b: nil, vvvv: nil)
+          # pre-calculate whether certain VEX bits will be set.
+          x_bit = !(
+            x.kind_of?(Memory) && x.index && x.index.number.bit_length == 4
+          )
+          b_bit = !(
+            (b.kind_of?(Register) && b.number.bit_length == 4) ||
+            (b.kind_of?(Memory) && b.base.number.bit_length == 4)
+          )
+          w_bit = (w != 1)
+
+          # three-byte VEX encoding where the X bit, B bit, W bit, and M-MMMM
+          # bits are all set to 1 can be downgraded to a two-byte VEX encoding.
+          if (type == :vex && x_bit && b_bit && w_bit && m_mmmm == 0b00001)
+            write_vex_two_byte(r: r, vvvv: vvvv, l: l, pp: pp)
+          else
+            write_vex_three_byte(type: type, w: w, l: l, m_mmmm: m_mmmm, pp: pp, r: r, x: x, b: b, vvvv: vvvv)
+          end
+        end
+
+        #
         # Writes a two byte encoded VEX escape prefix.
         #
         # @param [Register, 0, nil] r
