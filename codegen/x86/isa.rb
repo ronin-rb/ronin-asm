@@ -181,6 +181,13 @@ module CodeGen
         #
         def no_operands? = forms.all?(&:no_operands?)
 
+        #
+        # Returns the unique set of operands that the instruction accepts.
+        #
+        # @return [Set<Array<Operand>>]
+        #
+        def accepted_operands = forms.map(&:operands).to_set
+
       end
 
       #

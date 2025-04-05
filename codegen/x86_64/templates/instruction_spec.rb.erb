@@ -23,7 +23,7 @@ describe Ronin::ASM::X86_64::Instructions::<%= @instruction.name.upcase %> do
       expect(subject.name).to be(<%= @instruction.name.to_sym.inspect %>)
     end
 
-    <%- unique_instruction_operands.each do |operands| -%>
+    <%- @instruction.accepted_operands.each do |operands| -%>
     <%- unless operands.empty? -%>
     context "when given operands of types <%= operands_type_list(operands) %>" do
       let(:operands) { <%= operands_array(operands) %> }
