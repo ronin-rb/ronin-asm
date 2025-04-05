@@ -52,13 +52,6 @@ module CodeGen
       end
 
       #
-      # Every unique group of operands that the instruction accepts.
-      #
-      # @return [Array<Array<ISA::Operand>>]
-      #
-      def unique_instruction_operands = @instruction_forms_by_operands.keys
-
-      #
       # Returns a comparison expression for the desired operand type.
       #
       # @param [ISA::Operand] operand
