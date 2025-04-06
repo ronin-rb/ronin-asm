@@ -43,6 +43,24 @@ module CodeGen
         "[#{operands.map { |operand| operand.ronin_type.inspect }.join(', ')}]"
       end
 
+      # List of unsupported x86 instruction names.
+      #
+      # @note
+      #   Note even GNU Assembler (GAS) recognizes them.
+      UNSUPPORTED_INSTRUCTIONS = Set[
+        :pfrcpv,
+        :pfrsqrtv
+      ]
+
+      #
+      # Determines if the instruction is unsupported.
+      #
+      # @return [Boolean]
+      #
+      def unsupported_instruction?
+        UNSUPPORTED_INSTRUCTIONS.include?(@instruction.name)
+      end
+
       #
       # Returns the `.bin` fixture filename for the instruction and given
       # operands.

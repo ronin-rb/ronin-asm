@@ -98,6 +98,9 @@ describe Ronin::ASM::X86::Instructions::<%= @instruction.name.upcase %> do
       let(:bin_file_name) { <%= bin_file_name(operands).inspect %> }
 
       it do
+        <%- if unsupported_instruction? -%>
+        skip "GNU Assembler (GAS) does not support <%= @instruction.name %>"
+        <%- end -%>
         <%- if operands.any? { |operand| operand.relative_offset? || operand.memory_offset? } -%>
         skip "currently cannot convert Ronin::ASM::X86::RelativeOffset or Ronin::ASM::X86::MemoryOffset operands to ASM syntax"
 
@@ -114,6 +117,9 @@ describe Ronin::ASM::X86::Instructions::<%= @instruction.name.upcase %> do
       let(:bin_file_name) { <%= bin_file_name(operands).inspect %> }
 
       it do
+        <%- if unsupported_instruction? -%>
+        skip "GNU Assembler (GAS) does not support <%= @instruction.name %>"
+        <%- end -%>
         <%- if operands.any? { |operand| operand.relative_offset? || operand.memory_offset? } -%>
         skip "currently cannot convert Ronin::ASM::X86::RelativeOffset or Ronin::ASM::X86::MemoryOffset operands to ASM syntax"
 

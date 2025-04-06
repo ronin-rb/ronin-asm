@@ -81,6 +81,7 @@ describe Ronin::ASM::X86::Instructions::PFRCPV do
       let(:bin_file_name) { "pfrcpv_mmx_mmx.bin" }
 
       it do
+        skip "GNU Assembler (GAS) does not support pfrcpv"
         subject.encode(encoder)
 
         expect(output.string).to eq(expected_encoding)
@@ -93,6 +94,7 @@ describe Ronin::ASM::X86::Instructions::PFRCPV do
       let(:bin_file_name) { "pfrcpv_mmx_mem64.bin" }
 
       it do
+        skip "GNU Assembler (GAS) does not support pfrcpv"
         subject.encode(encoder)
 
         expect(output.string).to eq(expected_encoding)
