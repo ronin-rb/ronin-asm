@@ -139,7 +139,7 @@ module Ronin
               encoder.write_opcode(0x50) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
             when [:ymm, :ymm, :mem256]
-              encoder.write_vex(type: :vex, w: 0, l: 1, m_mmmm: 0b00010, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
+              encoder.write_evex(mmm: 0b010, pp: 0b01, w: 0, ll: 0b01, vvvv: @operands[1], v: 0, rr: 0b00, _B: 0, x: 0, b: @operands[2], aaa: 0, z: 0, disp8xN: 32) +
               encoder.write_opcode(0x50) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
             when [:zmm, :zmm, :"mem512/mem32bcst"]
