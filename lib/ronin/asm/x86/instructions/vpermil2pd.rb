@@ -94,10 +94,10 @@ module Ronin
               encoder.write_modrm(@operands[2],@operands[0],@operands[2]) +
               encoder.write_register_byte(@operands[3],@operands[4])
             when [:ymm, :ymm, :ymm, :ymm, :imm8]
-              encoder.write_vex(type: :vex, w: 1, l: 1, m_mmmm: 0b00011, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
+              encoder.write_vex(type: :vex, w: 0, l: 1, m_mmmm: 0b00011, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0x49) +
-              encoder.write_modrm(0b11,@operands[0],@operands[3]) +
-              encoder.write_register_byte(@operands[2],@operands[4])
+              encoder.write_modrm(0b11,@operands[0],@operands[2]) +
+              encoder.write_register_byte(@operands[3],@operands[4])
             when [:ymm, :ymm, :ymm, :mem256, :imm8]
               encoder.write_vex(type: :vex, w: 1, l: 1, m_mmmm: 0b00011, pp: 0b01, r: 0, x: 0, b: 0, vvvv: @operands[1]) +
               encoder.write_opcode(0x49) +
