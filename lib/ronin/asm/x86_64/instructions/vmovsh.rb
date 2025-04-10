@@ -87,7 +87,6 @@ module Ronin
               encoder.write_opcode(0x10) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             when [:xmm, :mem16]
-              encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_evex(mmm: 0b101, pp: 0b10, w: 0, vvvv: 0, v: 0, rr: @operands[0], _B: @operands[1], x: @operands[1], b: 0, aaa: 0, z: 0, disp8xN: 4) +
               encoder.write_opcode(0x10) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
