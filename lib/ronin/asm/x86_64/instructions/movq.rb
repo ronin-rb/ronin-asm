@@ -131,9 +131,9 @@ module Ronin
               encoder.write_opcode(0x7e) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             when [:mem64, :mmx]
-              encoder.write_rex(mandatory: true, w: 1, r: @operands[1], x: @operands[0], b: @operands[0]) +
+              encoder.write_rex(mandatory: false, w: 0, r: @operands[1], x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0x0f) +
-              encoder.write_opcode(0x7e) +
+              encoder.write_opcode(0x7f) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
             when [:mem64, :xmm]
               encoder.write_prefix(0x66, mandatory: true) +
