@@ -93,8 +93,8 @@ module Ronin
               encoder.write_opcode(0x7e) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             when [:mem64, :xmm]
-              encoder.write_vex(type: :vex, w: 1, l: 0, m_mmmm: 0b00001, pp: 0b01, r: @operands[1], x: @operands[0], b: @operands[0], vvvv: 0) +
-              encoder.write_opcode(0x7e) +
+              encoder.write_vex(type: :vex, l: 0, m_mmmm: 0b00001, pp: 0b01, r: @operands[1], x: @operands[0], b: @operands[0], vvvv: 0) +
+              encoder.write_opcode(0xd6) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
             else
               raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
