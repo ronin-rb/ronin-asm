@@ -105,8 +105,6 @@ describe Ronin::ASM::X86::Instructions::JMP do
       let(:bin_file_name) { "jmp_rel8.bin" }
 
       it do
-        skip "currently cannot convert Ronin::ASM::X86::RelativeOffset or Ronin::ASM::X86::MemoryOffset operands to ASM syntax"
-
         subject.encode(encoder)
 
         expect(output.string).to eq(expected_encoding)
@@ -119,8 +117,6 @@ describe Ronin::ASM::X86::Instructions::JMP do
       let(:bin_file_name) { "jmp_rel32.bin" }
 
       it do
-        skip "currently cannot convert Ronin::ASM::X86::RelativeOffset or Ronin::ASM::X86::MemoryOffset operands to ASM syntax"
-
         subject.encode(encoder)
 
         expect(output.string).to eq(expected_encoding)

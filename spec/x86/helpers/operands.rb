@@ -149,8 +149,8 @@ module Helpers
       #
       # Relative Offset operands
       #
-      def rel8(i=0)  = Ronin::ASM::X86::RelativeOffset.new(8)
-      def rel32(i=0) = Ronin::ASM::X86::RelativeOffset.new(0x11223344)
+      def rel8(i=0)  = Ronin::ASM::X86::RelativeOffset.new(4)
+      def rel32(i=0) = Ronin::ASM::X86::RelativeOffset.new(128)
 
       #
       # Memory Offset operands

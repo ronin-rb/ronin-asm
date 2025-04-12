@@ -98,8 +98,8 @@ describe Ronin::ASM::X86_64::Instructions::<%= @instruction.name.upcase %> do
       let(:bin_file_name) { <%= bin_file_name(operands).inspect %> }
 
       it do
-        <%- if operands.any? { |operand| operand.relative_offset? || operand.memory_offset? } -%>
-        skip "currently cannot convert Ronin::ASM::X86_64::RelativeOffset or Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
+        <%- if operands.any?(&:memory_offset?) -%>
+        skip "currently cannot convert Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
 
         <%- end -%>
         subject.encode(encoder)
