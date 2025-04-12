@@ -53,6 +53,56 @@ describe Ronin::ASM::X86::MemoryOffset do
     end
   end
 
+  describe "#type_of?" do
+    context "when the given type equals #type" do
+      it "must return true" do
+        expect(subject.type_of?(subject.type)).to be(true)
+      end
+    end
+
+    context "when given :mem" do
+      it "must return true" do
+        expect(subject.type_of?(:mem)).to be(true)
+      end
+    end
+
+    context "when given :mem32" do
+      context "and #type is :moffset32" do
+        subject { described_class.new(value, size: 4) }
+
+        it "must return true" do
+          expect(subject.type_of?(:mem32)).to be(true)
+        end
+      end
+
+      context "and #type is :moffset64" do
+        subject { described_class.new(value, size: 8) }
+
+        it "must return false" do
+          expect(subject.type_of?(:mem32)).to be(false)
+        end
+      end
+    end
+
+    context "when given :mem64" do
+      context "and #type is :moffset32" do
+        subject { described_class.new(value, size: 4) }
+
+        it "must return false" do
+          expect(subject.type_of?(:mem64)).to be(false)
+        end
+      end
+
+      context "and #type is :moffset64" do
+        subject { described_class.new(value, size: 8) }
+
+        it "must return true" do
+          expect(subject.type_of?(:mem64)).to be(true)
+        end
+      end
+    end
+  end
+
   describe "#to_i" do
     it "must return the #value" do
       expect(subject.to_i).to eq(value)
