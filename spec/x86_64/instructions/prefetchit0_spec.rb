@@ -69,8 +69,6 @@ describe Ronin::ASM::X86_64::Instructions::PREFETCHIT0 do
       let(:bin_file_name) { "prefetchit0_mem8.bin" }
 
       it do
-        skip "currently cannot convert Ronin::ASM::X86_64::RelativeOffset or Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
-
         subject.encode(encoder)
 
         expect(output.string).to eq(expected_encoding)

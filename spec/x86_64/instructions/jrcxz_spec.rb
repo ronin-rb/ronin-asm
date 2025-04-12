@@ -69,8 +69,6 @@ describe Ronin::ASM::X86_64::Instructions::JRCXZ do
       let(:bin_file_name) { "jrcxz_rel8.bin" }
 
       it do
-        skip "currently cannot convert Ronin::ASM::X86_64::RelativeOffset or Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
-
         subject.encode(encoder)
 
         expect(output.string).to eq(expected_encoding)
