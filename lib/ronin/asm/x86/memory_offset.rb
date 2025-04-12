@@ -65,6 +65,36 @@ module Ronin
           @type = :"moffset#{@size * 8}"
         end
 
+        #
+        # Determines if the memory offset operand is equal to or compatible with
+        # the given type.
+        #
+        # @param [Symbol] type
+        # @return [Boolean]
+        #
+        # @example
+        #   moffset32.type_of?(:moffset32)
+        #   # => true
+        #   moffset32.type_of?(:moffset64)
+        #   # => false
+        #   moffset32.type_of?(:mem32)
+        #   # => true
+        #   moffset32.type_of?(:mem)
+        #   # => true
+        #   mem32.type_of?(:reg32)
+        #   # => false
+        #
+        # @note
+        #   Memory offset operands may also match the `:mem`, `:mem32`, or
+        #   `:mem64` types.
+        #
+        def type_of?(type)
+          (@type == type) ||
+          (type == :mem) ||
+          (type == :mem32 && @type == :moffset32) ||
+          (type == :mem64 && @type == :moffset64)
+        end
+
         alias to_i value
 
       end
