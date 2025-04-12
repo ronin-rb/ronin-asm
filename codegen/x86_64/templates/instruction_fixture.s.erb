@@ -1,16 +1,15 @@
 .code64
 .section .text
-  <%= format_instruction %>
 <%- if @instruction_form.operands.any? { |operand| operand.type == :rel8 } -%>
-<%- 42.times do -%>
-  nop
-<%- end -%>
-_rel8:
-  nop
+.set _rel8, _rel_base+4
+
+  <%= format_instruction %>
+_rel_base:
 <%- elsif @instruction_form.operands.any? { |operand| operand.type == :rel32 } -%>
-<%- 128.times do -%>
-  nop
-<%- end -%>
-_rel32:
-  nop
+.set _rel32, _rel_base+128
+
+  <%= format_instruction %>
+_rel_base:
+<%- else -%>
+  <%= format_instruction %>
 <%- end -%>
