@@ -69,6 +69,7 @@ module Ronin
           def encode(encoder)
             case @form
             when [:rel8]
+              encoder.write_prefix(0x67, mandatory: false) +
               encoder.write_opcode(0xe3) +
               encoder.write_code_offset(@operands[0],1)
             else
