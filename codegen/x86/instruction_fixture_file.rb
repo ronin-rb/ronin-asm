@@ -337,7 +337,7 @@ module CodeGen
       # @param [Integer] index
       # @return [String]
       #
-      def moffset32_operand(index) = '0x11111111'
+      def moffset32_operand(index) = '%ds:32'
 
       #
       # Returns an 64bit memory offset operand.
@@ -345,7 +345,7 @@ module CodeGen
       # @param [Integer] index
       # @return [String]
       #
-      def moffset64_operand(index) = '0x1111111111111111'
+      def moffset64_operand(index) = '%ds:64'
 
       #
       # Returns a 32bit vectory indexed memory operand using a XMM register

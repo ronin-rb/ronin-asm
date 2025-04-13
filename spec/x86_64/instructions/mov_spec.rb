@@ -429,8 +429,6 @@ describe Ronin::ASM::X86_64::Instructions::MOV do
       let(:bin_file_name) { "mov_eax_moffset32.bin" }
 
       it do
-        skip "currently cannot convert Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
-
         subject.encode(encoder)
 
         expect(output.string).to eq(expected_encoding)
@@ -479,8 +477,6 @@ describe Ronin::ASM::X86_64::Instructions::MOV do
       let(:bin_file_name) { "mov_rax_moffset64.bin" }
 
       it do
-        skip "currently cannot convert Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
-
         subject.encode(encoder)
 
         expect(output.string).to eq(expected_encoding)
@@ -589,8 +585,6 @@ describe Ronin::ASM::X86_64::Instructions::MOV do
       let(:bin_file_name) { "mov_moffset32_eax.bin" }
 
       it do
-        skip "currently cannot convert Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
-
         subject.encode(encoder)
 
         expect(output.string).to eq(expected_encoding)
@@ -627,8 +621,6 @@ describe Ronin::ASM::X86_64::Instructions::MOV do
       let(:bin_file_name) { "mov_moffset64_rax.bin" }
 
       it do
-        skip "currently cannot convert Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
-
         subject.encode(encoder)
 
         expect(output.string).to eq(expected_encoding)
