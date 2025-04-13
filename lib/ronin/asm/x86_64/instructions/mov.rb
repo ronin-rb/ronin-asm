@@ -89,18 +89,18 @@ module Ronin
                       [:mem16, :imm16]
                     elsif @operands.length == 2 && @operands[0].type_of?(:mem16) && @operands[1].type_of?(:reg16)
                       [:mem16, :reg16]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:moffset32) && @operands[1] == Registers::EAX
+                      [:moffset32, :eax]
                     elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:imm32)
                       [:mem32, :imm32]
                     elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:reg32)
                       [:mem32, :reg32]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:moffset64) && @operands[1] == Registers::RAX
+                      [:moffset64, :rax]
                     elsif @operands.length == 2 && @operands[0].type_of?(:mem64) && @operands[1].type_of?(:imm32)
                       [:mem64, :imm32]
                     elsif @operands.length == 2 && @operands[0].type_of?(:mem64) && @operands[1].type_of?(:reg64)
                       [:mem64, :reg64]
-                    elsif @operands.length == 2 && @operands[0].type_of?(:moffset32) && @operands[1] == Registers::EAX
-                      [:moffset32, :eax]
-                    elsif @operands.length == 2 && @operands[0].type_of?(:moffset64) && @operands[1] == Registers::RAX
-                      [:moffset64, :rax]
                     else
                       raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
                     end
@@ -152,18 +152,18 @@ module Ronin
               :movw
             when [:mem16, :reg16]
               :movw
+            when [:moffset32, :eax]
+              :movabsl
             when [:mem32, :imm32]
               :movl
             when [:mem32, :reg32]
               :movl
+            when [:moffset64, :rax]
+              :movabsq
             when [:mem64, :imm32]
               :movq
             when [:mem64, :reg64]
               :movq
-            when [:moffset32, :eax]
-              :movabsl
-            when [:moffset64, :rax]
-              :movabsq
             else
               super
             end
@@ -262,6 +262,9 @@ module Ronin
               encoder.write_rex(mandatory: false, w: 0, r: @operands[1], x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0x89) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
+            when [:moffset32, :eax]
+              encoder.write_opcode(0xa3) +
+              encoder.write_data_offset(@operands[0],4)
             when [:mem32, :imm32]
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xc7) +
@@ -271,6 +274,10 @@ module Ronin
               encoder.write_rex(mandatory: false, w: 0, r: @operands[1], x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0x89) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
+            when [:moffset64, :rax]
+              encoder.write_rex(mandatory: true, w: 1) +
+              encoder.write_opcode(0xa3) +
+              encoder.write_data_offset(@operands[0],8)
             when [:mem64, :imm32]
               encoder.write_rex(mandatory: true, w: 1, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xc7) +
@@ -280,13 +287,6 @@ module Ronin
               encoder.write_rex(mandatory: true, w: 1, r: @operands[1], x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0x89) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            when [:moffset32, :eax]
-              encoder.write_opcode(0xa3) +
-              encoder.write_data_offset(@operands[0],4)
-            when [:moffset64, :rax]
-              encoder.write_rex(mandatory: true, w: 1) +
-              encoder.write_opcode(0xa3) +
-              encoder.write_data_offset(@operands[0],8)
             else
               raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
