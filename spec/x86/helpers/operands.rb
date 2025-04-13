@@ -155,8 +155,8 @@ module Helpers
       #
       # Memory Offset operands
       #
-      def moffset32(i=0) = Ronin::ASM::X86::MemoryOffset.new(0x11223344)
-      def moffset64(i=0) = Ronin::ASM::X86::MemoryOffset.new(0x1122334455667788)
+      def moffset32(i=0) = Ronin::ASM::X86::MemoryOffset.new(32, size: 4)
+      def moffset64(i=0) = Ronin::ASM::X86::MemoryOffset.new(64, size: 8)
 
       #
       # Vector Indexed Memory operands.
