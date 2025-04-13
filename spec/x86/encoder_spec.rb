@@ -3,6 +3,7 @@ require 'ronin/asm/x86/encoder'
 
 require 'ronin/asm/x86/immediate'
 require 'ronin/asm/x86/memory'
+require 'ronin/asm/x86/memory_offset'
 require 'ronin/asm/x86/registers'
 
 describe Ronin::ASM::X86::Encoder do
@@ -38,6 +39,21 @@ describe Ronin::ASM::X86::Encoder do
             expect(subject.write_modrm(mode,reg,rm)).to eq(bytes_written)
           end
         end
+      end
+    end
+
+    context "when mode is a MemoryOffset operand" do
+      let(:moffset) { Ronin::ASM::X86::MemoryOffset.new(42, size: 4) }
+      let(:mode) { moffset }
+      let(:reg)  { Ronin::ASM::X86::Registers::EAX }
+      let(:rm)   { moffset }
+
+      let(:bytes_written) { 5 }
+
+      it "must call #write_modrm_moffset and return the number of bytes written" do
+        expect(subject).to receive(:write_modrm_moffset).with(mode,reg,rm).and_return(bytes_written)
+
+        expect(subject.write_modrm(mode,reg,rm)).to eq(bytes_written)
       end
     end
 
@@ -119,7 +135,7 @@ describe Ronin::ASM::X86::Encoder do
       it do
         expect {
           subject.write_modrm(mode,reg,rm)
-        }.to raise_error(ArgumentError,"#{described_class}#write_modrm can only accept Memory, Broadcast, Opmask, or 0b11 values for mode: #{mode.inspect}")
+        }.to raise_error(ArgumentError,"#{described_class}#write_modrm can only accept Memory, MemoryOffset, Broadcast, Opmask, or 0b11 values for mode: #{mode.inspect}")
       end
     end
   end
@@ -481,6 +497,55 @@ describe Ronin::ASM::X86::Encoder do
         modrm = output.string.getbyte(0)
 
         expect((modrm & 0b111_000) >> 3).to eq(reg)
+      end
+    end
+  end
+
+  describe "#write_modrm_moffset" do
+    let(:moffset) { Ronin::ASM::X86::MemoryOffset.new(42, size: 4) }
+    let(:mode)    { moffset }
+    let(:reg)     { Ronin::ASM::X86::Registers::EBX }
+    let(:rm)      { moffset }
+
+    it "must encode the 0b00, register number, and 0b101 into the ModRM byte" do
+      subject.write_modrm_moffset(mode,reg,rm)
+
+      modrm = output.string.getbyte(0)
+
+      expect(modrm).to eq((reg.to_i << 3) | 0b101)
+    end
+
+    context "when the memory offset size is 32bits" do
+      let(:offset)  { 0x11223344 }
+      let(:moffset) { Ronin::ASM::X86::MemoryOffset.new(offset, size: 4) }
+
+      it "must write the memory offset value as a 32bit integer, in little-endian format, following the ModRM byte" do
+        subject.write_modrm_moffset(mode,reg,rm)
+
+        offset_bytes = output.string[1..]
+
+        expect(offset_bytes).to eq([offset].pack('L<'))
+      end
+
+      it "must return 5" do
+        expect(subject.write_modrm_moffset(mode,reg,rm)).to eq(5)
+      end
+    end
+
+    context "when the memory offset size is 64bits" do
+      let(:offset)  { 0x1122334455667788 }
+      let(:moffset) { Ronin::ASM::X86::MemoryOffset.new(offset, size: 8) }
+
+      it "must write the memory offset value as a 65bit integer, in little-endian format, following the ModRM byte" do
+        subject.write_modrm_moffset(mode,reg,rm)
+
+        offset_bytes = output.string[1..]
+
+        expect(offset_bytes).to eq([offset].pack('Q<'))
+      end
+
+      it "must return 9" do
+        expect(subject.write_modrm_moffset(mode,reg,rm)).to eq(9)
       end
     end
   end
