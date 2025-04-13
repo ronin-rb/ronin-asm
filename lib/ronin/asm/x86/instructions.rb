@@ -3069,9 +3069,9 @@ module Ronin
         #   mov [eax], bl
         #   mov [eax], 0x0002
         #   mov [eax], bx
+        #   mov moffset32(0x10000), eax
         #   mov [eax], 0x00000002
         #   mov [eax], ebx
-        #   mov moffset32(0x10000), eax
         def mov(operand1,operand2,**kwargs) = add_instruction(Instructions::MOV,operand1,operand2,**kwargs)
         # Move Aligned Packed Double-Precision Floating-Point Values
         # @return [Ronin::ASM::X86::Instructions::MOVAPD]
