@@ -247,6 +247,18 @@ describe Ronin::ASM::X86_64::Instructions::MOV do
       end
     end
 
+    context "when given operands of types moffset32, eax" do
+      let(:operands) { [moffset32(0), eax(1)] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:moffset32, :eax]" do
+        expect(subject.form).to eq([:moffset32, :eax])
+      end
+    end
+
     context "when given operands of types mem32, imm32" do
       let(:operands) { [mem32(0), imm32(1)] }
 
@@ -271,6 +283,18 @@ describe Ronin::ASM::X86_64::Instructions::MOV do
       end
     end
 
+    context "when given operands of types moffset64, rax" do
+      let(:operands) { [moffset64(0), rax(1)] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:moffset64, :rax]" do
+        expect(subject.form).to eq([:moffset64, :rax])
+      end
+    end
+
     context "when given operands of types mem64, imm32" do
       let(:operands) { [mem64(0), imm32(1)] }
 
@@ -292,30 +316,6 @@ describe Ronin::ASM::X86_64::Instructions::MOV do
 
       it "must set #form to [:mem64, :reg64]" do
         expect(subject.form).to eq([:mem64, :reg64])
-      end
-    end
-
-    context "when given operands of types moffset32, eax" do
-      let(:operands) { [moffset32(0), eax(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:moffset32, :eax]" do
-        expect(subject.form).to eq([:moffset32, :eax])
-      end
-    end
-
-    context "when given operands of types moffset64, rax" do
-      let(:operands) { [moffset64(0), rax(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:moffset64, :rax]" do
-        expect(subject.form).to eq([:moffset64, :rax])
       end
     end
 
@@ -583,6 +583,20 @@ describe Ronin::ASM::X86_64::Instructions::MOV do
       end
     end
 
+    context "when #operands contains operands of types moffset32, eax" do
+      let(:operands) { [moffset32(0), eax(1)] }
+
+      let(:bin_file_name) { "mov_moffset32_eax.bin" }
+
+      it do
+        skip "currently cannot convert Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
+
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
     context "when #operands contains operands of types mem32, imm32" do
       let(:operands) { [mem32(0), imm32(1)] }
 
@@ -607,6 +621,20 @@ describe Ronin::ASM::X86_64::Instructions::MOV do
       end
     end
 
+    context "when #operands contains operands of types moffset64, rax" do
+      let(:operands) { [moffset64(0), rax(1)] }
+
+      let(:bin_file_name) { "mov_moffset64_rax.bin" }
+
+      it do
+        skip "currently cannot convert Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
+
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
     context "when #operands contains operands of types mem64, imm32" do
       let(:operands) { [mem64(0), imm32(1)] }
 
@@ -625,34 +653,6 @@ describe Ronin::ASM::X86_64::Instructions::MOV do
       let(:bin_file_name) { "mov_mem64_reg64.bin" }
 
       it do
-        subject.encode(encoder)
-
-        expect(output.string).to eq(expected_encoding)
-      end
-    end
-
-    context "when #operands contains operands of types moffset32, eax" do
-      let(:operands) { [moffset32(0), eax(1)] }
-
-      let(:bin_file_name) { "mov_moffset32_eax.bin" }
-
-      it do
-        skip "currently cannot convert Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
-
-        subject.encode(encoder)
-
-        expect(output.string).to eq(expected_encoding)
-      end
-    end
-
-    context "when #operands contains operands of types moffset64, rax" do
-      let(:operands) { [moffset64(0), rax(1)] }
-
-      let(:bin_file_name) { "mov_moffset64_rax.bin" }
-
-      it do
-        skip "currently cannot convert Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
-
         subject.encode(encoder)
 
         expect(output.string).to eq(expected_encoding)
