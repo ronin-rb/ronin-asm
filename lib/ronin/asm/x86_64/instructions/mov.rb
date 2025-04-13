@@ -264,7 +264,7 @@ module Ronin
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
             when [:moffset32, :eax]
               encoder.write_opcode(0xa3) +
-              encoder.write_data_offset(@operands[0],4)
+              encoder.write_data_offset(@operands[0],8)
             when [:mem32, :imm32]
               encoder.write_rex(mandatory: false, w: 0, x: @operands[0], b: @operands[0]) +
               encoder.write_opcode(0xc7) +
