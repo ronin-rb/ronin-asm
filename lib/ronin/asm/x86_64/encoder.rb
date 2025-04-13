@@ -48,6 +48,7 @@ module Ronin
         # @return [Integer]
         #   The number of bytes written.
         #
+        # @see https://en.wikipedia.org/wiki/ModR/M#Description
         # @see https://wiki.osdev.org/X86-64_Instruction_Encoding#ModR/M_and_SIB_bytes
         #
         def write_modrm_mem(mode,reg,rm)

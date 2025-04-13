@@ -77,6 +77,7 @@ module Ronin
         # @return [Integer]
         #   The number of bytes written.
         #
+        # @see https://en.wikipedia.org/wiki/ModR/M#Description
         # @see https://wiki.osdev.org/X86-64_Instruction_Encoding#ModR/M_and_SIB_bytes
         #
         def write_modrm_mem(mode,reg,rm)
@@ -122,6 +123,7 @@ module Ronin
         # @return [Integer]
         #   The number of bytes written.
         #
+        # @see https://en.wikipedia.org/wiki/ModR/M#Description
         # @see https://wiki.osdev.org/X86-64_Instruction_Encoding#ModR/M_and_SIB_bytes
         #
         def write_modrm_moffset(mode,reg,rm)
@@ -140,6 +142,7 @@ module Ronin
         # @return [1]
         #   The number of bytes written.
         #
+        # @see https://en.wikipedia.org/wiki/ModR/M#Description
         # @see https://wiki.osdev.org/X86-64_Instruction_Encoding#ModR/M
         #
         def write_modrm_byte(mode,reg,rm)
@@ -168,6 +171,7 @@ module Ronin
         # @raise [ArgumentError]
         #   An invalid scale value was given.
         #
+        # @see https://en.wikipedia.org/wiki/ModR/M#SIB_byte
         # @see https://wiki.osdev.org/X86-64_Instruction_Encoding#SIB
         #
         def write_sib_byte(scale,index,base)
