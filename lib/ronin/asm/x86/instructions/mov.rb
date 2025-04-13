@@ -79,12 +79,12 @@ module Ronin
                       [:mem16, :imm16]
                     elsif @operands.length == 2 && @operands[0].type_of?(:mem16) && @operands[1].type_of?(:reg16)
                       [:mem16, :reg16]
+                    elsif @operands.length == 2 && @operands[0].type_of?(:moffset32) && @operands[1] == Registers::EAX
+                      [:moffset32, :eax]
                     elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:imm32)
                       [:mem32, :imm32]
                     elsif @operands.length == 2 && @operands[0].type_of?(:mem32) && @operands[1].type_of?(:reg32)
                       [:mem32, :reg32]
-                    elsif @operands.length == 2 && @operands[0].type_of?(:moffset32) && @operands[1] == Registers::EAX
-                      [:moffset32, :eax]
                     else
                       raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
                     end
@@ -126,11 +126,11 @@ module Ronin
               :movw
             when [:mem16, :reg16]
               :movw
+            when [:moffset32, :eax]
+              :movl
             when [:mem32, :imm32]
               :movl
             when [:mem32, :reg32]
-              :movl
-            when [:moffset32, :eax]
               :movl
             else
               super
@@ -196,6 +196,9 @@ module Ronin
               encoder.write_prefix(0x66, mandatory: false) +
               encoder.write_opcode(0x89) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
+            when [:moffset32, :eax]
+              encoder.write_opcode(0xa3) +
+              encoder.write_data_offset(@operands[0],4)
             when [:mem32, :imm32]
               encoder.write_opcode(0xc7) +
               encoder.write_modrm(@operands[0],0,@operands[0]) +
@@ -203,9 +206,6 @@ module Ronin
             when [:mem32, :reg32]
               encoder.write_opcode(0x89) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
-            when [:moffset32, :eax]
-              encoder.write_opcode(0xa3) +
-              encoder.write_data_offset(@operands[0],4)
             else
               raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
             end
