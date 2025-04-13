@@ -101,9 +101,6 @@ describe Ronin::ASM::X86::Instructions::<%= @instruction.name.upcase %> do
         <%- if unsupported_instruction? -%>
         skip "GNU Assembler (GAS) does not support <%= @instruction.name %>"
 
-        <%- elsif operands.any?(&:memory_offset?) -%>
-        skip "currently cannot convert Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
-
         <%- end -%>
         subject.encode(encoder)
 
