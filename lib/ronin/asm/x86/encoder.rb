@@ -36,7 +36,7 @@ module Ronin
         #
         # Writes a ModRM encoding to the output stream.
         #
-        # @param [Memory, Broadcast, Opmask, 0b11] mode
+        # @param [Memory, MemoryOffset, Broadcast, Opmask, 0b11] mode
         # @param [Register, Opmask, Integer] reg
         # @param [Memory, Broadcast, Opmask] rm
         #
@@ -59,10 +59,11 @@ module Ronin
                  end
 
           case mode
-          when Memory then write_modrm_mem(mode,reg,rm)
-          when 0b11   then write_modrm_byte(mode,reg,rm)
+          when Memory       then write_modrm_mem(mode,reg,rm)
+          when MemoryOffset then write_modrm_moffset(mode,reg,rm)
+          when 0b11         then write_modrm_byte(mode,reg,rm)
           else
-            raise(ArgumentError,"#{self.class}#write_modrm can only accept Memory, Broadcast, Opmask, or 0b11 values for mode: #{mode.inspect}")
+            raise(ArgumentError,"#{self.class}#write_modrm can only accept Memory, MemoryOffset, Broadcast, Opmask, or 0b11 values for mode: #{mode.inspect}")
           end
         end
 
@@ -109,6 +110,25 @@ module Ronin
           end
 
           return count
+        end
+
+        #
+        # Writes a ModRM byte and a data offset for the
+        #
+        # @param [MemoryOffset] mode
+        # @param [Register, Integer] reg
+        # @param [MemoryOffset] rm
+        #
+        # @return [Integer]
+        #   The number of bytes written.
+        #
+        # @see https://wiki.osdev.org/X86-64_Instruction_Encoding#ModR/M_and_SIB_bytes
+        #
+        def write_modrm_moffset(mode,reg,rm)
+          moffset = mode
+
+          return write_modrm_byte(0b00,reg,0b101) +
+                 write_data_offset(moffset,moffset.size)
         end
 
         #
