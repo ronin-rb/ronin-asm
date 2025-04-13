@@ -48,6 +48,11 @@ module Ronin
         # @return [{1=>2}, {1=>4}, {1=>8}, {1=>16}, {1=>32}]
         attr_reader :ratio
 
+        # The size of the broadcasted memory operand.
+        #
+        # @return [Integer, nil]
+        attr_reader :size
+
         # The assembly class type.
         #
         # @return [Symbol]
@@ -80,13 +85,15 @@ module Ronin
           super(memory)
 
           @ratio = ratio
-          @type  = if (memory.size && memory.type)
-                     multiplier = ratio.fetch(1)
 
-                     :"mem#{memory.size * 8 * multiplier}/#{memory.type}bcst"
-                   else
-                     :bcst
-                   end
+          if (memory.size && memory.type)
+            multiplier = ratio.fetch(1)
+
+            @size = memory.size * multiplier
+            @type = :"mem#{@size * 8}/#{memory.type}bcst"
+          else
+            @type = :bcst
+          end
         end
 
         # The memory operand the broadcast is being applied to.
@@ -118,11 +125,6 @@ module Ronin
         #
         # @return [Integer]
         def displacement = @operand.displacement
-
-        # The size of the memory operand.
-        #
-        # @return [Integer, nil]
-        def size = @operand.size
 
         #
         # Converts the memory to an integer value.
