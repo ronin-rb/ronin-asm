@@ -3435,7 +3435,7 @@ describe Ronin::ASM::X86::Instructions do
 
   describe "#mov" do
     context "when called with 2 operands" do
-      let(:operands) { [moffset32(0), eax(1)] }
+      let(:operands) { [mem32(0), reg32(1)] }
 
       it "must create a new Ronin::ASM::X86::Instructions::MOV object with the given operands" do
         new_instruction = subject.mov(*operands)

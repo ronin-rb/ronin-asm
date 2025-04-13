@@ -187,6 +187,18 @@ describe Ronin::ASM::X86::Instructions::MOV do
       end
     end
 
+    context "when given operands of types moffset32, eax" do
+      let(:operands) { [moffset32(0), eax(1)] }
+
+      it "must set #operands" do
+        expect(subject.operands).to eq(operands)
+      end
+
+      it "must set #form to [:moffset32, :eax]" do
+        expect(subject.form).to eq([:moffset32, :eax])
+      end
+    end
+
     context "when given operands of types mem32, imm32" do
       let(:operands) { [mem32(0), imm32(1)] }
 
@@ -208,18 +220,6 @@ describe Ronin::ASM::X86::Instructions::MOV do
 
       it "must set #form to [:mem32, :reg32]" do
         expect(subject.form).to eq([:mem32, :reg32])
-      end
-    end
-
-    context "when given operands of types moffset32, eax" do
-      let(:operands) { [moffset32(0), eax(1)] }
-
-      it "must set #operands" do
-        expect(subject.operands).to eq(operands)
-      end
-
-      it "must set #form to [:moffset32, :eax]" do
-        expect(subject.form).to eq([:moffset32, :eax])
       end
     end
 
@@ -425,6 +425,20 @@ describe Ronin::ASM::X86::Instructions::MOV do
       end
     end
 
+    context "when #operands contains operands of types moffset32, eax" do
+      let(:operands) { [moffset32(0), eax(1)] }
+
+      let(:bin_file_name) { "mov_moffset32_eax.bin" }
+
+      it do
+        skip "currently cannot convert Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
+
+        subject.encode(encoder)
+
+        expect(output.string).to eq(expected_encoding)
+      end
+    end
+
     context "when #operands contains operands of types mem32, imm32" do
       let(:operands) { [mem32(0), imm32(1)] }
 
@@ -443,20 +457,6 @@ describe Ronin::ASM::X86::Instructions::MOV do
       let(:bin_file_name) { "mov_mem32_reg32.bin" }
 
       it do
-        subject.encode(encoder)
-
-        expect(output.string).to eq(expected_encoding)
-      end
-    end
-
-    context "when #operands contains operands of types moffset32, eax" do
-      let(:operands) { [moffset32(0), eax(1)] }
-
-      let(:bin_file_name) { "mov_moffset32_eax.bin" }
-
-      it do
-        skip "currently cannot convert Ronin::ASM::X86_64::MemoryOffset operands to ASM syntax"
-
         subject.encode(encoder)
 
         expect(output.string).to eq(expected_encoding)
