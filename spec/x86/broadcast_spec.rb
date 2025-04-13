@@ -39,6 +39,10 @@ describe Ronin::ASM::X86::Broadcast do
 
     context "when given a Memory operand" do
       context "and the memory operand has a defined #size and #type" do
+        it "must set #size to the Memory's size multiplied by the ratio factor" do
+          expect(subject.size).to eq(memory.size * ratio.fetch(1))
+        end
+
         it "must set #type using the Memory's #type and the #ratio" do
           expect(subject.type).to eq(:"mem128/mem32bcst")
         end
@@ -52,6 +56,10 @@ describe Ronin::ASM::X86::Broadcast do
             scale: scale,
             displacement: displacement
           )
+        end
+
+        it "must set #size to nil" do
+          expect(subject.size).to be(nil)
         end
 
         it "must set #type to :bcst" do
@@ -112,8 +120,8 @@ describe Ronin::ASM::X86::Broadcast do
   end
 
   describe "#size" do
-    it "must return the Memory's #size" do
-      expect(subject.size).to eq(memory.size)
+    it "must return the Memory's size multiplied by the ratio factor" do
+      expect(subject.size).to eq(memory.size * ratio.fetch(1))
     end
   end
 
