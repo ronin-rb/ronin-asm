@@ -426,6 +426,7 @@ module Ronin
       # @abstract
       #
       def stack_pop(register)
+        raise(NotImplementedError,"#{self.class}#stack_pop was not defined by the architecture module")
       end
 
       #
