@@ -171,13 +171,11 @@ module Ronin
           raise(ArgumentError,"unknown architecture: #{arch.inspect}")
         end
 
-        @syntaxes = arch_module::SYNTAXES
-
+        @syntaxes         = arch_module::SYNTAXES
         @immediate_class  = arch_module::Immediate
         @memory_class     = arch_module::Memory
         @symbol_ref_class = arch_module::SymbolRef
-
-        @assembler_class = arch_module::Assembler
+        @assembler_class  = arch_module::Assembler
 
         extend arch_module
       end
