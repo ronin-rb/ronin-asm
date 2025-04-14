@@ -96,8 +96,8 @@ module Ronin
       # @param [:linux, :freebsd, nil] os
       #   The Operating System to target.
       #
-      # @param [Hash{Symbol => Object}] define
-      #   Constants to define in the program.
+      # @param [Hash{Symbol => Object}] macros
+      #   Macros to define in the program.
       #
       # @yield []
       #   The given block will be evaluated within the program.
@@ -131,7 +131,7 @@ module Ronin
       #     syscall
       #   end
       #
-      def initialize(arch: :x86_64, os: nil, define: {}, &block)
+      def initialize(arch: :x86_64, os: nil, macros: {}, &block)
         initialize_arch(arch)
 
         if os
@@ -140,7 +140,7 @@ module Ronin
           @syscalls = {}
         end
 
-        define.each do |name,value|
+        macros.each do |name,value|
           instance_variable_set("@#{name}",value)
         end
 
