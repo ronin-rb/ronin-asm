@@ -72,6 +72,13 @@ module Ronin
       #   The syscall names and numbers.
       attr_reader :syscalls
 
+      # The macros defined in the program.
+      #
+      # @return [Hash{Symbol => Object}]
+      #
+      # @since 1.0.0
+      attr_reader :macros
+
       # The symbols defined in the program.
       #
       # @return [Hash{String => Label,Integer}]
@@ -117,7 +124,7 @@ module Ronin
       #   end
       #
       # @example Pass variables into an Assembly program:
-      #   Program.new(define: {port: 1337}) do
+      #   Program.new(macros: {port: 1337}) do
       #     # ...
       #     xor eax, eax
       #     mov ax, @port
@@ -139,6 +146,8 @@ module Ronin
         else
           @syscalls = {}
         end
+
+        @macros = macros
 
         macros.each do |name,value|
           instance_variable_set("@#{name}",value)
