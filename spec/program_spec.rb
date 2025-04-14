@@ -29,6 +29,18 @@ describe Ronin::ASM::Program do
       expect(subject.instructions).to eq([])
     end
 
+    context "when the macros: keyword argument is given" do
+      let(:macros) do
+        {x: 42}
+      end
+
+      subject { described_class.new(macros: macros) }
+
+      it "must set #macros" do
+        expect(subject.macros).to eq(macros)
+      end
+    end
+
     context "when the arch: keyword argument is :x86" do
       subject { described_class.new(arch: :x86) }
 
