@@ -60,12 +60,6 @@ module Ronin
       # @return [:linux, :freebsd, nil]
       attr_reader :os
 
-      # The registers available to the program
-      #
-      # @return [Set<Register>]
-      #   The set of register constants.
-      attr_reader :registers
-
       # The syscalls available to the program
       #
       # @return [Hash{Symbol => Integer}]
