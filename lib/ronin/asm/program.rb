@@ -577,9 +577,6 @@ module Ronin
 
       protected
 
-      # undefine the syscall method to prevent accidentally calling it
-      undef syscall
-
       #
       # Allows adding unknown instructions to the program.
       #
