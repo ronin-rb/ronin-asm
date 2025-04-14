@@ -438,6 +438,7 @@ module Ronin
       # @abstract
       #
       def register_clear(register)
+        raise(NotImplementedError,"#{self.class}#register_clear was not defined by the architecture module")
       end
 
       #
