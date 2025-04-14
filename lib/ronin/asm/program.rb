@@ -144,7 +144,7 @@ module Ronin
         @macros = macros
 
         macros.each do |name,value|
-          define_singleton_method(name) { value }
+          define_singleton_method(name,&value.method(:itself))
         end
 
         @symbols      = {}
