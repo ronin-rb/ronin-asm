@@ -63,7 +63,7 @@ module Ronin
     #   ASM.new(macros: {port: 1337}) do
     #     # ...
     #     xor eax, eax
-    #     mov ax, @port
+    #     mov ax, port
     #     # ...
     #   end
     #
