@@ -31,13 +31,21 @@ describe Ronin::ASM::Program do
 
     context "when the macros: keyword argument is given" do
       let(:macros) do
-        {x: 42}
+        {x: 42, y: 'B'}
       end
 
       subject { described_class.new(macros: macros) }
 
       it "must set #macros" do
         expect(subject.macros).to eq(macros)
+      end
+
+      it "must define methods for each key and value in the given macros: keyword argument" do
+        expect(subject).to respond_to(:x)
+        expect(subject.x).to eq(macros.fetch(:x))
+
+        expect(subject).to respond_to(:y)
+        expect(subject.y).to eq(macros.fetch(:y))
       end
     end
 
