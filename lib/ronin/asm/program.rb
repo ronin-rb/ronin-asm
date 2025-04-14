@@ -127,7 +127,7 @@ module Ronin
       #   Program.new(macros: {port: 1337}) do
       #     # ...
       #     xor eax, eax
-      #     mov ax, @port
+      #     mov ax, port
       #     # ...
       #   end
       #
@@ -150,7 +150,7 @@ module Ronin
         @macros = macros
 
         macros.each do |name,value|
-          instance_variable_set("@#{name}",value)
+          define_singleton_method(name) { value }
         end
 
         @symbols      = {}
