@@ -402,6 +402,7 @@ module Ronin
       # @abstract
       #
       def syscall
+        raise(NotImplementedError,"#{self.class}#syscall was not defined by the architecture module")
       end
 
       #
