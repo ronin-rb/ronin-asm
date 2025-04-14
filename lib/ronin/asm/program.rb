@@ -465,6 +465,7 @@ module Ronin
       # @abstract
       #
       def register_save(register)
+        raise(NotImplementedError,"#{self.class}#register_save was not defined by the architecture module")
       end
 
       #
