@@ -45,7 +45,7 @@ describe Ronin::ASM::Program do
       end
     end
 
-    context "and when the os: keyword argument is :linux" do
+    context "when the os: keyword argument is :linux" do
       subject { described_class.new(os: :linux) }
 
       it "must set #syscalls to Ronin::ASM::Syscalls::Linux::SYSCALLS" do
@@ -53,7 +53,7 @@ describe Ronin::ASM::Program do
       end
     end
 
-    context "and when the os: keyword argument is :freebsd" do
+    context "when the os: keyword argument is :freebsd" do
       subject { described_class.new(os: :freebsd) }
 
       it "must set #syscalls to Ronin::ASM::Syscalls::FreeBSD::SYSCALLS" do
@@ -61,7 +61,7 @@ describe Ronin::ASM::Program do
       end
     end
 
-    context "when given an unknown arch: keyword argument value" do
+    context "but the given arch: keyword argument value is unknown" do
       let(:arch) { :foo }
 
       it do
