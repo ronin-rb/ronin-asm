@@ -393,6 +393,7 @@ module Ronin
       # @abstract
       #
       def interrupt(number)
+        raise(NotImplementedError,"#{self.class}#interrupt was not defined by the architecture module")
       end
 
       #
