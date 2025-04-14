@@ -35,8 +35,8 @@ module Ronin
     # @option kwargs [:linux, :freebsd, nil] :os
     #   The Operating System to target.
     #
-    # @option kwargs [Hash{Symbol => Object}] :define
-    #   Variables to set in the program.
+    # @option kwargs [Hash{Symbol => Object}] :macros
+    #   Macros to define in the program.
     #
     # @yield []
     #   The given block will be evaluated within the program.
@@ -60,7 +60,7 @@ module Ronin
     #   end
     #
     # @example Pass variables into an Assembly program:
-    #   ASM.new(define: {port: 1337}) do
+    #   ASM.new(macros: {port: 1337}) do
     #     # ...
     #     xor eax, eax
     #     mov ax, @port
