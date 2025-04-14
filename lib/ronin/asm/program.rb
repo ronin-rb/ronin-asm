@@ -477,6 +477,7 @@ module Ronin
       # @abstract
       #
       def register_load(register)
+        raise(NotImplementedError,"#{self.class}#register_load was not defined by the architecture module")
       end
 
       #
