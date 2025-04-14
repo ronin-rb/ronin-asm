@@ -414,6 +414,7 @@ module Ronin
       # @abstract
       #
       def stack_push(value)
+        raise(NotImplementedError,"#{self.class}#stack_push was not defined by the architecture module")
       end
 
       #
