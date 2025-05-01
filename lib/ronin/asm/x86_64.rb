@@ -514,6 +514,9 @@ module Ronin
       #   * A non-register was given as the `register` argument.
       #   * A non-opmask register was given as the `k` argument.
       #
+      # @example
+      #   vaddpd opmask(xmm1, k1, zero: true), xmm2, xmm3
+      #
       # @since 1.0.0
       #
       def opmask(operand,k,**kwargs)
