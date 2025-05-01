@@ -357,23 +357,51 @@ module Ronin
       #
 
       # The `{rn-sae}` decorator operand.
+      #
+      # @example
+      #   vaddpd zmm1, zmm2, zmm3, rn_sae
+      #
       # @since 1.0.0
       def rn_sae = Operands::RN_SAE
 
+      #
       # The `{rd-sae}` decorator operand.
+      #
+      # @example
+      #   vaddpd zmm1, zmm2, zmm3, rd_sae
+      #
       # @since 1.0.0
+      #
       def rd_sae = Operands::RD_SAE
 
+      #
       # The `{ru-sae}` decorator operand.
+      #
+      # @example
+      #   vaddpd zmm1, zmm2, zmm3, ru_sae
+      #
       # @since 1.0.0
+      #
       def ru_sae = Operands::RU_SAE
 
+      #
       # The `{rz-sae}` decorator operand.
+      #
+      # @example
+      #   vaddpd zmm1, zmm2, zmm3, rz_sae
+      #
       # @since 1.0.0
+      #
       def rz_sae = Operands::RZ_SAE
 
+      #
       # The `{sae}` operand.
+      #
+      # @example
+      #   vcomisd xmm1, xmm2, sae
+      #
       # @since 1.0.0
+      #
       def sae = Operands::SAE
 
       #
