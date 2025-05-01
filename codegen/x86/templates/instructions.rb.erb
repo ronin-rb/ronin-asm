@@ -21,6 +21,9 @@
 module Ronin
   module ASM
     module X86
+      #
+      # Contains all x86 instruction classes and methods.
+      #
       module Instructions
       <%- @instructions.each do |instruction| -%>
         autoload :<%= instruction.name.upcase %>, 'ronin/asm/x86/instructions/<%= instruction.name %>'
