@@ -484,7 +484,7 @@ module Ronin
       #   The broadcasted operand.
       #
       # @example
-      #   bcst(qword([rax]), {1=>4})
+      #   vcvtpd2qq ymm0, bcst(qword([rbx]), {1=>4})
       #
       # @since 1.0.0
       #
