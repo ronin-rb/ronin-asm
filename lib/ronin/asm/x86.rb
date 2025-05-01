@@ -331,7 +331,7 @@ module Ronin
       #   The broadcasted operand.
       #
       # @example
-      #   bcst([rax], {1=>4})
+      #   bcst(qword([rax]), {1=>4})
       #
       # @since 1.0.0
       #
