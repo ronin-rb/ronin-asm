@@ -21,6 +21,9 @@
 module Ronin
   module ASM
     module X86_64
+      #
+      # Contains all x86-64 instruction classes and methods.
+      #
       module Instructions
         autoload :AADD, 'ronin/asm/x86_64/instructions/aadd'
         autoload :AAND, 'ronin/asm/x86_64/instructions/aand'
