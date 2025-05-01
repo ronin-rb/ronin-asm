@@ -154,49 +154,124 @@ module Ronin
       # The `ss` 16bit Stack Segment register.
       def ss = Registers::SS
 
+      # The `k0` 64bit opmask register.
       def k0 = Registers::K0
+
+      # The `k1` 64bit opmask register.
       def k1 = Registers::K1
+
+      # The `k2` 64bit opmask register.
       def k2 = Registers::K2
+
+      # The `k3` 64bit opmask register.
       def k3 = Registers::K3
+
+      # The `k4` 64bit opmask register.
       def k4 = Registers::K4
+
+      # The `k5` 64bit opmask register.
       def k5 = Registers::K5
+
+      # The `k6` 64bit opmask register.
       def k6 = Registers::K6
+
+      # The `k7` 64bit opmask register.
       def k7 = Registers::K7
 
+      # The `mm0` 64bit MMX register.
       def mm0 = Registers::MM0
+
+      # The `mm1` 64bit MMX register.
       def mm1 = Registers::MM1
+
+      # The `mm2` 64bit MMX register.
       def mm2 = Registers::MM2
+
+      # The `mm3` 64bit MMX register.
       def mm3 = Registers::MM3
+
+      # The `mm4` 64bit MMX register.
       def mm4 = Registers::MM4
+
+      # The `mm5` 64bit MMX register.
       def mm5 = Registers::MM5
+
+      # The `mm6` 64bit MMX register.
       def mm6 = Registers::MM6
+
+      # The `mm7` 64bit MMX register.
       def mm7 = Registers::MM7
 
+      # The `xmm0` 128bit XMM register.
       def xmm0 = Registers::XMM0
+
+      # The `xmm1` 128bit XMM register.
       def xmm1 = Registers::XMM1
+
+      # The `xmm2` 128bit XMM register.
       def xmm2 = Registers::XMM2
+
+      # The `xmm3` 128bit XMM register.
       def xmm3 = Registers::XMM3
+
+      # The `xmm4` 128bit XMM register.
       def xmm4 = Registers::XMM4
+
+      # The `xmm5` 128bit XMM register.
       def xmm5 = Registers::XMM5
+
+      # The `xmm6` 128bit XMM register.
       def xmm6 = Registers::XMM6
+
+      # The `xmm7` 128bit XMM register.
       def xmm7 = Registers::XMM7
 
+      # The `ymm0` 256bit YMM register.
       def ymm0 = Registers::YMM0
+
+      # The `ymm1` 256bit YMM register.
       def ymm1 = Registers::YMM1
+
+      # The `ymm2` 256bit YMM register.
       def ymm2 = Registers::YMM2
+
+      # The `ymm3` 256bit YMM register.
       def ymm3 = Registers::YMM3
+
+      # The `ymm4` 256bit YMM register.
       def ymm4 = Registers::YMM4
+
+      # The `ymm5` 256bit YMM register.
       def ymm5 = Registers::YMM5
+
+      # The `ymm6` 256bit YMM register.
       def ymm6 = Registers::YMM6
+
+      # The `ymm7` 256bit YMM register.
       def ymm7 = Registers::YMM7
 
+      # The `zmm0` 512bit ZMM register.
       def zmm0 = Registers::ZMM0
+
+      # The `zmm1` 512bit ZMM register.
       def zmm1 = Registers::ZMM1
+
+      # The `zmm2` 512bit ZMM register.
       def zmm2 = Registers::ZMM2
+
+      # The `zmm3` 512bit ZMM register.
       def zmm3 = Registers::ZMM3
+
+      # The `zmm4` 512bit ZMM register.
       def zmm4 = Registers::ZMM4
+
+      # The `zmm5` 512bit ZMM register.
       def zmm5 = Registers::ZMM5
+
+      # The `zmm6` 512bit ZMM register.
       def zmm6 = Registers::ZMM6
+
+      # The `zmm7` 512bit ZMM register.
       def zmm7 = Registers::ZMM7
 
       #
