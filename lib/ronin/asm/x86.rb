@@ -225,201 +225,241 @@ module Ronin
       # The `k0` 64bit opmask register.
       #
       # @return [Register]
+      # @since 1.0.0
       def k0 = Registers::K0
 
       # The `k1` 64bit opmask register.
       #
       # @return [Register]
+      # @since 1.0.0
       def k1 = Registers::K1
 
       # The `k2` 64bit opmask register.
       #
       # @return [Register]
+      # @since 1.0.0
       def k2 = Registers::K2
 
       # The `k3` 64bit opmask register.
       #
       # @return [Register]
+      # @since 1.0.0
       def k3 = Registers::K3
 
       # The `k4` 64bit opmask register.
       #
       # @return [Register]
+      # @since 1.0.0
       def k4 = Registers::K4
 
       # The `k5` 64bit opmask register.
       #
       # @return [Register]
+      # @since 1.0.0
       def k5 = Registers::K5
 
       # The `k6` 64bit opmask register.
       #
       # @return [Register]
+      # @since 1.0.0
       def k6 = Registers::K6
 
       # The `k7` 64bit opmask register.
       #
       # @return [Register]
+      # @since 1.0.0
       def k7 = Registers::K7
 
       # The `mm0` 64bit MMX register.
       #
       # @return [Register]
+      # @since 1.0.0
       def mm0 = Registers::MM0
 
       # The `mm1` 64bit MMX register.
       #
       # @return [Register]
+      # @since 1.0.0
       def mm1 = Registers::MM1
 
       # The `mm2` 64bit MMX register.
       #
       # @return [Register]
+      # @since 1.0.0
       def mm2 = Registers::MM2
 
       # The `mm3` 64bit MMX register.
       #
       # @return [Register]
+      # @since 1.0.0
       def mm3 = Registers::MM3
 
       # The `mm4` 64bit MMX register.
       #
       # @return [Register]
+      # @since 1.0.0
       def mm4 = Registers::MM4
 
       # The `mm5` 64bit MMX register.
       #
       # @return [Register]
+      # @since 1.0.0
       def mm5 = Registers::MM5
 
       # The `mm6` 64bit MMX register.
       #
       # @return [Register]
+      # @since 1.0.0
       def mm6 = Registers::MM6
 
       # The `mm7` 64bit MMX register.
       #
       # @return [Register]
+      # @since 1.0.0
       def mm7 = Registers::MM7
 
       # The `xmm0` 128bit XMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def xmm0 = Registers::XMM0
 
       # The `xmm1` 128bit XMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def xmm1 = Registers::XMM1
 
       # The `xmm2` 128bit XMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def xmm2 = Registers::XMM2
 
       # The `xmm3` 128bit XMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def xmm3 = Registers::XMM3
 
       # The `xmm4` 128bit XMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def xmm4 = Registers::XMM4
 
       # The `xmm5` 128bit XMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def xmm5 = Registers::XMM5
 
       # The `xmm6` 128bit XMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def xmm6 = Registers::XMM6
 
       # The `xmm7` 128bit XMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def xmm7 = Registers::XMM7
 
       # The `ymm0` 256bit YMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def ymm0 = Registers::YMM0
 
       # The `ymm1` 256bit YMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def ymm1 = Registers::YMM1
 
       # The `ymm2` 256bit YMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def ymm2 = Registers::YMM2
 
       # The `ymm3` 256bit YMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def ymm3 = Registers::YMM3
 
       # The `ymm4` 256bit YMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def ymm4 = Registers::YMM4
 
       # The `ymm5` 256bit YMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def ymm5 = Registers::YMM5
 
       # The `ymm6` 256bit YMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def ymm6 = Registers::YMM6
 
       # The `ymm7` 256bit YMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def ymm7 = Registers::YMM7
 
       # The `zmm0` 512bit ZMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def zmm0 = Registers::ZMM0
 
       # The `zmm1` 512bit ZMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def zmm1 = Registers::ZMM1
 
       # The `zmm2` 512bit ZMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def zmm2 = Registers::ZMM2
 
       # The `zmm3` 512bit ZMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def zmm3 = Registers::ZMM3
 
       # The `zmm4` 512bit ZMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def zmm4 = Registers::ZMM4
 
       # The `zmm5` 512bit ZMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def zmm5 = Registers::ZMM5
 
       # The `zmm6` 512bit ZMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def zmm6 = Registers::ZMM6
 
       # The `zmm7` 512bit ZMM register.
       #
       # @return [Register]
+      # @since 1.0.0
       def zmm7 = Registers::ZMM7
 
       #
