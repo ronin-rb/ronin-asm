@@ -653,7 +653,7 @@ describe Ronin::ASM::Program do
     context "when there are pre-existing SymbolRefs for the label name" do
       it "must resolve the SymbolRefs to the new Label object" do
         symbol_ref = subject.symbol_ref(name)
-        label     = subject.label(name) { }
+        label      = subject.label(name) { }
 
         expect(symbol_ref.value).to be(label)
       end
