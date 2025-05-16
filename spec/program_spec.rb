@@ -610,15 +610,6 @@ describe Ronin::ASM::Program do
       expect(new_label.name).to eq(name)
     end
 
-    context "when a Symbol is given for the name" do
-      it "must convert the Symbol to a String" do
-        new_label = subject.label(:_start) { }
-
-        expect(new_label).to be_kind_of(Ronin::ASM::Label)
-        expect(new_label.name).to eq('_start')
-      end
-    end
-
     it "must add the new Label to #symbols" do
       new_label = subject.label(name) { }
 
@@ -638,6 +629,15 @@ describe Ronin::ASM::Program do
       expect(subject.instructions[-2]).to      be_kind_of(Ronin::ASM::Label)
       expect(subject.instructions[-2].name).to eq(name)
       expect(subject.instructions[-1].name).to eq(:push)
+    end
+
+    context "when a Symbol is given for the name" do
+      it "must convert the Symbol to a String" do
+        new_label = subject.label(:_start) { }
+
+        expect(new_label).to be_kind_of(Ronin::ASM::Label)
+        expect(new_label.name).to eq('_start')
+      end
     end
 
     context "when a label of the same name already exists" do
