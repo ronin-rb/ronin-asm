@@ -604,36 +604,38 @@ describe Ronin::ASM::Program do
     let(:name) { '_start' }
 
     it "must return the new Label object with the given name" do
-      new_label = subject.label(name) { }
+      new_label = subject.label(name)
 
       expect(new_label).to be_kind_of(Ronin::ASM::Label)
       expect(new_label.name).to eq(name)
     end
 
     it "must add the new Label to #symbols" do
-      new_label = subject.label(name) { }
+      new_label = subject.label(name)
 
       expect(subject.symbols[new_label.name]).to be(new_label)
     end
 
     it "must add the label to the instructions" do
-      subject.label(name) { }
+      subject.label(name)
 
       expect(subject.instructions.last).to be_kind_of(Ronin::ASM::Label)
       expect(subject.instructions.last.name).to eq(name)
     end
 
-    it "must accept a block" do
-      subject.label(name) { push 2 }
+    context "when given a block" do
+      it "must evaluate the block after defining the label" do
+        subject.label(name) { push 2 }
 
-      expect(subject.instructions[-2]).to      be_kind_of(Ronin::ASM::Label)
-      expect(subject.instructions[-2].name).to eq(name)
-      expect(subject.instructions[-1].name).to eq(:push)
+        expect(subject.instructions[-2]).to      be_kind_of(Ronin::ASM::Label)
+        expect(subject.instructions[-2].name).to eq(name)
+        expect(subject.instructions[-1].name).to eq(:push)
+      end
     end
 
     context "when a Symbol is given for the name" do
       it "must convert the Symbol to a String" do
-        new_label = subject.label(:_start) { }
+        new_label = subject.label(:_start)
 
         expect(new_label).to be_kind_of(Ronin::ASM::Label)
         expect(new_label.name).to eq('_start')
@@ -642,10 +644,10 @@ describe Ronin::ASM::Program do
 
     context "when a label of the same name already exists" do
       it do
-        subject.label(name) { }
+        subject.label(name)
 
         expect {
-          subject.label(name) { }
+          subject.label(name)
         }.to raise_error(ArgumentError,"symbol is already defined: #{name.inspect}")
       end
     end
@@ -653,7 +655,7 @@ describe Ronin::ASM::Program do
     context "when there are pre-existing SymbolRefs for the label name" do
       it "must resolve the SymbolRefs to the new Label object" do
         symbol_ref = subject.symbol_ref(name)
-        label      = subject.label(name) { }
+        label      = subject.label(name)
 
         expect(symbol_ref.value).to be(label)
       end

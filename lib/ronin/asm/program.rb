@@ -355,7 +355,7 @@ module Ronin
           symbol_ref.resolve(new_label)
         end
 
-        instance_eval(&block)
+        instance_eval(&block) if block
         return new_label
       end
 
