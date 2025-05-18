@@ -304,6 +304,84 @@ describe Ronin::ASM::Program do
     end
   end
 
+  describe "#compatible?" do
+    context "when the other program has the same #arch" do
+      let(:arch) { :x86_64 }
+
+      subject { described_class.new(arch: arch) }
+
+      let(:other) { described_class.new(arch: arch) }
+
+      it "must return true" do
+        expect(subject.compatible?(other)).to be(true)
+      end
+
+      context "and the program does set #os while the other program does not set #os" do
+        subject { described_class.new(arch: arch, os: :linux) }
+
+        let(:other) { described_class.new(arch: arch) }
+
+        it "must return true" do
+          expect(subject.compatible?(other)).to be(true)
+        end
+      end
+
+      context "and the program does not set #os while the other program does set #os" do
+        subject { described_class.new(arch: arch) }
+
+        let(:other) { described_class.new(arch: arch, os: :linux) }
+
+        it "must return true" do
+          expect(subject.compatible?(other)).to be(true)
+        end
+      end
+
+      context "and both programs set #os" do
+        context "and they are same" do
+          let(:os) { :linux }
+
+          subject { described_class.new(arch: arch, os: os) }
+
+          let(:other) { described_class.new(arch: arch, os: os) }
+
+          it "must return true" do
+            expect(subject.compatible?(other)).to be(true)
+          end
+        end
+
+        context "but they are different" do
+          subject { described_class.new(arch: arch, os: :linux) }
+
+          let(:other) { described_class.new(arch: arch, os: :freebsd) }
+
+          it "must return false" do
+            expect(subject.compatible?(other)).to be(false)
+          end
+        end
+      end
+    end
+
+    context "when the other program has a different #arch" do
+      subject { described_class.new(arch: :x86_64) }
+
+      let(:other) { described_class.new(arch: :x86) }
+
+      it "must return false" do
+        expect(subject.compatible?(other)).to be(false)
+      end
+
+      context "but the other program's #arch is an alias for the same #arch that the program uses" do
+        subject { described_class.new(arch: :x86_64) }
+
+        let(:other) { described_class.new(arch: :amd64) }
+
+        it "must return true" do
+          expect(subject.compatible?(other)).to be(true)
+        end
+      end
+    end
+  end
+
   describe "#byte" do
     context "when given an Integer" do
       context "and the program was initialized with `arch: :x86`" do

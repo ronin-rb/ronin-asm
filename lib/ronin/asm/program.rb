@@ -264,6 +264,28 @@ module Ronin
       end
 
       #
+      # Determines if another program is compatible with the program.
+      #
+      # @param [Program] program
+      #   The other program to compare.
+      #
+      # @return [Boolean]
+      #   Returns true if both program's have the same architecture, and if the
+      #   Operating System (OS) if both program's specify an OS.
+      #   Returns false otherwise.
+      #
+      # @api private
+      #
+      # @since 1.0.0
+      #
+      def compatible?(other)
+        ARCHES.fetch(@arch) == ARCHES.fetch(other.arch) && (
+          (@os && other.os && @os == other.os) ||
+          (@os.nil? || other.os.nil?)
+        )
+      end
+
+      #
       # Creates an operand of size 8bits (1 byte).
       #
       # @param [Memory, Integer] operand
