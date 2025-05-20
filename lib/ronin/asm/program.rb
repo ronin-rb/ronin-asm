@@ -79,12 +79,16 @@ module Ronin
       #
       # @return [Hash{String => Label,Integer}]
       #
+      # @since 1.0.0
+      #
       # @api private
       attr_reader :symbols
 
       # The symbol references defined in the program.
       #
       # @return [Hash{String => SymbolRef}]
+      #
+      # @since 1.0.0
       #
       # @api private
       attr_reader :symbol_refs
