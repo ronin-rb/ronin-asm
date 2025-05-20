@@ -112,9 +112,6 @@ module Ronin
       # @param [Hash{Symbol => Object}] macros
       #   Macros to define in the program.
       #
-      # @param [Hash{String => Integer}] symbols
-      #   Explicitly defined symbol values.
-      #
       # @yield []
       #   The given block will be evaluated within the program.
       #
@@ -147,7 +144,7 @@ module Ronin
       #     syscall
       #   end
       #
-      def initialize(arch: :x86_64, os: nil, macros: {}, symbols: {}, &block)
+      def initialize(arch: :x86_64, os: nil, macros: {}, &block)
         initialize_arch(arch)
 
         if os
@@ -158,7 +155,7 @@ module Ronin
 
         initialize_macros(macros)
 
-        @symbols      = symbols.dup
+        @symbols      = {}
         @symbol_refs  = {}
         @instructions = []
 
