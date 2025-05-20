@@ -49,6 +49,22 @@ describe Ronin::ASM::Program do
       end
     end
 
+    context "when the symbols: keyword argument is given" do
+      let(:symbols) do
+        {'sym' => 42}
+      end
+
+      subject { described_class.new(symbols: symbols) }
+
+      it "must populate #symbols with the given symbols: value" do
+        expect(subject.symbols).to eq(symbols)
+      end
+
+      it "must initialize #symbols to a different Hash, to avoid mutating the given symbols: value" do
+        expect(subject.symbols).to_not be(symbols)
+      end
+    end
+
     context "when the arch: keyword argument is :x86" do
       subject { described_class.new(arch: :x86) }
 
