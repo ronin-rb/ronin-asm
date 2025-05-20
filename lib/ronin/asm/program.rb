@@ -625,9 +625,9 @@ module Ronin
       #
       def method_missing(name,*arguments,**kwargs,&block)
         if (block && arguments.empty? && kwargs.empty?)
-          label(name,&block)
+          label(name.id2name,&block)
         elsif (block.nil? && arguments.empty? && kwargs.empty?)
-          symbol_ref(name)
+          symbol_ref(name.id2name)
         else
           super(name,*arguments,&block)
         end
