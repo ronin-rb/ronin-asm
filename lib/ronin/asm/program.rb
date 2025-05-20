@@ -112,6 +112,9 @@ module Ronin
       # @param [Hash{Symbol => Object}] macros
       #   Macros to define in the program.
       #
+      # @param [Hash{String => Integer}] symbols
+      #   Explicitly defined symbol values.
+      #
       # @yield []
       #   The given block will be evaluated within the program.
       #
@@ -144,7 +147,7 @@ module Ronin
       #     syscall
       #   end
       #
-      def initialize(arch: :x86_64, os: nil, macros: {}, &block)
+      def initialize(arch: :x86_64, os: nil, macros: {}, symbols: {}, &block)
         initialize_arch(arch)
 
         if os
@@ -153,13 +156,9 @@ module Ronin
           @syscalls = {}
         end
 
-        @macros = macros
+        initialize_macros(macros)
 
-        macros.each do |name,value|
-          define_singleton_method(name,&value.method(:itself))
-        end
-
-        @symbols      = {}
+        @symbols      = symbols.dup
         @symbol_refs  = {}
         @instructions = []
 
@@ -210,6 +209,21 @@ module Ronin
         @syscalls = syscall_module::SYSCALLS
 
         extend syscall_module
+      end
+
+      #
+      # Initializes the macros.
+      #
+      # @param [Hash{Symbol => Object}] macros
+      #
+      # @api private
+      #
+      def initialize_macros(macros={})
+        @macros = macros
+
+        macros.each do |name,value|
+          define_singleton_method(name,&value.method(:itself))
+        end
       end
 
       public
