@@ -71,21 +71,29 @@ module Ronin
       # @return [Hash{Symbol => Object}]
       #
       # @since 1.0.0
+      #
+      # @api private
       attr_reader :macros
 
       # The symbols defined in the program.
       #
       # @return [Hash{String => Label,Integer}]
+      #
+      # @api private
       attr_reader :symbols
 
       # The symbol references defined in the program.
       #
       # @return [Hash{String => Label,Integer}]
+      #
+      # @api private
       attr_reader :symbol_refs
 
       # The instructions of the program
       #
       # @return [Array<Instruction>]
+      #
+      # @api private
       attr_reader :instructions
 
       #
