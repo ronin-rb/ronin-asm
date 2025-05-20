@@ -157,8 +157,8 @@ module Ronin
         end
 
         initialize_macros(macros)
+        initialize_symbols(symbols)
 
-        @symbols      = symbols.dup
         @symbol_refs  = {}
         @instructions = []
 
@@ -223,6 +223,21 @@ module Ronin
 
         macros.each do |name,value|
           define_singleton_method(name,&value.method(:itself))
+        end
+      end
+
+      #
+      # Initializes the symbols.
+      #
+      # @param [Hash{Symbol,String => Object}] symbols
+      #
+      # @api private
+      #
+      def initialize_symbols(symbols={})
+        @symbols = {}
+
+        symbols.each do |name,value|
+          @symbols[name.to_s] = value
         end
       end
 

@@ -63,6 +63,18 @@ describe Ronin::ASM::Program do
       it "must initialize #symbols to a different Hash, to avoid mutating the given symbols: value" do
         expect(subject.symbols).to_not be(symbols)
       end
+
+      context "and the symbols: Hash value contains Symbol keys" do
+        let(:key)   { :sym }
+        let(:value) { 42 }
+        let(:symbols) do
+          {key => value}
+        end
+
+        it "must convert the Symbol keys into String keys when populating #symbols" do
+          expect(subject.symbols[key.to_s]).to be(value)
+        end
+      end
     end
 
     context "when the arch: keyword argument is :x86" do
