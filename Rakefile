@@ -77,6 +77,21 @@ file 'vendor/isa/arm64-sysregs.xml' => %w[vendor/cache/SysReg_xml_v86A-2020-06.t
   sh 'mv', 'vendor/cache/enc_index.xml', 'vendor/isa/arm64-sysregs.xml'
 end
 
+directory 'vendor/syscalls'
+directory 'vendor/syscalls/linux' => 'vendor/syscalls'
+
+file 'vendor/syscalls/linux/syscall_32.tbl' => 'vendor/syscalls/linux' do
+  sh 'wget', '-O', 'vendor/syscalls/linux/syscall_32.tbl', 'https://raw.githubusercontent.com/torvalds/linux/refs/heads/master/arch/x86/entry/syscalls/syscall_32.tbl'
+end
+
+file 'vendor/syscalls/linux/syscall_64.tbl' => 'vendor/syscalls/linux' do
+  sh 'wget', '-O', 'vendor/syscalls/linux/syscall_64.tbl', 'https://raw.githubusercontent.com/torvalds/linux/refs/heads/master/arch/x86/entry/syscalls/syscall_64.tbl'
+end
+
+file 'vendor/syscalls/linux/syscalls.h' => 'vendor/syscalls/linux' do
+  sh 'wget', '-O', 'vendor/syscalls/linux/syscalls.h', 'https://raw.githubusercontent.com/torvalds/linux/refs/heads/master/include/linux/syscalls.h'
+end
+
 namespace :codegen do
   task(:x86    => 'vendor/isa/x86.xml')    { ruby 'codegen/x86.rb' }
   task(:x86_64 => 'vendor/isa/x86_64.xml') { ruby 'codegen/x86_64.rb' }
