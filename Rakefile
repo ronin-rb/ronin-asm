@@ -95,6 +95,12 @@ end
 namespace :codegen do
   task(:x86    => 'vendor/isa/x86.xml')    { ruby 'codegen/x86.rb' }
   task(:x86_64 => 'vendor/isa/x86_64.xml') { ruby 'codegen/x86_64.rb' }
+
+  namespace :syscalls do
+    task :linux => %w[vendor/syscalls/linux/syscall_32.tbl vendor/syscalls/linux/syscall_64.tbl vendor/syscalls/linux/syscalls.h] do
+      ruby 'codegen/syscalls/linux.rb'
+    end
+  end
 end
 
 rule %r{\Aspec/x86/instructions/fixtures/[^.]+\.o\z} => [->(path) { path.sub(/\.o\z/,'.s') }] do |t|
