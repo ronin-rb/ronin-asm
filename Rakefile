@@ -106,6 +106,10 @@ namespace :codegen do
     task :linux => %w[vendor/syscalls/linux/syscall_32.tbl vendor/syscalls/linux/syscall_64.tbl vendor/syscalls/linux/syscalls.h] do
       ruby 'codegen/syscalls/linux.rb'
     end
+
+    task :freebsd => 'vendor/syscalls/freebsd/syscalls.master' do
+      ruby 'codegen/syscalls/freebsd.rb'
+    end
   end
 end
 
