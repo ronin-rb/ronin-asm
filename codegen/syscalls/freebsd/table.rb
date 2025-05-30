@@ -66,22 +66,7 @@ module CodeGen
                   (?:union\s+\w+) |
                   (?:enum\s+\w+) |
                   # typedefs
-                  u_int | u_long |
-                  uint32_t | int64_t | uint64_t |
-                  intptr_t | uintptr_t |
-                  size_t | off_t | __socklen_t |
-                  id_t | idtype_t | uid_t | gid_t | pid_t | lwpid_t |
-                  clockid_t | ffcounter |
-                  sigset_t | osigset_t |
-                  ucontext_t |
-                  __acl_type_t |
-                  rlim_t |
-                  cap_rights_t |
-                  cpuset_t | cpusetid_t | cpuwhich_t | cpulevel_t | domainset_t |
-                  semid_t |
-                  key_t | key_serial_t |
-                  dev_t | mode_t | fd_set |
-                  caddr_t
+                  \w+
                 )
                 # pointers
                 (?:\s*\* (?:(?:\s*const)? \s*\*)?)?
@@ -138,7 +123,6 @@ module CodeGen
           #
           def self.parse(string)
             unless (match = string.match(REGEX))
-              p string
               raise(ArgumentError,"could not parse C function signature: #{string}")
             end
 
