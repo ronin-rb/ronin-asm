@@ -92,6 +92,12 @@ file 'vendor/syscalls/linux/syscalls.h' => 'vendor/syscalls/linux' do
   sh 'wget', '-O', 'vendor/syscalls/linux/syscalls.h', 'https://raw.githubusercontent.com/torvalds/linux/refs/heads/master/include/linux/syscalls.h'
 end
 
+directory 'vendor/syscalls/freebsd'
+
+file 'vendor/syscalls/freebsd/syscalls.master' => 'vendor/syscalls/freebsd' do
+  sh 'wget', '-O', 'vendor/syscalls/freebsd/syscalls.master', 'https://cgit.freebsd.org/src/plain/sys/kern/syscalls.master'
+end
+
 namespace :codegen do
   task(:x86    => 'vendor/isa/x86.xml')    { ruby 'codegen/x86.rb' }
   task(:x86_64 => 'vendor/isa/x86_64.xml') { ruby 'codegen/x86_64.rb' }
