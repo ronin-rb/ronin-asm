@@ -98,6 +98,12 @@ file 'vendor/syscalls/freebsd/syscalls.master' => 'vendor/syscalls/freebsd' do
   sh 'wget', '-O', 'vendor/syscalls/freebsd/syscalls.master', 'https://cgit.freebsd.org/src/plain/sys/kern/syscalls.master'
 end
 
+directory 'vendor/syscalls/netbsd'
+
+file 'vendor/syscalls/netbsd/syscalls.master' => 'vendor/syscalls/netbsd' do
+  sh 'wget', '-O', 'vendor/syscalls/netbsd/syscalls.master', 'https://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/src/sys/kern/syscalls.master?content-type=text%2Fplain'
+end
+
 namespace :codegen do
   task(:x86    => 'vendor/isa/x86.xml')    { ruby 'codegen/x86.rb' }
   task(:x86_64 => 'vendor/isa/x86_64.xml') { ruby 'codegen/x86_64.rb' }
