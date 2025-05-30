@@ -319,10 +319,10 @@ module Ronin
       #
       # @since 1.0.0
       #
-      def compatible?(other)
-        ARCHES.fetch(@arch) == ARCHES.fetch(other.arch) && (
-          (@os && other.os && @os == other.os) ||
-          (@os.nil? || other.os.nil?)
+      def compatible?(program)
+        ARCHES.fetch(@arch) == ARCHES.fetch(program.arch) && (
+          (@os && program.os && @os == program.os) ||
+          (@os.nil? || program.os.nil?)
         )
       end
 
