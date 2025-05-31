@@ -102,7 +102,7 @@ module CodeGen
           REGEX = /\A
             # return_type name(arguments);
             (?<return_type>\w+(?:\s*\*)?)\s*
-            (?<name>\w+) \( (?<arguments>.*(?=\);)) \);
+            sys_(?<name>\w+) \( (?<arguments>.*(?=\);)) \);
           \z/mx
 
           #
