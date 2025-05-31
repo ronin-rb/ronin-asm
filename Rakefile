@@ -116,6 +116,10 @@ namespace :codegen do
     task :freebsd => 'vendor/syscalls/freebsd/syscalls.master' do
       ruby 'codegen/syscalls/freebsd.rb'
     end
+
+    task :netbsd => 'vendor/syscalls/netbsd/syscalls.master' do
+      ruby 'codegen/syscalls/netbsd.rb'
+    end
   end
 end
 

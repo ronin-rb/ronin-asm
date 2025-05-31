@@ -165,7 +165,7 @@ module CodeGen
           # Regular expression for parsing a NetBSD syscall entry from the
           # `syscalls.master` file.
           REGEX = /\A
-            # number type [type ...] { name | \{ function signature \} }
+            # number type [type ...] { \{ function signature \} [alias] | [comment] }
             (?<number>\d+)\s+
             (?:
               (?:
