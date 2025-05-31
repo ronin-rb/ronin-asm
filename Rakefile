@@ -110,6 +110,12 @@ file 'vendor/syscalls/openbsd/syscalls.master' => 'vendor/syscalls/openbsd' do
   sh 'wget', '-O', 'vendor/syscalls/openbsd/syscalls.master', 'https://raw.githubusercontent.com/openbsd/src/refs/heads/master/sys/kern/syscalls.master'
 end
 
+directory 'vendor/syscalls/macos'
+
+file 'vendor/syscalls/macos/syscalls.master' => 'vendor/syscalls/macos' do
+  sh 'wget', '-O', 'vendor/syscalls/macos/syscalls.master', 'https://raw.githubusercontent.com/apple-oss-distributions/xnu/refs/heads/main/bsd/kern/syscalls.master'
+end
+
 namespace :codegen do
   task(:x86    => 'vendor/isa/x86.xml')    { ruby 'codegen/x86.rb' }
   task(:x86_64 => 'vendor/isa/x86_64.xml') { ruby 'codegen/x86_64.rb' }
