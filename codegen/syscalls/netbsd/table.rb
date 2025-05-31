@@ -1,0 +1,394 @@
+# frozen_string_literal: true
+#
+# ronin-asm - A Ruby DSL for crafting Assembly programs and shellcode.
+#
+# Copyright (c) 2007-2025 Hal Brodigan (postmodern.mod3 at gmail.com)
+#
+# ronin-asm is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# ronin-asm is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
+#
+
+require 'strscan'
+
+module CodeGen
+  module Syscalls
+    module NetBSD
+      #
+      # Handles parsing the NetBSD `syscalls.master` file.
+      #
+      module Table
+        #
+        # Represents an argument in a C function signature.
+        #
+        class FunctionArgument < Data.define(:type, :name, :variadic)
+
+          # Regular expression to match the type signature and name of a
+          # function argument definition.
+          REGEX = /\A
+            (?:
+              # NOTE: variadic `...` can preceed a type definition of the
+              # variadic arguments.
+              (?:(?<variadic>\.\.\.)\s+)?
+              # regular argument
+              (?<type>
+                # annotations
+                (?:
+                  (?:
+                     (?:
+                      _(?:In|Out|Inout)(?:_z)?(?:_opt)?_ |
+                      _In_reads(?:_z|_bytes)?(?:_opt)?_\([^\)]+\) |
+                      # NOTE: the '_' after '_opt' is omitted for 'getkerninfo'
+                      _Out_writes(?:_z|_bytes)?(?:_opt)?[_]?\([^\)]+\) |
+                      _Inout_updates(?:_z|_bytes)?(?:_opt)?_\([^\)]+\) |
+                      _Outptr_result_maybenull_
+                    )\s+
+                  )?
+                  (?:_Contains_(?:long_)?(?:ptr_)?(?:timet_)?\s+)?
+                )
+                # modifiers
+                (?:const\s+)?
+                # base type
+                (?:
+                  # primitive types
+                  void | char | int | long |
+                  (?:unsigned(?:\s+(?: char | int | long ))?) |
+                  # named types
+                  (?:struct\s+\w+) |
+                  (?:union\s+\w+) |
+                  (?:enum\s+\w+) |
+                  # typedefs
+                  \w+
+                )
+                # pointers
+                (?:\s*\* (?:(?:\s*const)? \s*\*)?)?
+              )
+              \s*
+              (?<name>\w+)
+              (?:\[(?<array_capacity>\w+)\])?
+            )
+          \z/x
+
+          #
+          # Parses a C function argument string.
+          #
+          # @param [String] string
+          #
+          # @return [FunctionArgument]
+          #
+          def self.parse(string)
+            unless (match = string.match(REGEX))
+              raise(ArgumentError,"could not parse C function argument: #{string}")
+            end
+
+            type     = match[:type]
+            name     = match[:name].to_sym
+            variadic = !match[:variadic].nil?
+
+            return new(type,name,variadic)
+          end
+
+          #
+          # Determines if the function argument is a variadic argument
+          # (ex: `...`).
+          #
+          # @return [Boolean]
+          #
+          def variadic? = variadic
+
+        end
+
+        #
+        # Represents a syscall's C function signature.
+        #
+        class FunctionSignature < Data.define(:name, :arguments)
+
+          # Regular expression for parsing C function signatures.
+          REGEX = /\A
+            # return_type|prefix|[compat]|prototype
+            (?<return_type>\w+(?:\s*\*)?)\s* \|
+            (?<prefix>\w+) \|
+            (?<compat>\w+)? \|
+            (?<name>\w+) \( (?<arguments>.*(?=\);)) \);
+          \z/mx
+
+          #
+          # Parses a syscall's C function signature.
+          #
+          # @param [String] string
+          #
+          # @return [FunctionSignature]
+          #
+          def self.parse(string)
+            unless (match = string.match(REGEX))
+              raise(ArgumentError,"could not parse C function signature: #{string}")
+            end
+
+            name      = match[:name].to_sym
+            arguments = case match[:arguments]
+                        when 'void', ''
+                          []
+                        else
+                          match[:arguments].strip.split(/\s*,\s*/m).map do |arg|
+                            FunctionArgument.parse(arg)
+                          end
+                        end
+
+            return new(name,arguments)
+          end
+
+          #
+          # Determines if the function accepts variadic arguments.
+          #
+          # @return [Boolean]
+          #
+          def variadic?
+            !arguments.empty? && arguments.last.variadic?
+          end
+
+        end
+
+        #
+        # Represents an entry in the NetBSD `syscalls.master` file.
+        #
+        class Entry < Data.define(:number, :type, :rump, :modular, :name, :function_signature, :function_alias, :comment)
+
+          # Regular expression for parsing a NetBSD syscall entry from the
+          # `syscalls.master` file.
+          REGEX = /\A
+            # number type [type ...] { name | \{ function signature \} }
+            (?<number>\d+)\s+
+            (?:
+              (?:
+                (?<type>
+                 STD |
+                 COMPAT_\d+ |
+                 INDIR |
+                 NODEF |
+                 NOARGS |
+                 NOERR |
+                 EXTERN
+                )\s+
+                # type-dependent optional fields
+                (?:MODULAR\s+(?<modular>\w+)\s+)?
+                (?:(?<rump>RUMP)\s+)?
+                (?:\\\n\s+)?
+                \{ (?<function_signature>[^\}]+) \}
+                (?:
+                  (?:\s+|\s*\\\n\s+)
+                  (?<alias>\w+)
+                )?
+              )
+              |
+              (?:
+                (?<type>OBSOL | IGNORED | UNIMPL | EXCL)
+                (?:\s+(?<comment>.+))?
+              )
+            )
+            # NOTE: some lines have tailing whitespace
+            \s*
+          \z/mx
+
+          #
+          # Parses an entry from the NetBSD `syscalls.master` file.
+          #
+          # @param [String] string
+          #
+          # @return [Entry]
+          #
+          def self.parse(string)
+            unless (match = string.match(REGEX))
+              raise(ArgumentError,"could not parse NetBSD syscall entry: #{string}")
+            end
+
+            number = match[:number].to_i
+            type   = match[:type].to_sym
+
+            if match[:function_signature]
+              # type-dependent optional fields
+              rump    = !match[:rump].nil?
+              modular = if match[:modular]
+                          match[:modular].to_sym
+                        end
+
+              # function metadata
+              function_signature = FunctionSignature.parse(
+                match[:function_signature].strip.gsub(/\\\n\s*/m,'')
+              )
+
+              function_alias = if match[:alias]
+                                 match[:alias].to_sym
+                               end
+
+              name = function_signature.name
+
+              return new(
+                number:  number,
+                type:    type,
+
+                # type-dependent optional fields
+                rump:    rump,
+                modular: modular,
+
+                # function metadata
+                name:               function_signature.name,
+                function_signature: function_signature,
+                function_alias:     function_alias,
+
+                comment: nil
+              )
+            else
+              return new(
+                number: number,
+                type:   type,
+
+                rump:    nil,
+                modular: nil,
+                name:    nil,
+                function_signature: nil,
+                function_alias:     nil,
+
+                # type-dependent comment
+                comment: match[:comment]
+              )
+            end
+          end
+
+          #
+          # Determines if the syscall number is reserved.
+          #
+          # @return [Boolean]
+          #
+          def reserved?
+            type == :RESERVED
+          end
+
+          #
+          # Determines if the syscall is obsolete.
+          #
+          # @return [Boolean]
+          #
+          def obsolete?
+            type == :OBSOL
+          end
+
+          #
+          # Determines if the syscall is ignored.
+          #
+          # @return [Boolean]
+          #
+          def ignored?
+            type == :IGNORED
+          end
+
+          #
+          # Determines if the syscall is unimplemented.
+          #
+          # @return [Boolean]
+          #
+          def unimplemented?
+            type == :UNIMPL
+          end
+
+          #
+          # Determines if the syscall is excluded.
+          #
+          # @return [Boolean]
+          #
+          def excluded?
+            type == :EXCL
+          end
+
+          #
+          # Determines if the syscall requires a rump entry.
+          #
+          # @return [Boolean]
+          #
+          # @see https://wiki.netbsd.org/rumpkernel/
+          #
+          def rump? = rump
+
+        end
+
+        # Path to the NetBSD `syscalls.master` file.
+        PATH = File.join(__dir__,'..','..','..','vendor','syscalls','netbsd','syscalls.master')
+
+        #
+        # Perform basic pre-processing on the NetBSD `syscalls.master` file.
+        #
+        # @param [String] path
+        #   Alternative path to `syscalls.master`.
+        #
+        # @param [:x86_64, :x86] arch
+        #   The target architecture to pre-process the `syscalls.master` file
+        #   as.
+        #
+        # @return [String]
+        #   The pre-processed `syscalls.master` contents.
+        #
+        def self.preprocess(path=PATH, arch: :x86_64)
+          source = File.read(path)
+
+          lp64_regex = /#if !defined\(_LP64\)\n([^#]*)#else\n([^#]*)#endif/m
+
+          if arch == :x86 then source.gsub!(lp64_regex,'\1')
+          else                 source.gsub!(lp64_regex,'\2')
+          end
+
+          # Enable NTP syscalls.
+          source.gsub!(/#if defined(NTP) || !defined(_KERNEL_OPT)\n([^#]*)#else\n([^#]*)#endif/m,'\1')
+
+          return source
+        end
+
+        # Regular expression to match entry lines in the `syscalls.master` file.
+        ENTRY_REGEX = /
+          # number type [...]
+          ^\d+\s+\w+[^\n\\]+(?:\\\n[^\n\\]+)*$
+        /mx
+
+        #
+        # Parses the NetBSD `syscalls.master` file.
+        #
+        # @param [String] path
+        #   Alternate path to the `syscalls.master` file.
+        #
+        # @param [Hash{Symbol => Object}] kwargs
+        #   Additional keyword arguments.
+        #
+        # @option kwargs [:x86_64, :x86] :arch (:x86_64)
+        #   The target architecture to pre-process the `syscalls.master` file
+        #   as.
+        #
+        # @return [Array<Entry>]
+        #   The parsed syscall table entries.
+        #
+        def self.parse(path=PATH,**kwargs)
+          text    = preprocess(path,**kwargs)
+          scanner = StringScanner.new(text)
+          entries = []
+
+          until scanner.eos?
+            if (match = scanner.scan(ENTRY_REGEX))
+              entries << Entry.parse(match)
+            else
+              # skip to the next line
+              scanner.skip(/(.*)\n/)
+            end
+          end
+
+          return entries
+        end
+      end
+    end
+  end
+end
