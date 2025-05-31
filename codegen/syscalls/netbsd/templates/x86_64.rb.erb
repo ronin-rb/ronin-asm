@@ -1,0 +1,58 @@
+# frozen_string_literal: true
+#
+# ronin-asm - A Ruby DSL for crafting Assembly programs and shellcode.
+#
+# Copyright (c) 2007-2025 Hal Brodigan (postmodern.mod3 at gmail.com)
+#
+# ronin-asm is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# ronin-asm is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
+#
+
+#
+# NOTE: this file was automatically generated. Do not edit!
+#
+
+module Ronin
+  module ASM
+    module Syscalls
+      module NetBSD
+        #
+        # NetBSD x86-64 syscall macros.
+        #
+        # @since 1.0.0
+        #
+        module X86_64
+          <%- @syscalls.each do |syscall| -%>
+          <%-   next if syscall.reserved? ||
+                        syscall.obsolete? ||
+                        syscall.ignored?  ||
+                        syscall.unimplemented? ||
+                        syscall.excluded? -%>
+          # Macro to call the `<%= syscall.name %>` syscall.
+          <%-   yard_param_names(syscall).each do |arg| -%>
+          # @param [Register, Integer] <%= arg %>
+          <%-   end -%>
+          # @see https://man.netbsd.org/<%= syscall.name %>.2
+          <%-   method_args = syscall_method_args(syscall) -%>
+          <%-   unless method_args.empty? -%>
+          <%-     method_args_list = method_args.join(',') -%>
+          def <%= syscall.name %>_syscall(<%= method_args_list %>) = syscall_macro(<%= syscall.number.inspect %>,<%= method_args_list %>)
+          <%-   else -%>
+          def <%= syscall.name %>_syscall = syscall_macro(<%= syscall.number.inspect %>)
+          <%-   end -%>
+          <%- end -%>
+        end
+      end
+    end
+  end
+end
