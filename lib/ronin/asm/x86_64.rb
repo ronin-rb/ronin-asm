@@ -32,6 +32,12 @@ require_relative 'x86_64/syntax'
 require_relative 'x86_64/encoder'
 require_relative 'x86_64/assembler'
 
+require_relative 'x86_64/linux'
+require_relative 'x86_64/freebsd'
+require_relative 'x86_64/netbsd'
+require_relative 'x86_64/openbsd'
+require_relative 'x86_64/macos'
+
 require 'set'
 
 module Ronin
@@ -46,6 +52,15 @@ module Ronin
       SYNTAXES = {
         att:   Syntax::ATT,
         intel: Syntax::Intel
+      }
+
+      # Supported OSes.
+      OSES = {
+        linux:   Linux,
+        freebsd: FreeBSD,
+        netbsd:  NetBSD,
+        openbsd: OpenBSD,
+        macos:   MacOS
       }
 
       #
