@@ -18,18 +18,34 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'bsd'
-require_relative '../syscalls/freebsd'
-
 module Ronin
   module ASM
     module X86_64
       #
-      # x86-64-specific FreeBSD methods.
+      # x86-64-specific BSD methods.
       #
-      module FreeBSD
-        include BSD
-        include Syscalls::FreeBSD
+      module BSD
+        #
+        # Macro that generates a syscall.
+        #
+        # @param [Integer, Register] number
+        #   The syscall number to set the `rax` register to.
+        #
+        # @param [Array<Register, Memory, Immediate, Integer>] arguments
+        #   Additional arguments for the syscall.
+        #
+        # @note
+        #   Additional arguments will be `push`ed onto the stack in reverse
+        #   order.
+        #
+        def syscall_macro(number,*arguments)
+          arguments.reverse_each do |value|
+            push value
+          end
+
+          mov Registers::RAX, number
+          syscall
+        end
       end
     end
   end
