@@ -24,6 +24,40 @@ module CodeGen
     # Helper methods for generating Ruby source code.
     #
     module Ruby
+      # List of reserved Ruby keywords.
+      RESERVED_KEYWORDS = Set.new(%w[
+        class
+        module
+        def
+        alias
+        begin
+        end
+        if
+        elsif
+        else
+        case
+        when
+        in
+        and
+        or
+        not
+        rescue
+        break
+        next
+        return
+      ])
+
+      #
+      # Determines if the string is a reserved Ruby keyword.
+      #
+      # @param [String, Symbol] string
+      #
+      # @return [Boolean]
+      #
+      def reserved_keyword?(string)
+        RESERVED_KEYWORDS.include?(string.to_s)
+      end
+
       #
       # Formats a hex byte.
       #
