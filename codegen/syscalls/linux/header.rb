@@ -18,6 +18,9 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative '../function_argument'
+require_relative '../function_signature'
+
 require 'strscan'
 
 module CodeGen
@@ -30,7 +33,7 @@ module CodeGen
         #
         # Represents an argument in a C function signature.
         #
-        class FunctionArgument < Data.define(:type, :name)
+        class FunctionArgument < CodeGen::Syscalls::FunctionArgument
 
           # Regular expression to match the type signature and name of a
           # function argument definition.
@@ -79,22 +82,15 @@ module CodeGen
             return new(type,name)
           end
 
-          #
-          # Determines if the function argument has a name.
-          #
-          # @return [Boolean]
-          #
-          def name? = !name.nil?
-
         end
 
         #
         # Represents a syscall's C function signature.
         #
-        class FunctionSignature < Data.define(:name, :arguments)
+        class FunctionSignature < CodeGen::Syscalls::FunctionSignature
 
           # Regular expression for parsing C function signatures.
-          REGEX = /\Aasmlinkage long (?<name>sys_\w+)\((?<arguments>[^\)]*)\);\z/m
+          REGEX = /\Aasmlinkage (?<return_type>long) (?<name>sys_\w+)\((?<arguments>[^\)]*)\);\z/m
 
           #
           # Parses a syscall's C function signature.
@@ -108,17 +104,11 @@ module CodeGen
               raise(ArgumentError,"could not parse C function signature: #{string}")
             end
 
-            name      = match[:name].to_sym
-            arguments = case match[:arguments]
-                        when 'void', ''
-                          []
-                        else
-                          match[:arguments].strip.split(/\s*,\s*/m).map do |arg|
-                            FunctionArgument.parse(arg)
-                          end
-                        end
+            return_type = match[:return_type]
+            name        = match[:name].to_sym
+            arguments   = FunctionArgument.parse_list(match[:arguments])
 
-            return new(name,arguments)
+            return new(return_type,name,arguments)
           end
 
         end

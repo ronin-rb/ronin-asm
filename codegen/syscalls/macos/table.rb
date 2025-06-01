@@ -18,6 +18,9 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative '../function_argument'
+require_relative '../function_signature'
+
 require 'strscan'
 
 module CodeGen
@@ -30,7 +33,7 @@ module CodeGen
         #
         # Represents an argument in a C function signature.
         #
-        class FunctionArgument < Data.define(:type, :name, :variadic)
+        class FunctionArgument < CodeGen::Syscalls::FunctionArgument
 
           # Regular expression to match the type signature and name of a
           # function argument definition.
@@ -80,23 +83,15 @@ module CodeGen
             name     = match[:name].to_sym
             variadic = !match[:variadic].nil?
 
-            return new(type,name,variadic)
+            return new(type: type, name: name, variadic: variadic)
           end
-
-          #
-          # Determines if the function argument is a variadic argument
-          # (ex: `...`).
-          #
-          # @return [Boolean]
-          #
-          def variadic? = variadic
 
         end
 
         #
         # Represents a syscall's C function signature.
         #
-        class FunctionSignature < Data.define(:name, :arguments)
+        class FunctionSignature < CodeGen::Syscalls::FunctionSignature
 
           # Regular expression for parsing C function signatures.
           REGEX = /\A
@@ -122,26 +117,11 @@ module CodeGen
               raise(ArgumentError,"could not parse C function signature: #{string}")
             end
 
-            name      = match[:name].to_sym
-            arguments = case match[:arguments]
-                        when 'void', ''
-                          []
-                        else
-                          match[:arguments].strip.split(/\s*,\s*/m).map do |arg|
-                            FunctionArgument.parse(arg)
-                          end
-                        end
+            return_type = match[:return_type]
+            name        = match[:name].to_sym
+            arguments   = FunctionArgument.parse_list(match[:arguments])
 
-            return new(name,arguments)
-          end
-
-          #
-          # Determines if the function accepts variadic arguments.
-          #
-          # @return [Boolean]
-          #
-          def variadic?
-            !arguments.empty? && arguments.last.variadic?
+            return new(return_type,name,arguments)
           end
 
         end
@@ -149,7 +129,31 @@ module CodeGen
         #
         # Represents an entry in the macOS `syscalls.master` file.
         #
-        class Entry < Data.define(:number, :audit, :files, :name, :function_signature, :comment)
+        class Entry < Data.define(:number, :audit, :files, :function_signature, :comment)
+
+          #
+          # Initializes the NetBSD syscall table entry.
+          #
+          # @param [Integer] number
+          # @param [Symbol] type
+          # @param [FunctionSignature, nil] function_signature
+          # @param [Symbol, nil] function_alias
+          # @param [String, nil] comment
+          #
+          def initialize(number: , audit: , files: , # function metadata
+                                                     function_signature: nil,
+                                                     # optional comment
+                                                     comment: nil)
+            super(
+              number: number,
+              audit:  audit,
+              files:  files,
+
+              function_signature: function_signature,
+
+              comment: comment
+            )
+          end
 
           # Regular expression for parsing a macOS syscall entry from the
           # `syscalls.master` file.
@@ -205,12 +209,39 @@ module CodeGen
               audit:   audit,
               files:   files,
 
-              # function metadata
-              name:               function_signature.name,
               function_signature: function_signature,
 
               comment: comment
             )
+          end
+
+          #
+          # The syscall's name.
+          #
+          # @return [Symbol, nil]
+          #
+          def name = function_signature && function_signature.name
+
+          #
+          # Determines if the syscall accepts arguments.
+          #
+          # @return [Boolean]
+          #
+          def has_arguments?
+            function_signature && function_signature.has_arguments?
+          end
+
+          #
+          # The syscall's arguments.
+          #
+          # @return [Array<FunctionArgument>]
+          #
+          def arguments
+            if function_signature
+              function_signature.arguments
+            else
+              []
+            end
           end
 
         end
