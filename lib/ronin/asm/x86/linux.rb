@@ -18,6 +18,7 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'registers'
 require_relative '../syscalls/linux/x86'
 
 module Ronin
@@ -28,6 +29,53 @@ module Ronin
       #
       module Linux
         include Syscalls::Linux::X86
+
+        # Registers used to pass syscall arguments to the kernel.
+        SYSCALL_REGISTERS = [
+          Registers::EBX,
+          Registers::ECX,
+          Registers::EDX,
+          Registers::ESI,
+          Registers::EDI,
+          Registers::EBP
+        ]
+
+        #
+        # Macro that generates a syscall.
+        #
+        # @param [Integer, Register] number
+        #   The syscall number to set the `eax` register to.
+        #
+        # @param [Array<Register, Memory, Immediate, Integer>] arguments
+        #   Additional arguments for the syscall.
+        #
+        # @raise [ArgumentError]
+        #   More than six arguments were given.
+        #
+        # @note
+        #   Additional arguments will be `mov`ed into the `ebx`, `ecx`, `edx`,
+        #   `esi`, `edi`, and `ebp` registers, respectively.
+        #
+        # @example Call the `exit` syscall with error code 42:
+        #   syscall_macro 0x1, 42
+        #
+        def syscall_macro(number,*arguments)
+          if arguments.length > SYSCALL_REGISTERS.length
+            raise(ArgumentError,"x86 Linux does not support more than six syscall arguments")
+          end
+
+          syscall_registers = SYSCALL_REGISTERS[0,arguments.length]
+
+          syscall_registers.zip(arguments).reverse_each do |reg,value|
+            # NOTE: do not set the register to itself
+            unless reg == value
+              mov reg, value
+            end
+          end
+
+          mov Registers::EAX, number
+          int 0x80
+        end
       end
     end
   end
