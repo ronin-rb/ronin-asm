@@ -18,6 +18,9 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative '../function_argument'
+require_relative '../function_signature'
+
 require 'strscan'
 
 module CodeGen
@@ -30,14 +33,14 @@ module CodeGen
         #
         # Represents an argument in a C function signature.
         #
-        class FunctionArgument < Data.define(:type, :name)
+        class FunctionArgument < CodeGen::Syscalls::FunctionArgument
 
           # Regular expression to match the type signature and name of a
           # function argument definition.
           REGEX = /\A
             (?:
               # variadic argument
-              (?<type>\.\.\.) |
+              (?<variadic>\.\.\.) |
               # regular argument
               (?<type>
                 # SAL 2.0 annotations
@@ -88,20 +91,14 @@ module CodeGen
               raise(ArgumentError,"could not parse C function argument: #{string}")
             end
 
-            type = match[:type]
-            name = match[:name].to_sym if match[:name]
+            if match[:variadic]
+              return new(type: nil, name: nil, variadic: true)
+            else
+              type = match[:type]
+              name = match[:name].to_sym if match[:name]
 
-            return new(type,name)
-          end
-
-          #
-          # Determines if the function argument is a variadic argument
-          # (ex: `...`).
-          #
-          # @return [Boolean]
-          #
-          def variadic?
-            type == '...'
+              return new(type: type, name: name, variadic: false)
+            end
           end
 
         end
@@ -109,7 +106,7 @@ module CodeGen
         #
         # Represents a syscall's C function signature.
         #
-        class FunctionSignature < Data.define(:name, :arguments)
+        class FunctionSignature < CodeGen::Syscalls::FunctionSignature
 
           # Regular expression for parsing C function signatures.
           REGEX = /\A(?<return_type>\w+(?:\s*\*)?)\s*(?<name>\w+)\((?<arguments>.*(?=\);))\);\z/m
@@ -126,26 +123,18 @@ module CodeGen
               raise(ArgumentError,"could not parse C function signature: #{string}")
             end
 
-            name      = match[:name].to_sym
-            arguments = case match[:arguments]
-                        when 'void', ''
-                          []
-                        else
-                          match[:arguments].strip.split(/\s*,\s*/m).map do |arg|
-                            FunctionArgument.parse(arg)
+            return_type = match[:return_type]
+            name        = match[:name].to_sym
+            arguments   = case match[:arguments]
+                          when 'void', ''
+                            []
+                          else
+                            match[:arguments].split(/\s*,\s*/).map do |arg|
+                              FunctionArgument.parse(arg.strip)
+                            end
                           end
-                        end
 
-            return new(name,arguments)
-          end
-
-          #
-          # Determines if the function accepts variadic arguments.
-          #
-          # @return [Boolean]
-          #
-          def variadic?
-            !arguments.empty? && arguments.last.variadic?
+            return new(return_type,name,arguments)
           end
 
         end
@@ -278,6 +267,28 @@ module CodeGen
           #
           def unimplemented?
             type == :UNIMPL
+          end
+
+          #
+          # Determines if the syscall accepts arguments.
+          #
+          # @return [Boolean]
+          #
+          def has_arguments?
+            function_signature && function_signature.has_arguments?
+          end
+
+          #
+          # The arguments of the syscall.
+          #
+          # @return [Array<FunctionArgument>]
+          #
+          def arguments
+            if function_signature
+              function_signature.arguments
+            else
+              []
+            end
           end
 
         end

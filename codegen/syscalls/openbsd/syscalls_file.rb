@@ -28,61 +28,6 @@ module CodeGen
         template File.join(__dir__,'templates','syscalls.rb.erb')
         output_file 'lib/ronin/asm/syscalls/openbsd.rb'
 
-        #
-        # Returns a Ruby method argument name for a C function argument.
-        #
-        # @param [Table::FunctionArgument] arg
-        #
-        # @return [String]
-        #
-        def syscall_method_arg_name(arg)
-          # NOTE: `in` is a reserved Ruby keyword.
-          if arg.name == :in then 'in_'
-          else                    arg.name
-          end
-        end
-
-        #
-        # Returns the Array of YARD `@param` tag names for the syscall's
-        # arguments.
-        #
-        # @param [Table::Entry] syscall
-        #
-        # @return [Array<String>]
-        #
-        def yard_param_names(syscall)
-          function_signature = syscall.function_signature
-          arguments          = function_signature.arguments
-
-          if function_signature.variadic?
-            *args, variadic = arguments
-
-            args.map(&method(:syscall_method_arg_name)) + [variadic.name]
-          else
-            arguments.map(&method(:syscall_method_arg_name))
-          end
-        end
-
-        #
-        # Returns the Ruby method arguments for the syscall's function.
-        #
-        # @param [Table::Entry] syscall
-        #
-        # @return [Array<String>]
-        #
-        def syscall_method_args(syscall)
-          function_signature = syscall.function_signature
-          arguments          = function_signature.arguments
-
-          if syscall.function_signature.variadic?
-            *args, variadic = arguments
-
-            args.map(&method(:syscall_method_arg_name)) + ["*#{variadic.name}"]
-          else
-            arguments.map(&method(:syscall_method_arg_name))
-          end
-        end
-
       end
     end
   end

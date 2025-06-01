@@ -34,6 +34,15 @@ module CodeGen
         def no_return? = no_return
 
         #
+        # Determines if the syscall accepts arguments.
+        #
+        # @return [Boolean]
+        #
+        def has_arguments?
+          function_signature && function_signature.has_arguments?
+        end
+
+        #
         # The arguments that the syscall accepts.
         #
         # @return [Array<FunctionArgument>]

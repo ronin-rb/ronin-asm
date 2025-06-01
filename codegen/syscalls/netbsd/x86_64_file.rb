@@ -19,7 +19,6 @@
 #
 
 require_relative '../syscalls_file'
-require_relative 'helpers/syscalls'
 
 module CodeGen
   module Syscalls
@@ -28,8 +27,6 @@ module CodeGen
       # Represents the `lib/ronin/asm/syscalls/netbsd/x86_64.rb` file.
       #
       class X86_64File < SyscallsFile
-
-        include Helpers::Syscalls
 
         template File.join(__dir__,'templates','x86_64.rb.erb')
         output_file 'lib/ronin/asm/syscalls/netbsd/x86_64.rb'

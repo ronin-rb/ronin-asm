@@ -35,14 +35,13 @@ module Ronin
         <%-   next if syscall.obsolete? ||
                       syscall.unimplemented? -%>
         # Macro to call the `<%= syscall.name %>` syscall.
-        <%-   yard_param_names(syscall).each do |arg| -%>
-        # @param [Register, Integer] <%= arg %>
+        <%-   syscall_method_arg_names(syscall).each do |name| -%>
+        # @param [Register, Integer] <%= name %>
         <%-   end -%>
         # @see https://man.openbsd.org/<%= syscall.name %>.2
-        <%-   method_args = syscall_method_args(syscall) -%>
-        <%-   unless method_args.empty? -%>
-        <%-     method_args_list = method_args.join(',') -%>
-        def <%= syscall.name %>_syscall(<%= method_args_list %>) = syscall_macro(<%= syscall.number.inspect %>,<%= method_args_list %>)
+        <%-   if syscall.has_arguments? -%>
+        <%-     method_args = syscall_method_args(syscall) -%>
+        def <%= syscall.name %>_syscall(<%= method_args %>) = syscall_macro(<%= syscall.number.inspect %>,<%= method_args %>)
         <%-   else -%>
         def <%= syscall.name %>_syscall = syscall_macro(<%= syscall.number.inspect %>)
         <%-   end -%>
