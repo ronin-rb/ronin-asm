@@ -33,15 +33,14 @@ module Ronin
         #
         module X86_64
           <%- @syscalls.each do |syscall| -%>
-          <%-   method_args = syscall_method_args(syscall) -%>
           # Macro to call the `<%= syscall.name %>` syscall.
-          <%-   method_args.each do |arg| -%>
-          # @param [Register, Integer] <%= arg %>
+          <%-   syscall_method_arg_names(syscall).each do |name| -%>
+          # @param [Register, Integer] <%= name %>
           <%-   end -%>
           # @see https://www.man7.org/linux/man-pages/man2/<%= syscall.name %>.2.html
-          <%-   unless method_args.empty? -%>
-          <%-     method_args_list = method_args.join(',') -%>
-          def <%= syscall.name %>_syscall(<%= method_args_list %>) = syscall(<%= syscall.number.inspect %>,<%= method_args_list %>)
+          <%-   if syscall.has_arguments? -%>
+          <%-     method_args = syscall_method_args(syscall) -%>
+          def <%= syscall.name %>_syscall(<%= method_args %>) = syscall(<%= syscall.number.inspect %>,<%= method_args %>)
           <%-   else -%>
           def <%= syscall.name %>_syscall = syscall(<%= syscall.number.inspect %>)
           <%-   end -%>

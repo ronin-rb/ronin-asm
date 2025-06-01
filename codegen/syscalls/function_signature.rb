@@ -18,17 +18,40 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../syscalls_file'
-
 module CodeGen
   module Syscalls
-    module FreeBSD
-      class SyscallsFile < CodeGen::Syscalls::SyscallsFile
+    #
+    # Represents a parsed syscall's C function signature.
+    #
+    class FunctionSignature < Data.define(:return_type, :name, :arguments)
 
-        template File.join(__dir__,'templates','syscalls.rb.erb')
-        output_file 'lib/ronin/asm/syscalls/freebsd.rb'
-
+      #
+      # Parses a C function signature.
+      #
+      # @param [String] string
+      # @return [FunctionSignature]
+      # @abstract
+      #
+      def self.parse(string)
+        raise(NotImplementedError,"#{self.class}.parse was not implemented")
       end
+
+      #
+      # Determines if the syscall function accepts arguments.
+      #
+      # @return [Boolean]
+      #
+      def has_arguments? = !arguments.empty?
+
+      #
+      # Determines if the function accepts variadic arguments.
+      #
+      # @return [Boolean]
+      #
+      def variadic?
+        !arguments.empty? && arguments.last.variadic?
+      end
+
     end
   end
 end

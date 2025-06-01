@@ -22,6 +22,8 @@ require_relative '../root'
 require_relative '../template_file'
 require_relative '../helpers/ruby'
 
+require 'set'
+
 module CodeGen
   module Syscalls
     class SyscallsFile < TemplateFile
@@ -46,11 +48,21 @@ module CodeGen
 
       # The array of syscalls.
       #
-      # @return [Array<Linux::Syscall>]
+      # @return [Array<Linux::Syscall>,
+      #          Array<FreeBSD::Table::Entry>,
+      #          Array<NetBSD::Table::Entry>,
+      #          Array<OpenBSD::Table::Entry>,
+      #          Array<MacOS::Table::Entry>]
       attr_reader :syscalls
 
       #
       # Initializes the instructions file.
+      #
+      # @param [Array<Linux::Syscall>,
+      #         Array<FreeBSD::Table::Entry>,
+      #         Array<NetBSD::Table::Entry>,
+      #         Array<OpenBSD::Table::Entry>,
+      #         Array<MacOS::Table::Entry>] syscall
       #
       # @param [Array<Linux::Syscall>] instructions
       #   The array of syscalls.
@@ -59,6 +71,78 @@ module CodeGen
         @syscalls = syscalls
 
         super(self.class.output_file)
+      end
+
+      #
+      # Renames certain syscall argument names to avoid conflicting with
+      # reserved Ruby keywords.
+      #
+      # @param [Symbol] name
+      #
+      # @return [String]
+      #
+      def syscall_method_arg_name(name)
+        # downcase all argument names
+        name = name.to_s
+
+        # downcase all uppercase argument names
+        name.downcase! if name =~ /\A[A-Z]+\z/
+
+        # append a '_' character if the argument name is a reserved keyword
+        name << '_' if reserved_keyword?(name)
+
+        return name
+      end
+
+      #
+      # Returns the corresponding Ruby method argument names for the syscall.
+      #
+      # @param [Linux::Syscall,
+      #         FreeBSD::Table::Entry,
+      #         NetBSD::Table::Entry,
+      #         OpenBSD::Table::Entry,
+      #         MacOS::Table::Entry] syscall
+      # @return [Array<String>]
+      #
+      def syscall_method_arg_names(syscall)
+        arguments = syscall.arguments
+
+        if arguments.length == 1 && !arguments.first.has_name?
+          %w[arg]
+        else
+          arguments.map.with_index do |argument,index|
+            if argument.variadic? && !argument.has_name?
+              'args'
+            elsif argument.name
+              syscall_method_arg_name(argument.name)
+            else
+              "arg#{index + 1}"
+            end
+          end
+        end
+      end
+
+      #
+      # Generates the list of Ruby method arguments for the syscall's function.
+      #
+      # @param [Linux::Syscall,
+      #         FreeBSD::Table::Entry,
+      #         NetBSD::Table::Entry,
+      #         OpenBSD::Table::Entry,
+      #         MacOS::Table::Entry] syscall
+      # @return [String]
+      #
+      def syscall_method_args(syscall)
+        args = syscall_method_arg_names(syscall)
+
+        if (function_signature = syscall.function_signature)
+          if function_signature.variadic?
+            # add the splat to the last argument if the syscall is variadic.
+            args[-1] = "*#{args[-1]}"
+          end
+        end
+
+        return args.join(',')
       end
 
     end

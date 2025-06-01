@@ -18,6 +18,9 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative '../function_argument'
+require_relative '../function_signature'
+
 require 'strscan'
 
 module CodeGen
@@ -30,7 +33,7 @@ module CodeGen
         #
         # Represents an argument in a C function signature.
         #
-        class FunctionArgument < Data.define(:type, :name, :variadic)
+        class FunctionArgument < CodeGen::Syscalls::FunctionArgument
 
           # Regular expression to match the type signature and name of a
           # function argument definition.
@@ -94,23 +97,15 @@ module CodeGen
             name     = match[:name].to_sym
             variadic = !match[:variadic].nil?
 
-            return new(type,name,variadic)
+            return new(type: type, name: name, variadic: variadic)
           end
-
-          #
-          # Determines if the function argument is a variadic argument
-          # (ex: `...`).
-          #
-          # @return [Boolean]
-          #
-          def variadic? = variadic
 
         end
 
         #
         # Represents a syscall's C function signature.
         #
-        class FunctionSignature < Data.define(:name, :arguments)
+        class FunctionSignature < CodeGen::Syscalls::FunctionSignature
 
           # Regular expression for parsing C function signatures.
           REGEX = /\A
@@ -133,26 +128,11 @@ module CodeGen
               raise(ArgumentError,"could not parse C function signature: #{string}")
             end
 
-            name      = match[:name].to_sym
-            arguments = case match[:arguments]
-                        when 'void', ''
-                          []
-                        else
-                          match[:arguments].strip.split(/\s*,\s*/m).map do |arg|
-                            FunctionArgument.parse(arg)
-                          end
-                        end
+            return_type = match[:return_type]
+            name        = match[:name].to_sym
+            arguments   = FunctionArgument.parse_list(match[:arguments])
 
-            return new(name,arguments)
-          end
-
-          #
-          # Determines if the function accepts variadic arguments.
-          #
-          # @return [Boolean]
-          #
-          def variadic?
-            !arguments.empty? && arguments.last.variadic?
+            return new(return_type,name,arguments)
           end
 
         end
@@ -160,7 +140,40 @@ module CodeGen
         #
         # Represents an entry in the NetBSD `syscalls.master` file.
         #
-        class Entry < Data.define(:number, :type, :rump, :modular, :name, :function_signature, :function_alias, :comment)
+        class Entry < Data.define(:number, :type, :rump, :modular, :function_signature, :function_alias, :comment)
+
+          #
+          # Initializes the NetBSD syscall table entry.
+          #
+          # @param [Integer] number
+          # @param [Symbol] type
+          # @param [Boolean, nil] rump
+          # @param [Symbol, nil] modular
+          # @param [FunctionSignature, nil] function_signature
+          # @param [Symbol, nil] function_alias
+          # @param [String, nil] comment
+          #
+          def initialize(number: , type: , # type-dependent optional fields
+                                           rump:    nil,
+                                           modular: nil,
+                                           # function metadata
+                                           function_signature: nil,
+                                           function_alias:     nil,
+                                           # optional comment
+                                           comment: nil)
+            super(
+              number: number,
+              type:   type,
+
+              rump:    rump,
+              modular: modular,
+
+              function_signature: function_signature,
+              function_alias:     function_alias,
+
+              comment: comment
+            )
+          end
 
           # Regular expression for parsing a NetBSD syscall entry from the
           # `syscalls.master` file.
@@ -229,8 +242,6 @@ module CodeGen
                                  match[:alias].to_sym
                                end
 
-              name = function_signature.name
-
               return new(
                 number:  number,
                 type:    type,
@@ -240,26 +251,11 @@ module CodeGen
                 modular: modular,
 
                 # function metadata
-                name:               function_signature.name,
                 function_signature: function_signature,
-                function_alias:     function_alias,
-
-                comment: nil
+                function_alias:     function_alias
               )
             else
-              return new(
-                number: number,
-                type:   type,
-
-                rump:    nil,
-                modular: nil,
-                name:    nil,
-                function_signature: nil,
-                function_alias:     nil,
-
-                # type-dependent comment
-                comment: match[:comment]
-              )
+              return new(number: number, type: type, comment: match[:comment])
             end
           end
 
@@ -316,6 +312,35 @@ module CodeGen
           # @see https://wiki.netbsd.org/rumpkernel/
           #
           def rump? = rump
+
+          #
+          # The syscall name.
+          #
+          # @return [Symbol, nil]
+          #
+          def name = function_signature && function_signature.name
+
+          #
+          # Determines if the syscall accepts arguments.
+          #
+          # @return [Boolean]
+          #
+          def has_arguments?
+            function_signature && function_signature.has_arguments?
+          end
+
+          #
+          # The syscall's arguments.
+          #
+          # @return [Array<FunctionArgument>]
+          #
+          def arguments
+            if function_signature
+              function_signature.arguments
+            else
+              []
+            end
+          end
 
         end
 
