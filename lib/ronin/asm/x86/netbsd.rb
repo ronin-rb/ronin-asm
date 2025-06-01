@@ -18,6 +18,7 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'bsd'
 require_relative '../syscalls/netbsd/x86'
 
 module Ronin
@@ -27,6 +28,7 @@ module Ronin
       # x86-specific NetBSD methods.
       #
       module NetBSD
+        include BSD
         include Syscalls::NetBSD::X86
       end
     end

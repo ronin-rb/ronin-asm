@@ -18,6 +18,7 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'bsd'
 require_relative '../syscalls/macos'
 
 module Ronin
@@ -27,6 +28,7 @@ module Ronin
       # x86-specific macOS methods.
       #
       module MacOS
+        include BSD
         include Syscalls::MacOS
       end
     end
