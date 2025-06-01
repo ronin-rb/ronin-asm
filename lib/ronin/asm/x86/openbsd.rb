@@ -18,6 +18,7 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require_relative 'bsd'
 require_relative '../syscalls/openbsd'
 
 module Ronin
@@ -27,6 +28,7 @@ module Ronin
       # x86-specific OpenBSD methods.
       #
       module OpenBSD
+        include BSD
         include Syscalls::OpenBSD
       end
     end
