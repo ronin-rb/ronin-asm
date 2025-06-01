@@ -21,7 +21,6 @@
 require_relative 'exceptions'
 require_relative 'x86'
 require_relative 'x86_64'
-require_relative 'syscalls'
 require_relative 'register'
 require_relative 'instruction'
 require_relative 'immediate'
@@ -44,12 +43,6 @@ module Ronin
         amd64:  X86_64
       }
 
-      # Mapping of Operating System names and modules.
-      SYSCALLS = {
-        linux:   Syscalls::Linux,
-        freebsd: Syscalls::FreeBSD
-      }
-
       # The targeted architecture
       #
       # @return [Symbol]
@@ -59,12 +52,6 @@ module Ronin
       #
       # @return [:linux, :freebsd, nil]
       attr_reader :os
-
-      # The syscalls available to the program
-      #
-      # @return [Hash{Symbol => Integer}]
-      #   The syscall names and numbers.
-      attr_reader :syscalls
 
       # The macros defined in the program.
       #
@@ -148,14 +135,10 @@ module Ronin
       #   end
       #
       def initialize(arch: :x86_64, os: nil, macros: {}, symbols: {}, &block)
-        initialize_arch(arch)
+        @arch = arch
+        @os   = os
 
-        if os
-          initialize_os(os)
-        else
-          @syscalls = {}
-        end
-
+        initialize_arch(arch: arch, os: os)
         initialize_macros(macros)
         initialize_symbols(symbols)
 
@@ -173,11 +156,12 @@ module Ronin
       # @param [:x86, :x86_64, :amd64] arch
       #   The architecture name.
       #
+      # @param [:linux, :freebsd, :netbsd, :openbsd, :macos, nil] os
+      #   The OS name.
+      #
       # @api private
       #
-      def initialize_arch(arch)
-        @arch = arch
-
+      def initialize_arch(arch:, os: nil)
         arch_module = ARCHES.fetch(arch) do
           raise(ArgumentError,"unknown architecture: #{arch.inspect}")
         end
@@ -189,26 +173,12 @@ module Ronin
         @assembler_class  = arch_module::Assembler
 
         extend arch_module
-      end
 
-      #
-      # Initializes the Operating System metadata for the program.
-      #
-      # @param [:linux, :freebsd] os
-      #   The OS name.
-      #
-      # @api private
-      #
-      def initialize_os(os)
-        @os = os
-
-        syscall_module = SYSCALLS.fetch(os) do
-          raise(ArgumentError,"unknown OS: #{os.inspect}")
+        if os
+          extend arch_module::OSES.fetch(os) do
+            raise(ArgumentError,"architecture does not support OS: #{os.inspect}")
+          end
         end
-
-        @syscalls = syscall_module::SYSCALLS
-
-        extend syscall_module
       end
 
       #

@@ -83,6 +83,134 @@ describe Ronin::ASM::Program do
       it "must extend Ronin::ASM::X86" do
         expect(subject).to be_kind_of(Ronin::ASM::X86)
       end
+
+      context "and when the os: keyword argument is :linux" do
+        subject { described_class.new(arch: :x86, os: :linux) }
+
+        it "must extend Ronin::ASM::X86::Linux" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86::Linux)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::Linux::X86" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::Linux::X86)
+        end
+      end
+
+      context "and when the os: keyword argument is :freebsd" do
+        subject { described_class.new(arch: :x86, os: :freebsd) }
+
+        it "must extend Ronin::ASM::X86::FreeBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86::FreeBSD)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::FreeBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::FreeBSD)
+        end
+      end
+
+      context "and when the os: keyword argument is :netbsd" do
+        subject { described_class.new(arch: :x86, os: :netbsd) }
+
+        it "must extend Ronin::ASM::X86::NetBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86::NetBSD)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::NetBSD::X86" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::NetBSD::X86)
+        end
+      end
+
+      context "and when the os: keyword argument is :openbd" do
+        subject { described_class.new(arch: :x86, os: :openbsd) }
+
+        it "must extend Ronin::ASM::X86::OpenBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86::OpenBSD)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::OpenBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::OpenBSD)
+        end
+      end
+
+      context "and when the os: keyword argument is :macos" do
+        subject { described_class.new(arch: :x86, os: :macos) }
+
+        it "must extend Ronin::ASM::X86::MacOS" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86::MacOS)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::MacOS" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::MacOS)
+        end
+      end
+    end
+
+    context "when the arch: keyword argument is :x86_64" do
+      subject { described_class.new(arch: :x86_64) }
+
+      it "must extend Ronin::ASM::X86_64" do
+        expect(subject).to be_kind_of(Ronin::ASM::X86_64)
+      end
+
+      context "and when the os: keyword argument is :linux" do
+        subject { described_class.new(arch: :x86_64, os: :linux) }
+
+        it "must extend Ronin::ASM::X86_64::Linux" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86_64::Linux)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::Linux" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::Linux::X86_64)
+        end
+      end
+
+      context "and when the os: keyword argument is :freebsd" do
+        subject { described_class.new(arch: :x86_64, os: :freebsd) }
+
+        it "must extend Ronin::ASM::X86_64::FreeBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86_64::FreeBSD)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::FreeBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::FreeBSD)
+        end
+      end
+
+      context "and when the os: keyword argument is :netbsd" do
+        subject { described_class.new(arch: :x86_64, os: :netbsd) }
+
+        it "must extend Ronin::ASM::X86_64::NetBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86_64::NetBSD)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::NetBSD::X86_64" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::NetBSD::X86_64)
+        end
+      end
+
+      context "and when the os: keyword argument is :openbsd" do
+        subject { described_class.new(arch: :x86_64, os: :openbsd) }
+
+        it "must extend Ronin::ASM::X86_64::OpenBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86_64::OpenBSD)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::OpenBSD::X86_64" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::OpenBSD)
+        end
+      end
+
+      context "and when the os: keyword argument is :macos" do
+        subject { described_class.new(arch: :x86_64, os: :macos) }
+
+        it "must extend Ronin::ASM::X86_64::MacOS" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86_64::MacOS)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::MacOS" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::MacOS)
+        end
+      end
     end
 
     context "when the arch: keyword argument is :amd64" do
@@ -91,21 +219,65 @@ describe Ronin::ASM::Program do
       it "must extend Ronin::ASM::X86_64" do
         expect(subject).to be_kind_of(Ronin::ASM::X86_64)
       end
-    end
 
-    context "when the os: keyword argument is :linux" do
-      subject { described_class.new(os: :linux) }
+      context "and when the os: keyword argument is :linux" do
+        subject { described_class.new(arch: :amd64, os: :linux) }
 
-      it "must set #syscalls to Ronin::ASM::Syscalls::Linux::SYSCALLS" do
-        expect(subject.syscalls).to eq(Ronin::ASM::Syscalls::Linux::SYSCALLS)
+        it "must extend Ronin::ASM::X86_64::Linux" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86_64::Linux)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::Linux::X86_64" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::Linux::X86_64)
+        end
       end
-    end
 
-    context "when the os: keyword argument is :freebsd" do
-      subject { described_class.new(os: :freebsd) }
+      context "and when the os: keyword argument is :freebsd" do
+        subject { described_class.new(arch: :amd64, os: :freebsd) }
 
-      it "must set #syscalls to Ronin::ASM::Syscalls::FreeBSD::SYSCALLS" do
-        expect(subject.syscalls).to eq(Ronin::ASM::Syscalls::FreeBSD::SYSCALLS)
+        it "must extend Ronin::ASM::X86_64::FreeBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86_64::FreeBSD)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::FreeBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::FreeBSD)
+        end
+      end
+
+      context "and when the os: keyword argument is :netbsd" do
+        subject { described_class.new(arch: :amd64, os: :netbsd) }
+
+        it "must extend Ronin::ASM::X86_64::NetBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86_64::NetBSD)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::NetBSD::X86_64" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::NetBSD::X86_64)
+        end
+      end
+
+      context "and when the os: keyword argument is :openbsd" do
+        subject { described_class.new(arch: :amd64, os: :openbsd) }
+
+        it "must extend Ronin::ASM::X86_64::OpenBSD" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86_64::OpenBSD)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::OpenBSD::X86_64" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::OpenBSD)
+        end
+      end
+
+      context "and when the os: keyword argument is :macos" do
+        subject { described_class.new(arch: :amd64, os: :macos) }
+
+        it "must extend Ronin::ASM::X86_64::MacOS" do
+          expect(subject).to be_kind_of(Ronin::ASM::X86_64::MacOS)
+        end
+
+        it "must extend Ronin::ASM::Syscalls::MacOS" do
+          expect(subject).to be_kind_of(Ronin::ASM::Syscalls::MacOS)
+        end
       end
     end
 
