@@ -414,10 +414,10 @@ describe Ronin::ASM::X86 do
     end
   end
 
-  describe "#register_clear" do
+  describe "#clear_register" do
     let(:register) { described_class::Registers::EAX }
 
-    before { subject.register_clear(register) }
+    before { subject.clear_register(register) }
 
     it "must add a new XOR instruction with both operands as the given register" do
       expect(subject.instructions[-1]).to be_a(described_class::Instructions::XOR)

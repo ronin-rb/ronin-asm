@@ -1444,7 +1444,7 @@ module Ronin
       #
       # @api private
       #
-      def register_clear(register) = xor(register,register)
+      def clear_register(register) = xor(register,register)
 
       #
       # Generates the instruction to set a register.
