@@ -64,7 +64,7 @@ module Ronin
       }
 
       #
-      # @group Register Methods
+      # @!group Register Methods
       #
 
       # The `al` 8bit "accumulator" register.
@@ -542,7 +542,7 @@ module Ronin
       def sae = Operands::SAE
 
       #
-      # @group Type Methods
+      # @!group Type Methods
       #
 
       #
@@ -633,7 +633,7 @@ module Ronin
       def moffset64(value) = MemoryOffset.new(value, size: 8)
 
       #
-      # @group Operand Decorator Methods
+      # @!group Operand Decorator Methods
       #
 
       #
@@ -696,7 +696,7 @@ module Ronin
       def syscall = interrupt(0x80)
 
       #
-      # @group Internal Methods
+      # @!group Internal Methods
       #
 
       #
