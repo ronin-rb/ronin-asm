@@ -762,8 +762,8 @@ module Ronin
       #
       # @abstract
       #
-      def register_set(register,value)
-        raise(NotImplementedError,"#{self.class}#register_set was not defined by the architecture module")
+      def set_register(register,value)
+        raise(NotImplementedError,"#{self.class}#set_register was not defined by the architecture module")
       end
 
       #

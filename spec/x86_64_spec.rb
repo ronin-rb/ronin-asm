@@ -556,11 +556,11 @@ describe Ronin::ASM::X86_64 do
     end
   end
 
-  describe "#register_set" do
+  describe "#set_register" do
     let(:register) { described_class::Registers::RAX }
     let(:value)    { 0x41 }
 
-    before { subject.register_set(register,value) }
+    before { subject.set_register(register,value) }
 
     it "must add a new MOV instruction with the given register and the value" do
       expect(subject.instructions[-1]).to be_a(described_class::Instructions::MOV)

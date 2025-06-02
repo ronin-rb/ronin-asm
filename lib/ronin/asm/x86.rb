@@ -772,7 +772,7 @@ module Ronin
       #
       # @api private
       #
-      def register_set(register,value) = mov(register,value)
+      def set_register(register,value) = mov(register,value)
 
       #
       # Generates the instruction to save a register.
