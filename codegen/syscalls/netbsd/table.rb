@@ -278,6 +278,17 @@ module CodeGen
           end
 
           #
+          # Returns the `COMPAT` NetBSD major version number of the system.
+          #
+          # @return [Integer, nil]
+          #   
+          def compat_version
+            if (match = type.match(/\ACOMPAT_(\d+)\z/))
+              match[1].to_i
+            end
+          end
+
+          #
           # Determines if the syscall number is reserved.
           #
           # @return [Boolean]
