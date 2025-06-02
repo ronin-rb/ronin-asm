@@ -38,6 +38,9 @@ module CodeGen
           x86_64_syscalls_table = Table.parse(PATH)
           syscalls_header       = Header.parse(arch: :x86_64)
 
+          # NOTE: filter out the legacy x32 syscalls
+          x86_64_syscalls_table.reject! { |entry| entry.x32? }
+
           x86_64_syscalls_table.map do |entry|
             function_signature = syscalls_header[entry.entry_point]
 
