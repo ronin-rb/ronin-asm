@@ -689,6 +689,13 @@ module Ronin
       end
 
       #
+      # Generates the instruction to invoke a syscall.
+      #
+      # @api private
+      #
+      def syscall = interrupt(0x80)
+
+      #
       # @group Internal Methods
       #
 
@@ -701,13 +708,6 @@ module Ronin
       # @api private
       #
       def interrupt(number) = int(number)
-
-      #
-      # Generates the instruction to invoke a syscall.
-      #
-      # @api private
-      #
-      def syscall = interrupt(0x80)
 
       #
       # The Stack Base Pointer register.
