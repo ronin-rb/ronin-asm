@@ -581,10 +581,10 @@ describe Ronin::ASM::X86_64 do
     end
   end
 
-  describe "#register_load" do
+  describe "#load_register" do
     let(:register) { described_class::Registers::RAX }
 
-    before { subject.register_load(register) }
+    before { subject.load_register(register) }
 
     it "must add a new POP instruction with the given register" do
       expect(subject.instructions[-1]).to be_a(described_class::Instructions::POP)

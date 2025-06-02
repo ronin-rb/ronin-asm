@@ -1477,7 +1477,7 @@ module Ronin
       #
       # @api private
       #
-      def register_load(register) = stack_pop(register)
+      def load_register(register) = stack_pop(register)
     end
   end
 end

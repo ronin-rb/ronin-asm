@@ -786,8 +786,8 @@ module Ronin
       #
       # @abstract
       #
-      def register_load(register)
-        raise(NotImplementedError,"#{self.class}#register_load was not defined by the architecture module")
+      def load_register(register)
+        raise(NotImplementedError,"#{self.class}#load_register was not defined by the architecture module")
       end
 
       #
@@ -806,7 +806,7 @@ module Ronin
 
         instance_eval(&block)
 
-        registers.reverse_each(&method(:register_load))
+        registers.reverse_each(&method(:load_register))
       end
 
       #
