@@ -32,7 +32,8 @@ module Ronin
       #
       module FreeBSD
         <%- @syscalls.each do |syscall| -%>
-        <%-   next if syscall.reserved? ||
+        <%-   next if syscall.compat? ||
+                      syscall.reserved? ||
                       syscall.obsolete? ||
                       syscall.unimplemented? -%>
         # Macro to call the `<%= syscall.name %>` syscall.

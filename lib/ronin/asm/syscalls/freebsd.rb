@@ -72,11 +72,6 @@ module Ronin
         # @param [Register, Integer] rusage
         # @see https://man.freebsd.org/cgi/man.cgi?query=wait4&sektion=2&apropos=0
         def wait4_syscall(pid,status,options,rusage) = syscall_macro(7,pid,status,options,rusage)
-        # Macro to call the `creat` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] mode
-        # @see https://man.freebsd.org/cgi/man.cgi?query=creat&sektion=2&apropos=0
-        def creat_syscall(path,mode) = syscall_macro(8,path,mode)
         # Macro to call the `link` syscall.
         # @param [Register, Integer] path
         # @param [Register, Integer] link
@@ -94,12 +89,6 @@ module Ronin
         # @param [Register, Integer] fd
         # @see https://man.freebsd.org/cgi/man.cgi?query=fchdir&sektion=2&apropos=0
         def fchdir_syscall(fd) = syscall_macro(13,fd)
-        # Macro to call the `mknod` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] mode
-        # @param [Register, Integer] dev
-        # @see https://man.freebsd.org/cgi/man.cgi?query=mknod&sektion=2&apropos=0
-        def mknod_syscall(path,mode,dev) = syscall_macro(14,path,mode,dev)
         # Macro to call the `chmod` syscall.
         # @param [Register, Integer] path
         # @param [Register, Integer] mode
@@ -115,18 +104,6 @@ module Ronin
         # @param [Register, Integer] nsize
         # @see https://man.freebsd.org/cgi/man.cgi?query=break&sektion=2&apropos=0
         def break_syscall(nsize) = syscall_macro(17,nsize)
-        # Macro to call the `getfsstat` syscall.
-        # @param [Register, Integer] buf
-        # @param [Register, Integer] bufsize
-        # @param [Register, Integer] mode
-        # @see https://man.freebsd.org/cgi/man.cgi?query=getfsstat&sektion=2&apropos=0
-        def getfsstat_syscall(buf,bufsize,mode) = syscall_macro(18,buf,bufsize,mode)
-        # Macro to call the `lseek` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] offset
-        # @param [Register, Integer] whence
-        # @see https://man.freebsd.org/cgi/man.cgi?query=lseek&sektion=2&apropos=0
-        def lseek_syscall(fd,offset,whence) = syscall_macro(19,fd,offset,whence)
         # Macro to call the `getpid` syscall.
         # @see https://man.freebsd.org/cgi/man.cgi?query=getpid&sektion=2&apropos=0
         def getpid_syscall = syscall_macro(20)
@@ -221,26 +198,13 @@ module Ronin
         # @param [Register, Integer] signum
         # @see https://man.freebsd.org/cgi/man.cgi?query=kill&sektion=2&apropos=0
         def kill_syscall(pid,signum) = syscall_macro(37,pid,signum)
-        # Macro to call the `stat` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] ub
-        # @see https://man.freebsd.org/cgi/man.cgi?query=stat&sektion=2&apropos=0
-        def stat_syscall(path,ub) = syscall_macro(38,path,ub)
         # Macro to call the `getppid` syscall.
         # @see https://man.freebsd.org/cgi/man.cgi?query=getppid&sektion=2&apropos=0
         def getppid_syscall = syscall_macro(39)
-        # Macro to call the `lstat` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] ub
-        # @see https://man.freebsd.org/cgi/man.cgi?query=lstat&sektion=2&apropos=0
-        def lstat_syscall(path,ub) = syscall_macro(40,path,ub)
         # Macro to call the `dup` syscall.
         # @param [Register, Integer] fd
         # @see https://man.freebsd.org/cgi/man.cgi?query=dup&sektion=2&apropos=0
         def dup_syscall(fd) = syscall_macro(41,fd)
-        # Macro to call the `pipe` syscall.
-        # @see https://man.freebsd.org/cgi/man.cgi?query=pipe&sektion=2&apropos=0
-        def pipe_syscall = syscall_macro(42)
         # Macro to call the `getegid` syscall.
         # @see https://man.freebsd.org/cgi/man.cgi?query=getegid&sektion=2&apropos=0
         def getegid_syscall = syscall_macro(43)
@@ -258,20 +222,9 @@ module Ronin
         # @param [Register, Integer] pid
         # @see https://man.freebsd.org/cgi/man.cgi?query=ktrace&sektion=2&apropos=0
         def ktrace_syscall(fname,ops,facs,pid) = syscall_macro(45,fname,ops,facs,pid)
-        # Macro to call the `sigaction` syscall.
-        # @param [Register, Integer] signum
-        # @param [Register, Integer] nsa
-        # @param [Register, Integer] osa
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sigaction&sektion=2&apropos=0
-        def sigaction_syscall(signum,nsa,osa) = syscall_macro(46,signum,nsa,osa)
         # Macro to call the `getgid` syscall.
         # @see https://man.freebsd.org/cgi/man.cgi?query=getgid&sektion=2&apropos=0
         def getgid_syscall = syscall_macro(47)
-        # Macro to call the `sigprocmask` syscall.
-        # @param [Register, Integer] how
-        # @param [Register, Integer] mask
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sigprocmask&sektion=2&apropos=0
-        def sigprocmask_syscall(how,mask) = syscall_macro(48,how,mask)
         # Macro to call the `getlogin` syscall.
         # @param [Register, Integer] namebuf
         # @param [Register, Integer] namelen
@@ -285,9 +238,6 @@ module Ronin
         # @param [Register, Integer] path
         # @see https://man.freebsd.org/cgi/man.cgi?query=acct&sektion=2&apropos=0
         def acct_syscall(path) = syscall_macro(51,path)
-        # Macro to call the `sigpending` syscall.
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sigpending&sektion=2&apropos=0
-        def sigpending_syscall = syscall_macro(52)
         # Macro to call the `sigaltstack` syscall.
         # @param [Register, Integer] ss
         # @param [Register, Integer] oss
@@ -332,21 +282,6 @@ module Ronin
         # @param [Register, Integer] path
         # @see https://man.freebsd.org/cgi/man.cgi?query=chroot&sektion=2&apropos=0
         def chroot_syscall(path) = syscall_macro(61,path)
-        # Macro to call the `fstat` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] sb
-        # @see https://man.freebsd.org/cgi/man.cgi?query=fstat&sektion=2&apropos=0
-        def fstat_syscall(fd,sb) = syscall_macro(62,fd,sb)
-        # Macro to call the `getkerninfo` syscall.
-        # @param [Register, Integer] op
-        # @param [Register, Integer] where
-        # @param [Register, Integer] size
-        # @param [Register, Integer] arg
-        # @see https://man.freebsd.org/cgi/man.cgi?query=getkerninfo&sektion=2&apropos=0
-        def getkerninfo_syscall(op,where,size,arg) = syscall_macro(63,op,where,size,arg)
-        # Macro to call the `getpagesize` syscall.
-        # @see https://man.freebsd.org/cgi/man.cgi?query=getpagesize&sektion=2&apropos=0
-        def getpagesize_syscall = syscall_macro(64)
         # Macro to call the `msync` syscall.
         # @param [Register, Integer] addr
         # @param [Register, Integer] len
@@ -356,19 +291,6 @@ module Ronin
         # Macro to call the `vfork` syscall.
         # @see https://man.freebsd.org/cgi/man.cgi?query=vfork&sektion=2&apropos=0
         def vfork_syscall = syscall_macro(66)
-        # Macro to call the `mmap` syscall.
-        # @param [Register, Integer] addr
-        # @param [Register, Integer] len
-        # @param [Register, Integer] prot
-        # @param [Register, Integer] flags
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] pos
-        # @see https://man.freebsd.org/cgi/man.cgi?query=mmap&sektion=2&apropos=0
-        def mmap_syscall(addr,len,prot,flags,fd,pos) = syscall_macro(71,addr,len,prot,flags,fd,pos)
-        # Macro to call the `vadvise` syscall.
-        # @param [Register, Integer] anom
-        # @see https://man.freebsd.org/cgi/man.cgi?query=vadvise&sektion=2&apropos=0
-        def vadvise_syscall(anom) = syscall_macro(72,anom)
         # Macro to call the `munmap` syscall.
         # @param [Register, Integer] addr
         # @param [Register, Integer] len
@@ -416,9 +338,6 @@ module Ronin
         # @param [Register, Integer] oitv
         # @see https://man.freebsd.org/cgi/man.cgi?query=setitimer&sektion=2&apropos=0
         def setitimer_syscall(which,itv,oitv) = syscall_macro(83,which,itv,oitv)
-        # Macro to call the `wait` syscall.
-        # @see https://man.freebsd.org/cgi/man.cgi?query=wait&sektion=2&apropos=0
-        def wait_syscall = syscall_macro(84)
         # Macro to call the `swapon` syscall.
         # @param [Register, Integer] name
         # @see https://man.freebsd.org/cgi/man.cgi?query=swapon&sektion=2&apropos=0
@@ -428,16 +347,6 @@ module Ronin
         # @param [Register, Integer] itv
         # @see https://man.freebsd.org/cgi/man.cgi?query=getitimer&sektion=2&apropos=0
         def getitimer_syscall(which,itv) = syscall_macro(86,which,itv)
-        # Macro to call the `gethostname` syscall.
-        # @param [Register, Integer] hostname
-        # @param [Register, Integer] len
-        # @see https://man.freebsd.org/cgi/man.cgi?query=gethostname&sektion=2&apropos=0
-        def gethostname_syscall(hostname,len) = syscall_macro(87,hostname,len)
-        # Macro to call the `sethostname` syscall.
-        # @param [Register, Integer] hostname
-        # @param [Register, Integer] len
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sethostname&sektion=2&apropos=0
-        def sethostname_syscall(hostname,len) = syscall_macro(88,hostname,len)
         # Macro to call the `getdtablesize` syscall.
         # @see https://man.freebsd.org/cgi/man.cgi?query=getdtablesize&sektion=2&apropos=0
         def getdtablesize_syscall = syscall_macro(89)
@@ -482,35 +391,11 @@ module Ronin
         # @param [Register, Integer] namelen
         # @see https://man.freebsd.org/cgi/man.cgi?query=connect&sektion=2&apropos=0
         def connect_syscall(s,name,namelen) = syscall_macro(98,s,name,namelen)
-        # Macro to call the `accept` syscall.
-        # @param [Register, Integer] s
-        # @param [Register, Integer] name
-        # @param [Register, Integer] anamelen
-        # @see https://man.freebsd.org/cgi/man.cgi?query=accept&sektion=2&apropos=0
-        def accept_syscall(s,name,anamelen) = syscall_macro(99,s,name,anamelen)
         # Macro to call the `getpriority` syscall.
         # @param [Register, Integer] which
         # @param [Register, Integer] who
         # @see https://man.freebsd.org/cgi/man.cgi?query=getpriority&sektion=2&apropos=0
         def getpriority_syscall(which,who) = syscall_macro(100,which,who)
-        # Macro to call the `send` syscall.
-        # @param [Register, Integer] s
-        # @param [Register, Integer] buf
-        # @param [Register, Integer] len
-        # @param [Register, Integer] flags
-        # @see https://man.freebsd.org/cgi/man.cgi?query=send&sektion=2&apropos=0
-        def send_syscall(s,buf,len,flags) = syscall_macro(101,s,buf,len,flags)
-        # Macro to call the `recv` syscall.
-        # @param [Register, Integer] s
-        # @param [Register, Integer] buf
-        # @param [Register, Integer] len
-        # @param [Register, Integer] flags
-        # @see https://man.freebsd.org/cgi/man.cgi?query=recv&sektion=2&apropos=0
-        def recv_syscall(s,buf,len,flags) = syscall_macro(102,s,buf,len,flags)
-        # Macro to call the `sigreturn` syscall.
-        # @param [Register, Integer] sigcntxp
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sigreturn&sektion=2&apropos=0
-        def sigreturn_syscall(sigcntxp) = syscall_macro(103,sigcntxp)
         # Macro to call the `bind` syscall.
         # @param [Register, Integer] s
         # @param [Register, Integer] name
@@ -530,41 +415,6 @@ module Ronin
         # @param [Register, Integer] backlog
         # @see https://man.freebsd.org/cgi/man.cgi?query=listen&sektion=2&apropos=0
         def listen_syscall(s,backlog) = syscall_macro(106,s,backlog)
-        # Macro to call the `sigvec` syscall.
-        # @param [Register, Integer] signum
-        # @param [Register, Integer] nsv
-        # @param [Register, Integer] osv
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sigvec&sektion=2&apropos=0
-        def sigvec_syscall(signum,nsv,osv) = syscall_macro(108,signum,nsv,osv)
-        # Macro to call the `sigblock` syscall.
-        # @param [Register, Integer] mask
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sigblock&sektion=2&apropos=0
-        def sigblock_syscall(mask) = syscall_macro(109,mask)
-        # Macro to call the `sigsetmask` syscall.
-        # @param [Register, Integer] mask
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sigsetmask&sektion=2&apropos=0
-        def sigsetmask_syscall(mask) = syscall_macro(110,mask)
-        # Macro to call the `sigsuspend` syscall.
-        # @param [Register, Integer] mask
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sigsuspend&sektion=2&apropos=0
-        def sigsuspend_syscall(mask) = syscall_macro(111,mask)
-        # Macro to call the `sigstack` syscall.
-        # @param [Register, Integer] nss
-        # @param [Register, Integer] oss
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sigstack&sektion=2&apropos=0
-        def sigstack_syscall(nss,oss) = syscall_macro(112,nss,oss)
-        # Macro to call the `recvmsg` syscall.
-        # @param [Register, Integer] s
-        # @param [Register, Integer] msg
-        # @param [Register, Integer] flags
-        # @see https://man.freebsd.org/cgi/man.cgi?query=recvmsg&sektion=2&apropos=0
-        def recvmsg_syscall(s,msg,flags) = syscall_macro(113,s,msg,flags)
-        # Macro to call the `sendmsg` syscall.
-        # @param [Register, Integer] s
-        # @param [Register, Integer] msg
-        # @param [Register, Integer] flags
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sendmsg&sektion=2&apropos=0
-        def sendmsg_syscall(s,msg,flags) = syscall_macro(114,s,msg,flags)
         # Macro to call the `gettimeofday` syscall.
         # @param [Register, Integer] tp
         # @param [Register, Integer] tzp
@@ -611,15 +461,6 @@ module Ronin
         # @param [Register, Integer] mode
         # @see https://man.freebsd.org/cgi/man.cgi?query=fchmod&sektion=2&apropos=0
         def fchmod_syscall(fd,mode) = syscall_macro(124,fd,mode)
-        # Macro to call the `recvfrom` syscall.
-        # @param [Register, Integer] s
-        # @param [Register, Integer] buf
-        # @param [Register, Integer] len
-        # @param [Register, Integer] flags
-        # @param [Register, Integer] from
-        # @param [Register, Integer] fromlenaddr
-        # @see https://man.freebsd.org/cgi/man.cgi?query=recvfrom&sektion=2&apropos=0
-        def recvfrom_syscall(s,buf,len,flags,from,fromlenaddr) = syscall_macro(125,s,buf,len,flags,from,fromlenaddr)
         # Macro to call the `setreuid` syscall.
         # @param [Register, Integer] ruid
         # @param [Register, Integer] euid
@@ -635,16 +476,6 @@ module Ronin
         # @param [Register, Integer] to
         # @see https://man.freebsd.org/cgi/man.cgi?query=rename&sektion=2&apropos=0
         def rename_syscall(from,to) = syscall_macro(128,from,to)
-        # Macro to call the `truncate` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] length
-        # @see https://man.freebsd.org/cgi/man.cgi?query=truncate&sektion=2&apropos=0
-        def truncate_syscall(path,length) = syscall_macro(129,path,length)
-        # Macro to call the `ftruncate` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] length
-        # @see https://man.freebsd.org/cgi/man.cgi?query=ftruncate&sektion=2&apropos=0
-        def ftruncate_syscall(fd,length) = syscall_macro(130,fd,length)
         # Macro to call the `flock` syscall.
         # @param [Register, Integer] fd
         # @param [Register, Integer] how
@@ -695,34 +526,6 @@ module Ronin
         # @param [Register, Integer] olddelta
         # @see https://man.freebsd.org/cgi/man.cgi?query=adjtime&sektion=2&apropos=0
         def adjtime_syscall(delta,olddelta) = syscall_macro(140,delta,olddelta)
-        # Macro to call the `getpeername` syscall.
-        # @param [Register, Integer] fdes
-        # @param [Register, Integer] asa
-        # @param [Register, Integer] alen
-        # @see https://man.freebsd.org/cgi/man.cgi?query=getpeername&sektion=2&apropos=0
-        def getpeername_syscall(fdes,asa,alen) = syscall_macro(141,fdes,asa,alen)
-        # Macro to call the `gethostid` syscall.
-        # @see https://man.freebsd.org/cgi/man.cgi?query=gethostid&sektion=2&apropos=0
-        def gethostid_syscall = syscall_macro(142)
-        # Macro to call the `sethostid` syscall.
-        # @param [Register, Integer] hostid
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sethostid&sektion=2&apropos=0
-        def sethostid_syscall(hostid) = syscall_macro(143,hostid)
-        # Macro to call the `getrlimit` syscall.
-        # @param [Register, Integer] which
-        # @param [Register, Integer] rlp
-        # @see https://man.freebsd.org/cgi/man.cgi?query=getrlimit&sektion=2&apropos=0
-        def getrlimit_syscall(which,rlp) = syscall_macro(144,which,rlp)
-        # Macro to call the `setrlimit` syscall.
-        # @param [Register, Integer] which
-        # @param [Register, Integer] rlp
-        # @see https://man.freebsd.org/cgi/man.cgi?query=setrlimit&sektion=2&apropos=0
-        def setrlimit_syscall(which,rlp) = syscall_macro(145,which,rlp)
-        # Macro to call the `killpg` syscall.
-        # @param [Register, Integer] pgid
-        # @param [Register, Integer] signum
-        # @see https://man.freebsd.org/cgi/man.cgi?query=killpg&sektion=2&apropos=0
-        def killpg_syscall(pgid,signum) = syscall_macro(146,pgid,signum)
         # Macro to call the `setsid` syscall.
         # @see https://man.freebsd.org/cgi/man.cgi?query=setsid&sektion=2&apropos=0
         def setsid_syscall = syscall_macro(147)
@@ -733,15 +536,6 @@ module Ronin
         # @param [Register, Integer] arg
         # @see https://man.freebsd.org/cgi/man.cgi?query=quotactl&sektion=2&apropos=0
         def quotactl_syscall(path,cmd,uid,arg) = syscall_macro(148,path,cmd,uid,arg)
-        # Macro to call the `quota` syscall.
-        # @see https://man.freebsd.org/cgi/man.cgi?query=quota&sektion=2&apropos=0
-        def quota_syscall = syscall_macro(149)
-        # Macro to call the `getsockname` syscall.
-        # @param [Register, Integer] fdes
-        # @param [Register, Integer] asa
-        # @param [Register, Integer] alen
-        # @see https://man.freebsd.org/cgi/man.cgi?query=getsockname&sektion=2&apropos=0
-        def getsockname_syscall(fdes,asa,alen) = syscall_macro(150,fdes,asa,alen)
         # Macro to call the `nlm_syscall` syscall.
         # @param [Register, Integer] debug_level
         # @param [Register, Integer] grace_period
@@ -754,23 +548,6 @@ module Ronin
         # @param [Register, Integer] argp
         # @see https://man.freebsd.org/cgi/man.cgi?query=nfssvc&sektion=2&apropos=0
         def nfssvc_syscall(flag,argp) = syscall_macro(155,flag,argp)
-        # Macro to call the `getdirentries` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] buf
-        # @param [Register, Integer] count
-        # @param [Register, Integer] basep
-        # @see https://man.freebsd.org/cgi/man.cgi?query=getdirentries&sektion=2&apropos=0
-        def getdirentries_syscall(fd,buf,count,basep) = syscall_macro(156,fd,buf,count,basep)
-        # Macro to call the `statfs` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] buf
-        # @see https://man.freebsd.org/cgi/man.cgi?query=statfs&sektion=2&apropos=0
-        def statfs_syscall(path,buf) = syscall_macro(157,path,buf)
-        # Macro to call the `fstatfs` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] buf
-        # @see https://man.freebsd.org/cgi/man.cgi?query=fstatfs&sektion=2&apropos=0
-        def fstatfs_syscall(fd,buf) = syscall_macro(158,fd,buf)
         # Macro to call the `lgetfh` syscall.
         # @param [Register, Integer] fname
         # @param [Register, Integer] fhp
@@ -781,20 +558,6 @@ module Ronin
         # @param [Register, Integer] fhp
         # @see https://man.freebsd.org/cgi/man.cgi?query=getfh&sektion=2&apropos=0
         def getfh_syscall(fname,fhp) = syscall_macro(161,fname,fhp)
-        # Macro to call the `getdomainname` syscall.
-        # @param [Register, Integer] domainname
-        # @param [Register, Integer] len
-        # @see https://man.freebsd.org/cgi/man.cgi?query=getdomainname&sektion=2&apropos=0
-        def getdomainname_syscall(domainname,len) = syscall_macro(162,domainname,len)
-        # Macro to call the `setdomainname` syscall.
-        # @param [Register, Integer] domainname
-        # @param [Register, Integer] len
-        # @see https://man.freebsd.org/cgi/man.cgi?query=setdomainname&sektion=2&apropos=0
-        def setdomainname_syscall(domainname,len) = syscall_macro(163,domainname,len)
-        # Macro to call the `uname` syscall.
-        # @param [Register, Integer] name
-        # @see https://man.freebsd.org/cgi/man.cgi?query=uname&sektion=2&apropos=0
-        def uname_syscall(name) = syscall_macro(164,name)
         # Macro to call the `sysarch` syscall.
         # @param [Register, Integer] op
         # @param [Register, Integer] parms
@@ -830,22 +593,6 @@ module Ronin
         # @param [Register, Integer] a4
         # @see https://man.freebsd.org/cgi/man.cgi?query=shmsys&sektion=2&apropos=0
         def shmsys_syscall(which,a2,a3,a4) = syscall_macro(171,which,a2,a3,a4)
-        # Macro to call the `pread` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] buf
-        # @param [Register, Integer] nbyte
-        # @param [Register, Integer] pad
-        # @param [Register, Integer] offset
-        # @see https://man.freebsd.org/cgi/man.cgi?query=pread&sektion=2&apropos=0
-        def pread_syscall(fd,buf,nbyte,pad,offset) = syscall_macro(173,fd,buf,nbyte,pad,offset)
-        # Macro to call the `pwrite` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] buf
-        # @param [Register, Integer] nbyte
-        # @param [Register, Integer] pad
-        # @param [Register, Integer] offset
-        # @see https://man.freebsd.org/cgi/man.cgi?query=pwrite&sektion=2&apropos=0
-        def pwrite_syscall(fd,buf,nbyte,pad,offset) = syscall_macro(174,fd,buf,nbyte,pad,offset)
         # Macro to call the `setfib` syscall.
         # @param [Register, Integer] fibnum
         # @see https://man.freebsd.org/cgi/man.cgi?query=setfib&sektion=2&apropos=0
@@ -866,21 +613,6 @@ module Ronin
         # @param [Register, Integer] euid
         # @see https://man.freebsd.org/cgi/man.cgi?query=seteuid&sektion=2&apropos=0
         def seteuid_syscall(euid) = syscall_macro(183,euid)
-        # Macro to call the `stat` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] ub
-        # @see https://man.freebsd.org/cgi/man.cgi?query=stat&sektion=2&apropos=0
-        def stat_syscall(path,ub) = syscall_macro(188,path,ub)
-        # Macro to call the `fstat` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] sb
-        # @see https://man.freebsd.org/cgi/man.cgi?query=fstat&sektion=2&apropos=0
-        def fstat_syscall(fd,sb) = syscall_macro(189,fd,sb)
-        # Macro to call the `lstat` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] ub
-        # @see https://man.freebsd.org/cgi/man.cgi?query=lstat&sektion=2&apropos=0
-        def lstat_syscall(path,ub) = syscall_macro(190,path,ub)
         # Macro to call the `pathconf` syscall.
         # @param [Register, Integer] path
         # @param [Register, Integer] name
@@ -901,47 +633,11 @@ module Ronin
         # @param [Register, Integer] rlp
         # @see https://man.freebsd.org/cgi/man.cgi?query=setrlimit&sektion=2&apropos=0
         def setrlimit_syscall(which,rlp) = syscall_macro(195,which,rlp)
-        # Macro to call the `getdirentries` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] buf
-        # @param [Register, Integer] count
-        # @param [Register, Integer] basep
-        # @see https://man.freebsd.org/cgi/man.cgi?query=getdirentries&sektion=2&apropos=0
-        def getdirentries_syscall(fd,buf,count,basep) = syscall_macro(196,fd,buf,count,basep)
-        # Macro to call the `mmap` syscall.
-        # @param [Register, Integer] addr
-        # @param [Register, Integer] len
-        # @param [Register, Integer] prot
-        # @param [Register, Integer] flags
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] pad
-        # @param [Register, Integer] pos
-        # @see https://man.freebsd.org/cgi/man.cgi?query=mmap&sektion=2&apropos=0
-        def mmap_syscall(addr,len,prot,flags,fd,pad,pos) = syscall_macro(197,addr,len,prot,flags,fd,pad,pos)
         # Macro to call the `__syscall` syscall.
         # @param [Register, Integer] number
         # @param [Register, Integer] args
         # @see https://man.freebsd.org/cgi/man.cgi?query=__syscall&sektion=2&apropos=0
         def __syscall_syscall(number,*args) = syscall_macro(198,number,*args)
-        # Macro to call the `lseek` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] pad
-        # @param [Register, Integer] offset
-        # @param [Register, Integer] whence
-        # @see https://man.freebsd.org/cgi/man.cgi?query=lseek&sektion=2&apropos=0
-        def lseek_syscall(fd,pad,offset,whence) = syscall_macro(199,fd,pad,offset,whence)
-        # Macro to call the `truncate` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] pad
-        # @param [Register, Integer] length
-        # @see https://man.freebsd.org/cgi/man.cgi?query=truncate&sektion=2&apropos=0
-        def truncate_syscall(path,pad,length) = syscall_macro(200,path,pad,length)
-        # Macro to call the `ftruncate` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] pad
-        # @param [Register, Integer] length
-        # @see https://man.freebsd.org/cgi/man.cgi?query=ftruncate&sektion=2&apropos=0
-        def ftruncate_syscall(fd,pad,length) = syscall_macro(201,fd,pad,length)
         # Macro to call the `__sysctl` syscall.
         # @param [Register, Integer] name
         # @param [Register, Integer] namelen
@@ -980,13 +676,6 @@ module Ronin
         # @param [Register, Integer] timeout
         # @see https://man.freebsd.org/cgi/man.cgi?query=poll&sektion=2&apropos=0
         def poll_syscall(fds,nfds,timeout) = syscall_macro(209,fds,nfds,timeout)
-        # Macro to call the `__semctl` syscall.
-        # @param [Register, Integer] semid
-        # @param [Register, Integer] semnum
-        # @param [Register, Integer] cmd
-        # @param [Register, Integer] arg
-        # @see https://man.freebsd.org/cgi/man.cgi?query=__semctl&sektion=2&apropos=0
-        def __semctl_syscall(semid,semnum,cmd,arg) = syscall_macro(220,semid,semnum,cmd,arg)
         # Macro to call the `semget` syscall.
         # @param [Register, Integer] key
         # @param [Register, Integer] nsems
@@ -999,12 +688,6 @@ module Ronin
         # @param [Register, Integer] nsops
         # @see https://man.freebsd.org/cgi/man.cgi?query=semop&sektion=2&apropos=0
         def semop_syscall(semid,sops,nsops) = syscall_macro(222,semid,sops,nsops)
-        # Macro to call the `msgctl` syscall.
-        # @param [Register, Integer] msqid
-        # @param [Register, Integer] cmd
-        # @param [Register, Integer] buf
-        # @see https://man.freebsd.org/cgi/man.cgi?query=msgctl&sektion=2&apropos=0
-        def msgctl_syscall(msqid,cmd,buf) = syscall_macro(224,msqid,cmd,buf)
         # Macro to call the `msgget` syscall.
         # @param [Register, Integer] key
         # @param [Register, Integer] msgflg
@@ -1031,12 +714,6 @@ module Ronin
         # @param [Register, Integer] shmflg
         # @see https://man.freebsd.org/cgi/man.cgi?query=shmat&sektion=2&apropos=0
         def shmat_syscall(shmid,shmaddr,shmflg) = syscall_macro(228,shmid,shmaddr,shmflg)
-        # Macro to call the `shmctl` syscall.
-        # @param [Register, Integer] shmid
-        # @param [Register, Integer] cmd
-        # @param [Register, Integer] buf
-        # @see https://man.freebsd.org/cgi/man.cgi?query=shmctl&sektion=2&apropos=0
-        def shmctl_syscall(shmid,cmd,buf) = syscall_macro(229,shmid,cmd,buf)
         # Macro to call the `shmdt` syscall.
         # @param [Register, Integer] shmaddr
         # @see https://man.freebsd.org/cgi/man.cgi?query=shmdt&sektion=2&apropos=0
@@ -1156,12 +833,6 @@ module Ronin
         # @param [Register, Integer] sig
         # @see https://man.freebsd.org/cgi/man.cgi?query=lio_listio&sektion=2&apropos=0
         def lio_listio_syscall(mode,acb_list,nent,sig) = syscall_macro(257,mode,acb_list,nent,sig)
-        # Macro to call the `getdents` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] buf
-        # @param [Register, Integer] count
-        # @see https://man.freebsd.org/cgi/man.cgi?query=getdents&sektion=2&apropos=0
-        def getdents_syscall(fd,buf,count) = syscall_macro(272,fd,buf,count)
         # Macro to call the `lchmod` syscall.
         # @param [Register, Integer] path
         # @param [Register, Integer] mode
@@ -1172,21 +843,6 @@ module Ronin
         # @param [Register, Integer] tptr
         # @see https://man.freebsd.org/cgi/man.cgi?query=lutimes&sektion=2&apropos=0
         def lutimes_syscall(path,tptr) = syscall_macro(276,path,tptr)
-        # Macro to call the `nstat` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] ub
-        # @see https://man.freebsd.org/cgi/man.cgi?query=nstat&sektion=2&apropos=0
-        def nstat_syscall(path,ub) = syscall_macro(278,path,ub)
-        # Macro to call the `nfstat` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] sb
-        # @see https://man.freebsd.org/cgi/man.cgi?query=nfstat&sektion=2&apropos=0
-        def nfstat_syscall(fd,sb) = syscall_macro(279,fd,sb)
-        # Macro to call the `nlstat` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] ub
-        # @see https://man.freebsd.org/cgi/man.cgi?query=nlstat&sektion=2&apropos=0
-        def nlstat_syscall(path,ub) = syscall_macro(280,path,ub)
         # Macro to call the `preadv` syscall.
         # @param [Register, Integer] fd
         # @param [Register, Integer] iovp
@@ -1201,21 +857,11 @@ module Ronin
         # @param [Register, Integer] offset
         # @see https://man.freebsd.org/cgi/man.cgi?query=pwritev&sektion=2&apropos=0
         def pwritev_syscall(fd,iovp,iovcnt,offset) = syscall_macro(290,fd,iovp,iovcnt,offset)
-        # Macro to call the `fhstatfs` syscall.
-        # @param [Register, Integer] u_fhp
-        # @param [Register, Integer] buf
-        # @see https://man.freebsd.org/cgi/man.cgi?query=fhstatfs&sektion=2&apropos=0
-        def fhstatfs_syscall(u_fhp,buf) = syscall_macro(297,u_fhp,buf)
         # Macro to call the `fhopen` syscall.
         # @param [Register, Integer] u_fhp
         # @param [Register, Integer] flags
         # @see https://man.freebsd.org/cgi/man.cgi?query=fhopen&sektion=2&apropos=0
         def fhopen_syscall(u_fhp,flags) = syscall_macro(298,u_fhp,flags)
-        # Macro to call the `fhstat` syscall.
-        # @param [Register, Integer] u_fhp
-        # @param [Register, Integer] sb
-        # @see https://man.freebsd.org/cgi/man.cgi?query=fhstat&sektion=2&apropos=0
-        def fhstat_syscall(u_fhp,sb) = syscall_macro(299,u_fhp,sb)
         # Macro to call the `modnext` syscall.
         # @param [Register, Integer] modid
         # @see https://man.freebsd.org/cgi/man.cgi?query=modnext&sektion=2&apropos=0
@@ -1293,21 +939,6 @@ module Ronin
         # @param [Register, Integer] aiocbp
         # @see https://man.freebsd.org/cgi/man.cgi?query=aio_error&sektion=2&apropos=0
         def aio_error_syscall(aiocbp) = syscall_macro(317,aiocbp)
-        # Macro to call the `aio_read` syscall.
-        # @param [Register, Integer] aiocbp
-        # @see https://man.freebsd.org/cgi/man.cgi?query=aio_read&sektion=2&apropos=0
-        def aio_read_syscall(aiocbp) = syscall_macro(318,aiocbp)
-        # Macro to call the `aio_write` syscall.
-        # @param [Register, Integer] aiocbp
-        # @see https://man.freebsd.org/cgi/man.cgi?query=aio_write&sektion=2&apropos=0
-        def aio_write_syscall(aiocbp) = syscall_macro(319,aiocbp)
-        # Macro to call the `lio_listio` syscall.
-        # @param [Register, Integer] mode
-        # @param [Register, Integer] acb_list
-        # @param [Register, Integer] nent
-        # @param [Register, Integer] sig
-        # @see https://man.freebsd.org/cgi/man.cgi?query=lio_listio&sektion=2&apropos=0
-        def lio_listio_syscall(mode,acb_list,nent,sig) = syscall_macro(320,mode,acb_list,nent,sig)
         # Macro to call the `yield` syscall.
         # @see https://man.freebsd.org/cgi/man.cgi?query=yield&sektion=2&apropos=0
         def yield_syscall = syscall_macro(321)
@@ -1364,16 +995,6 @@ module Ronin
         # @param [Register, Integer] len
         # @see https://man.freebsd.org/cgi/man.cgi?query=utrace&sektion=2&apropos=0
         def utrace_syscall(addr,len) = syscall_macro(335,addr,len)
-        # Macro to call the `sendfile` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] s
-        # @param [Register, Integer] offset
-        # @param [Register, Integer] nbytes
-        # @param [Register, Integer] hdtr
-        # @param [Register, Integer] sbytes
-        # @param [Register, Integer] flags
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sendfile&sektion=2&apropos=0
-        def sendfile_syscall(fd,s,offset,nbytes,hdtr,sbytes,flags) = syscall_macro(336,fd,s,offset,nbytes,hdtr,sbytes,flags)
         # Macro to call the `kldsym` syscall.
         # @param [Register, Integer] fileid
         # @param [Register, Integer] cmd
@@ -1402,20 +1023,10 @@ module Ronin
         # @param [Register, Integer] sigmask
         # @see https://man.freebsd.org/cgi/man.cgi?query=sigsuspend&sektion=2&apropos=0
         def sigsuspend_syscall(sigmask) = syscall_macro(341,sigmask)
-        # Macro to call the `sigaction` syscall.
-        # @param [Register, Integer] sig
-        # @param [Register, Integer] act
-        # @param [Register, Integer] oact
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sigaction&sektion=2&apropos=0
-        def sigaction_syscall(sig,act,oact) = syscall_macro(342,sig,act,oact)
         # Macro to call the `sigpending` syscall.
         # @param [Register, Integer] set
         # @see https://man.freebsd.org/cgi/man.cgi?query=sigpending&sektion=2&apropos=0
         def sigpending_syscall(set) = syscall_macro(343,set)
-        # Macro to call the `sigreturn` syscall.
-        # @param [Register, Integer] sigcntxp
-        # @see https://man.freebsd.org/cgi/man.cgi?query=sigreturn&sektion=2&apropos=0
-        def sigreturn_syscall(sigcntxp) = syscall_macro(344,sigcntxp)
         # Macro to call the `sigtimedwait` syscall.
         # @param [Register, Integer] set
         # @param [Register, Integer] info
@@ -1523,15 +1134,6 @@ module Ronin
         # Macro to call the `kqueue` syscall.
         # @see https://man.freebsd.org/cgi/man.cgi?query=kqueue&sektion=2&apropos=0
         def kqueue_syscall = syscall_macro(362)
-        # Macro to call the `kevent` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] changelist
-        # @param [Register, Integer] nchanges
-        # @param [Register, Integer] eventlist
-        # @param [Register, Integer] nevents
-        # @param [Register, Integer] timeout
-        # @see https://man.freebsd.org/cgi/man.cgi?query=kevent&sektion=2&apropos=0
-        def kevent_syscall(fd,changelist,nchanges,eventlist,nevents,timeout) = syscall_macro(363,fd,changelist,nchanges,eventlist,nevents,timeout)
         # Macro to call the `extattr_set_fd` syscall.
         # @param [Register, Integer] fd
         # @param [Register, Integer] attrnamespace
@@ -1640,27 +1242,6 @@ module Ronin
         # @param [Register, Integer] arg
         # @see https://man.freebsd.org/cgi/man.cgi?query=mac_syscall&sektion=2&apropos=0
         def mac_syscall_syscall(policy,call,arg) = syscall_macro(394,policy,call,arg)
-        # Macro to call the `getfsstat` syscall.
-        # @param [Register, Integer] buf
-        # @param [Register, Integer] bufsize
-        # @param [Register, Integer] mode
-        # @see https://man.freebsd.org/cgi/man.cgi?query=getfsstat&sektion=2&apropos=0
-        def getfsstat_syscall(buf,bufsize,mode) = syscall_macro(395,buf,bufsize,mode)
-        # Macro to call the `statfs` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] buf
-        # @see https://man.freebsd.org/cgi/man.cgi?query=statfs&sektion=2&apropos=0
-        def statfs_syscall(path,buf) = syscall_macro(396,path,buf)
-        # Macro to call the `fstatfs` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] buf
-        # @see https://man.freebsd.org/cgi/man.cgi?query=fstatfs&sektion=2&apropos=0
-        def fstatfs_syscall(fd,buf) = syscall_macro(397,fd,buf)
-        # Macro to call the `fhstatfs` syscall.
-        # @param [Register, Integer] u_fhp
-        # @param [Register, Integer] buf
-        # @see https://man.freebsd.org/cgi/man.cgi?query=fhstatfs&sektion=2&apropos=0
-        def fhstatfs_syscall(u_fhp,buf) = syscall_macro(398,u_fhp,buf)
         # Macro to call the `ksem_close` syscall.
         # @param [Register, Integer] id
         # @see https://man.freebsd.org/cgi/man.cgi?query=ksem_close&sektion=2&apropos=0
@@ -1770,10 +1351,6 @@ module Ronin
         # @param [Register, Integer] ucp
         # @see https://man.freebsd.org/cgi/man.cgi?query=swapcontext&sektion=2&apropos=0
         def swapcontext_syscall(oucp,ucp) = syscall_macro(423,oucp,ucp)
-        # Macro to call the `swapoff` syscall.
-        # @param [Register, Integer] name
-        # @see https://man.freebsd.org/cgi/man.cgi?query=swapoff&sektion=2&apropos=0
-        def swapoff_syscall(name) = syscall_macro(424,name)
         # Macro to call the `__acl_get_link` syscall.
         # @param [Register, Integer] path
         # @param [Register, Integer] type
@@ -1821,14 +1398,6 @@ module Ronin
         # @param [Register, Integer] sig
         # @see https://man.freebsd.org/cgi/man.cgi?query=thr_kill&sektion=2&apropos=0
         def thr_kill_syscall(id,sig) = syscall_macro(433,id,sig)
-        # Macro to call the `_umtx_lock` syscall.
-        # @param [Register, Integer] umtx
-        # @see https://man.freebsd.org/cgi/man.cgi?query=_umtx_lock&sektion=2&apropos=0
-        def _umtx_lock_syscall(umtx) = syscall_macro(434,umtx)
-        # Macro to call the `_umtx_unlock` syscall.
-        # @param [Register, Integer] umtx
-        # @see https://man.freebsd.org/cgi/man.cgi?query=_umtx_unlock&sektion=2&apropos=0
-        def _umtx_unlock_syscall(umtx) = syscall_macro(435,umtx)
         # Macro to call the `jail_attach` syscall.
         # @param [Register, Integer] jid
         # @see https://man.freebsd.org/cgi/man.cgi?query=jail_attach&sektion=2&apropos=0
@@ -2072,12 +1641,6 @@ module Ronin
         # @param [Register, Integer] sig
         # @see https://man.freebsd.org/cgi/man.cgi?query=thr_kill2&sektion=2&apropos=0
         def thr_kill2_syscall(pid,id,sig) = syscall_macro(481,pid,id,sig)
-        # Macro to call the `shm_open` syscall.
-        # @param [Register, Integer] path
-        # @param [Register, Integer] flags
-        # @param [Register, Integer] mode
-        # @see https://man.freebsd.org/cgi/man.cgi?query=shm_open&sektion=2&apropos=0
-        def shm_open_syscall(path,flags,mode) = syscall_macro(482,path,flags,mode)
         # Macro to call the `shm_unlink` syscall.
         # @param [Register, Integer] path
         # @see https://man.freebsd.org/cgi/man.cgi?query=shm_unlink&sektion=2&apropos=0
@@ -2143,13 +1706,6 @@ module Ronin
         # @param [Register, Integer] envv
         # @see https://man.freebsd.org/cgi/man.cgi?query=fexecve&sektion=2&apropos=0
         def fexecve_syscall(fd,argv,envv) = syscall_macro(492,fd,argv,envv)
-        # Macro to call the `fstatat` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] path
-        # @param [Register, Integer] buf
-        # @param [Register, Integer] flag
-        # @see https://man.freebsd.org/cgi/man.cgi?query=fstatat&sektion=2&apropos=0
-        def fstatat_syscall(fd,path,buf,flag) = syscall_macro(493,fd,path,buf,flag)
         # Macro to call the `futimesat` syscall.
         # @param [Register, Integer] fd
         # @param [Register, Integer] path
@@ -2176,13 +1732,6 @@ module Ronin
         # @param [Register, Integer] mode
         # @see https://man.freebsd.org/cgi/man.cgi?query=mkfifoat&sektion=2&apropos=0
         def mkfifoat_syscall(fd,path,mode) = syscall_macro(497,fd,path,mode)
-        # Macro to call the `mknodat` syscall.
-        # @param [Register, Integer] fd
-        # @param [Register, Integer] path
-        # @param [Register, Integer] mode
-        # @param [Register, Integer] dev
-        # @see https://man.freebsd.org/cgi/man.cgi?query=mknodat&sektion=2&apropos=0
-        def mknodat_syscall(fd,path,mode,dev) = syscall_macro(498,fd,path,mode,dev)
         # Macro to call the `openat` syscall.
         # @param [Register, Integer] fd
         # @param [Register, Integer] path
@@ -2236,10 +1785,6 @@ module Ronin
         # @param [Register, Integer] jid
         # @see https://man.freebsd.org/cgi/man.cgi?query=jail_remove&sektion=2&apropos=0
         def jail_remove_syscall(jid) = syscall_macro(508,jid)
-        # Macro to call the `closefrom` syscall.
-        # @param [Register, Integer] lowfd
-        # @see https://man.freebsd.org/cgi/man.cgi?query=closefrom&sektion=2&apropos=0
-        def closefrom_syscall(lowfd) = syscall_macro(509,lowfd)
         # Macro to call the `__semctl` syscall.
         # @param [Register, Integer] semid
         # @param [Register, Integer] semnum
