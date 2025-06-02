@@ -144,6 +144,38 @@ module CodeGen
         #
         class Entry < Data.define(:number, :audit, :types, :name, :function_signature, :alt_name, :alt_tag, :alt_return_type)
 
+          #
+          # Initializes the entry.
+          #
+          # @param [Integer] number
+          # @param [Symbol] audit
+          # @param [Symbol, nil] name
+          # @param [FunctionSignature, nil] function_signature
+          # @param [Symbol, nil] alt_name
+          # @param [Symbol, nil] alt_tag
+          # @param [Symbol, nil] alt_return_type
+          #
+          def initialize(number: , audit: , types: , name: nil,
+
+                                                     function_signature: nil,
+
+                                                     alt_name:        nil,
+                                                     alt_tag:         nil,
+                                                     alt_return_type: nil)
+            super(
+              number: number,
+              audit:  audit,
+              types:  types,
+
+              name:   name,
+              function_signature: function_signature,
+
+              alt_name:        alt_name,
+              alt_tag:         alt_tag,
+              alt_return_type: alt_return_type
+            )
+          end
+
           # Regular expression for parsing a FreeBSD syscall entry from the
           # `syscalls.master` file.
           REGEX = /\A
@@ -221,14 +253,17 @@ module CodeGen
                               end
 
             return new(
-              number,
-              audit,
-              types,
-              name,
-              function_signature,
-              alt_name,
-              alt_tag,
-              alt_return_type
+              number: number,
+              audit:  audit,
+              types:  types,
+
+              name: name,
+
+              function_signature: function_signature,
+
+              alt_name:        alt_name,
+              alt_tag:         alt_tag,
+              alt_return_type: alt_return_type
             )
           end
 
@@ -331,6 +366,13 @@ module CodeGen
           ^\d+\s+\w+\s+[\w\|]+\s+(?:\{[^\}]+\}|\w+)$
         /mx
 
+        # Regular expression to match a reserved range entry line in the
+        # `syscalls.master` file.
+        RESERVED_RANGE_REGEX = /
+          # start-stop AUE_NULL RESERVED
+          ^\d+\-\d+\s+AUE_NULL\s+RESERVED$
+        /x
+
         #
         # Parses the FreeBSD `syscalls.master` file.
         #
@@ -348,6 +390,17 @@ module CodeGen
           until scanner.eos?
             if (match = scanner.scan(ENTRY_REGEX))
               entries << Entry.parse(match)
+            elsif (match = scanner.scan(RESERVED_RANGE_REGEX))
+              start = match[/^\d+/].to_i
+              stop  = match[/(?<=\-)\d+/].to_i
+
+              (start..stop).each do |number|
+                entries << Entry.new(
+                  number: number,
+                  audit:  :AUE_NULL,
+                  types:  [:RESERVED]
+                )
+              end
             else
               # skip to the next line
               scanner.skip(/(.*)\n/)
