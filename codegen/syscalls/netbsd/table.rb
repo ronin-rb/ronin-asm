@@ -108,13 +108,7 @@ module CodeGen
         class FunctionSignature < CodeGen::Syscalls::FunctionSignature
 
           # Regular expression for parsing C function signatures.
-          REGEX = /\A
-            # return_type|prefix|[compat]|prototype
-            (?<return_type>\w+(?:\s*\*)?)\s* \|
-            (?<prefix>\w+) \|
-            (?<compat>\w+)? \|
-            (?<name>\w+) \( (?<arguments>.*(?=\);)) \);
-          \z/mx
+          REGEX = /\A(?<return_type>\w+(?:\s*\*)?)\s*(?<name>\w+)\((?<arguments>.*(?=\);))\);\z/m
 
           #
           # Parses a syscall's C function signature.
@@ -140,7 +134,7 @@ module CodeGen
         #
         # Represents an entry in the NetBSD `syscalls.master` file.
         #
-        class Entry < Data.define(:number, :type, :rump, :modular, :function_signature, :function_alias, :comment)
+        class Entry < Data.define(:number, :type, :rump, :modular, :prefix, :compat, :function_signature, :function_alias, :comment)
 
           #
           # Initializes the NetBSD syscall table entry.
@@ -149,6 +143,8 @@ module CodeGen
           # @param [Symbol] type
           # @param [Boolean, nil] rump
           # @param [Symbol, nil] modular
+          # @param [Symbol, nil] prefix
+          # @param [Integer, nil] compat
           # @param [FunctionSignature, nil] function_signature
           # @param [Symbol, nil] function_alias
           # @param [String, nil] comment
@@ -157,6 +153,8 @@ module CodeGen
                                            rump:    nil,
                                            modular: nil,
                                            # function metadata
+                                           prefix: nil,
+                                           compat: nil,
                                            function_signature: nil,
                                            function_alias:     nil,
                                            # optional comment
@@ -168,6 +166,9 @@ module CodeGen
               rump:    rump,
               modular: modular,
 
+              prefix: prefix,
+              compat: compat,
+
               function_signature: function_signature,
               function_alias:     function_alias,
 
@@ -178,7 +179,7 @@ module CodeGen
           # Regular expression for parsing a NetBSD syscall entry from the
           # `syscalls.master` file.
           REGEX = /\A
-            # number type [type ...] { \{ function signature \} [alias] | [comment] }
+            # number type [type ...] { \{ return_type|prefix|[compat])|basename\(pseudo-proto\); \} [alias] | [comment] }
             (?<number>\d+)\s+
             (?:
               (?:
@@ -195,7 +196,12 @@ module CodeGen
                 (?:MODULAR\s+(?<modular>\w+)\s+)?
                 (?:(?<rump>RUMP)\s+)?
                 (?:\\\n\s+)?
-                \{ (?<function_signature>[^\}]+) \}
+                \{\s+ (?:\\\n\s*)?
+                  (?<return_type>\w+(?:\s*\*)?)\s* \|
+                  (?<prefix>\w+) \|
+                  (?<compat>\w+)? \|
+                  (?<basename>\w+) \( (?<pseudo_proto>[^\)]+) \);
+                \s+\}
                 (?:
                   (?:\s+|\s*\\\n\s+)
                   (?<alias>\w+)
@@ -226,16 +232,25 @@ module CodeGen
             number = match[:number].to_i
             type   = match[:type].to_sym
 
-            if match[:function_signature]
+            if match[:return_type] && match[:basename] && match[:pseudo_proto]
               # type-dependent optional fields
               rump    = !match[:rump].nil?
               modular = if match[:modular]
                           match[:modular].to_sym
                         end
 
-              # function metadata
+              prefix = match[:prefix].to_sym
+              compat = if match[:compat]
+                         match[:compat].to_i
+                       end
+
+              # function signature metadata
+              return_type  = match[:return_type]
+              basename     = match[:basename]
+              pseudo_proto = match[:pseudo_proto].strip.gsub(/\\\n\s*/m,'')
+
               function_signature = FunctionSignature.parse(
-                match[:function_signature].strip.gsub(/\\\n\s*/m,'')
+                "#{return_type} #{basename}(#{pseudo_proto});"
               )
 
               function_alias = if match[:alias]
@@ -249,6 +264,9 @@ module CodeGen
                 # type-dependent optional fields
                 rump:    rump,
                 modular: modular,
+
+                prefix: prefix,
+                compat: compat,
 
                 # function metadata
                 function_signature: function_signature,
