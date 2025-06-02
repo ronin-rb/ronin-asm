@@ -422,15 +422,6 @@ module Ronin
       end
 
       #
-      # Generic method for generating the instruction for invoking a syscall.
-      #
-      # @abstract
-      #
-      def syscall
-        raise(NotImplementedError,"#{self.class}#syscall was not defined by the architecture module")
-      end
-
-      #
       # Generic method for pushing onto the stack.
       #
       # @param [Register, Integer] value
