@@ -31,6 +31,42 @@ module CodeGen
         class Entry < Data.define(:number, :abi, :name, :entry_point, :compat_entry_point, :no_return)
 
           #
+          # Determines if the syscall belongs to the common ABI.
+          #
+          # @return [Boolean]
+          #
+          def common?
+            abi == :common
+          end
+
+          #
+          # Determines if the syscall belongs to the 64bit ABI.
+          #
+          # @return [Boolean]
+          #
+          def x64?
+            abi == :'64'
+          end
+
+          #
+          # Determines if the syscall belongs to the legacy x32 ABI.
+          #
+          # @return [Boolean]
+          #
+          def x32?
+            abi == :x32
+          end
+
+          #
+          # Determines if the syscall belongs to the i386 ABI.
+          #
+          # @return [Boolean]
+          #
+          def i386?
+            abi == :i386
+          end
+
+          #
           # Determines if the syscall ever returns at all.
           #
           # @return [Boolean]
