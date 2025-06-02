@@ -188,14 +188,31 @@ end
 
 ### Syscalls
 
-If the `os:` keyword argument is specified, then syscall numbers can be looked
-up via the [syscalls][Ronin::ASM::Program#syscalls] Hash:
+Builtin syscall macros are provided for Linux, FreeBSD, NetBSD, OpenBSD, and
+macOS. Specify the `os:` keyword argument to enable syscalls for the specified
+OS:
+
+```ruby
+asm = Ronin::ASM.new(os: :linux) do
+  # ...
+  exit_syscall(42)
+end
+```
+
+Registers can also be passed to syscall macros as arguments:
 
 ```ruby
 Ronin::ASM.new(os: :linux) do
-  # ...
-  mov al, syscalls[:execve]
-  syscall
+  xor rdx, rdx
+  mov rbx, 0x68732f6e69622f2f
+  shr rbx, 8
+  push rbx
+  mov rdi, rsp
+  push rdx
+  push rdi
+  mov rsi, rsp
+
+  execve_syscall(rdi,rsi,rdx)
 end
 ```
 

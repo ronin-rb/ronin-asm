@@ -67,11 +67,10 @@ module Ronin
     #     # ...
     #   end
     #
-    # @example Create an Assembly program with Linux syscalls:
+    # @example Create an Assembly program with OS-specific syscalls:
     #   ASM.new(os: :linux) do
     #     # ...
-    #     mov al, syscalls[:execve]
-    #     syscall
+    #     exit_syscall(42)
     #   end
     #
     def ASM.new(**kwargs,&block)
