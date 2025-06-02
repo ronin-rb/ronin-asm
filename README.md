@@ -16,18 +16,25 @@ ronin-asm is a Ruby DSL for crafting Assembly programs and shellcode.
 
 ## Features
 
-* Supports x86 and x86-64 architectures.
-* Provides a Ruby DSL for writing Assembly programs and shellcode *in* Ruby.
-* Provides a pure-Ruby multi-architecture assembler.
-* Even supports more exotic Assembly features such as:
-  * RIP-relative Addressing.
-  * Floating point / vector registers and instructions.
-  * Tile Registers.
-  * Memory broadcasts (`BCST` / `{1to4}`)
-  * Operand masks/writemasks (`{k1}{z}`).
-* Supports outputting back to Intel or ATT Assembly syntax.
+* Supports the x86 and x86-64 architectures.
+* Implements nearly the *entire* x86 and x86-64 Instruction Set Architecture
+  (ISA).
+* Provides a Ruby DSL for representing Assembly that is nearly identical
+  to Intel Assembly syntax.
+* Supports syscalls for Linux, FreeBSD, NetBSD, OpenBSD, and macOS.
+* Implements a pure-Ruby multi-architecture multi-pass Assembler that produces
+  100% identical Assembly code compared to GNU Assembler (GAS).
+* Supports converting programs back into Assembly syntax (Intel or ATT).
 * Has 95% documentation coverage.
 * Has 99% test coverage.
+
+### Limitations
+
+* Does not currently support Privileged-Mode instructions or registers.
+* Does not currently support Segment Offset Addressing.
+* Does not currently support defining `.data` or `.bss` sections.
+* Does not currently support creating ELF files.
+* Does not currently support most NASM or GNU Assembler (GAS) builtin macros.
 
 ## Synopsis
 
