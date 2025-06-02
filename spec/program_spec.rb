@@ -1457,4 +1457,18 @@ describe Ronin::ASM::Program do
       expect(subject.to_bin.encoding).to be(Encoding::ASCII_8BIT)
     end
   end
+
+  describe "#respond_to_missing?" do
+    context "when given :to_ary" do
+      it "must return false" do
+        expect(subject.send(:respond_to_missing?, :to_ary)).to be(false)
+      end
+    end
+
+    context "when given any other name" do
+      it "must return true" do
+        expect(subject.send(:respond_to_missing?, :foo)).to be(true)
+      end
+    end
+  end
 end

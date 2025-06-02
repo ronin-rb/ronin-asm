@@ -599,6 +599,22 @@ module Ronin
       #
       def to_bin = assemble
 
+      #
+      # Determines if the program responds to the method name.
+      #
+      # @param [Symbol] name
+      #
+      # @param [Boolean] include_private
+      #
+      # @return [Boolean]
+      #
+      # @api private
+      #
+      def respond_to_missing?(name,include_private=false)
+        # prevents `puts` from thinking `Program` responds to `.to_ary`.
+        name != :to_ary
+      end
+
       protected
 
       #
