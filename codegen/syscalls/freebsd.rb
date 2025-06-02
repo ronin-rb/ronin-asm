@@ -20,8 +20,11 @@
 
 require_relative 'freebsd/table'
 require_relative 'freebsd/syscalls_file'
+require_relative 'freebsd/syscalls_spec_file'
 
 if $0 == __FILE__
   syscalls = CodeGen::Syscalls::FreeBSD::Table.parse
+
   CodeGen::Syscalls::FreeBSD::SyscallsFile.generate(syscalls)
+  CodeGen::Syscalls::FreeBSD::SyscallsSpecFile.generate(syscalls)
 end

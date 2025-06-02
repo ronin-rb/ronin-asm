@@ -20,8 +20,11 @@
 
 require_relative 'openbsd/table'
 require_relative 'openbsd/syscalls_file'
+require_relative 'openbsd/syscalls_spec_file'
 
 if $0 == __FILE__
   syscalls = CodeGen::Syscalls::OpenBSD::Table.parse
+
   CodeGen::Syscalls::OpenBSD::SyscallsFile.generate(syscalls)
+  CodeGen::Syscalls::OpenBSD::SyscallsSpecFile.generate(syscalls)
 end

@@ -18,26 +18,21 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'netbsd/x86'
-require_relative 'netbsd/x86_file'
-require_relative 'netbsd/x86_spec_file'
+require_relative '../syscalls_spec_file'
 
-require_relative 'netbsd/x86_64'
-require_relative 'netbsd/x86_64_file'
-require_relative 'netbsd/x86_64_spec_file'
+module CodeGen
+  module Syscalls
+    module Linux
+      #
+      # Represents the syscalls spec file at
+      # `spec/syscalls/linux/x86_64_spec.rb`.
+      #
+      class X86_64SpecFile < CodeGen::Syscalls::SyscallsSpecFile
 
-if $0 == __FILE__
-  require 'fileutils'
-  extend FileUtils
+        template File.join(__dir__,'templates','x86_64_spec.rb.erb')
+        output_file 'spec/syscalls/linux/x86_64_spec.rb'
 
-  mkdir_p File.join(CodeGen::ROOT,'lib','ronin','asm','syscalls','netbsd')
-  mkdir_p File.join(CodeGen::ROOT,'spec','syscalls','netbsd')
-
-  x86_syscalls = CodeGen::Syscalls::NetBSD::X86.load
-  CodeGen::Syscalls::NetBSD::X86File.generate(x86_syscalls)
-  CodeGen::Syscalls::NetBSD::X86SpecFile.generate(x86_syscalls)
-
-  x86_64_syscalls = CodeGen::Syscalls::NetBSD::X86_64.load
-  CodeGen::Syscalls::NetBSD::X86_64File.generate(x86_64_syscalls)
-  CodeGen::Syscalls::NetBSD::X86_64SpecFile.generate(x86_64_syscalls)
+      end
+    end
+  end
 end

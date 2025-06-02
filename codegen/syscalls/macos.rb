@@ -20,8 +20,11 @@
 
 require_relative 'macos/table'
 require_relative 'macos/syscalls_file'
+require_relative 'macos/syscalls_spec_file'
 
 if $0 == __FILE__
   syscalls = CodeGen::Syscalls::MacOS::Table.parse
+
   CodeGen::Syscalls::MacOS::SyscallsFile.generate(syscalls)
+  CodeGen::Syscalls::MacOS::SyscallsSpecFile.generate(syscalls)
 end

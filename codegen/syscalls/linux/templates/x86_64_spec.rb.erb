@@ -1,0 +1,32 @@
+require 'spec_helper'
+require 'ronin/asm/syscalls/linux/x86_64'
+
+describe Ronin::ASM::Syscalls::Linux::X86_64 do
+  subject do
+    obj = Object.new
+    obj.extend Ronin::ASM::Syscalls::Linux::X86_64
+    obj
+  end
+  <%- @syscalls.each do |syscall| -%>
+
+  describe "#<%= syscall.name %>_syscall" do
+    <%- if syscall.has_arguments? -%>
+    let(:arguments) { [<%= syscall.arguments.map.with_index { |arg,index| "double('arg#{index + 1}')" }.join(', ') %>] }
+
+    it "must call #syscall_macro with the syscall number <%= syscall.number.inspect %> and additional arguments" do
+      expect(subject).to receive(:syscall_macro).with(<%= syscall.number.inspect %>,*arguments)
+
+      subject.<%= syscall.name %>_syscall(*arguments)
+    end
+    <%- else -%>
+    let(:arguments) { [] }
+
+    it "must call #syscall_macro with the syscall number <%= syscall.number.inspect %>" do
+      expect(subject).to receive(:syscall_macro).with(<%= syscall.number.inspect %>)
+
+      subject.<%= syscall.name %>_syscall
+    end
+    <%- end -%>
+  end
+  <%- end -%>
+end

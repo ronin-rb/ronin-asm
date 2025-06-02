@@ -20,19 +20,24 @@
 
 require_relative 'linux/x86'
 require_relative 'linux/x86_file'
+require_relative 'linux/x86_spec_file'
 
 require_relative 'linux/x86_64'
 require_relative 'linux/x86_64_file'
+require_relative 'linux/x86_64_spec_file'
 
 if $0 == __FILE__
   require 'fileutils'
   extend FileUtils
 
   mkdir_p File.join(CodeGen::ROOT,'lib','ronin','asm','syscalls','linux')
+  mkdir_p File.join(CodeGen::ROOT,'spec','syscalls','linux')
 
   x86_syscalls = CodeGen::Syscalls::Linux::X86.load
   CodeGen::Syscalls::Linux::X86File.generate(x86_syscalls)
+  CodeGen::Syscalls::Linux::X86SpecFile.generate(x86_syscalls)
 
   x86_64_syscalls = CodeGen::Syscalls::Linux::X86_64.load
   CodeGen::Syscalls::Linux::X86_64File.generate(x86_64_syscalls)
+  CodeGen::Syscalls::Linux::X86_64SpecFile.generate(x86_64_syscalls)
 end
