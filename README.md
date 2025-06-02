@@ -59,7 +59,7 @@ asm = Ronin::ASM.new do
   shr rbx, 8
   push rbx
   mov rdi, rsp
-  push rax
+  push rdx
   push rdi
   mov rsi, rsp
   mov al, 0x3b
@@ -67,7 +67,7 @@ asm = Ronin::ASM.new do
 end
 
 payload = asm.assemble
-# => "H1\xD2H\xBB//bin/shH\xC1\xEB\bSH\x89\xE7PWH\x89\xE6\xC6\xC0;\x0F\x05"
+# => "H1\xD2H\xBB//bin/shH\xC1\xEB\bSH\x89\xE7RWH\x89\xE6\xB0;\x0F\x05"
 ```
 
 Create x86 shellcode:
