@@ -774,8 +774,8 @@ module Ronin
       #
       # @abstract
       #
-      def register_save(register)
-        raise(NotImplementedError,"#{self.class}#register_save was not defined by the architecture module")
+      def save_register(register)
+        raise(NotImplementedError,"#{self.class}#save_register was not defined by the architecture module")
       end
 
       #
@@ -802,7 +802,7 @@ module Ronin
       #   have been saved.
       #
       def critical(*registers,&block)
-        registers.each(&method(:register_save))
+        registers.each(&method(:save_register))
 
         instance_eval(&block)
 

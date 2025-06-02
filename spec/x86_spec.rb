@@ -440,10 +440,10 @@ describe Ronin::ASM::X86 do
     end
   end
 
-  describe "#register_save" do
+  describe "#save_register" do
     let(:register) { described_class::Registers::EAX }
 
-    before { subject.register_save(register) }
+    before { subject.save_register(register) }
 
     it "must add a new PUSH instruction with the given register" do
       expect(subject.instructions[-1]).to be_a(described_class::Instructions::PUSH)

@@ -1467,7 +1467,7 @@ module Ronin
       #
       # @api private
       #
-      def register_save(register) = stack_push(register)
+      def save_register(register) = stack_push(register)
 
       #
       # Generates the instruction to restore a register.
