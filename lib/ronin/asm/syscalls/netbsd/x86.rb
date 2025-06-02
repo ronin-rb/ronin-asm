@@ -876,20 +876,6 @@ module Ronin
           # @param [Register, Integer] gid
           # @see https://man.netbsd.org/lchown.2
           def lchown_syscall(path,uid,gid) = syscall_macro(275,path,uid,gid)
-          # Macro to call the `msync` syscall.
-          # @param [Register, Integer] addr
-          # @param [Register, Integer] len
-          # @param [Register, Integer] flags
-          # @see https://man.netbsd.org/msync.2
-          def msync_syscall(addr,len,flags) = syscall_macro(277,addr,len,flags)
-          # Macro to call the `sigaltstack` syscall.
-          # @param [Register, Integer] nss
-          # @param [Register, Integer] oss
-          # @see https://man.netbsd.org/sigaltstack.2
-          def sigaltstack_syscall(nss,oss) = syscall_macro(281,nss,oss)
-          # Macro to call the `vfork` syscall.
-          # @see https://man.netbsd.org/vfork.2
-          def vfork_syscall = syscall_macro(282)
           # Macro to call the `__posix_chown` syscall.
           # @param [Register, Integer] path
           # @param [Register, Integer] uid
@@ -940,20 +926,6 @@ module Ronin
           # @param [Register, Integer] offset
           # @see https://man.netbsd.org/pwritev.2
           def pwritev_syscall(fd,iovp,iovcnt,pad,offset) = syscall_macro(290,fd,iovp,iovcnt,pad,offset)
-          # Macro to call the `sigpending` syscall.
-          # @param [Register, Integer] set
-          # @see https://man.netbsd.org/sigpending.2
-          def sigpending_syscall(set) = syscall_macro(292,set)
-          # Macro to call the `sigprocmask` syscall.
-          # @param [Register, Integer] how
-          # @param [Register, Integer] set
-          # @param [Register, Integer] oset
-          # @see https://man.netbsd.org/sigprocmask.2
-          def sigprocmask_syscall(how,set,oset) = syscall_macro(293,how,set,oset)
-          # Macro to call the `sigsuspend` syscall.
-          # @param [Register, Integer] set
-          # @see https://man.netbsd.org/sigsuspend.2
-          def sigsuspend_syscall(set) = syscall_macro(294,set)
           # Macro to call the `__getcwd` syscall.
           # @param [Register, Integer] bufp
           # @param [Register, Integer] length
@@ -1294,30 +1266,6 @@ module Ronin
           # @param [Register, Integer] name
           # @see https://man.netbsd.org/fremovexattr.2
           def fremovexattr_syscall(fd,name) = syscall_macro(386,fd,name)
-          # Macro to call the `getdents` syscall.
-          # @param [Register, Integer] fd
-          # @param [Register, Integer] buf
-          # @param [Register, Integer] count
-          # @see https://man.netbsd.org/getdents.2
-          def getdents_syscall(fd,buf,count) = syscall_macro(390,fd,buf,count)
-          # Macro to call the `socket` syscall.
-          # @param [Register, Integer] domain
-          # @param [Register, Integer] type
-          # @param [Register, Integer] protocol
-          # @see https://man.netbsd.org/socket.2
-          def socket_syscall(domain,type,protocol) = syscall_macro(394,domain,type,protocol)
-          # Macro to call the `getfh` syscall.
-          # @param [Register, Integer] fname
-          # @param [Register, Integer] fhp
-          # @param [Register, Integer] fh_size
-          # @see https://man.netbsd.org/getfh.2
-          def getfh_syscall(fname,fhp,fh_size) = syscall_macro(395,fname,fhp,fh_size)
-          # Macro to call the `fhopen` syscall.
-          # @param [Register, Integer] fhp
-          # @param [Register, Integer] fh_size
-          # @param [Register, Integer] flags
-          # @see https://man.netbsd.org/fhopen.2
-          def fhopen_syscall(fhp,fh_size,flags) = syscall_macro(396,fhp,fh_size,flags)
           # Macro to call the `aio_cancel` syscall.
           # @param [Register, Integer] fildes
           # @param [Register, Integer] aiocbp
@@ -1351,14 +1299,6 @@ module Ronin
           # @param [Register, Integer] sig
           # @see https://man.netbsd.org/lio_listio.2
           def lio_listio_syscall(mode,list,nent,sig) = syscall_macro(406,mode,list,nent,sig)
-          # Macro to call the `mount` syscall.
-          # @param [Register, Integer] type
-          # @param [Register, Integer] path
-          # @param [Register, Integer] flags
-          # @param [Register, Integer] data
-          # @param [Register, Integer] data_len
-          # @see https://man.netbsd.org/mount.2
-          def mount_syscall(type,path,flags,data,data_len) = syscall_macro(410,type,path,flags,data,data_len)
           # Macro to call the `mremap` syscall.
           # @param [Register, Integer] old_address
           # @param [Register, Integer] old_size
@@ -1389,206 +1329,6 @@ module Ronin
           # @param [Register, Integer] opsid
           # @see https://man.netbsd.org/_pset_bind.2
           def _pset_bind_syscall(idtype,first_id,second_id,psid,opsid) = syscall_macro(415,idtype,first_id,second_id,psid,opsid)
-          # Macro to call the `posix_fadvise` syscall.
-          # @param [Register, Integer] fd
-          # @param [Register, Integer] pad
-          # @param [Register, Integer] offset
-          # @param [Register, Integer] len
-          # @param [Register, Integer] advice
-          # @see https://man.netbsd.org/posix_fadvise.2
-          def posix_fadvise_syscall(fd,pad,offset,len,advice) = syscall_macro(416,fd,pad,offset,len,advice)
-          # Macro to call the `select` syscall.
-          # @param [Register, Integer] nd
-          # @param [Register, Integer] in_
-          # @param [Register, Integer] ou
-          # @param [Register, Integer] ex
-          # @param [Register, Integer] tv
-          # @see https://man.netbsd.org/select.2
-          def select_syscall(nd,in_,ou,ex,tv) = syscall_macro(417,nd,in_,ou,ex,tv)
-          # Macro to call the `gettimeofday` syscall.
-          # @param [Register, Integer] tp
-          # @param [Register, Integer] tzp
-          # @see https://man.netbsd.org/gettimeofday.2
-          def gettimeofday_syscall(tp,tzp) = syscall_macro(418,tp,tzp)
-          # Macro to call the `settimeofday` syscall.
-          # @param [Register, Integer] tv
-          # @param [Register, Integer] tzp
-          # @see https://man.netbsd.org/settimeofday.2
-          def settimeofday_syscall(tv,tzp) = syscall_macro(419,tv,tzp)
-          # Macro to call the `utimes` syscall.
-          # @param [Register, Integer] path
-          # @param [Register, Integer] tptr
-          # @see https://man.netbsd.org/utimes.2
-          def utimes_syscall(path,tptr) = syscall_macro(420,path,tptr)
-          # Macro to call the `adjtime` syscall.
-          # @param [Register, Integer] delta
-          # @param [Register, Integer] olddelta
-          # @see https://man.netbsd.org/adjtime.2
-          def adjtime_syscall(delta,olddelta) = syscall_macro(421,delta,olddelta)
-          # Macro to call the `lfs_segwait` syscall.
-          # @param [Register, Integer] fsidp
-          # @param [Register, Integer] tv
-          # @see https://man.netbsd.org/lfs_segwait.2
-          def lfs_segwait_syscall(fsidp,tv) = syscall_macro(422,fsidp,tv)
-          # Macro to call the `futimes` syscall.
-          # @param [Register, Integer] fd
-          # @param [Register, Integer] tptr
-          # @see https://man.netbsd.org/futimes.2
-          def futimes_syscall(fd,tptr) = syscall_macro(423,fd,tptr)
-          # Macro to call the `lutimes` syscall.
-          # @param [Register, Integer] path
-          # @param [Register, Integer] tptr
-          # @see https://man.netbsd.org/lutimes.2
-          def lutimes_syscall(path,tptr) = syscall_macro(424,path,tptr)
-          # Macro to call the `setitimer` syscall.
-          # @param [Register, Integer] which
-          # @param [Register, Integer] itv
-          # @param [Register, Integer] oitv
-          # @see https://man.netbsd.org/setitimer.2
-          def setitimer_syscall(which,itv,oitv) = syscall_macro(425,which,itv,oitv)
-          # Macro to call the `getitimer` syscall.
-          # @param [Register, Integer] which
-          # @param [Register, Integer] itv
-          # @see https://man.netbsd.org/getitimer.2
-          def getitimer_syscall(which,itv) = syscall_macro(426,which,itv)
-          # Macro to call the `clock_gettime` syscall.
-          # @param [Register, Integer] clock_id
-          # @param [Register, Integer] tp
-          # @see https://man.netbsd.org/clock_gettime.2
-          def clock_gettime_syscall(clock_id,tp) = syscall_macro(427,clock_id,tp)
-          # Macro to call the `clock_settime` syscall.
-          # @param [Register, Integer] clock_id
-          # @param [Register, Integer] tp
-          # @see https://man.netbsd.org/clock_settime.2
-          def clock_settime_syscall(clock_id,tp) = syscall_macro(428,clock_id,tp)
-          # Macro to call the `clock_getres` syscall.
-          # @param [Register, Integer] clock_id
-          # @param [Register, Integer] tp
-          # @see https://man.netbsd.org/clock_getres.2
-          def clock_getres_syscall(clock_id,tp) = syscall_macro(429,clock_id,tp)
-          # Macro to call the `nanosleep` syscall.
-          # @param [Register, Integer] rqtp
-          # @param [Register, Integer] rmtp
-          # @see https://man.netbsd.org/nanosleep.2
-          def nanosleep_syscall(rqtp,rmtp) = syscall_macro(430,rqtp,rmtp)
-          # Macro to call the `__sigtimedwait` syscall.
-          # @param [Register, Integer] set
-          # @param [Register, Integer] info
-          # @param [Register, Integer] timeout
-          # @see https://man.netbsd.org/__sigtimedwait.2
-          def __sigtimedwait_syscall(set,info,timeout) = syscall_macro(431,set,info,timeout)
-          # Macro to call the `mq_timedsend` syscall.
-          # @param [Register, Integer] mqdes
-          # @param [Register, Integer] msg_ptr
-          # @param [Register, Integer] msg_len
-          # @param [Register, Integer] msg_prio
-          # @param [Register, Integer] abs_timeout
-          # @see https://man.netbsd.org/mq_timedsend.2
-          def mq_timedsend_syscall(mqdes,msg_ptr,msg_len,msg_prio,abs_timeout) = syscall_macro(432,mqdes,msg_ptr,msg_len,msg_prio,abs_timeout)
-          # Macro to call the `mq_timedreceive` syscall.
-          # @param [Register, Integer] mqdes
-          # @param [Register, Integer] msg_ptr
-          # @param [Register, Integer] msg_len
-          # @param [Register, Integer] msg_prio
-          # @param [Register, Integer] abs_timeout
-          # @see https://man.netbsd.org/mq_timedreceive.2
-          def mq_timedreceive_syscall(mqdes,msg_ptr,msg_len,msg_prio,abs_timeout) = syscall_macro(433,mqdes,msg_ptr,msg_len,msg_prio,abs_timeout)
-          # Macro to call the `pselect` syscall.
-          # @param [Register, Integer] nd
-          # @param [Register, Integer] in_
-          # @param [Register, Integer] ou
-          # @param [Register, Integer] ex
-          # @param [Register, Integer] ts
-          # @param [Register, Integer] mask
-          # @see https://man.netbsd.org/pselect.2
-          def pselect_syscall(nd,in_,ou,ex,ts,mask) = syscall_macro(436,nd,in_,ou,ex,ts,mask)
-          # Macro to call the `pollts` syscall.
-          # @param [Register, Integer] fds
-          # @param [Register, Integer] nfds
-          # @param [Register, Integer] ts
-          # @param [Register, Integer] mask
-          # @see https://man.netbsd.org/pollts.2
-          def pollts_syscall(fds,nfds,ts,mask) = syscall_macro(437,fds,nfds,ts,mask)
-          # Macro to call the `aio_suspend` syscall.
-          # @param [Register, Integer] list
-          # @param [Register, Integer] nent
-          # @param [Register, Integer] timeout
-          # @see https://man.netbsd.org/aio_suspend.2
-          def aio_suspend_syscall(list,nent,timeout) = syscall_macro(438,list,nent,timeout)
-          # Macro to call the `stat` syscall.
-          # @param [Register, Integer] path
-          # @param [Register, Integer] ub
-          # @see https://man.netbsd.org/stat.2
-          def stat_syscall(path,ub) = syscall_macro(439,path,ub)
-          # Macro to call the `fstat` syscall.
-          # @param [Register, Integer] fd
-          # @param [Register, Integer] sb
-          # @see https://man.netbsd.org/fstat.2
-          def fstat_syscall(fd,sb) = syscall_macro(440,fd,sb)
-          # Macro to call the `lstat` syscall.
-          # @param [Register, Integer] path
-          # @param [Register, Integer] ub
-          # @see https://man.netbsd.org/lstat.2
-          def lstat_syscall(path,ub) = syscall_macro(441,path,ub)
-          # Macro to call the `__semctl` syscall.
-          # @param [Register, Integer] semid
-          # @param [Register, Integer] semnum
-          # @param [Register, Integer] cmd
-          # @param [Register, Integer] arg
-          # @see https://man.netbsd.org/__semctl.2
-          def __semctl_syscall(semid,semnum,cmd,*arg) = syscall_macro(442,semid,semnum,cmd,*arg)
-          # Macro to call the `shmctl` syscall.
-          # @param [Register, Integer] shmid
-          # @param [Register, Integer] cmd
-          # @param [Register, Integer] buf
-          # @see https://man.netbsd.org/shmctl.2
-          def shmctl_syscall(shmid,cmd,buf) = syscall_macro(443,shmid,cmd,buf)
-          # Macro to call the `msgctl` syscall.
-          # @param [Register, Integer] msqid
-          # @param [Register, Integer] cmd
-          # @param [Register, Integer] buf
-          # @see https://man.netbsd.org/msgctl.2
-          def msgctl_syscall(msqid,cmd,buf) = syscall_macro(444,msqid,cmd,buf)
-          # Macro to call the `getrusage` syscall.
-          # @param [Register, Integer] who
-          # @param [Register, Integer] rusage
-          # @see https://man.netbsd.org/getrusage.2
-          def getrusage_syscall(who,rusage) = syscall_macro(445,who,rusage)
-          # Macro to call the `timer_settime` syscall.
-          # @param [Register, Integer] timerid
-          # @param [Register, Integer] flags
-          # @param [Register, Integer] value
-          # @param [Register, Integer] ovalue
-          # @see https://man.netbsd.org/timer_settime.2
-          def timer_settime_syscall(timerid,flags,value,ovalue) = syscall_macro(446,timerid,flags,value,ovalue)
-          # Macro to call the `timer_gettime` syscall.
-          # @param [Register, Integer] timerid
-          # @param [Register, Integer] value
-          # @see https://man.netbsd.org/timer_gettime.2
-          def timer_gettime_syscall(timerid,value) = syscall_macro(447,timerid,value)
-          # Macro to call the `ntp_gettime` syscall.
-          # @param [Register, Integer] ntvp
-          # @see https://man.netbsd.org/ntp_gettime.2
-          def ntp_gettime_syscall(ntvp) = syscall_macro(448,ntvp)
-          # Macro to call the `wait4` syscall.
-          # @param [Register, Integer] pid
-          # @param [Register, Integer] status
-          # @param [Register, Integer] options
-          # @param [Register, Integer] rusage
-          # @see https://man.netbsd.org/wait4.2
-          def wait4_syscall(pid,status,options,rusage) = syscall_macro(449,pid,status,options,rusage)
-          # Macro to call the `mknod` syscall.
-          # @param [Register, Integer] path
-          # @param [Register, Integer] mode
-          # @param [Register, Integer] dev
-          # @see https://man.netbsd.org/mknod.2
-          def mknod_syscall(path,mode,dev) = syscall_macro(450,path,mode,dev)
-          # Macro to call the `fhstat` syscall.
-          # @param [Register, Integer] fhp
-          # @param [Register, Integer] fh_size
-          # @param [Register, Integer] sb
-          # @see https://man.netbsd.org/fhstat.2
-          def fhstat_syscall(fhp,fh_size,sb) = syscall_macro(451,fhp,fh_size,sb)
           # Macro to call the `pipe2` syscall.
           # @param [Register, Integer] fildes
           # @param [Register, Integer] flags
@@ -1750,15 +1490,6 @@ module Ronin
           # @param [Register, Integer] rmtp
           # @see https://man.netbsd.org/clock_nanosleep.2
           def clock_nanosleep_syscall(clock_id,flags,rqtp,rmtp) = syscall_macro(477,clock_id,flags,rqtp,rmtp)
-          # Macro to call the `_lwp_park` syscall.
-          # @param [Register, Integer] clock_id
-          # @param [Register, Integer] flags
-          # @param [Register, Integer] ts
-          # @param [Register, Integer] unpark
-          # @param [Register, Integer] hint
-          # @param [Register, Integer] unparkhint
-          # @see https://man.netbsd.org/_lwp_park.2
-          def _lwp_park_syscall(clock_id,flags,ts,unpark,hint,unparkhint) = syscall_macro(478,clock_id,flags,ts,unpark,hint,unparkhint)
           # Macro to call the `posix_fallocate` syscall.
           # @param [Register, Integer] fd
           # @param [Register, Integer] pad
@@ -1788,31 +1519,6 @@ module Ronin
           # @param [Register, Integer] clock_id
           # @see https://man.netbsd.org/clock_getcpuclockid2.2
           def clock_getcpuclockid2_syscall(idtype,id,clock_id) = syscall_macro(482,idtype,id,clock_id)
-          # Macro to call the `getvfsstat` syscall.
-          # @param [Register, Integer] buf
-          # @param [Register, Integer] bufsize
-          # @param [Register, Integer] flags
-          # @see https://man.netbsd.org/getvfsstat.2
-          def getvfsstat_syscall(buf,bufsize,flags) = syscall_macro(483,buf,bufsize,flags)
-          # Macro to call the `statvfs1` syscall.
-          # @param [Register, Integer] path
-          # @param [Register, Integer] buf
-          # @param [Register, Integer] flags
-          # @see https://man.netbsd.org/statvfs1.2
-          def statvfs1_syscall(path,buf,flags) = syscall_macro(484,path,buf,flags)
-          # Macro to call the `fstatvfs1` syscall.
-          # @param [Register, Integer] fd
-          # @param [Register, Integer] buf
-          # @param [Register, Integer] flags
-          # @see https://man.netbsd.org/fstatvfs1.2
-          def fstatvfs1_syscall(fd,buf,flags) = syscall_macro(485,fd,buf,flags)
-          # Macro to call the `fhstatvfs1` syscall.
-          # @param [Register, Integer] fhp
-          # @param [Register, Integer] fh_size
-          # @param [Register, Integer] buf
-          # @param [Register, Integer] flags
-          # @see https://man.netbsd.org/fhstatvfs1.2
-          def fhstatvfs1_syscall(fhp,fh_size,buf,flags) = syscall_macro(486,fhp,fh_size,buf,flags)
           # Macro to call the `__acl_get_link` syscall.
           # @param [Register, Integer] path
           # @param [Register, Integer] type
@@ -1892,15 +1598,6 @@ module Ronin
           # @param [Register, Integer] flags
           # @see https://man.netbsd.org/memfd_create.2
           def memfd_create_syscall(name,flags) = syscall_macro(500,name,flags)
-          # Macro to call the `kevent` syscall.
-          # @param [Register, Integer] fd
-          # @param [Register, Integer] changelist
-          # @param [Register, Integer] nchanges
-          # @param [Register, Integer] eventlist
-          # @param [Register, Integer] nevents
-          # @param [Register, Integer] timeout
-          # @see https://man.netbsd.org/kevent.2
-          def kevent_syscall(fd,changelist,nchanges,eventlist,nevents,timeout) = syscall_macro(501,fd,changelist,nchanges,eventlist,nevents,timeout)
           # Macro to call the `epoll_create1` syscall.
           # @param [Register, Integer] flags
           # @see https://man.netbsd.org/epoll_create1.2
@@ -1920,12 +1617,6 @@ module Ronin
           # @param [Register, Integer] sigmask
           # @see https://man.netbsd.org/epoll_pwait2.2
           def epoll_pwait2_syscall(epfd,events,maxevents,timeout,sigmask) = syscall_macro(504,epfd,events,maxevents,timeout,sigmask)
-          # Macro to call the `dup3` syscall.
-          # @param [Register, Integer] from
-          # @param [Register, Integer] to
-          # @param [Register, Integer] flags
-          # @see https://man.netbsd.org/dup3.2
-          def dup3_syscall(from,to,flags) = syscall_macro(505,from,to,flags)
           # Macro to call the `semtimedop` syscall.
           # @param [Register, Integer] semid
           # @param [Register, Integer] sops

@@ -292,7 +292,7 @@ module CodeGen
           # @return [Boolean]
           #
           def compat?
-            type =~ /\ACOMPAT_\d*\z/
+            type =~ /\ACOMPAT_\d*\z/ || !compat.nil?
           end
 
           #
