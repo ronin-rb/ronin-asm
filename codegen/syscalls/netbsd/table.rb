@@ -260,6 +260,24 @@ module CodeGen
           end
 
           #
+          # Determines if the syscall is a standard syscall.
+          #
+          # @return [Boolean]
+          #
+          def std?
+            type == :STD
+          end
+
+          #
+          # Determines if the syscall is a compatibility syscall.
+          #
+          # @return [Boolean]
+          #
+          def compat?
+            type =~ /\ACOMPAT_\d*\z/
+          end
+
+          #
           # Determines if the syscall number is reserved.
           #
           # @return [Boolean]
