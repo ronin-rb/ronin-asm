@@ -33,7 +33,8 @@ module Ronin
         #
         module X86
           <%- @syscalls.each do |syscall| -%>
-          <%-   next if syscall.reserved? ||
+          <%-   next if syscall.compat? ||
+                        syscall.reserved? ||
                         syscall.obsolete? ||
                         syscall.ignored?  ||
                         syscall.unimplemented? ||
