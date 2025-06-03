@@ -99,4 +99,5 @@ end
 
 require_relative '../broadcast'
 require_relative '../opmask'
+require_relative '../er'
 require_relative '../sae'
