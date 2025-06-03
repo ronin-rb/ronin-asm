@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::VSTMXCSR do
     end
   end
 
+  describe "#name" do
+    it "must return :vstmxcsr" do
+      expect(subject.name).to eq(:vstmxcsr)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

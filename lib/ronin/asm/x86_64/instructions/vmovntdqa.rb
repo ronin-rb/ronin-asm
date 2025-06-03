@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vmovntdqa,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:mem128)
                       [:xmm, :mem128]
@@ -58,9 +58,16 @@ module Ronin
                     elsif @operands.length == 2 && @operands[0].type_of?(:zmm) && @operands[1].type_of?(:mem512)
                       [:zmm, :mem512]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vmovntdqa]
+          #
+          def name = :vmovntdqa
 
           #
           # Encodes the `vmovntdqa` instruction.
@@ -85,7 +92,7 @@ module Ronin
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

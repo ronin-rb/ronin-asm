@@ -256,6 +256,12 @@ describe Ronin::ASM::X86::Instructions::VMOVDQU16 do
     end
   end
 
+  describe "#name" do
+    it "must return :vmovdqu16" do
+      expect(subject.name).to eq(:vmovdqu16)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

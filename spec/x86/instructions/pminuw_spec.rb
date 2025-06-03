@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PMINUW do
     end
   end
 
+  describe "#name" do
+    it "must return :pminuw" do
+      expect(subject.name).to eq(:pminuw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

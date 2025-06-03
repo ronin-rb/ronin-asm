@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::SUBPS do
     end
   end
 
+  describe "#name" do
+    it "must return :subps" do
+      expect(subject.name).to eq(:subps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

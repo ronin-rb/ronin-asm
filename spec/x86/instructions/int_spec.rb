@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::INT do
     end
   end
 
+  describe "#name" do
+    it "must return :int" do
+      expect(subject.name).to eq(:int)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

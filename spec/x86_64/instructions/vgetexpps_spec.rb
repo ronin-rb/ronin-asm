@@ -208,6 +208,12 @@ describe Ronin::ASM::X86_64::Instructions::VGETEXPPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vgetexpps" do
+      expect(subject.name).to eq(:vgetexpps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

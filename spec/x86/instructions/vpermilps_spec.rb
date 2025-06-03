@@ -376,6 +376,12 @@ describe Ronin::ASM::X86::Instructions::VPERMILPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vpermilps" do
+      expect(subject.name).to eq(:vpermilps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

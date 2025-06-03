@@ -208,6 +208,12 @@ describe Ronin::ASM::X86_64::Instructions::VGF2P8AFFINEINVQB do
     end
   end
 
+  describe "#name" do
+    it "must return :vgf2p8affineinvqb" do
+      expect(subject.name).to eq(:vgf2p8affineinvqb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

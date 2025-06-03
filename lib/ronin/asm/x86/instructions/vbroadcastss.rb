@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vbroadcastss,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 2 && @operands[0].type_of?(:"ymm{k}{z}") && @operands[1].type_of?(:xmm)
                       [:"ymm{k}{z}", :xmm]
@@ -72,9 +72,16 @@ module Ronin
                     elsif @operands.length == 2 && @operands[0].type_of?(:zmm) && @operands[1].type_of?(:mem32)
                       [:zmm, :mem32]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vbroadcastss]
+          #
+          def name = :vbroadcastss
 
           #
           # Encodes the `vbroadcastss` instruction.
@@ -127,7 +134,7 @@ module Ronin
               encoder.write_opcode(0x18) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

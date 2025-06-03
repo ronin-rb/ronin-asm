@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::SHA1NEXTE do
     end
   end
 
+  describe "#name" do
+    it "must return :sha1nexte" do
+      expect(subject.name).to eq(:sha1nexte)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

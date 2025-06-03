@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::KNOTQ do
     end
   end
 
+  describe "#name" do
+    it "must return :knotq" do
+      expect(subject.name).to eq(:knotq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

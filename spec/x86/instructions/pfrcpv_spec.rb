@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PFRCPV do
     end
   end
 
+  describe "#name" do
+    it "must return :pfrcpv" do
+      expect(subject.name).to eq(:pfrcpv)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

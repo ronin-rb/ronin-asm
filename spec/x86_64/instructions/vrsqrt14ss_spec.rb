@@ -88,6 +88,12 @@ describe Ronin::ASM::X86_64::Instructions::VRSQRT14SS do
     end
   end
 
+  describe "#name" do
+    it "must return :vrsqrt14ss" do
+      expect(subject.name).to eq(:vrsqrt14ss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

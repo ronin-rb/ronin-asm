@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::TZCNT do
     end
   end
 
+  describe "#name" do
+    it "must return :tzcnt" do
+      expect(subject.name).to eq(:tzcnt)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

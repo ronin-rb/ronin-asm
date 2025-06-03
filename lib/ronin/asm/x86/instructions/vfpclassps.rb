@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vfpclassps,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 3 && @operands[0].type_of?(:"k{k}") && @operands[1].type_of?(:"mem128/mem32bcst") && @operands[2].type_of?(:imm8)
                       [:"k{k}", :"mem128/mem32bcst", :imm8]
@@ -76,9 +76,16 @@ module Ronin
                     elsif @operands.length == 3 && @operands[0].type_of?(:k) && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:imm8)
                       [:k, :zmm, :imm8]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vfpclassps]
+          #
+          def name = :vfpclassps
 
           #
           # Returns the GNU Assembler (GAS) name for the instruction based on
@@ -188,7 +195,7 @@ module Ronin
               encoder.write_modrm(0b11,@operands[0],@operands[1]) +
               encoder.write_immediate(@operands[2],1)
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

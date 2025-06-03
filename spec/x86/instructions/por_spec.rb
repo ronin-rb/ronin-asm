@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::POR do
     end
   end
 
+  describe "#name" do
+    it "must return :por" do
+      expect(subject.name).to eq(:por)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -136,6 +136,12 @@ describe Ronin::ASM::X86::Instructions::VBROADCASTSD do
     end
   end
 
+  describe "#name" do
+    it "must return :vbroadcastsd" do
+      expect(subject.name).to eq(:vbroadcastsd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

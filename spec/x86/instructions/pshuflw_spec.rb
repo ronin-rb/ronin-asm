@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PSHUFLW do
     end
   end
 
+  describe "#name" do
+    it "must return :pshuflw" do
+      expect(subject.name).to eq(:pshuflw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::FEMMS do
     end
   end
 
+  describe "#name" do
+    it "must return :femms" do
+      expect(subject.name).to eq(:femms)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

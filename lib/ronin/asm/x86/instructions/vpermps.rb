@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vpermps,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 3 && @operands[0].type_of?(:"ymm{k}{z}") && @operands[1].type_of?(:ymm) && @operands[2].type_of?(:"mem256/mem32bcst")
                       [:"ymm{k}{z}", :ymm, :"mem256/mem32bcst"]
@@ -70,9 +70,16 @@ module Ronin
                     elsif @operands.length == 3 && @operands[0].type_of?(:zmm) && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:zmm)
                       [:zmm, :zmm, :zmm]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vpermps]
+          #
+          def name = :vpermps
 
           #
           # Encodes the `vpermps` instruction.
@@ -121,7 +128,7 @@ module Ronin
               encoder.write_opcode(0x16) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

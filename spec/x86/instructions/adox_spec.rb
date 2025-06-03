@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::ADOX do
     end
   end
 
+  describe "#name" do
+    it "must return :adox" do
+      expect(subject.name).to eq(:adox)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

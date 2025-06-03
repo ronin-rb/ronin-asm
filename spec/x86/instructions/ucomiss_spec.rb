@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::UCOMISS do
     end
   end
 
+  describe "#name" do
+    it "must return :ucomiss" do
+      expect(subject.name).to eq(:ucomiss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -184,6 +184,12 @@ describe Ronin::ASM::X86_64::Instructions::VPERMT2W do
     end
   end
 
+  describe "#name" do
+    it "must return :vpermt2w" do
+      expect(subject.name).to eq(:vpermt2w)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

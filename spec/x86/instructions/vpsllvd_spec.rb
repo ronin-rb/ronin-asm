@@ -208,6 +208,12 @@ describe Ronin::ASM::X86::Instructions::VPSLLVD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpsllvd" do
+      expect(subject.name).to eq(:vpsllvd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

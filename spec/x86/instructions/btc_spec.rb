@@ -136,6 +136,12 @@ describe Ronin::ASM::X86::Instructions::BTC do
     end
   end
 
+  describe "#name" do
+    it "must return :btc" do
+      expect(subject.name).to eq(:btc)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

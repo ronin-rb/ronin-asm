@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::SHUFPS do
     end
   end
 
+  describe "#name" do
+    it "must return :shufps" do
+      expect(subject.name).to eq(:shufps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

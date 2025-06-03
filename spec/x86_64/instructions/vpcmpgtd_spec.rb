@@ -232,6 +232,12 @@ describe Ronin::ASM::X86_64::Instructions::VPCMPGTD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpcmpgtd" do
+      expect(subject.name).to eq(:vpcmpgtd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

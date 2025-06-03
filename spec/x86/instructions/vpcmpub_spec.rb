@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPCMPUB do
     end
   end
 
+  describe "#name" do
+    it "must return :vpcmpub" do
+      expect(subject.name).to eq(:vpcmpub)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::VRCP14SS do
     end
   end
 
+  describe "#name" do
+    it "must return :vrcp14ss" do
+      expect(subject.name).to eq(:vrcp14ss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

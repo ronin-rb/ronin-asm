@@ -49,14 +49,21 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:cpuid,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.empty?
                       []
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [cpuid]
+          #
+          def name = :cpuid
 
           #
           # Encodes the `cpuid` instruction.
@@ -72,7 +79,7 @@ module Ronin
               encoder.write_opcode(0x0f) +
               encoder.write_opcode(0xa2)
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

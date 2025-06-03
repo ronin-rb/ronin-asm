@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPSRAVW do
     end
   end
 
+  describe "#name" do
+    it "must return :vpsravw" do
+      expect(subject.name).to eq(:vpsravw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

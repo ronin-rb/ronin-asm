@@ -49,14 +49,21 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:prefetchwt1,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 1 && @operands[0].type_of?(:mem8)
                       [:mem8]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [prefetchwt1]
+          #
+          def name = :prefetchwt1
 
           #
           # Encodes the `prefetchwt1` instruction.
@@ -73,7 +80,7 @@ module Ronin
               encoder.write_opcode(0x0d) +
               encoder.write_modrm(@operands[0],2,@operands[0])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

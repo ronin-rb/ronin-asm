@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PCMPISTRI do
     end
   end
 
+  describe "#name" do
+    it "must return :pcmpistri" do
+      expect(subject.name).to eq(:pcmpistri)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

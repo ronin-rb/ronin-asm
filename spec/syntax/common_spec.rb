@@ -185,6 +185,32 @@ describe Ronin::ASM::Syntax::Common do
     end
   end
 
+  module TestSyntaxInstructions
+    class MOV < Ronin::ASM::Instruction
+
+      def initialize(dest,src,**kwargs) = super(dest,src,**kwargs)
+
+      def name = :mov
+
+    end
+
+    class PUSH < Ronin::ASM::Instruction
+
+      def initialize(operand,**kwargs) = super(operand,**kwargs)
+
+      def name = :push
+
+    end
+
+    class RET < Ronin::ASM::Instruction
+
+      def initialize(**kwargs) = super(**kwargs)
+
+      def name = :ret
+
+    end
+  end
+
   describe ".format_program" do
     let(:immediate) { Ronin::ASM::Immediate.new(0x41) }
     let(:register) do
@@ -192,9 +218,9 @@ describe Ronin::ASM::Syntax::Common do
     end
     let(:instructions) do
       [
-        Ronin::ASM::Instruction.new(:mov, register, immediate),
-        Ronin::ASM::Instruction.new(:push, register),
-        Ronin::ASM::Instruction.new(:ret)
+        TestSyntaxInstructions::MOV.new(register,immediate),
+        TestSyntaxInstructions::PUSH.new(register),
+        TestSyntaxInstructions::RET.new
       ]
     end
     let(:program) do
@@ -258,11 +284,11 @@ describe Ronin::ASM::Syntax::Common do
     context "when the program's instructions contains a Label" do
       let(:instructions) do
         [
-          Ronin::ASM::Instruction.new(:mov, register, immediate),
+          TestSyntaxInstructions::MOV.new(register,immediate),
           Ronin::ASM::Label.new('_label1'),
-          Ronin::ASM::Instruction.new(:push, register),
+          TestSyntaxInstructions::PUSH.new(register),
           Ronin::ASM::Label.new('_label2'),
-          Ronin::ASM::Instruction.new(:ret)
+          TestSyntaxInstructions::RET.new
         ]
       end
 
@@ -399,7 +425,7 @@ describe Ronin::ASM::Syntax::Common do
       Ronin::ASM::Register.new(:eax, number: 0, size: 4, type: :reg32)
     end
     let(:instruction) do
-      Ronin::ASM::Instruction.new(:mov, register, immediate)
+      TestSyntaxInstructions::MOV.new(register,immediate)
     end
     let(:formatted_instruction) { '<instruction>' }
 
@@ -423,9 +449,9 @@ describe Ronin::ASM::Syntax::Common do
     end
     let(:instructions) do
       [
-        Ronin::ASM::Instruction.new(:mov, register, immediate),
-        Ronin::ASM::Instruction.new(:push, register),
-        Ronin::ASM::Instruction.new(:ret)
+        TestSyntaxInstructions::MOV.new(register,immediate),
+        TestSyntaxInstructions::PUSH.new(register),
+        TestSyntaxInstructions::RET.new
       ]
     end
     let(:program) do
@@ -463,11 +489,11 @@ describe Ronin::ASM::Syntax::Common do
       let(:label2) { Ronin::ASM::Label.new('_label2') }
       let(:instructions) do
         [
-          Ronin::ASM::Instruction.new(:mov, register, immediate),
+          TestSyntaxInstructions::MOV.new(register,immediate),
           label1,
-          Ronin::ASM::Instruction.new(:push, register),
+          TestSyntaxInstructions::PUSH.new(register),
           label2,
-          Ronin::ASM::Instruction.new(:ret)
+          TestSyntaxInstructions::RET.new
         ]
       end
 

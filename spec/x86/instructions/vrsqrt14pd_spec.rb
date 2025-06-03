@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VRSQRT14PD do
     end
   end
 
+  describe "#name" do
+    it "must return :vrsqrt14pd" do
+      expect(subject.name).to eq(:vrsqrt14pd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

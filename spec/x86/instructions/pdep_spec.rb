@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PDEP do
     end
   end
 
+  describe "#name" do
+    it "must return :pdep" do
+      expect(subject.name).to eq(:pdep)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

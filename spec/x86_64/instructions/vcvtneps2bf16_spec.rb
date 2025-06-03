@@ -208,6 +208,12 @@ describe Ronin::ASM::X86_64::Instructions::VCVTNEPS2BF16 do
     end
   end
 
+  describe "#name" do
+    it "must return :vcvtneps2bf16" do
+      expect(subject.name).to eq(:vcvtneps2bf16)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PBLENDW do
     end
   end
 
+  describe "#name" do
+    it "must return :pblendw" do
+      expect(subject.name).to eq(:pblendw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

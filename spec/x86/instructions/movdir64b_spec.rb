@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::MOVDIR64B do
     end
   end
 
+  describe "#name" do
+    it "must return :movdir64b" do
+      expect(subject.name).to eq(:movdir64b)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

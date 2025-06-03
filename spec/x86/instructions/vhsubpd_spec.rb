@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::VHSUBPD do
     end
   end
 
+  describe "#name" do
+    it "must return :vhsubpd" do
+      expect(subject.name).to eq(:vhsubpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

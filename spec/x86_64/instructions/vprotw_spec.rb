@@ -100,6 +100,12 @@ describe Ronin::ASM::X86_64::Instructions::VPROTW do
     end
   end
 
+  describe "#name" do
+    it "must return :vprotw" do
+      expect(subject.name).to eq(:vprotw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

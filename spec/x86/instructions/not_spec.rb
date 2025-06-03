@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::NOT do
     end
   end
 
+  describe "#name" do
+    it "must return :not" do
+      expect(subject.name).to eq(:not)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

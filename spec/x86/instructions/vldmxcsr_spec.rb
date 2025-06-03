@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::VLDMXCSR do
     end
   end
 
+  describe "#name" do
+    it "must return :vldmxcsr" do
+      expect(subject.name).to eq(:vldmxcsr)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

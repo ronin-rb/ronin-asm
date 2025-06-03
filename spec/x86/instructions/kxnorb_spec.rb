@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::KXNORB do
     end
   end
 
+  describe "#name" do
+    it "must return :kxnorb" do
+      expect(subject.name).to eq(:kxnorb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

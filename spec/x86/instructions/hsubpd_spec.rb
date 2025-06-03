@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::HSUBPD do
     end
   end
 
+  describe "#name" do
+    it "must return :hsubpd" do
+      expect(subject.name).to eq(:hsubpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

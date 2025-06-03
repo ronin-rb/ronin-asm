@@ -76,6 +76,12 @@ describe Ronin::ASM::X86_64::Instructions::MOVSS do
     end
   end
 
+  describe "#name" do
+    it "must return :movss" do
+      expect(subject.name).to eq(:movss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

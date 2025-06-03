@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::VPSIGNB do
     end
   end
 
+  describe "#name" do
+    it "must return :vpsignb" do
+      expect(subject.name).to eq(:vpsignb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -64,6 +64,12 @@ describe Ronin::ASM::X86_64::Instructions::COMISD do
     end
   end
 
+  describe "#name" do
+    it "must return :comisd" do
+      expect(subject.name).to eq(:comisd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

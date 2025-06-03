@@ -52,6 +52,12 @@ describe Ronin::ASM::X86_64::Instructions::VGATHERPF0DPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vgatherpf0dps" do
+      expect(subject.name).to eq(:vgatherpf0dps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

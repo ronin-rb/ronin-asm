@@ -49,14 +49,21 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vscatterpf0dps,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 1 && @operands[0].type_of?(:"vm32z{k}")
                       [:"vm32z{k}"]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vscatterpf0dps]
+          #
+          def name = :vscatterpf0dps
 
           #
           # Encodes the `vscatterpf0dps` instruction.
@@ -73,7 +80,7 @@ module Ronin
               encoder.write_opcode(0xc6) +
               encoder.write_modrm(@operands[0],5,@operands[0])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

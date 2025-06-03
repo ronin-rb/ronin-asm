@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VDIVSS do
     end
   end
 
+  describe "#name" do
+    it "must return :vdivss" do
+      expect(subject.name).to eq(:vdivss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

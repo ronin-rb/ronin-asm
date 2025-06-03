@@ -49,16 +49,23 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:pblendvb,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2] == Registers::XMM0
                       [:xmm, :xmm, :xmm0]
                     elsif @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:mem128) && @operands[2] == Registers::XMM0
                       [:xmm, :mem128, :xmm0]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [pblendvb]
+          #
+          def name = :pblendvb
 
           #
           # Encodes the `pblendvb` instruction.
@@ -85,7 +92,7 @@ module Ronin
               encoder.write_opcode(0x10) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

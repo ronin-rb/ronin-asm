@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:pdep,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 3 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:reg32) && @operands[2].type_of?(:reg32)
                       [:reg32, :reg32, :reg32]
@@ -60,9 +60,16 @@ module Ronin
                     elsif @operands.length == 3 && @operands[0].type_of?(:reg64) && @operands[1].type_of?(:reg64) && @operands[2].type_of?(:mem64)
                       [:reg64, :reg64, :mem64]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [pdep]
+          #
+          def name = :pdep
 
           #
           # Returns the GNU Assembler (GAS) name for the instruction based on
@@ -112,7 +119,7 @@ module Ronin
               encoder.write_opcode(0xf5) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

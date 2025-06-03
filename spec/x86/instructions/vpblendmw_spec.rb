@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPBLENDMW do
     end
   end
 
+  describe "#name" do
+    it "must return :vpblendmw" do
+      expect(subject.name).to eq(:vpblendmw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

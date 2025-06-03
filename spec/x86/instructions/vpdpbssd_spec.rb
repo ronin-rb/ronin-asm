@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::VPDPBSSD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpdpbssd" do
+      expect(subject.name).to eq(:vpdpbssd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

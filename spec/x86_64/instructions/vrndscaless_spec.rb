@@ -112,6 +112,12 @@ describe Ronin::ASM::X86_64::Instructions::VRNDSCALESS do
     end
   end
 
+  describe "#name" do
+    it "must return :vrndscaless" do
+      expect(subject.name).to eq(:vrndscaless)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

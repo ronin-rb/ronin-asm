@@ -76,6 +76,12 @@ describe Ronin::ASM::X86::Instructions::VMOVNTDQA do
     end
   end
 
+  describe "#name" do
+    it "must return :vmovntdqa" do
+      expect(subject.name).to eq(:vmovntdqa)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -49,14 +49,21 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:tdpbsud,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 3 && @operands[0].type_of?(:tmm) && @operands[1].type_of?(:tmm) && @operands[2].type_of?(:tmm)
                       [:tmm, :tmm, :tmm]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [tdpbsud]
+          #
+          def name = :tdpbsud
 
           #
           # Encodes the `tdpbsud` instruction.
@@ -73,7 +80,7 @@ module Ronin
               encoder.write_opcode(0x5e) +
               encoder.write_modrm(0b11,@operands[0],@operands[1])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

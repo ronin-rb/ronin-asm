@@ -76,6 +76,12 @@ describe Ronin::ASM::X86::Instructions::VUCOMISH do
     end
   end
 
+  describe "#name" do
+    it "must return :vucomish" do
+      expect(subject.name).to eq(:vucomish)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

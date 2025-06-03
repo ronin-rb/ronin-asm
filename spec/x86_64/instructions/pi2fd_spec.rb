@@ -64,6 +64,12 @@ describe Ronin::ASM::X86_64::Instructions::PI2FD do
     end
   end
 
+  describe "#name" do
+    it "must return :pi2fd" do
+      expect(subject.name).to eq(:pi2fd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

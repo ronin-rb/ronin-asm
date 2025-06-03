@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::PHSUBD do
     end
   end
 
+  describe "#name" do
+    it "must return :phsubd" do
+      expect(subject.name).to eq(:phsubd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

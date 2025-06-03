@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::POPCNT do
     end
   end
 
+  describe "#name" do
+    it "must return :popcnt" do
+      expect(subject.name).to eq(:popcnt)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

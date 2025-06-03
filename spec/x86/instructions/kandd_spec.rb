@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::KANDD do
     end
   end
 
+  describe "#name" do
+    it "must return :kandd" do
+      expect(subject.name).to eq(:kandd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

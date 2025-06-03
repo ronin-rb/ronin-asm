@@ -64,6 +64,12 @@ describe Ronin::ASM::X86_64::Instructions::JNLE do
     end
   end
 
+  describe "#name" do
+    it "must return :jnle" do
+      expect(subject.name).to eq(:jnle)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

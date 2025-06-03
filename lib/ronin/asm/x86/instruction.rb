@@ -35,14 +35,19 @@ module Ronin
         # @return [Array<Symbol>]
         attr_reader :form
 
-        alias intel_name name
+        #
+        # The Intel syntax name for the instruction.
+        #
+        # @return [Symbol]
+        #
+        def intel_name = name
 
         #
         # The GNU Assembler (GAS) name for the instruction.
         #
         # @return [Symbol]
         #
-        def gas_name = @name
+        def gas_name = name
 
         #
         # Converts the instruction into a String.

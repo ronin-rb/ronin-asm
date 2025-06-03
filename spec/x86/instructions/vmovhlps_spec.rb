@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::VMOVHLPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vmovhlps" do
+      expect(subject.name).to eq(:vmovhlps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

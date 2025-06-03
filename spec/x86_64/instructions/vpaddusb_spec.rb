@@ -184,6 +184,12 @@ describe Ronin::ASM::X86_64::Instructions::VPADDUSB do
     end
   end
 
+  describe "#name" do
+    it "must return :vpaddusb" do
+      expect(subject.name).to eq(:vpaddusb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

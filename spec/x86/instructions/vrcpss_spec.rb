@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VRCPSS do
     end
   end
 
+  describe "#name" do
+    it "must return :vrcpss" do
+      expect(subject.name).to eq(:vrcpss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

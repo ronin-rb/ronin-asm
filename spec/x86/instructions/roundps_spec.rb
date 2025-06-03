@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::ROUNDPS do
     end
   end
 
+  describe "#name" do
+    it "must return :roundps" do
+      expect(subject.name).to eq(:roundps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

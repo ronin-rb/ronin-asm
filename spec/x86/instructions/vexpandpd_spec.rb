@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VEXPANDPD do
     end
   end
 
+  describe "#name" do
+    it "must return :vexpandpd" do
+      expect(subject.name).to eq(:vexpandpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

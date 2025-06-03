@@ -64,6 +64,12 @@ describe Ronin::ASM::X86_64::Instructions::GF2P8MULB do
     end
   end
 
+  describe "#name" do
+    it "must return :gf2p8mulb" do
+      expect(subject.name).to eq(:gf2p8mulb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

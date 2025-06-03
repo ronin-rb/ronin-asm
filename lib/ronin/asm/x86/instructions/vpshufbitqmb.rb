@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vpshufbitqmb,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 3 && @operands[0].type_of?(:"k{k}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm)
                       [:"k{k}", :xmm, :xmm]
@@ -76,9 +76,16 @@ module Ronin
                     elsif @operands.length == 3 && @operands[0].type_of?(:k) && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:mem512)
                       [:k, :zmm, :mem512]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vpshufbitqmb]
+          #
+          def name = :vpshufbitqmb
 
           #
           # Encodes the `vpshufbitqmb` instruction.
@@ -139,7 +146,7 @@ module Ronin
               encoder.write_opcode(0x8f) +
               encoder.write_modrm(@operands[2],@operands[0],@operands[2])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

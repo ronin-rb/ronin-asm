@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::MINPD do
     end
   end
 
+  describe "#name" do
+    it "must return :minpd" do
+      expect(subject.name).to eq(:minpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

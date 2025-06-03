@@ -328,6 +328,12 @@ describe Ronin::ASM::X86_64::Instructions::VPSRAQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vpsraq" do
+      expect(subject.name).to eq(:vpsraq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

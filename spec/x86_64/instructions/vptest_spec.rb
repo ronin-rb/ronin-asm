@@ -88,6 +88,12 @@ describe Ronin::ASM::X86_64::Instructions::VPTEST do
     end
   end
 
+  describe "#name" do
+    it "must return :vptest" do
+      expect(subject.name).to eq(:vptest)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

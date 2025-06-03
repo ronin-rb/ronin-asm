@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vpermil2ps,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 5 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:xmm) && @operands[3].type_of?(:xmm) && @operands[4].type_of?(:imm8)
                       [:xmm, :xmm, :xmm, :xmm, :imm8]
@@ -64,9 +64,16 @@ module Ronin
                     elsif @operands.length == 5 && @operands[0].type_of?(:ymm) && @operands[1].type_of?(:ymm) && @operands[2].type_of?(:mem256) && @operands[3].type_of?(:ymm) && @operands[4].type_of?(:imm8)
                       [:ymm, :ymm, :mem256, :ymm, :imm8]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vpermil2ps]
+          #
+          def name = :vpermil2ps
 
           #
           # Encodes the `vpermil2ps` instruction.
@@ -109,7 +116,7 @@ module Ronin
               encoder.write_modrm(@operands[2],@operands[0],@operands[2]) +
               encoder.write_register_byte(@operands[3],@operands[4])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

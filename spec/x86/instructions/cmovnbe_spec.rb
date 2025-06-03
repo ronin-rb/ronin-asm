@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::CMOVNBE do
     end
   end
 
+  describe "#name" do
+    it "must return :cmovnbe" do
+      expect(subject.name).to eq(:cmovnbe)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -208,6 +208,12 @@ describe Ronin::ASM::X86_64::Instructions::VGETMANTPD do
     end
   end
 
+  describe "#name" do
+    it "must return :vgetmantpd" do
+      expect(subject.name).to eq(:vgetmantpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

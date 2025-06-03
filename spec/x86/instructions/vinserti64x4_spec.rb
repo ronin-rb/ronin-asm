@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::VINSERTI64X4 do
     end
   end
 
+  describe "#name" do
+    it "must return :vinserti64x4" do
+      expect(subject.name).to eq(:vinserti64x4)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

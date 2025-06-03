@@ -49,14 +49,21 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:endbr64,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.empty?
                       []
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [endbr64]
+          #
+          def name = :endbr64
 
           #
           # Encodes the `endbr64` instruction.
@@ -74,7 +81,7 @@ module Ronin
               encoder.write_opcode(0x1e) +
               encoder.write_opcode(0xfa)
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

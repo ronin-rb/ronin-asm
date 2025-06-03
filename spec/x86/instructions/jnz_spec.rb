@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::JNZ do
     end
   end
 
+  describe "#name" do
+    it "must return :jnz" do
+      expect(subject.name).to eq(:jnz)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

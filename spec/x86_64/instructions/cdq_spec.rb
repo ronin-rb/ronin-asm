@@ -52,6 +52,12 @@ describe Ronin::ASM::X86_64::Instructions::CDQ do
     end
   end
 
+  describe "#name" do
+    it "must return :cdq" do
+      expect(subject.name).to eq(:cdq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

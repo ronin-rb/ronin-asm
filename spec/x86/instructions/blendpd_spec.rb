@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::BLENDPD do
     end
   end
 
+  describe "#name" do
+    it "must return :blendpd" do
+      expect(subject.name).to eq(:blendpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

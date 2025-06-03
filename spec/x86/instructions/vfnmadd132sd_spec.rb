@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VFNMADD132SD do
     end
   end
 
+  describe "#name" do
+    it "must return :vfnmadd132sd" do
+      expect(subject.name).to eq(:vfnmadd132sd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

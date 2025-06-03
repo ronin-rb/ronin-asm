@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::MULSD do
     end
   end
 
+  describe "#name" do
+    it "must return :mulsd" do
+      expect(subject.name).to eq(:mulsd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

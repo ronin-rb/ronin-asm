@@ -112,6 +112,12 @@ describe Ronin::ASM::X86_64::Instructions::VCVTSD2USI do
     end
   end
 
+  describe "#name" do
+    it "must return :vcvtsd2usi" do
+      expect(subject.name).to eq(:vcvtsd2usi)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

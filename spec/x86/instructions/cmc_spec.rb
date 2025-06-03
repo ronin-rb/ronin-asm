@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::CMC do
     end
   end
 
+  describe "#name" do
+    it "must return :cmc" do
+      expect(subject.name).to eq(:cmc)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

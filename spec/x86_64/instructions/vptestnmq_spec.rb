@@ -184,6 +184,12 @@ describe Ronin::ASM::X86_64::Instructions::VPTESTNMQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vptestnmq" do
+      expect(subject.name).to eq(:vptestnmq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

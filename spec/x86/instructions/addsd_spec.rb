@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::ADDSD do
     end
   end
 
+  describe "#name" do
+    it "must return :addsd" do
+      expect(subject.name).to eq(:addsd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

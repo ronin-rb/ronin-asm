@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VMOVMSKPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vmovmskps" do
+      expect(subject.name).to eq(:vmovmskps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

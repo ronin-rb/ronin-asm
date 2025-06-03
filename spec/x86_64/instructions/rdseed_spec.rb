@@ -76,6 +76,12 @@ describe Ronin::ASM::X86_64::Instructions::RDSEED do
     end
   end
 
+  describe "#name" do
+    it "must return :rdseed" do
+      expect(subject.name).to eq(:rdseed)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

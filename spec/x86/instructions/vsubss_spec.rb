@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VSUBSS do
     end
   end
 
+  describe "#name" do
+    it "must return :vsubss" do
+      expect(subject.name).to eq(:vsubss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

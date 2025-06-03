@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vfmaddsub213ph,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 3 && @operands[0].type_of?(:"xmm{k}{z}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:"mem128/mem16bcst")
                       [:"xmm{k}{z}", :xmm, :"mem128/mem16bcst"]
@@ -80,9 +80,16 @@ module Ronin
                     elsif @operands.length == 4 && @operands[0].type_of?(:zmm) && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:zmm) && @operands[3].type_of?(:"{er}")
                       [:zmm, :zmm, :zmm, :"{er}"]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vfmaddsub213ph]
+          #
+          def name = :vfmaddsub213ph
 
           #
           # Encodes the `vfmaddsub213ph` instruction.
@@ -151,7 +158,7 @@ module Ronin
               encoder.write_opcode(0xa6) +
               encoder.write_modrm(0b11,@operands[0],@operands[2])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

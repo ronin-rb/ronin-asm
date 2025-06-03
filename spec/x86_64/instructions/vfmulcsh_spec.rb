@@ -112,6 +112,12 @@ describe Ronin::ASM::X86_64::Instructions::VFMULCSH do
     end
   end
 
+  describe "#name" do
+    it "must return :vfmulcsh" do
+      expect(subject.name).to eq(:vfmulcsh)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

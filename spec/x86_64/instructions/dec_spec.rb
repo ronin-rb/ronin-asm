@@ -136,6 +136,12 @@ describe Ronin::ASM::X86_64::Instructions::DEC do
     end
   end
 
+  describe "#name" do
+    it "must return :dec" do
+      expect(subject.name).to eq(:dec)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::KSHIFTRB do
     end
   end
 
+  describe "#name" do
+    it "must return :kshiftrb" do
+      expect(subject.name).to eq(:kshiftrb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

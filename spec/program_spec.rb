@@ -460,10 +460,14 @@ describe Ronin::ASM::Program do
 
   describe "#<<" do
     let(:instruction1) do
-      Ronin::ASM::Instruction.new(:push, Ronin::ASM::Immediate.new(0x41))
+      Ronin::ASM::X86_64::Instructions::PUSH.new(
+        Ronin::ASM::Immediate.new(0x41)
+      )
     end
     let(:instruction2) do
-      Ronin::ASM::Instruction.new(:push, Ronin::ASM::Immediate.new(0x42))
+      Ronin::ASM::X86_64::Instructions::PUSH.new(
+        Ronin::ASM::Immediate.new(0x42)
+      )
     end
 
     before do

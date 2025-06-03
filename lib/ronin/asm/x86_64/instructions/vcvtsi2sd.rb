@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vcvtsi2sd,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 3 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:reg32)
                       [:xmm, :xmm, :reg32]
@@ -62,9 +62,16 @@ module Ronin
                     elsif @operands.length == 4 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:"{er}") && @operands[3].type_of?(:reg64)
                       [:xmm, :xmm, :"{er}", :reg64]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vcvtsi2sd]
+          #
+          def name = :vcvtsi2sd
 
           #
           # Returns the GNU Assembler (GAS) name for the instruction based on
@@ -120,7 +127,7 @@ module Ronin
               encoder.write_opcode(0x2a) +
               encoder.write_modrm(0b11,@operands[0],@operands[3])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

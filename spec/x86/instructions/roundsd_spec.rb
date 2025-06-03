@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::ROUNDSD do
     end
   end
 
+  describe "#name" do
+    it "must return :roundsd" do
+      expect(subject.name).to eq(:roundsd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

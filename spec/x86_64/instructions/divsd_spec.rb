@@ -64,6 +64,12 @@ describe Ronin::ASM::X86_64::Instructions::DIVSD do
     end
   end
 
+  describe "#name" do
+    it "must return :divsd" do
+      expect(subject.name).to eq(:divsd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

@@ -232,6 +232,12 @@ describe Ronin::ASM::X86::Instructions::VSUBPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vsubps" do
+      expect(subject.name).to eq(:vsubps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

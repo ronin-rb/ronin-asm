@@ -304,6 +304,12 @@ describe Ronin::ASM::X86::Instructions::XOR do
     end
   end
 
+  describe "#name" do
+    it "must return :xor" do
+      expect(subject.name).to eq(:xor)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

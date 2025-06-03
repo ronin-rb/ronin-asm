@@ -208,6 +208,12 @@ describe Ronin::ASM::X86_64::Instructions::VPMADD52LUQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vpmadd52luq" do
+      expect(subject.name).to eq(:vpmadd52luq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VRSQRT28PS do
     end
   end
 
+  describe "#name" do
+    it "must return :vrsqrt28ps" do
+      expect(subject.name).to eq(:vrsqrt28ps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

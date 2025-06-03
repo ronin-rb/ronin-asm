@@ -256,6 +256,12 @@ describe Ronin::ASM::X86::Instructions::SHR do
     end
   end
 
+  describe "#name" do
+    it "must return :shr" do
+      expect(subject.name).to eq(:shr)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

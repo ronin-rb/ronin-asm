@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::SHA256MSG1 do
     end
   end
 
+  describe "#name" do
+    it "must return :sha256msg1" do
+      expect(subject.name).to eq(:sha256msg1)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

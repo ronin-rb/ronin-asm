@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::EXTRQ do
     end
   end
 
+  describe "#name" do
+    it "must return :extrq" do
+      expect(subject.name).to eq(:extrq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

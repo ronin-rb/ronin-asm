@@ -256,6 +256,12 @@ describe Ronin::ASM::X86_64::Instructions::VMOVUPD do
     end
   end
 
+  describe "#name" do
+    it "must return :vmovupd" do
+      expect(subject.name).to eq(:vmovupd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

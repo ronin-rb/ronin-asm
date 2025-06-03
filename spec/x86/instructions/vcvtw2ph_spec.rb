@@ -208,6 +208,12 @@ describe Ronin::ASM::X86::Instructions::VCVTW2PH do
     end
   end
 
+  describe "#name" do
+    it "must return :vcvtw2ph" do
+      expect(subject.name).to eq(:vcvtw2ph)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

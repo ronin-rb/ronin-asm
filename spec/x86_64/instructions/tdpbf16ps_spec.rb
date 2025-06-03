@@ -52,6 +52,12 @@ describe Ronin::ASM::X86_64::Instructions::TDPBF16PS do
     end
   end
 
+  describe "#name" do
+    it "must return :tdpbf16ps" do
+      expect(subject.name).to eq(:tdpbf16ps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

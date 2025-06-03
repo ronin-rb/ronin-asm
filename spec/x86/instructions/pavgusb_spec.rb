@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PAVGUSB do
     end
   end
 
+  describe "#name" do
+    it "must return :pavgusb" do
+      expect(subject.name).to eq(:pavgusb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

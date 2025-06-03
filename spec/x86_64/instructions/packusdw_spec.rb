@@ -64,6 +64,12 @@ describe Ronin::ASM::X86_64::Instructions::PACKUSDW do
     end
   end
 
+  describe "#name" do
+    it "must return :packusdw" do
+      expect(subject.name).to eq(:packusdw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

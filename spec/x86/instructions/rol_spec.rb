@@ -256,6 +256,12 @@ describe Ronin::ASM::X86::Instructions::ROL do
     end
   end
 
+  describe "#name" do
+    it "must return :rol" do
+      expect(subject.name).to eq(:rol)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

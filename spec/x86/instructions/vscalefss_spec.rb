@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VSCALEFSS do
     end
   end
 
+  describe "#name" do
+    it "must return :vscalefss" do
+      expect(subject.name).to eq(:vscalefss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

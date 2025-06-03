@@ -244,6 +244,12 @@ describe Ronin::ASM::X86::Instructions::VPERMPD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpermpd" do
+      expect(subject.name).to eq(:vpermpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

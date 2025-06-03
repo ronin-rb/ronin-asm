@@ -64,6 +64,12 @@ describe Ronin::ASM::X86_64::Instructions::CMPNZXADD do
     end
   end
 
+  describe "#name" do
+    it "must return :cmpnzxadd" do
+      expect(subject.name).to eq(:cmpnzxadd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

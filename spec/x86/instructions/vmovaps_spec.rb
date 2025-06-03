@@ -256,6 +256,12 @@ describe Ronin::ASM::X86::Instructions::VMOVAPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vmovaps" do
+      expect(subject.name).to eq(:vmovaps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

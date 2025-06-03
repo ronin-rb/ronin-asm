@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPUNPCKLBW do
     end
   end
 
+  describe "#name" do
+    it "must return :vpunpcklbw" do
+      expect(subject.name).to eq(:vpunpcklbw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

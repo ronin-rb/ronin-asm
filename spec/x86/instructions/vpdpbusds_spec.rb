@@ -208,6 +208,12 @@ describe Ronin::ASM::X86::Instructions::VPDPBUSDS do
     end
   end
 
+  describe "#name" do
+    it "must return :vpdpbusds" do
+      expect(subject.name).to eq(:vpdpbusds)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

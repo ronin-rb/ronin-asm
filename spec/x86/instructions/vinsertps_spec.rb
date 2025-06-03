@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VINSERTPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vinsertps" do
+      expect(subject.name).to eq(:vinsertps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

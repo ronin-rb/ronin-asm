@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::KTESTB do
     end
   end
 
+  describe "#name" do
+    it "must return :ktestb" do
+      expect(subject.name).to eq(:ktestb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

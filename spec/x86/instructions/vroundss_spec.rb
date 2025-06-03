@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VROUNDSS do
     end
   end
 
+  describe "#name" do
+    it "must return :vroundss" do
+      expect(subject.name).to eq(:vroundss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

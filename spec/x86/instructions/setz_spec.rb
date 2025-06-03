@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::SETZ do
     end
   end
 
+  describe "#name" do
+    it "must return :setz" do
+      expect(subject.name).to eq(:setz)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

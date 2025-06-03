@@ -52,6 +52,12 @@ describe Ronin::ASM::X86_64::Instructions::CQO do
     end
   end
 
+  describe "#name" do
+    it "must return :cqo" do
+      expect(subject.name).to eq(:cqo)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

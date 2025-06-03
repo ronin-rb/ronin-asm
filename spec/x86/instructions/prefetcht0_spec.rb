@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::PREFETCHT0 do
     end
   end
 
+  describe "#name" do
+    it "must return :prefetcht0" do
+      expect(subject.name).to eq(:prefetcht0)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

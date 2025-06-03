@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::CLC do
     end
   end
 
+  describe "#name" do
+    it "must return :clc" do
+      expect(subject.name).to eq(:clc)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

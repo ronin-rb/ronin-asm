@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::MINSS do
     end
   end
 
+  describe "#name" do
+    it "must return :minss" do
+      expect(subject.name).to eq(:minss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -208,6 +208,12 @@ describe Ronin::ASM::X86::Instructions::VUNPCKLPD do
     end
   end
 
+  describe "#name" do
+    it "must return :vunpcklpd" do
+      expect(subject.name).to eq(:vunpcklpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

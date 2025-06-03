@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::AOR do
     end
   end
 
+  describe "#name" do
+    it "must return :aor" do
+      expect(subject.name).to eq(:aor)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

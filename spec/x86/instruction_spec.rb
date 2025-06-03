@@ -10,12 +10,21 @@ describe Ronin::ASM::X86::Instruction do
     expect(described_class).to be < Ronin::ASM::Instruction
   end
 
+  module TestX86Instructions
+    class MOV < Ronin::ASM::X86::Instruction
+
+      def name = :mov
+
+    end
+  end
+
   let(:register)  { Ronin::ASM::X86::Registers::EAX }
   let(:immediate) { Ronin::ASM::X86::Immediate.new(0xff, size: 1) }
-  let(:name)      { :mov }
   let(:operands)  { [register, immediate] }
 
-  subject { described_class.new(name, *operands) }
+  let(:instruction_class) { TestX86Instructions::MOV }
+
+  subject { instruction_class.new(*operands) }
 
   describe "#initialize" do
     it "must not set #form by default" do
@@ -25,13 +34,13 @@ describe Ronin::ASM::X86::Instruction do
 
   describe "#intel_name" do
     it "must return the #name" do
-      expect(subject.intel_name).to eq(name)
+      expect(subject.intel_name).to eq(subject.name)
     end
   end
 
   describe "#gas_name" do
     it "must return the #name by default" do
-      expect(subject.gas_name).to eq(name)
+      expect(subject.gas_name).to eq(subject.name)
     end
   end
 

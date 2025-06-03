@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PFRSQIT1 do
     end
   end
 
+  describe "#name" do
+    it "must return :pfrsqit1" do
+      expect(subject.name).to eq(:pfrsqit1)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

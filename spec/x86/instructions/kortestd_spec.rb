@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::KORTESTD do
     end
   end
 
+  describe "#name" do
+    it "must return :kortestd" do
+      expect(subject.name).to eq(:kortestd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -232,6 +232,12 @@ describe Ronin::ASM::X86::Instructions::VDIVPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vdivps" do
+      expect(subject.name).to eq(:vdivps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

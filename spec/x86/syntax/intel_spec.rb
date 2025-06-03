@@ -203,7 +203,18 @@ describe Ronin::ASM::X86::Syntax::Intel do
 
   describe ".format_instruction" do
     context "when the instruction has no operands" do
-      let(:instruction) { Ronin::ASM::X86::Instruction.new(:ret) }
+      module TestX86Instructions
+        class RET < Ronin::ASM::X86::Instruction
+
+          def initialize(**kwargs) = super(**kwargs)
+
+          def name = :ret
+
+        end
+      end
+
+      let(:instruction_class) { TestX86Instructions::MOV }
+      let(:instruction)       { instruction_class.new }
 
       it "must return the instruction name only" do
         expect(subject.format_instruction(instruction)).to eq(
@@ -213,12 +224,20 @@ describe Ronin::ASM::X86::Syntax::Intel do
     end
 
     context "when the instruction has operands" do
+      module TestX86Instructions
+        class MOV < Ronin::ASM::X86::Instruction
+
+          def name = :mov
+
+        end
+      end
+
       let(:operand1) { Ronin::ASM::X86::Registers::EAX }
       let(:operand2) { Ronin::ASM::X86::Immediate.new(0xff, size: 1) }
       let(:operands) { [operand1, operand2] }
-      let(:instruction) do
-        Ronin::ASM::X86::Instruction.new(:mov, *operands)
-      end
+
+      let(:instruction_class) { TestX86Instructions::MOV }
+      let(:instruction)       { instruction_class.new(*operands) }
 
       it "must return the instruction name followed by the formatted operands, separated by tabs" do
         expect(subject.format_instruction(instruction)).to eq(

@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::VEXTRACTF32X8 do
     end
   end
 
+  describe "#name" do
+    it "must return :vextractf32x8" do
+      expect(subject.name).to eq(:vextractf32x8)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

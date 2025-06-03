@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VPERM2I128 do
     end
   end
 
+  describe "#name" do
+    it "must return :vperm2i128" do
+      expect(subject.name).to eq(:vperm2i128)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

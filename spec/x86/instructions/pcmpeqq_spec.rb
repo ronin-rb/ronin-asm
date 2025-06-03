@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PCMPEQQ do
     end
   end
 
+  describe "#name" do
+    it "must return :pcmpeqq" do
+      expect(subject.name).to eq(:pcmpeqq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

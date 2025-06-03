@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VFPCLASSPD do
     end
   end
 
+  describe "#name" do
+    it "must return :vfpclasspd" do
+      expect(subject.name).to eq(:vfpclasspd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

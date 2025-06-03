@@ -112,6 +112,12 @@ describe Ronin::ASM::X86_64::Instructions::CMOVS do
     end
   end
 
+  describe "#name" do
+    it "must return :cmovs" do
+      expect(subject.name).to eq(:cmovs)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

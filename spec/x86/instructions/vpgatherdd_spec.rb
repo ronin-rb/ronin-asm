@@ -100,6 +100,12 @@ describe Ronin::ASM::X86::Instructions::VPGATHERDD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpgatherdd" do
+      expect(subject.name).to eq(:vpgatherdd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

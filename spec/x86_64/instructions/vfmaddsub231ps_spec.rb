@@ -232,6 +232,12 @@ describe Ronin::ASM::X86_64::Instructions::VFMADDSUB231PS do
     end
   end
 
+  describe "#name" do
+    it "must return :vfmaddsub231ps" do
+      expect(subject.name).to eq(:vfmaddsub231ps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

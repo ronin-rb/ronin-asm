@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PFCMPGT do
     end
   end
 
+  describe "#name" do
+    it "must return :pfcmpgt" do
+      expect(subject.name).to eq(:pfcmpgt)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

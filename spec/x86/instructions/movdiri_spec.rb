@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::MOVDIRI do
     end
   end
 
+  describe "#name" do
+    it "must return :movdiri" do
+      expect(subject.name).to eq(:movdiri)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

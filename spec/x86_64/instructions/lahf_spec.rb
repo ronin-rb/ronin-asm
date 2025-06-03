@@ -52,6 +52,12 @@ describe Ronin::ASM::X86_64::Instructions::LAHF do
     end
   end
 
+  describe "#name" do
+    it "must return :lahf" do
+      expect(subject.name).to eq(:lahf)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

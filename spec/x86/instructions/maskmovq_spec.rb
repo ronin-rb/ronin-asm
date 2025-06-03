@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::MASKMOVQ do
     end
   end
 
+  describe "#name" do
+    it "must return :maskmovq" do
+      expect(subject.name).to eq(:maskmovq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

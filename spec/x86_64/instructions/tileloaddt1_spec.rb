@@ -52,6 +52,12 @@ describe Ronin::ASM::X86_64::Instructions::TILELOADDT1 do
     end
   end
 
+  describe "#name" do
+    it "must return :tileloaddt1" do
+      expect(subject.name).to eq(:tileloaddt1)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPSHRDVD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpshrdvd" do
+      expect(subject.name).to eq(:vpshrdvd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

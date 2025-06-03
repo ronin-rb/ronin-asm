@@ -52,6 +52,12 @@ describe Ronin::ASM::X86_64::Instructions::TILERELEASE do
     end
   end
 
+  describe "#name" do
+    it "must return :tilerelease" do
+      expect(subject.name).to eq(:tilerelease)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

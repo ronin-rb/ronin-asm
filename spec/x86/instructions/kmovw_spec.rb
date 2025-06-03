@@ -100,6 +100,12 @@ describe Ronin::ASM::X86::Instructions::KMOVW do
     end
   end
 
+  describe "#name" do
+    it "must return :kmovw" do
+      expect(subject.name).to eq(:kmovw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::VBROADCASTF64X2 do
     end
   end
 
+  describe "#name" do
+    it "must return :vbroadcastf64x2" do
+      expect(subject.name).to eq(:vbroadcastf64x2)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

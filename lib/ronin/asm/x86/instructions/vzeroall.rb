@@ -49,14 +49,21 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vzeroall,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.empty?
                       []
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vzeroall]
+          #
+          def name = :vzeroall
 
           #
           # Encodes the `vzeroall` instruction.
@@ -72,7 +79,7 @@ module Ronin
               encoder.write_vex(type: :vex, l: 1, m_mmmm: 0b00001, pp: 0b00, r: 0, x: 0, b: 0, vvvv: 0) +
               encoder.write_opcode(0x77)
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

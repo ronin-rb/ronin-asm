@@ -76,6 +76,12 @@ describe Ronin::ASM::X86_64::Instructions::MOVDQU do
     end
   end
 
+  describe "#name" do
+    it "must return :movdqu" do
+      expect(subject.name).to eq(:movdqu)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

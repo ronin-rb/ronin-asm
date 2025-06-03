@@ -52,6 +52,12 @@ describe Ronin::ASM::X86_64::Instructions::VSHA512MSG1 do
     end
   end
 
+  describe "#name" do
+    it "must return :vsha512msg1" do
+      expect(subject.name).to eq(:vsha512msg1)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

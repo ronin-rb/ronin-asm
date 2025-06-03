@@ -304,6 +304,12 @@ describe Ronin::ASM::X86::Instructions::OR do
     end
   end
 
+  describe "#name" do
+    it "must return :or" do
+      expect(subject.name).to eq(:or)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

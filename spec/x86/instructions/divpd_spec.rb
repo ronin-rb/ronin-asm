@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::DIVPD do
     end
   end
 
+  describe "#name" do
+    it "must return :divpd" do
+      expect(subject.name).to eq(:divpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

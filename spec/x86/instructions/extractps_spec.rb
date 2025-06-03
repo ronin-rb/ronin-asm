@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::EXTRACTPS do
     end
   end
 
+  describe "#name" do
+    it "must return :extractps" do
+      expect(subject.name).to eq(:extractps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

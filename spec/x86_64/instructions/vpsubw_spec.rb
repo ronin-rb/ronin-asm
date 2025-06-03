@@ -184,6 +184,12 @@ describe Ronin::ASM::X86_64::Instructions::VPSUBW do
     end
   end
 
+  describe "#name" do
+    it "must return :vpsubw" do
+      expect(subject.name).to eq(:vpsubw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

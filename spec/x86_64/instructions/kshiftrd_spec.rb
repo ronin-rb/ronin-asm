@@ -52,6 +52,12 @@ describe Ronin::ASM::X86_64::Instructions::KSHIFTRD do
     end
   end
 
+  describe "#name" do
+    it "must return :kshiftrd" do
+      expect(subject.name).to eq(:kshiftrd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::CLFLUSHOPT do
     end
   end
 
+  describe "#name" do
+    it "must return :clflushopt" do
+      expect(subject.name).to eq(:clflushopt)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

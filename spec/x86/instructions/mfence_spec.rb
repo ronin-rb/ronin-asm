@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::MFENCE do
     end
   end
 
+  describe "#name" do
+    it "must return :mfence" do
+      expect(subject.name).to eq(:mfence)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

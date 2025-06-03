@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::KUNPCKDQ do
     end
   end
 
+  describe "#name" do
+    it "must return :kunpckdq" do
+      expect(subject.name).to eq(:kunpckdq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

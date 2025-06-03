@@ -76,6 +76,12 @@ describe Ronin::ASM::X86::Instructions::VPBROADCASTMB2Q do
     end
   end
 
+  describe "#name" do
+    it "must return :vpbroadcastmb2q" do
+      expect(subject.name).to eq(:vpbroadcastmb2q)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

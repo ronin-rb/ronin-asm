@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::VSCATTERPF0QPD do
     end
   end
 
+  describe "#name" do
+    it "must return :vscatterpf0qpd" do
+      expect(subject.name).to eq(:vscatterpf0qpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

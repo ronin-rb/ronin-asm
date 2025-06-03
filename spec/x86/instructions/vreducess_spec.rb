@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::VREDUCESS do
     end
   end
 
+  describe "#name" do
+    it "must return :vreducess" do
+      expect(subject.name).to eq(:vreducess)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

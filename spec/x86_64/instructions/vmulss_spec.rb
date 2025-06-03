@@ -112,6 +112,12 @@ describe Ronin::ASM::X86_64::Instructions::VMULSS do
     end
   end
 
+  describe "#name" do
+    it "must return :vmulss" do
+      expect(subject.name).to eq(:vmulss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

@@ -49,16 +49,23 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:jns,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 1 && @operands[0].type_of?(:rel8)
                       [:rel8]
                     elsif @operands.length == 1 && @operands[0].type_of?(:rel32)
                       [:rel32]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [jns]
+          #
+          def name = :jns
 
           #
           # Encodes the `jns` instruction.
@@ -78,7 +85,7 @@ module Ronin
               encoder.write_opcode(0x89) +
               encoder.write_code_offset(@operands[0],4)
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

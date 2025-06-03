@@ -208,6 +208,12 @@ describe Ronin::ASM::X86::Instructions::VPACKSSDW do
     end
   end
 
+  describe "#name" do
+    it "must return :vpackssdw" do
+      expect(subject.name).to eq(:vpackssdw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

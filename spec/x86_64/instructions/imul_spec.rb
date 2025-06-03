@@ -352,6 +352,12 @@ describe Ronin::ASM::X86_64::Instructions::IMUL do
     end
   end
 
+  describe "#name" do
+    it "must return :imul" do
+      expect(subject.name).to eq(:imul)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

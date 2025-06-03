@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:rdrand,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 1 && @operands[0].type_of?(:reg16)
                       [:reg16]
@@ -58,9 +58,16 @@ module Ronin
                     elsif @operands.length == 1 && @operands[0].type_of?(:reg64)
                       [:reg64]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [rdrand]
+          #
+          def name = :rdrand
 
           #
           # Encodes the `rdrand` instruction.
@@ -89,7 +96,7 @@ module Ronin
               encoder.write_opcode(0xc7) +
               encoder.write_modrm(0b11,6,@operands[0])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

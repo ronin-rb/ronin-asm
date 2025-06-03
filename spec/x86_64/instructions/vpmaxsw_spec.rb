@@ -184,6 +184,12 @@ describe Ronin::ASM::X86_64::Instructions::VPMAXSW do
     end
   end
 
+  describe "#name" do
+    it "must return :vpmaxsw" do
+      expect(subject.name).to eq(:vpmaxsw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

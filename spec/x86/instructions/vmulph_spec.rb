@@ -208,6 +208,12 @@ describe Ronin::ASM::X86::Instructions::VMULPH do
     end
   end
 
+  describe "#name" do
+    it "must return :vmulph" do
+      expect(subject.name).to eq(:vmulph)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

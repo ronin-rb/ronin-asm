@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VPINSRB do
     end
   end
 
+  describe "#name" do
+    it "must return :vpinsrb" do
+      expect(subject.name).to eq(:vpinsrb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

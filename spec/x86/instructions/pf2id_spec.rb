@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PF2ID do
     end
   end
 
+  describe "#name" do
+    it "must return :pf2id" do
+      expect(subject.name).to eq(:pf2id)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

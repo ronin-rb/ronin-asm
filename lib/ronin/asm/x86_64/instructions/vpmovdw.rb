@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vpmovdw,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 2 && @operands[0].type_of?(:"xmm{k}{z}") && @operands[1].type_of?(:xmm)
                       [:"xmm{k}{z}", :xmm]
@@ -76,9 +76,16 @@ module Ronin
                     elsif @operands.length == 2 && @operands[0].type_of?(:mem256) && @operands[1].type_of?(:zmm)
                       [:mem256, :zmm]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vpmovdw]
+          #
+          def name = :vpmovdw
 
           #
           # Encodes the `vpmovdw` instruction.
@@ -139,7 +146,7 @@ module Ronin
               encoder.write_opcode(0x33) +
               encoder.write_modrm(@operands[0],@operands[1],@operands[0])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

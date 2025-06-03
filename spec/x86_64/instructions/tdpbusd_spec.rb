@@ -52,6 +52,12 @@ describe Ronin::ASM::X86_64::Instructions::TDPBUSD do
     end
   end
 
+  describe "#name" do
+    it "must return :tdpbusd" do
+      expect(subject.name).to eq(:tdpbusd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

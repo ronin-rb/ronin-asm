@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::JECXZ do
     end
   end
 
+  describe "#name" do
+    it "must return :jecxz" do
+      expect(subject.name).to eq(:jecxz)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

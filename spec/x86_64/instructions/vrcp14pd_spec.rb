@@ -184,6 +184,12 @@ describe Ronin::ASM::X86_64::Instructions::VRCP14PD do
     end
   end
 
+  describe "#name" do
+    it "must return :vrcp14pd" do
+      expect(subject.name).to eq(:vrcp14pd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

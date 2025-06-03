@@ -88,6 +88,12 @@ describe Ronin::ASM::X86_64::Instructions::SHRX do
     end
   end
 
+  describe "#name" do
+    it "must return :shrx" do
+      expect(subject.name).to eq(:shrx)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

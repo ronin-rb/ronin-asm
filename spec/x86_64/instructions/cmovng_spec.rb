@@ -112,6 +112,12 @@ describe Ronin::ASM::X86_64::Instructions::CMOVNG do
     end
   end
 
+  describe "#name" do
+    it "must return :cmovng" do
+      expect(subject.name).to eq(:cmovng)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

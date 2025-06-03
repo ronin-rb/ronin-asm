@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPALIGNR do
     end
   end
 
+  describe "#name" do
+    it "must return :vpalignr" do
+      expect(subject.name).to eq(:vpalignr)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

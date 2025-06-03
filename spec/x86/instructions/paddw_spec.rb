@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::PADDW do
     end
   end
 
+  describe "#name" do
+    it "must return :paddw" do
+      expect(subject.name).to eq(:paddw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

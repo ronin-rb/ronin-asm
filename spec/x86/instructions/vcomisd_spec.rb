@@ -76,6 +76,12 @@ describe Ronin::ASM::X86::Instructions::VCOMISD do
     end
   end
 
+  describe "#name" do
+    it "must return :vcomisd" do
+      expect(subject.name).to eq(:vcomisd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

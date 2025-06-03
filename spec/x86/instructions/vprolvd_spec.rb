@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPROLVD do
     end
   end
 
+  describe "#name" do
+    it "must return :vprolvd" do
+      expect(subject.name).to eq(:vprolvd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

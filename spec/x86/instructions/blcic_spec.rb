@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::BLCIC do
     end
   end
 
+  describe "#name" do
+    it "must return :blcic" do
+      expect(subject.name).to eq(:blcic)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

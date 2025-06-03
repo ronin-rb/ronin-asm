@@ -129,7 +129,18 @@ describe Ronin::ASM::X86::Syntax::ATT do
 
   describe ".format_instruction" do
     context "when the instruction has no operands" do
-      let(:instruction) { Ronin::ASM::X86::Instruction.new(:ret) }
+      module TestX86Instructions
+        class RET < Ronin::ASM::X86::Instruction
+
+          def initialize(**kwargs) = super(**kwargs)
+
+          def name = :ret
+
+        end
+      end
+
+      let(:instruction_class) { TestX86Instructions::MOV }
+      let(:instruction)       { instruction_class.new }
 
       it "must return the instruction's GAS name only" do
         expect(subject.format_instruction(instruction)).to eq(
@@ -139,9 +150,21 @@ describe Ronin::ASM::X86::Syntax::ATT do
     end
 
     context "when the instruction has one operand" do
+      module TestX86Instructions
+        class INT < Ronin::ASM::X86::Instruction
+
+          def initialize(number,**kwargs) = super(number,**kwargs)
+
+          def name = :int
+
+        end
+      end
+
       let(:operand)     { Ronin::ASM::X86::Immediate.new(0x80) }
       let(:operands)    { [operand] }
-      let(:instruction) { Ronin::ASM::X86::Instruction.new(:int, *operands) }
+
+      let(:instruction_class) { TestX86Instructions::INT }
+      let(:instruction)       { instruction_class.new(*operands) }
 
       it "must return the instruction's GAS name, followed by a tab, and then the singular operand" do
         expect(subject.format_instruction(instruction)).to eq(
@@ -151,10 +174,20 @@ describe Ronin::ASM::X86::Syntax::ATT do
     end
 
     context "when the instruction has multiple operands" do
+      module TestX86Instructions
+        class MOV < Ronin::ASM::X86::Instruction
+
+          def name = :mov
+
+        end
+      end
+
       let(:operand1)    { Ronin::ASM::X86::Registers::EAX }
       let(:operand2)    { Ronin::ASM::X86::Immediate.new(0xff) }
       let(:operands)    { [operand1, operand2] }
-      let(:instruction) { Ronin::ASM::X86::Instruction.new(:mov, *operands) }
+
+      let(:instruction_class) { TestX86Instructions::MOV }
+      let(:instruction)       { instruction_class.new(*operands) }
 
       it "must return the instruction's GAS name, followed by a tab, and the formatted operand list" do
         expect(subject.format_instruction(instruction)).to eq(

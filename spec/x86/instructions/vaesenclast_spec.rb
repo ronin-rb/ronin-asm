@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VAESENCLAST do
     end
   end
 
+  describe "#name" do
+    it "must return :vaesenclast" do
+      expect(subject.name).to eq(:vaesenclast)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

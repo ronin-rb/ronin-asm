@@ -27,11 +27,6 @@ module Ronin
     #
     class Instruction
 
-      # The instruction mnemonic name.
-      #
-      # @return [Symbol]
-      attr_reader :name
-
       # The operands of the instruction.
       #
       # @return [Array<Memory, Register, SymbolRef, Immediate>]
@@ -45,19 +40,26 @@ module Ronin
       #
       # Initializes the instruction.
       #
-      # @param [Symbol] name
-      #   The instruction name.
-      #
       # @param [Array<Memory, Register, SymbolRef, Immediate>] operands
       #   Operands for the instruction.
       #
       # @param [String, nil] comment
       #   Optional comment for the instruction.
       #
-      def initialize(name,*operands, comment: nil)
-        @name     = name.to_sym
+      def initialize(*operands, comment: nil)
         @operands = operands
         @comment  = comment
+      end
+
+      #
+      # The instruction mnemonic name.
+      #
+      # @return [Symbol]
+      #
+      # @abstract
+      #
+      def name
+        raise(NotImplementedError,"#{self.class}#name was not defined")
       end
 
       #

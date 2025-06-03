@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::BZHI do
     end
   end
 
+  describe "#name" do
+    it "must return :bzhi" do
+      expect(subject.name).to eq(:bzhi)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

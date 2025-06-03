@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VSM3MSG1 do
     end
   end
 
+  describe "#name" do
+    it "must return :vsm3msg1" do
+      expect(subject.name).to eq(:vsm3msg1)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

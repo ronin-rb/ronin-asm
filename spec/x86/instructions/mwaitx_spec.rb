@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::MWAITX do
     end
   end
 
+  describe "#name" do
+    it "must return :mwaitx" do
+      expect(subject.name).to eq(:mwaitx)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

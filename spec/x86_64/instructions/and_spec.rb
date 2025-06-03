@@ -400,6 +400,12 @@ describe Ronin::ASM::X86_64::Instructions::AND do
     end
   end
 
+  describe "#name" do
+    it "must return :and" do
+      expect(subject.name).to eq(:and)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

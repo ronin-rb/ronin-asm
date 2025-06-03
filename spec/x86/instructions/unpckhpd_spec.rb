@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::UNPCKHPD do
     end
   end
 
+  describe "#name" do
+    it "must return :unpckhpd" do
+      expect(subject.name).to eq(:unpckhpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

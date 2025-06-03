@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPSHRDVQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vpshrdvq" do
+      expect(subject.name).to eq(:vpshrdvq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

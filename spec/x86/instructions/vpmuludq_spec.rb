@@ -208,6 +208,12 @@ describe Ronin::ASM::X86::Instructions::VPMULUDQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vpmuludq" do
+      expect(subject.name).to eq(:vpmuludq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

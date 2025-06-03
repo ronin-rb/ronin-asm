@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::RDTSC do
     end
   end
 
+  describe "#name" do
+    it "must return :rdtsc" do
+      expect(subject.name).to eq(:rdtsc)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

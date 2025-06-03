@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VDPBF16PS do
     end
   end
 
+  describe "#name" do
+    it "must return :vdpbf16ps" do
+      expect(subject.name).to eq(:vdpbf16ps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

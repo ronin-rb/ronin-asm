@@ -88,6 +88,12 @@ describe Ronin::ASM::X86_64::Instructions::VPBLENDD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpblendd" do
+      expect(subject.name).to eq(:vpblendd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

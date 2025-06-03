@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::KORQ do
     end
   end
 
+  describe "#name" do
+    it "must return :korq" do
+      expect(subject.name).to eq(:korq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

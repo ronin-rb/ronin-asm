@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::INT3 do
     end
   end
 
+  describe "#name" do
+    it "must return :int3" do
+      expect(subject.name).to eq(:int3)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

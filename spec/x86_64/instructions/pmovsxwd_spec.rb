@@ -64,6 +64,12 @@ describe Ronin::ASM::X86_64::Instructions::PMOVSXWD do
     end
   end
 
+  describe "#name" do
+    it "must return :pmovsxwd" do
+      expect(subject.name).to eq(:pmovsxwd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

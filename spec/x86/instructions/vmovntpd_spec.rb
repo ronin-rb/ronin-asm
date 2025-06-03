@@ -76,6 +76,12 @@ describe Ronin::ASM::X86::Instructions::VMOVNTPD do
     end
   end
 
+  describe "#name" do
+    it "must return :vmovntpd" do
+      expect(subject.name).to eq(:vmovntpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

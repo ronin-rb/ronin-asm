@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPMULTISHIFTQB do
     end
   end
 
+  describe "#name" do
+    it "must return :vpmultishiftqb" do
+      expect(subject.name).to eq(:vpmultishiftqb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

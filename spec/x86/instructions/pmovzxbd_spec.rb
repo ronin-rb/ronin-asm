@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PMOVZXBD do
     end
   end
 
+  describe "#name" do
+    it "must return :pmovzxbd" do
+      expect(subject.name).to eq(:pmovzxbd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

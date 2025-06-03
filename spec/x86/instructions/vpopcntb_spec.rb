@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPOPCNTB do
     end
   end
 
+  describe "#name" do
+    it "must return :vpopcntb" do
+      expect(subject.name).to eq(:vpopcntb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

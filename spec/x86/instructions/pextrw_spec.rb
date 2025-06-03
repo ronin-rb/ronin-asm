@@ -76,6 +76,12 @@ describe Ronin::ASM::X86::Instructions::PEXTRW do
     end
   end
 
+  describe "#name" do
+    it "must return :pextrw" do
+      expect(subject.name).to eq(:pextrw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

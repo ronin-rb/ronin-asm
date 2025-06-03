@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vgf2p8affineqb,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 4 && @operands[0].type_of?(:"xmm{k}{z}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:"mem128/mem64bcst") && @operands[3].type_of?(:imm8)
                       [:"xmm{k}{z}", :xmm, :"mem128/mem64bcst", :imm8]
@@ -80,9 +80,16 @@ module Ronin
                     elsif @operands.length == 4 && @operands[0].type_of?(:zmm) && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:zmm) && @operands[3].type_of?(:imm8)
                       [:zmm, :zmm, :zmm, :imm8]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vgf2p8affineqb]
+          #
+          def name = :vgf2p8affineqb
 
           #
           # Encodes the `vgf2p8affineqb` instruction.
@@ -165,7 +172,7 @@ module Ronin
               encoder.write_modrm(0b11,@operands[0],@operands[2]) +
               encoder.write_immediate(@operands[3],1)
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

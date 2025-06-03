@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::VFPCLASSSH do
     end
   end
 
+  describe "#name" do
+    it "must return :vfpclasssh" do
+      expect(subject.name).to eq(:vfpclasssh)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

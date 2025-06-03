@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPCMPUD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpcmpud" do
+      expect(subject.name).to eq(:vpcmpud)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::JS do
     end
   end
 
+  describe "#name" do
+    it "must return :js" do
+      expect(subject.name).to eq(:js)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

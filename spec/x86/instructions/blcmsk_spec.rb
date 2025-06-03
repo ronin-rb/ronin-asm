@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::BLCMSK do
     end
   end
 
+  describe "#name" do
+    it "must return :blcmsk" do
+      expect(subject.name).to eq(:blcmsk)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

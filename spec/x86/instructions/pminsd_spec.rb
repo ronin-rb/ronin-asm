@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PMINSD do
     end
   end
 
+  describe "#name" do
+    it "must return :pminsd" do
+      expect(subject.name).to eq(:pminsd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

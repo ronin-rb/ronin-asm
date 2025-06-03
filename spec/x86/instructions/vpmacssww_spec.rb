@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VPMACSSWW do
     end
   end
 
+  describe "#name" do
+    it "must return :vpmacssww" do
+      expect(subject.name).to eq(:vpmacssww)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

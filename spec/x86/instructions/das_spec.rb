@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::DAS do
     end
   end
 
+  describe "#name" do
+    it "must return :das" do
+      expect(subject.name).to eq(:das)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

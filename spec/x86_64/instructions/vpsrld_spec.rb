@@ -328,6 +328,12 @@ describe Ronin::ASM::X86_64::Instructions::VPSRLD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpsrld" do
+      expect(subject.name).to eq(:vpsrld)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

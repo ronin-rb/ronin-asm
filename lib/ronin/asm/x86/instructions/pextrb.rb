@@ -49,16 +49,23 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:pextrb,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 3 && @operands[0].type_of?(:reg32) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:imm8)
                       [:reg32, :xmm, :imm8]
                     elsif @operands.length == 3 && @operands[0].type_of?(:mem8) && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:imm8)
                       [:mem8, :xmm, :imm8]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [pextrb]
+          #
+          def name = :pextrb
 
           #
           # Encodes the `pextrb` instruction.
@@ -85,7 +92,7 @@ module Ronin
               encoder.write_modrm(@operands[0],@operands[1],@operands[0]) +
               encoder.write_immediate(@operands[2],1)
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

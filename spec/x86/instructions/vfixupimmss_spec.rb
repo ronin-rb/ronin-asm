@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VFIXUPIMMSS do
     end
   end
 
+  describe "#name" do
+    it "must return :vfixupimmss" do
+      expect(subject.name).to eq(:vfixupimmss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

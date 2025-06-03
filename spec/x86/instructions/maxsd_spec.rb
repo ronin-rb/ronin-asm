@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::MAXSD do
     end
   end
 
+  describe "#name" do
+    it "must return :maxsd" do
+      expect(subject.name).to eq(:maxsd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

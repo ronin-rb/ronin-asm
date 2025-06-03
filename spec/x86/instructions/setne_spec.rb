@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::SETNE do
     end
   end
 
+  describe "#name" do
+    it "must return :setne" do
+      expect(subject.name).to eq(:setne)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::JPO do
     end
   end
 
+  describe "#name" do
+    it "must return :jpo" do
+      expect(subject.name).to eq(:jpo)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

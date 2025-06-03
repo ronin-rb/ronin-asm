@@ -112,6 +112,12 @@ describe Ronin::ASM::X86_64::Instructions::PSLLD do
     end
   end
 
+  describe "#name" do
+    it "must return :pslld" do
+      expect(subject.name).to eq(:pslld)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

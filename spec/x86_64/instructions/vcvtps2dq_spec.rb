@@ -232,6 +232,12 @@ describe Ronin::ASM::X86_64::Instructions::VCVTPS2DQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vcvtps2dq" do
+      expect(subject.name).to eq(:vcvtps2dq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

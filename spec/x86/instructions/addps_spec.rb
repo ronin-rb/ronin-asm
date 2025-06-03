@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::ADDPS do
     end
   end
 
+  describe "#name" do
+    it "must return :addps" do
+      expect(subject.name).to eq(:addps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

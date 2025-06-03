@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::CVTPI2PS do
     end
   end
 
+  describe "#name" do
+    it "must return :cvtpi2ps" do
+      expect(subject.name).to eq(:cvtpi2ps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

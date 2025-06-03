@@ -256,6 +256,12 @@ describe Ronin::ASM::X86_64::Instructions::VMOVDQU8 do
     end
   end
 
+  describe "#name" do
+    it "must return :vmovdqu8" do
+      expect(subject.name).to eq(:vmovdqu8)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

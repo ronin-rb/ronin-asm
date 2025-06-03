@@ -208,6 +208,12 @@ describe Ronin::ASM::X86_64::Instructions::VRANGEPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vrangeps" do
+      expect(subject.name).to eq(:vrangeps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

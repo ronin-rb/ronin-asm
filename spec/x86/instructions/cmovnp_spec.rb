@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::CMOVNP do
     end
   end
 
+  describe "#name" do
+    it "must return :cmovnp" do
+      expect(subject.name).to eq(:cmovnp)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

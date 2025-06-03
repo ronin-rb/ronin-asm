@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PMAXSB do
     end
   end
 
+  describe "#name" do
+    it "must return :pmaxsb" do
+      expect(subject.name).to eq(:pmaxsb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

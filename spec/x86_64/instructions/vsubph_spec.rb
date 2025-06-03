@@ -208,6 +208,12 @@ describe Ronin::ASM::X86_64::Instructions::VSUBPH do
     end
   end
 
+  describe "#name" do
+    it "must return :vsubph" do
+      expect(subject.name).to eq(:vsubph)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

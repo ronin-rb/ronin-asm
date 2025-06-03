@@ -244,6 +244,12 @@ describe Ronin::ASM::X86_64::Instructions::VPERMQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vpermq" do
+      expect(subject.name).to eq(:vpermq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

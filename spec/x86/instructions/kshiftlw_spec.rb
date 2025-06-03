@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::KSHIFTLW do
     end
   end
 
+  describe "#name" do
+    it "must return :kshiftlw" do
+      expect(subject.name).to eq(:kshiftlw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -232,6 +232,12 @@ describe Ronin::ASM::X86_64::Instructions::VADDPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vaddps" do
+      expect(subject.name).to eq(:vaddps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

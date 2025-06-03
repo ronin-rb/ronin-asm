@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPTERNLOGQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vpternlogq" do
+      expect(subject.name).to eq(:vpternlogq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

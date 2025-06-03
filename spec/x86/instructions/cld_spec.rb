@@ -52,6 +52,12 @@ describe Ronin::ASM::X86::Instructions::CLD do
     end
   end
 
+  describe "#name" do
+    it "must return :cld" do
+      expect(subject.name).to eq(:cld)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

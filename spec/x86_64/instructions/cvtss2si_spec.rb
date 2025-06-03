@@ -88,6 +88,12 @@ describe Ronin::ASM::X86_64::Instructions::CVTSS2SI do
     end
   end
 
+  describe "#name" do
+    it "must return :cvtss2si" do
+      expect(subject.name).to eq(:cvtss2si)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::PADDUSB do
     end
   end
 
+  describe "#name" do
+    it "must return :paddusb" do
+      expect(subject.name).to eq(:paddusb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

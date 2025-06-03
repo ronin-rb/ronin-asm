@@ -112,6 +112,12 @@ describe Ronin::ASM::X86_64::Instructions::VRCP28SD do
     end
   end
 
+  describe "#name" do
+    it "must return :vrcp28sd" do
+      expect(subject.name).to eq(:vrcp28sd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

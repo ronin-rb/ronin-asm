@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VMAXSD do
     end
   end
 
+  describe "#name" do
+    it "must return :vmaxsd" do
+      expect(subject.name).to eq(:vmaxsd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

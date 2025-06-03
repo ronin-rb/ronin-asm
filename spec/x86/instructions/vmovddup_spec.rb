@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VMOVDDUP do
     end
   end
 
+  describe "#name" do
+    it "must return :vmovddup" do
+      expect(subject.name).to eq(:vmovddup)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

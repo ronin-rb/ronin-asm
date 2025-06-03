@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::PAVGW do
     end
   end
 
+  describe "#name" do
+    it "must return :pavgw" do
+      expect(subject.name).to eq(:pavgw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VPHADDUWD do
     end
   end
 
+  describe "#name" do
+    it "must return :vphadduwd" do
+      expect(subject.name).to eq(:vphadduwd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPMINSQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vpminsq" do
+      expect(subject.name).to eq(:vpminsq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

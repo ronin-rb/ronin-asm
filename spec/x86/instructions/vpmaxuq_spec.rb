@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPMAXUQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vpmaxuq" do
+      expect(subject.name).to eq(:vpmaxuq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

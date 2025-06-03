@@ -304,6 +304,12 @@ describe Ronin::ASM::X86::Instructions::CMP do
     end
   end
 
+  describe "#name" do
+    it "must return :cmp" do
+      expect(subject.name).to eq(:cmp)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

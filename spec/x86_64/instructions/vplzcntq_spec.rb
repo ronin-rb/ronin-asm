@@ -184,6 +184,12 @@ describe Ronin::ASM::X86_64::Instructions::VPLZCNTQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vplzcntq" do
+      expect(subject.name).to eq(:vplzcntq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

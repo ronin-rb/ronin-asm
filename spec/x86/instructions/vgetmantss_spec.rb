@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VGETMANTSS do
     end
   end
 
+  describe "#name" do
+    it "must return :vgetmantss" do
+      expect(subject.name).to eq(:vgetmantss)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

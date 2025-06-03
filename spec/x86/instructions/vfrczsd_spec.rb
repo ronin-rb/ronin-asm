@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VFRCZSD do
     end
   end
 
+  describe "#name" do
+    it "must return :vfrczsd" do
+      expect(subject.name).to eq(:vfrczsd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

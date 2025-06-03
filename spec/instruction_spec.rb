@@ -14,16 +14,11 @@ describe Ronin::ASM::Instruction do
     Ronin::ASM::Immediate.new(0xff, size: 1)
   end
 
-  let(:name)     { :mov }
   let(:operands) { [register, immediate] }
 
-  subject { described_class.new(name,*operands) }
+  subject { described_class.new(*operands) }
 
   describe "#initialize" do
-    it "must set the name" do
-      expect(subject.name).to eq(:mov)
-    end
-
     it "must set the operands" do
       expect(subject.operands).to eq(operands)
     end
@@ -35,7 +30,7 @@ describe Ronin::ASM::Instruction do
     context "when given the comment: keyword argument" do
       let(:comment) { 'Foo bar' }
 
-      subject { described_class.new(name,*operands, comment: comment) }
+      subject { described_class.new(*operands, comment: comment) }
 
       it "must set #comment" do
         expect(subject.comment).to eq(comment)
@@ -43,8 +38,16 @@ describe Ronin::ASM::Instruction do
     end
   end
 
+  describe "#name" do
+    it do
+      expect {
+        subject.name
+      }.to raise_error(NotImplementedError,"#{subject.class}#name was not defined")
+    end
+  end
+
   describe "#min_operand_size" do
-    subject { described_class.new(:mov, register, immediate) }
+    subject { described_class.new(register, immediate) }
 
     it "must return the minimum size of the operands" do
       expect(subject.min_operand_size).to eq(immediate.size)
@@ -53,7 +56,7 @@ describe Ronin::ASM::Instruction do
     context "when one of the operands does not define #size" do
       let(:symbol_ref) { Ronin::ASM::SymbolRef.new('_label') }
 
-      subject { described_class.new(:mov, register, symbol_ref) }
+      subject { described_class.new(register, symbol_ref) }
 
       it "must ignore them" do
         expect(subject.min_operand_size).to eq(register.size)
@@ -62,7 +65,7 @@ describe Ronin::ASM::Instruction do
   end
 
   describe "#max_operand_size" do
-    subject { described_class.new(:mov, register, immediate) }
+    subject { described_class.new(register, immediate) }
 
     it "must return the maximum size of the operands" do
       expect(subject.max_operand_size).to eq(register.size)
@@ -71,7 +74,7 @@ describe Ronin::ASM::Instruction do
     context "when one of the operands does not define #size" do
       let(:symbol_ref) { Ronin::ASM::SymbolRef.new('_label') }
 
-      subject { described_class.new(:mov, register, symbol_ref) }
+      subject { described_class.new(register, symbol_ref) }
 
       it "must ignore them" do
         expect(subject.max_operand_size).to eq(register.size)

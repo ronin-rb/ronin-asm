@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VFMADDPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vfmaddps" do
+      expect(subject.name).to eq(:vfmaddps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

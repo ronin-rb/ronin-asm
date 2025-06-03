@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VRANGESS do
     end
   end
 
+  describe "#name" do
+    it "must return :vrangess" do
+      expect(subject.name).to eq(:vrangess)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

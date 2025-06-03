@@ -208,6 +208,12 @@ describe Ronin::ASM::X86::Instructions::VORPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vorps" do
+      expect(subject.name).to eq(:vorps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

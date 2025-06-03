@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::MOVSLDUP do
     end
   end
 
+  describe "#name" do
+    it "must return :movsldup" do
+      expect(subject.name).to eq(:movsldup)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

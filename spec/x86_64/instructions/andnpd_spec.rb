@@ -64,6 +64,12 @@ describe Ronin::ASM::X86_64::Instructions::ANDNPD do
     end
   end
 
+  describe "#name" do
+    it "must return :andnpd" do
+      expect(subject.name).to eq(:andnpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

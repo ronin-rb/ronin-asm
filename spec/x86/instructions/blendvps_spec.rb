@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::BLENDVPS do
     end
   end
 
+  describe "#name" do
+    it "must return :blendvps" do
+      expect(subject.name).to eq(:blendvps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

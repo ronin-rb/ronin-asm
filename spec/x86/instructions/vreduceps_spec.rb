@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VREDUCEPS do
     end
   end
 
+  describe "#name" do
+    it "must return :vreduceps" do
+      expect(subject.name).to eq(:vreduceps)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

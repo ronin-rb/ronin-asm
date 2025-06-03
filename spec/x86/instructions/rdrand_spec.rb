@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::RDRAND do
     end
   end
 
+  describe "#name" do
+    it "must return :rdrand" do
+      expect(subject.name).to eq(:rdrand)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

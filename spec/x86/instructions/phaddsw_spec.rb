@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::PHADDSW do
     end
   end
 
+  describe "#name" do
+    it "must return :phaddsw" do
+      expect(subject.name).to eq(:phaddsw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

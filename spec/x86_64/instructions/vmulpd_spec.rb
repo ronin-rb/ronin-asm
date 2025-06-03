@@ -232,6 +232,12 @@ describe Ronin::ASM::X86_64::Instructions::VMULPD do
     end
   end
 
+  describe "#name" do
+    it "must return :vmulpd" do
+      expect(subject.name).to eq(:vmulpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VGETEXPSH do
     end
   end
 
+  describe "#name" do
+    it "must return :vgetexpsh" do
+      expect(subject.name).to eq(:vgetexpsh)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

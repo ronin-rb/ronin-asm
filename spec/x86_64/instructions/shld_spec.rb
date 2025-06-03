@@ -184,6 +184,12 @@ describe Ronin::ASM::X86_64::Instructions::SHLD do
     end
   end
 
+  describe "#name" do
+    it "must return :shld" do
+      expect(subject.name).to eq(:shld)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

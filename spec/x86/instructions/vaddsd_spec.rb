@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VADDSD do
     end
   end
 
+  describe "#name" do
+    it "must return :vaddsd" do
+      expect(subject.name).to eq(:vaddsd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

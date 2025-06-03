@@ -49,16 +49,23 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:rdseed,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 1 && @operands[0].type_of?(:reg16)
                       [:reg16]
                     elsif @operands.length == 1 && @operands[0].type_of?(:reg32)
                       [:reg32]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [rdseed]
+          #
+          def name = :rdseed
 
           #
           # Encodes the `rdseed` instruction.
@@ -80,7 +87,7 @@ module Ronin
               encoder.write_opcode(0xc7) +
               encoder.write_modrm(0b11,7,@operands[0])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

@@ -76,6 +76,12 @@ describe Ronin::ASM::X86_64::Instructions::VPSCATTERDQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vpscatterdq" do
+      expect(subject.name).to eq(:vpscatterdq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

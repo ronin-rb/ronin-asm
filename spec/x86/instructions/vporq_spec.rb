@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPORQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vporq" do
+      expect(subject.name).to eq(:vporq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

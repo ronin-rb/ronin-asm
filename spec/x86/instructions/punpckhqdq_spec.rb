@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::PUNPCKHQDQ do
     end
   end
 
+  describe "#name" do
+    it "must return :punpckhqdq" do
+      expect(subject.name).to eq(:punpckhqdq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

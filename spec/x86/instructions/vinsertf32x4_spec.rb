@@ -136,6 +136,12 @@ describe Ronin::ASM::X86::Instructions::VINSERTF32X4 do
     end
   end
 
+  describe "#name" do
+    it "must return :vinsertf32x4" do
+      expect(subject.name).to eq(:vinsertf32x4)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

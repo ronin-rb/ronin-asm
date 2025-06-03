@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPEXPANDD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpexpandd" do
+      expect(subject.name).to eq(:vpexpandd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

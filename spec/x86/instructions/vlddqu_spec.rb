@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VLDDQU do
     end
   end
 
+  describe "#name" do
+    it "must return :vlddqu" do
+      expect(subject.name).to eq(:vlddqu)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

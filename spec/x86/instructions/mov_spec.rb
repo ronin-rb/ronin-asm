@@ -244,6 +244,12 @@ describe Ronin::ASM::X86::Instructions::MOV do
     end
   end
 
+  describe "#name" do
+    it "must return :mov" do
+      expect(subject.name).to eq(:mov)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

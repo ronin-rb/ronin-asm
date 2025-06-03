@@ -88,6 +88,12 @@ describe Ronin::ASM::X86_64::Instructions::PABSD do
     end
   end
 
+  describe "#name" do
+    it "must return :pabsd" do
+      expect(subject.name).to eq(:pabsd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

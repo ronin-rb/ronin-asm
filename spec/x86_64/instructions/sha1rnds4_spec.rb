@@ -64,6 +64,12 @@ describe Ronin::ASM::X86_64::Instructions::SHA1RNDS4 do
     end
   end
 
+  describe "#name" do
+    it "must return :sha1rnds4" do
+      expect(subject.name).to eq(:sha1rnds4)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

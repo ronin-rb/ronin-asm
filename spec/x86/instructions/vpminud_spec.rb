@@ -208,6 +208,12 @@ describe Ronin::ASM::X86::Instructions::VPMINUD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpminud" do
+      expect(subject.name).to eq(:vpminud)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

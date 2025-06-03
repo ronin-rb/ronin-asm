@@ -208,6 +208,12 @@ describe Ronin::ASM::X86_64::Instructions::VANDNPD do
     end
   end
 
+  describe "#name" do
+    it "must return :vandnpd" do
+      expect(subject.name).to eq(:vandnpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

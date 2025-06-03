@@ -64,6 +64,12 @@ describe Ronin::ASM::X86_64::Instructions::HADDPD do
     end
   end
 
+  describe "#name" do
+    it "must return :haddpd" do
+      expect(subject.name).to eq(:haddpd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

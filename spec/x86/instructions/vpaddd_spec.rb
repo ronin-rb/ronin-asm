@@ -208,6 +208,12 @@ describe Ronin::ASM::X86::Instructions::VPADDD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpaddd" do
+      expect(subject.name).to eq(:vpaddd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

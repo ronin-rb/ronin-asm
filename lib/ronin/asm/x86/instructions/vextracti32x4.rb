@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vextracti32x4,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 3 && @operands[0].type_of?(:"xmm{k}{z}") && @operands[1].type_of?(:ymm) && @operands[2].type_of?(:imm8)
                       [:"xmm{k}{z}", :ymm, :imm8]
@@ -68,9 +68,16 @@ module Ronin
                     elsif @operands.length == 3 && @operands[0].type_of?(:mem128) && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:imm8)
                       [:mem128, :zmm, :imm8]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vextracti32x4]
+          #
+          def name = :vextracti32x4
 
           #
           # Encodes the `vextracti32x4` instruction.
@@ -123,7 +130,7 @@ module Ronin
               encoder.write_modrm(@operands[0],@operands[1],@operands[0]) +
               encoder.write_immediate(@operands[2],1)
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

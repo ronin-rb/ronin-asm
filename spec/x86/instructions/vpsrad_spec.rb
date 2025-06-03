@@ -328,6 +328,12 @@ describe Ronin::ASM::X86::Instructions::VPSRAD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpsrad" do
+      expect(subject.name).to eq(:vpsrad)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

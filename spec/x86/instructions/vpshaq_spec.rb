@@ -76,6 +76,12 @@ describe Ronin::ASM::X86::Instructions::VPSHAQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vpshaq" do
+      expect(subject.name).to eq(:vpshaq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -49,7 +49,7 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vfixupimmps,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 4 && @operands[0].type_of?(:"xmm{k}{z}") && @operands[1].type_of?(:xmm) && @operands[2].type_of?(:"mem128/mem32bcst") && @operands[3].type_of?(:imm8)
                       [:"xmm{k}{z}", :xmm, :"mem128/mem32bcst", :imm8]
@@ -80,9 +80,16 @@ module Ronin
                     elsif @operands.length == 5 && @operands[0].type_of?(:zmm) && @operands[1].type_of?(:zmm) && @operands[2].type_of?(:zmm) && @operands[3].type_of?(:"{sae}") && @operands[4].type_of?(:imm8)
                       [:zmm, :zmm, :zmm, :"{sae}", :imm8]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vfixupimmps]
+          #
+          def name = :vfixupimmps
 
           #
           # Encodes the `vfixupimmps` instruction.
@@ -165,7 +172,7 @@ module Ronin
               encoder.write_modrm(0b11,@operands[0],@operands[2]) +
               encoder.write_immediate(@operands[4],1)
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

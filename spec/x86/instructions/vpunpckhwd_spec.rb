@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPUNPCKHWD do
     end
   end
 
+  describe "#name" do
+    it "must return :vpunpckhwd" do
+      expect(subject.name).to eq(:vpunpckhwd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

@@ -184,6 +184,12 @@ describe Ronin::ASM::X86::Instructions::VPCOMPRESSW do
     end
   end
 
+  describe "#name" do
+    it "must return :vpcompressw" do
+      expect(subject.name).to eq(:vpcompressw)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

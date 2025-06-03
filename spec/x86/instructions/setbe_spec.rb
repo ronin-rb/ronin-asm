@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::SETBE do
     end
   end
 
+  describe "#name" do
+    it "must return :setbe" do
+      expect(subject.name).to eq(:setbe)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

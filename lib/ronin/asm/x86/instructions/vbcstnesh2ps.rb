@@ -49,16 +49,23 @@ module Ronin
           #   Incompatible operand types were given.
           #
           def initialize(*operands,**kwargs)
-            super(:vbcstnesh2ps,*operands,**kwargs)
+            super(*operands,**kwargs)
 
             @form = if @operands.length == 2 && @operands[0].type_of?(:xmm) && @operands[1].type_of?(:mem16)
                       [:xmm, :mem16]
                     elsif @operands.length == 2 && @operands[0].type_of?(:ymm) && @operands[1].type_of?(:mem16)
                       [:ymm, :mem16]
                     else
-                      raise(ArgumentError,"incompatible operands given for instruction: #{@name} #{@operands.map(&:type).join(', ')}")
+                      raise(ArgumentError,"incompatible operands given for instruction: #{name} #{@operands.map(&:type).join(', ')}")
                     end
           end
+
+          #
+          # The instruction name.
+          #
+          # @return [vbcstnesh2ps]
+          #
+          def name = :vbcstnesh2ps
 
           #
           # Encodes the `vbcstnesh2ps` instruction.
@@ -79,7 +86,7 @@ module Ronin
               encoder.write_opcode(0xb1) +
               encoder.write_modrm(@operands[1],@operands[0],@operands[1])
             else
-              raise(NotImplementedError,"cannot encode instruction form: #{@name} #{@form.join(', ')}")
+              raise(NotImplementedError,"cannot encode instruction form: #{name} #{@form.join(', ')}")
             end
           end
 

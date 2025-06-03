@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VPCOMQ do
     end
   end
 
+  describe "#name" do
+    it "must return :vpcomq" do
+      expect(subject.name).to eq(:vpcomq)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

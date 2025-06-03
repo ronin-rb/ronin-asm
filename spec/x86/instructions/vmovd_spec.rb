@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::VMOVD do
     end
   end
 
+  describe "#name" do
+    it "must return :vmovd" do
+      expect(subject.name).to eq(:vmovd)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

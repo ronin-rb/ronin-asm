@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::T1MSKC do
     end
   end
 
+  describe "#name" do
+    it "must return :t1mskc" do
+      expect(subject.name).to eq(:t1mskc)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

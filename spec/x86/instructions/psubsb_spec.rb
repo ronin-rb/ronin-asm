@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::PSUBSB do
     end
   end
 
+  describe "#name" do
+    it "must return :psubsb" do
+      expect(subject.name).to eq(:psubsb)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

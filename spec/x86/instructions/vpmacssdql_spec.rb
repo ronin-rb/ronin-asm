@@ -64,6 +64,12 @@ describe Ronin::ASM::X86::Instructions::VPMACSSDQL do
     end
   end
 
+  describe "#name" do
+    it "must return :vpmacssdql" do
+      expect(subject.name).to eq(:vpmacssdql)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

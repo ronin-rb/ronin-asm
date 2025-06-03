@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::VSM4RNDS4 do
     end
   end
 
+  describe "#name" do
+    it "must return :vsm4rnds4" do
+      expect(subject.name).to eq(:vsm4rnds4)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

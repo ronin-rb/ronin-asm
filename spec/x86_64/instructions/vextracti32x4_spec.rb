@@ -136,6 +136,12 @@ describe Ronin::ASM::X86_64::Instructions::VEXTRACTI32X4 do
     end
   end
 
+  describe "#name" do
+    it "must return :vextracti32x4" do
+      expect(subject.name).to eq(:vextracti32x4)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'

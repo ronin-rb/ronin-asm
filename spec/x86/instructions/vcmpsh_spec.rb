@@ -112,6 +112,12 @@ describe Ronin::ASM::X86::Instructions::VCMPSH do
     end
   end
 
+  describe "#name" do
+    it "must return :vcmpsh" do
+      expect(subject.name).to eq(:vcmpsh)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

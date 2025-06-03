@@ -88,6 +88,12 @@ describe Ronin::ASM::X86::Instructions::PANDN do
     end
   end
 
+  describe "#name" do
+    it "must return :pandn" do
+      expect(subject.name).to eq(:pandn)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86/encoder'
     require 'stringio'

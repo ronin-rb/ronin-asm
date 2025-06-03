@@ -52,6 +52,12 @@ describe Ronin::ASM::X86_64::Instructions::STTILECFG do
     end
   end
 
+  describe "#name" do
+    it "must return :sttilecfg" do
+      expect(subject.name).to eq(:sttilecfg)
+    end
+  end
+
   describe "#encode", :compatibility do
     require 'ronin/asm/x86_64/encoder'
     require 'stringio'
