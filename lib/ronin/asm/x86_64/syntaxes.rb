@@ -18,32 +18,5 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../x86/syntax/intel'
-
-module Ronin
-  module ASM
-    module X86_64
-      module Syntax
-        #
-        # Intel assembly syntax for x86-64.
-        #
-        # @since 1.0.0
-        #
-        class Intel < X86::Syntax::Intel
-
-          #
-          # Emits the program's prologue.
-          #
-          # @param [Program] program
-          #   The program.
-          #
-          # @return [String]
-          #   The formatted prologue.
-          #
-          def self.format_prologue(program) = 'BITS 64'
-
-        end
-      end
-    end
-  end
-end
+require_relative 'syntaxes/att'
+require_relative 'syntaxes/intel'

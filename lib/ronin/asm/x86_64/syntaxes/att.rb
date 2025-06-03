@@ -18,5 +18,34 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'syntax/att'
-require_relative 'syntax/intel'
+require_relative '../../x86/syntaxes/att'
+
+module Ronin
+  module ASM
+    module X86_64
+      module Syntaxes
+        #
+        # ATT assembly syntax for x86-64.
+        #
+        # @since 1.0.0
+        #
+        class ATT < X86::Syntaxes::ATT
+
+          #
+          # Emits the program's prologue.
+          #
+          # @param [Program] program
+          #   The program.
+          #
+          # @return [String]
+          #   The formatted prologue.
+          #
+          def self.format_prologue(program)
+            '.code64'
+          end
+
+        end
+      end
+    end
+  end
+end

@@ -134,7 +134,7 @@ describe Ronin::ASM::X86::Broadcast do
   describe "#to_s" do
     it "must return formatted memory operand and broadcast decorator" do
       expect(subject.to_s).to eq(
-        Ronin::ASM::X86::Syntax::Intel.format_broadcast(subject)
+        Ronin::ASM::X86::Syntaxes::Intel.format_broadcast(subject)
       )
     end
   end

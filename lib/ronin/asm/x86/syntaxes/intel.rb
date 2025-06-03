@@ -23,7 +23,7 @@ require_relative 'common'
 module Ronin
   module ASM
     module X86
-      module Syntax
+      module Syntaxes
         #
         # Intel assembly syntax for x86.
         #

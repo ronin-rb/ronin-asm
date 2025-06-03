@@ -31,9 +31,9 @@ describe Ronin::ASM::X86_64::Instruction do
   subject { instruction_class.new(*operands) }
 
   describe "#to_s" do
-    it "must call Ronin::ASM::X86_64::Syntax::Intel.format_instruction" do
+    it "must call Ronin::ASM::X86_64::Syntaxes::Intel.format_instruction" do
       expect(subject.to_s).to eq(
-        Ronin::ASM::X86_64::Syntax::Intel.format_instruction(subject)
+        Ronin::ASM::X86_64::Syntaxes::Intel.format_instruction(subject)
       )
     end
   end

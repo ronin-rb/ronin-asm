@@ -20,7 +20,7 @@ describe Ronin::ASM::X86_64::Opmask do
   describe "#to_s" do
     it "must return formatted operand and the opmask decorator" do
       expect(subject.to_s).to eq(
-        Ronin::ASM::X86_64::Syntax::Intel.format_opmask(subject)
+        Ronin::ASM::X86_64::Syntaxes::Intel.format_opmask(subject)
       )
     end
   end

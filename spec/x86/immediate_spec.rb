@@ -81,9 +81,9 @@ describe Ronin::ASM::X86::Immediate do
   end
 
   describe "#to_s" do
-    it "must call Ronin::ASM::X86::Syntax::Intel.format_immediate" do
+    it "must call Ronin::ASM::X86::Syntaxes::Intel.format_immediate" do
       expect(subject.to_s).to eq(
-        Ronin::ASM::X86::Syntax::Intel.format_immediate(subject)
+        Ronin::ASM::X86::Syntaxes::Intel.format_immediate(subject)
       )
     end
   end

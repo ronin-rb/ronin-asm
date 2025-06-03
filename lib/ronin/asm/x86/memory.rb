@@ -189,11 +189,11 @@ module Ronin
         #
         # @return [String]
         #
-        def to_s = Syntax::Intel.format_memory(self)
+        def to_s = Syntaxes::Intel.format_memory(self)
 
       end
     end
   end
 end
 
-require_relative 'syntax/intel'
+require_relative 'syntaxes/intel'

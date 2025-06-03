@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'ronin/asm/x86_64/syntax/intel'
+require 'ronin/asm/x86_64/syntaxes/intel'
 
 require 'ronin/asm/x86_64/immediate'
 require 'ronin/asm/x86_64/registers'
@@ -7,9 +7,9 @@ require 'ronin/asm/x86_64/memory'
 require 'ronin/asm/x86_64/instruction'
 require 'ronin/asm/program'
 
-describe Ronin::ASM::X86_64::Syntax::Intel do
-  it "must inherit from Ronin::ASM::X86::Syntax::Intel" do
-    expect(described_class).to be < Ronin::ASM::X86::Syntax::Intel
+describe Ronin::ASM::X86_64::Syntaxes::Intel do
+  it "must inherit from Ronin::ASM::X86::Syntaxes::Intel" do
+    expect(described_class).to be < Ronin::ASM::X86::Syntaxes::Intel
   end
 
   subject { described_class }

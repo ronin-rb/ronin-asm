@@ -20,7 +20,7 @@
 
 module Ronin
   module ASM
-    module Syntax
+    module Syntaxes
       #
       # Abstract base-class for all Assembly Syntax classes.
       #

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'ronin/asm/syntax/common'
+require 'ronin/asm/syntaxes/common'
 
 require 'ronin/asm/immediate'
 require 'ronin/asm/memory'
@@ -7,7 +7,7 @@ require 'ronin/asm/label'
 require 'stringio'
 require 'tempfile'
 
-describe Ronin::ASM::Syntax::Common do
+describe Ronin::ASM::Syntaxes::Common do
   subject { described_class }
 
   describe ".format_keyword" do

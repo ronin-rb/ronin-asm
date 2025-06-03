@@ -35,9 +35,9 @@ describe Ronin::ASM::X86_64::Broadcast do
       double('formatted Ronin::ASM::X86_64::Broadcast')
     end
 
-    it "must call Ronin::ASM::X86_64::Syntax::Intel.format_broadcast" do
+    it "must call Ronin::ASM::X86_64::Syntaxes::Intel.format_broadcast" do
       expect(subject.to_s).to eq(
-        Ronin::ASM::X86_64::Syntax::Intel.format_broadcast(subject)
+        Ronin::ASM::X86_64::Syntaxes::Intel.format_broadcast(subject)
       )
     end
   end

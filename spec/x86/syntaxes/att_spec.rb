@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'ronin/asm/x86/syntax/att'
+require 'ronin/asm/x86/syntaxes/att'
 
 require 'ronin/asm/x86/immediate'
 require 'ronin/asm/x86/registers'
@@ -9,9 +9,9 @@ require 'ronin/asm/program'
 
 require_relative 'common_examples'
 
-describe Ronin::ASM::X86::Syntax::ATT do
-  it "must inherit from Ronin::ASM::X86::Syntax::Common" do
-    expect(described_class).to be < Ronin::ASM::X86::Syntax::Common
+describe Ronin::ASM::X86::Syntaxes::ATT do
+  it "must inherit from Ronin::ASM::X86::Syntaxes::Common" do
+    expect(described_class).to be < Ronin::ASM::X86::Syntaxes::Common
   end
 
   subject { described_class }
@@ -216,5 +216,5 @@ describe Ronin::ASM::X86::Syntax::ATT do
     end
   end
 
-  include_context "Ronin::ASM::X86::Syntax::Common methods"
+  include_context "Ronin::ASM::X86::Syntaxes::Common methods"
 end

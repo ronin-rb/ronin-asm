@@ -28,7 +28,7 @@ require_relative 'x86_64/relative_offset'
 require_relative 'x86_64/broadcast'
 require_relative 'x86_64/opmask'
 require_relative 'x86_64/instructions'
-require_relative 'x86_64/syntax'
+require_relative 'x86_64/syntaxes'
 require_relative 'x86_64/encoder'
 require_relative 'x86_64/assembler'
 
@@ -50,8 +50,8 @@ module Ronin
 
       # Supported Assembly syntaxs
       SYNTAXES = {
-        att:   Syntax::ATT,
-        intel: Syntax::Intel
+        att:   Syntaxes::ATT,
+        intel: Syntaxes::Intel
       }
 
       # Supported OSes.

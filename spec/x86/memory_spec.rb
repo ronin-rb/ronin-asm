@@ -273,9 +273,9 @@ describe Ronin::ASM::X86::Memory do
   end
 
   describe "#to_s" do
-    it "must call Ronin::ASM::X86::Syntax::Intel.format_memory" do
+    it "must call Ronin::ASM::X86::Syntaxes::Intel.format_memory" do
       expect(subject.to_s).to eq(
-        Ronin::ASM::X86::Syntax::Intel.format_memory(subject)
+        Ronin::ASM::X86::Syntaxes::Intel.format_memory(subject)
       )
     end
   end

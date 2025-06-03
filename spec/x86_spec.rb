@@ -10,11 +10,11 @@ describe Ronin::ASM::X86 do
     subject { described_class::SYNTAXES }
 
     it "must define the :att syntax" do
-      expect(subject[:att]).to be(described_class::Syntax::ATT)
+      expect(subject[:att]).to be(described_class::Syntaxes::ATT)
     end
 
     it "must define the :intel syntax" do
-      expect(subject[:intel]).to be(described_class::Syntax::Intel)
+      expect(subject[:intel]).to be(described_class::Syntaxes::Intel)
     end
   end
 
