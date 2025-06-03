@@ -66,11 +66,20 @@ describe Ronin::ASM::Syntaxes::Common do
   end
 
   describe ".format_label" do
-    let(:name)  { :_start  }
-    let(:label) { Ronin::ASM::Label.new(name) }
+    context "when given a Ronin::ASM::Label" do
+      let(:label) { Ronin::ASM::Label.new('_start') }
 
-    it "must append a ':' to the name" do
-      expect(subject.format_label(label)).to eq('_start:')
+      it "must append a ':' to the name" do
+        expect(subject.format_label(label)).to eq('_start:')
+      end
+    end
+
+    context "when given a Symbol" do
+      let(:name) { :_start }
+
+      it "must append a ':' to the name" do
+        expect(subject.format_label(name)).to eq('_start:')
+      end
     end
   end
 
@@ -398,12 +407,24 @@ describe Ronin::ASM::Syntaxes::Common do
 
     subject { described_class.new(output) }
 
-    let(:name)  { :text }
+    context "when given a Ronin::ASM::Label" do
+      let(:label) { Ronin::ASM::Label.new('label1') }
 
-    it "must write the result of .format_label to the output stream" do
-      subject.write_label(name)
+      it "must write the result of .format_label to the output stream" do
+        subject.write_label(label)
 
-      expect(output.string).to eq("#{described_class.format_label(name)}#{$/}")
+        expect(output.string).to eq("#{described_class.format_label(label)}#{$/}")
+      end
+    end
+
+    context "when given a Symbol" do
+      let(:name) { :_start }
+
+      it "must write the result of .format_label to the output stream" do
+        subject.write_label(name)
+
+        expect(output.string).to eq("#{described_class.format_label(name)}#{$/}")
+      end
     end
   end
 

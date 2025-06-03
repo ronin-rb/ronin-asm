@@ -132,8 +132,8 @@ module Ronin
         #
         # Formats a label.
         #
-        # @param [Label] label
-        #   The label object.
+        # @param [Label, Symbol] label
+        #   The label or label name.
         #
         # @return [String]
         #   The formatted label.
@@ -263,11 +263,11 @@ module Ronin
         #
         # Writes a label declaration to the output stream.
         #
-        # @param [String] name
-        #   The label name.
+        # @param [Label, Symbol] label
+        #   The label or label name.
         #
-        def write_label(name)
-          @output.puts self.class.format_label(name)
+        def write_label(label)
+          @output.puts self.class.format_label(label)
         end
 
         #
