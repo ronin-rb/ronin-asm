@@ -20,3 +20,4 @@
 
 require_relative 'syntaxes/att'
 require_relative 'syntaxes/intel'
+require_relative 'syntaxes/ruby'

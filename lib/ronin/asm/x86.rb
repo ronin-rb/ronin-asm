@@ -51,7 +51,8 @@ module Ronin
       # Supported Assembly syntaxs
       SYNTAXES = {
         att:   Syntaxes::ATT,
-        intel: Syntaxes::Intel
+        intel: Syntaxes::Intel,
+        ruby:  Syntaxes::Ruby
       }
 
       # Supported OSes.

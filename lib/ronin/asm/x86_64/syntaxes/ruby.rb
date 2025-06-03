@@ -18,6 +18,20 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'syntaxes/att'
-require_relative 'syntaxes/intel'
-require_relative 'syntaxes/ruby'
+require_relative '../../x86/syntaxes/ruby'
+
+module Ronin
+  module ASM
+    module X86_64
+      module Syntaxes
+        #
+        # Ruby syntax for x86-64 {Ronin::ASM::Program}s.
+        #
+        # @since 1.0.0
+        #
+        class Ruby < X86::Syntaxes::Ruby
+        end
+      end
+    end
+  end
+end
