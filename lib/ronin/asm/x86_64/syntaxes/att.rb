@@ -32,7 +32,7 @@ module Ronin
         class ATT < X86::Syntaxes::ATT
 
           #
-          # Emits the program's prologue.
+          # Formats the program's prologue.
           #
           # @param [Program] program
           #   The program.

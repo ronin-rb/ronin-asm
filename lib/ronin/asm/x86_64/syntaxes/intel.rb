@@ -32,7 +32,7 @@ module Ronin
         class Intel < X86::Syntaxes::Intel
 
           #
-          # Emits the program's prologue.
+          # Formats the program's prologue.
           #
           # @param [Program] program
           #   The program.

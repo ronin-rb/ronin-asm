@@ -27,7 +27,7 @@ module Ronin
       class Common
 
         #
-        # Emits a keyword.
+        # Formats a keyword.
         #
         # @param [Symbol] name
         #   Name of the keyword.
@@ -38,7 +38,7 @@ module Ronin
         def self.format_keyword(name) = name.to_s
 
         #
-        # Emits a register.
+        # Formats a register.
         #
         # @param [Register] reg
         #
@@ -52,7 +52,7 @@ module Ronin
         end
 
         #
-        # Emits an integer.
+        # Formats an integer.
         #
         # @param [Integer] int
         #   The integer value.
@@ -67,7 +67,7 @@ module Ronin
         end
 
         #
-        # Emits an immediate operand.
+        # Formats an immediate operand.
         #
         # @param [Immediate] imm
         #   The immediate operand.
@@ -82,7 +82,7 @@ module Ronin
         end
 
         #
-        # Emits an memory operand.
+        # Formats a memory operand.
         #
         # @param [Memory] mem
         #   The memory operand.
@@ -97,7 +97,7 @@ module Ronin
         end
 
         #
-        # Emits an operand.
+        # Formats an operand.
         #
         # @param [Immediate, Memory, Register, SymbolRef] operand
         #   The operand.
@@ -117,7 +117,7 @@ module Ronin
         end
 
         #
-        # Emits multiple operands.
+        # Formats multiple operands.
         #
         # @param [Array<Immediate, Memory, Register, SymbolRef>] ops
         #   The Array of operands.
@@ -130,7 +130,7 @@ module Ronin
         end
 
         #
-        # Emits a reference to a label.
+        # Formats a reference to a label.
         #
         # @param [SymbolRef] symbol_ref
         #   The reference to a label.
@@ -141,7 +141,7 @@ module Ronin
         def self.format_symbol_ref(symbol_ref) = symbol_ref.to_s
 
         #
-        # Emits a label.
+        # Formats a label.
         #
         # @param [Label] label
         #   The label object.
@@ -152,7 +152,7 @@ module Ronin
         def self.format_label(label) = "#{label.name}:"
 
         #
-        # Emits an instruction.
+        # Formats an instruction.
         #
         # @param [Instruction] ins
         #   The instruction.
@@ -167,7 +167,7 @@ module Ronin
         end
 
         #
-        # Emits a section name.
+        # Formats a section name.
         #
         # @param [Symbol] name
         #   The section name.
@@ -182,7 +182,7 @@ module Ronin
         end
 
         #
-        # Emits the program's prologue.
+        # Formats the program's prologue.
         #
         # @param [Program] program
         #   The program.
@@ -197,7 +197,7 @@ module Ronin
         end
 
         #
-        # Emits a program.
+        # Formats a program.
         #
         # @param [Program] program
         #   The program.

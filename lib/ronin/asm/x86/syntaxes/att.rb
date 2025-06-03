@@ -32,7 +32,7 @@ module Ronin
         class ATT < Common
 
           #
-          # Emits a register.
+          # Formats a register.
           #
           # @param [Register] reg
           #   The register.
@@ -43,7 +43,7 @@ module Ronin
           def self.format_register(reg) = "%#{reg.name}"
 
           #
-          # Emits an immediate operand.
+          # Formats an immediate operand.
           #
           # @param [Immediate] imm
           #   The immediate operand.
@@ -54,7 +54,7 @@ module Ronin
           def self.format_immediate(imm) = "$#{format_integer(imm.value)}"
 
           #
-          # Emits a memory operand.
+          # Formats a memory operand.
           #
           # @param [Memory] mem
           #   The memory operand.
@@ -78,7 +78,7 @@ module Ronin
           end
 
           #
-          # Emits multiple operands.
+          # Formats multiple operands.
           #
           # @param [Array<Immediate, Memory, Register, Symbol>] operands
           #   The Array of operands.
@@ -98,7 +98,7 @@ module Ronin
           end
 
           #
-          # Emits an instruction.
+          # Formats an instruction.
           #
           # @param [Instruction] insn
           #   The instruction.
@@ -129,7 +129,7 @@ module Ronin
           end
 
           #
-          # Emits a section name.
+          # Formats a section name.
           #
           # @param [Symbol] name
           #   The section name.
@@ -142,7 +142,7 @@ module Ronin
           def self.format_section(name) = ".#{name}"
 
           #
-          # Emits the program's prologue.
+          # Formats the program's prologue.
           #
           # @param [Program] program
           #   The program.

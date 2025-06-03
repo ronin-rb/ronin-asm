@@ -43,7 +43,7 @@ module Ronin
           }
 
           #
-          # Emits an immediate operand.
+          # Formats an immediate operand.
           #
           # @param [Immediate] imm
           #   The immediate operand.
@@ -61,7 +61,7 @@ module Ronin
           end
 
           #
-          # Emits a register.
+          # Formats a register.
           #
           # @param [Register] reg
           #   The register.
@@ -72,7 +72,7 @@ module Ronin
           def self.format_register(reg) = reg.name.to_s
 
           #
-          # Emits a memory operand.
+          # Formats a memory operand.
           #
           # @param [Memory] mem
           #   The memory operand.
@@ -129,7 +129,7 @@ module Ronin
           end
 
           #
-          # Emits an instruction.
+          # Formats an instruction.
           #
           # @param [Instruction] insn
           #   The instruction.
@@ -148,7 +148,7 @@ module Ronin
           end
 
           #
-          # Emits a section name.
+          # Formats a section name.
           #
           # @param [Symbol] name
           #   The section name.
@@ -161,7 +161,7 @@ module Ronin
           def self.format_section(name) = "section .#{name}"
 
           #
-          # Emits the program's prologue.
+          # Formats the program's prologue.
           #
           # @param [Program] program
           #   The program.
