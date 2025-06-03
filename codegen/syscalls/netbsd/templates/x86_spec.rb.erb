@@ -1,3 +1,7 @@
+#
+# NOTE: this file was automatically generated. Do not edit!
+#
+
 require 'spec_helper'
 require 'ronin/asm/syscalls/netbsd/x86'
 

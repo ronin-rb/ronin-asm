@@ -18,6 +18,10 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+#
+# NOTE: this file was automatically generated. Do not edit!
+#
+
 module Ronin
   module ASM
     module X86_64
