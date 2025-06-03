@@ -7,11 +7,11 @@ require 'ronin/asm/x86/memory'
 require 'ronin/asm/x86/instruction'
 require 'ronin/asm/program'
 
-require_relative 'common_examples'
+require_relative 'assembly_examples'
 
 describe Ronin::ASM::X86::Syntaxes::ATT do
-  it "must inherit from Ronin::ASM::X86::Syntaxes::Common" do
-    expect(described_class).to be < Ronin::ASM::X86::Syntaxes::Common
+  it "must inherit from Ronin::ASM::X86::Syntaxes::Assembly" do
+    expect(described_class).to be < Ronin::ASM::X86::Syntaxes::Assembly
   end
 
   subject { described_class }
@@ -216,5 +216,5 @@ describe Ronin::ASM::X86::Syntaxes::ATT do
     end
   end
 
-  include_context "Ronin::ASM::X86::Syntaxes::Common methods"
+  include_context "Ronin::ASM::X86::Syntaxes::Assembly methods"
 end

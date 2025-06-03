@@ -22,9 +22,9 @@ module Ronin
   module ASM
     module Syntaxes
       #
-      # Abstract base-class for all Assembly Syntax classes.
+      # Abstract base-class for all syntax classes.
       #
-      class Common
+      class Syntax
 
         #
         # Formats a register.
@@ -115,7 +115,7 @@ module Ronin
         #   The formatted operands.
         #
         def self.format_operands(ops)
-          ops.map(&method(:format_operand)).join(",\t")
+          raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
         #
@@ -138,7 +138,11 @@ module Ronin
         # @return [String]
         #   The formatted label.
         #
-        def self.format_label(label) = "#{label.name}:"
+        # @abstract
+        #
+        def self.format_label(label)
+          raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
+        end
 
         #
         # Formats an instruction.
@@ -156,36 +160,6 @@ module Ronin
         end
 
         #
-        # Formats a section name.
-        #
-        # @param [Symbol] name
-        #   The section name.
-        #
-        # @return [String]
-        #   The formatted section name.
-        #
-        # @since 0.2.0
-        #
-        def self.format_section(name)
-          raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
-        end
-
-        #
-        # Formats the program's prologue.
-        #
-        # @param [Program] program
-        #   The program.
-        #
-        # @return [String]
-        #   The formatted prologue.
-        #
-        # @since 0.2.0
-        #
-        def self.format_prologue(program)
-          raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
-        end
-
-        #
         # Formats a program.
         #
         # @param [Program] program
@@ -195,20 +169,7 @@ module Ronin
         #   The formatted program.
         #
         def self.format_program(program)
-          asm = String.new(encoding: Encoding::UTF_8)
-
-          asm << format_prologue(program) << $/
-          asm << format_section(:text) << $/
-          asm << format_label(:_start) << $/
-
-          program.instructions.each do |insn|
-            case insn
-            when Label       then asm << format_label(insn) << $/
-            when Instruction then asm << "\t#{format_instruction(insn)}" << $/
-            end
-          end
-
-          return asm
+          raise(NotImplementedError,"#{self}.#{__method__} was not implemented")
         end
 
         # The output stream to write to.
@@ -242,15 +203,6 @@ module Ronin
         end
 
         #
-        # Writes the prologue line(s) of the program to the output stream.
-        #
-        # @param [Program] program
-        #
-        def write_prologue(program)
-          @output.puts self.class.format_prologue(program)
-        end
-
-        #
         # Writes a section line to the output stream.
         #
         # @param [Symbol] name
@@ -266,8 +218,8 @@ module Ronin
         # @param [Label, Symbol] label
         #   The label or label name.
         #
-        def write_label(label)
-          @output.puts self.class.format_label(label)
+        def write_label(label, indent: nil)
+          @output.puts "#{indent}#{self.class.format_label(label)}"
         end
 
         #
@@ -275,8 +227,11 @@ module Ronin
         #
         # @param [Instruction] insn
         #
-        def write_instruction(insn)
-          @output.puts "\t#{self.class.format_instruction(insn)}"
+        # @param [String, nil] indent
+        #   Optional indent string.
+        #
+        def write_instruction(insn, indent: nil)
+          @output.puts "#{indent}#{self.class.format_instruction(insn)}"
         end
 
         #
@@ -286,16 +241,7 @@ module Ronin
         #   The assembly program to format and write out.
         #
         def write_program(program)
-          write_prologue(program)
-          write_section(:text)
-          write_label(:_start)
-
-          program.instructions.each do |insn|
-            case insn
-            when Label       then write_label(insn)
-            when Instruction then write_instruction(insn)
-            end
-          end
+          raise(NotImplementedError,"#{self.class}##{__method__} was not implemented")
         end
 
       end

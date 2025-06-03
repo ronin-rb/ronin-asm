@@ -18,4 +18,5 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'syntaxes/common'
+require_relative 'syntaxes/syntax'
+require_relative 'syntaxes/assembly'

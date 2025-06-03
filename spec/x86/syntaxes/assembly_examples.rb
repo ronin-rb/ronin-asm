@@ -4,7 +4,7 @@ require 'ronin/asm/x86/operands'
 require 'ronin/asm/x86/memory'
 require 'ronin/asm/x86/broadcast'
 
-shared_examples_for "Ronin::ASM::X86::Syntaxes::Common methods" do
+shared_examples_for "Ronin::ASM::X86::Syntaxes::Assembly methods" do
   describe ".format_broadcast" do
     subject { described_class }
 

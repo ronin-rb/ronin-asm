@@ -18,7 +18,7 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'common'
+require_relative 'assembly'
 
 module Ronin
   module ASM
@@ -29,7 +29,7 @@ module Ronin
         #
         # @since 1.0.0
         #
-        class ATT < Common
+        class ATT < Assembly
 
           #
           # Formats a register.

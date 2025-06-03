@@ -18,18 +18,18 @@
 # along with ronin-asm.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../syntaxes/common'
+require_relative '../../syntaxes/assembly'
 
 module Ronin
   module ASM
     module X86
       module Syntaxes
         #
-        # Common x86 Assembly syntax.
+        # Base class for x86 Assembly syntaxes.
         #
         # @since 1.0.0
         #
-        class Common < ASM::Syntaxes::Common
+        class Assembly < ASM::Syntaxes::Assembly
 
           # Broadcast ratios and their formatted syntax.
           BROADCAST_RATIOS = {
