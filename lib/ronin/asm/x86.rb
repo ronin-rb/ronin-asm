@@ -689,6 +689,10 @@ module Ronin
       end
 
       #
+      # @!group Instruction Methods
+      #
+
+      #
       # Generates the instruction to invoke a syscall.
       #
       # @api private
