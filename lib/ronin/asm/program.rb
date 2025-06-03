@@ -508,87 +508,8 @@ module Ronin
       public
 
       #
-      # Coerces an operand value into an operand object.
+      # @!group Type Methods
       #
-      # @param [Integer, Register, Memory, nil] value
-      #   The input operand value.
-      #
-      # @return [Immediate, Register, Memory]
-      #   The output operand object.
-      #
-      # @api private
-      #
-      # @since 1.0.0
-      #
-      def coerce_operand(value)
-        case value
-        when Integer, nil then @immediate_class.new(value)
-        when Array        then @memory_class[*value]
-        else                   value
-        end
-      end
-
-      #
-      # Appends an instruction object to the program.
-      #
-      # @param [Instruction] instruction
-      #   The instruction object to append.
-      #
-      # @return [self]
-      #
-      # @api private
-      #
-      # @since 1.0.0
-      #
-      def <<(instruction)
-        @instructions << instruction
-        return self
-      end
-
-      #
-      # Coerces the given operands, initializes the instruction object, and
-      # appends it to the program.
-      #
-      # @param [Class<Instruction>] instruction_class
-      #   The instruction class.
-      #
-      # @param [Array] operands
-      #   The raw operand values.
-      #
-      # @return [Instruction]
-      #   The created instruction object.
-      #
-      # @api private
-      #
-      # @since 1.0.0
-      #
-      def add_instruction(instruction_class,*operands,**kwargs)
-        new_instruction = instruction_class.new(*operands.map(&method(:coerce_operand)))
-        @instructions << new_instruction
-        return new_instruction
-      end
-
-      #
-      # Determines if another program is compatible with the program.
-      #
-      # @param [Program] program
-      #   The other program to compare.
-      #
-      # @return [Boolean]
-      #   Returns true if both program's have the same architecture, and if the
-      #   Operating System (OS) if both program's specify an OS.
-      #   Returns false otherwise.
-      #
-      # @api private
-      #
-      # @since 1.0.0
-      #
-      def compatible?(program)
-        ARCHES.fetch(@arch) == ARCHES.fetch(program.arch) && (
-          (@os && program.os && @os == program.os) ||
-          (@os.nil? || program.os.nil?)
-        )
-      end
 
       #
       # Creates an operand of size 8bits (1 byte).
@@ -651,6 +572,10 @@ module Ronin
       def qword(operand) = coerce_operand(operand).change_size(8)
 
       #
+      # @!group DSL Methods
+      #
+
+      #
       # Adds a label to the program.
       #
       # @param [Symbol, String] name
@@ -701,6 +626,97 @@ module Ronin
         name = name.to_s
 
         @symbol_refs[name] ||= @symbol_ref_class.new(name, value: @symbols[name])
+      end
+
+      #
+      # @!endgroup
+      #
+
+      #
+      # @!group Internal API
+      #
+
+      #
+      # Determines if another program is compatible with the program.
+      #
+      # @param [Program] program
+      #   The other program to compare.
+      #
+      # @return [Boolean]
+      #   Returns true if both program's have the same architecture, and if the
+      #   Operating System (OS) if both program's specify an OS.
+      #   Returns false otherwise.
+      #
+      # @api private
+      #
+      # @since 1.0.0
+      #
+      def compatible?(program)
+        ARCHES.fetch(@arch) == ARCHES.fetch(program.arch) && (
+          (@os && program.os && @os == program.os) ||
+          (@os.nil? || program.os.nil?)
+        )
+      end
+
+      #
+      # Appends an instruction object to the program.
+      #
+      # @param [Instruction] instruction
+      #   The instruction object to append.
+      #
+      # @return [self]
+      #
+      # @api private
+      #
+      # @since 1.0.0
+      #
+      def <<(instruction)
+        @instructions << instruction
+        return self
+      end
+
+      #
+      # Coerces the given operands, initializes the instruction object, and
+      # appends it to the program.
+      #
+      # @param [Class<Instruction>] instruction_class
+      #   The instruction class.
+      #
+      # @param [Array] operands
+      #   The raw operand values.
+      #
+      # @return [Instruction]
+      #   The created instruction object.
+      #
+      # @api private
+      #
+      # @since 1.0.0
+      #
+      def add_instruction(instruction_class,*operands,**kwargs)
+        new_instruction = instruction_class.new(*operands.map(&method(:coerce_operand)))
+        @instructions << new_instruction
+        return new_instruction
+      end
+
+      #
+      # Coerces an operand value into an operand object.
+      #
+      # @param [Integer, Register, Memory, nil] value
+      #   The input operand value.
+      #
+      # @return [Immediate, Register, Memory]
+      #   The output operand object.
+      #
+      # @api private
+      #
+      # @since 1.0.0
+      #
+      def coerce_operand(value)
+        case value
+        when Integer, nil then @immediate_class.new(value)
+        when Array        then @memory_class[*value]
+        else                   value
+        end
       end
 
       #
@@ -808,6 +824,10 @@ module Ronin
 
         registers.reverse_each(&method(:load_register))
       end
+
+      #
+      # @!endgroup
+      #
 
       #
       # Evaluates code within the Program.
