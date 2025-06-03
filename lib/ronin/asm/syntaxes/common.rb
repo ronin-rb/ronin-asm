@@ -130,13 +130,13 @@ module Ronin
         end
 
         #
-        # Formats a reference to a label.
+        # Formats a reference to a symbol.
         #
         # @param [SymbolRef] symbol_ref
-        #   The reference to a label.
+        #   The reference to a symbol.
         #
         # @return [String]
-        #   The formatted label name.
+        #   The formatted symbol reference.
         #
         def self.format_symbol_ref(symbol_ref) = symbol_ref.to_s
 
