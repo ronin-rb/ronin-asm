@@ -110,7 +110,7 @@ module Ronin
           when Immediate then format_immediate(operand)
           when Register  then format_register(operand)
           when Memory    then format_memory(operand)
-          when SymbolRef then format_keyword(operand)
+          when SymbolRef then format_symbol_ref(operand)
           else
             raise(NotImplementedError,"cannot format unknown operand object: #{operand.inspect}")
           end
