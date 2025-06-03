@@ -138,7 +138,7 @@ module Ronin
           #   The formatted instruction.
           #
           def self.format_instruction(insn)
-            line = format_keyword(insn.intel_name)
+            line = insn.intel_name.to_s
 
             unless insn.operands.empty?
               line << "\t" << format_operands(insn.operands)

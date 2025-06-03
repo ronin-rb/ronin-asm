@@ -27,17 +27,6 @@ module Ronin
       class Common
 
         #
-        # Formats a keyword.
-        #
-        # @param [Symbol] name
-        #   Name of the keyword.
-        #
-        # @return [String]
-        #   The formatted keyword.
-        #
-        def self.format_keyword(name) = name.to_s
-
-        #
         # Formats a register.
         #
         # @param [Register] reg

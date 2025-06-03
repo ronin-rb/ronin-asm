@@ -10,14 +10,6 @@ require 'tempfile'
 describe Ronin::ASM::Syntaxes::Common do
   subject { described_class }
 
-  describe ".format_keyword" do
-    let(:name) { :_start }
-
-    it "must convert a keyword to a String" do
-      expect(subject.format_keyword(name)).to eq(name.to_s)
-    end
-  end
-
   describe ".format_register" do
     let(:register) { double('Register') }
 
